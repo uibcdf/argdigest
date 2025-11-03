@@ -1,0 +1,22 @@
+[project]
+name = "argdigest"
+version = "0.0.1"
+description = "ArgDigest — flexible argument auditing and normalization for scientific libraries."
+readme = "README.md"
+authors = [
+  { name = "UIBCDF Development Team" }
+]
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/uibcdf/argdigest"
+Repository = "https://github.com/uibcdf/argdigest"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["argdigest"]
