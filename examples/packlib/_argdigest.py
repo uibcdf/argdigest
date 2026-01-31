@@ -1,0 +1,5 @@
+DIGESTION_SOURCE = "packlib._private.digestion.argument"
+DIGESTION_STYLE = "package"
+STANDARDIZER = "packlib._private.digestion.normalization.standardizer:standardizer"
+STRICTNESS = "ignore"
+SKIP_PARAM = "skip_digestion"

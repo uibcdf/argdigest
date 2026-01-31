@@ -1,0 +1,21 @@
+package:
+  name: argdigest
+  version: "{{ environ['GIT_DESCRIBE_TAG'] }}"
+
+source:
+  path: ../../   # repo root
+
+build:
+  number: 1
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+
+about:
+  home: "https://github.com/uibcdf/argdigest"
+  license: "MIT"
+  summary: "Flexible argument auditing and normalization for scientific libraries."

@@ -1,0 +1,12 @@
+channels:
+  - uibcdf
+  - conda-forge
+
+dependencies:
+  # Core tools for building and uploading conda packages
+  - conda-build
+  - anaconda-client
+
+  # Python packaging helpers
+  - pip
+  - python-build

@@ -1,0 +1,18 @@
+channels:
+  - uibcdf
+  - conda-forge
+
+dependencies:
+  # --- Python base ---
+  - python=3.12
+  - pip
+
+  # --- Dev tools: formatting, linting, testing ---
+  - ruff
+  - pytest
+  - pytest-cov
+
+  # --- Documentation with Sphinx and MyST ---
+  - sphinx
+  - myst-parser
+  - pydata-sphinx-theme

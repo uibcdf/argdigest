@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+argdigest/__init__.py
+argdigest.egg-info/PKG-INFO
+argdigest.egg-info/SOURCES.txt
+argdigest.egg-info/dependency_links.txt
+argdigest.egg-info/top_level.txt
+tests/test_argument_digestion.py
+tests/test_decorator.py
+tests/test_registry.py

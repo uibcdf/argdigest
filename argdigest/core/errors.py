@@ -17,3 +17,11 @@ class DigestValueError(DigestError):
 
 class DigestInvariantError(DigestError):
     """Raised when a semantic/invariant rule is violated."""
+
+
+class DigestNotDigestedError(DigestError):
+    """Raised when an argument has no associated digester."""
+
+
+class DigestNotDigestedWarning(Warning):
+    """Warning emitted when an argument has no associated digester."""
