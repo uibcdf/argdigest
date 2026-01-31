@@ -1,0 +1,79 @@
+# ==========================================================
+# Python
+# ==========================================================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+.installed.cfg
+*.manifest
+*.spec
+
+# Build artifacts
+build/
+dist/
+wheels/
+*.egg-info/
+pip-wheel-metadata/
+
+# Virtual envs
+.env
+.venv
+env/
+venv/
+.mypy_cache/
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# =========================================================
+# Unit test / coverage reports
+# =========================================================
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# ==========================================================
+# Sphinx documentation
+# ==========================================================
+docs/_build/
+
+# ==========================================================
+# OS-specific + editor files
+# ==========================================================
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ==========================================================
+# Temp files
+# ==========================================================
+
+*.log
+tmp/
+temp/
+record.txt
+/docs/api/_autosummary
+/docs/api/**/autosummary/
+
+# ==========================================================
+# Files in this library that should or should NOT be ignored
+# ==========================================================
+argdigest/_version.py
+!*.nbconvert.log
