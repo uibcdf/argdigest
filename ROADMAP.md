@@ -180,10 +180,10 @@ def link(child, parent, topo):
 | Phase | Objectives | Deliverables |
 |:------|:-----------|:-------------|
 | **v0.1 (Prototype)** | Functional `@digest` decorator + minimal registry | **Done**: Core pipeline, argument-centric mode, `@digest.map` |
-| **v0.2** | Context-aware error system + logging | **Done**: Rich exceptions with context/hints, internal logging system |
-| **v0.3** | Optional integration with `beartype` and `pydantic` | `contrib/` modules with coverage tests |
-| **v0.4** | Documentation and usage examples (MolSysMT / TopoMT) | `docs/` folder and illustrative notebooks |
-| **v1.0** | Stable API + >90% coverage + PyPI/conda-forge release | 1.0.0 release, semantic versioning, full CI/CD |
+| **v0.2.0** | Context-aware error system + logging | **Done**: Rich exceptions, logging, native Pydantic/Beartype |
+| **v0.3.0** | Standard Pipelines & Science Integration | **Agreed**: Built-in coercers/validators, PyUnitWizard support |
+| **v0.4.0** | Declarative Config & Advanced Features | `YAML`/`JSON` rule sets, execution profiling |
+| **v1.0.0** | Stable API + >90% coverage + Release | 1.0.0 release, full CI/CD, PyPI/Conda distribution |
 
 ---
 

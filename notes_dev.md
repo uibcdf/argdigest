@@ -1,36 +1,35 @@
 # Development Notes - ArgDigest
 
-## 2026-01-31: Refactoring and Robustness (v0.1 -> v0.2 transition)
+## 2026-01-31: Refactoring and Robustness (v0.1 -> 0.2.0) ✅
 
-### 1. API Enhancements
-- **Implemented `@digest.map(...)` alias**: Now allows cleaner syntax for per-argument configuration using keyword arguments.
-- **Improved `@digest(kind="...", rules=[...])`**: Fixed a bug where global kind/rules were ignored if `map` was not provided. Now they apply to all function arguments by default.
+- **API**: Implemented `@digest.map` and `argdigest.config`.
+- **Integrations**: Native Pydantic rules and Beartype `type_check=True`.
+- **Robustness**: Rich errors with context/hints and path-reporting for cycles.
+- **CI/CD**: Fixed environment files and added `versioningit` support.
 
-### 2. Error Handling & Transparency
-- **Rich Exception Context**: `DigestError` and its subclasses now carry a `Context` (or `SimpleNamespace`) object. The string representation now includes function name, argument name, value (truncated), and hints.
-- **Full Dependency Cycle Reporting**: When a cyclic dependency is detected during argument-centric digestion, the error message now displays the full path (e.g., `a -> b -> a`).
+## Phase 3: "Batteries Included" & Science Support (0.3.0) 🚀
 
-### 3. Logging System
-- **Centralized Logger**: Created `argdigest/core/logger.py` with a configurable "argdigest" logger.
-- **Traceability**: Added debug logs in `decorator.py` and `registry.py` to track:
-    - Start and end of digestion per function.
-    - Pipeline execution per argument.
-    - Warnings for missing rules.
+### 1. Standard Pipeline Library (`argdigest.pipelines`)
+- Implement a set of common coercers: `to_list`, `to_bool`, `to_path`, `strip`, `lower`.
+- Implement basic validators: `is_int_list`, `in_range`, `matches_regex`.
+- Goal: Reduce boilerplate in user libraries.
 
-### 4. Native Integrations (First-Class Citizens)
-- **Native Beartype Support**: Added `type_check=True` parameter to `@digest`. If enabled, it automatically applies `beartype` to the function, ensuring type hints are enforced on the *digested* values.
-- **Native Pydantic Support**: The `Registry` now recognizes Pydantic models passed directly as rules. If a rule is a Pydantic class, it automatically calls `model_validate()`, providing seamless structural validation.
+### 2. Native PyUnitWizard Integration
+- Create a `contrib.pyunitwizard` (or similar) providing pipelines for:
+    - `check(dimensionality=...)`
+    - `standardize()` (respecting global PUW config)
+    - `convert(to_unit=...)`
+- Ensure robust error handling when underlying physics libraries are missing.
 
-### 5. Dependency Management
-- Updated `pyproject.toml` with `optional-dependencies` for `beartype` and `pydantic`.
-- Updated `devtools/conda-envs/development_env.yaml` to include them in the dev environment.
+### 3. MolSysMT Legacy Support
+- Validate that `digestion_style="package"` correctly loads and injects dependencies for existing MolSysMT digesters.
+- Ensure parameters like `caller` and `syntax` are injected seamlessly even if not explicitly defined in all functions.
 
-### 6. Test Suite Consolidation
-- Integrated all new feature tests into `tests/test_decorator.py` and `tests/test_argument_digestion.py`.
-- Added `tests/test_logging.py`, `tests/test_errors.py`, `tests/test_beartype.py`, and `tests/test_pydantic.py`.
+### 4. Architectural Refinement
+- Encourage the use of shared `kind` (e.g., `kind="vector3d"`) to compose logic between related arguments (like `coordinates` and `translation`).
 
 ---
 ## Next Steps
-- [ ] **Phase 3: Documentation**: Generate API reference using Sphinx.
-- [ ] **CI/CD**: Setup GitHub Actions for automated testing.
-- [ ] **Built-in Pipelines**: Implement `argdigest.pipelines.base_coercers` and `base_validators`.
+- [ ] Implement `argdigest/pipelines/base.py` with the first set of standard coercers.
+- [ ] Create `argdigest/contrib/pyunitwizard.py` with initial wrappers.
+- [ ] Add smoke tests using legacy-style digesters from MolSysMT.
