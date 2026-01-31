@@ -53,6 +53,25 @@ def register_feature(feature, user):
     return feature
 ```
 
+## Standard Pipelines (Batteries Included)
+
+ArgDigest comes with a set of built-in pipelines under the `std` kind. These are automatically
+registered and ready to use.
+
+```python
+@digest.map(
+    flag={"kind": "std", "rules": ["to_bool"]},
+    indices={"kind": "std", "rules": ["to_list"]},
+    path={"kind": "std", "rules": ["strip", "is_file"]}
+)
+def load_data(flag, indices, path):
+    ...
+```
+
+Available standard rules include:
+- **Coercers**: `to_bool`, `to_list`, `to_tuple`, `strip`, `lower`, `upper`.
+- **Validators**: `is_positive`, `is_non_negative`, `is_file`, `is_dir`, `is_int`, `is_str`.
+
 ## Native Integrations
 
 ArgDigest integrates seamlessly with the ecosystem if optional dependencies are installed.
@@ -84,6 +103,41 @@ def calculate(a: int):
 
 # calculate("10") works if digestion converts it to int.
 # calculate("hello") fails with a Beartype error.
+```
+
+### PyUnitWizard (Science-Aware)
+ArgDigest provides first-class support for physical quantities via `PyUnitWizard`.
+
+#### 1. Quantity Pipelines
+You can use factory functions from `argdigest.contrib.pyunitwizard_support` to create rules:
+
+```python
+from argdigest.contrib import pyunitwizard_support as puw_support
+
+@digest.map(
+    cutoff={
+        "kind": "quantity", 
+        "rules": [
+            puw_support.is_quantity(),
+            puw_support.check(dimensionality={'[L]': 1}),
+            puw_support.standardize()
+        ]
+    }
+)
+def compute(cutoff):
+    # cutoff is now a standardized Quantity object
+    ...
+```
+
+#### 2. Automatic Context Management
+You can set a temporary PyUnitWizard context (standard units, default form) for the duration
+of a function call using the `puw_context` parameter:
+
+```python
+@digest(puw_context={"standard_units": ["nm", "ps"], "form": "pint"})
+def simulation(time):
+    # Within this function, puw.standardize() uses nm/ps and pint
+    ...
 ```
 
 ## Dual mode (argument digestion + pipelines)

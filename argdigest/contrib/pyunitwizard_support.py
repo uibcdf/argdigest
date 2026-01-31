@@ -3,6 +3,7 @@ Integration with PyUnitWizard for physical quantity validation and standardizati
 """
 from __future__ import annotations
 from typing import Any, Dict, Optional, Callable
+from contextlib import contextmanager
 
 try:
     import pyunitwizard as puw
@@ -15,6 +16,37 @@ from ..core.errors import DigestValueError, DigestTypeError
 def _require_puw():
     if not HAS_PUW:
         raise ImportError("pyunitwizard is not installed. Install it to use these pipelines.")
+
+@contextmanager
+def context(**kwargs: Any):
+    """
+    Context manager that delegates to pyunitwizard.context if available.
+    If PUW is not installed, it yields without doing anything (unless kwargs are passed, then warning/error?).
+    Assuming if user passes puw_context, they expect PUW to work.
+    """
+    if not HAS_PUW:
+        if kwargs:
+            # If user requested context but PUW is missing, warn or ignore?
+            # For robustness, let's ignore but maybe log a debug message if we had access to logger here.
+            pass
+        yield
+        return
+
+    # Map kwargs to puw.context parameters if names differ?
+    # ArgDigest config might use 'form' instead of 'default_form'.
+    # Let's map them for convenience.
+    
+    puw_kwargs = {}
+    if 'form' in kwargs:
+        puw_kwargs['default_form'] = kwargs.pop('form')
+    if 'parser' in kwargs:
+        puw_kwargs['default_parser'] = kwargs.pop('parser')
+    
+    # Pass rest (like standard_units) directly
+    puw_kwargs.update(kwargs)
+    
+    with puw.context(**puw_kwargs):
+        yield
 
 # --- Factories for Pipelines ---
 

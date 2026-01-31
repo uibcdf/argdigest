@@ -23,6 +23,16 @@ STRICTNESS = "warn"
 SKIP_PARAM = "skip_digestion"
 ```
 
+## Programmatic config alternative (`my_lib/__init__.py`)
+```python
+import argdigest.config
+
+argdigest.config.set_defaults(
+    digestion_source="my_lib._private.digestion.registry",
+    digestion_style="registry"
+)
+```
+
 ## Registry module (`registry.py`)
 ```python
 def digest_a(a, caller=None):

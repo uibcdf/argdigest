@@ -12,6 +12,7 @@ class DigestConfig:
     standardizer: Any = None
     strictness: str = "warn"
     skip_param: str = "skip_digestion"
+    puw_context: dict[str, Any] | None = None
 
 
 _DEFAULTS: DigestConfig = DigestConfig()
@@ -53,6 +54,7 @@ def _from_module(module_path: str) -> DigestConfig:
         standardizer=getattr(module, "STANDARDIZER", None),
         strictness=getattr(module, "STRICTNESS", "warn"),
         skip_param=getattr(module, "SKIP_PARAM", "skip_digestion"),
+        puw_context=getattr(module, "PUW_CONTEXT", None),
     )
 
 

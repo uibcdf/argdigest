@@ -28,18 +28,30 @@ DIGESTION_STYLE = "package"
 STANDARDIZER = "my_lib._private.digestion.normalization.standardizer:standardizer"
 STRICTNESS = "warn"
 SKIP_PARAM = "skip_digestion"
+PUW_CONTEXT = {"standard_units": ["nm", "ps"]} # Optional: for Science libraries
+```
+
+## Programmatic config alternative (`my_lib/__init__.py`)
+```python
+import argdigest.config
+
+argdigest.config.set_defaults(
+    digestion_source="my_lib._private.digestion.argument",
+    digestion_style="package",
+    strictness="warn"
+)
 ```
 
 ## Digester template (`selection.py`)
 ```python
 def digest_selection(selection, syntax="MyLib", caller=None):
+    # Use standard pipelines internally if needed
+    # from argdigest.pipelines.coercers import to_list
+    # selection = to_list(selection)
+    
     if selection is None:
         return "all"
-    if isinstance(selection, str):
-        return selection
-    if isinstance(selection, int):
-        return [selection]
-    raise ArgumentError("selection", value=selection, caller=caller, message=None)
+    ...
 ```
 
 ## Usage in public API

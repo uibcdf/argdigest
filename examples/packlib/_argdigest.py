@@ -3,3 +3,4 @@ DIGESTION_STYLE = "package"
 STANDARDIZER = "packlib._private.digestion.normalization.standardizer:standardizer"
 STRICTNESS = "ignore"
 SKIP_PARAM = "skip_digestion"
+PUW_CONTEXT = {"standard_units": ["nm", "ps"], "form": "pint"}

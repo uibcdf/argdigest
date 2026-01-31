@@ -32,12 +32,14 @@ def digest(
     skip_param: str | object = _UNSET,
     config: DigestConfig | str | None | object = _UNSET,
     type_check: bool = False,
+    puw_context: dict[str, Any] | None = None,
     **digestion_params: Any,
 ):
     """
     Main decorator.
 
     - type_check: If True, uses beartype to enforce type hints on the *digested* values.
+    - puw_context: Optional PyUnitWizard context configuration (e.g. {'form': 'pint'}).
     """
 
     def deco(fn: Callable[..., Any]):
@@ -62,6 +64,7 @@ def digest(
             and standardizer is _UNSET
             and strictness is _UNSET
             and skip_param is _UNSET
+            and puw_context is None
         ):
             module_root = fn.__module__.split(".", 1)[0]
             try:
@@ -78,6 +81,11 @@ def digest(
         effective_standardizer = cfg.standardizer if standardizer is _UNSET else standardizer
         effective_strictness = cfg.strictness if strictness is _UNSET else strictness
         effective_skip_param = cfg.skip_param if skip_param is _UNSET else skip_param
+        
+        # Merge puw_context: kwargs take precedence over config
+        base_puw_ctx = cfg.puw_context or {}
+        override_puw_ctx = puw_context if puw_context is not None else {}
+        effective_puw_context = {**base_puw_ctx, **override_puw_ctx}
 
         standardizer_fn = resolve_standardizer(effective_standardizer)
         digesters_cache: dict[str, Callable[..., Any]] | None = None
@@ -99,149 +107,159 @@ def digest(
 
         @wraps(fn)
         def wrapper(*args: Any, **kwargs: Any):
-            bound = bind_arguments(fn, *args, **kwargs)
+            
+            def _run_digestion():
+                bound = bind_arguments(fn, *args, **kwargs)
 
-            if bound.get(effective_skip_param, False):
-                return fn(**bound)
+                if bound.get(effective_skip_param, False):
+                    return fn_to_wrap(**bound)
 
-            caller = f"{fn.__module__}.{fn.__name__}"
-            logger.debug(f"Digesting arguments for {caller}")
+                caller = f"{fn.__module__}.{fn.__name__}"
+                logger.debug(f"Digesting arguments for {caller}")
 
-            if var_keyword_name and var_keyword_name in bound:
-                extra = bound.pop(var_keyword_name) or {}
-                if isinstance(extra, dict):
-                    bound.update(extra)
-            if standardizer_fn is not None:
-                bound = standardizer_fn(caller, bound)
+                if var_keyword_name and var_keyword_name in bound:
+                    extra = bound.pop(var_keyword_name) or {}
+                    if isinstance(extra, dict):
+                        bound.update(extra)
+                if standardizer_fn is not None:
+                    bound = standardizer_fn(caller, bound)
 
-            digestion_enabled = True
-            if effective_source is None and effective_style == "auto":
-                digestion_enabled = bool(ArgumentRegistry.get_all())
+                digestion_enabled = True
+                if effective_source is None and effective_style == "auto":
+                    digestion_enabled = bool(ArgumentRegistry.get_all())
 
-            digested: dict[str, Any] = {}
-            visiting_path: list[str] = []
+                digested: dict[str, Any] = {}
+                visiting_path: list[str] = []
 
-            def resolve_value_param(sig: inspect.Signature, argname: str) -> str:
-                if argname in sig.parameters:
-                    return argname
-                candidates = [p for p in sig.parameters if p != "caller"]
-                if len(candidates) == 1:
-                    return candidates[0]
-                raise DigestNotDigestedError(
-                    f"Cannot determine value parameter for digester '{argname}'",
-                )
-
-            def handle_undigested(argname: str) -> None:
-                if effective_strictness == "ignore":
-                    return
-
-                # Create a lightweight context for the error
-                from types import SimpleNamespace
-                error_ctx = SimpleNamespace(
-                    function_name=caller,
-                    argname=argname,
-                    value=bound.get(argname),
-                    all_args=bound
-                )
-
-                if effective_strictness == "warn":
-                    warnings.warn(
-                        f"Argument '{argname}' from '{caller}' has no digester",
-                        DigestNotDigestedWarning,
-                        stacklevel=2,
-                    )
-                    return
-                if effective_strictness == "error":
+                def resolve_value_param(sig: inspect.Signature, argname: str) -> str:
+                    if argname in sig.parameters:
+                        return argname
+                    candidates = [p for p in sig.parameters if p != "caller"]
+                    if len(candidates) == 1:
+                        return candidates[0]
                     raise DigestNotDigestedError(
-                        f"Argument '{argname}' from '{caller}' has no digester",
-                        context=error_ctx,
-                        hint="Check if the argument name is correct or if a digester is registered."
+                        f"Cannot determine value parameter for digester '{argname}'",
                     )
-                raise ValueError("strictness must be 'warn', 'error', or 'ignore'")
 
-            def gut(argname: str) -> None:
-                if argname in digested:
-                    return
-                if argname in visiting_path:
-                    path = " -> ".join(visiting_path + [argname])
-                    raise DigestNotDigestedError(
-                        f"Cyclic dependency detected: {path}",
+                def handle_undigested(argname: str) -> None:
+                    if effective_strictness == "ignore":
+                        return
+
+                    # Create a lightweight context for the error
+                    from types import SimpleNamespace
+                    error_ctx = SimpleNamespace(
+                        function_name=caller,
+                        argname=argname,
+                        value=bound.get(argname),
+                        all_args=bound
                     )
-                visiting_path.append(argname)
 
-                fn_digest = digesters.get(argname)
-                if fn_digest is None:
-                    handle_undigested(argname)
-                    digested[argname] = bound.get(argname)
+                    if effective_strictness == "warn":
+                        warnings.warn(
+                            f"Argument '{argname}' from '{caller}' has no digester",
+                            DigestNotDigestedWarning,
+                            stacklevel=2,
+                        )
+                        return
+                    if effective_strictness == "error":
+                        raise DigestNotDigestedError(
+                            f"Argument '{argname}' from '{caller}' has no digester",
+                            context=error_ctx,
+                            hint="Check if the argument name is correct or if a digester is registered."
+                        )
+                    raise ValueError("strictness must be 'warn', 'error', or 'ignore'")
+
+                def gut(argname: str) -> None:
+                    if argname in digested:
+                        return
+                    if argname in visiting_path:
+                        path = " -> ".join(visiting_path + [argname])
+                        raise DigestNotDigestedError(
+                            f"Cyclic dependency detected: {path}",
+                        )
+                    visiting_path.append(argname)
+
+                    fn_digest = digesters.get(argname)
+                    if fn_digest is None:
+                        handle_undigested(argname)
+                        digested[argname] = bound.get(argname)
+                        visiting_path.pop()
+                        return
+
+                    sig = inspect.signature(fn_digest)
+                    value_param = resolve_value_param(sig, argname)
+                    kwargs_for_digest: dict[str, Any] = {}
+                    for param_name in sig.parameters:
+                        if param_name == value_param:
+                            kwargs_for_digest[param_name] = bound.get(argname)
+                        elif param_name == "caller":
+                            kwargs_for_digest[param_name] = caller
+                        elif param_name in bound:
+                            gut(param_name)
+                            kwargs_for_digest[param_name] = digested[param_name]
+                        elif param_name in digestion_params:
+                            kwargs_for_digest[param_name] = digestion_params[param_name]
+                        else:
+                            kwargs_for_digest[param_name] = None
+
+                    digested[argname] = fn_digest(**kwargs_for_digest)
                     visiting_path.pop()
-                    return
 
-                sig = inspect.signature(fn_digest)
-                value_param = resolve_value_param(sig, argname)
-                kwargs_for_digest: dict[str, Any] = {}
-                for param_name in sig.parameters:
-                    if param_name == value_param:
-                        kwargs_for_digest[param_name] = bound.get(argname)
-                    elif param_name == "caller":
-                        kwargs_for_digest[param_name] = caller
-                    elif param_name in bound:
-                        gut(param_name)
-                        kwargs_for_digest[param_name] = digested[param_name]
-                    elif param_name in digestion_params:
-                        kwargs_for_digest[param_name] = digestion_params[param_name]
-                    else:
-                        kwargs_for_digest[param_name] = None
+                if digestion_enabled:
+                    digesters = get_digesters()
+                    for argname in bound:
+                        if argname == "self":
+                            continue
+                        gut(argname)
 
-                digested[argname] = fn_digest(**kwargs_for_digest)
-                visiting_path.pop()
+                    # update bound with digested values for downstream pipelines
+                    bound = {**bound, **digested}
 
-            if digestion_enabled:
-                digesters = get_digesters()
-                for argname in bound:
-                    if argname == "self":
+                # process each argument that appears in config_map
+                # if map is None, apply kind and rules to all arguments
+                if map is None:
+                    targets = {argname: {"kind": kind, "rules": rules or []} for argname in bound if argname != "self"}
+                else:
+                    targets = config_map
+
+                for argname, cfg in targets.items():
+                    if argname not in bound:
                         continue
-                    gut(argname)
+                    arg_val = bound[argname]
+                    arg_kind = cfg.get("kind", kind)
+                    arg_rules = cfg.get("rules", rules or [])
+                    if arg_kind is None:
+                        continue
 
-                # update bound with digested values for downstream pipelines
-                bound = {**bound, **digested}
+                    ctx = Context(
+                        function_name=fn.__name__,
+                        argname=argname,
+                        value=arg_val,
+                        all_args=bound,
+                    )
+                    # run pipelines: they may transform the value
+                    new_val = Registry.run(arg_kind, arg_rules, arg_val, ctx)
+                    bound[argname] = new_val
 
-            # process each argument that appears in config_map
-            # if map is None, apply kind and rules to all arguments
-            if map is None:
-                targets = {argname: {"kind": kind, "rules": rules or []} for argname in bound if argname != "self"}
+                logger.debug(f"Digestion complete for {caller}")
+                # call original (or beartype-wrapped) with possibly updated args
+                return fn_to_wrap(**bound)
+
+            # Execution with optional PUW context
+            if effective_puw_context:
+                from ..contrib.pyunitwizard_support import context as puw_ctx_manager
+                with puw_ctx_manager(**effective_puw_context):
+                    return _run_digestion()
             else:
-                targets = config_map
-
-            for argname, cfg in targets.items():
-                if argname not in bound:
-                    continue
-                arg_val = bound[argname]
-                arg_kind = cfg.get("kind", kind)
-                arg_rules = cfg.get("rules", rules or [])
-                if arg_kind is None:
-                    continue
-
-                ctx = Context(
-                    function_name=fn.__name__,
-                    argname=argname,
-                    value=arg_val,
-                    all_args=bound,
-                )
-                # run pipelines: they may transform the value
-                new_val = Registry.run(arg_kind, arg_rules, arg_val, ctx)
-                bound[argname] = new_val
-
-            logger.debug(f"Digestion complete for {caller}")
-            # call original (or beartype-wrapped) with possibly updated args
-            return fn_to_wrap(**bound)
+                return _run_digestion()
 
         return wrapper
 
     return deco
 
 
-def _digest_map(type_check: bool = False, **map_config: dict[str, Any]):
-    return digest(map=map_config, type_check=type_check)
+def _digest_map(type_check: bool = False, puw_context: dict[str, Any] | None = None, **map_config: dict[str, Any]):
+    return digest(map=map_config, type_check=type_check, puw_context=puw_context)
 
 
 digest.map = _digest_map
