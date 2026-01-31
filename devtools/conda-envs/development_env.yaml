@@ -13,6 +13,7 @@ dependencies:
   - pytest-cov
   - beartype
   - pydantic
+  - pyunitwizard
   - versioningit
 
   # --- Documentation with Sphinx and MyST ---

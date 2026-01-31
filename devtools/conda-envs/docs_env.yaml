@@ -18,4 +18,5 @@ dependencies:
   # --- Library dependencies (for autodoc) ---
   - beartype
   - pydantic
+  - pyunitwizard
   - versioningit
