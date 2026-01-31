@@ -19,6 +19,9 @@ def test_puw_integration_check_and_standardize():
     except:
         pass # Hope defaults work or libraries are loaded
 
+    print(f"DEBUG TEST: puw={puw}")
+    print(f"DEBUG TEST: puw.is_quantity={getattr(puw, 'is_quantity', 'MISSING')}")
+
     @digest.map(
         dist={
             "kind": "quantity", 
@@ -68,3 +71,34 @@ def test_puw_conversion():
     
     val = puw.get_value(res)
     assert val == pytest.approx(1000.0)
+
+
+@pytest.mark.skipif(not HAS_PUW, reason="pyunitwizard not installed")
+def test_puw_context_decorator():
+    # Setup: define a quantity in ns
+    q = puw.quantity(1.0, "ns")
+    
+    # 1. Function that standardizes to 'pint' default (configured globally as nm/ps in prev test)
+    # We rely on previous test config or set it here.
+    puw.configure.set_standard_units(['nm', 'ps'])
+    
+    @digest.map(val={"kind": "q", "rules": [puw_support.standardize()]})
+    def default_std(val):
+        return val
+        
+    res1 = default_std(q)
+    # Should be ps
+    assert str(puw.get_unit(res1)) == "picosecond"
+    
+    # 2. Function that OVERRIDES context to use 'fs' (femtoseconds)
+    @digest.map(
+        puw_context={"standard_units": ["nm", "fs"]},
+        val={"kind": "q", "rules": [puw_support.standardize()]}
+    )
+    def fast_std(val):
+        return val
+        
+    res2 = fast_std(q)
+    # Should be fs
+    assert str(puw.get_unit(res2)) == "femtosecond"
+    assert puw.get_value(res2) == pytest.approx(1000000.0) # 1 ns = 1e6 fs

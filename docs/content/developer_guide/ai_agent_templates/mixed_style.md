@@ -42,11 +42,16 @@ def feature_base(obj, ctx):
 ## Usage in public API
 ```python
 from argdigest import digest
+from pydantic import BaseModel
 
-@digest(
-    config="my_lib._argdigest",
-    map={"feature": {"kind": "feature", "rules": ["feature.base"]}},
+class User(BaseModel):
+    name: str
+
+@digest.map(
+    type_check=True, # Enforce beartype
+    feature={"kind": "feature", "rules": ["feature.base"]},
+    user={"kind": "data", "rules": [User]} # Native pydantic rule
 )
-def register_feature(feature, skip_digestion=False):
+def register_feature(feature, user, skip_digestion=False):
     ...
 ```

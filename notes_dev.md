@@ -16,7 +16,13 @@
 - Validated `digestion_style="package"` with argument injection.
 - Confirmed that ArgDigest correctly injects dependencies (like `syntax`) into legacy digesters, passing `None` if they are missing in the call.
 
-### 4. Architectural Refinement
+### 4. Documentation & Examples Updates ✅
+- **README.md & DEVELOPER_GUIDE.md**: Completely modernized with new syntax and features.
+- **User Guide**: Added sections for `std` pipelines and PyUnitWizard context management.
+- **AI Agent Templates**: Updated all templates to include modern programmatic configuration and native integrations.
+- **Examples**: Updated `packlib` to demonstrate `PUW_CONTEXT` and `type_check=True`.
+
+### 5. Architectural Refinement
 - The system is now fully capable of replacing the legacy MolSysMT digestion engine.
 
 ---

@@ -21,6 +21,16 @@ STRICTNESS = "warn"
 SKIP_PARAM = "skip_digestion"
 ```
 
+## Programmatic config alternative (`my_lib/__init__.py`)
+```python
+import argdigest.config
+
+argdigest.config.set_defaults(
+    digestion_style="decorator",
+    strictness="warn"
+)
+```
+
 ## Digester module (`digestion/arguments.py`)
 ```python
 from argdigest import argument_digest
