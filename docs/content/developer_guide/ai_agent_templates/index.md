@@ -9,4 +9,5 @@ into a new library. Choose the style that matches the desired architecture.
 package_style
 registry_style
 mixed_style
+decorator_style
 ```
