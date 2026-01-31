@@ -73,6 +73,11 @@ record.txt
 /docs/api/**/autosummary/
 
 # ==========================================================
+# AI auxiliary files
+# ==========================================================
+codex_session.sh
+
+# ==========================================================
 # Files in this library that should or should NOT be ignored
 # ==========================================================
 argdigest/_version.py
