@@ -117,3 +117,25 @@ def test_config_module_defaults():
         return a
 
     assert f("7") == 7
+
+
+def test_cyclic_dependency_error_message():
+    """Test that cyclic dependencies raise an error with the full cycle path."""
+    @argument_digest("x_cyc")
+    def digest_x(x_cyc, y_cyc, caller=None):
+        return x_cyc
+
+    @argument_digest("y_cyc")
+    def digest_y(y_cyc, x_cyc, caller=None):
+        return y_cyc
+
+    @digest(digestion_style="decorator")
+    def f(x_cyc, y_cyc):
+        return x_cyc, y_cyc
+
+    with pytest.raises(DigestNotDigestedError) as excinfo:
+        f(1, 2)
+    
+    msg = str(excinfo.value)
+    # The order depends on iteration, but it should contain one of these paths
+    assert "x_cyc -> y_cyc -> x_cyc" in msg or "y_cyc -> x_cyc -> y_cyc" in msg

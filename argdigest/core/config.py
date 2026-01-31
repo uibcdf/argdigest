@@ -17,9 +17,28 @@ class DigestConfig:
 _DEFAULTS: DigestConfig = DigestConfig()
 
 
-def set_defaults(config: DigestConfig) -> None:
+def set_defaults(config: DigestConfig | None = None, **kwargs: Any) -> None:
+    """
+    Set the global default configuration for ArgDigest.
+    
+    Can be called with a DigestConfig object:
+        set_defaults(DigestConfig(strictness="error"))
+        
+    Or with keyword arguments to update specific fields:
+        set_defaults(strictness="error", digestion_source="mylib")
+    """
     global _DEFAULTS
-    _DEFAULTS = config
+    
+    if config is not None:
+        if kwargs:
+            raise ValueError("Cannot specify both 'config' object and keyword arguments.")
+        _DEFAULTS = config
+        return
+
+    if kwargs:
+        # Update existing defaults with new values
+        from dataclasses import replace
+        _DEFAULTS = replace(_DEFAULTS, **kwargs)
 
 
 def get_defaults() -> DigestConfig:

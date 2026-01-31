@@ -13,9 +13,11 @@ from .argument_loader import load_argument_digesters, resolve_standardizer
 from .argument_registry import ArgumentRegistry
 from .config import resolve_config, DigestConfig
 from .errors import DigestNotDigestedError, DigestNotDigestedWarning
+from .logger import get_logger
 
 
 _UNSET = object()
+logger = get_logger()
 
 
 def digest(
@@ -29,17 +31,29 @@ def digest(
     strictness: str | object = _UNSET,
     skip_param: str | object = _UNSET,
     config: DigestConfig | str | None | object = _UNSET,
+    type_check: bool = False,
     **digestion_params: Any,
 ):
     """
     Main decorator.
 
-    - If `map` is provided, it specifies per-argument configuration:
-        @digest(map={"child": {"kind": "feature", "rules": ["feature.base"]}})
-    - Otherwise, `kind` and `rules` apply to all arguments (less common).
+    - type_check: If True, uses beartype to enforce type hints on the *digested* values.
     """
 
     def deco(fn: Callable[..., Any]):
+        # Apply beartype first (so it becomes the inner wrapper)
+        # Sequence: digest_wrapper -> beartype_wrapper -> original_fn
+        fn_to_wrap = fn
+        if type_check:
+            try:
+                from beartype import beartype
+                fn_to_wrap = beartype(fn)
+            except ImportError:
+                warnings.warn(
+                    "type_check=True requested but 'beartype' is not installed. Skipping type checking.",
+                    RuntimeWarning
+                )
+
         effective_config = config
         if (
             config is _UNSET
@@ -91,6 +105,8 @@ def digest(
                 return fn(**bound)
 
             caller = f"{fn.__module__}.{fn.__name__}"
+            logger.debug(f"Digesting arguments for {caller}")
+
             if var_keyword_name and var_keyword_name in bound:
                 extra = bound.pop(var_keyword_name) or {}
                 if isinstance(extra, dict):
@@ -103,7 +119,7 @@ def digest(
                 digestion_enabled = bool(ArgumentRegistry.get_all())
 
             digested: dict[str, Any] = {}
-            visiting: set[str] = set()
+            visiting_path: list[str] = []
 
             def resolve_value_param(sig: inspect.Signature, argname: str) -> str:
                 if argname in sig.parameters:
@@ -118,6 +134,16 @@ def digest(
             def handle_undigested(argname: str) -> None:
                 if effective_strictness == "ignore":
                     return
+
+                # Create a lightweight context for the error
+                from types import SimpleNamespace
+                error_ctx = SimpleNamespace(
+                    function_name=caller,
+                    argname=argname,
+                    value=bound.get(argname),
+                    all_args=bound
+                )
+
                 if effective_strictness == "warn":
                     warnings.warn(
                         f"Argument '{argname}' from '{caller}' has no digester",
@@ -128,23 +154,26 @@ def digest(
                 if effective_strictness == "error":
                     raise DigestNotDigestedError(
                         f"Argument '{argname}' from '{caller}' has no digester",
+                        context=error_ctx,
+                        hint="Check if the argument name is correct or if a digester is registered."
                     )
                 raise ValueError("strictness must be 'warn', 'error', or 'ignore'")
 
             def gut(argname: str) -> None:
                 if argname in digested:
                     return
-                if argname in visiting:
+                if argname in visiting_path:
+                    path = " -> ".join(visiting_path + [argname])
                     raise DigestNotDigestedError(
-                        f"Cyclic dependency detected while digesting '{argname}'",
+                        f"Cyclic dependency detected: {path}",
                     )
-                visiting.add(argname)
+                visiting_path.append(argname)
 
                 fn_digest = digesters.get(argname)
                 if fn_digest is None:
                     handle_undigested(argname)
                     digested[argname] = bound.get(argname)
-                    visiting.remove(argname)
+                    visiting_path.pop()
                     return
 
                 sig = inspect.signature(fn_digest)
@@ -164,7 +193,7 @@ def digest(
                         kwargs_for_digest[param_name] = None
 
                 digested[argname] = fn_digest(**kwargs_for_digest)
-                visiting.remove(argname)
+                visiting_path.pop()
 
             if digestion_enabled:
                 digesters = get_digesters()
@@ -177,7 +206,13 @@ def digest(
                 bound = {**bound, **digested}
 
             # process each argument that appears in config_map
-            for argname, cfg in config_map.items():
+            # if map is None, apply kind and rules to all arguments
+            if map is None:
+                targets = {argname: {"kind": kind, "rules": rules or []} for argname in bound if argname != "self"}
+            else:
+                targets = config_map
+
+            for argname, cfg in targets.items():
                 if argname not in bound:
                     continue
                 arg_val = bound[argname]
@@ -196,9 +231,17 @@ def digest(
                 new_val = Registry.run(arg_kind, arg_rules, arg_val, ctx)
                 bound[argname] = new_val
 
-            # call original with possibly updated args
-            return fn(**bound)
+            logger.debug(f"Digestion complete for {caller}")
+            # call original (or beartype-wrapped) with possibly updated args
+            return fn_to_wrap(**bound)
 
         return wrapper
 
     return deco
+
+
+def _digest_map(type_check: bool = False, **map_config: dict[str, Any]):
+    return digest(map=map_config, type_check=type_check)
+
+
+digest.map = _digest_map

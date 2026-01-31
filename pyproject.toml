@@ -1,6 +1,6 @@
 [project]
 name = "argdigest"
-version = "0.0.1"
+dynamic = ["version"]
 description = "ArgDigest — flexible argument auditing and normalization for scientific libraries."
 readme = "README.md"
 authors = [
@@ -10,13 +10,34 @@ license = { text = "MIT" }
 requires-python = ">=3.10"
 dependencies = []
 
+[project.optional-dependencies]
+beartype = ["beartype>=0.16.0"]
+pydantic = ["pydantic>=2.0.0"]
+all = ["beartype>=0.16.0", "pydantic>=2.0.0"]
+
 [project.urls]
 Homepage = "https://github.com/uibcdf/argdigest"
 Repository = "https://github.com/uibcdf/argdigest"
 
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=61.0", "versioningit~=3.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 packages = ["argdigest"]
+
+[tool.versioningit]
+default-version = "0.0.0+unknown"
+
+[tool.versioningit.format]
+distance = "{base_version}+{distance}.{vcs}{rev}"
+dirty = "{base_version}+{distance}.{vcs}{rev}.dirty"
+distance-dirty = "{base_version}+{distance}.{vcs}{rev}.dirty"
+
+[tool.versioningit.vcs]
+method = "git"
+match = ["*"]
+default-tag = "0.0.0"
+
+[tool.versioningit.write]
+file = "argdigest/_version.py"

@@ -1,6 +1,6 @@
 ---
 title: ArgDigest Technical Specification
-version: v0.1-draft
+version: v0.2
 authors: [UIBCDF Development Team]
 license: MIT
 ---
@@ -9,156 +9,179 @@ license: MIT
 
 ## 1. Overview
 
-**ArgDigest** provides a unified mechanism for argument coercion, validation, and semantic auditing.  
-It exposes a decorator-based API (`@digest`) and a modular pipeline system to register and execute argument validation logic.
+**ArgDigest** is a lightweight and extensible library for **auditing, validating, and normalizing function arguments** in scientific and analytical Python libraries.
 
-### Core goals
-- Domain-agnostic core.
-- Runtime composition of coercion/validation pipelines.
-- Extensible via registry and plugins.
-- Standardized error and logging context.
+Its purpose is to provide a generic infrastructure that:
+- Verifies the **coherence and type** of input arguments.
+- **Coerces** heterogeneous objects into the expected internal forms.
+- Applies **domain-specific semantic rules** (e.g., topography, molecular systems).
+- Produces **consistent and clear error messages** with context and hints.
+- Enables **shared and reusable validation pipelines** across different projects (e.g., MolSysMT, TopoMT).
 
 ---
 
 ## 2. Architecture
 
+The library is structured to separate core logic from domain implementations:
+
 ```
 argdigest/
   core/
-    decorator.py
-    registry.py
-    context.py
-    errors.py
-    utils.py
-  pipelines/
-    base_coercers.py
-    base_validators.py
-  contrib/
-    beartype_support.py
-    pydantic_support.py
-    attrs_support.py
+    decorator.py        # Main @digest logic and orchestration
+    registry.py         # Pipeline registry (kind/rules)
+    argument_registry.py# Argument-centric registry (@argument_digest)
+    argument_loader.py  # Discovery logic (packages, modules)
+    context.py          # Execution context (function, argname, value)
+    errors.py           # Rich exception hierarchy
+    logger.py           # Centralized logging
+    config.py           # Configuration resolution
+    utils.py            # Helper functions (binding, etc.)
+  pipelines/            # Built-in generic pipelines
+  contrib/              # Integrations (beartype, pydantic)
 tests/
 docs/
 ```
 
 ---
 
-## 3. Core Components
+## 3. Public API
 
-### 3.1 `@digest` decorator
+### 3.1 The `@digest` Decorator
 
-```python
-def digest(kind: str = None, rules: list[str] = None):
-    def decorator(fn):
-        def wrapper(*args, **kwargs):
-            ctx = Context.from_function(fn, args, kwargs)
-            bound_args = ctx.bound_arguments
-            # Execute coercion + validation pipelines
-            for arg, config in ctx.arguments_config.items():
-                kind = config.get("kind", kind)
-                rules = config.get("rules", [])
-                Registry.run_pipelines(kind, rules, bound_args[arg], ctx)
-            return fn(*args, **kwargs)
-        return wrapper
-    return decorator
-```
-
-### 3.2 `@digest.map` decorator
+The primary entry point is the `@digest` decorator. It supports both **argument-centric discovery** (auto-finding how to digest an argument) and **explicit pipeline mapping**.
 
 ```python
-def map(**kwargs):
-    def decorator(fn):
-        setattr(fn, "_digest_map", kwargs)
-        return digest()(fn)
-    return decorator
-```
-
-### 3.3 Pipelines and Registry
-
-```python
-# registry.py
-class Registry:
-    _pipelines = {}
-
-    @classmethod
-    def register(cls, kind: str, name: str, func):
-        cls._pipelines.setdefault(kind, {})[name] = func
-
-    @classmethod
-    def run_pipelines(cls, kind, rules, obj, ctx):
-        for rule in rules or []:
-            func = cls._pipelines[kind].get(rule)
-            if func:
-                func(obj, ctx)
-```
-
-### 3.4 Pipeline decorator
-
-```python
-def pipeline(kind: str, name: str = None):
-    def decorator(fn):
-        Registry.register(kind, name or fn.__name__, fn)
-        return fn
-    return decorator
-```
-
----
-
-## 4. Error Model
-
-```python
-class DigestError(Exception):
-    def __init__(self, message, context=None, hint=None):
-        super().__init__(message)
-        self.context = context
-        self.hint = hint
-
-class DigestTypeError(DigestError): pass
-class DigestValueError(DigestError): pass
-class DigestInvariantError(DigestError): pass
-class DigestCoercionWarning(Warning): pass
-```
-
----
-
-## 5. Example: Feature validation in TopoMT
-
-```python
-from argdigest import digest, pipeline, Registry
-
-@pipeline(kind="feature", name="rule.mouth_concavity")
-def validate_mouth_concavity(obj, ctx):
-    if obj.feature_type == "mouth" and ctx.parent.shape_type != "concavity":
-        raise DigestInvariantError(
-            f"Mouth '{obj.feature_id}' must belong to a concavity.",
-            context=ctx,
-            hint="Ensure parent feature is of shape_type='concavity'."
-        )
-
-@digest.map(
-    child={"kind": "feature", "rules": ["rule.mouth_concavity"]},
-    parent={"kind": "feature", "rules": ["feature.is_2d"]}
+@digest(
+    # Configuration for Argument-Centric Mode
+    digestion_source=None,       # str | list[str]: Module/package paths to search
+    digestion_style="auto",      # "auto" | "registry" | "package" | "decorator"
+    standardizer=None,           # callable | "module:func": Normalizes arg names
+    strictness="warn",           # "warn" | "error" | "ignore": For missing digesters
+    skip_param="skip_digestion", # str: Name of param to bypass digestion
+    
+    # Configuration for Explicit Mode
+    map=None,                    # dict: Explicit {arg: {kind, rules}} mapping
+    kind=None,                   # str: Default kind for all args (if map is None)
+    rules=None,                  # list[str]: Default rules for all args
+    
+    # Extra config
+    config=None                  # str | object: Config object or module path
 )
-def link(child, parent, topo):
-    topo.link(child, parent)
+def my_func(...): ...
 ```
 
----
+### 3.2 The `@digest.map` Alias
 
-## 6. Example: Molecular system validation in MolSysMT
+A convenient alias for defining explicit mappings using keyword arguments:
 
 ```python
 @digest.map(
-    molecular_system={"kind": "molecular_system"},
-    selection={"kind": "selection"}
+    arg_name={"kind": "feature", "rules": ["validate_shape"]},
+    other_arg={"kind": "topology"}
 )
-def get_n_atoms(molecular_system, selection='all'):
+def my_func(arg_name, other_arg): ...
+```
+
+### 3.3 Registration Decorators
+
+- **`@argument_digest(arg_name)`**: Registers a function to digest a specific argument name globally (used in `digestion_style="decorator"`).
+- **`@register_pipeline(kind, name)`**: Registers a reusable pipeline function (coercer/validator) for a specific semantic kind.
+
+---
+
+## 4. Digestion Logic & Behavior
+
+### 4.1 Argument-Centric Discovery
+When `digestion_source` or `digestion_style` is used, ArgDigest attempts to find a "digester" function for each argument.
+
+**Discovery Styles:**
+- **`registry`**: Looks for an `ARGUMENT_DIGESTERS` dictionary in the `digestion_source` module.
+- **`package`**: Scans the `digestion_source` package for functions named `digest_<arg_name>`.
+- **`decorator`**: Uses the global registry built by `@argument_digest`.
+- **`auto`**: Tries `registry` → `package` → `decorator` in order, merging results.
+
+**Behavior Contracts:**
+1.  **Skip**: If `skip_param=True` is passed to the function, **all digestion is skipped**.
+2.  **Execution**:
+    - If a digester is found, it is executed. The digester receives the raw value and can request other arguments (dependency injection).
+    - If no digester is found, `strictness` determines the action (`warn`, `error`, or `ignore`).
+3.  **Result**: The original function is called with the *transformed* values.
+
+### 4.2 Dependency Resolution
+Digesters can declare dependencies on other arguments.
+- ArgDigest resolves the execution order (topological sort).
+- **Cycles**: If a cycle is detected (e.g., `a` needs `b`, `b` needs `a`), a `DigestNotDigestedError` is raised with the full cycle path (e.g., `a -> b -> a`).
+
+### 4.3 Hooks
+- **Standardizer**: Runs *before* digestion. It normalizes argument names (e.g., converting aliases like `sel` to `selection`) so that digesters match correctly.
+
+---
+
+## 5. Error Model
+
+Exceptions are rich objects inheriting from `DigestError`. They include:
+- `message`: Human-readable description.
+- `context`: A `Context` or `SimpleNamespace` object containing:
+    - `function_name`: Where the error occurred.
+    - `argname`: The specific argument involved.
+    - `value`: The runtime value (truncated representation).
+- `hint`: Actionable advice for the user.
+
+**Hierarchy:**
+- `DigestError`
+  - `DigestTypeError`: Type mismatch.
+  - `DigestValueError`: Semantic validation failure.
+  - `DigestInvariantError`: Multi-argument rule violation.
+  - `DigestNotDigestedError`: Missing digester (when strictness="error") or cyclic dependency.
+
+---
+
+## 6. Compatibility Profiles
+
+### 6.1 MolSysMT Profile
+Recommended configuration for MolSysMT integration:
+
+```python
+@digest(
+    digestion_source="molsysmt._private.digestion.argument",
+    digestion_style="package",
+    standardizer="molsysmt._private.digestion.argument_names_standardization",
+    skip_param="skip_digestion",
+    strictness="warn"
+)
+```
+
+---
+
+## 7. Examples
+
+### Explicit Mapping
+```python
+from argdigest import digest, register_pipeline
+
+@register_pipeline(kind="feature", name="is_2d")
+def check_2d(val, ctx):
+    if val.dim != 2: raise ValueError("Not 2D")
+    return val
+
+@digest.map(
+    surface={"kind": "feature", "rules": ["is_2d"]}
+)
+def calculate_area(surface):
     ...
 ```
 
----
+### Argument-Centric (Package Style)
+File: `mylib/_private/digestion.py`
+```python
+def digest_volume(volume, caller=None):
+    return float(volume)
+```
 
-## 7. Future extension points
-- CLI `argdigest audit script.py`
-- Declarative rule sets via YAML/JSONSchema.
-- Plugin-based pipeline discovery.
+File: `mylib/api.py`
+```python
+@digest(digestion_source="mylib._private.digestion", digestion_style="package")
+def compute(volume):
+    # volume is guaranteed to be float here
+    ...
+```

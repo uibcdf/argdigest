@@ -77,3 +77,4 @@ record.txt
 # ==========================================================
 argdigest/_version.py
 !*.nbconvert.log
+argdigest/_version.py

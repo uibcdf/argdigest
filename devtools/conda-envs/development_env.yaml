@@ -11,6 +11,9 @@ dependencies:
   - ruff
   - pytest
   - pytest-cov
+  - beartype
+  - pydantic
+  - versioningit
 
   # --- Documentation with Sphinx and MyST ---
   - sphinx

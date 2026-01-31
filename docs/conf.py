@@ -8,6 +8,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
     "sphinx.ext.autosummary",
+    "nbsphinx",
 ]
 templates_path = ["_templates"]
 exclude_patterns = []

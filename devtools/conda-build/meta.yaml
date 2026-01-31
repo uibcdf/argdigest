@@ -12,8 +12,12 @@ requirements:
   host:
     - python
     - pip
+    - setuptools
+    - versioningit
   run:
     - python
+    - beartype
+    - pydantic
 
 about:
   home: "https://github.com/uibcdf/argdigest"

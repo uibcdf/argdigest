@@ -1,0 +1,19 @@
+channels:
+  - uibcdf
+  - conda-forge
+
+dependencies:
+  # --- Python base ---
+  - python
+  - pip
+
+  # --- Test tools ---
+  - pytest
+  - pytest-cov
+  - pytest-xdist
+  - ruff
+
+  # --- Dependencies ---
+  - beartype
+  - pydantic
+  - versioningit

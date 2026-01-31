@@ -179,8 +179,8 @@ def link(child, parent, topo):
 
 | Phase | Objectives | Deliverables |
 |:------|:-----------|:-------------|
-| **v0.1 (Prototype)** | Functional `@digest` decorator + minimal registry | Core pipeline execution, examples, unit tests |
-| **v0.2** | Context-aware error system + logging | Rich exceptions, consistent reporting |
+| **v0.1 (Prototype)** | Functional `@digest` decorator + minimal registry | **Done**: Core pipeline, argument-centric mode, `@digest.map` |
+| **v0.2** | Context-aware error system + logging | **Done**: Rich exceptions with context/hints, internal logging system |
 | **v0.3** | Optional integration with `beartype` and `pydantic` | `contrib/` modules with coverage tests |
 | **v0.4** | Documentation and usage examples (MolSysMT / TopoMT) | `docs/` folder and illustrative notebooks |
 | **v1.0** | Stable API + >90% coverage + PyPI/conda-forge release | 1.0.0 release, semantic versioning, full CI/CD |

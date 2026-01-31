@@ -11,3 +11,11 @@ dependencies:
   - sphinx
   - myst-parser
   - pydata-sphinx-theme
+  - nbsphinx
+  - ipykernel
+  - pandoc
+  
+  # --- Library dependencies (for autodoc) ---
+  - beartype
+  - pydantic
+  - versioningit
