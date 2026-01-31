@@ -26,6 +26,9 @@ from .core.errors import (
     DigestNotDigestedWarning,
 )
 
+# Register standard pipelines
+from . import pipelines
+
 __all__ = [
     "digest",
     "register_pipeline",

@@ -1,35 +1,25 @@
 # Development Notes - ArgDigest
 
-## 2026-01-31: Refactoring and Robustness (v0.1 -> 0.2.0) ✅
+## 2026-01-31: Phase 3 (v0.3.0) Implementation 🚀
 
-- **API**: Implemented `@digest.map` and `argdigest.config`.
-- **Integrations**: Native Pydantic rules and Beartype `type_check=True`.
-- **Robustness**: Rich errors with context/hints and path-reporting for cycles.
-- **CI/CD**: Fixed environment files and added `versioningit` support.
+### 1. Standard Pipeline Library (`argdigest.pipelines`) ✅
+- Implemented `coercers.py`: `to_bool`, `to_list`, `to_tuple`, `strip`, `lower`, `upper`.
+- Implemented `validators.py`: `is_positive`, `is_file`, `is_dir`, `is_int`, `is_str`.
+- Registered automatically via `kind="std"`.
 
-## Phase 3: "Batteries Included" & Science Support (0.3.0) 🚀
+### 2. Native PyUnitWizard Integration (`contrib/pyunitwizard_support.py`) ✅
+- Implemented factories: `check(...)`, `standardize()`, `convert(...)`, `is_quantity()`.
+- Verified respecting global PUW config (e.g. `set_standard_units`).
+- Added robust error handling for missing libraries.
 
-### 1. Standard Pipeline Library (`argdigest.pipelines`)
-- Implement a set of common coercers: `to_list`, `to_bool`, `to_path`, `strip`, `lower`.
-- Implement basic validators: `is_int_list`, `in_range`, `matches_regex`.
-- Goal: Reduce boilerplate in user libraries.
-
-### 2. Native PyUnitWizard Integration
-- Create a `contrib.pyunitwizard` (or similar) providing pipelines for:
-    - `check(dimensionality=...)`
-    - `standardize()` (respecting global PUW config)
-    - `convert(to_unit=...)`
-- Ensure robust error handling when underlying physics libraries are missing.
-
-### 3. MolSysMT Legacy Support
-- Validate that `digestion_style="package"` correctly loads and injects dependencies for existing MolSysMT digesters.
-- Ensure parameters like `caller` and `syntax` are injected seamlessly even if not explicitly defined in all functions.
+### 3. MolSysMT Legacy Support ✅
+- Validated `digestion_style="package"` with argument injection.
+- Confirmed that ArgDigest correctly injects dependencies (like `syntax`) into legacy digesters, passing `None` if they are missing in the call.
 
 ### 4. Architectural Refinement
-- Encourage the use of shared `kind` (e.g., `kind="vector3d"`) to compose logic between related arguments (like `coordinates` and `translation`).
+- The system is now fully capable of replacing the legacy MolSysMT digestion engine.
 
 ---
-## Next Steps
-- [ ] Implement `argdigest/pipelines/base.py` with the first set of standard coercers.
-- [ ] Create `argdigest/contrib/pyunitwizard.py` with initial wrappers.
-- [ ] Add smoke tests using legacy-style digesters from MolSysMT.
+## Next Steps (v0.4.0)
+- [ ] **Declarative Config**: `YAML`/`JSON` rule sets.
+- [ ] **Execution Profiling**: Performance metrics.
