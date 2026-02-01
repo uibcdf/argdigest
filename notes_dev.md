@@ -6,25 +6,18 @@
 - **Performance**: Execution profiling and audit logs.
 - **Quality**: Reached 90% coverage and configured Codecov.
 
-## Phase 5: Performance & Real-world (0.5.0) 🚀
+## Phase 5: Performance & CLI Tooling (0.5.0) ✅
+- **Digestion Plan Caching**: Implemented `DigestionPlan` to pre-calculate logic at decoration time, reducing runtime overhead to near-zero.
+- **CLI Audit Tool**: Added `argdigest audit` to inspect rules applied to functions.
+- **AI Agent Support**: Added `argdigest agent init/update` to generate and maintain `ARG_DIGEST_AGENTS.md` instructions for AI assistance.
+- **Quality**: Maintained high coverage and added `.coveragerc`.
 
-### 1. Digestion Plan Caching (Extreme Performance)
-- Analyze function signature and digesters once at decoration time.
-- Generate a static "Execution Plan".
-- Minimize runtime overhead during function calls.
-
-### 2. CLI Audit Tool (`argdigest audit`)
-- Utility to inspect validation rules in Python files/packages.
-- Generate reports of applied rules per function.
-
-### 3. Release Automation (CI/CD Final)
-- Auto-publish to PyPI and Conda-forge on GitHub release.
-
-### 4. MolSysMT Integration (Final Step)
-- Migrate key modules of MolSysMT to use ArgDigest.
+## Phase 6: Pilot Integration (0.6.0) 🚀
+- **Target**: MolSysMT.
+- **Objective**: Replace the legacy digestion engine with ArgDigest in key modules.
+- **Validation**: Ensure all scientific workflows and unit systems remain consistent.
 
 ---
 ## Next Steps
-- [ ] Implement `DigestionPlan` class in `core/decorator.py`.
-- [ ] Refactor `@digest` to pre-calculate the plan.
-- [ ] Benchmark before/after caching.
+- [ ] Begin migration of `molsysmt.basic.get`.
+- [ ] Verify PyUnitWizard context management in real MolSysMT scenarios.

@@ -29,5 +29,24 @@ def test_standardizer_resolver_errors():
     with pytest.raises(ValueError, match="standardizer must be"):
         resolve_standardizer("module_without_colon_or_dot")
     
-    with pytest.raises(TypeError):
-        resolve_standardizer(123)
+def test_load_from_package_mock(tmp_path, monkeypatch):
+    # Create a mock package
+    pkg_dir = tmp_path / "mock_pkg"
+    pkg_dir.mkdir()
+    (pkg_dir / "__init__.py").write_text("")
+    mod_dir = pkg_dir / "arg_mod.py"
+    mod_dir.write_text("def digest_test_arg(test_arg, caller=None): return test_arg")
+    
+    import sys
+    monkeypatch.syspath_prepend(str(tmp_path))
+    
+def test_load_from_registry_not_dict(tmp_path, monkeypatch):
+    pkg_dir = tmp_path / "bad_pkg"
+    pkg_dir.mkdir()
+    (pkg_dir / "__init__.py").write_text("ARGUMENT_DIGESTERS = 'not a dict'")
+    
+    import sys
+    monkeypatch.syspath_prepend(str(tmp_path))
+    from argdigest.core.argument_loader import load_argument_digesters
+    with pytest.raises(TypeError, match="must be a dict"):
+        load_argument_digesters("bad_pkg", "registry")

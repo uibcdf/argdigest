@@ -183,7 +183,8 @@ def link(child, parent, topo):
 | **v0.2.0** | Context-aware error system + logging | **Done**: Rich exceptions, logging, native Pydantic/Beartype |
 | **v0.3.0** | Standard Pipelines & Science Integration | **Done**: Built-in pipelines, PyUnitWizard integration, legacy compat |
 | **v0.4.0** | Declarative Config & Advanced Features | **Done**: YAML/JSON rules, Numpy/Pandas support, Profiling |
-| **v0.5.0** | Performance & Real-world | Digestion Plan Caching, CLI Audit tool, MolSysMT migration |
+| **v0.5.0** | Performance & CLI Tooling | **Done**: Digestion Plan Caching, CLI Audit & Agent tools |
+| **v0.6.0** | Pilot Integration (MolSysMT) | Replace legacy engine in MolSysMT key modules |
 | **v1.0.0** | Stable API + >90% coverage + Release | 1.0.0 release, full CI/CD, PyPI/Conda distribution |
 
 ---

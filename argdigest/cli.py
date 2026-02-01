@@ -48,10 +48,28 @@ def main():
     audit_parser = subparsers.add_parser("audit", help="Audit validation rules in a module")
     audit_parser.add_argument("module", help="Module or package name to audit (e.g. mylib.api)")
 
+    # Agent command
+    agent_parser = subparsers.add_parser("agent", help="AI Agent documentation management")
+    agent_subparsers = agent_parser.add_subparsers(dest="agent_command", help="Agent sub-commands")
+    
+    agent_init = agent_subparsers.add_parser("init", help="Initialize ARG_DIGEST_AGENTS.md")
+    agent_init.add_argument("--module", required=True, help="Module/package name to detect configuration from")
+    
+    agent_update = agent_subparsers.add_parser("update", help="Update existing ARG_DIGEST_AGENTS.md")
+    agent_update.add_argument("--module", required=True, help="Module/package name to detect configuration from")
+
     args = parser.parse_args()
 
     if args.command == "audit":
         audit_module(args.module)
+    elif args.command == "agent":
+        from .core.agent_docs import generate_agent_docs
+        try:
+            path = generate_agent_docs(args.module)
+            action = "Initialized" if args.agent_command == "init" else "Updated"
+            print(f"✅ {action} agent instructions at: {path}")
+        except Exception as e:
+            print(f"❌ Error: {e}")
     else:
         parser.print_help()
 
