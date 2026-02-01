@@ -3,6 +3,9 @@ name: Build and upload conda packages
 on:
   release:
     types: ['released', 'prereleased']
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
 
   workflow_dispatch:
 

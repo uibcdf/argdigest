@@ -27,6 +27,9 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools]
 packages = ["argdigest"]
 
+[project.scripts]
+argdigest = "argdigest.cli:main"
+
 [tool.versioningit]
 default-version = "0.0.0+unknown"
 

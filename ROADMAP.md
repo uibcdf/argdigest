@@ -182,7 +182,8 @@ def link(child, parent, topo):
 | **v0.1 (Prototype)** | Functional `@digest` decorator + minimal registry | **Done**: Core pipeline, argument-centric mode, `@digest.map` |
 | **v0.2.0** | Context-aware error system + logging | **Done**: Rich exceptions, logging, native Pydantic/Beartype |
 | **v0.3.0** | Standard Pipelines & Science Integration | **Done**: Built-in pipelines, PyUnitWizard integration, legacy compat |
-| **v0.4.0** | Declarative Config & Advanced Features | `YAML`/`JSON` rule sets, execution profiling |
+| **v0.4.0** | Declarative Config & Advanced Features | **Done**: YAML/JSON rules, Numpy/Pandas support, Profiling |
+| **v0.5.0** | Performance & Real-world | Digestion Plan Caching, CLI Audit tool, MolSysMT migration |
 | **v1.0.0** | Stable API + >90% coverage + Release | 1.0.0 release, full CI/CD, PyPI/Conda distribution |
 
 ---
