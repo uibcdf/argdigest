@@ -14,11 +14,13 @@ requirements:
     - pip
     - setuptools
     - versioningit
+    - pyyaml
   run:
     - python
     - beartype
     - pydantic
     - pyunitwizard
+    - pyyaml
 
 about:
   home: "https://github.com/uibcdf/argdigest"

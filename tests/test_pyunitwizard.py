@@ -102,3 +102,13 @@ def test_puw_context_decorator():
     # Should be fs
     assert str(puw.get_unit(res2)) == "femtosecond"
     assert puw.get_value(res2) == pytest.approx(1000000.0) # 1 ns = 1e6 fs
+
+@pytest.mark.skipif(not HAS_PUW, reason="pyunitwizard not installed")
+def test_puw_conversion_error():
+    from argdigest import DigestValueError
+    @digest.map(val={"kind": "q", "rules": [puw_support.convert(to_unit="invalid_unit")]})
+    def f(val): return val
+    
+    q = puw.quantity(1.0, "nm")
+    with pytest.raises(DigestValueError, match="Conversion to invalid_unit failed"):
+        f(q)

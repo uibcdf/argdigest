@@ -33,6 +33,7 @@ def digest(
     config: DigestConfig | str | None | object = _UNSET,
     type_check: bool = False,
     puw_context: dict[str, Any] | None = None,
+    profiling: bool | object = _UNSET,
     **digestion_params: Any,
 ):
     """
@@ -40,6 +41,7 @@ def digest(
 
     - type_check: If True, uses beartype to enforce type hints on the *digested* values.
     - puw_context: Optional PyUnitWizard context configuration (e.g. {'form': 'pint'}).
+    - profiling: If True, collects performance metrics for each pipeline step.
     """
 
     def deco(fn: Callable[..., Any]):
@@ -65,6 +67,7 @@ def digest(
             and strictness is _UNSET
             and skip_param is _UNSET
             and puw_context is None
+            and profiling is _UNSET
         ):
             module_root = fn.__module__.split(".", 1)[0]
             try:
@@ -81,6 +84,7 @@ def digest(
         effective_standardizer = cfg.standardizer if standardizer is _UNSET else standardizer
         effective_strictness = cfg.strictness if strictness is _UNSET else strictness
         effective_skip_param = cfg.skip_param if skip_param is _UNSET else skip_param
+        effective_profiling = cfg.profiling if profiling is _UNSET else profiling
         
         # Merge puw_context: kwargs take precedence over config
         base_puw_ctx = cfg.puw_context or {}
@@ -222,6 +226,8 @@ def digest(
                 else:
                     targets = config_map
 
+                all_audit_logs = []
+
                 for argname, cfg in targets.items():
                     if argname not in bound:
                         continue
@@ -237,9 +243,26 @@ def digest(
                         value=arg_val,
                         all_args=bound,
                     )
+                    # Pass profiling flag via private attribute in ctx for Registry.run
+                    if effective_profiling:
+                        setattr(ctx, "_profiling", True)
+
                     # run pipelines: they may transform the value
                     new_val = Registry.run(arg_kind, arg_rules, arg_val, ctx)
                     bound[argname] = new_val
+                    
+                    if effective_profiling:
+                        all_audit_logs.extend(ctx.audit_log)
+
+                if effective_profiling:
+                    # Store audit log in function metadata or log it?
+                    # For now, let's attach it to the function object for inspection if possible, 
+                    # but since it's a wrapper, we attach it to the wrapper? 
+                    # Better: define a mechanism to retrieve it.
+                    # For now, let's just log it at debug level.
+                    logger.debug(f"Audit log for {caller}: {all_audit_logs}")
+                    # And attach to wrapper for testing/inspection
+                    wrapper.audit_log = all_audit_logs
 
                 logger.debug(f"Digestion complete for {caller}")
                 # call original (or beartype-wrapped) with possibly updated args
@@ -258,8 +281,13 @@ def digest(
     return deco
 
 
-def _digest_map(type_check: bool = False, puw_context: dict[str, Any] | None = None, **map_config: dict[str, Any]):
-    return digest(map=map_config, type_check=type_check, puw_context=puw_context)
+def _digest_map(
+    type_check: bool = False,
+    puw_context: dict[str, Any] | None = None,
+    profiling: bool | object = _UNSET,
+    **map_config: dict[str, Any]
+):
+    return digest(map=map_config, type_check=type_check, puw_context=puw_context, profiling=profiling)
 
 
 digest.map = _digest_map

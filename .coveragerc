@@ -1,0 +1,15 @@
+[run]
+source = argdigest
+omit =
+    argdigest/tests/*
+    */_version.py
+
+[report]
+show_missing = True
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    if TYPE_CHECKING:
+    raise ImportError
+    except ImportError:
+    if __name__ == .__main__.:

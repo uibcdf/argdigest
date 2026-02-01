@@ -23,7 +23,7 @@ def test_logging_output(caplog):
     
     # Check for pipeline logs
     assert "Starting pipelines for kind='log_test' on argument='a'" in caplog.text
-    assert "Running rule 'noop' on argument='a'" in caplog.text
+    assert "Running rule 'log_test.noop' on argument='a'" in caplog.text
     
     # Check for warning on missing rule
     assert "Rule 'missing_rule' not found for kind='log_test'. Skipping." in caplog.text
