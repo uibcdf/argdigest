@@ -66,6 +66,18 @@ def compute(cutoff):
     return cutoff
 ```
 
+### CLI Tools for Agents & Developers
+
+ArgDigest provides command-line tools to help both humans and AI agents understand the validation rules of a project.
+
+```bash
+# Audit a module to see all applied rules
+argdigest audit my_lib.api
+
+# Generate context instructions for AI Agents
+argdigest agent init --module my_lib
+```
+
 ---
 
 ## 🛠️ Key Features
