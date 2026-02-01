@@ -15,6 +15,9 @@ dependencies:
   - pydantic
   - pyunitwizard
   - versioningit
+  - pyyaml
+  - numpy
+  - pandas
 
   # --- Documentation with Sphinx and MyST ---
   - sphinx

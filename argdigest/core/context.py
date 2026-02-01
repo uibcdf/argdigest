@@ -1,5 +1,5 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any
 
 
@@ -9,4 +9,5 @@ class Context:
     argname: str
     value: Any
     all_args: dict[str, Any]
+    audit_log: list[dict[str, Any]] = field(default_factory=list)
 

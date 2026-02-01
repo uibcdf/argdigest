@@ -28,10 +28,7 @@ def pydantic_pipeline(model_cls: Type[BaseModel]) -> callable:
         try:
             return model_cls.model_validate(value)
         except Exception as e:
-            # Wrap in our error type or just let it bubble?
-            # Ideally, we should wrap it to provide context, but for now bubbling is okay
-            # as ArgDigest catches exceptions at a higher level if needed.
-            # But let's add a bit of context if possible.
-            raise ValueError(f"Pydantic validation failed for {ctx.argname}: {e}") from e
+            arg_info = f"argument '{ctx.argname}'" if ctx else "unknown argument"
+            raise ValueError(f"Pydantic validation failed for {arg_info}: {e}") from e
 
     return pipeline_fn
