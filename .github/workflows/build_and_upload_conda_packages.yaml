@@ -65,4 +65,5 @@ jobs:
           platform_osx-arm64: true
           platform_win-64: true
           token: ${{ secrets.ANACONDA_UIBCDF_TOKEN }}
+          github_release: true
 
