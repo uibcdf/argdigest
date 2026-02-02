@@ -4,15 +4,14 @@ Logic for generating and updating AI Agent instructions based on library configu
 from __future__ import annotations
 import os
 import importlib
-from typing import Any
-from .config import resolve_config, DigestConfig
+from .config import resolve_config
 
 def generate_agent_docs(module_name: str, output_file: str = "ARG_DIGEST_AGENTS.md"):
     """
     Detects library config and writes the ARG_DIGEST_AGENTS.md file.
     """
     try:
-        module = importlib.import_module(module_name)
+        importlib.import_module(module_name)
     except ImportError as e:
         raise ImportError(f"Could not import module '{module_name}' to detect configuration: {e}")
 

@@ -1,6 +1,5 @@
 import pytest
 from argdigest import digest
-from argdigest.pipelines.coercers import to_tuple
 
 def test_to_tuple_coercer():
     @digest.map(v={"kind": "std", "rules": ["to_tuple"]})
@@ -36,16 +35,12 @@ def test_load_from_package_mock(tmp_path, monkeypatch):
     (pkg_dir / "__init__.py").write_text("")
     mod_dir = pkg_dir / "arg_mod.py"
     mod_dir.write_text("def digest_test_arg(test_arg, caller=None): return test_arg")
-    
-    import sys
     monkeypatch.syspath_prepend(str(tmp_path))
     
 def test_load_from_registry_not_dict(tmp_path, monkeypatch):
     pkg_dir = tmp_path / "bad_pkg"
     pkg_dir.mkdir()
     (pkg_dir / "__init__.py").write_text("ARGUMENT_DIGESTERS = 'not a dict'")
-    
-    import sys
     monkeypatch.syspath_prepend(str(tmp_path))
     from argdigest.core.argument_loader import load_argument_digesters
     with pytest.raises(TypeError, match="must be a dict"):

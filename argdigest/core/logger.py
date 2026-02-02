@@ -25,5 +25,3 @@ def configure_logging(level: int | str = logging.INFO, stream: Optional[Any] = N
     )
     handler.setFormatter(formatter)
     logger.addHandler(handler)
-
-from typing import Any  # fix imports

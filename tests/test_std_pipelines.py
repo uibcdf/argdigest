@@ -1,5 +1,4 @@
 import pytest
-import os
 from argdigest import digest, DigestValueError, DigestTypeError
 
 def test_std_coercers_all():

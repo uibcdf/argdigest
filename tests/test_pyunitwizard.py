@@ -16,7 +16,7 @@ def test_puw_integration_check_and_standardize():
         puw.configure.load_library(['pint'])
         puw.configure.set_default_form('pint')
         puw.configure.set_standard_units(['nm', 'ps']) # Define standards!
-    except:
+    except Exception:
         pass # Hope defaults work or libraries are loaded
 
     print(f"DEBUG TEST: puw={puw}")

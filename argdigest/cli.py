@@ -1,8 +1,6 @@
 import argparse
 import importlib
 import inspect
-import sys
-from typing import Any
 
 def audit_module(module_name: str):
     """
@@ -31,7 +29,7 @@ def audit_module(module_name: str):
                 print(f"  Argument Digesters: {list(plan.digesters.keys())}")
             
             if plan.pipeline_targets:
-                print(f"  Pipeline Targets:")
+                print("  Pipeline Targets:")
                 for arg, cfg in plan.pipeline_targets.items():
                     kind = cfg.get("kind")
                     rules = cfg.get("rules", [])

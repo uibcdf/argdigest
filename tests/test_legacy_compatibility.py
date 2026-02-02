@@ -1,4 +1,3 @@
-import pytest
 from argdigest import digest
 
 def test_legacy_package_style_with_injection():

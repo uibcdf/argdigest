@@ -1,7 +1,5 @@
-import pytest
-import os
 import yaml
-from argdigest.config import load_from_file, set_defaults
+from argdigest.config import load_from_file
 from argdigest import digest, argument_digest
 
 def test_load_from_yaml(tmp_path):

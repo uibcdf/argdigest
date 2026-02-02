@@ -1,6 +1,5 @@
 import pytest
 import os
-import sys
 from argdigest.cli import main
 from argdigest.core.agent_docs import generate_agent_docs
 

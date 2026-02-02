@@ -1,5 +1,4 @@
 import logging
-import pytest
 from argdigest import digest, register_pipeline
 from argdigest.config import setup_logging
 

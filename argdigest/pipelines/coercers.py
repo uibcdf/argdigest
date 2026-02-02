@@ -1,4 +1,4 @@
-from typing import Any, Iterable
+from typing import Any
 from ..core.registry import register_pipeline
 
 # --- Boolean Coercers ---
