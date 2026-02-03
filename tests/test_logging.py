@@ -6,7 +6,7 @@ from argdigest.config import setup_logging
 def noop(value, ctx):
     return value
 
-@arg_arg_digest.map(a={"kind": "log_test", "rules": ["noop", "missing_rule"]})
+arg_digest.map(a={"kind": "log_test", "rules": ["noop", "missing_rule"]})
 def sample_func(a):
     return a
 

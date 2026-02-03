@@ -47,7 +47,7 @@ from pydantic import BaseModel
 class User(BaseModel):
     name: str
 
-@arg_arg_digest.map(
+arg_digest.map(
     type_check=True, # Enforce beartype
     feature={"kind": "feature", "rules": ["feature.base"]},
     user={"kind": "data", "rules": [User]} # Native pydantic rule

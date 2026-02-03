@@ -2,7 +2,7 @@ import pytest
 from argdigest import arg_digest, DigestValueError, DigestTypeError
 
 def test_std_coercers_all():
-    @arg_arg_digest.map(
+    arg_digest.map(
         b1={"kind": "std", "rules": ["to_bool"]},
         b2={"kind": "std", "rules": ["to_bool"]},
         l1={"kind": "std", "rules": ["to_list"]},
@@ -27,7 +27,7 @@ def test_std_coercers_all():
     assert res[7] == "WORLD"
 
 def test_to_bool_edge_cases():
-    @arg_arg_digest.map(v={"kind": "std", "rules": ["to_bool"]})
+    arg_digest.map(v={"kind": "std", "rules": ["to_bool"]})
     def f(v): return v
     
     assert f("on") is True
@@ -42,7 +42,7 @@ def test_std_validators_extended(tmp_path):
     f_path = d / "test.txt"
     f_path.write_text("content")
 
-    @arg_arg_digest.map(
+    arg_digest.map(
         pos={"kind": "std", "rules": ["is_positive"]},
         non_neg={"kind": "std", "rules": ["is_non_negative"]},
         file_p={"kind": "std", "rules": ["is_file"]},
@@ -72,7 +72,7 @@ def test_std_validators_extended(tmp_path):
 
     def test_to_list_iterables():
 
-        @arg_arg_digest.map(v={"kind": "std", "rules": ["to_list"]})
+        arg_digest.map(v={"kind": "std", "rules": ["to_list"]})
 
         def f(v): return v
 
@@ -92,7 +92,7 @@ def test_std_validators_extended(tmp_path):
 
     def test_string_coercers_non_string():
 
-        @arg_arg_digest.map(v={"kind": "std", "rules": ["strip", "lower", "upper"]})
+        arg_digest.map(v={"kind": "std", "rules": ["strip", "lower", "upper"]})
 
         def f(v): return v
 

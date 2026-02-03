@@ -59,7 +59,7 @@ ArgDigest originates from the `@arg_digest` decorator developed for **MolSysMT**
 argdigest/
   __init__.py
   core/
-    decorator.py        # implements @arg_digest and @arg_arg_digest.map
+    decorator.py        # implements @arg_digest and arg_digest.map
     registry.py         # global pipeline and validator registry
     context.py          # call context (function, argname, value, metadata)
     errors.py           # standardized exception hierarchy
@@ -96,7 +96,7 @@ def register_feature(feature):
 ### Decorator with argument mapping
 
 ```python
-@arg_arg_digest.map(
+arg_digest.map(
     feature={"kind": "feature", "rules": ["feature.base", "shape.consistency"]},
     parent={"kind": "feature", "rules": ["topology.is_2d"]}
 )
@@ -155,7 +155,7 @@ Each exception includes:
 
 ### In MolSysMT
 ```python
-@arg_arg_digest.map(
+arg_digest.map(
     molecular_system={"kind": "molecular_system"},
     selection={"kind": "selection"}
 )
@@ -165,7 +165,7 @@ def get_n_atoms(molecular_system, selection='all'):
 
 ### In TopoMT
 ```python
-@arg_arg_digest.map(
+arg_digest.map(
     child={"kind": "feature", "rules": ["parent_child.mouth_concavity"]},
     parent={"kind": "feature", "rules": ["is_2d"]}
 )
@@ -179,7 +179,7 @@ def link(child, parent, topo):
 
 | Phase | Objectives | Deliverables |
 |:------|:-----------|:-------------|
-| **v0.1 (Prototype)** | Functional `@arg_digest` decorator + minimal registry | **Done**: Core pipeline, argument-centric mode, `@arg_arg_digest.map` |
+| **v0.1 (Prototype)** | Functional `@arg_digest` decorator + minimal registry | **Done**: Core pipeline, argument-centric mode, `arg_digest.map` |
 | **v0.2.0** | Context-aware error system + logging | **Done**: Rich exceptions, logging, native Pydantic/Beartype |
 | **v0.3.0** | Standard Pipelines & Science Integration | **Done**: Built-in pipelines, PyUnitWizard integration, legacy compat |
 | **v0.4.0** | Declarative Config & Advanced Features | **Done**: YAML/JSON rules, Numpy/Pandas support, Profiling |

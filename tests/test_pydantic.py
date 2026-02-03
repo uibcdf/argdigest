@@ -15,7 +15,7 @@ if HAS_PYDANTIC:
 @pytest.mark.skipif(not HAS_PYDANTIC, reason="pydantic not installed")
 def test_pydantic_native_integration():
     # Pass the Pydantic class DIRECTLY as a rule
-    @arg_arg_digest.map(u={"kind": "data", "rules": [User]})
+    arg_digest.map(u={"kind": "data", "rules": [User]})
     def process_user(u):
         return u
 

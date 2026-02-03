@@ -27,8 +27,8 @@ def test_digest_all_arguments_implicit_map():
 
 
 def test_digest_map_alias():
-    """Test the @arg_arg_digest.map alias syntax."""
-    @arg_arg_digest.map(a={"kind": "x", "rules": ["to-int"]})
+    """Test the arg_digest.map alias syntax."""
+    arg_digest.map(a={"kind": "x", "rules": ["to-int"]})
     def h(a, b):
         return a, b
     

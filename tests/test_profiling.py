@@ -7,7 +7,7 @@ def slow_rule(value, ctx):
     return value
 
 def test_profiling_audit_log():
-    @arg_arg_digest.map(
+    arg_digest.map(
         profiling=True,
         val={"kind": "slow", "rules": ["sleep"]}
     )
@@ -24,7 +24,7 @@ def test_profiling_audit_log():
     assert log[0]["duration"] >= 0.01
 
 def test_profiling_disabled_by_default():
-    @arg_arg_digest.map(val={"kind": "slow", "rules": ["sleep"]})
+    arg_digest.map(val={"kind": "slow", "rules": ["sleep"]})
     def g(val):
         return val
 

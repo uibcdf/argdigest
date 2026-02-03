@@ -2,7 +2,7 @@ import pytest
 from argdigest import arg_digest, DigestTypeError, DigestValueError
 
 def test_feature_base_pipeline():
-    @arg_arg_digest.map(feat={"kind": "feature", "rules": ["feature.base"]})
+    arg_digest.map(feat={"kind": "feature", "rules": ["feature.base"]})
     def f(feat):
         return feat
 
@@ -14,7 +14,7 @@ def test_feature_base_pipeline():
         f({"other": 1})
 
 def test_feature_shape_pipeline():
-    @arg_arg_digest.map(feat={"kind": "feature", "rules": ["feature.shape"]})
+    arg_digest.map(feat={"kind": "feature", "rules": ["feature.shape"]})
     def f(feat):
         return feat
 

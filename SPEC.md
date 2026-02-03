@@ -70,12 +70,12 @@ The primary entry point is the `@arg_digest` decorator. It supports both **argum
 def my_func(...): ...
 ```
 
-### 3.2 The `@arg_arg_digest.map` Alias
+### 3.2 The `arg_digest.map` Alias
 
 A convenient alias for defining explicit mappings using keyword arguments:
 
 ```python
-@arg_arg_digest.map(
+arg_digest.map(
     arg_name={"kind": "feature", "rules": ["validate_shape"]},
     other_arg={"kind": "topology"}
 )
@@ -164,7 +164,7 @@ def check_2d(val, ctx):
     if val.dim != 2: raise ValueError("Not 2D")
     return val
 
-@arg_arg_digest.map(
+arg_digest.map(
     surface={"kind": "feature", "rules": ["is_2d"]}
 )
 def calculate_area(surface):

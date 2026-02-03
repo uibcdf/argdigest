@@ -21,7 +21,7 @@ pip install argdigest[all]  # Includes Pydantic, Beartype, and PyUnitWizard supp
 
 ### Basic Usage: Explicit Mapping
 
-Use `@arg_arg_digest.map` to define validation rules for specific arguments:
+Use `arg_digest.map` to define validation rules for specific arguments:
 
 ```python
 from argdigest import arg_digest
@@ -31,7 +31,7 @@ class User(BaseModel):
     name: str
     age: int
 
-@arg_arg_digest.map(
+arg_digest.map(
     # Use standard rules
     flag={"kind": "std", "rules": ["to_bool"]},
     # Native Pydantic model validation
@@ -52,7 +52,7 @@ Integrate with `PyUnitWizard` for physical quantities:
 from argdigest import arg_digest
 from argdigest.contrib import pyunitwizard_support as puw_support
 
-@arg_arg_digest.map(
+arg_digest.map(
     puw_context={"standard_units": ["nm", "ps"]}, # Temporary unit system
     cutoff={
         "kind": "quantity", 

@@ -7,7 +7,7 @@ def to_int(value, ctx):
 
 def test_beartype_native_integration():
     # Use native type_check parameter
-    @arg_arg_digest.map(type_check=True, a={"kind": "int", "rules": ["convert"]})
+    arg_digest.map(type_check=True, a={"kind": "int", "rules": ["convert"]})
     def f(a: int):
         return a
 

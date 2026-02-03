@@ -37,14 +37,14 @@ def register_feature(feature):
     return feature
 ```
 
-## Explicit mapping with `@arg_arg_digest.map`
+## Explicit mapping with `arg_digest.map`
 
-For explicit validation mapping (using pipelines), the alias `@arg_arg_digest.map` offers a cleaner syntax:
+For explicit validation mapping (using pipelines), the alias `arg_digest.map` offers a cleaner syntax:
 
 ```python
 from argdigest import arg_digest
 
-@arg_arg_digest.map(
+arg_digest.map(
     feature={"kind": "feature", "rules": ["feature.base"]},
     # Pydantic models can be used directly as rules!
     user={"kind": "data", "rules": [User]} 
@@ -59,7 +59,7 @@ ArgDigest comes with a set of built-in pipelines under the `std` kind. These are
 registered and ready to use.
 
 ```python
-@arg_arg_digest.map(
+arg_digest.map(
     flag={"kind": "std", "rules": ["to_bool"]},
     indices={"kind": "std", "rules": ["to_list"]},
     path={"kind": "std", "rules": ["strip", "is_file"]}
@@ -87,7 +87,7 @@ class User(BaseModel):
     name: str
     age: int
 
-@arg_arg_digest.map(user={"kind": "data", "rules": [User]})
+arg_digest.map(user={"kind": "data", "rules": [User]})
 def process_user(user):
     # 'user' is now an instance of User
     return user.name
@@ -114,7 +114,7 @@ You can use factory functions from `argdigest.contrib.pyunitwizard_support` to c
 ```python
 from argdigest.contrib import pyunitwizard_support as puw_support
 
-@arg_arg_digest.map(
+arg_digest.map(
     cutoff={
         "kind": "quantity", 
         "rules": [

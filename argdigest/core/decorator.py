@@ -200,4 +200,4 @@ def _arg_digest_map(
 ):
     return arg_digest(map=map_config, type_check=type_check, puw_context=puw_context, profiling=profiling)
 
-arg_arg_digest.map = _arg_digest_map
+arg_digest.map = _arg_digest_map

@@ -16,7 +16,7 @@ The `@arg_digest` decorator intercepts function calls, analyzes arguments, and e
 When a function has multiple arguments, you can assign specific rules per argument:
 
 ```python
-@arg_arg_digest.map(
+arg_digest.map(
     feature={"kind": "feature", "rules": ["feature.base", "shape.consistency"]},
     parent={"kind": "feature", "rules": ["topology.is_2d"]}
 )
@@ -48,7 +48,7 @@ from pydantic import BaseModel
 class User(BaseModel):
     name: str
 
-@arg_arg_digest.map(user={"kind": "data", "rules": [User]})
+arg_digest.map(user={"kind": "data", "rules": [User]})
 def process_user(user):
     # 'user' is now an instance of User
     ...
@@ -117,7 +117,7 @@ class Feature(BaseModel):
     feature_id: str
     shape_type: str
 
-@arg_arg_digest.map(
+arg_digest.map(
     feature={"kind": "feature", "rules": [Feature]},
     type_check=True
 )
