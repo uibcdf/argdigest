@@ -18,6 +18,7 @@
 
 ### 4. Code Quality & Cleanup ✅
 - **Linting**: Enforced `ruff` standards, removing unused imports and cleaning up the codebase.
+- **Mandatory Policy**: Established that `ruff check .` must pass along with `pytest` before any commit or tag.
 - **Coverage**: Maintained >90% test coverage across the entire project.
 
 ## Phase 6: Pilot Integration (0.6.0) 🚀

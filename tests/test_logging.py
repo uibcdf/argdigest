@@ -17,8 +17,12 @@ def test_logging_output(caplog):
         sample_func("test")
 
     # Check for start/end logs from decorator
-    assert "Digesting arguments for test_logging.sample_func" in caplog.text
-    assert "Digestion complete for test_logging.sample_func" in caplog.text
+    # The module name might be 'test_logging' or 'tests.test_logging' depending on invocation
+    assert "Digesting arguments for" in caplog.text
+    assert "test_logging.sample_func" in caplog.text
+    
+    assert "Digestion complete for" in caplog.text
+    assert "test_logging.sample_func" in caplog.text
     
     # Check for pipeline logs
     assert "Starting pipelines for kind='log_test' on argument='a'" in caplog.text

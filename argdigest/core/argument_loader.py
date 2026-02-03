@@ -5,6 +5,7 @@ import pkgutil
 from importlib import import_module
 from types import ModuleType
 from typing import Any, Callable, Iterable
+from functools import lru_cache
 
 from .argument_registry import ArgumentRegistry
 
@@ -43,6 +44,7 @@ def _merge_digesters(target: dict[str, Callable[..., Any]],
             target[name] = fn
 
 
+@lru_cache(maxsize=None)
 def _load_from_registry(module_path: str) -> dict[str, Callable[..., Any]]:
     module = import_module(module_path)
     digesters = getattr(module, "ARGUMENT_DIGESTERS", None)
@@ -53,6 +55,7 @@ def _load_from_registry(module_path: str) -> dict[str, Callable[..., Any]]:
     return dict(digesters)
 
 
+@lru_cache(maxsize=None)
 def _load_from_package(package_path: str) -> dict[str, Callable[..., Any]]:
     package = import_module(package_path)
     if not hasattr(package, "__path__"):

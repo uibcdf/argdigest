@@ -12,16 +12,6 @@ It provides decorators and pipelines that can coerce, validate, and document arg
 ### 2.1 Digest Decorator
 The `@digest` decorator intercepts function calls, analyzes arguments, and executes **registered pipelines** for coercion and validation.
 
-Example:
-
-```python
-from argdigest import digest
-
-@digest(kind="feature")
-def register_feature(feature):
-    print(f"Registered feature: {feature.feature_id}")
-```
-
 ### 2.2 Argument Mapping
 When a function has multiple arguments, you can assign specific rules per argument:
 
@@ -84,7 +74,40 @@ except DigestError as e:
 
 ---
 
-## 5. Minimal Working Example
+## 5. CLI Tools for Agents & Developers
+
+ArgDigest provides command-line tools to help both humans and AI agents:
+
+```bash
+# Audit a module to see all applied rules
+argdigest audit my_lib.api
+
+# Generate context instructions for AI Agents
+argdigest agent init --module my_lib
+```
+
+---
+
+## 6. Quality Assurance (Pre-Release Checklist)
+
+Before submitting a Pull Request, creating a Tag, or releasing a new version, you **MUST** ensure the following:
+
+1.  **Functional Tests**: Run all tests and ensure they pass.
+    ```bash
+    export PYTHONPATH=.
+    pytest tests/
+    ```
+2.  **Code Style (Linting)**: Run `ruff` to ensure compliance with style standards.
+    ```bash
+    ruff check .
+    ```
+3.  **No unused imports**: Pay special attention to `sys` or `Any` imports which are common linting failures.
+
+**Motto**: *If tests pass but linter fails, the build is RED.* 🔴
+
+---
+
+## 7. Minimal Working Example
 
 ```python
 from pydantic import BaseModel
@@ -107,7 +130,7 @@ register_feature({"feature_id": "f001", "shape_type": "concavity"})
 
 ---
 
-## 6. Future Directions
+## 8. Future Directions
 - CLI tools for auditing (`argdigest audit script.py`)
 - YAML/JSON declarative rule definitions (v0.4.0)
 - Automatic execution profiling (v0.4.0)

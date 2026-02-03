@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from functools import wraps
+from functools import wraps, lru_cache
 import inspect
 import warnings
 from importlib import import_module
@@ -20,6 +20,28 @@ from dataclasses import dataclass, field
 
 _UNSET = object()
 logger = get_logger()
+
+# Global cache for digester metadata to avoid redundant inspect.signature calls
+# (fn_dig, argname) -> (sig, value_param)
+_DIGESTER_METADATA_CACHE: dict[tuple[Callable, str], tuple[inspect.Signature, str]] = {}
+
+def _resolve_value_param(sig: inspect.Signature, argname: str) -> str:
+    if argname in sig.parameters:
+        return argname
+    candidates = [p for p in sig.parameters if p != "caller"]
+    if len(candidates) == 1:
+        return candidates[0]
+    raise DigestNotDigestedError(
+        f"Cannot determine value parameter for digester '{argname}'",
+    )
+
+def get_digester_metadata(fn_dig: Callable, argname: str) -> tuple[inspect.Signature, str]:
+    key = (fn_dig, argname)
+    if key not in _DIGESTER_METADATA_CACHE:
+        sig_dig = inspect.signature(fn_dig)
+        value_param = _resolve_value_param(sig_dig, argname)
+        _DIGESTER_METADATA_CACHE[key] = (sig_dig, value_param)
+    return _DIGESTER_METADATA_CACHE[key]
 
 
 @dataclass
@@ -139,24 +161,13 @@ def digest(
         else:
             pipeline_targets = config_map
 
-        # Helper to resolve value parameter name for a digester
-        def _resolve_value_param(sig: inspect.Signature, argname: str) -> str:
-            if argname in sig.parameters:
-                return argname
-            candidates = [p for p in sig.parameters if p != "caller"]
-            if len(candidates) == 1:
-                return candidates[0]
-            raise DigestNotDigestedError(
-                f"Cannot determine value parameter for digester '{argname}'",
-            )
-
-        # Pre-calculate digester metadata
+        # Pre-calculate digester metadata (Cached)
         digester_signatures = {}
         digester_value_params = {}
         for argname, fn_dig in available_digesters.items():
-            sig_dig = inspect.signature(fn_dig)
+            sig_dig, value_param = get_digester_metadata(fn_dig, argname)
             digester_signatures[argname] = sig_dig
-            digester_value_params[argname] = _resolve_value_param(sig_dig, argname)
+            digester_value_params[argname] = value_param
 
         # Create the final Plan
         plan = DigestionPlan(
