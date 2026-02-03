@@ -1,8 +1,8 @@
 import pytest
-from argdigest import digest
+from argdigest import arg_digest
 
 def test_to_tuple_coercer():
-    @digest.map(v={"kind": "std", "rules": ["to_tuple"]})
+    @arg_arg_digest.map(v={"kind": "std", "rules": ["to_tuple"]})
     def f(v): return v
     
     assert f("a") == ("a",)

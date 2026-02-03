@@ -1,4 +1,4 @@
-from .decorator import digest
+from .decorator import arg_digest
 from .registry import register_pipeline, get_pipelines
 from .argument_registry import argument_digest
 from .config import DigestConfig, set_defaults, get_defaults

@@ -10,13 +10,13 @@ It provides decorators and pipelines that can coerce, validate, and document arg
 ## 2. Core Concepts
 
 ### 2.1 Digest Decorator
-The `@digest` decorator intercepts function calls, analyzes arguments, and executes **registered pipelines** for coercion and validation.
+The `@arg_digest` decorator intercepts function calls, analyzes arguments, and executes **registered pipelines** for coercion and validation.
 
 ### 2.2 Argument Mapping
 When a function has multiple arguments, you can assign specific rules per argument:
 
 ```python
-@digest.map(
+@arg_arg_digest.map(
     feature={"kind": "feature", "rules": ["feature.base", "shape.consistency"]},
     parent={"kind": "feature", "rules": ["topology.is_2d"]}
 )
@@ -28,7 +28,7 @@ def link(feature, parent, topo):
 ArgDigest supports integration with **PyUnitWizard** to manage physical units during digestion:
 
 ```python
-@digest(puw_context={"standard_units": ["nm", "ps"], "form": "pint"})
+@arg_digest(puw_context={"standard_units": ["nm", "ps"], "form": "pint"})
 def simulation(time):
     ...
 ```
@@ -48,7 +48,7 @@ from pydantic import BaseModel
 class User(BaseModel):
     name: str
 
-@digest.map(user={"kind": "data", "rules": [User]})
+@arg_arg_digest.map(user={"kind": "data", "rules": [User]})
 def process_user(user):
     # 'user' is now an instance of User
     ...
@@ -111,13 +111,13 @@ Before submitting a Pull Request, creating a Tag, or releasing a new version, yo
 
 ```python
 from pydantic import BaseModel
-from argdigest import digest, DigestError
+from argdigest import arg_digest, DigestError
 
 class Feature(BaseModel):
     feature_id: str
     shape_type: str
 
-@digest.map(
+@arg_arg_digest.map(
     feature={"kind": "feature", "rules": [Feature]},
     type_check=True
 )

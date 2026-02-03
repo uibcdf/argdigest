@@ -1,6 +1,6 @@
 import yaml
 from argdigest.config import load_from_file
-from argdigest import digest, argument_digest
+from argdigest import arg_digest, argument_digest
 
 def test_load_from_yaml(tmp_path):
     config_data = {
@@ -36,7 +36,7 @@ def test_digest_with_loaded_config(tmp_path):
 
     cfg = load_from_file(str(config_file))
 
-    @digest(config=cfg)
+    @arg_digest(config=cfg)
     def f(val_yaml):
         return val_yaml
 

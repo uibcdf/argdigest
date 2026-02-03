@@ -1,5 +1,5 @@
 import time
-from argdigest import digest, register_pipeline
+from argdigest import arg_digest, register_pipeline
 
 @register_pipeline(kind="slow", name="sleep")
 def slow_rule(value, ctx):
@@ -7,7 +7,7 @@ def slow_rule(value, ctx):
     return value
 
 def test_profiling_audit_log():
-    @digest.map(
+    @arg_arg_digest.map(
         profiling=True,
         val={"kind": "slow", "rules": ["sleep"]}
     )
@@ -24,7 +24,7 @@ def test_profiling_audit_log():
     assert log[0]["duration"] >= 0.01
 
 def test_profiling_disabled_by_default():
-    @digest.map(val={"kind": "slow", "rules": ["sleep"]})
+    @arg_arg_digest.map(val={"kind": "slow", "rules": ["sleep"]})
     def g(val):
         return val
 

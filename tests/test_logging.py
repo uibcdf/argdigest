@@ -1,12 +1,12 @@
 import logging
-from argdigest import digest, register_pipeline
+from argdigest import arg_digest, register_pipeline
 from argdigest.config import setup_logging
 
 @register_pipeline(kind="log_test", name="noop")
 def noop(value, ctx):
     return value
 
-@digest.map(a={"kind": "log_test", "rules": ["noop", "missing_rule"]})
+@arg_arg_digest.map(a={"kind": "log_test", "rules": ["noop", "missing_rule"]})
 def sample_func(a):
     return a
 

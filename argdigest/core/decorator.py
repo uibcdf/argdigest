@@ -58,7 +58,7 @@ class DigestionPlan:
     var_keyword_name: str | None = None
 
 
-def digest(
+def arg_digest(
     *,
     kind: str | None = None,
     rules: list[str] | None = None,
@@ -192,6 +192,12 @@ def digest(
         return wrapper
     return deco
 
-def _digest_map(type_check=False, puw_context=None, profiling=_UNSET, **map_config):
-    return digest(map=map_config, type_check=type_check, puw_context=puw_context, profiling=profiling)
-digest.map = _digest_map
+def _arg_digest_map(
+    type_check=False,
+    puw_context=None,
+    profiling=_UNSET,
+    **map_config
+):
+    return arg_digest(map=map_config, type_check=type_check, puw_context=puw_context, profiling=profiling)
+
+arg_arg_digest.map = _arg_digest_map

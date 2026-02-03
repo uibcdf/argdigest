@@ -77,10 +77,10 @@ ArgDigest will:
 ## Digester discovery
 
 Argument digesters can be discovered in multiple ways, depending on how a library is organized.
-Configure discovery with `digestion_source` and `digestion_style` in `@digest`:
+Configure discovery with `digestion_source` and `digestion_style` in `@arg_digest`:
 
 ```python
-@digest(
+@arg_digest(
     digestion_source="mylib._private.digestion.argument",
     digestion_style="package",
     strictness="warn",

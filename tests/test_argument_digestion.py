@@ -15,7 +15,7 @@ def test_argument_digest_basic():
     def digest_a(a, caller=None):
         return int(a)
 
-    @digest(digestion_style="decorator", strictness="ignore")
+    @arg_digest(digestion_style="decorator", strictness="ignore")
     def f(a, b):
         return a, b
 
@@ -33,7 +33,7 @@ def test_argument_dependency_resolution():
     def digest_b(b, a, caller=None):
         return int(b) + a
 
-    @digest(digestion_style="decorator", strictness="ignore")
+    @arg_digest(digestion_style="decorator", strictness="ignore")
     def f(a, b):
         return a, b
 
@@ -49,7 +49,7 @@ def test_standardizer_hook():
             kwargs["element_name"] = kwargs.pop("name")
         return kwargs
 
-    @digest(digestion_style="decorator", standardizer=standardizer, strictness="ignore")
+    @arg_digest(digestion_style="decorator", standardizer=standardizer, strictness="ignore")
     def f(**kwargs):
         return kwargs
 
@@ -59,7 +59,7 @@ def test_standardizer_hook():
 
 
 def test_skip_digestion_bypasses_argument_digesters():
-    @digest(digestion_style="decorator", strictness="ignore")
+    @arg_digest(digestion_style="decorator", strictness="ignore")
     def f(a, skip_digestion=False):
         return a
 
@@ -67,7 +67,7 @@ def test_skip_digestion_bypasses_argument_digesters():
 
 
 def test_strictness_error_for_undigested():
-    @digest(digestion_style="decorator", strictness="error")
+    @arg_digest(digestion_style="decorator", strictness="error")
     def f(a, b):
         return a, b
 
@@ -76,7 +76,7 @@ def test_strictness_error_for_undigested():
 
 
 def test_strictness_warn_for_undigested():
-    @digest(digestion_style="decorator", strictness="warn")
+    @arg_digest(digestion_style="decorator", strictness="warn")
     def f(a, b):
         return a, b
 
@@ -93,7 +93,7 @@ def test_dual_mode_argument_then_pipeline():
     def digest_a(a, caller=None):
         return int(a)
 
-    @digest(
+    @arg_digest(
         digestion_style="decorator",
         strictness="ignore",
         map={"a": {"kind": "x", "rules": ["double"]}},
@@ -112,7 +112,7 @@ def test_config_module_defaults():
     cfg = DigestConfig(digestion_style="decorator", strictness="ignore")
     set_defaults(cfg)
 
-    @digest()
+    @arg_digest()
     def f(a):
         return a
 
@@ -129,7 +129,7 @@ def test_cyclic_dependency_error_message():
     def digest_y(y_cyc, x_cyc, caller=None):
         return y_cyc
 
-    @digest(digestion_style="decorator")
+    @arg_digest(digestion_style="decorator")
     def f(x_cyc, y_cyc):
         return x_cyc, y_cyc
 

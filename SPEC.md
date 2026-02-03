@@ -27,7 +27,7 @@ The library is structured to separate core logic from domain implementations:
 ```
 argdigest/
   core/
-    decorator.py        # Main @digest logic and orchestration
+    decorator.py        # Main @arg_digest logic and orchestration
     registry.py         # Pipeline registry (kind/rules)
     argument_registry.py# Argument-centric registry (@argument_digest)
     argument_loader.py  # Discovery logic (packages, modules)
@@ -46,12 +46,12 @@ docs/
 
 ## 3. Public API
 
-### 3.1 The `@digest` Decorator
+### 3.1 The `@arg_digest` Decorator
 
-The primary entry point is the `@digest` decorator. It supports both **argument-centric discovery** (auto-finding how to digest an argument) and **explicit pipeline mapping**.
+The primary entry point is the `@arg_digest` decorator. It supports both **argument-centric discovery** (auto-finding how to digest an argument) and **explicit pipeline mapping**.
 
 ```python
-@digest(
+@arg_digest(
     # Configuration for Argument-Centric Mode
     digestion_source=None,       # str | list[str]: Module/package paths to search
     digestion_style="auto",      # "auto" | "registry" | "package" | "decorator"
@@ -70,12 +70,12 @@ The primary entry point is the `@digest` decorator. It supports both **argument-
 def my_func(...): ...
 ```
 
-### 3.2 The `@digest.map` Alias
+### 3.2 The `@arg_arg_digest.map` Alias
 
 A convenient alias for defining explicit mappings using keyword arguments:
 
 ```python
-@digest.map(
+@arg_arg_digest.map(
     arg_name={"kind": "feature", "rules": ["validate_shape"]},
     other_arg={"kind": "topology"}
 )
@@ -142,7 +142,7 @@ Exceptions are rich objects inheriting from `DigestError`. They include:
 Recommended configuration for MolSysMT integration:
 
 ```python
-@digest(
+@arg_digest(
     digestion_source="molsysmt._private.digestion.argument",
     digestion_style="package",
     standardizer="molsysmt._private.digestion.argument_names_standardization",
@@ -157,14 +157,14 @@ Recommended configuration for MolSysMT integration:
 
 ### Explicit Mapping
 ```python
-from argdigest import digest, register_pipeline
+from argdigest import arg_digest, register_pipeline
 
 @register_pipeline(kind="feature", name="is_2d")
 def check_2d(val, ctx):
     if val.dim != 2: raise ValueError("Not 2D")
     return val
 
-@digest.map(
+@arg_arg_digest.map(
     surface={"kind": "feature", "rules": ["is_2d"]}
 )
 def calculate_area(surface):
@@ -180,7 +180,7 @@ def digest_volume(volume, caller=None):
 
 File: `mylib/api.py`
 ```python
-@digest(digestion_source="mylib._private.digestion", digestion_style="package")
+@arg_digest(digestion_source="mylib._private.digestion", digestion_style="package")
 def compute(volume):
     # volume is guaranteed to be float here
     ...

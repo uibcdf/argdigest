@@ -56,13 +56,13 @@ def digest_selection(selection, syntax="MyLib", caller=None):
 
 ## Usage in public API
 ```python
-from argdigest import digest
+from argdigest import arg_digest
 
-@digest(config="my_lib._argdigest")
+@arg_digest(config="my_lib._argdigest")
 def get(molecular_system, selection=None, syntax="MyLib", skip_digestion=False):
     ...
 ```
 
 ## Notes
-- If `@digest()` is used without `config`, ArgDigest auto-detects `my_lib._argdigest`.
+- If `@arg_digest()` is used without `config`, ArgDigest auto-detects `my_lib._argdigest`.
 - Digesters can depend on other arguments (e.g., `syntax`) and ArgDigest resolves them.

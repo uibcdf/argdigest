@@ -1,5 +1,5 @@
 import pytest
-from argdigest import digest
+from argdigest import arg_digest
 try:
     import pyunitwizard as puw
     from argdigest.contrib import pyunitwizard_support as puw_support
@@ -22,7 +22,7 @@ def test_puw_integration_check_and_standardize():
     print(f"DEBUG TEST: puw={puw}")
     print(f"DEBUG TEST: puw.is_quantity={getattr(puw, 'is_quantity', 'MISSING')}")
 
-    @digest.map(
+    @arg_arg_digest.map(
         dist={
             "kind": "quantity", 
             "rules": [
@@ -54,7 +54,7 @@ def test_puw_integration_check_and_standardize():
 @pytest.mark.skipif(not HAS_PUW, reason="pyunitwizard not installed")
 def test_puw_conversion():
     
-    @digest.map(
+    @arg_arg_digest.map(
         time={
             "kind": "time",
             "rules": [
@@ -82,7 +82,7 @@ def test_puw_context_decorator():
     # We rely on previous test config or set it here.
     puw.configure.set_standard_units(['nm', 'ps'])
     
-    @digest.map(val={"kind": "q", "rules": [puw_support.standardize()]})
+    @arg_arg_digest.map(val={"kind": "q", "rules": [puw_support.standardize()]})
     def default_std(val):
         return val
         
@@ -91,7 +91,7 @@ def test_puw_context_decorator():
     assert str(puw.get_unit(res1)) == "picosecond"
     
     # 2. Function that OVERRIDES context to use 'fs' (femtoseconds)
-    @digest.map(
+    @arg_arg_digest.map(
         puw_context={"standard_units": ["nm", "fs"]},
         val={"kind": "q", "rules": [puw_support.standardize()]}
     )
@@ -106,7 +106,7 @@ def test_puw_context_decorator():
 @pytest.mark.skipif(not HAS_PUW, reason="pyunitwizard not installed")
 def test_puw_conversion_error():
     from argdigest import DigestValueError
-    @digest.map(val={"kind": "q", "rules": [puw_support.convert(to_unit="invalid_unit")]})
+    @arg_arg_digest.map(val={"kind": "q", "rules": [puw_support.convert(to_unit="invalid_unit")]})
     def f(val): return val
     
     q = puw.quantity(1.0, "nm")

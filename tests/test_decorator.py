@@ -1,10 +1,10 @@
-from argdigest import digest, register_pipeline
+from argdigest import arg_digest, register_pipeline
 
 @register_pipeline(kind="x", name="to-int")
 def to_int(value, ctx):
     return int(value)
 
-@digest(map={"a": {"kind": "x", "rules": ["to-int"]}})
+@arg_digest(map={"a": {"kind": "x", "rules": ["to-int"]}})
 def f(a, b):
     return a, b
 
@@ -16,7 +16,7 @@ def test_digest_basic():
 
 def test_digest_all_arguments_implicit_map():
     """Test that kind/rules apply to all arguments if map is not provided."""
-    @digest(kind="x", rules=["to-int"])
+    @arg_digest(kind="x", rules=["to-int"])
     def g(a, b):
         return a, b
     
@@ -27,8 +27,8 @@ def test_digest_all_arguments_implicit_map():
 
 
 def test_digest_map_alias():
-    """Test the @digest.map alias syntax."""
-    @digest.map(a={"kind": "x", "rules": ["to-int"]})
+    """Test the @arg_arg_digest.map alias syntax."""
+    @arg_arg_digest.map(a={"kind": "x", "rules": ["to-int"]})
     def h(a, b):
         return a, b
     

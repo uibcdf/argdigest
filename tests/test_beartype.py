@@ -1,5 +1,5 @@
 import pytest
-from argdigest import digest, register_pipeline
+from argdigest import arg_digest, register_pipeline
 
 @register_pipeline(kind="int", name="convert")
 def to_int(value, ctx):
@@ -7,7 +7,7 @@ def to_int(value, ctx):
 
 def test_beartype_native_integration():
     # Use native type_check parameter
-    @digest.map(type_check=True, a={"kind": "int", "rules": ["convert"]})
+    @arg_arg_digest.map(type_check=True, a={"kind": "int", "rules": ["convert"]})
     def f(a: int):
         return a
 
@@ -17,7 +17,7 @@ def test_beartype_native_integration():
     # Invalid type check (if digestion produced wrong type, beartype would catch it)
     # But here digestion works. Let's try undigested argument.
     
-    @digest(type_check=True) # strictness=warn by default
+    @arg_digest(type_check=True) # strictness=warn by default
     def g(a: int):
         return a
         

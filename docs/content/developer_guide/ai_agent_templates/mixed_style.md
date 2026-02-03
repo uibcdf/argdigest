@@ -4,7 +4,7 @@ Use this template when the library wants argument digesters **and** pipeline rul
 
 ## Goal
 - Argument digesters discovered from a package.
-- Pipelines registered by `kind` and referenced in `@digest(map=...)`.
+- Pipelines registered by `kind` and referenced in `@arg_digest(map=...)`.
 
 ## Required structure
 ```
@@ -41,13 +41,13 @@ def feature_base(obj, ctx):
 
 ## Usage in public API
 ```python
-from argdigest import digest
+from argdigest import arg_digest
 from pydantic import BaseModel
 
 class User(BaseModel):
     name: str
 
-@digest.map(
+@arg_arg_digest.map(
     type_check=True, # Enforce beartype
     feature={"kind": "feature", "rules": ["feature.base"]},
     user={"kind": "data", "rules": [User]} # Native pydantic rule

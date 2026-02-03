@@ -13,7 +13,7 @@ except PackageNotFoundError:
     except ImportError:
         __version__ = "0.0.0+unknown"
 
-from .core.decorator import digest
+from .core.decorator import arg_digest
 from .core.registry import register_pipeline, get_pipelines
 from .core.argument_registry import argument_digest
 from .core.config import DigestConfig
@@ -30,7 +30,7 @@ from .core.errors import (
 from . import pipelines
 
 __all__ = [
-    "digest",
+    "arg_digest",
     "register_pipeline",
     "get_pipelines",
     "argument_digest",

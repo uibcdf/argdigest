@@ -1,6 +1,6 @@
 # Basics
 
-ArgDigest wraps functions with a `@digest` decorator that can:
+ArgDigest wraps functions with a `@arg_digest` decorator that can:
 
 1) Digest individual arguments using **argument-centric digesters**.
 2) Apply reusable **pipelines** by `kind` and `rules`.
@@ -8,7 +8,7 @@ ArgDigest wraps functions with a `@digest` decorator that can:
 ## Argument-centric digestion
 
 ```python
-from argdigest import digest, argument_digest
+from argdigest import arg_digest, argument_digest
 
 @argument_digest("selection")
 def digest_selection(selection, caller=None, syntax=None):
@@ -16,7 +16,7 @@ def digest_selection(selection, caller=None, syntax=None):
         return "all"
     return selection
 
-@digest(digestion_style="decorator", strictness="warn")
+@arg_digest(digestion_style="decorator", strictness="warn")
 def get(molecular_system, selection=None, skip_digestion=False):
     return molecular_system, selection
 ```
@@ -24,7 +24,7 @@ def get(molecular_system, selection=None, skip_digestion=False):
 ## Pipeline-based validation
 
 ```python
-from argdigest import digest, register_pipeline
+from argdigest import arg_digest, register_pipeline
 
 @register_pipeline(kind="feature", name="feature.base")
 def feature_base(obj, ctx):
@@ -32,19 +32,19 @@ def feature_base(obj, ctx):
         raise ValueError("Missing feature_id")
     return obj
 
-@digest(map={"feature": {"kind": "feature", "rules": ["feature.base"]}})
+@arg_digest(map={"feature": {"kind": "feature", "rules": ["feature.base"]}})
 def register_feature(feature):
     return feature
 ```
 
-## Explicit mapping with `@digest.map`
+## Explicit mapping with `@arg_arg_digest.map`
 
-For explicit validation mapping (using pipelines), the alias `@digest.map` offers a cleaner syntax:
+For explicit validation mapping (using pipelines), the alias `@arg_arg_digest.map` offers a cleaner syntax:
 
 ```python
-from argdigest import digest
+from argdigest import arg_digest
 
-@digest.map(
+@arg_arg_digest.map(
     feature={"kind": "feature", "rules": ["feature.base"]},
     # Pydantic models can be used directly as rules!
     user={"kind": "data", "rules": [User]} 
@@ -59,7 +59,7 @@ ArgDigest comes with a set of built-in pipelines under the `std` kind. These are
 registered and ready to use.
 
 ```python
-@digest.map(
+@arg_arg_digest.map(
     flag={"kind": "std", "rules": ["to_bool"]},
     indices={"kind": "std", "rules": ["to_list"]},
     path={"kind": "std", "rules": ["strip", "is_file"]}
@@ -87,7 +87,7 @@ class User(BaseModel):
     name: str
     age: int
 
-@digest.map(user={"kind": "data", "rules": [User]})
+@arg_arg_digest.map(user={"kind": "data", "rules": [User]})
 def process_user(user):
     # 'user' is now an instance of User
     return user.name
@@ -97,7 +97,7 @@ def process_user(user):
 Use the `type_check=True` parameter to enforce type hints *after* digestion has occurred.
 
 ```python
-@digest(type_check=True) # Automatically applies @beartype
+@arg_digest(type_check=True) # Automatically applies @beartype
 def calculate(a: int):
     return a
 
@@ -114,7 +114,7 @@ You can use factory functions from `argdigest.contrib.pyunitwizard_support` to c
 ```python
 from argdigest.contrib import pyunitwizard_support as puw_support
 
-@digest.map(
+@arg_arg_digest.map(
     cutoff={
         "kind": "quantity", 
         "rules": [
@@ -134,7 +134,7 @@ You can set a temporary PyUnitWizard context (standard units, default form) for 
 of a function call using the `puw_context` parameter:
 
 ```python
-@digest(puw_context={"standard_units": ["nm", "ps"], "form": "pint"})
+@arg_digest(puw_context={"standard_units": ["nm", "ps"], "form": "pint"})
 def simulation(time):
     # Within this function, puw.standardize() uses nm/ps and pint
     ...
@@ -164,9 +164,9 @@ SKIP_PARAM = "skip_digestion"
 ```
 
 ```python
-from argdigest import digest
+from argdigest import arg_digest
 
-@digest(config="mylib._argdigest")
+@arg_digest(config="mylib._argdigest")
 def myfunc(...): ...
 ```
 
@@ -183,11 +183,11 @@ argdigest.config.set_defaults(
     strictness="error"
 )
 
-# Now @digest() uses these defaults automatically
-@digest()
+# Now @arg_digest() uses these defaults automatically
+@arg_digest()
 def myfunc(...): ...
 ```
 
-If `@digest()` is used without explicit configuration, ArgDigest will try to auto-discover
+If `@arg_digest()` is used without explicit configuration, ArgDigest will try to auto-discover
 `<root_package>._argdigest` based on the decorated function's module. If not found, the
 global defaults (set via `argdigest.config.set_defaults`) are used.

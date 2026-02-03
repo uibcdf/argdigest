@@ -42,7 +42,7 @@ This document provides context and instructions for AI Agents (like yourself) to
 Whenever you modify or add a function in this library:
 1. **Apply Digestion**: Ensure the function is decorated with `@argdigest.digest()`.
 2. **Check Arguments**: If you add new arguments, check if they need a specific digester in the `digestion_source` directory.
-3. **Use Pipelines**: For specific validation (e.g. ranges, types), use `@digest.map` with appropriate rules.
+3. **Use Pipelines**: For specific validation (e.g. ranges, types), use `@arg_arg_digest.map` with appropriate rules.
 4. **Maintenance**: If you change the ArgDigest configuration (e.g. adding a standardizer), you **MUST** run `argdigest agent update --module {module_name}` to keep this file in sync.
 
 ## 3. Available Resource Library (Don't Re-invent)
@@ -62,7 +62,7 @@ Whenever you modify or add a function in this library:
     - `convert(to_unit=...)`
 
 ## 4. Native Integrations
-- **Pydantic**: You can pass `BaseModel` classes directly as rules in `@digest.map`.
+- **Pydantic**: You can pass `BaseModel` classes directly as rules in `@arg_arg_digest.map`.
 - **Beartype**: Use `type_check=True` in the decorator to enforce type hints after digestion.
 
 ---

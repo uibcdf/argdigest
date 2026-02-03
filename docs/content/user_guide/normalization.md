@@ -6,7 +6,7 @@ synonyms or resolving context-specific names).
 ArgDigest supports an optional **standardizer** hook:
 
 ```python
-from argdigest import digest
+from argdigest import arg_digest
 
 def standardizer(caller, kwargs):
     if caller.endswith(".get") and "name" in kwargs:
@@ -14,7 +14,7 @@ def standardizer(caller, kwargs):
         kwargs["element_name"] = kwargs.pop("name")
     return kwargs
 
-@digest(standardizer=standardizer, strictness="warn")
+@arg_digest(standardizer=standardizer, strictness="warn")
 def get(element_name=None, **kwargs):
     return element_name
 ```

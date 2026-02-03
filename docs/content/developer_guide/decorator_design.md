@@ -1,6 +1,6 @@
 # Decorator design
 
-The `@digest` decorator can be configured for argument-centric digestion, pipelines, or both.
+The `@arg_digest` decorator can be configured for argument-centric digestion, pipelines, or both.
 
 ## Key parameters
 
@@ -25,7 +25,7 @@ fits their architecture:
 ## Library-level defaults
 
 To reduce repetition, a library can define defaults in `mylib/_argdigest.py` and pass
-`config="mylib._argdigest"` to `@digest`. The module can define:
+`config="mylib._argdigest"` to `@arg_digest`. The module can define:
 
 - `DIGESTION_SOURCE`
 - `DIGESTION_STYLE`
@@ -33,7 +33,7 @@ To reduce repetition, a library can define defaults in `mylib/_argdigest.py` and
 - `STRICTNESS`
 - `SKIP_PARAM`
 
-If `@digest()` is used with no explicit config or overrides, ArgDigest will try to load
+If `@arg_digest()` is used with no explicit config or overrides, ArgDigest will try to load
 `<root_package>._argdigest` automatically based on the decorated function's module.
 
 ## Dual mode

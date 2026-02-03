@@ -10,7 +10,7 @@ under `examples/`. They are used for smoke tests and can be copied as templates.
 
 Key pieces:
 
-- `examples/packlib/basic.py` uses `@digest(config="packlib._argdigest")` to keep defaults in one place.
+- `examples/packlib/basic.py` uses `@arg_digest(config="packlib._argdigest")` to keep defaults in one place.
 - `examples/packlib/_private/digestion/normalization/` shows a modular standardizer design
   that supports both declarative aliases and dynamic rules.
 
@@ -57,4 +57,4 @@ module exposing `ARGUMENT_DIGESTERS`.
 Key pieces:
 
 - `examples/reglib/_private/digestion/registry.py` defines the mapping.
-- `examples/reglib/basic.py` shows dual mode (argument digestion + pipelines) with `@digest(config="reglib._argdigest")`.
+- `examples/reglib/basic.py` shows dual mode (argument digestion + pipelines) with `@arg_digest(config="reglib._argdigest")`.

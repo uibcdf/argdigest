@@ -36,7 +36,7 @@ def audit_module(module_name: str):
                     print(f"    - {arg}: kind='{kind}', rules={rules}")
 
     if not found:
-        print("\nNo functions with @digest found in this module.")
+        print("\nNo functions with @arg_digest found in this module.")
 
 def main():
     parser = argparse.ArgumentParser(prog="argdigest", description="ArgDigest CLI Tool")

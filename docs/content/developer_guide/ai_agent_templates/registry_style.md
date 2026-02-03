@@ -51,9 +51,9 @@ ARGUMENT_DIGESTERS = {
 
 ## Usage in public API
 ```python
-from argdigest import digest
+from argdigest import arg_digest
 
-@digest(config="my_lib._argdigest")
+@arg_digest(config="my_lib._argdigest")
 def analyze(a, b, skip_digestion=False):
     ...
 ```

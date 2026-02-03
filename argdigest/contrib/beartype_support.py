@@ -13,7 +13,7 @@ Usage in a user library:
 from __future__ import annotations
 from typing import Any
 from beartype import beartype  # type: ignore
-from ..core.decorator import digest
+from ..core.decorator import arg_digest
 
 
 def beartype_digest(*, kind: str | None = None, rules: list[str] | None = None, map: dict[str, dict] | None = None):
@@ -35,4 +35,4 @@ def _beartype_digest_map(**map_config: dict[str, Any]):
     return beartype_digest(map=map_config)
 
 
-beartype_digest.map = _beartype_digest_map
+beartype_arg_digest.map = _beartype_digest_map

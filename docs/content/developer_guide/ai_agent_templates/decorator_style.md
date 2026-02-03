@@ -44,13 +44,13 @@ def digest_selection(selection, syntax="MyLib", caller=None):
 
 ## Usage in public API
 ```python
-from argdigest import digest
+from argdigest import arg_digest
 
-@digest(config="my_lib._argdigest")
+@arg_digest(config="my_lib._argdigest")
 def get(molecular_system, selection=None, skip_digestion=False):
     ...
 ```
 
 ## Notes
 - This style avoids a fixed directory layout, but you must import the modules that
-  register digesters before calling the functions using `@digest`.
+  register digesters before calling the functions using `@arg_digest`.
