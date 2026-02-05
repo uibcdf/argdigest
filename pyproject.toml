@@ -19,6 +19,7 @@ all = ["beartype>=0.16.0", "pydantic>=2.0.0", "pyunitwizard>=2.0.0", "PyYAML>=6.
 [project.urls]
 Homepage = "https://github.com/uibcdf/argdigest"
 Repository = "https://github.com/uibcdf/argdigest"
+Documentation = "https://www.uibcdf.com/argdigest"
 
 [build-system]
 requires = ["setuptools>=61.0", "versioningit~=3.0"]
