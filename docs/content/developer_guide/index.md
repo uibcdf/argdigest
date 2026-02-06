@@ -10,5 +10,6 @@ decorator_design
 registry_and_pipelines
 testing_and_ci
 contributing
+smonitor
 ai_agent_templates/index
 ```

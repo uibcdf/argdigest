@@ -79,6 +79,8 @@ ArgDigest uses a catalog-driven integration with smonitor:
 - `argdigest/_private/smonitor/catalog.py` contains CODES/SIGNALS.
 - `argdigest/_private/smonitor/meta.py` stores docs/issues/API URLs for hints.
 
+See `devguide/smonitor.md` and `docs/content/developer_guide/smonitor.md` for details.
+
 ---
 
 ## 5. CLI Tools for Agents & Developers
