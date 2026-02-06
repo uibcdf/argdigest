@@ -81,7 +81,13 @@ def arg_digest(
                 from beartype import beartype
                 fn_to_wrap = beartype(fn)
             except ImportError:
-                warnings.warn("type_check=True but 'beartype' is not installed. Skipping.", RuntimeWarning)
+                try:
+                    from .._private.smonitor import ensure_configured, emit_typecheck_skip
+
+                    ensure_configured()
+                    emit_typecheck_skip()
+                except Exception:
+                    warnings.warn("type_check=True but 'beartype' is not installed. Skipping.", RuntimeWarning)
 
         # Resolve effective parameters
         eff_config = config
@@ -152,7 +158,14 @@ def arg_digest(
                     fn_digest = plan.digesters.get(argname)
                     if fn_digest is None:
                         if plan.strictness == "error": raise DigestNotDigestedError(f"No digester for {argname}")
-                        if plan.strictness == "warn": warnings.warn(f"No digester for {argname}")
+                        if plan.strictness == "warn":
+                            try:
+                                from .._private.smonitor import ensure_configured, emit_missing_digester
+
+                                ensure_configured()
+                                emit_missing_digester(argname=argname)
+                            except Exception:
+                                warnings.warn(f"No digester for {argname}")
                         digested[argname] = bound.get(argname)
                         visiting_path.pop(); return
 

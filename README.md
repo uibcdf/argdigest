@@ -87,8 +87,14 @@ argdigest agent init --module my_lib
 - **Batteries Included**: Built-in standard pipelines (`to_list`, `to_bool`, `is_file`, etc.).
 - **Rich Diagnostics**: Detailed error messages including function name, argument name, and value context.
 - **Legacy Compatible**: Designed to replace and improve the MolSysMT digestion engine.
+- **smonitor integration**: Structured diagnostics for digestion warnings.
 
 ---
+
+## smonitor
+
+ArgDigest emits structured diagnostics when digestion warnings occur. Configuration
+is loaded from `_smonitor.py` in the package root (`argdigest/_smonitor.py`).
 
 ## 📖 Documentation
 
