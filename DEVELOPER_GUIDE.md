@@ -77,7 +77,7 @@ print(f"Failed at: {e.context.function_name}")
 ArgDigest uses a catalog-driven integration with smonitor:
 - `argdigest/_smonitor.py` defines profiles and runtime settings.
 - `argdigest/_private/smonitor/catalog.py` contains CODES/SIGNALS.
-- `argdigest/_private/smonitor/meta.py` stores docs/issues URLs (if any).
+- `argdigest/_private/smonitor/meta.py` stores docs/issues/API URLs for hints.
 
 ---
 
