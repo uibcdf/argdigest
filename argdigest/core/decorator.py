@@ -82,10 +82,14 @@ def arg_digest(
                 fn_to_wrap = beartype(fn)
             except ImportError:
                 try:
-                    from smonitor.integrations import emit_from_catalog
-                    from .._private.smonitor import CATALOG, PACKAGE_ROOT
+                    from smonitor.integrations import emit_from_catalog, merge_extra
+                    from .._private.smonitor import CATALOG, PACKAGE_ROOT, META
 
-                    emit_from_catalog(CATALOG["typecheck_skip"], package_root=PACKAGE_ROOT)
+                    emit_from_catalog(
+                        CATALOG["typecheck_skip"],
+                        package_root=PACKAGE_ROOT,
+                        extra=merge_extra(META, {}),
+                    )
                 except Exception:
                     warnings.warn("type_check=True but 'beartype' is not installed. Skipping.", RuntimeWarning)
 
@@ -160,13 +164,13 @@ def arg_digest(
                         if plan.strictness == "error": raise DigestNotDigestedError(f"No digester for {argname}")
                         if plan.strictness == "warn":
                             try:
-                                from smonitor.integrations import emit_from_catalog
-                                from .._private.smonitor import CATALOG, PACKAGE_ROOT
+                                from smonitor.integrations import emit_from_catalog, merge_extra
+                                from .._private.smonitor import CATALOG, PACKAGE_ROOT, META
 
                                 emit_from_catalog(
                                     CATALOG["missing_digester"],
                                     package_root=PACKAGE_ROOT,
-                                    extra={"argname": argname},
+                                    extra=merge_extra(META, {"argname": argname}),
                                 )
                             except Exception:
                                 warnings.warn(f"No digester for {argname}")

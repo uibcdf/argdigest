@@ -94,7 +94,9 @@ argdigest agent init --module my_lib
 ## smonitor
 
 ArgDigest emits structured diagnostics when digestion warnings occur. Configuration
-is loaded from `_smonitor.py` in the package root (`argdigest/_smonitor.py`).
+is loaded from `_smonitor.py` in the package root (`argdigest/_smonitor.py`), and
+the catalog lives in `argdigest/_private/smonitor/catalog.py` with metadata in
+`argdigest/_private/smonitor/meta.py`.
 
 ## 📖 Documentation
 

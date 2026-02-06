@@ -69,8 +69,15 @@ except DigestError as e:
     # Print rich error message
     print(e)
     # Access context
-    print(f"Failed at: {e.context.function_name}")
+print(f"Failed at: {e.context.function_name}")
 ```
+
+## 4.1 smonitor Integration
+
+ArgDigest uses a catalog-driven integration with smonitor:
+- `argdigest/_smonitor.py` defines profiles and runtime settings.
+- `argdigest/_private/smonitor/catalog.py` contains CODES/SIGNALS.
+- `argdigest/_private/smonitor/meta.py` stores docs/issues URLs (if any).
 
 ---
 
