@@ -1,9 +1,4 @@
 import pytest
-try:
-    import beartype
-except ImportError:
-    pytest.skip("beartype not installed", allow_module_level=True)
-import pytest
 from argdigest.contrib.beartype_support import beartype_digest
 from argdigest.contrib.pydantic_support import model_from_dict
 from pydantic import BaseModel

@@ -11,13 +11,19 @@ Usage in a user library:
 """
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, Callable
 from beartype import beartype  # type: ignore
 from ..core.decorator import arg_digest
 
 
-def beartype_digest(*, kind: str | None = None, rules: list[str] | None = None, map: dict[str, dict] | None = None):
-    def deco(fn):
+def beartype_digest(
+    *, 
+    kind: str | None = None, 
+    rules: list[str] | None = None, 
+    map: dict[str, dict] | None = None,
+    **kwargs: Any
+):
+    def deco(fn: Callable[..., Any]):
         # We want digestion to happen FIRST (outer wrapper), so it transforms values.
         # Then beartype (inner wrapper) checks the transformed values.
         
@@ -25,14 +31,14 @@ def beartype_digest(*, kind: str | None = None, rules: list[str] | None = None, 
         type_checked_fn = beartype(fn)
         
         # 2. Wrap the type-checked function with argdigest
-        wrapped = digest(kind=kind, rules=rules, map=map)(type_checked_fn)
+        wrapped = arg_digest(kind=kind, rules=rules, map=map, **kwargs)(type_checked_fn)
         
         return wrapped
     return deco
 
 
-def _beartype_digest_map(**map_config: dict[str, Any]):
+def _beartype_digest_map(**map_config: Any):
     return beartype_digest(map=map_config)
 
 
-beartype_arg_digest.map = _beartype_digest_map
+beartype_digest.map = _beartype_digest_map
