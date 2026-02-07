@@ -21,6 +21,12 @@ except ImportError:
     def signal(*args, **kwargs):
         return lambda f: f
 
+try:
+    from depdigest import dep_digest
+except ImportError:
+    def dep_digest(*args, **kwargs):
+        return lambda f: f
+
 from dataclasses import dataclass, field
 
 _UNSET = object()
@@ -79,6 +85,7 @@ def arg_digest(
     profiling: bool | object = _UNSET,
     **digestion_params: Any,
 ):
+    @dep_digest('beartype', when={'type_check': True})
     def deco(fn: Callable[..., Any]):
         fn_to_wrap = fn
         if type_check:
