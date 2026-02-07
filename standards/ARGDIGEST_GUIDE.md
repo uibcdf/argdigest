@@ -19,38 +19,42 @@ ArgDigest is a lightweight toolkit for **auditing, validating, and normalizing**
 - **Diagnostics**: Produces consistent error messages with actionable hints.
 - **Traceability**: Integrates with `smonitor` to provide execution breadcrumbs.
 
-## Required files in this library
+## 1. Required Configuration (`_argdigest.py`)
 
-- `_argdigest.py`: Package-level configuration (digestion source, style, strictness).
-- `A/_private/digestion/`: Directory for argument-centric digesters (when using `package` style).
-- `A/_private/digestion/argument_names_standardization.py`: (Optional) Standardizer hook.
-
-## Integration Modes
-
-### 1. Argument-Centric (Recommended)
-ArgDigest automatically finds "digesters" for each argument name.
+Create a file named `_argdigest.py` in your package root. ArgDigest uses the module name of the decorated function to find this file automatically.
 
 ```python
-# _argdigest.py
-DIGESTION_SOURCE = "A._private.digestion.argument"
+# MyLibrary/_argdigest.py
+
+DIGESTION_SOURCE = "MyLibrary._private.digestion.argument"
 DIGESTION_STYLE = "package"
+STRICTNESS = "warn" # "warn", "error", or "ignore"
 ```
 
-In the API:
+### Advanced Configuration
+You can also load configurations from external files:
+```python
+from argdigest.config import load_from_file
+cfg = load_from_file("rules.yaml") # Supports .py, .yaml, .json
+```
+
+## 2. Core API for Developers
+
+### 2.1 The `@arg_digest` Decorator
+The primary entry point. It handles both argument-centric discovery and explicit mapping.
+
 ```python
 from argdigest import arg_digest
 
-@arg_digest()
+@arg_digest(type_check=True) # Optional beartype integration
 def my_function(molecular_system, selection='all'):
     ...
 ```
 
-### 2. Explicit Mapping
-When specific pipelines are needed for specific arguments.
+### 2.2 Explicit Mapping (`arg_digest.map`)
+Use this when you need specific pipelines for specific arguments. Global `kind` and `rules` will apply to any argument not explicitly mapped.
 
 ```python
-from argdigest import arg_digest
-
 @arg_digest.map(
     item={"kind": "topology", "rules": ["is_valid"]},
     value={"kind": "std", "rules": ["to_bool"]}
@@ -59,9 +63,9 @@ def process(item, value):
     ...
 ```
 
-## Mandatory Registration Pattern
+## 3. Mandatory Registration Pattern
 
-To ensure reusability, define custom pipelines in your library:
+Define reusable pipelines in your library to ensure consistency:
 
 ```python
 from argdigest import register_pipeline
@@ -72,20 +76,44 @@ def coerce_feature(obj, ctx):
     return obj
 ```
 
-## Required behavior (non-negotiable)
+**Note**: ArgDigest natively supports **Pydantic models** as rules. If a rule is a class with `.model_validate()`, it will be executed automatically.
 
-1.  **Lazy Digestion**: Digestion only happens when the decorated function is called.
-2.  **No Direct Pydantic/Beartype Imports**: Use the native integrations in ArgDigest (`type_check=True` or direct model rules) to keep dependencies soft.
-3.  **Use skip_digestion**: All decorated functions should support a `skip_digestion` parameter for performance-critical internal calls.
+## 4. Science-Aware Features
+
+### 4.1 PyUnitWizard Integration
+Manage physical quantities by passing a `puw_context`:
+
+```python
+@arg_digest(puw_context={"standard_units": ["nm", "ps"], "form": "pint"})
+def simulate(time):
+    ...
+```
+
+### 4.2 Profiling
+Enable performance tracking for your digestion pipelines:
+
+```python
+@arg_digest(profiling=True)
+def heavy_func(data):
+    ...
+
+# After execution, access the audit log:
+print(heavy_func.audit_log)
+```
+
+## 5. Required behavior (non-negotiable)
+
+1.  **Lazy Digestion**: Digestion only happens when the function is called.
+2.  **No Top-Level Imports**: Guard optional dependencies (like Pydantic or Beartype) inside your pipelines or use ArgDigest's native support.
+3.  **Support skip_digestion**: All decorated functions should allow bypassing digestion via a `skip_digestion` parameter for internal performance-critical calls.
+4.  **Argument Dependencies**: Digesters can request other (already digested) arguments by simply adding them to their signature. ArgDigest handles the topological sort and cycle detection.
 
 ## SMonitor Integration
 
-ArgDigest is instrumented with `@smonitor.signal(tags=["digestion"])`. Every digestion attempt is traceable.
-
-## Naming conventions
-
-- **Digester functions**: `digest_<argname>(value, caller=None, **kwargs)`.
-- **Pipeline names**: `<domain>.<action>` (e.g., `feature.validate`, `std.to_list`).
+ArgDigest is heavily instrumented with `@smonitor.signal`:
+- The core decorator uses `tags=["digestion"]`.
+- `Registry.run` uses `tags=["pipeline"]`.
+- Every digestion attempt is traceable in the global breadcrumb trail.
 
 ---
 *Document created on February 6, 2026, as the authority for ArgDigest integration.*
