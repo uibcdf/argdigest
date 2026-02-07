@@ -1,49 +1,43 @@
-class DigestError(Exception):
-    """Base exception for ArgDigest errors."""
+from __future__ import annotations
+from typing import Any, TYPE_CHECKING
 
-    def __init__(self, message: str, context=None, hint: str | None = None):
-        super().__init__(message)
+if TYPE_CHECKING:
+    from .context import Context
+
+class DigestError(Exception):
+    """Base class for all ArgDigest exceptions."""
+    def __init__(self, message: str, context: Context | None = None, hint: str | None = None):
+        self.message = message
         self.context = context
         self.hint = hint
+        super().__init__(self._build_full_message())
 
-    def __str__(self):
-        msg = super().__str__()
-        details = []
-        if self.context:
-            if hasattr(self.context, "function_name"):
-                details.append(f"Function: {self.context.function_name}")
-            if hasattr(self.context, "argname"):
-                details.append(f"Argument: {self.context.argname}")
-            if hasattr(self.context, "value"):
-                # Avoid printing massive objects
-                val_repr = repr(self.context.value)
-                if len(val_repr) > 50:
-                    val_repr = val_repr[:47] + "..."
-                details.append(f"Value: {val_repr}")
+    def _build_full_message(self) -> str:
+        if self.context is None:
+            return self.message
         
+        ctx_msg = f"Argument '{self.context.argname}' from '{self.context.function_name}' failed."
+        full = f"{ctx_msg} {self.message}"
         if self.hint:
-            details.append(f"Hint: {self.hint}")
-        
-        if details:
-            return f"{msg}\n  " + "\n  ".join(details)
-        return msg
+            full += f" Hint: {self.hint}"
+        return full
 
+class DigestTypeError(DigestError, TypeError):
+    """Unexpected or inconsistent data type."""
+    pass
 
-class DigestTypeError(DigestError):
-    """Raised when an argument has an unexpected type."""
-
-
-class DigestValueError(DigestError):
-    """Raised when an argument has an invalid value."""
-
+class DigestValueError(DigestError, ValueError):
+    """Invalid or out-of-domain value."""
+    pass
 
 class DigestInvariantError(DigestError):
-    """Raised when a semantic/invariant rule is violated."""
-
+    """Semantic rule violation (e.g. invalid parent-child link)."""
+    pass
 
 class DigestNotDigestedError(DigestError):
-    """Raised when an argument has no associated digester."""
+    """Missing digester or cyclic dependency."""
+    pass
 
-
-class DigestNotDigestedWarning(Warning):
-    """Warning emitted when an argument has no associated digester."""
+class DigestNotDigestedWarning(RuntimeWarning):
+    """Warning for missing digesters when strictness is 'warn'."""
+    pass

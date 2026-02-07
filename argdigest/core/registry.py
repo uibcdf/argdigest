@@ -5,12 +5,19 @@ from .logger import get_logger
 
 logger = get_logger()
 
+try:
+    from smonitor import signal
+except ImportError:
+    def signal(*args, **kwargs):
+        return lambda f: f
+
 class Registry:
     # kind -> name -> callable
     _pipelines: dict[str, dict[str, Callable[..., Any]]] = {}
 
     @classmethod
     def register_pipeline(cls, kind: str, name: str, func: Callable[..., Any]) -> None:
+        print(f"DEBUG: Registering pipeline kind='{kind}' name='{name}' in {cls}")
         cls._pipelines.setdefault(kind, {})
         cls._pipelines[kind][name] = func
 
@@ -19,33 +26,22 @@ class Registry:
         return cls._pipelines.get(kind, {})
 
     @classmethod
+    @signal(tags=["pipeline"])
     def run(cls, kind: str, rules: list[str | Any], value: Any, ctx: Any) -> Any:
-        """
-        Run registered pipelines for given kind and rule names.
-        Each pipeline may transform/validate the value and return it.
-        Rules can be:
-        - Strings: names of registered pipelines.
-        - Callables: functions taking (value, ctx).
-        - Pydantic Models: classes with .model_validate().
-        """
         logger.debug(f"Starting pipelines for kind='{kind}' on argument='{ctx.argname}'")
         pipelines = cls._pipelines.get(kind, {})
         current = value
         
-        # Check if profiling is active (we pass it via context or it could be global)
-        # For now, let's assume it's an attribute in ctx or we check a global config
-        # Actually, let's look for 'profiling' in ctx if it's there
         do_profile = getattr(ctx, "_profiling", False)
 
         for rule in rules or []:
             fn = None
             rule_name = str(rule)
             
-            # 1. If it's a string, look it up
             if isinstance(rule, str):
                 fn = pipelines.get(rule)
                 if fn is None:
-                    logger.warning(f"Rule '{rule}' not found for kind='{kind}'. Skipping.")
+                    print(f"DEBUG: Rule '{rule}' not found in kind='{kind}'. Available: {list(pipelines.keys())}")
                     continue
                 rule_name = f"{kind}.{rule}"
                 logger.debug(f"Running rule '{rule_name}' on argument='{ctx.argname}'")

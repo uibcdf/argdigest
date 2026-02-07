@@ -15,6 +15,11 @@ from .config import resolve_config, DigestConfig
 from .errors import DigestNotDigestedError, DigestNotDigestedWarning
 from .logger import get_logger
 
+try:
+    from smonitor import signal
+except ImportError:
+    def signal(*args, **kwargs):
+        return lambda f: f
 
 from dataclasses import dataclass, field
 
@@ -99,7 +104,10 @@ def arg_digest(
             module_root = fn.__module__.split(".", 1)[0]
             eff_config = f"{module_root}._argdigest"
         
-        cfg = resolve_config(None if eff_config is _UNSET else eff_config)
+        try:
+            cfg = resolve_config(None if eff_config is _UNSET else eff_config)
+        except (ImportError, ModuleNotFoundError):
+            cfg = resolve_config(None)
         
         eff_source = cfg.digestion_source if digestion_source is _UNSET else digestion_source
         eff_style = cfg.digestion_style if digestion_style is _UNSET else digestion_style
@@ -122,10 +130,11 @@ def arg_digest(
 
         # Build pipeline targets
         pipeline_targets = map or {}
-        if map is None and kind is not None:
-            pipeline_targets = {p.name: {"kind": kind, "rules": rules or []} 
-                                for p in signature.parameters.values() 
-                                if p.name != "self" and p.kind not in (inspect.Parameter.VAR_KEYWORD, inspect.Parameter.VAR_POSITIONAL)}
+        if kind is not None:
+            for p in signature.parameters.values():
+                if p.name != "self" and p.kind not in (inspect.Parameter.VAR_KEYWORD, inspect.Parameter.VAR_POSITIONAL):
+                    if p.name not in pipeline_targets:
+                        pipeline_targets[p.name] = {"kind": kind, "rules": rules or []}
 
         plan = DigestionPlan(
             digesters=available_digesters,
@@ -138,7 +147,12 @@ def arg_digest(
         )
 
         @wraps(fn)
+        @signal(tags=["digestion"])
         def wrapper(*args: Any, **kwargs: Any):
+            logger.debug(f"Digesting arguments for {fn.__name__}")
+            if plan.profiling:
+                wrapper.audit_log = []
+
             def _run_digestion():
                 bound = bind_arguments(fn, *args, **kwargs)
                 if bound.get(plan.skip_param, False):
@@ -156,13 +170,19 @@ def arg_digest(
 
                 def gut(argname: str) -> None:
                     if argname in digested: return
-                    if argname in visiting_path: raise DigestNotDigestedError(f"Cycle: {' -> '.join(visiting_path + [argname])}")
+                    if argname in visiting_path: 
+                        ctx_error = Context(function_name=fn.__name__, argname=argname, value=bound.get(argname), all_args=bound)
+                        raise DigestNotDigestedError(f"Cycle: {' -> '.join(visiting_path + [argname])}", context=ctx_error)
                     visiting_path.append(argname)
 
                     fn_digest = plan.digesters.get(argname)
                     if fn_digest is None:
-                        if plan.strictness == "error": raise DigestNotDigestedError(f"No digester for {argname}")
+                        ctx_error = Context(function_name=fn.__name__, argname=argname, value=bound.get(argname), all_args=bound)
+                        if plan.strictness == "error": 
+                            raise DigestNotDigestedError(f"No digester for {argname}", context=ctx_error)
                         if plan.strictness == "warn":
+                            # Always issue standard Python warning for testing/simple setups
+                            warnings.warn(f"No digester for {argname}", DigestNotDigestedWarning)
                             try:
                                 from smonitor.integrations import emit_from_catalog, merge_extra
                                 from .._private.smonitor import CATALOG, PACKAGE_ROOT, META
@@ -173,7 +193,7 @@ def arg_digest(
                                     extra=merge_extra(META, {"argname": argname}),
                                 )
                             except Exception:
-                                warnings.warn(f"No digester for {argname}")
+                                pass
                         digested[argname] = bound.get(argname)
                         visiting_path.pop(); return
 
@@ -199,8 +219,20 @@ def arg_digest(
                 bound.update(digested)
                 for argname, cfg_pipe in plan.pipeline_targets.items():
                     if argname not in bound: continue
-                    ctx = Context(function_name=fn.__name__, argname=argname, value=bound[argname], all_args=bound)
-                    bound[argname] = Registry.run(cfg_pipe.get("kind", kind), cfg_pipe.get("rules", rules or []), bound[argname], ctx)
+                    # Pass the wrapper's audit_log to the context
+                    audit_log = getattr(wrapper, "audit_log", None)
+                    ctx = Context(
+                        function_name=fn.__name__, 
+                        argname=argname, 
+                        value=bound[argname], 
+                        all_args=bound,
+                        audit_log=audit_log,
+                        _profiling=plan.profiling
+                    )
+                    # Use the kind and rules from the specific target config
+                    eff_kind = cfg_pipe.get("kind")
+                    eff_rules = cfg_pipe.get("rules")
+                    bound[argname] = Registry.run(eff_kind, eff_rules, bound[argname], ctx)
 
                 return fn_to_wrap(**bound)
 
@@ -210,6 +242,7 @@ def arg_digest(
             return _run_digestion()
 
         wrapper.digestion_plan = plan
+        wrapper.audit_log = [] if plan.profiling else None
         return wrapper
     return deco
 
@@ -217,8 +250,9 @@ def _arg_digest_map(
     type_check=False,
     puw_context=None,
     profiling=_UNSET,
+    config=_UNSET,
     **map_config
 ):
-    return arg_digest(map=map_config, type_check=type_check, puw_context=puw_context, profiling=profiling)
+    return arg_digest(map=map_config, type_check=type_check, puw_context=puw_context, profiling=profiling, config=config)
 
 arg_digest.map = _arg_digest_map

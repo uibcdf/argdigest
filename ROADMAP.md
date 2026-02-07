@@ -179,12 +179,12 @@ def link(child, parent, topo):
 
 | Phase | Objectives | Deliverables |
 |:------|:-----------|:-------------|
-| **v0.1 (Prototype)** | Functional `@arg_digest` decorator + minimal registry | **Done**: Core pipeline, argument-centric mode, `arg_digest.map` |
-| **v0.2.0** | Context-aware error system + logging | **Done**: Rich exceptions, logging, native Pydantic/Beartype |
-| **v0.3.0** | Standard Pipelines & Science Integration | **Done**: Built-in pipelines, PyUnitWizard integration, legacy compat |
-| **v0.4.0** | Declarative Config & Advanced Features | **Done**: YAML/JSON rules, Numpy/Pandas support, Profiling |
-| **v0.5.0** | Performance & CLI Tooling | **Done**: Digestion Plan Caching, CLI Audit & Agent tools, LRU Caching for Package Loader |
-| **v0.6.0** | Pilot Integration (MolSysMT) | Replace legacy engine in MolSysMT key modules |
+| **v0.1 (Prototype)** | Functional `@arg_digest` decorator + minimal registry | **Done** |
+| **v0.2.0** | Context-aware error system + logging | **Done** |
+| **v0.3.0** | Standard Pipelines & Science Integration | **Done** |
+| **v0.4.0** | Declarative Config & Advanced Features | **Done** |
+| **v0.5.0** | Performance & Telemetry | **Done**: Plan Caching, @signal integration, YAML/JSON config, LRU caching |
+| **v0.6.0** | Pilot Integration (MolSysMT) | **In Progress** |
 | **v1.0.0** | Stable API + >90% coverage + Release | 1.0.0 release, full CI/CD, PyPI/Conda distribution |
 
 ---

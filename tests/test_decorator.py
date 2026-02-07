@@ -1,37 +1,49 @@
+import pytest
 from argdigest import arg_digest, register_pipeline
+from argdigest.core.config import DigestConfig
 
-@register_pipeline(kind="x", name="to-int")
-def to_int(value, ctx):
-    return int(value)
+# Use a concrete config to avoid auto-discovery of tests._argdigest
+cfg_decorator = DigestConfig(digestion_style="decorator", strictness="ignore")
 
-@arg_digest(map={"a": {"kind": "x", "rules": ["to-int"]}})
-def f(a, b):
-    return a, b
+def test_explicit_map_digestion():
+    @register_pipeline(kind="x", name="to-int")
+    def to_int(v, ctx):
+        return int(v)
 
-def test_digest_basic():
-    a, b = f("5", "x")
-    assert a == 5
-    assert b == "x"
+    @arg_digest(map={"a": {"kind": "x", "rules": ["to-int"]}}, config=cfg_decorator)
+    def f(a):
+        return a
+
+    assert f("10") == 10
 
 
-def test_digest_all_arguments_implicit_map():
-    """Test that kind/rules apply to all arguments if map is not provided."""
-    @arg_digest(kind="x", rules=["to-int"])
-    def g(a, b):
+def test_implicit_kind_digestion():
+    @register_pipeline(kind="y", name="to-float")
+    def to_float(v, ctx):
+        return float(v)
+
+    @arg_digest(kind="y", rules=["to-float"], config=cfg_decorator)
+    def f(a, b):
         return a, b
-    
-    # Both arguments should be converted to int
-    val_a, val_b = g("10", "20")
-    assert val_a == 10
-    assert val_b == 20
+
+    a, b = f("1.5", "2.5")
+    assert a == 1.5
+    assert b == 2.5
 
 
-def test_digest_map_alias():
-    """Test the arg_digest.map alias syntax."""
-    arg_digest.map(a={"kind": "x", "rules": ["to-int"]})
-    def h(a, b):
+def test_map_overrides_default_kind():
+    @register_pipeline(kind="z", name="plus-one")
+    def plus_one(v, ctx):
+        return v + 1
+
+    @register_pipeline(kind="w", name="minus-one")
+    def minus_one(v, ctx):
+        return v - 1
+
+    @arg_digest(kind="z", rules=["plus-one"], map={"b": {"kind": "w", "rules": ["minus-one"]}}, config=cfg_decorator)
+    def f(a, b):
         return a, b
-    
-    val_a, val_b = h("99", "y")
-    assert val_a == 99
-    assert val_b == "y"
+
+    a, b = f(10, 10)
+    assert a == 11
+    assert b == 9

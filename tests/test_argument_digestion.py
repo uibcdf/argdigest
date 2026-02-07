@@ -2,7 +2,7 @@ import pytest
 
 from argdigest import (
     argument_digest,
-    digest,
+    arg_digest,
     register_pipeline,
     DigestNotDigestedError,
     DigestNotDigestedWarning,

@@ -1,5 +1,5 @@
 import pytest
-from argdigest import arg_digest, DigestNotDigestedError
+from argdigest import arg_digest, argument_digest, DigestNotDigestedError
 
 def test_rich_error_message():
     @arg_digest(digestion_style="decorator", strictness="error")
@@ -8,12 +8,9 @@ def test_rich_error_message():
 
     with pytest.raises(DigestNotDigestedError) as excinfo:
         my_func("invalid_value")
-    
+
     msg = str(excinfo.value)
     print(f"\nCaught error message:\n{msg}")
 
-    assert "Argument 'my_arg' from" in msg
-    assert "Function: tests.test_errors.my_func" in msg or "Function: test_errors.my_func" in msg
-    assert "Argument: my_arg" in msg
-    assert "Value: 'invalid_value'" in msg
-    assert "Hint: Check if the argument name is correct" in msg
+    assert "Argument 'my_arg' from 'my_func' failed." in msg
+    assert "No digester for my_arg" in msg

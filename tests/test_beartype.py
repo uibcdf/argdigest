@@ -1,4 +1,9 @@
 import pytest
+try:
+    import beartype
+except ImportError:
+    pytest.skip("beartype not installed", allow_module_level=True)
+import pytest
 from argdigest import arg_digest, register_pipeline
 
 @register_pipeline(kind="int", name="convert")

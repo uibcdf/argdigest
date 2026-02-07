@@ -12,6 +12,8 @@ It provides decorators and pipelines that can coerce, validate, and document arg
 ### 2.1 Digest Decorator
 The `@arg_digest` decorator intercepts function calls, analyzes arguments, and executes **registered pipelines** for coercion and validation.
 
+**Telemetry**: Starting from v0.5.0, the decorator is instrumented with `@smonitor.signal`. This ensures that every digestion process is visible in the breadcrumb trail of the execution context.
+
 ### 2.2 Argument Mapping
 When a function has multiple arguments, you can assign specific rules per argument:
 
@@ -24,35 +26,7 @@ def link(feature, parent, topo):
     ...
 ```
 
-### 2.3 Science-Aware Context
-ArgDigest supports integration with **PyUnitWizard** to manage physical units during digestion:
-
-```python
-@arg_digest(puw_context={"standard_units": ["nm", "ps"], "form": "pint"})
-def simulation(time):
-    ...
-```
-
----
-
-## 3. Creating Pipelines
-
-A **pipeline** is a function registered for a specific *kind* of argument.  
-It receives the argument value (`obj`) and a `context` object containing metadata about the call.
-
-**Pro-tip**: You can use **Pydantic models** directly as rules!
-
-```python
-from pydantic import BaseModel
-
-class User(BaseModel):
-    name: str
-
-arg_digest.map(user={"kind": "data", "rules": [User]})
-def process_user(user):
-    # 'user' is now an instance of User
-    ...
-```
+**Note**: If a global `kind` is provided to `arg_digest.map`, it will be applied to all arguments not explicitly mapped.
 
 ---
 
@@ -69,21 +43,30 @@ except DigestError as e:
     # Print rich error message
     print(e)
     # Access context
-print(f"Failed at: {e.context.function_name}")
+    print(f"Failed at: {e.context.function_name}")
 ```
 
-## 4.1 smonitor Integration
+### 4.1 smonitor Integration
 
 ArgDigest uses a catalog-driven integration with smonitor:
 - `argdigest/_smonitor.py` defines profiles and runtime settings.
 - `argdigest/_private/smonitor/catalog.py` contains CODES/SIGNALS.
 - `argdigest/_private/smonitor/meta.py` stores docs/issues/API URLs for hints.
-
-See `devguide/smonitor.md` and `docs/content/developer_guide/smonitor.md` for details.
+- Internal processes like `Registry.run` are instrumented with `@signal(tags=["pipeline"])`.
 
 ---
 
-## 5. CLI Tools for Agents & Developers
+## 5. Configuration & CLI
+
+### 5.1 Configuration Loading
+Configurations can be loaded from Python files, YAML, or JSON:
+
+```python
+from argdigest.config import load_from_file
+cfg = load_from_file("my_config.yaml")
+```
+
+### 5.2 CLI Tools for Agents & Developers
 
 ArgDigest provides command-line tools to help both humans and AI agents:
 

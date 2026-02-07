@@ -2,7 +2,7 @@ import pytest
 from argdigest import arg_digest, DigestValueError, DigestTypeError
 
 def test_std_coercers_all():
-    arg_digest.map(
+    @arg_digest.map(
         b1={"kind": "std", "rules": ["to_bool"]},
         b2={"kind": "std", "rules": ["to_bool"]},
         l1={"kind": "std", "rules": ["to_list"]},
@@ -27,7 +27,7 @@ def test_std_coercers_all():
     assert res[7] == "WORLD"
 
 def test_to_bool_edge_cases():
-    arg_digest.map(v={"kind": "std", "rules": ["to_bool"]})
+    @arg_digest.map(v={"kind": "std", "rules": ["to_bool"]})
     def f(v): return v
     
     assert f("on") is True
@@ -42,7 +42,7 @@ def test_std_validators_extended(tmp_path):
     f_path = d / "test.txt"
     f_path.write_text("content")
 
-    arg_digest.map(
+    @arg_digest.map(
         pos={"kind": "std", "rules": ["is_positive"]},
         non_neg={"kind": "std", "rules": ["is_non_negative"]},
         file_p={"kind": "std", "rules": ["is_file"]},
@@ -70,34 +70,18 @@ def test_std_validators_extended(tmp_path):
     with pytest.raises(DigestTypeError, match="Expected int"):
         validate(1, 0, str(f_path), str(d), "not_int", "hi")
 
-    def test_to_list_iterables():
+def test_to_list_iterables():
+    @arg_digest.map(v={"kind": "std", "rules": ["to_list"]})
+    def f(v): return v
 
-        arg_digest.map(v={"kind": "std", "rules": ["to_list"]})
+    assert f((1, 2)) == [1, 2]
+    import numpy as np
+    res = f(np.array([1, 2]))
+    assert isinstance(res, list)
+    assert res == [1, 2]
 
-        def f(v): return v
-
-        
-
-        assert f((1, 2)) == [1, 2]
-
-        import numpy as np
-
-        res = f(np.array([1, 2]))
-
-        assert isinstance(res, list)
-
-        assert res == [1, 2]
-
-    
-
-    def test_string_coercers_non_string():
-
-        arg_digest.map(v={"kind": "std", "rules": ["strip", "lower", "upper"]})
-
-        def f(v): return v
-
-        # Should ignore non-string inputs
-
-        assert f(123) == 123
-
-    
+def test_string_coercers_non_string():
+    @arg_digest.map(v={"kind": "std", "rules": ["strip", "lower", "upper"]})
+    def f(v): return v
+    # Should ignore non-string inputs
+    assert f(123) == 123
