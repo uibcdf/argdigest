@@ -1,43 +1,55 @@
 from __future__ import annotations
 from typing import Any, TYPE_CHECKING
 
+from .errors_base import ArgDigestCatalogException, ArgDigestCatalogWarning
+
 if TYPE_CHECKING:
     from .context import Context
 
-class DigestError(Exception):
+class DigestError(ArgDigestCatalogException):
     """Base class for all ArgDigest exceptions."""
-    def __init__(self, message: str, context: Context | None = None, hint: str | None = None):
-        self.message = message
+    def __init__(self, message: str, context: Context | None = None, hint: str | None = None, code: str | None = None):
+        self.raw_message = message
         self.context = context
-        self.hint = hint
-        super().__init__(self._build_full_message())
-
-    def _build_full_message(self) -> str:
-        if self.context is None:
-            return self.message
+        self.raw_hint = hint
         
-        ctx_msg = f"Argument '{self.context.argname}' from '{self.context.function_name}' failed."
-        full = f"{ctx_msg} {self.message}"
-        if self.hint:
-            full += f" Hint: {self.hint}"
-        return full
+        extra = {"message": message, "hint": hint or ""}
+        if context:
+            extra["argname"] = context.argname
+            extra["caller"] = context.function_name
+        else:
+            extra["argname"] = "unknown"
+            extra["caller"] = "unknown"
+
+        super().__init__(message=message, code=code, extra=extra)
 
 class DigestTypeError(DigestError, TypeError):
     """Unexpected or inconsistent data type."""
-    pass
+    catalog_key = "DigestTypeError"
 
 class DigestValueError(DigestError, ValueError):
     """Invalid or out-of-domain value."""
-    pass
+    catalog_key = "DigestValueError"
 
 class DigestInvariantError(DigestError):
     """Semantic rule violation (e.g. invalid parent-child link)."""
-    pass
+    catalog_key = "DigestInvariantError"
 
 class DigestNotDigestedError(DigestError):
     """Missing digester or cyclic dependency."""
-    pass
+    catalog_key = "DigestNotDigestedError"
 
-class DigestNotDigestedWarning(RuntimeWarning):
+class DigestNotDigestedWarning(ArgDigestCatalogWarning, RuntimeWarning):
     """Warning for missing digesters when strictness is 'warn'."""
-    pass
+    catalog_key = "DigestNotDigestedWarning"
+
+    def __init__(self, message: str, context: Context | None = None, hint: str | None = None, code: str | None = None):
+        extra = {"message": message, "hint": hint or ""}
+        if context:
+            extra["argname"] = context.argname
+            extra["caller"] = context.function_name
+        else:
+            extra["argname"] = "unknown"
+            extra["caller"] = "unknown"
+        
+        super().__init__(message=message, code=code, extra=extra)
