@@ -241,12 +241,6 @@ def arg_digest(
                     eff_rules = cfg_pipe.get("rules")
                     bound[argname] = Registry.run(eff_kind, eff_rules, bound[argname], ctx)
 
-                # Unpack var_keyword if present in bound arguments (inserted by bind_arguments)
-                if plan.var_keyword_name and plan.var_keyword_name in bound:
-                    extra_kwargs = bound.pop(plan.var_keyword_name)
-                    if isinstance(extra_kwargs, dict):
-                        bound.update(extra_kwargs)
-
                 return fn_to_wrap(**bound)
 
             if effective_puw_context:
