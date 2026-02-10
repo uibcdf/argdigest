@@ -244,7 +244,7 @@ def arg_digest(
                 # Unpack var_keyword if present in bound arguments (inserted by bind_arguments)
                 if plan.var_keyword_name and plan.var_keyword_name in bound:
                     extra_kwargs = bound.pop(plan.var_keyword_name)
-                    if extra_kwargs:
+                    if isinstance(extra_kwargs, dict):
                         bound.update(extra_kwargs)
 
                 return fn_to_wrap(**bound)
