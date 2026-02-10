@@ -17,7 +17,6 @@ class Registry:
 
     @classmethod
     def register_pipeline(cls, kind: str, name: str, func: Callable[..., Any]) -> None:
-        print(f"DEBUG: Registering pipeline kind='{kind}' name='{name}' in {cls}")
         cls._pipelines.setdefault(kind, {})
         cls._pipelines[kind][name] = func
 
@@ -41,7 +40,7 @@ class Registry:
             if isinstance(rule, str):
                 fn = pipelines.get(rule)
                 if fn is None:
-                    print(f"DEBUG: Rule '{rule}' not found in kind='{kind}'. Available: {list(pipelines.keys())}")
+                    logger.debug(f"Rule '{rule}' not found in kind='{kind}'. Available: {list(pipelines.keys())}")
                     continue
                 rule_name = f"{kind}.{rule}"
                 logger.debug(f"Running rule '{rule_name}' on argument='{ctx.argname}'")
