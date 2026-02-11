@@ -15,12 +15,7 @@ from .config import resolve_config, DigestConfig
 from .errors import DigestNotDigestedError, DigestNotDigestedWarning
 from .logger import get_logger
 from smonitor import signal
-
-try:
-    from depdigest import dep_digest
-except ImportError:
-    def dep_digest(*args, **kwargs):
-        return lambda f: f
+from depdigest import dep_digest
 
 from dataclasses import dataclass, field
 
@@ -97,8 +92,15 @@ def arg_digest(
                         package_root=PACKAGE_ROOT,
                         extra=merge_extra(META, {"caller": f"{fn.__module__}.{fn.__name__}"}),
                     )
-                except Exception:
-                    warnings.warn("type_check=True but 'beartype' is not installed. Skipping.", RuntimeWarning)
+                except Exception as exc:
+                    warnings.warn(
+                        (
+                            "type_check=True but 'beartype' is not installed. "
+                            f"Skipping in {fn.__module__}.{fn.__name__}. "
+                            f"SMonitor emission failed with: {exc!r}"
+                        ),
+                        RuntimeWarning,
+                    )
 
         # Resolve effective parameters
         eff_config = config
