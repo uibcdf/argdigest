@@ -46,6 +46,12 @@ CATALOG = {
             "category": "argument",
             "level": "WARNING",
         },
+        "TypeCheckSkippedWarning": {
+            "code": "ARG-WARN-TYPECHECK-001",
+            "source": "argdigest.warning.typecheck_skipped",
+            "category": "dependency",
+            "level": "WARNING",
+        },
     }
 }
 
@@ -81,10 +87,17 @@ CODES = {
     "ARG-WARN-MISS-001": {
         "title": "Argument Not Digested Warning",
         "user_message": "Digester missing for '{argname}'. Skipping validation.",
-        "user_hint": "{hint} Docs: {doc_url}",
+        "user_hint": "Define or register a digester for '{argname}'. Docs: {doc_url}",
         "dev_message": "Digester missing for '{argname}' in '{caller}'.",
-        "dev_hint": "Implement digester. {hint}",
-    }
+        "dev_hint": "Implement or register the missing digester.",
+    },
+    "ARG-WARN-TYPECHECK-001": {
+        "title": "Type check skipped",
+        "user_message": "Type checks are disabled because optional dependency 'beartype' is not available.",
+        "user_hint": "Install 'beartype' to enable runtime type checking.",
+        "dev_message": "type_check=True but 'beartype' is not installed in '{caller}'.",
+        "dev_hint": "Install beartype or set type_check=False.",
+    },
 }
 
 SIGNALS = {
@@ -93,4 +106,5 @@ SIGNALS = {
     "argdigest.error.invariant": {"extra_required": ["argname", "message", "caller"]},
     "argdigest.error.missing": {"extra_required": ["argname", "message", "caller"]},
     "argdigest.warning.missing": {"extra_required": ["argname", "caller"]},
+    "argdigest.warning.typecheck_skipped": {"extra_required": ["caller"]},
 }

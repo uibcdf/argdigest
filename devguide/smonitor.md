@@ -15,6 +15,8 @@ SMonitor is a runtime dependency (hard dependency) in ArgDigest releases.
 - Emit through catalog entries only.
 - Keep user messages explicit and helpful.
 - Keep URLs in `meta.py` so hints remain consistent.
+- Keep `CODES` and `SIGNALS` wired from `argdigest/_private/smonitor/catalog.py` as the single source of truth.
+- Do not silence emission failures with `except Exception: pass`; use a fallback warning/log instead.
 
 ## Telemetry & Traceability
 

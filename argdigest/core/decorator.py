@@ -93,9 +93,9 @@ def arg_digest(
                     from .._private.smonitor import CATALOG, PACKAGE_ROOT, META
 
                     emit_from_catalog(
-                        CATALOG["typecheck_skip"],
+                        CATALOG["warnings"]["TypeCheckSkippedWarning"],
                         package_root=PACKAGE_ROOT,
-                        extra=merge_extra(META, {}),
+                        extra=merge_extra(META, {"caller": f"{fn.__module__}.{fn.__name__}"}),
                     )
                 except Exception:
                     warnings.warn("type_check=True but 'beartype' is not installed. Skipping.", RuntimeWarning)
@@ -184,18 +184,12 @@ def arg_digest(
                             raise DigestNotDigestedError(f"No digester for {argname}", context=ctx_error)
                         if plan.strictness == "warn":
                             # Always issue standard Python warning for testing/simple setups
-                            warnings.warn(f"No digester for {argname}", DigestNotDigestedWarning)
-                            try:
-                                from smonitor.integrations import emit_from_catalog, merge_extra
-                                from .._private.smonitor import CATALOG, PACKAGE_ROOT, META
-
-                                emit_from_catalog(
-                                    CATALOG["missing_digester"],
-                                    package_root=PACKAGE_ROOT,
-                                    extra=merge_extra(META, {"argname": argname}),
+                            warnings.warn(
+                                DigestNotDigestedWarning(
+                                    message=f"No digester for {argname}",
+                                    context=ctx_error,
                                 )
-                            except Exception:
-                                pass
+                            )
                         digested[argname] = bound.get(argname)
                         visiting_path.pop(); return
 
