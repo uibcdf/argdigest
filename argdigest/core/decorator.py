@@ -154,7 +154,7 @@ def arg_digest(
         )
 
         @wraps(fn)
-        @signal(tags=["digestion"])
+        @signal(tags=["digestion"], exception_level="DEBUG")
         def wrapper(*args: Any, **kwargs: Any):
             logger.debug(f"Digesting arguments for {fn.__name__}")
             if plan.profiling:

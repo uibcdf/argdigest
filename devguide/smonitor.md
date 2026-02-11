@@ -22,3 +22,13 @@ Starting from v0.5.0, ArgDigest is fully instrumented with `@smonitor.signal` to
 - **Digestion Wrapper**: The core `@arg_digest` decorator logic is traced.
 - **Pipeline Registry**: `Registry.run` emits signals when executing coercers and validators.
 - **Diagnostics**: Missing digesters trigger catalog-driven events with hints.
+
+## Exception signal level
+
+The top-level `@signal` applied in `argdigest.core.decorator.arg_digest`
+uses `exception_level="DEBUG"`.
+
+Rationale:
+- digestion routinely probes alternative coercion/validation paths;
+- recoverable internal exceptions are expected control-flow signals;
+- surfacing those probes as `ERROR` would create noisy traces for QA and users.
