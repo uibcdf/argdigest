@@ -13,9 +13,12 @@ except ImportError:
 
 from ..core.errors import DigestValueError, DigestTypeError
 
-def _require_puw():
+def _require_puw(ctx: Any = None):
     if not HAS_PUW:
-        raise ImportError("pyunitwizard is not installed. Install it to use these pipelines.")
+        raise DigestTypeError(
+            "Optional dependency 'pyunitwizard' is not installed. Install it to use PyUnitWizard pipelines.",
+            context=ctx,
+        )
 
 @contextmanager
 def context(**kwargs: Any):
@@ -59,9 +62,8 @@ def check(
     """
     Returns a pipeline function that uses puw.check() to validate the input.
     """
-    _require_puw()
-
     def pipeline_check(value: Any, ctx: Any) -> Any:
+        _require_puw(ctx)
         # puw.check returns True/False
         valid = puw.check(
             value,
@@ -87,9 +89,8 @@ def standardize() -> Callable[[Any, Any], Any]:
     Returns a pipeline function that calls puw.standardize().
     It respects the global pyunitwizard configuration (form/units).
     """
-    _require_puw()
-
     def pipeline_standardize(value: Any, ctx: Any) -> Any:
+        _require_puw(ctx)
         try:
             return puw.standardize(value)
         except Exception as e:
@@ -103,9 +104,8 @@ def convert(to_unit: str, to_form: Optional[str] = None) -> Callable[[Any, Any],
     """
     Returns a pipeline function that converts the quantity to a specific unit/form.
     """
-    _require_puw()
-
     def pipeline_convert(value: Any, ctx: Any) -> Any:
+        _require_puw(ctx)
         try:
             return puw.convert(value, to_unit=to_unit, to_form=to_form)
         except Exception as e:
@@ -116,8 +116,8 @@ def convert(to_unit: str, to_form: Optional[str] = None) -> Callable[[Any, Any],
 
 
 def is_quantity() -> Callable[[Any, Any], Any]:
-    _require_puw()
     def pipeline_is_quantity(value: Any, ctx: Any) -> Any:
+        _require_puw(ctx)
         if not puw.is_quantity(value):
              raise DigestTypeError(f"Expected a quantity, got {type(value)}", context=ctx)
         return value

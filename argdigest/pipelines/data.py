@@ -19,21 +19,27 @@ except ImportError:
     HAS_PANDAS = False
 
 
-def _require_numpy():
+def _require_numpy(ctx: Any = None):
     if not HAS_NUMPY:
-        raise ImportError("numpy is not installed. Install it to use these pipelines.")
+        raise DigestTypeError(
+            "Optional dependency 'numpy' is not installed. Install it to use data pipelines.",
+            context=ctx,
+        )
 
 
-def _require_pandas():
+def _require_pandas(ctx: Any = None):
     if not HAS_PANDAS:
-        raise ImportError("pandas is not installed. Install it to use these pipelines.")
+        raise DigestTypeError(
+            "Optional dependency 'pandas' is not installed. Install it to use data pipelines.",
+            context=ctx,
+        )
 
 # --- Coercers ---
 
 @register_pipeline(kind="data", name="to_numpy")
 def to_numpy(value: Any, ctx: Any = None) -> Any:
     """Coerces input to a numpy array."""
-    _require_numpy()
+    _require_numpy(ctx)
     if isinstance(value, np.ndarray):
         return value
     try:
@@ -45,7 +51,7 @@ def to_numpy(value: Any, ctx: Any = None) -> Any:
 @register_pipeline(kind="data", name="to_dataframe")
 def to_dataframe(value: Any, ctx: Any = None) -> Any:
     """Coerces input to a pandas DataFrame."""
-    _require_pandas()
+    _require_pandas(ctx)
     if isinstance(value, pd.DataFrame):
         return value
     try:
@@ -57,8 +63,8 @@ def to_dataframe(value: Any, ctx: Any = None) -> Any:
 
 def has_ndim(n: int) -> Callable[[Any, Any], Any]:
     """Factory: Validates number of dimensions."""
-    _require_numpy()
     def pipeline_ndim(value: Any, ctx: Any) -> Any:
+        _require_numpy(ctx)
         arr = value if isinstance(value, np.ndarray) else np.asarray(value)
         if arr.ndim != n:
             raise DigestValueError(f"Expected {n} dimensions, got {arr.ndim}", context=ctx)
@@ -71,8 +77,8 @@ def is_shape(shape: Tuple[int | None, ...]) -> Callable[[Any, Any], Any]:
     Factory: Validates array shape. 
     Use None for any size in a dimension: (None, 3).
     """
-    _require_numpy()
     def pipeline_shape(value: Any, ctx: Any) -> Any:
+        _require_numpy(ctx)
         arr = value if isinstance(value, np.ndarray) else np.asarray(value)
         if len(arr.shape) != len(shape):
              raise DigestValueError(f"Expected ndim={len(shape)}, got {len(arr.shape)}", context=ctx)
@@ -86,8 +92,8 @@ def is_shape(shape: Tuple[int | None, ...]) -> Callable[[Any, Any], Any]:
 
 def is_dtype(dtype: Any) -> Callable[[Any, Any], Any]:
     """Factory: Validates numpy dtype."""
-    _require_numpy()
     def pipeline_dtype(value: Any, ctx: Any) -> Any:
+        _require_numpy(ctx)
         arr = value if isinstance(value, np.ndarray) else np.asarray(value)
         target_dtype = np.dtype(dtype)
         if arr.dtype != target_dtype:
@@ -98,8 +104,8 @@ def is_dtype(dtype: Any) -> Callable[[Any, Any], Any]:
 
 def has_columns(columns: List[str]) -> Callable[[Any, Any], Any]:
     """Factory: Validates that a DataFrame has specific columns."""
-    _require_pandas()
     def pipeline_columns(value: Any, ctx: Any) -> Any:
+        _require_pandas(ctx)
         if not isinstance(value, pd.DataFrame):
             # Try to coerce if it's not a dataframe? 
             # Better to be strict here and rely on to_dataframe pipeline if needed.
