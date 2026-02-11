@@ -14,12 +14,7 @@ from .argument_registry import ArgumentRegistry
 from .config import resolve_config, DigestConfig
 from .errors import DigestNotDigestedError, DigestNotDigestedWarning
 from .logger import get_logger
-
-try:
-    from smonitor import signal
-except ImportError:
-    def signal(*args, **kwargs):
-        return lambda f: f
+from smonitor import signal
 
 try:
     from depdigest import dep_digest

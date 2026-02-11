@@ -2,14 +2,9 @@ from __future__ import annotations
 import time
 from typing import Callable, Any
 from .logger import get_logger
+from smonitor import signal
 
 logger = get_logger()
-
-try:
-    from smonitor import signal
-except ImportError:
-    def signal(*args, **kwargs):
-        return lambda f: f
 
 class Registry:
     # kind -> name -> callable
@@ -95,4 +90,3 @@ def register_pipeline(kind: str, name: str):
 
 def get_pipelines(kind: str) -> dict[str, Callable[..., Any]]:
     return Registry.get_pipelines(kind)
-

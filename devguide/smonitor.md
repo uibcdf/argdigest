@@ -2,6 +2,8 @@
 
 ArgDigest uses SMonitor as the single diagnostics layer.
 
+SMonitor is a runtime dependency (hard dependency) in ArgDigest releases.
+
 ## Files
 
 - `argdigest/_smonitor.py`
