@@ -1,0 +1,122 @@
+# ArgDigest Developer Guide
+
+## 1. Introduction
+
+ArgDigest is a toolkit for enforcing input argument consistency in scientific Python libraries.
+It combines argument-centric digestion with reusable pipeline-based validation.
+
+## 2. Core Concepts
+
+### 2.1 `@arg_digest` decorator
+
+`@arg_digest` can execute two validation layers:
+
+- Argument digesters discovered by name (`package`, `registry`, `decorator`, or `auto` styles).
+- Pipelines registered by `kind` and `rules`.
+
+If both layers are configured, argument digestion runs first, then pipelines run on transformed values.
+
+### 2.2 Explicit mapping
+
+Use `arg_digest.map` for per-argument pipeline rules:
+
+```python
+from argdigest import arg_digest
+
+arg_digest.map(
+    feature={"kind": "feature", "rules": ["feature.base", "feature.shape"]},
+    parent={"kind": "feature", "rules": ["feature.base"]},
+)
+def link(feature, parent):
+    ...
+```
+
+### 2.3 Configuration resolution
+
+ArgDigest supports three configuration modes:
+
+1. Explicit decorator arguments (`digestion_source`, `digestion_style`, etc.).
+2. Explicit config module (`config="my_lib._argdigest"`).
+3. Auto-discovery of `<root_package>._argdigest` when no explicit config/overrides are passed.
+
+## 3. Error and Diagnostics Model
+
+ArgDigest exceptions and warnings are catalog-backed and include context/hints.
+Main classes are exposed from `argdigest.core.errors`.
+
+Diagnostics stack:
+
+- `argdigest/_smonitor.py` for runtime profile.
+- `argdigest/_private/smonitor/catalog.py` for codes/signals.
+- `argdigest/_private/smonitor/meta.py` for URLs and hint metadata.
+
+Instrumentation:
+
+- Digestion wrapper uses `@smonitor.signal`.
+- `Registry.run` uses `@smonitor.signal(tags=["pipeline"])`.
+
+## 4. Configuration and CLI
+
+### 4.1 Configuration loading
+
+```python
+from argdigest.config import load_from_file
+cfg = load_from_file("my_config.yaml")
+```
+
+Supported formats: `.py`, `.yaml/.yml`, `.json`.
+
+### 4.2 CLI commands
+
+```bash
+argdigest audit my_lib.api
+argdigest agent init --module my_lib
+argdigest agent update --module my_lib
+```
+
+## 5. QA Checklist (Before Release)
+
+1. Tests:
+
+```bash
+pytest
+```
+
+2. Lint:
+
+```bash
+ruff check .
+```
+
+3. Install + CLI sanity:
+
+```bash
+pip install -e .
+argdigest --help
+```
+
+Release quality rule: tests and lint must both pass.
+
+## 6. Minimal Example
+
+```python
+from pydantic import BaseModel
+from argdigest import arg_digest
+
+class Feature(BaseModel):
+    feature_id: str
+    shape_type: str
+
+arg_digest.map(
+    feature={"kind": "feature", "rules": [Feature]},
+    type_check=True,
+)
+def register_feature(feature: Feature):
+    return feature.feature_id
+```
+
+## 7. Current Focus
+
+- Stabilize API contracts for the `1.0.0` path.
+- Keep docs/examples aligned with runtime behavior.
+- Validate pilot integration paths for downstream libraries.

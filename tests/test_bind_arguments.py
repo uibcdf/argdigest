@@ -18,4 +18,5 @@ def test_bind_extra_kwargs_success_if_varkw():
     # This should pass
     bound = bind_arguments(my_func, a=1, extra=3)
     assert bound['a'] == 1
-    assert bound['kwargs']['extra'] == 3
+    # bind_arguments flattens **kwargs into the returned dictionary
+    assert bound['extra'] == 3

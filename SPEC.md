@@ -1,6 +1,6 @@
 ---
 title: ArgDigest Technical Specification
-version: v0.2
+version: 0.2
 authors: [UIBCDF Development Team]
 license: MIT
 ---
@@ -105,6 +105,7 @@ When `digestion_source` or `digestion_style` is used, ArgDigest attempts to find
 2.  **Execution**:
     - If a digester is found, it is executed. The digester receives the raw value and can request other arguments (dependency injection).
     - If no digester is found, `strictness` determines the action (`warn`, `error`, or `ignore`).
+    - If no argument-centric configuration is provided and no digesters are discovered, ArgDigest runs in pipeline-only mode without emitting missing-digester warnings.
 3.  **Result**: The original function is called with the *transformed* values.
 
 ### 4.2 Dependency Resolution

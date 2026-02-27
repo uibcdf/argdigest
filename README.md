@@ -83,6 +83,7 @@ argdigest agent init --module my_lib
 ## 🛠️ Key Features
 
 - **Argument-Centric Discovery**: Automatically find digesters in your package structure.
+- **Pipeline-Only Friendly**: If no argument digesters are configured, `arg_digest.map` works without noisy missing-digester warnings.
 - **Native Integrations**: First-class support for **Pydantic** (v2) and **Beartype** (O(1) type checking).
 - **Batteries Included**: Built-in standard pipelines (`to_list`, `to_bool`, `is_file`, etc.).
 - **Rich Diagnostics**: Detailed error messages including function name, argument name, and value context.

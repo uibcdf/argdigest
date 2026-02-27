@@ -55,6 +55,7 @@ class DigestionPlan:
     strictness: str = "warn"
     skip_param: str = "skip_digestion"
     standardizer: Callable[[str, dict], dict] | None = None
+    enable_argument_digestion: bool = True
     profiling: bool = False
     var_keyword_name: str | None = None
 
@@ -128,6 +129,21 @@ def arg_digest(
         else:
             available_digesters = load_argument_digesters(eff_source, eff_style)
 
+        # Default behavior for pure pipeline usage:
+        # when users do not configure argument-centric digestion and no digesters are discovered,
+        # skip argument digestion pass to avoid non-actionable warnings.
+        explicit_argdigestion_config = any(
+            x is not _UNSET
+            for x in (digestion_source, digestion_style, standardizer, strictness, config)
+        )
+        enable_argument_digestion = not (
+            not explicit_argdigestion_config
+            and eff_style == "auto"
+            and eff_source is None
+            and not available_digesters
+            and eff_standardizer is None
+        )
+
         # Inspect signature once
         signature = inspect.signature(fn)
         var_keyword_name = next((p.name for p in signature.parameters.values() if p.kind == inspect.Parameter.VAR_KEYWORD), None)
@@ -146,6 +162,7 @@ def arg_digest(
             strictness=eff_strictness,
             skip_param=eff_skip_param,
             standardizer=resolve_standardizer(eff_standardizer),
+            enable_argument_digestion=enable_argument_digestion,
             profiling=bool(eff_profiling),
             var_keyword_name=var_keyword_name
         )
@@ -211,10 +228,11 @@ def arg_digest(
                     digested[argname] = fn_digest(**kwargs_for_digest)
                     visiting_path.pop()
 
-                for argname in bound:
-                    if argname != "self": gut(argname)
-
-                bound.update(digested)
+                if plan.enable_argument_digestion:
+                    for argname in bound:
+                        if argname != "self":
+                            gut(argname)
+                    bound.update(digested)
                 for argname, cfg_pipe in plan.pipeline_targets.items():
                     if argname not in bound: continue
                     # Pass the wrapper's audit_log to the context

@@ -12,7 +12,7 @@ from .errors import (
 )
 
 __all__ = [
-    "digest",
+    "arg_digest",
     "register_pipeline",
     "get_pipelines",
     "argument_digest",

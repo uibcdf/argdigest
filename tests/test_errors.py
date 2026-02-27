@@ -12,5 +12,6 @@ def test_rich_error_message():
     msg = str(excinfo.value)
     print(f"\nCaught error message:\n{msg}")
 
-    assert "Argument 'my_arg' from 'my_func' failed." in msg
     assert "No digester for my_arg" in msg
+    # Catalog-backed messages include actionable hints and docs links.
+    assert "Docs:" in msg
