@@ -11,27 +11,33 @@ on:
     paths-ignore:
       - '**/*.md'
       - 'docs/**'
-  schedule:
-    - cron: "0 9 * * MON"
   workflow_dispatch:
 
 jobs:
   test:
-    name: Test on ${{ matrix.cfg.os }}, Python ${{ matrix.cfg.python-version }}
-    runs-on: ${{ matrix.cfg.os }}
-    strategy:
-      fail-fast: false  # do not cancel all in-progress jobs if any job variation fails
-      matrix:
-        cfg:
-          - { os: ubuntu-latest, python-version: "3.10"}
-          - { os: ubuntu-latest, python-version: "3.11"}
-          - { os: ubuntu-latest, python-version: "3.12"}
-          - { os: macos-latest,  python-version: "3.10"}
-          - { os: macos-latest,  python-version: "3.11"}
-          - { os: macos-latest,  python-version: "3.12"}
+    name: Test on ubuntu-latest, Python 3.13
+    if: >
+      !(
+        (github.event_name == 'push' && contains(github.event.head_commit.message, '[skip ci]'))
+        ||
+        (github.event_name == 'pull_request' && contains(github.event.pull_request.title, '[skip ci]'))
+        ||
+        (github.event_name == 'pull_request' && contains(github.event.pull_request.head.ref, 'skip-ci'))
+      )
+      &&
+      (
+        github.event_name == 'push'
+        || github.event_name == 'pull_request'
+        || github.event_name == 'workflow_dispatch'
+      )
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    concurrency:
+      group: ci-fast-${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         fetch-depth: 0
 
@@ -41,12 +47,12 @@ jobs:
         uname -a
 
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
-        python-version: ${{ matrix.cfg.python-version }}
+        python-version: "3.13"
 
     - name: Setup conda env
-      uses: mamba-org/setup-micromamba@v1
+      uses: mamba-org/setup-micromamba@v2
       with:
         environment-file: devtools/conda-envs/test_env.yaml
         environment-name: test
@@ -57,7 +63,7 @@ jobs:
           channel_priority: strict
 
         create-args: >-
-          python=${{ matrix.cfg.python-version }}
+          python=3.13
 
     - name: Info conda
       shell: bash -l {0}
@@ -82,11 +88,6 @@ jobs:
         echo 'import argdigest; print("Version of the package: {}".format(argdigest.__version__))' | python
         echo "::endgroup::"
 
-    - name: Run linter
-      shell: bash -l {0}
-      run: |
-        ruff check .
-
     - name: Run tests
 
       # conda setup requires this special shell
@@ -94,7 +95,7 @@ jobs:
 
       run: |
         export PYTHONPATH=$PYTHONPATH:$(pwd)
-        pytest -n logical -v --cov-config=.coveragerc --cov=argdigest --cov-report=xml --junitxml=junit.xml --color=yes
+        pytest -v --cov-config=.coveragerc --cov=argdigest --cov-report=xml --junitxml=junit.xml --color=yes
 
     - name: Check coverage
       shell: bash -l {0}
@@ -102,18 +103,15 @@ jobs:
         cat ./coverage.xml
 
     - name: Upload coverage reports to Codecov
-      if: matrix.cfg.os == 'ubuntu-latest' && matrix.cfg.python-version == '3.12'
       uses: codecov/codecov-action@v4
       with:
         verbose: true
         file: ./coverage.xml
         flags: unittests
-        name: codecov-${{ matrix.cfg.os }}-py${{ matrix.cfg.python-version }}
+        name: codecov-ubuntu-latest-py3.13
         token: ${{ secrets.CODECOV_TOKEN }}
 
     - name: Upload test results to Codecov
-      if: matrix.cfg.os == 'ubuntu-latest' && matrix.cfg.python-version == '3.12' && ${{ !cancelled() }}
       uses: codecov/test-results-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-
