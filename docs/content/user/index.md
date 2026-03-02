@@ -66,7 +66,4 @@ troubleshooting.md
 production-checklist.md
 end-users.md
 faq.md
-basics.md
-validation_rules.md
-error_handling.md
 ```
