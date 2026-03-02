@@ -1,7 +1,7 @@
 # Examples
 
-This section shows two minimal, real libraries embedded in the ArgDigest repository
-under `examples/`. They are used for smoke tests and can be copied as templates.
+This section points to minimal integrations embedded in this repository.
+They are intended for manual smoke tests and documentation support.
 
 ## PackLib (package discovery)
 
@@ -58,3 +58,12 @@ Key pieces:
 
 - `examples/reglib/_private/digestion/registry.py` defines the mapping.
 - `examples/reglib/basic.py` shows dual mode (argument digestion + pipelines) with `@arg_digest(config="reglib._argdigest")`.
+
+## Notebooks
+
+Two lightweight notebooks exist for quick demonstrations:
+
+- `docs/content/showcase/quickstart.ipynb`
+- `docs/content/showcase/example_integration.ipynb`
+
+Use them as exploratory demos, not as canonical integration contracts.

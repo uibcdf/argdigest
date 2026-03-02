@@ -1,14 +1,20 @@
-## Installation
+# Installation
 
-ArgDigest can be installed via pip or conda (future).
+ArgDigest can be installed with conda or pip.
 
-### Basic Installation
+## Basic Installation
+
+```bash
+conda install -c uibcdf argdigest
+```
+
+or:
 
 ```bash
 pip install argdigest
 ```
 
-### With Optional Dependencies
+## With Optional Dependencies
 
 To enable seamless integration with **Pydantic**, **Beartype**, **Numpy**, and **Pandas**, install with extras:
 
