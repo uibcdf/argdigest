@@ -1,4 +1,3 @@
-import pytest
 from argdigest import arg_digest
 
 def test_to_tuple_coercer():

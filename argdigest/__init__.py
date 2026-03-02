@@ -18,11 +18,11 @@ from ._private.smonitor import PACKAGE_ROOT as _SMONITOR_PACKAGE_ROOT
 
 _ensure_smonitor_configured(_SMONITOR_PACKAGE_ROOT)
 
-from .core.decorator import arg_digest
-from .core.registry import register_pipeline, get_pipelines
-from .core.argument_registry import argument_digest
-from .core.config import DigestConfig
-from .core.errors import (
+from .core.decorator import arg_digest  # noqa: E402
+from .core.registry import register_pipeline, get_pipelines  # noqa: E402
+from .core.argument_registry import argument_digest  # noqa: E402
+from .core.config import DigestConfig  # noqa: E402
+from .core.errors import (  # noqa: E402
     DigestError,
     DigestTypeError,
     DigestValueError,
@@ -32,7 +32,7 @@ from .core.errors import (
 )
 
 # Register standard pipelines
-from . import pipelines
+from . import pipelines  # noqa: E402
 
 __all__ = [
     "arg_digest",

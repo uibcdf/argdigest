@@ -30,4 +30,4 @@ PROFILES = {
 }
 
 # Keep catalog templates as the single source of truth.
-from argdigest._private.smonitor.catalog import CODES, SIGNALS
+from argdigest._private.smonitor.catalog import CODES, SIGNALS  # noqa: E402,F401

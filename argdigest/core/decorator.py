@@ -1,9 +1,8 @@
 from __future__ import annotations
 
-from functools import wraps, lru_cache
+from functools import wraps
 import inspect
 import warnings
-from importlib import import_module
 from typing import Any, Callable
 
 from .registry import Registry
@@ -182,16 +181,19 @@ def arg_digest(
                 caller = f"{fn.__module__}.{fn.__name__}"
                 if plan.var_keyword_name and plan.var_keyword_name in bound:
                     extra = bound.pop(plan.var_keyword_name) or {}
-                    if isinstance(extra, dict): bound.update(extra)
+                    if isinstance(extra, dict):
+                        bound.update(extra)
                 
-                if plan.standardizer: bound = plan.standardizer(caller, bound)
+                if plan.standardizer:
+                    bound = plan.standardizer(caller, bound)
 
                 digested: dict[str, Any] = {}
                 visiting_path: list[str] = []
 
                 def gut(argname: str) -> None:
-                    if argname in digested: return
-                    if argname in visiting_path: 
+                    if argname in digested:
+                        return
+                    if argname in visiting_path:
                         ctx_error = Context(function_name=fn.__name__, argname=argname, value=bound.get(argname), all_args=bound)
                         raise DigestNotDigestedError(f"Cycle: {' -> '.join(visiting_path + [argname])}", context=ctx_error)
                     visiting_path.append(argname)
@@ -210,20 +212,25 @@ def arg_digest(
                                 )
                             )
                         digested[argname] = bound.get(argname)
-                        visiting_path.pop(); return
+                        visiting_path.pop()
+                        return
 
                     # Fetch metadata ON DEMAND (Cached)
                     sig, value_param = get_digester_metadata(fn_digest, argname)
                     
                     kwargs_for_digest = {}
                     for p_name in sig.parameters:
-                        if p_name == value_param: kwargs_for_digest[p_name] = bound.get(argname)
-                        elif p_name == "caller": kwargs_for_digest[p_name] = caller
+                        if p_name == value_param:
+                            kwargs_for_digest[p_name] = bound.get(argname)
+                        elif p_name == "caller":
+                            kwargs_for_digest[p_name] = caller
                         elif p_name in bound:
                             gut(p_name)
                             kwargs_for_digest[p_name] = digested[p_name]
-                        elif p_name in digestion_params: kwargs_for_digest[p_name] = digestion_params[p_name]
-                        else: kwargs_for_digest[p_name] = None
+                        elif p_name in digestion_params:
+                            kwargs_for_digest[p_name] = digestion_params[p_name]
+                        else:
+                            kwargs_for_digest[p_name] = None
 
                     digested[argname] = fn_digest(**kwargs_for_digest)
                     visiting_path.pop()
@@ -234,7 +241,8 @@ def arg_digest(
                             gut(argname)
                     bound.update(digested)
                 for argname, cfg_pipe in plan.pipeline_targets.items():
-                    if argname not in bound: continue
+                    if argname not in bound:
+                        continue
                     # Pass the wrapper's audit_log to the context
                     audit_log = getattr(wrapper, "audit_log", None)
                     ctx = Context(
@@ -254,7 +262,8 @@ def arg_digest(
 
             if effective_puw_context:
                 from ..contrib.pyunitwizard_support import context as puw_ctx_manager
-                with puw_ctx_manager(**effective_puw_context): return _run_digestion()
+                with puw_ctx_manager(**effective_puw_context):
+                    return _run_digestion()
             return _run_digestion()
 
         wrapper.digestion_plan = plan

@@ -1,4 +1,3 @@
-import pytest
 from argdigest import arg_digest, register_pipeline
 from argdigest.core.config import DigestConfig
 

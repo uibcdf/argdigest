@@ -1,4 +1,3 @@
-import pytest
 from argdigest.core.utils import bind_arguments
 
 def test_bind_extra_kwargs_success_filtering():
