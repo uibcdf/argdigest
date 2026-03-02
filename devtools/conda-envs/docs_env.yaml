@@ -4,22 +4,29 @@ channels:
 
 dependencies:
   # --- Python base ---
-  - python=3.12
+  - python=3.13
   - pip
 
   # --- Documentation with Sphinx and MyST ---
   - sphinx
-  - myst-parser
+  - sphinxcontrib-bibtex
+  - sphinx-remove-toctrees
+  - sphinx-copybutton
+  - sphinx-design
+  - sphinx-favicon
+  - sphinx-tabs
   - pydata-sphinx-theme
   - nbsphinx
   - ipykernel
   - pandoc
-  
+  - myst-nb  
+
   # --- Library dependencies (for autodoc) ---
   - beartype
   - pydantic
-  - pyunitwizard
   - versioningit
   - pyyaml
   - numpy
   - pandas
+  - depdigest
+  - smonitor

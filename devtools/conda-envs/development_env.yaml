@@ -4,8 +4,9 @@ channels:
 
 dependencies:
   # --- Python base ---
-  - python=3.12
+  - python=3.13
   - pip
+  - jupyterlab
 
   # --- Dev tools: formatting, linting, testing ---
   - ruff
@@ -13,13 +14,25 @@ dependencies:
   - pytest-cov
   - beartype
   - pydantic
-  - pyunitwizard
   - versioningit
   - pyyaml
   - numpy
   - pandas
+  - smonitor
+  - depdigest
 
   # --- Documentation with Sphinx and MyST ---
   - sphinx
-  - myst-parser
   - pydata-sphinx-theme
+  - sphinxcontrib-bibtex
+  - sphinx-remove-toctrees
+  - sphinx-copybutton
+  - sphinx-design
+  - sphinx-favicon
+  - sphinx-tabs
+  - pydata-sphinx-theme
+  - nbsphinx
+  - ipykernel
+  - pandoc
+  - myst-nb
+

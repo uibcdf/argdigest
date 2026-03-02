@@ -14,8 +14,8 @@ requirements:
   host:
     - python
     - pip
-    - setuptools
-    - versioningit
+    - setuptools >=61.0
+    - versioningit >=3.0.0
     - pyyaml
   run:
     - python
