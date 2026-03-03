@@ -100,9 +100,11 @@ def test_data_pipelines_extra_branches(monkeypatch):
     arr = np.array([1, 2, 3])
     assert data_pipelines.to_numpy(arr, _ctx("arr")) is arr
 
+    original_asarray = data_pipelines.np.asarray
     monkeypatch.setattr(data_pipelines.np, "asarray", lambda _v: (_ for _ in ()).throw(RuntimeError("x")))
     with pytest.raises(DigestTypeError, match="Cannot convert to numpy array"):
         data_pipelines.to_numpy("bad", _ctx("arr"))
+    monkeypatch.setattr(data_pipelines.np, "asarray", original_asarray)
 
     if data_pipelines.HAS_PANDAS:
         import pandas as pd
