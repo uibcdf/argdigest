@@ -43,6 +43,7 @@ ArgDigest head reference for this pack: `a207058`
 ## 2. Contract evidence index (ArgDigest)
 
 Use this section to keep concrete, local references for:
+- shared collective error-path E2E module: `tests/e2e/test_collective_error_path.py`,
 - pipeline orchestration and validation contracts,
 - unit error mapping from PyUnitWizard into ArgDigest errors,
 - diagnostics profile behavior (`user` vs `dev`/`qa`),
