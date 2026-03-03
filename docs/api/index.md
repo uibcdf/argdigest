@@ -14,10 +14,11 @@ signatures.
    :nosignatures:
 
    arg_digest
-   argument_digest
    register_pipeline
    get_pipelines
+   argument_digest
    DigestConfig
+   pipelines
    DigestError
    DigestTypeError
    DigestValueError
