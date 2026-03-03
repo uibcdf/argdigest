@@ -10,7 +10,8 @@ The path to `1.0.0` is split into four stabilization stages:
 1. `0.6.x` - Integration Hardening
 2. `0.7.x` - API Freeze
 3. `0.8.x` - Release Candidate
-4. `1.0.0` - Stable Release
+4. `0.9.x` - RC Consolidation
+5. `1.0.0` - Stable Release
 
 Each stage has explicit exit criteria. No stage is considered complete until all criteria pass.
 
@@ -65,6 +66,23 @@ Each stage has explicit exit criteria. No stage is considered complete until all
 - No blocker bugs in core digestion logic, configuration resolution, or registry execution.
 - Candidate accepted for `1.0.0` with no pending breaking changes.
 
+## 0.9.x - RC Consolidation
+
+### Objectives
+- Publish a production-like RC containing the full intended `1.0.0` feature set.
+- Run a short real-usage consolidation window to catch residual issues.
+- Accept only bugfixes/docs polish (no new features).
+
+### Deliverables
+- Tagged `0.9.0` RC release.
+- Consolidation tracking checklist and issue triage log.
+- `0.9.x` patch releases if needed to close blocker regressions.
+
+### Exit Criteria
+- Remote release workflows green on `0.9.0` (CI/docs/conda/wheel import checks).
+- No blocker bugs open at end of consolidation period.
+- `devguide/1.0.0_checklist.md` fully green and unchanged in contract scope.
+
 ## 1.0.0 - Stable Release
 
 ### Objectives
@@ -105,7 +123,7 @@ These run throughout all stages:
 
 ## Immediate Next Actions
 
-1. Execute `1.0.0_checklist.md` sections A-E as strict release blockers.
-2. Run integration confidence checks against target MolSysMT paths.
-3. Keep workflow import checks strict and wheel-oriented in CI/docs pipelines.
-4. Finalize release notes and migration notes for `1.0.0`.
+1. Tag and publish `0.9.0` as RC with full 1.0 feature parity.
+2. Execute `devguide/0.9.x_checklist.md` and run consolidation window.
+3. Close any blocker regressions via `0.9.x` patch releases.
+4. Promote to `1.0.0` after consolidation sign-off.
