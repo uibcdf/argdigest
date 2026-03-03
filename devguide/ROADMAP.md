@@ -103,7 +103,7 @@ These run throughout all stages:
 
 ## Immediate Next Actions
 
-1. Execute `0.7.x` API freeze checklist and lock public contract behavior.
-2. Add/finish API contract tests for symbols, signatures, and strictness semantics.
+1. Execute `0.9.x` RC checklist and validate packaging/distribution readiness.
+2. Run integration confidence checks against target MolSysMT paths.
 3. Keep workflow import checks strict and wheel-oriented in CI/docs pipelines.
-4. Prepare `0.9.x` RC checklist once `0.7.x` exit criteria are met.
+4. Prepare release notes and RC tag candidate.

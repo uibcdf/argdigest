@@ -9,6 +9,7 @@ operational notes for ArgDigest.
 - `ROADMAP.md`: staged release plan from current series to `1.0.0`.
 - `0.6.x_checklist.md`: release gate for integration hardening and closure criteria.
 - `0.7.x_checklist.md`: API freeze gate and contract-lock tasks.
+- `0.9.x_checklist.md`: release-candidate readiness gate before `1.0.0`.
 - `notes_dev.md`: active engineering notes, recent decisions, and pending work.
 - `smonitor.md`: diagnostics integration rules and non-negotiable SMonitor practices.
 
