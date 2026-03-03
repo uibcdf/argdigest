@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from functools import wraps
 import inspect
+import threading
 import warnings
 from typing import Any, Callable
 
@@ -24,6 +25,7 @@ logger = get_logger()
 # Global cache for digester metadata to avoid redundant inspect.signature calls
 # (fn_dig, argname) -> (sig, value_param)
 _DIGESTER_METADATA_CACHE: dict[tuple[Callable, str], tuple[inspect.Signature, str]] = {}
+_DIGESTER_METADATA_LOCK = threading.RLock()
 
 
 def _normalize_strictness(strictness: str) -> str:
@@ -48,11 +50,12 @@ def _resolve_value_param(sig: inspect.Signature, argname: str) -> str:
 
 def get_digester_metadata(fn_dig: Callable, argname: str) -> tuple[inspect.Signature, str]:
     key = (fn_dig, argname)
-    if key not in _DIGESTER_METADATA_CACHE:
-        sig_dig = inspect.signature(fn_dig)
-        value_param = _resolve_value_param(sig_dig, argname)
-        _DIGESTER_METADATA_CACHE[key] = (sig_dig, value_param)
-    return _DIGESTER_METADATA_CACHE[key]
+    with _DIGESTER_METADATA_LOCK:
+        if key not in _DIGESTER_METADATA_CACHE:
+            sig_dig = inspect.signature(fn_dig)
+            value_param = _resolve_value_param(sig_dig, argname)
+            _DIGESTER_METADATA_CACHE[key] = (sig_dig, value_param)
+        return _DIGESTER_METADATA_CACHE[key]
 
 
 @dataclass

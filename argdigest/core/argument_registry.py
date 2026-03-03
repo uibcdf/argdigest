@@ -1,23 +1,28 @@
 from __future__ import annotations
 
+import threading
 from typing import Any, Callable
 
 
 class ArgumentRegistry:
     # argument name -> callable
     _digesters: dict[str, Callable[..., Any]] = {}
+    _lock = threading.RLock()
 
     @classmethod
     def register(cls, name: str, func: Callable[..., Any]) -> None:
-        cls._digesters[name] = func
+        with cls._lock:
+            cls._digesters[name] = func
 
     @classmethod
     def get_all(cls) -> dict[str, Callable[..., Any]]:
-        return dict(cls._digesters)
+        with cls._lock:
+            return dict(cls._digesters)
 
     @classmethod
     def clear(cls) -> None:
-        cls._digesters.clear()
+        with cls._lock:
+            cls._digesters.clear()
 
 
 def argument_digest(name: str):

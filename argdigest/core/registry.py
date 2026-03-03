@@ -1,5 +1,6 @@
 from __future__ import annotations
 import time
+import threading
 from typing import Callable, Any
 from .logger import get_logger
 from smonitor import signal
@@ -9,21 +10,24 @@ logger = get_logger()
 class Registry:
     # kind -> name -> callable
     _pipelines: dict[str, dict[str, Callable[..., Any]]] = {}
+    _lock = threading.RLock()
 
     @classmethod
     def register_pipeline(cls, kind: str, name: str, func: Callable[..., Any]) -> None:
-        cls._pipelines.setdefault(kind, {})
-        cls._pipelines[kind][name] = func
+        with cls._lock:
+            cls._pipelines.setdefault(kind, {})
+            cls._pipelines[kind][name] = func
 
     @classmethod
     def get_pipelines(cls, kind: str) -> dict[str, Callable[..., Any]]:
-        return cls._pipelines.get(kind, {})
+        with cls._lock:
+            return dict(cls._pipelines.get(kind, {}))
 
     @classmethod
     @signal(tags=["pipeline"])
     def run(cls, kind: str, rules: list[str | Any], value: Any, ctx: Any) -> Any:
         logger.debug(f"Starting pipelines for kind='{kind}' on argument='{ctx.argname}'")
-        pipelines = cls._pipelines.get(kind, {})
+        pipelines = cls.get_pipelines(kind)
         current = value
         
         do_profile = getattr(ctx, "_profiling", False)
