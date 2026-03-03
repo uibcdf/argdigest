@@ -143,3 +143,4 @@ def register_feature(feature: Feature):
 - Consolidate `0.9.x` as final RC before `1.0.0`.
 - Keep docs/examples aligned with runtime behavior.
 - Validate remote release gates and downstream integration stability.
+- Keep shared collective E2E baseline green (`tests/e2e/test_collective_error_path.py`) during RC consolidation.
