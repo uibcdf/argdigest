@@ -6,9 +6,9 @@ This page defines the exact precedence used by ArgDigest.
 
 ArgDigest resolves configuration from most specific to most general. Decorator
 arguments in `@arg_digest(...)` have highest priority. Then comes an explicit
-`config=` module/object, followed by auto-discovery of
-`<root_package>._argdigest` when no explicit config is provided. If none of that
-is available, ArgDigest uses global defaults from
+`config=` module/object, then environment configuration through
+`ARGDIGEST_CONFIG`, followed by auto-discovery of `<root_package>._argdigest`
+when no explicit config is provided. If none of that is available, ArgDigest uses global defaults from
 `argdigest.config.set_defaults(...)`, and finally built-in defaults.
 
 ## Practical examples
@@ -41,7 +41,8 @@ def get(...):
     ...
 ```
 
-ArgDigest tries `<root_package>._argdigest`. If unavailable, global defaults apply.
+ArgDigest first checks `ARGDIGEST_CONFIG`, then tries `<root_package>._argdigest`.
+If unavailable, global defaults apply.
 
 ## Recommendation
 

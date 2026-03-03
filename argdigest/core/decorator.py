@@ -10,7 +10,7 @@ from .context import Context
 from .utils import bind_arguments
 from .argument_loader import load_argument_digesters, resolve_standardizer
 from .argument_registry import ArgumentRegistry
-from .config import resolve_config, DigestConfig
+from .config import resolve_config, DigestConfig, get_env_config_module
 from .errors import DigestNotDigestedError, DigestNotDigestedWarning
 from .logger import get_logger
 from smonitor import signal
@@ -104,14 +104,25 @@ def arg_digest(
 
         # Resolve effective parameters
         eff_config = config
+        auto_module_config = None
+        env_module_config = None
         if (eff_config is _UNSET and digestion_source is _UNSET and digestion_style is _UNSET):
             module_root = fn.__module__.split(".", 1)[0]
-            eff_config = f"{module_root}._argdigest"
-        
+            auto_module_config = f"{module_root}._argdigest"
+            env_module_config = get_env_config_module()
+            eff_config = env_module_config or auto_module_config
+
         try:
             cfg = resolve_config(None if eff_config is _UNSET else eff_config)
         except (ImportError, ModuleNotFoundError):
-            cfg = resolve_config(None)
+            # If env config is set but unavailable, fall back to auto module config.
+            if env_module_config and auto_module_config:
+                try:
+                    cfg = resolve_config(auto_module_config)
+                except (ImportError, ModuleNotFoundError):
+                    cfg = resolve_config(None)
+            else:
+                cfg = resolve_config(None)
         
         eff_source = cfg.digestion_source if digestion_source is _UNSET else digestion_source
         eff_style = cfg.digestion_style if digestion_style is _UNSET else digestion_style

@@ -61,7 +61,8 @@ def _load_from_package(package_path: str) -> dict[str, Callable[..., Any]]:
     if not hasattr(package, "__path__"):
         return {}
     output: dict[str, Callable[..., Any]] = {}
-    for module_info in pkgutil.iter_modules(package.__path__):
+    module_infos = sorted(pkgutil.iter_modules(package.__path__), key=lambda item: item.name)
+    for module_info in module_infos:
         module = import_module(f"{package_path}.{module_info.name}")
         _collect_digesters_from_module(module, output)
     return output

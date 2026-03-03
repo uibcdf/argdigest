@@ -5,7 +5,8 @@ ArgDigest supports three configuration levels. Use them in this precedence order
 
 1. Explicit decorator arguments (`digestion_source`, `digestion_style`, `strictness`, etc.).
 2. Explicit configuration module (`config="mylib._argdigest"`).
-3. Auto-discovered module (`<root_package>._argdigest`) when no explicit config is provided.
+3. Environment module (`ARGDIGEST_CONFIG="mylib._argdigest"`).
+4. Auto-discovered module (`<root_package>._argdigest`) when no explicit config is provided.
 
 ## Recommended `_argdigest.py` template
 

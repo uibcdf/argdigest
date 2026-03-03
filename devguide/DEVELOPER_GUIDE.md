@@ -33,11 +33,12 @@ def link(feature, parent):
 
 ### 2.3 Configuration resolution
 
-ArgDigest supports three configuration modes:
+ArgDigest supports four configuration modes:
 
 1. Explicit decorator arguments (`digestion_source`, `digestion_style`, etc.).
 2. Explicit config module (`config="my_lib._argdigest"`).
-3. Auto-discovery of `<root_package>._argdigest` when no explicit config/overrides are passed.
+3. Environment config module (`ARGDIGEST_CONFIG="my_lib._argdigest"`).
+4. Auto-discovery of `<root_package>._argdigest` when no explicit config/overrides are passed.
 
 ## 3. Error and Diagnostics Model
 

@@ -12,7 +12,8 @@ These patterns help evolve ArgDigest without breaking downstream integrations.
 When adding new configuration behaviors, keep precedence stable:
 1. decorator arguments,
 2. explicit config module,
-3. auto-discovery defaults.
+3. environment config module (`ARGDIGEST_CONFIG`),
+4. auto-discovery defaults.
 
 ## Pattern 3: migration-safe defaults
 

@@ -5,6 +5,7 @@ from importlib import import_module
 from typing import Any
 from functools import lru_cache
 from pathlib import Path
+import os
 
 
 @dataclass(frozen=True)
@@ -40,6 +41,17 @@ def set_defaults(config: DigestConfig | None = None, **kwargs: Any) -> None:
 
 def get_defaults() -> DigestConfig:
     return _DEFAULTS
+
+
+def get_env_config_module() -> str | None:
+    """
+    Return the module path configured via environment, if present.
+    """
+    value = os.getenv("ARGDIGEST_CONFIG")
+    if value is None:
+        return None
+    value = value.strip()
+    return value or None
 
 @lru_cache(maxsize=128)
 def _from_module(module_path: str) -> DigestConfig:
