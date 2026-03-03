@@ -74,3 +74,6 @@ Some libraries emit ArgDigest-related diagnostics through SMonitor. In that
 case, messages may include codes, tags, or structured metadata. These fields are
 intended to improve support and triage, but the core action remains the same:
 fix input according to the API contract, or report a reproducible mismatch.
+
+For a focused overview of diagnostics behavior, see
+[SMonitor Integration](smonitor.md).

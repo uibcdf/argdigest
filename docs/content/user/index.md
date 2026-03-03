@@ -35,13 +35,14 @@ If you want the minimum path first, read in this order:
 10. [skip_digestion Behavior](skip-digestion.md): bypass semantics and safe usage.
 11. [Pipeline Design Patterns](pipeline-design.md): robust rule design and context usage.
 12. [Strictness and Errors](strictness-and-errors.md): warning/error behavior and troubleshooting signals.
-13. [Migration: warn to error](migration-warn-to-error.md): staged hardening criteria.
-14. [Integrating Your Library](integrating-your-library.md): migration blueprint for real codebases.
-15. [Examples](examples.md): where to find copy-ready integration scenarios.
-16. [Troubleshooting](troubleshooting.md): quick diagnosis for common failures.
-17. [Production Checklist](production-checklist.md): final pre-release verification.
-18. [For End Users of Integrating Libraries](end-users.md): how to interpret validation messages in real usage.
-19. [FAQ](faq.md): short answers to recurring adoption questions.
+13. [SMonitor Integration](smonitor.md): what structured diagnostics look like in practice.
+14. [Migration: warn to error](migration-warn-to-error.md): staged hardening criteria.
+15. [Integrating Your Library](integrating-your-library.md): migration blueprint for real codebases.
+16. [Examples](examples.md): where to find copy-ready integration scenarios.
+17. [Troubleshooting](troubleshooting.md): quick diagnosis for common failures.
+18. [Production Checklist](production-checklist.md): final pre-release verification.
+19. [For End Users of Integrating Libraries](end-users.md): how to interpret validation messages in real usage.
+20. [FAQ](faq.md): short answers to recurring adoption questions.
 
 ```{toctree}
 :maxdepth: 1
@@ -59,6 +60,7 @@ normalization.md
 skip-digestion.md
 pipeline-design.md
 strictness-and-errors.md
+smonitor.md
 migration-warn-to-error.md
 integrating-your-library.md
 examples.md
