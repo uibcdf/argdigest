@@ -7,6 +7,9 @@
 - Diagnostics: catalog-backed errors/warnings integrated with smonitor.
 - Optional integrations: beartype, pydantic, pyunitwizard.
 - Examples: `examples/packlib` and `examples/reglib` used for smoke tests and docs.
+- Packaging uses setuptools package discovery (`include = ["argdigest*"]`) to keep
+  subpackages in release wheels.
+- CI/docs workflows include strict import smoke checks that fail hard on import errors.
 
 ## Test status
 
@@ -19,6 +22,7 @@
 - Public API export consistency (`argdigest.core.__all__`).
 - Warning-noise strategy in tests and examples.
 - Keep conda/devtools and docs synchronized with release workflow.
+- Keep release tags and docs deployment synchronized after workflow changes.
 
 ## 1.0.0 path alignment
 

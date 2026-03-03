@@ -1,5 +1,17 @@
 # ArgDigest
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![DOI](https://zenodo.org/badge/137937243.svg)](https://zenodo.org/badge/latestdoi/137937243)
+[![](https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-blue.svg)](https://www.python.org/downloads/)
+[![CI](https://github.com/uibcdf/argdigest/actions/workflows/CI.yaml/badge.svg)](https://github.com/uibcdf/argdigest/actions/workflows/CI.yaml)
+[![codecov](https://codecov.io/github/uibcdf/argdigest/graph/badge.svg?token=rkYkIOfPIs)](https://codecov.io/github/uibcdf/argdigest)
+[![Install with conda](https://img.shields.io/badge/Install%20with-conda-brightgreen.svg)](https://conda.anaconda.org/uibcdf/argdigest)
+
+*Digesting function arguments into clear, reliable contracts.*
+
+
+## Overview
+
 **ArgDigest** is a Python library for **digesting function arguments** at API boundaries.
 It helps libraries normalize, validate, and standardize inputs with explicit,
 reusable contracts.
@@ -9,24 +21,28 @@ It combines:
 - **Pipeline rules** (reusable validation/coercion by kind and rule name),
 - **Structured diagnostics** (clear warnings and errors with context).
 
----
-
-## 🚀 Quick Start
-
-### Installation
+## Installation
 
 ```bash
-pip install argdigest[all]  # Includes Pydantic, Beartype, and PyUnitWizard support
+pip install argdigest
 ```
 
-### Basic usage: digesters + pipelines
+Optional integrations:
+
+```bash
+pip install argdigest[beartype]
+pip install argdigest[pydantic]
+pip install argdigest[pyunitwizard]
+pip install argdigest[all]
+```
+
+## Quick example
 
 ```python
 from argdigest import arg_digest
 
 @arg_digest(
-    digestion_source="mylib._private.digestion.argument",
-    digestion_style="package",
+    config="mylib._argdigest",
     strictness="warn",
     map={"syntax": {"kind": "std", "rules": ["is_str"]}},
 )
@@ -34,37 +50,26 @@ def get(molecular_system, selection=None, syntax="MolSysMT"):
     return molecular_system, selection, syntax
 ```
 
-### Alternate styles
-
+Typical style options:
 - `package`: one module per argument (`digest_<argument>`),
-- `registry`: central `ARGUMENT_DIGESTERS` mapping,
+- `registry`: central mapping (`ARGUMENT_DIGESTERS`),
 - `decorator`: registration via `@argument_digest("arg")`,
 - `auto`: mixed mode for incremental migrations.
 
----
+## Diagnostics model (SMonitor)
 
-## 🛠️ Key Features
+ArgDigest emits catalog-based diagnostics through SMonitor.
 
-- Package/registry/decorator/mixed digestion styles.
-- Standardizer hook for argument-name normalization.
-- Strictness modes (`warn`, `error`, `ignore`).
-- Reusable pipeline registry by `kind` and `rules`.
-- Optional integrations (Pydantic, Beartype, PyUnitWizard).
-- SMonitor-backed diagnostics.
+Runtime/config files:
+- `argdigest/_smonitor.py`
+- `argdigest/_private/smonitor/catalog.py`
+- `argdigest/_private/smonitor/meta.py`
 
----
+## Documentation
 
-## smonitor
+- User + developer docs: [uibcdf.org/argdigest](https://uibcdf.org/argdigest)
+- Internal roadmap and implementation notes: `devguide/`
 
-ArgDigest emits structured diagnostics when digestion warnings occur. Configuration
-is loaded from `_smonitor.py` in the package root (`argdigest/_smonitor.py`), and
-the catalog lives in `argdigest/_private/smonitor/catalog.py` with metadata in
-`argdigest/_private/smonitor/meta.py`.
+## License
 
-## 📖 Documentation
-
-Full documentation is available at [uibcdf.org/argdigest](https://uibcdf.org/argdigest).
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT. See [LICENSE](LICENSE).

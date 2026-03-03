@@ -97,7 +97,28 @@ argdigest --help
 
 Release quality rule: tests and lint must both pass.
 
-## 6. Minimal Example
+## 6. Packaging Rules
+
+- Use setuptools package discovery for releases:
+
+```toml
+[tool.setuptools.packages.find]
+include = ["argdigest*"]
+```
+
+- Do not replace this with a single-package list (for example `packages = ["argdigest"]`),
+  because that excludes subpackages such as `argdigest._private`, `argdigest.core`,
+  and `argdigest.pipelines` from wheels.
+- Always validate wheel contents when changing packaging settings.
+
+## 7. CI Workflow Guardrails
+
+- The import smoke-check steps in CI/docs workflows must fail hard on import errors.
+- Keep `set -euo pipefail` in import-check run blocks.
+- Keep import checks running from outside the repository root (`cd` to home)
+  so they validate installed wheel behavior, not local source-tree fallback.
+
+## 8. Minimal Example
 
 ```python
 from pydantic import BaseModel
@@ -115,7 +136,7 @@ def register_feature(feature: Feature):
     return feature.feature_id
 ```
 
-## 7. Current Focus
+## 9. Current Focus
 
 - Stabilize API contracts for the `1.0.0` path.
 - Keep docs/examples aligned with runtime behavior.

@@ -106,3 +106,4 @@ These run throughout all stages:
 1. Close remaining API consistency issues (exports, naming, defaults).
 2. Reduce non-actionable warning noise in tests while preserving behavior coverage.
 3. Lock the `0.6.x` scope and prepare the API-freeze checklist for `0.7.x`.
+4. Keep workflow import checks strict and wheel-oriented in CI/docs pipelines.
