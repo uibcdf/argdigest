@@ -8,6 +8,14 @@ This page defines how behavior changes are introduced safely.
 - Provide a clear replacement path.
 - Keep messages actionable and time-bounded.
 
+## 0.7.x status
+
+- No breaking deprecations are currently planned before `1.0.0`.
+- If a deprecation becomes necessary during `0.7.x`, it must:
+  1. be announced in release notes,
+  2. include migration guidance,
+  3. remain in place for at least one minor release window before removal.
+
 ## Recommended deprecation flow
 
 1. Introduce replacement behavior.
@@ -21,3 +29,8 @@ ArgDigest support prioritizes:
 - documented public API,
 - documented integration styles,
 - documented configuration resolution behavior.
+
+## Diagnostics rule
+
+Deprecation diagnostics must be emitted through catalog-backed warning paths
+(SMonitor integration), not through ad-hoc hardcoded strings.
