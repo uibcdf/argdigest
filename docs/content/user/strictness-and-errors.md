@@ -11,6 +11,11 @@ stable, `error` is a better default because it enforces the contract and catches
 integration regressions early. `ignore` exists for exceptional scenarios, but it
 should be used carefully because it can hide real coverage gaps.
 
+Accepted aliases:
+- `error` or `raise`
+- `warn` or `warning`
+- `ignore`, `silent`, or `none`
+
 Example:
 
 ```python

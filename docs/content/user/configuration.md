@@ -20,6 +20,9 @@ STRICTNESS = "warn"          # warn | error | ignore
 SKIP_PARAM = "skip_digestion"
 ```
 
+`STRICTNESS` also accepts aliases: `raise` -> `error`, `warning` -> `warn`,
+`silent`/`none` -> `ignore`.
+
 ## Using config in decorators
 
 ```python

@@ -25,6 +25,17 @@ logger = get_logger()
 # (fn_dig, argname) -> (sig, value_param)
 _DIGESTER_METADATA_CACHE: dict[tuple[Callable, str], tuple[inspect.Signature, str]] = {}
 
+
+def _normalize_strictness(strictness: str) -> str:
+    value = strictness.lower()
+    if value in ("error", "raise"):
+        return "error"
+    if value in ("warn", "warning"):
+        return "warn"
+    if value in ("ignore", "silent", "none"):
+        return "ignore"
+    raise ValueError("strictness must be one of: error/raise, warn/warning, ignore/silent/none")
+
 def _resolve_value_param(sig: inspect.Signature, argname: str) -> str:
     if argname in sig.parameters:
         return argname
@@ -127,7 +138,7 @@ def arg_digest(
         eff_source = cfg.digestion_source if digestion_source is _UNSET else digestion_source
         eff_style = cfg.digestion_style if digestion_style is _UNSET else digestion_style
         eff_standardizer = cfg.standardizer if standardizer is _UNSET else standardizer
-        eff_strictness = cfg.strictness if strictness is _UNSET else strictness
+        eff_strictness = _normalize_strictness(cfg.strictness if strictness is _UNSET else strictness)
         eff_skip_param = cfg.skip_param if skip_param is _UNSET else skip_param
         eff_profiling = cfg.profiling if profiling is _UNSET else profiling
         
