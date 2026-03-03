@@ -59,10 +59,7 @@ jobs:
           trap 'echo "::endgroup::"' EXIT
           cd
           pwd
-          python - <<'PY'
-import argdigest
-print("Version of the package: {}".format(argdigest.__version__))
-PY
+          python -c 'import argdigest; print("Version of the package: {}".format(argdigest.__version__))'
 
       - name: Running the Sphinx to gh-pages Action
         uses: uibcdf/action-sphinx-docs-to-gh-pages@main
