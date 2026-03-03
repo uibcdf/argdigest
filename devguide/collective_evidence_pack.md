@@ -77,7 +77,7 @@ Status note (YYYY-MM-DD):
 - smonitor: in progress (profile parity pending collective evidence)
 - depdigest: in progress (remediation-hint path pending collective evidence)
 - argdigest: done locally (`0.9.0` RC consolidation)
-- pyunitwizard: done locally (`pyunitwizard/devguide/collective_evidence_pack.md`)
+- pyunitwizard: done locally (`pyunitwizard@48be457`, devguide checkpoint/policy aligned)
 - collective validation: pending
 
 ## 6. Pending collective closures (from ArgDigest perspective)
