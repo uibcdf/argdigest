@@ -46,12 +46,22 @@ jobs:
           micromamba info
           micromamba list
 
-      - name: Installing the library
+      - name: Build wheel
         shell: bash -l {0}
         run: |
-          python -m pip install . --no-deps
+          set -euo pipefail
+          python -m pip wheel . --no-deps -w dist
+          ls -1 dist/argdigest-*.whl
 
-      - name: Test import module
+      - name: Install from wheel
+        shell: bash -l {0}
+        run: |
+          set -euo pipefail
+          python -m pip uninstall -y argdigest || true
+          WHEEL_PATH="$(ls -1 dist/argdigest-*.whl | head -n 1)"
+          python -m pip install "$WHEEL_PATH" --no-deps
+
+      - name: Test import module (installed wheel)
         shell: bash -l {0}
         run: |
           set -euo pipefail
