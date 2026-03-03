@@ -18,6 +18,11 @@ def _require_puw(ctx: Any = None):
         raise DigestTypeError(
             "Optional dependency 'pyunitwizard' is not installed. Install it to use PyUnitWizard pipelines.",
             context=ctx,
+            hint=(
+                "install_optional:argdigest[pyunitwizard] "
+                "(pip install argdigest[pyunitwizard]); "
+                "if your host library uses DepDigest, enable its pyunitwizard capability."
+            ),
         )
 
 @contextmanager
