@@ -75,11 +75,13 @@ Each stage has explicit exit criteria. No stage is considered complete until all
 - Tagged `1.0.0` release.
 - Final changelog and migration notes.
 - Stable docs and examples for all supported digestion styles.
+- Ecosystem interoperability sign-off against `devguide/1.0.0_checklist.md`.
 
 ### Exit Criteria
 - Test suite and release pipeline fully green.
 - API/documentation consistency verified.
 - Integration sign-off completed for target downstream usage.
+- Cross-layer error propagation path validated (PyUnitWizard -> ArgDigest -> SMonitor/DepDigest hints).
 
 ## Cross-Cutting Workstreams
 
@@ -103,7 +105,7 @@ These run throughout all stages:
 
 ## Immediate Next Actions
 
-1. Execute `0.8.x` RC checklist and validate packaging/distribution readiness.
+1. Execute `1.0.0_checklist.md` sections A-E as strict release blockers.
 2. Run integration confidence checks against target MolSysMT paths.
 3. Keep workflow import checks strict and wheel-oriented in CI/docs pipelines.
-4. Prepare release notes and RC tag candidate.
+4. Finalize release notes and migration notes for `1.0.0`.

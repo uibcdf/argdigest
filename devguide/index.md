@@ -11,6 +11,7 @@ operational notes for ArgDigest.
 - `0.7.x_checklist.md`: API freeze gate and contract-lock tasks.
 - `0.8.x_checklist.md`: release-candidate readiness gate before `1.0.0`.
 - `0.8.0_release_notes_draft.md`: draft notes for the `0.8.0` RC milestone.
+- `1.0.0_checklist.md`: final stability and interoperability gate for `1.0.0`.
 - `notes_dev.md`: active engineering notes, recent decisions, and pending work.
 - `smonitor.md`: diagnostics integration rules and non-negotiable SMonitor practices.
 
