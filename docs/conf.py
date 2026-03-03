@@ -7,7 +7,6 @@
 # http://www.sphinx-doc.org/en/master/config
 
 import os
-import sys
 
 # -- Path setup --------------------------------------------------------------
 
@@ -20,7 +19,6 @@ import sys
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
-import argdigest
 from argdigest import _version as argdigest_version_file
 
 # -- Project information -----------------------------------------------------

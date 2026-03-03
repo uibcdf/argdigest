@@ -1,8 +1,6 @@
 import argparse
 import types
 
-import pytest
-
 from argdigest.cli import audit_module, main
 
 
