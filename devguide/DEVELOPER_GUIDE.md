@@ -71,6 +71,7 @@ Supported formats: `.py`, `.yaml/.yml`, `.json`.
 
 ```bash
 argdigest audit my_lib.api
+argdigest health-check
 argdigest agent init --module my_lib
 argdigest agent update --module my_lib
 ```
@@ -139,6 +140,6 @@ def register_feature(feature: Feature):
 
 ## 9. Current Focus
 
-- Stabilize API contracts for the `1.0.0` path.
+- Consolidate `0.9.x` as final RC before `1.0.0`.
 - Keep docs/examples aligned with runtime behavior.
-- Validate pilot integration paths for downstream libraries.
+- Validate remote release gates and downstream integration stability.

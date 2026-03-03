@@ -5,7 +5,7 @@ Version labels intentionally do **not** use a `v` prefix.
 
 ## Release Strategy
 
-The path to `1.0.0` is split into four stabilization stages:
+The path to `1.0.0` is split into five stabilization stages:
 
 1. `0.6.x` - Integration Hardening
 2. `0.7.x` - API Freeze
@@ -123,7 +123,7 @@ These run throughout all stages:
 
 ## Immediate Next Actions
 
-1. Tag and publish `0.9.0` as RC with full 1.0 feature parity.
-2. Execute `devguide/0.9.x_checklist.md` and run consolidation window.
+1. Validate remote release workflows (CI/docs/conda/wheel checks) on `0.9.0`.
+2. Execute `devguide/0.9.x_checklist.md` consolidation items and track findings.
 3. Close any blocker regressions via `0.9.x` patch releases.
 4. Promote to `1.0.0` after consolidation sign-off.

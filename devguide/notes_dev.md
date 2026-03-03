@@ -3,14 +3,15 @@
 ## Current state snapshot
 
 - Core decorator: `arg_digest` supports argument-centric, pipeline-centric, and mixed modes.
-- Config model: explicit args, config module (`_argdigest.py`), and auto-discovery.
+- Config model: explicit args, config module (`_argdigest.py`), env override (`ARGDIGEST_CONFIG`), and auto-discovery.
 - Diagnostics: catalog-backed errors/warnings integrated with smonitor.
 - Optional integrations: beartype, pydantic, pyunitwizard.
 - Examples: `examples/packlib` and `examples/reglib` used for smoke tests and docs.
 - Packaging uses setuptools package discovery (`include = ["argdigest*"]`) to keep
   subpackages in release wheels.
 - CI/docs workflows include strict import smoke checks that fail hard on import errors.
-- Current local coverage baseline: ~96%.
+- CLI includes `argdigest health-check` for ecosystem diagnostics.
+- Current local test status baseline: full suite green.
 
 ## Test status
 
@@ -20,16 +21,16 @@
 
 ## Open technical items
 
-- Public API export consistency (`argdigest.core.__all__`).
-- Warning-noise strategy in tests and examples.
-- Keep conda/devtools and docs synchronized with release workflow.
-- Keep release tags and docs deployment synchronized after workflow changes.
+- Validate remote workflow status on tag `0.9.0` (CI/docs/conda).
+- Run consolidation window and capture any RC regressions.
+- Finalize `1.0.0` release/migration notes after RC stabilization.
 
 ## 1.0.0 path alignment
 
 - `0.6.x`: integration hardening (closed).
 - `0.7.x`: API freeze (closed).
-- `0.8.x`: release candidate stabilization (active).
+- `0.8.x`: release candidate stabilization (closed).
+- `0.9.x`: RC consolidation (active).
 - `1.0.0`: stable release.
 
 See `devguide/ROADMAP.md` for full milestones and exit criteria.
