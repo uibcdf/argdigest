@@ -32,7 +32,7 @@ This document is the cross-repo handoff artifact for collective validation with:
 
 Date: `2026-03-03`
 ArgDigest baseline: `0.9.x` RC consolidation window
-ArgDigest head reference for this pack: `update-with-commit`
+ArgDigest head reference for this pack: `a207058`
 
 ## 1. Local quality baseline (ArgDigest)
 
