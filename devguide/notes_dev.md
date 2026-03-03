@@ -10,6 +10,7 @@
 - Packaging uses setuptools package discovery (`include = ["argdigest*"]`) to keep
   subpackages in release wheels.
 - CI/docs workflows include strict import smoke checks that fail hard on import errors.
+- Current local coverage baseline: ~96%.
 
 ## Test status
 
@@ -26,8 +27,8 @@
 
 ## 1.0.0 path alignment
 
-- `0.6.x`: integration hardening.
-- `0.7.x`: API freeze.
+- `0.6.x`: integration hardening (closed).
+- `0.7.x`: API freeze (active).
 - `0.9.x`: release candidate stabilization.
 - `1.0.0`: stable release.
 

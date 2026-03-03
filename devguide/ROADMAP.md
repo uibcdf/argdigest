@@ -103,7 +103,7 @@ These run throughout all stages:
 
 ## Immediate Next Actions
 
-1. Close remaining API consistency issues (exports, naming, defaults).
-2. Reduce non-actionable warning noise in tests while preserving behavior coverage.
-3. Lock the `0.6.x` scope and prepare the API-freeze checklist for `0.7.x`.
-4. Keep workflow import checks strict and wheel-oriented in CI/docs pipelines.
+1. Execute `0.7.x` API freeze checklist and lock public contract behavior.
+2. Add/finish API contract tests for symbols, signatures, and strictness semantics.
+3. Keep workflow import checks strict and wheel-oriented in CI/docs pipelines.
+4. Prepare `0.9.x` RC checklist once `0.7.x` exit criteria are met.
