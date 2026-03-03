@@ -16,6 +16,7 @@ operational notes for ArgDigest.
 - `1.0.0_checklist.md`: final stability and interoperability gate for `1.0.0`.
 - `notes_dev.md`: active engineering notes, recent decisions, and pending work.
 - `smonitor.md`: diagnostics integration rules and non-negotiable SMonitor practices.
+- `collective_evidence_pack.md`: cross-repo evidence handoff for collective 1.0 closure.
 
 ## Maintenance rule
 
