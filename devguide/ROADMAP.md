@@ -9,7 +9,7 @@ The path to `1.0.0` is split into four stabilization stages:
 
 1. `0.6.x` - Integration Hardening
 2. `0.7.x` - API Freeze
-3. `0.9.x` - Release Candidate
+3. `0.8.x` - Release Candidate
 4. `1.0.0` - Stable Release
 
 Each stage has explicit exit criteria. No stage is considered complete until all criteria pass.
@@ -48,7 +48,7 @@ Each stage has explicit exit criteria. No stage is considered complete until all
 - Docs and examples use the frozen API consistently.
 - Contract tests for public API symbols and behaviors pass.
 
-## 0.9.x - Release Candidate
+## 0.8.x - Release Candidate
 
 ### Objectives
 - Finalize packaging and distribution readiness for PyPI and Conda.
@@ -103,7 +103,7 @@ These run throughout all stages:
 
 ## Immediate Next Actions
 
-1. Execute `0.9.x` RC checklist and validate packaging/distribution readiness.
+1. Execute `0.8.x` RC checklist and validate packaging/distribution readiness.
 2. Run integration confidence checks against target MolSysMT paths.
 3. Keep workflow import checks strict and wheel-oriented in CI/docs pipelines.
 4. Prepare release notes and RC tag candidate.

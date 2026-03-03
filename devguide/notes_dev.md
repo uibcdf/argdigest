@@ -29,7 +29,7 @@
 
 - `0.6.x`: integration hardening (closed).
 - `0.7.x`: API freeze (closed).
-- `0.9.x`: release candidate stabilization (active).
+- `0.8.x`: release candidate stabilization (active).
 - `1.0.0`: stable release.
 
 See `devguide/ROADMAP.md` for full milestones and exit criteria.
