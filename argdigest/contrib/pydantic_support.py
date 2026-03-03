@@ -3,11 +3,13 @@ Helpers to integrate ArgDigest with pydantic (v2-style).
 """
 
 from __future__ import annotations
-from typing import Any, Type
-from pydantic import BaseModel  # type: ignore
+from typing import Any, Type, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from pydantic import BaseModel  # type: ignore
 
 
-def model_from_dict(model_cls: Type[BaseModel], data: Any) -> BaseModel:
+def model_from_dict(model_cls: Type["BaseModel"], data: Any) -> "BaseModel":
     if isinstance(data, model_cls):
         return data
     if isinstance(data, dict):
@@ -15,12 +17,12 @@ def model_from_dict(model_cls: Type[BaseModel], data: Any) -> BaseModel:
     raise TypeError(f"Cannot build {model_cls} from {type(data)}")
 
 
-def pydantic_pipeline(model_cls: Type[BaseModel]) -> callable:
+def pydantic_pipeline(model_cls: Type["BaseModel"]) -> callable:
     """
     Creates an ArgDigest pipeline function from a Pydantic model.
     The returned function takes (value, ctx) and returns a validated model instance.
     """
-    def pipeline_fn(value: Any, ctx: Any) -> BaseModel:
+    def pipeline_fn(value: Any, ctx: Any) -> "BaseModel":
         # If it's already an instance, return it (Pydantic models are usually immutable-ish)
         if isinstance(value, model_cls):
             return value

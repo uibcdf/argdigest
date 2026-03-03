@@ -12,8 +12,15 @@ Usage in a user library:
 
 from __future__ import annotations
 from typing import Any, Callable
-from beartype import beartype  # type: ignore
+from depdigest import dep_digest
 from ..core.decorator import arg_digest
+
+
+@dep_digest("beartype")
+def _load_beartype():
+    from beartype import beartype  # type: ignore
+
+    return beartype
 
 
 def beartype_digest(
@@ -24,6 +31,7 @@ def beartype_digest(
     **kwargs: Any
 ):
     def deco(fn: Callable[..., Any]):
+        beartype = _load_beartype()
         # We want digestion to happen FIRST (outer wrapper), so it transforms values.
         # Then beartype (inner wrapper) checks the transformed values.
         

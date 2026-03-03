@@ -82,11 +82,13 @@ def register_pipeline(kind: str, name: str):
     """
     Decorator to register a pipeline function for a given kind and name.
     """
+    @signal(tags=["registry"], exception_level="DEBUG")
     def deco(fn: Callable[..., Any]):
         Registry.register_pipeline(kind, name, fn)
         return fn
     return deco
 
 
+@signal(tags=["registry"], exception_level="DEBUG")
 def get_pipelines(kind: str) -> dict[str, Callable[..., Any]]:
     return Registry.get_pipelines(kind)

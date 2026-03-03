@@ -9,15 +9,15 @@ authors = [
 license = { text = "MIT" }
 requires-python = ">=3.10"
 dependencies = [
-  "depdigest",
-  "smonitor",
+  "depdigest>=0.9.1",
+  "smonitor>=0.11.4",
 ]
 
 [project.optional-dependencies]
 beartype = ["beartype>=0.16.0"]
 pydantic = ["pydantic>=2.0.0"]
-pyunitwizard = ["pyunitwizard>=2.0.0"]
-all = ["beartype>=0.16.0", "pydantic>=2.0.0", "pyunitwizard>=2.0.0", "PyYAML>=6.0", "numpy>=1.20.0", "pandas>=2.0.0"]
+pyunitwizard = ["pyunitwizard>=0.11.0"]
+all = ["beartype>=0.16.0", "pydantic>=2.0.0", "pyunitwizard>=0.11.0", "PyYAML>=6.0", "numpy>=1.20.0", "pandas>=2.0.0"]
 
 [project.urls]
 Homepage = "https://github.com/uibcdf/argdigest"

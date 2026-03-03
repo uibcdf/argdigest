@@ -16,12 +16,13 @@ If your goal is to integrate ArgDigest into your own library, start in the
 6. [Implementation Patterns](implementation-patterns.md)
 7. [Testing and CI](testing_and_ci.md)
 8. [API Stability](api-stability.md)
-9. [Deprecation and Support](deprecation-and-support.md)
-10. [SMonitor for Contributors](smonitor.md)
-11. [Editorial Guide](editorial-guide.md)
-12. [Release and Versioning](release-and-versioning.md)
-13. [Contributor Checklist](contributor-checklist.md)
-14. [AI Agent Templates](ai_agent_templates/index.md)
+9. [Compatibility Matrix](compatibility-matrix.md)
+10. [Deprecation and Support](deprecation-and-support.md)
+11. [SMonitor for Contributors](smonitor.md)
+12. [Editorial Guide](editorial-guide.md)
+13. [Release and Versioning](release-and-versioning.md)
+14. [Contributor Checklist](contributor-checklist.md)
+15. [AI Agent Templates](ai_agent_templates/index.md)
 
 ## Canonical References
 
@@ -41,6 +42,7 @@ registry_and_pipelines.md
 implementation-patterns.md
 testing_and_ci.md
 api-stability.md
+compatibility-matrix.md
 deprecation-and-support.md
 smonitor.md
 editorial-guide.md

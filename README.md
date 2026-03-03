@@ -68,6 +68,7 @@ Runtime/config files:
 ## Documentation
 
 - User + developer docs: [uibcdf.org/argdigest](https://uibcdf.org/argdigest)
+- Compatibility matrix: `docs/content/developer/compatibility-matrix.md`
 - Internal roadmap and implementation notes: `devguide/`
 
 ## License

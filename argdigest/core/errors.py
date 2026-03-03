@@ -2,6 +2,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from .errors_base import ArgDigestCatalogException, ArgDigestCatalogWarning
+from .._private.smonitor.catalog import CATALOG
 
 if TYPE_CHECKING:
     from .context import Context
@@ -11,9 +12,12 @@ class DigestError(ArgDigestCatalogException):
     def __init__(self, message: str, context: Context | None = None, hint: str | None = None, code: str | None = None):
         self.raw_message = message
         self.context = context
-        self.raw_hint = hint
+        self.raw_hint = hint or ""
+        resolved_code = code or CATALOG["exceptions"][self.catalog_key]["code"]
+        self.code = resolved_code
+        self.hint = self.raw_hint
         
-        extra = {"message": message, "hint": hint or ""}
+        extra = {"message": message, "hint": self.hint, "code": self.code}
         if context:
             extra["argname"] = context.argname
             extra["caller"] = context.function_name
@@ -21,7 +25,7 @@ class DigestError(ArgDigestCatalogException):
             extra["argname"] = "unknown"
             extra["caller"] = "unknown"
 
-        super().__init__(message=message, code=code, extra=extra)
+        super().__init__(message=message, code=resolved_code, extra=extra)
 
 class DigestTypeError(DigestError, TypeError):
     """Unexpected or inconsistent data type."""
@@ -44,7 +48,9 @@ class DigestNotDigestedWarning(ArgDigestCatalogWarning, RuntimeWarning):
     catalog_key = "DigestNotDigestedWarning"
 
     def __init__(self, message: str, context: Context | None = None, hint: str | None = None, code: str | None = None):
-        extra = {"message": message, "hint": hint or ""}
+        self.code = code or CATALOG["warnings"][self.catalog_key]["code"]
+        self.hint = hint or ""
+        extra = {"message": message, "hint": self.hint, "code": self.code}
         if context:
             extra["argname"] = context.argname
             extra["caller"] = context.function_name
@@ -52,4 +58,4 @@ class DigestNotDigestedWarning(ArgDigestCatalogWarning, RuntimeWarning):
             extra["argname"] = "unknown"
             extra["caller"] = "unknown"
         
-        super().__init__(message=message, code=code, extra=extra)
+        super().__init__(message=message, code=self.code, extra=extra)
