@@ -1,6 +1,7 @@
 import argparse
 import importlib
 import inspect
+from .core.health import run_health_check
 
 def audit_module(module_name: str):
     """
@@ -46,6 +47,9 @@ def main():
     audit_parser = subparsers.add_parser("audit", help="Audit validation rules in a module")
     audit_parser.add_argument("module", help="Module or package name to audit (e.g. mylib.api)")
 
+    # Health check command
+    subparsers.add_parser("health-check", help="Run ecosystem health checks")
+
     # Agent command
     agent_parser = subparsers.add_parser("agent", help="AI Agent documentation management")
     agent_subparsers = agent_parser.add_subparsers(dest="agent_command", help="Agent sub-commands")
@@ -60,6 +64,13 @@ def main():
 
     if args.command == "audit":
         audit_module(args.module)
+    elif args.command == "health-check":
+        report = run_health_check()
+        print("ArgDigest ecosystem health check")
+        print("=============================")
+        for name, info in report.items():
+            mark = "PASS" if info.get("ok") else "FAIL"
+            print(f"- {name}: {mark} ({info.get('detail', '')})")
     elif args.command == "agent":
         from .core.agent_docs import generate_agent_docs
         try:

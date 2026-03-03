@@ -2,6 +2,17 @@
 
 Use this page for fast diagnosis of common integration failures.
 
+## First step: run health check
+
+Before investigating individual failures, run:
+
+```bash
+argdigest health-check
+```
+
+This validates core integration points for SMonitor, DepDigest, diagnostics
+codes/hints, and profile-level message behavior.
+
 ## Decorator runs but digesters are never called
 
 This usually means discovery is misconfigured. In most cases, either

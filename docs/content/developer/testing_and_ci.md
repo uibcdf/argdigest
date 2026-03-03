@@ -6,6 +6,12 @@ Run tests with pytest:
 pytest
 ```
 
+Run ecosystem health diagnostics:
+
+```bash
+argdigest health-check
+```
+
 ## Recommended local gate sequence
 
 Before opening a PR, run this sequence:
@@ -42,3 +48,4 @@ A contribution is considered CI-ready when:
 - tests are green,
 - docs build succeeds,
 - no public-contract behavior changed without docs/tests updates.
+- `argdigest health-check` reports all critical checks as `PASS`.
