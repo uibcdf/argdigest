@@ -32,7 +32,7 @@ This document is the cross-repo handoff artifact for collective validation with:
 
 Date: `2026-03-04`
 ArgDigest baseline: `0.9.x` RC consolidation window
-ArgDigest head reference for this pack: `a207058`
+ArgDigest head reference for this pack: `c543c1a` (`0.9.0-9-gc543c1a`)
 
 ## 1. Local quality baseline (ArgDigest)
 
@@ -74,17 +74,17 @@ Status note (YYYY-MM-DD):
 
 ## 5. Status note (2026-03-04)
 
-- smonitor: in progress (profile parity pending collective evidence)
-- depdigest: in progress (remediation-hint path pending collective evidence)
-- argdigest: done locally (`0.9.0` RC consolidation)
-- pyunitwizard: done locally (`pyunitwizard@0.21.0` tag at `49494d5`, RC-close checklist complete)
-- collective validation: in progress (PyUnitWizard RC closure synced; collective finality still pending)
+- smonitor: in progress (`0.11.4-16-ge0e1a8c`, profile-parity and collective finality still open)
+- depdigest: in progress (`0.10.0-1-gcb93e7f`, stabilization line advanced but collective closure pending)
+- argdigest: done locally (`0.9.0-9-gc543c1a`, RC consolidation active)
+- pyunitwizard: done locally (`0.21.1-1-g9fd9b46`, RC close completed and maintenance patch released)
+- collective validation: in progress (shared E2E path is green, but `../molsyssuite/devguide/collective_v1_checklist.md` finality criteria are not closed)
 
 ## 6. Pending collective closures (from ArgDigest perspective)
 
-- full E2E error propagation evidence across the four repositories,
-- cross-profile diagnostics parity evidence in collective runs,
-- collective closure of outstanding RC blockers before 1.0.0 go/no-go.
+- final collective approval of criteria #2 and #3 in `../molsyssuite/devguide/collective_v1_checklist.md`,
+- explicit cross-repo evidence links in the final decision log (owner/date/blockers/resolution),
+- criterion #1 closure once all four libraries reach `>=1.0.0`.
 
 ## 7. Decision log placeholders
 
