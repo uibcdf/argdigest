@@ -13,7 +13,9 @@ operational notes for ArgDigest.
 - `0.8.0_release_notes_draft.md`: draft notes for the `0.8.0` RC milestone.
 - `0.9.x_checklist.md`: final RC consolidation gate before `1.0.0`.
 - `0.9.0_release_notes_draft.md`: draft notes for the `0.9.0` consolidation RC.
+- `0.9.1_release_notes_draft.md`: draft notes for the `0.9.1` stabilization patch.
 - `1.0.0_checklist.md`: final stability and interoperability gate for `1.0.0`.
+- `1.0.0_release_notes_and_migration_summary.md`: release narrative and migration summary draft for final promotion.
 - `notes_dev.md`: active engineering notes, recent decisions, and pending work.
 - `smonitor.md`: diagnostics integration rules and non-negotiable SMonitor practices.
 - `collective_evidence_pack.md`: cross-repo evidence handoff for collective 1.0 closure.

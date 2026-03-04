@@ -23,7 +23,7 @@
 
 - Keep `0.9.x` consolidation evidence updated (daily usage + friction log + blocker summary).
 - Keep collective status aligned with sibling repos and `../molsyssuite/devguide/collective_v1_checklist.md`.
-- Finalize `1.0.0` release/migration notes after RC stabilization window closes.
+- Keep `devguide/1.0.0_release_notes_and_migration_summary.md` synchronized with final release evidence during the remaining RC window.
 
 ## 1.0.0 path alignment
 
