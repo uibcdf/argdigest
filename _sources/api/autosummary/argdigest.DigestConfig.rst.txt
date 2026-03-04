@@ -1,0 +1,34 @@
+﻿argdigest.DigestConfig
+======================
+
+.. currentmodule:: argdigest
+
+.. autoclass:: DigestConfig
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DigestConfig.__init__
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DigestConfig.digestion_source
+      ~DigestConfig.digestion_style
+      ~DigestConfig.profiling
+      ~DigestConfig.puw_context
+      ~DigestConfig.skip_param
+      ~DigestConfig.standardizer
+      ~DigestConfig.strictness
+   
+   

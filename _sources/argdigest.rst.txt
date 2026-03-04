@@ -1,0 +1,39 @@
+argdigest package
+=================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   argdigest.contrib
+   argdigest.core
+   argdigest.pipelines
+
+Submodules
+----------
+
+argdigest.cli module
+--------------------
+
+.. automodule:: argdigest.cli
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+argdigest.config module
+-----------------------
+
+.. automodule:: argdigest.config
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: argdigest
+   :members:
+   :show-inheritance:
+   :undoc-members:

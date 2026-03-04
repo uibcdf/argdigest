@@ -1,0 +1,8 @@
+argdigest
+=========
+
+.. toctree::
+   :maxdepth: 4
+
+   argdigest
+   tests

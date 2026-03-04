@@ -1,0 +1,37 @@
+argdigest.contrib package
+=========================
+
+Submodules
+----------
+
+argdigest.contrib.beartype\_support module
+------------------------------------------
+
+.. automodule:: argdigest.contrib.beartype_support
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+argdigest.contrib.pydantic\_support module
+------------------------------------------
+
+.. automodule:: argdigest.contrib.pydantic_support
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+argdigest.contrib.pyunitwizard\_support module
+----------------------------------------------
+
+.. automodule:: argdigest.contrib.pyunitwizard_support
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: argdigest.contrib
+   :members:
+   :show-inheritance:
+   :undoc-members:

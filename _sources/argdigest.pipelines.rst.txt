@@ -1,0 +1,45 @@
+argdigest.pipelines package
+===========================
+
+Submodules
+----------
+
+argdigest.pipelines.base module
+-------------------------------
+
+.. automodule:: argdigest.pipelines.base
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+argdigest.pipelines.coercers module
+-----------------------------------
+
+.. automodule:: argdigest.pipelines.coercers
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+argdigest.pipelines.data module
+-------------------------------
+
+.. automodule:: argdigest.pipelines.data
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+argdigest.pipelines.validators module
+-------------------------------------
+
+.. automodule:: argdigest.pipelines.validators
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: argdigest.pipelines
+   :members:
+   :show-inheritance:
+   :undoc-members:

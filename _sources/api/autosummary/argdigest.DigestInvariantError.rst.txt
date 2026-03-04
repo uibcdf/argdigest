@@ -1,0 +1,6 @@
+﻿argdigest.DigestInvariantError
+==============================
+
+.. currentmodule:: argdigest
+
+.. autoexception:: DigestInvariantError

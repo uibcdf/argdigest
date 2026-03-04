@@ -1,0 +1,1108 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="_static/favicon-16x16.png" sizes="16x16" rel="icon" type="image/png">
+    <link href="_static/favicon-124x124.png" sizes="124x124" rel="icon" type="image/png">
+    <link href="_static/favicon-128x128.png" sizes="128x128" rel="icon" type="image/png">
+    <link href="_static/favicon-192x192.png" sizes="192x192" rel="icon" type="image/png">
+    <link href="_static/icon.svg" rel="icon" type="image/svg+xml">
+  
+    <title>argdigest package – ArgDigest 0.9.2</title>
+  
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=d5ef24d1" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=d5ef24d1" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=aa3b121e"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'argdigest';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.9.2" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.svg" class="logo__image only-light" alt="ArgDigest 0.9.2 documentation - Home"/>
+    <img src="_static/logo.svg" class="logo__image only-dark pst-js-only" alt="ArgDigest 0.9.2 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="content/about/index.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="content/showcase/index.html">
+    Showcase
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="content/user/index.html">
+    User
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="content/developer/index.html">
+    Developers
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/uibcdf/argdigest" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="content/about/index.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="content/showcase/index.html">
+    Showcase
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="content/user/index.html">
+    User
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="content/developer/index.html">
+    Developers
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/uibcdf/argdigest" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="argdigest.contrib.html">argdigest.contrib package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="argdigest.core.html">argdigest.core package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="argdigest.pipelines.html">argdigest.pipelines package</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">argdigest package</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="argdigest-package">
+<h1>argdigest package<a class="headerlink" href="#argdigest-package" title="Link to this heading">#</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="argdigest.contrib.html">argdigest.contrib package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.contrib.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.contrib.html#module-argdigest.contrib.beartype_support">argdigest.contrib.beartype_support module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.contrib.html#argdigest.contrib.beartype_support.beartype_digest"><code class="docutils literal notranslate"><span class="pre">beartype_digest()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.contrib.html#module-argdigest.contrib.pydantic_support">argdigest.contrib.pydantic_support module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.contrib.html#argdigest.contrib.pydantic_support.model_from_dict"><code class="docutils literal notranslate"><span class="pre">model_from_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.contrib.html#argdigest.contrib.pydantic_support.pydantic_pipeline"><code class="docutils literal notranslate"><span class="pre">pydantic_pipeline()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.contrib.html#module-argdigest.contrib.pyunitwizard_support">argdigest.contrib.pyunitwizard_support module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.contrib.html#argdigest.contrib.pyunitwizard_support.check"><code class="docutils literal notranslate"><span class="pre">check()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.contrib.html#argdigest.contrib.pyunitwizard_support.context"><code class="docutils literal notranslate"><span class="pre">context()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.contrib.html#argdigest.contrib.pyunitwizard_support.convert"><code class="docutils literal notranslate"><span class="pre">convert()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.contrib.html#argdigest.contrib.pyunitwizard_support.is_quantity"><code class="docutils literal notranslate"><span class="pre">is_quantity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.contrib.html#argdigest.contrib.pyunitwizard_support.standardize"><code class="docutils literal notranslate"><span class="pre">standardize()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.contrib.html#module-argdigest.contrib">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="argdigest.core.html">argdigest.core package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.core.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.core.html#module-argdigest.core.agent_docs">argdigest.core.agent_docs module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.agent_docs.generate_agent_docs"><code class="docutils literal notranslate"><span class="pre">generate_agent_docs()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.core.html#module-argdigest.core.argument_loader">argdigest.core.argument_loader module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.argument_loader.load_argument_digesters"><code class="docutils literal notranslate"><span class="pre">load_argument_digesters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.argument_loader.resolve_standardizer"><code class="docutils literal notranslate"><span class="pre">resolve_standardizer()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.core.html#module-argdigest.core.argument_registry">argdigest.core.argument_registry module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.argument_registry.ArgumentRegistry"><code class="docutils literal notranslate"><span class="pre">ArgumentRegistry</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.argument_registry.ArgumentRegistry.clear"><code class="docutils literal notranslate"><span class="pre">ArgumentRegistry.clear()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.argument_registry.ArgumentRegistry.get_all"><code class="docutils literal notranslate"><span class="pre">ArgumentRegistry.get_all()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.argument_registry.ArgumentRegistry.register"><code class="docutils literal notranslate"><span class="pre">ArgumentRegistry.register()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.argument_registry.argument_digest"><code class="docutils literal notranslate"><span class="pre">argument_digest()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.core.html#module-argdigest.core.config">argdigest.core.config module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.config.DigestConfig"><code class="docutils literal notranslate"><span class="pre">DigestConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.config.DigestConfig.digestion_source"><code class="docutils literal notranslate"><span class="pre">DigestConfig.digestion_source</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.config.DigestConfig.digestion_style"><code class="docutils literal notranslate"><span class="pre">DigestConfig.digestion_style</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.config.DigestConfig.profiling"><code class="docutils literal notranslate"><span class="pre">DigestConfig.profiling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.config.DigestConfig.puw_context"><code class="docutils literal notranslate"><span class="pre">DigestConfig.puw_context</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.config.DigestConfig.skip_param"><code class="docutils literal notranslate"><span class="pre">DigestConfig.skip_param</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.config.DigestConfig.standardizer"><code class="docutils literal notranslate"><span class="pre">DigestConfig.standardizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.config.DigestConfig.strictness"><code class="docutils literal notranslate"><span class="pre">DigestConfig.strictness</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.config.get_defaults"><code class="docutils literal notranslate"><span class="pre">get_defaults()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.config.get_env_config_module"><code class="docutils literal notranslate"><span class="pre">get_env_config_module()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.config.load_from_file"><code class="docutils literal notranslate"><span class="pre">load_from_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.config.resolve_config"><code class="docutils literal notranslate"><span class="pre">resolve_config()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.config.set_defaults"><code class="docutils literal notranslate"><span class="pre">set_defaults()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.core.html#module-argdigest.core.context">argdigest.core.context module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.context.Context"><code class="docutils literal notranslate"><span class="pre">Context</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.context.Context.all_args"><code class="docutils literal notranslate"><span class="pre">Context.all_args</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.context.Context.argname"><code class="docutils literal notranslate"><span class="pre">Context.argname</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.context.Context.audit_log"><code class="docutils literal notranslate"><span class="pre">Context.audit_log</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.context.Context.function_name"><code class="docutils literal notranslate"><span class="pre">Context.function_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.context.Context.value"><code class="docutils literal notranslate"><span class="pre">Context.value</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.core.html#module-argdigest.core.decorator">argdigest.core.decorator module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.decorator.DigestionPlan"><code class="docutils literal notranslate"><span class="pre">DigestionPlan</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.decorator.DigestionPlan.digesters"><code class="docutils literal notranslate"><span class="pre">DigestionPlan.digesters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.decorator.DigestionPlan.enable_argument_digestion"><code class="docutils literal notranslate"><span class="pre">DigestionPlan.enable_argument_digestion</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.decorator.DigestionPlan.pipeline_targets"><code class="docutils literal notranslate"><span class="pre">DigestionPlan.pipeline_targets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.decorator.DigestionPlan.profiling"><code class="docutils literal notranslate"><span class="pre">DigestionPlan.profiling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.decorator.DigestionPlan.skip_param"><code class="docutils literal notranslate"><span class="pre">DigestionPlan.skip_param</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.decorator.DigestionPlan.standardizer"><code class="docutils literal notranslate"><span class="pre">DigestionPlan.standardizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.decorator.DigestionPlan.strictness"><code class="docutils literal notranslate"><span class="pre">DigestionPlan.strictness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.decorator.DigestionPlan.var_keyword_name"><code class="docutils literal notranslate"><span class="pre">DigestionPlan.var_keyword_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.decorator.arg_digest"><code class="docutils literal notranslate"><span class="pre">arg_digest()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.decorator.get_digester_metadata"><code class="docutils literal notranslate"><span class="pre">get_digester_metadata()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.core.html#module-argdigest.core.errors">argdigest.core.errors module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.errors.DigestError"><code class="docutils literal notranslate"><span class="pre">DigestError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.errors.DigestInvariantError"><code class="docutils literal notranslate"><span class="pre">DigestInvariantError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.errors.DigestInvariantError.catalog_key"><code class="docutils literal notranslate"><span class="pre">DigestInvariantError.catalog_key</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.errors.DigestNotDigestedError"><code class="docutils literal notranslate"><span class="pre">DigestNotDigestedError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.errors.DigestNotDigestedError.catalog_key"><code class="docutils literal notranslate"><span class="pre">DigestNotDigestedError.catalog_key</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.errors.DigestNotDigestedWarning"><code class="docutils literal notranslate"><span class="pre">DigestNotDigestedWarning</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.errors.DigestNotDigestedWarning.catalog_key"><code class="docutils literal notranslate"><span class="pre">DigestNotDigestedWarning.catalog_key</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.errors.DigestTypeError"><code class="docutils literal notranslate"><span class="pre">DigestTypeError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.errors.DigestTypeError.catalog_key"><code class="docutils literal notranslate"><span class="pre">DigestTypeError.catalog_key</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.errors.DigestValueError"><code class="docutils literal notranslate"><span class="pre">DigestValueError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.errors.DigestValueError.catalog_key"><code class="docutils literal notranslate"><span class="pre">DigestValueError.catalog_key</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.core.html#module-argdigest.core.errors_base">argdigest.core.errors_base module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.errors_base.ArgDigestCatalogException"><code class="docutils literal notranslate"><span class="pre">ArgDigestCatalogException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.errors_base.ArgDigestCatalogWarning"><code class="docutils literal notranslate"><span class="pre">ArgDigestCatalogWarning</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.core.html#module-argdigest.core.health">argdigest.core.health module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.health.run_health_check"><code class="docutils literal notranslate"><span class="pre">run_health_check()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.core.html#module-argdigest.core.logger">argdigest.core.logger module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.logger.configure_logging"><code class="docutils literal notranslate"><span class="pre">configure_logging()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.logger.get_logger"><code class="docutils literal notranslate"><span class="pre">get_logger()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.core.html#module-argdigest.core.registry">argdigest.core.registry module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.registry.Registry"><code class="docutils literal notranslate"><span class="pre">Registry</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.registry.Registry.get_pipelines"><code class="docutils literal notranslate"><span class="pre">Registry.get_pipelines()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.registry.Registry.register_pipeline"><code class="docutils literal notranslate"><span class="pre">Registry.register_pipeline()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.registry.Registry.run"><code class="docutils literal notranslate"><span class="pre">Registry.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.registry.get_pipelines"><code class="docutils literal notranslate"><span class="pre">get_pipelines()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.registry.register_pipeline"><code class="docutils literal notranslate"><span class="pre">register_pipeline()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.core.html#module-argdigest.core.utils">argdigest.core.utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.utils.bind_arguments"><code class="docutils literal notranslate"><span class="pre">bind_arguments()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.core.html#module-argdigest.core">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.DigestConfig"><code class="docutils literal notranslate"><span class="pre">DigestConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.DigestConfig.digestion_source"><code class="docutils literal notranslate"><span class="pre">DigestConfig.digestion_source</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.DigestConfig.digestion_style"><code class="docutils literal notranslate"><span class="pre">DigestConfig.digestion_style</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.DigestConfig.profiling"><code class="docutils literal notranslate"><span class="pre">DigestConfig.profiling</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.DigestConfig.puw_context"><code class="docutils literal notranslate"><span class="pre">DigestConfig.puw_context</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.DigestConfig.skip_param"><code class="docutils literal notranslate"><span class="pre">DigestConfig.skip_param</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.DigestConfig.standardizer"><code class="docutils literal notranslate"><span class="pre">DigestConfig.standardizer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.DigestConfig.strictness"><code class="docutils literal notranslate"><span class="pre">DigestConfig.strictness</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.DigestError"><code class="docutils literal notranslate"><span class="pre">DigestError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.DigestInvariantError"><code class="docutils literal notranslate"><span class="pre">DigestInvariantError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.DigestInvariantError.catalog_key"><code class="docutils literal notranslate"><span class="pre">DigestInvariantError.catalog_key</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.DigestNotDigestedError"><code class="docutils literal notranslate"><span class="pre">DigestNotDigestedError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.DigestNotDigestedError.catalog_key"><code class="docutils literal notranslate"><span class="pre">DigestNotDigestedError.catalog_key</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.DigestNotDigestedWarning"><code class="docutils literal notranslate"><span class="pre">DigestNotDigestedWarning</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.DigestNotDigestedWarning.catalog_key"><code class="docutils literal notranslate"><span class="pre">DigestNotDigestedWarning.catalog_key</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.DigestTypeError"><code class="docutils literal notranslate"><span class="pre">DigestTypeError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.DigestTypeError.catalog_key"><code class="docutils literal notranslate"><span class="pre">DigestTypeError.catalog_key</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.DigestValueError"><code class="docutils literal notranslate"><span class="pre">DigestValueError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="argdigest.core.html#argdigest.core.DigestValueError.catalog_key"><code class="docutils literal notranslate"><span class="pre">DigestValueError.catalog_key</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.arg_digest"><code class="docutils literal notranslate"><span class="pre">arg_digest()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.argument_digest"><code class="docutils literal notranslate"><span class="pre">argument_digest()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.get_defaults"><code class="docutils literal notranslate"><span class="pre">get_defaults()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.get_pipelines"><code class="docutils literal notranslate"><span class="pre">get_pipelines()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.register_pipeline"><code class="docutils literal notranslate"><span class="pre">register_pipeline()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.core.html#argdigest.core.set_defaults"><code class="docutils literal notranslate"><span class="pre">set_defaults()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="argdigest.pipelines.html">argdigest.pipelines package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.pipelines.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.pipelines.html#module-argdigest.pipelines.base">argdigest.pipelines.base module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.pipelines.html#argdigest.pipelines.base.feature_base"><code class="docutils literal notranslate"><span class="pre">feature_base()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.pipelines.html#argdigest.pipelines.base.feature_shape"><code class="docutils literal notranslate"><span class="pre">feature_shape()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.pipelines.html#module-argdigest.pipelines.coercers">argdigest.pipelines.coercers module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.pipelines.html#argdigest.pipelines.coercers.lower"><code class="docutils literal notranslate"><span class="pre">lower()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.pipelines.html#argdigest.pipelines.coercers.strip"><code class="docutils literal notranslate"><span class="pre">strip()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.pipelines.html#argdigest.pipelines.coercers.to_bool"><code class="docutils literal notranslate"><span class="pre">to_bool()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.pipelines.html#argdigest.pipelines.coercers.to_list"><code class="docutils literal notranslate"><span class="pre">to_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.pipelines.html#argdigest.pipelines.coercers.to_tuple"><code class="docutils literal notranslate"><span class="pre">to_tuple()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.pipelines.html#argdigest.pipelines.coercers.upper"><code class="docutils literal notranslate"><span class="pre">upper()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.pipelines.html#module-argdigest.pipelines.data">argdigest.pipelines.data module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.pipelines.html#argdigest.pipelines.data.has_columns"><code class="docutils literal notranslate"><span class="pre">has_columns()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.pipelines.html#argdigest.pipelines.data.has_ndim"><code class="docutils literal notranslate"><span class="pre">has_ndim()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.pipelines.html#argdigest.pipelines.data.is_dtype"><code class="docutils literal notranslate"><span class="pre">is_dtype()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.pipelines.html#argdigest.pipelines.data.is_shape"><code class="docutils literal notranslate"><span class="pre">is_shape()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.pipelines.html#argdigest.pipelines.data.min_rows"><code class="docutils literal notranslate"><span class="pre">min_rows()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.pipelines.html#argdigest.pipelines.data.to_dataframe"><code class="docutils literal notranslate"><span class="pre">to_dataframe()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.pipelines.html#argdigest.pipelines.data.to_numpy"><code class="docutils literal notranslate"><span class="pre">to_numpy()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.pipelines.html#module-argdigest.pipelines.validators">argdigest.pipelines.validators module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.pipelines.html#argdigest.pipelines.validators.is_dir"><code class="docutils literal notranslate"><span class="pre">is_dir()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.pipelines.html#argdigest.pipelines.validators.is_file"><code class="docutils literal notranslate"><span class="pre">is_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.pipelines.html#argdigest.pipelines.validators.is_int"><code class="docutils literal notranslate"><span class="pre">is_int()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.pipelines.html#argdigest.pipelines.validators.is_non_negative"><code class="docutils literal notranslate"><span class="pre">is_non_negative()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.pipelines.html#argdigest.pipelines.validators.is_positive"><code class="docutils literal notranslate"><span class="pre">is_positive()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="argdigest.pipelines.html#argdigest.pipelines.validators.is_str"><code class="docutils literal notranslate"><span class="pre">is_str()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="argdigest.pipelines.html#module-argdigest.pipelines">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
+</section>
+<section id="module-argdigest.cli">
+<span id="argdigest-cli-module"></span><h2>argdigest.cli module<a class="headerlink" href="#module-argdigest.cli" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="argdigest.cli.audit_module">
+<span class="sig-prename descclassname"><span class="pre">argdigest.cli.</span></span><span class="sig-name descname"><span class="pre">audit_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/argdigest/cli.html#audit_module"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#argdigest.cli.audit_module" title="Link to this definition">#</a></dt>
+<dd><p>Imports a module and prints the digestion plan for all decorated functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>module_name</strong> (<em>str</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="argdigest.cli.main">
+<span class="sig-prename descclassname"><span class="pre">argdigest.cli.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/argdigest/cli.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#argdigest.cli.main" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-argdigest.config">
+<span id="argdigest-config-module"></span><h2>argdigest.config module<a class="headerlink" href="#module-argdigest.config" title="Link to this heading">#</a></h2>
+<p>Central configuration module for ArgDigest.
+Use this module to set global defaults and configure logging.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="argdigest.config.get_defaults">
+<span class="sig-prename descclassname"><span class="pre">argdigest.config.</span></span><span class="sig-name descname"><span class="pre">get_defaults</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/argdigest/core/config.html#get_defaults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#argdigest.config.get_defaults" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="argdigest.core.html#argdigest.core.config.DigestConfig" title="argdigest.core.config.DigestConfig"><em>DigestConfig</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="argdigest.config.load_from_file">
+<span class="sig-prename descclassname"><span class="pre">argdigest.config.</span></span><span class="sig-name descname"><span class="pre">load_from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/argdigest/core/config.html#load_from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#argdigest.config.load_from_file" title="Link to this definition">#</a></dt>
+<dd><p>Load configuration from a Python, YAML, or JSON file path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em><em> | </em><em>Path</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="argdigest.core.html#argdigest.core.config.DigestConfig" title="argdigest.core.config.DigestConfig"><em>DigestConfig</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="argdigest.config.set_defaults">
+<span class="sig-prename descclassname"><span class="pre">argdigest.config.</span></span><span class="sig-name descname"><span class="pre">set_defaults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/argdigest/core/config.html#set_defaults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#argdigest.config.set_defaults" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<a class="reference internal" href="argdigest.core.html#argdigest.core.config.DigestConfig" title="argdigest.core.config.DigestConfig"><em>DigestConfig</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>kwargs</strong> (<em>Any</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="argdigest.config.setup_logging">
+<span class="sig-prename descclassname"><span class="pre">argdigest.config.</span></span><span class="sig-name descname"><span class="pre">setup_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#argdigest.config.setup_logging" title="Link to this definition">#</a></dt>
+<dd><p>Simple helper to configure the argdigest logger.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>level</strong> (<em>int</em><em> | </em><em>str</em>)</p></li>
+<li><p><strong>stream</strong> (<em>Any</em><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-argdigest">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-argdigest" title="Link to this heading">#</a></h2>
+<p>ArgDigest — flexible argument auditing and normalization for scientific libraries.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="argdigest.DigestConfig">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">argdigest.</span></span><span class="sig-name descname"><span class="pre">DigestConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">digestion_source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'str</span> <span class="pre">|</span> <span class="pre">list[str]</span> <span class="pre">|</span> <span class="pre">None'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">digestion_style</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'str'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standardizer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Any'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strictness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'str'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'warn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_param</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'str'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'skip_digestion'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">puw_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'dict[str,</span> <span class="pre">Any]</span> <span class="pre">|</span> <span class="pre">None'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profiling</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'bool'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/argdigest/core/config.html#DigestConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#argdigest.DigestConfig" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>digestion_source</strong> (<em>str</em><em> | </em><em>list</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>digestion_style</strong> (<em>str</em>)</p></li>
+<li><p><strong>standardizer</strong> (<em>Any</em>)</p></li>
+<li><p><strong>strictness</strong> (<em>str</em>)</p></li>
+<li><p><strong>skip_param</strong> (<em>str</em>)</p></li>
+<li><p><strong>puw_context</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>profiling</strong> (<em>bool</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="argdigest.DigestConfig.digestion_source">
+<span class="sig-name descname"><span class="pre">digestion_source</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#argdigest.DigestConfig.digestion_source" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="argdigest.DigestConfig.digestion_style">
+<span class="sig-name descname"><span class="pre">digestion_style</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'auto'</span></span><a class="headerlink" href="#argdigest.DigestConfig.digestion_style" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="argdigest.DigestConfig.profiling">
+<span class="sig-name descname"><span class="pre">profiling</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></span><a class="headerlink" href="#argdigest.DigestConfig.profiling" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="argdigest.DigestConfig.puw_context">
+<span class="sig-name descname"><span class="pre">puw_context</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#argdigest.DigestConfig.puw_context" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="argdigest.DigestConfig.skip_param">
+<span class="sig-name descname"><span class="pre">skip_param</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'skip_digestion'</span></span><a class="headerlink" href="#argdigest.DigestConfig.skip_param" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="argdigest.DigestConfig.standardizer">
+<span class="sig-name descname"><span class="pre">standardizer</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#argdigest.DigestConfig.standardizer" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="argdigest.DigestConfig.strictness">
+<span class="sig-name descname"><span class="pre">strictness</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'warn'</span></span><a class="headerlink" href="#argdigest.DigestConfig.strictness" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="argdigest.DigestError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">argdigest.</span></span><span class="sig-name descname"><span class="pre">DigestError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/argdigest/core/errors.html#DigestError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#argdigest.DigestError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="argdigest.core.html#argdigest.core.errors_base.ArgDigestCatalogException" title="argdigest.core.errors_base.ArgDigestCatalogException"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArgDigestCatalogException</span></code></a></p>
+<p>Base class for all ArgDigest exceptions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> (<em>str</em>)</p></li>
+<li><p><strong>context</strong> (<a class="reference internal" href="argdigest.core.html#argdigest.core.context.Context" title="argdigest.core.context.Context"><em>Context</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>hint</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>code</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="argdigest.DigestInvariantError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">argdigest.</span></span><span class="sig-name descname"><span class="pre">DigestInvariantError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/argdigest/core/errors.html#DigestInvariantError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#argdigest.DigestInvariantError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="argdigest.core.html#argdigest.core.errors.DigestError" title="argdigest.core.errors.DigestError"><code class="xref py py-class docutils literal notranslate"><span class="pre">DigestError</span></code></a></p>
+<p>Semantic rule violation (e.g. invalid parent-child link).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> (<em>str</em>)</p></li>
+<li><p><strong>context</strong> (<a class="reference internal" href="argdigest.core.html#argdigest.core.context.Context" title="argdigest.core.context.Context"><em>Context</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>hint</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>code</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="argdigest.DigestInvariantError.catalog_key">
+<span class="sig-name descname"><span class="pre">catalog_key</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DigestInvariantError'</span></span><a class="headerlink" href="#argdigest.DigestInvariantError.catalog_key" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="argdigest.DigestNotDigestedError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">argdigest.</span></span><span class="sig-name descname"><span class="pre">DigestNotDigestedError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/argdigest/core/errors.html#DigestNotDigestedError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#argdigest.DigestNotDigestedError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="argdigest.core.html#argdigest.core.errors.DigestError" title="argdigest.core.errors.DigestError"><code class="xref py py-class docutils literal notranslate"><span class="pre">DigestError</span></code></a></p>
+<p>Missing digester or cyclic dependency.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> (<em>str</em>)</p></li>
+<li><p><strong>context</strong> (<a class="reference internal" href="argdigest.core.html#argdigest.core.context.Context" title="argdigest.core.context.Context"><em>Context</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>hint</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>code</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="argdigest.DigestNotDigestedError.catalog_key">
+<span class="sig-name descname"><span class="pre">catalog_key</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DigestNotDigestedError'</span></span><a class="headerlink" href="#argdigest.DigestNotDigestedError.catalog_key" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="argdigest.DigestNotDigestedWarning">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">argdigest.</span></span><span class="sig-name descname"><span class="pre">DigestNotDigestedWarning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/argdigest/core/errors.html#DigestNotDigestedWarning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#argdigest.DigestNotDigestedWarning" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="argdigest.core.html#argdigest.core.errors_base.ArgDigestCatalogWarning" title="argdigest.core.errors_base.ArgDigestCatalogWarning"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArgDigestCatalogWarning</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">RuntimeWarning</span></code></p>
+<p>Warning for missing digesters when strictness is ‘warn’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> (<em>str</em>)</p></li>
+<li><p><strong>context</strong> (<a class="reference internal" href="argdigest.core.html#argdigest.core.context.Context" title="argdigest.core.context.Context"><em>Context</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>hint</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>code</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="argdigest.DigestNotDigestedWarning.catalog_key">
+<span class="sig-name descname"><span class="pre">catalog_key</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DigestNotDigestedWarning'</span></span><a class="headerlink" href="#argdigest.DigestNotDigestedWarning.catalog_key" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="argdigest.DigestTypeError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">argdigest.</span></span><span class="sig-name descname"><span class="pre">DigestTypeError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/argdigest/core/errors.html#DigestTypeError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#argdigest.DigestTypeError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="argdigest.core.html#argdigest.core.errors.DigestError" title="argdigest.core.errors.DigestError"><code class="xref py py-class docutils literal notranslate"><span class="pre">DigestError</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeError</span></code></p>
+<p>Unexpected or inconsistent data type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> (<em>str</em>)</p></li>
+<li><p><strong>context</strong> (<a class="reference internal" href="argdigest.core.html#argdigest.core.context.Context" title="argdigest.core.context.Context"><em>Context</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>hint</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>code</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="argdigest.DigestTypeError.catalog_key">
+<span class="sig-name descname"><span class="pre">catalog_key</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DigestTypeError'</span></span><a class="headerlink" href="#argdigest.DigestTypeError.catalog_key" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="argdigest.DigestValueError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">argdigest.</span></span><span class="sig-name descname"><span class="pre">DigestValueError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/argdigest/core/errors.html#DigestValueError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#argdigest.DigestValueError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="argdigest.core.html#argdigest.core.errors.DigestError" title="argdigest.core.errors.DigestError"><code class="xref py py-class docutils literal notranslate"><span class="pre">DigestError</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></p>
+<p>Invalid or out-of-domain value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> (<em>str</em>)</p></li>
+<li><p><strong>context</strong> (<a class="reference internal" href="argdigest.core.html#argdigest.core.context.Context" title="argdigest.core.context.Context"><em>Context</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>hint</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>code</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="argdigest.DigestValueError.catalog_key">
+<span class="sig-name descname"><span class="pre">catalog_key</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DigestValueError'</span></span><a class="headerlink" href="#argdigest.DigestValueError.catalog_key" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="argdigest.arg_digest">
+<span class="sig-prename descclassname"><span class="pre">argdigest.</span></span><span class="sig-name descname"><span class="pre">arg_digest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rules</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">digestion_source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;object</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">digestion_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;object</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standardizer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;object</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strictness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;object</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_param</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;object</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;object</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">puw_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profiling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;object</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**digestion_params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/argdigest/core/decorator.html#arg_digest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#argdigest.arg_digest" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kind</strong> (<em>str</em><em> | </em><em>None</em>)</p></li>
+<li><p><strong>rules</strong> (<em>list</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>map</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>dict</em><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>digestion_source</strong> (<em>str</em><em> | </em><em>list</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em><em> | </em><em>object</em>)</p></li>
+<li><p><strong>digestion_style</strong> (<em>str</em><em> | </em><em>object</em>)</p></li>
+<li><p><strong>standardizer</strong> (<em>Any</em><em> | </em><em>object</em>)</p></li>
+<li><p><strong>strictness</strong> (<em>str</em><em> | </em><em>object</em>)</p></li>
+<li><p><strong>skip_param</strong> (<em>str</em><em> | </em><em>object</em>)</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="argdigest.core.html#argdigest.core.config.DigestConfig" title="argdigest.core.config.DigestConfig"><em>DigestConfig</em></a><em> | </em><em>str</em><em> | </em><em>None</em><em> | </em><em>object</em>)</p></li>
+<li><p><strong>type_check</strong> (<em>bool</em>)</p></li>
+<li><p><strong>puw_context</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>] </em><em>| </em><em>None</em>)</p></li>
+<li><p><strong>profiling</strong> (<em>bool</em><em> | </em><em>object</em>)</p></li>
+<li><p><strong>digestion_params</strong> (<em>Any</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="argdigest.argument_digest">
+<span class="sig-prename descclassname"><span class="pre">argdigest.</span></span><span class="sig-name descname"><span class="pre">argument_digest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/argdigest/core/argument_registry.html#argument_digest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#argdigest.argument_digest" title="Link to this definition">#</a></dt>
+<dd><p>Decorator to register an argument digester by argument name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="argdigest.get_pipelines">
+<span class="sig-prename descclassname"><span class="pre">argdigest.</span></span><span class="sig-name descname"><span class="pre">get_pipelines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/argdigest/core/registry.html#get_pipelines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#argdigest.get_pipelines" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kind</strong> (<em>str</em>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict[str, <em>Callable</em>[[…], <em>Any</em>]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="argdigest.register_pipeline">
+<span class="sig-prename descclassname"><span class="pre">argdigest.</span></span><span class="sig-name descname"><span class="pre">register_pipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/argdigest/core/registry.html#register_pipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#argdigest.register_pipeline" title="Link to this definition">#</a></dt>
+<dd><p>Decorator to register a pipeline function for a given kind and name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kind</strong> (<em>str</em>)</p></li>
+<li><p><strong>name</strong> (<em>str</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subpackages">Subpackages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-argdigest.cli">argdigest.cli module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.cli.audit_module"><code class="docutils literal notranslate"><span class="pre">audit_module()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.cli.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-argdigest.config">argdigest.config module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.config.get_defaults"><code class="docutils literal notranslate"><span class="pre">get_defaults()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.config.load_from_file"><code class="docutils literal notranslate"><span class="pre">load_from_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.config.set_defaults"><code class="docutils literal notranslate"><span class="pre">set_defaults()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.config.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-argdigest">Module contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.DigestConfig"><code class="docutils literal notranslate"><span class="pre">DigestConfig</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.DigestConfig.digestion_source"><code class="docutils literal notranslate"><span class="pre">DigestConfig.digestion_source</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.DigestConfig.digestion_style"><code class="docutils literal notranslate"><span class="pre">DigestConfig.digestion_style</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.DigestConfig.profiling"><code class="docutils literal notranslate"><span class="pre">DigestConfig.profiling</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.DigestConfig.puw_context"><code class="docutils literal notranslate"><span class="pre">DigestConfig.puw_context</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.DigestConfig.skip_param"><code class="docutils literal notranslate"><span class="pre">DigestConfig.skip_param</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.DigestConfig.standardizer"><code class="docutils literal notranslate"><span class="pre">DigestConfig.standardizer</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.DigestConfig.strictness"><code class="docutils literal notranslate"><span class="pre">DigestConfig.strictness</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.DigestError"><code class="docutils literal notranslate"><span class="pre">DigestError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.DigestInvariantError"><code class="docutils literal notranslate"><span class="pre">DigestInvariantError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.DigestInvariantError.catalog_key"><code class="docutils literal notranslate"><span class="pre">DigestInvariantError.catalog_key</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.DigestNotDigestedError"><code class="docutils literal notranslate"><span class="pre">DigestNotDigestedError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.DigestNotDigestedError.catalog_key"><code class="docutils literal notranslate"><span class="pre">DigestNotDigestedError.catalog_key</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.DigestNotDigestedWarning"><code class="docutils literal notranslate"><span class="pre">DigestNotDigestedWarning</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.DigestNotDigestedWarning.catalog_key"><code class="docutils literal notranslate"><span class="pre">DigestNotDigestedWarning.catalog_key</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.DigestTypeError"><code class="docutils literal notranslate"><span class="pre">DigestTypeError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.DigestTypeError.catalog_key"><code class="docutils literal notranslate"><span class="pre">DigestTypeError.catalog_key</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.DigestValueError"><code class="docutils literal notranslate"><span class="pre">DigestValueError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.DigestValueError.catalog_key"><code class="docutils literal notranslate"><span class="pre">DigestValueError.catalog_key</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.arg_digest"><code class="docutils literal notranslate"><span class="pre">arg_digest()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.argument_digest"><code class="docutils literal notranslate"><span class="pre">argument_digest()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.get_pipelines"><code class="docutils literal notranslate"><span class="pre">get_pipelines()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest.register_pipeline"><code class="docutils literal notranslate"><span class="pre">register_pipeline()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item"><div>
+	&copy; 2026, <a href=contents/about/who.html>Liliana M. Moreno Vargas, Diego Prada Gracia
+		and contributors</a> | <a href="https://www.uibcdf.org/">UIBCDF Lab</a> 
+	at the <a href="http://himfg.com.mx">Federico Gómez Children’s Hospital of Mexico</a><br />
+	<a href="https://github.com/uibcdf/argdigest">DepDigest is an open source project</a> shared
+	under <a href="https://github.com/uibcdf/argdigest/blob/main/LICENSE">an MIT license</a>
+</div></div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0
+     | 
+    Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1
+    <br/>
+  </p>
+
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><a href= "mailto:uibcdf@gmail.com">Contact us</a><br /></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

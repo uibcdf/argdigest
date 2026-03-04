@@ -1,0 +1,109 @@
+argdigest.core package
+======================
+
+Submodules
+----------
+
+argdigest.core.agent\_docs module
+---------------------------------
+
+.. automodule:: argdigest.core.agent_docs
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+argdigest.core.argument\_loader module
+--------------------------------------
+
+.. automodule:: argdigest.core.argument_loader
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+argdigest.core.argument\_registry module
+----------------------------------------
+
+.. automodule:: argdigest.core.argument_registry
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+argdigest.core.config module
+----------------------------
+
+.. automodule:: argdigest.core.config
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+argdigest.core.context module
+-----------------------------
+
+.. automodule:: argdigest.core.context
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+argdigest.core.decorator module
+-------------------------------
+
+.. automodule:: argdigest.core.decorator
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+argdigest.core.errors module
+----------------------------
+
+.. automodule:: argdigest.core.errors
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+argdigest.core.errors\_base module
+----------------------------------
+
+.. automodule:: argdigest.core.errors_base
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+argdigest.core.health module
+----------------------------
+
+.. automodule:: argdigest.core.health
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+argdigest.core.logger module
+----------------------------
+
+.. automodule:: argdigest.core.logger
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+argdigest.core.registry module
+------------------------------
+
+.. automodule:: argdigest.core.registry
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+argdigest.core.utils module
+---------------------------
+
+.. automodule:: argdigest.core.utils
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: argdigest.core
+   :members:
+   :show-inheritance:
+   :undoc-members:

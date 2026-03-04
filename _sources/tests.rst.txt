@@ -1,0 +1,333 @@
+tests package
+=============
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   tests.mock_molsysmt
+
+Submodules
+----------
+
+tests.conftest module
+---------------------
+
+.. automodule:: tests.conftest
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_api\_contract module
+--------------------------------
+
+.. automodule:: tests.test_api_contract
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_api\_reference\_contract module
+-------------------------------------------
+
+.. automodule:: tests.test_api_reference_contract
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_argument\_digestion module
+--------------------------------------
+
+.. automodule:: tests.test_argument_digestion
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_argument\_loader\_order module
+------------------------------------------
+
+.. automodule:: tests.test_argument_loader_order
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_beartype module
+---------------------------
+
+.. automodule:: tests.test_beartype
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_bind\_arguments module
+----------------------------------
+
+.. automodule:: tests.test_bind_arguments
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_block\_c\_validation\_semantics module
+--------------------------------------------------
+
+.. automodule:: tests.test_block_c_validation_semantics
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_block\_d\_performance\_reliability module
+-----------------------------------------------------
+
+.. automodule:: tests.test_block_d_performance_reliability
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_block\_f\_cross\_layer module
+-----------------------------------------
+
+.. automodule:: tests.test_block_f_cross_layer
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_cli module
+----------------------
+
+.. automodule:: tests.test_cli
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_cli\_additional module
+----------------------------------
+
+.. automodule:: tests.test_cli_additional
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_compatibility\_matrix module
+----------------------------------------
+
+.. automodule:: tests.test_compatibility_matrix
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_config\_file module
+-------------------------------
+
+.. automodule:: tests.test_config_file
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_config\_precedence\_env module
+------------------------------------------
+
+.. automodule:: tests.test_config_precedence_env
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_contrib module
+--------------------------
+
+.. automodule:: tests.test_contrib
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_core\_config\_additional module
+-------------------------------------------
+
+.. automodule:: tests.test_core_config_additional
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_data\_pipelines module
+----------------------------------
+
+.. automodule:: tests.test_data_pipelines
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_decorator module
+----------------------------
+
+.. automodule:: tests.test_decorator
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_decorator\_additional module
+----------------------------------------
+
+.. automodule:: tests.test_decorator_additional
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_errors module
+-------------------------
+
+.. automodule:: tests.test_errors
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_errors\_additional module
+-------------------------------------
+
+.. automodule:: tests.test_errors_additional
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_health\_check module
+--------------------------------
+
+.. automodule:: tests.test_health_check
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_init\_version\_fallback module
+------------------------------------------
+
+.. automodule:: tests.test_init_version_fallback
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_interop\_block\_b module
+------------------------------------
+
+.. automodule:: tests.test_interop_block_b
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_legacy\_compatibility module
+----------------------------------------
+
+.. automodule:: tests.test_legacy_compatibility
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_logging module
+--------------------------
+
+.. automodule:: tests.test_logging
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_low\_coverage\_modules module
+-----------------------------------------
+
+.. automodule:: tests.test_low_coverage_modules
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_molsysmt\_representative\_paths module
+--------------------------------------------------
+
+.. automodule:: tests.test_molsysmt_representative_paths
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_pipelines\_base module
+----------------------------------
+
+.. automodule:: tests.test_pipelines_base
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_pipelines\_base\_additional module
+----------------------------------------------
+
+.. automodule:: tests.test_pipelines_base_additional
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_profiling module
+----------------------------
+
+.. automodule:: tests.test_profiling
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_pydantic module
+---------------------------
+
+.. automodule:: tests.test_pydantic
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_pyunitwizard module
+-------------------------------
+
+.. automodule:: tests.test_pyunitwizard
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_registry module
+---------------------------
+
+.. automodule:: tests.test_registry
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_smoke\_examples module
+----------------------------------
+
+.. automodule:: tests.test_smoke_examples
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_smonitor\_contracts module
+--------------------------------------
+
+.. automodule:: tests.test_smonitor_contracts
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_std\_pipelines module
+---------------------------------
+
+.. automodule:: tests.test_std_pipelines
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tests.test\_utils\_coverage module
+----------------------------------
+
+.. automodule:: tests.test_utils_coverage
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: tests
+   :members:
+   :show-inheritance:
+   :undoc-members:

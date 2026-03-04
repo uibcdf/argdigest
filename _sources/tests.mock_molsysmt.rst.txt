@@ -1,0 +1,10 @@
+tests.mock\_molsysmt package
+============================
+
+Module contents
+---------------
+
+.. automodule:: tests.mock_molsysmt
+   :members:
+   :show-inheritance:
+   :undoc-members:
