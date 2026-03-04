@@ -32,7 +32,7 @@ This document is the cross-repo handoff artifact for collective validation with:
 
 Date: `2026-03-04`
 ArgDigest baseline: `0.9.x` RC consolidation window
-ArgDigest head reference for this pack: `c543c1a` (`0.9.0-9-gc543c1a`)
+ArgDigest head reference for this pack: `aaab957` (`0.9.2`)
 
 ## 1. Local quality baseline (ArgDigest)
 
@@ -76,7 +76,7 @@ Status note (YYYY-MM-DD):
 
 - smonitor: in progress (`0.11.4-16-ge0e1a8c`, profile-parity and collective finality still open)
 - depdigest: in progress (`0.10.0-1-gcb93e7f`, stabilization line advanced but collective closure pending)
-- argdigest: done locally (`0.9.0-9-gc543c1a`, RC consolidation active)
+- argdigest: done locally (`0.9.2`, RC consolidation closed and go/no-go pack prepared)
 - pyunitwizard: done locally (`0.21.1-1-g9fd9b46`, RC close completed and maintenance patch released)
 - collective validation: in progress (shared E2E path is green, but `../molsyssuite/devguide/collective_v1_checklist.md` finality criteria are not closed)
 

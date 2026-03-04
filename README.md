@@ -71,6 +71,12 @@ Runtime/config files:
 - Compatibility matrix: `docs/content/developer/compatibility-matrix.md`
 - Internal roadmap and implementation notes: `devguide/`
 
+## Current release status
+
+- Current stabilization tag: `0.9.2` (final pre-1.0 checkpoint).
+- `1.0.0` tagging is intentionally gated by explicit release-owner confirmation.
+- Go/no-go evidence pack: `devguide/1.0.0_go_no_go_pack.md`.
+
 ## License
 
 MIT. See [LICENSE](LICENSE).

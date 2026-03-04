@@ -2,6 +2,7 @@
 
 ## Current state snapshot
 
+- Current stabilization tag: `0.9.2` (final pre-1.0 checkpoint).
 - Core decorator: `arg_digest` supports argument-centric, pipeline-centric, and mixed modes.
 - Config model: explicit args, config module (`_argdigest.py`), env override (`ARGDIGEST_CONFIG`), and auto-discovery.
 - Diagnostics: catalog-backed errors/warnings integrated with smonitor.
