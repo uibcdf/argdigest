@@ -21,9 +21,8 @@
 
 ## Open technical items
 
-- Keep `0.9.x` consolidation evidence updated (daily usage + friction log + blocker summary).
 - Keep collective status aligned with sibling repos and `../molsyssuite/devguide/collective_v1_checklist.md`.
-- Keep `devguide/1.0.0_release_notes_and_migration_summary.md` synchronized with final release evidence during the remaining RC window.
+- Hold `1.0.0` tag until explicit release-owner confirmation.
 
 ## 1.0.0 path alignment
 
