@@ -21,9 +21,9 @@
 
 ## Open technical items
 
-- Validate remote workflow status on tag `0.9.0` (CI/docs/conda).
-- Run consolidation window and capture any RC regressions.
-- Finalize `1.0.0` release/migration notes after RC stabilization.
+- Keep `0.9.x` consolidation evidence updated (daily usage + friction log + blocker summary).
+- Keep collective status aligned with sibling repos and `../molsyssuite/devguide/collective_v1_checklist.md`.
+- Finalize `1.0.0` release/migration notes after RC stabilization window closes.
 
 ## 1.0.0 path alignment
 

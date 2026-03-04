@@ -123,7 +123,7 @@ These run throughout all stages:
 
 ## Immediate Next Actions
 
-1. Validate remote release workflows (CI/docs/conda/wheel checks) on `0.9.0`.
-2. Execute `devguide/0.9.x_checklist.md` consolidation items and track findings.
-3. Close any blocker regressions via `0.9.x` patch releases.
-4. Promote to `1.0.0` after consolidation sign-off.
+1. Continue `0.9.x` consolidation tracking in `devguide/0.9.x_checklist.md` (daily usage notes + blocker review).
+2. Keep collective evidence synchronized with sibling repositories and `../molsyssuite/devguide/collective_v1_checklist.md`.
+3. Close any blocker regressions via `0.9.x` patch releases (only if needed).
+4. Finalize `1.0.0` release notes/migration notes and promote after collective sign-off.
