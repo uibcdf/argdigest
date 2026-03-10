@@ -20,6 +20,12 @@
 - Known warning pattern: tests using pipelines without digesters may emit
   `DigestNotDigestedWarning` when strictness is `warn`.
 
+## Recent implementation note
+
+- Added `argdigest.core.caller.normalize_caller`, `argdigest.core.caller.caller_matches`, and `argdigest.core.caller.caller_is_one_of` as lightweight helper APIs for downstream digester authors.
+- Reason: several MolSysMT digesters branch on caller-specific semantics and repeatedly had to defend against `caller=None` or callable-based direct invocation during targeted coverage work.
+- These helpers are intentionally kept outside the top-level public surface so the stable `argdigest.__all__` contract does not change during the pre-1.0 hardening window.
+
 ## Open technical items
 
 - Keep collective status aligned with sibling repos and `../molsyssuite/devguide/collective_v1_checklist.md`.
