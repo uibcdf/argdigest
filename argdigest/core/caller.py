@@ -37,3 +37,13 @@ def caller_is_one_of(caller, values: Iterable[str]) -> bool:
     if not normalized:
         return False
     return normalized in set(values)
+
+
+
+def caller_startswith(caller, *prefixes: str) -> bool:
+    """Returning whether the normalized caller starts with any prefix."""
+
+    normalized = normalize_caller(caller)
+    if not normalized:
+        return False
+    return any(normalized.startswith(prefix) for prefix in prefixes)

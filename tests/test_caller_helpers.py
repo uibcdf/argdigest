@@ -1,4 +1,4 @@
-from argdigest.core.caller import caller_is_one_of, caller_matches, normalize_caller
+from argdigest.core.caller import caller_is_one_of, caller_matches, caller_startswith, normalize_caller
 
 
 def sample_function():
@@ -21,3 +21,10 @@ def test_caller_matches_handles_missing_caller_safely():
 def test_caller_is_one_of_handles_normalization():
     assert caller_is_one_of("pkg.mod.fn", ["pkg.mod.fn", "other"]) is True
     assert caller_is_one_of(None, ["pkg.mod.fn"]) is False
+
+
+
+def test_caller_startswith_handles_normalization():
+    assert caller_startswith("pkg.form.converter", "pkg.form") is True
+    assert caller_startswith(sample_function, "test_") is False
+    assert caller_startswith(None, "pkg") is False
