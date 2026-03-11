@@ -23,8 +23,10 @@
 ## Recent implementation note
 
 - Added `argdigest.core.caller.normalize_caller`, `argdigest.core.caller.caller_matches`, `argdigest.core.caller.caller_is_one_of`, and `argdigest.core.caller.caller_startswith` as lightweight helper APIs for downstream digester authors.
-- Reason: several MolSysMT digesters branch on caller-specific semantics and repeatedly had to defend against `caller=None`, callable-based direct invocation, and ad-hoc `startswith(...)` checks during the MolSysBuilder integration work.
-- These helpers are intentionally kept outside the top-level public surface so the stable `argdigest.__all__` contract does not change during the pre-1.0 hardening window.
+- What changed in practice: downstream digesters can now express callable-specific optional semantics without open-coding fragile string logic such as repeated `caller.endswith(...)` or ad-hoc `caller.startswith(...)` branches.
+- Why this was necessary: MolSysMT now exposes `MolSysBuilder` and `build.editable(...)` as normal public APIs. Those APIs legitimately accept values such as `molecular_system=None`, `atom_type=None`, `group_type=None`, or `entity_name=None` depending on the callable. Treating these as exceptional cases outside digestion would have weakened both ArgDigest and the downstream API contract.
+- Design decision: the correct place to solve this is the digestion layer, not the downstream API. ArgDigest therefore grows a slightly richer caller helper surface while keeping the public top-level API stable.
+- These helpers remain outside the top-level public surface so the stable `argdigest.__all__` contract does not change during the pre-1.0 hardening window.
 
 ## Open technical items
 
