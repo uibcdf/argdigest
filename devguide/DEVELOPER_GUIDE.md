@@ -144,3 +144,14 @@ def register_feature(feature: Feature):
 - Keep docs/examples aligned with runtime behavior.
 - Validate remote release gates and downstream integration stability.
 - Keep shared collective E2E baseline green (`tests/e2e/test_collective_error_path.py`) during RC consolidation.
+
+## 🥇 MolSysSuite Integration (March 2026 Updates)
+
+### Scientific Coercers
+The `sci` kind has been added to provide standardized normalization for scientific data types using `pyunitwizard`:
+- `to_quantity_array`: Standardizes input to a numpy array, optionally converting units.
+- `to_float64_array`: Shortcut for float64 precision (mandatory for Numba kernels).
+- `to_int64_array`: Shortcut for int64 precision.
+
+### Automatic Observability
+The `@arg_digest` decorator now automatically reports failures to `smonitor` with code `MSM-DBG-PROBE-001` at `DEBUG` level. It also captures the original exception as the `cause`, providing deep traceability without manual boilerplate in the host library.

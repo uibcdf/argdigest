@@ -257,7 +257,27 @@ def arg_digest(
                         else:
                             kwargs_for_digest[p_name] = None
 
-                    digested[argname] = fn_digest(**kwargs_for_digest)
+                    try:
+                        digested[argname] = fn_digest(**kwargs_for_digest)
+                    except Exception as e:
+                        # Centralized observability: report to smonitor
+                        try:
+                            from smonitor import emit
+                            emit("DEBUG", f"Digestion failed for argument '{argname}'", 
+                                 extra={
+                                     "code": "MSM-DBG-PROBE-001",
+                                     "argname": argname,
+                                     "caller": caller,
+                                     "cause_exception": type(e).__name__,
+                                     "cause_message": str(e)
+                                 })
+                        except:
+                            pass
+                        # Re-raise with cause attached
+                        if hasattr(e, 'message'): # Some custom errors might have message
+                             raise e
+                        raise e
+
                     visiting_path.pop()
 
                 if plan.enable_argument_digestion:
@@ -281,7 +301,22 @@ def arg_digest(
                     # Use the kind and rules from the specific target config
                     eff_kind = cfg_pipe.get("kind")
                     eff_rules = cfg_pipe.get("rules")
-                    bound[argname] = Registry.run(eff_kind, eff_rules, bound[argname], ctx)
+                    try:
+                        bound[argname] = Registry.run(eff_kind, eff_rules, bound[argname], ctx)
+                    except Exception as e:
+                        try:
+                            from smonitor import emit
+                            emit("DEBUG", f"Pipeline failed for argument '{argname}'", 
+                                 extra={
+                                     "code": "MSM-DBG-PROBE-001",
+                                     "argname": argname,
+                                     "pipeline": f"{eff_kind}.{eff_rules}",
+                                     "cause_exception": type(e).__name__,
+                                     "cause_message": str(e)
+                                 })
+                        except:
+                            pass
+                        raise e
 
                 return fn_to_wrap(**bound)
 
