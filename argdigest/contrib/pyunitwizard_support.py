@@ -2,8 +2,11 @@
 Integration with PyUnitWizard for physical quantity validation and standardization.
 """
 from __future__ import annotations
+from dataclasses import dataclass
 from typing import Any, Dict, Optional, Callable
 from contextlib import contextmanager
+
+import numpy as np
 
 try:
     import pyunitwizard as puw
@@ -12,6 +15,18 @@ except ImportError:
     HAS_PUW = False
 
 from ..core.errors import DigestValueError, DigestTypeError
+from ..core.registry import register_pipeline
+
+
+@dataclass(frozen=True, slots=True)
+class ValidatedPayload:
+    """Trusted normalized array plus the minimal canonical metadata contract."""
+
+    value: np.ndarray
+    unit: str
+    dtype: str
+    ndim: int
+    is_canonical: bool = True
 
 def _require_puw(ctx: Any = None):
     if not HAS_PUW:
@@ -128,3 +143,104 @@ def is_quantity() -> Callable[[Any, Any], Any]:
         return value
     pipeline_is_quantity.__name__ = "puw.is_quantity"
     return pipeline_is_quantity
+
+
+def _canonical_payload_pipeline(
+    unit_name: str,
+    specialized_name: str,
+    ndim: Optional[int] = None,
+) -> Callable[[Any, Any], ValidatedPayload]:
+    def pipeline_payload(value: Any, ctx: Any) -> ValidatedPayload:
+        if isinstance(value, ValidatedPayload):
+            if (
+                value.unit == unit_name
+                and value.dtype == "float64"
+                and (ndim is None or value.ndim == ndim)
+                and value.is_canonical
+            ):
+                return value
+            raise DigestValueError(
+                (
+                    f"Validated payload for {ctx.argname} does not match expected "
+                    f"contract ({unit_name}, float64, ndim={ndim})."
+                ),
+                context=ctx,
+            )
+
+        _require_puw(ctx)
+        try:
+            normalizer = getattr(puw, specialized_name)
+            canonical = normalizer(value)
+            raw = np.asarray(puw.get_value(canonical), dtype=np.float64)
+        except Exception as e:
+            raise DigestValueError(
+                f"Canonical normalization to {unit_name} failed: {e}",
+                context=ctx,
+            ) from e
+
+        if ndim is not None and raw.ndim != ndim:
+            raise DigestValueError(
+                (
+                    f"Normalized value for {ctx.argname} has ndim={raw.ndim}; "
+                    f"expected ndim={ndim}."
+                ),
+                context=ctx,
+            )
+
+        return ValidatedPayload(
+            value=raw,
+            unit=unit_name,
+            dtype="float64",
+            ndim=raw.ndim,
+        )
+
+    pipeline_payload.__name__ = f"sci:{unit_name}_float64_payload"
+    return pipeline_payload
+
+
+def nm_float64_payload(ndim: Optional[int] = None) -> Callable[[Any, Any], ValidatedPayload]:
+    return _canonical_payload_pipeline("nm", "to_nanometers", ndim=ndim)
+
+
+def ps_float64_payload(ndim: Optional[int] = None) -> Callable[[Any, Any], ValidatedPayload]:
+    return _canonical_payload_pipeline("ps", "to_picoseconds", ndim=ndim)
+
+
+def kelvin_float64_payload(ndim: Optional[int] = None) -> Callable[[Any, Any], ValidatedPayload]:
+    return _canonical_payload_pipeline("kelvin", "to_kelvin", ndim=ndim)
+
+
+def unwrap_validated_payload() -> Callable[[Any, Any], np.ndarray]:
+    def pipeline_unwrap(value: Any, ctx: Any) -> np.ndarray:
+        if not isinstance(value, ValidatedPayload):
+            raise DigestTypeError(
+                (
+                    f"Expected ValidatedPayload for {ctx.argname}, "
+                    f"got {type(value)}"
+                ),
+                context=ctx,
+            )
+        return value.value
+
+    pipeline_unwrap.__name__ = "sci:unwrap_validated_payload"
+    return pipeline_unwrap
+
+
+@register_pipeline(kind="sci", name="nm_float64_payload")
+def _pipeline_nm_float64_payload(value: Any, ctx: Any) -> ValidatedPayload:
+    return nm_float64_payload()(value, ctx)
+
+
+@register_pipeline(kind="sci", name="ps_float64_payload")
+def _pipeline_ps_float64_payload(value: Any, ctx: Any) -> ValidatedPayload:
+    return ps_float64_payload()(value, ctx)
+
+
+@register_pipeline(kind="sci", name="kelvin_float64_payload")
+def _pipeline_kelvin_float64_payload(value: Any, ctx: Any) -> ValidatedPayload:
+    return kelvin_float64_payload()(value, ctx)
+
+
+@register_pipeline(kind="sci", name="unwrap_validated_payload")
+def _pipeline_unwrap_validated_payload(value: Any, ctx: Any) -> np.ndarray:
+    return unwrap_validated_payload()(value, ctx)

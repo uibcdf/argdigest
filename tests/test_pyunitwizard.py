@@ -2,6 +2,7 @@ import pytest
 try:
     import pyunitwizard as puw
     from argdigest.contrib import pyunitwizard_support as puw_support
+    from argdigest.contrib.pyunitwizard_support import ValidatedPayload
     HAS_PUW = True
 except ImportError:
     HAS_PUW = False
@@ -76,3 +77,70 @@ def test_puw_conversion_error():
     q = puw.quantity(1.0, "nm")
     with pytest.raises(DigestValueError, match="Conversion to invalid_unit failed"):
         f(q)
+
+
+@pytest.mark.skipif(not HAS_PUW, reason="pyunitwizard not installed")
+def test_nm_float64_payload_bypasses_redundant_recanonicalization(monkeypatch):
+    puw.configure.reset()
+    puw.configure.load_library(["pint"])
+
+    call_count = {"n": 0}
+    original = puw.to_nanometers
+
+    def counted(value, parser=None):
+        call_count["n"] += 1
+        return original(value, parser=parser)
+
+    monkeypatch.setattr(puw, "to_nanometers", counted)
+
+    @arg_digest.map(coord={"kind": "q", "rules": [puw_support.nm_float64_payload(ndim=1)]})
+    def inner(coord):
+        return coord
+
+    @arg_digest.map(coord={"kind": "q", "rules": [puw_support.nm_float64_payload(ndim=1)]})
+    def outer(coord):
+        return inner(coord)
+
+    q = puw.quantity([1.0, 2.0], "angstrom", form="pint")
+    output = outer(q)
+
+    assert isinstance(output, ValidatedPayload)
+    assert output.unit == "nm"
+    assert output.dtype == "float64"
+    assert call_count["n"] == 1
+
+
+@pytest.mark.skipif(not HAS_PUW, reason="pyunitwizard not installed")
+def test_registered_science_pipelines_can_return_naked_array():
+    puw.configure.reset()
+    puw.configure.load_library(["pint"])
+
+    @arg_digest.map(
+        coord={
+            "kind": "sci",
+            "rules": ["nm_float64_payload", "unwrap_validated_payload"],
+        }
+    )
+    def kernel(coord):
+        return coord
+
+    q = puw.quantity([1.0, 2.0], "angstrom", form="pint")
+    output = kernel(q)
+
+    assert output.dtype == "float64"
+    assert output.shape == (2,)
+    assert output.tolist() == pytest.approx([0.1, 0.2])
+
+
+@pytest.mark.skipif(not HAS_PUW, reason="pyunitwizard not installed")
+def test_payload_pipeline_ndim_mismatch_raises():
+    puw.configure.reset()
+    puw.configure.load_library(["pint"])
+
+    @arg_digest.map(coord={"kind": "q", "rules": [puw_support.nm_float64_payload(ndim=2)]})
+    def kernel(coord):
+        return coord
+
+    q = puw.quantity([1.0, 2.0], "angstrom", form="pint")
+    with pytest.raises(DigestValueError, match="expected ndim=2"):
+        kernel(q)
