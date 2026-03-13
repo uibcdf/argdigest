@@ -199,13 +199,24 @@ def arg_digest(
             if plan.profiling:
                 wrapper.audit_log = []
 
+            
             def _run_digestion():
                 bound = bind_arguments(fn, *args, **kwargs)
                 if bound.get(plan.skip_param, False):
                     return fn_to_wrap(**bound)
 
                 caller = f"{fn.__module__}.{fn.__name__}"
+                
+                # --- Passport Protocol: Forced Unwrapping ---
+                # We replace the payloads with naked values in bound immediately.
+                # This is the single source of truth for the rest of the digestion.
+                for argname, val in bound.items():
+                    if isinstance(val, ValidatedPayload):
+                        bound[argname] = val.value
+                # --------------------------------------------
+
                 if plan.var_keyword_name and plan.var_keyword_name in bound:
+
                     extra = bound.pop(plan.var_keyword_name) or {}
                     if isinstance(extra, dict):
                         bound.update(extra)
@@ -227,7 +238,7 @@ def arg_digest(
                     # --- Passport Protocol: Check for ValidatedPayload ---
                     val = bound.get(argname)
                     if isinstance(val, ValidatedPayload):
-                        digested[argname] = val.value
+                        pass # Already handled by pass 1 or internal logic
                         visiting_path.pop()
                         return
                     # ---------------------------------------------------
@@ -289,6 +300,13 @@ def arg_digest(
 
                     visiting_path.pop()
 
+                
+                # This ensures internal calls with "Passports" skip the line.
+                for argname, val in bound.items():
+                    if isinstance(val, ValidatedPayload):
+                        pass # Already handled by pass 1 or internal logic
+
+                
                 if plan.enable_argument_digestion:
                     for argname in bound:
                         if argname != "self":
