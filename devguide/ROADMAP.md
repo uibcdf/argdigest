@@ -127,3 +127,7 @@ These run throughout all stages:
 2. Keep collective evidence synchronized with sibling repositories and `../molsyssuite/devguide/collective_v1_checklist.md`.
 3. Close any blocker regressions via `0.9.x` patch releases (only if needed).
 4. Finalize `1.0.0` release notes/migration notes and promote after collective sign-off.
+
+### Post-1.0 Integration: Heavy Data Orchestration
+- **Lazy Trajectory Handles**: Implement a mechanism to detect "Heavy" inputs (metadata-based) and inject lightweight handles instead of eager object loading.
+- **Analytical Multitasking**: Support multi-task pipeline orchestration to minimize redundant I/O operations.
