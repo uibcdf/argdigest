@@ -18,6 +18,7 @@ from smonitor import signal
 from depdigest import dep_digest
 
 from dataclasses import dataclass, field
+from .contract import ValidatedPayload
 
 _UNSET = object()
 logger = get_logger()
@@ -222,6 +223,14 @@ def arg_digest(
                         ctx_error = Context(function_name=fn.__name__, argname=argname, value=bound.get(argname), all_args=bound)
                         raise DigestNotDigestedError(f"Cycle: {' -> '.join(visiting_path + [argname])}", context=ctx_error)
                     visiting_path.append(argname)
+
+                    # --- Passport Protocol: Check for ValidatedPayload ---
+                    val = bound.get(argname)
+                    if isinstance(val, ValidatedPayload):
+                        digested[argname] = val.value
+                        visiting_path.pop()
+                        return
+                    # ---------------------------------------------------
 
                     fn_digest = plan.digesters.get(argname)
                     if fn_digest is None:
