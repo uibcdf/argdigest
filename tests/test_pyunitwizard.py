@@ -83,15 +83,20 @@ def test_puw_conversion_error():
 def test_nm_float64_payload_bypasses_redundant_recanonicalization(monkeypatch):
     puw.configure.reset()
     puw.configure.load_library(["pint"])
+    # Manually register fast-track for tests because they use a fresh puw import
+    try:
+        puw.register_fast_track("nanometers", puw.unit("nm"))
+    except:
+        pass
 
     call_count = {"n": 0}
-    original = puw.to_nanometers
+    original = puw.fast_track.to_nanometers
 
     def counted(value, parser=None):
         call_count["n"] += 1
         return original(value, parser=parser)
 
-    monkeypatch.setattr(puw, "to_nanometers", counted)
+    monkeypatch.setattr(puw.fast_track, "to_nanometers", counted)
 
     @arg_digest.map(coord={"kind": "q", "rules": [puw_support.nm_float64_payload(ndim=1)]})
     def inner(coord):
@@ -114,6 +119,11 @@ def test_nm_float64_payload_bypasses_redundant_recanonicalization(monkeypatch):
 def test_registered_science_pipelines_can_return_naked_array():
     puw.configure.reset()
     puw.configure.load_library(["pint"])
+    # Manually register fast-track for tests because they use a fresh puw import
+    try:
+        puw.register_fast_track("nanometers", puw.unit("nm"))
+    except:
+        pass
 
     @arg_digest.map(
         coord={
@@ -136,6 +146,11 @@ def test_registered_science_pipelines_can_return_naked_array():
 def test_payload_pipeline_ndim_mismatch_raises():
     puw.configure.reset()
     puw.configure.load_library(["pint"])
+    # Manually register fast-track for tests because they use a fresh puw import
+    try:
+        puw.register_fast_track("nanometers", puw.unit("nm"))
+    except:
+        pass
 
     @arg_digest.map(coord={"kind": "q", "rules": [puw_support.nm_float64_payload(ndim=2)]})
     def kernel(coord):

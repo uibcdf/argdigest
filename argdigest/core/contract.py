@@ -4,11 +4,11 @@ from typing import Any, Optional
 
 @dataclass(frozen=True, slots=True)
 class ValidatedPayload:
-    \"\"\"A lightweight 'Passport' for pre-validated scientific data.
+    """A lightweight 'Passport' for pre-validated scientific data.
     
     This object travels between functions to bypass redundant digestion 
     and unit normalization steps.
-    \"\"\"
+    """
     value: Any
     unit: str
     dtype: str

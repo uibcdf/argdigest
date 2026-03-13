@@ -11,6 +11,7 @@ import numpy as np
 try:
     import pyunitwizard as puw
     HAS_PUW = True
+    puw = puw # Export for tests
 except ImportError:
     HAS_PUW = False
 
@@ -169,7 +170,10 @@ def _canonical_payload_pipeline(
 
         _require_puw(ctx)
         try:
-            normalizer = getattr(puw, specialized_name)
+            # Handle nested attributes like fast_track.to_nanometers
+            normalizer = puw
+            for part in specialized_name.split("."):
+                normalizer = getattr(normalizer, part)
             canonical = normalizer(value)
             raw = np.asarray(puw.get_value(canonical), dtype=np.float64)
         except Exception as e:
@@ -199,15 +203,15 @@ def _canonical_payload_pipeline(
 
 
 def nm_float64_payload(ndim: Optional[int] = None) -> Callable[[Any, Any], ValidatedPayload]:
-    return _canonical_payload_pipeline("nm", "to_nanometers", ndim=ndim)
+    return _canonical_payload_pipeline("nm", "fast_track.to_nanometers", ndim=ndim)
 
 
 def ps_float64_payload(ndim: Optional[int] = None) -> Callable[[Any, Any], ValidatedPayload]:
-    return _canonical_payload_pipeline("ps", "to_picoseconds", ndim=ndim)
+    return _canonical_payload_pipeline("ps", "fast_track.to_picoseconds", ndim=ndim)
 
 
 def kelvin_float64_payload(ndim: Optional[int] = None) -> Callable[[Any, Any], ValidatedPayload]:
-    return _canonical_payload_pipeline("kelvin", "to_kelvin", ndim=ndim)
+    return _canonical_payload_pipeline("kelvin", "fast_track.to_kelvin", ndim=ndim)
 
 
 def unwrap_validated_payload() -> Callable[[Any, Any], np.ndarray]:
