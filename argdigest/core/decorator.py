@@ -208,10 +208,13 @@ def arg_digest(
                 caller = f"{fn.__module__}.{fn.__name__}"
                 
                 # --- Passport Protocol: Forced Unwrapping ---
-                # We replace the payloads with naked values in bound immediately.
+                # We register which arguments were ValidatedPayload instances,
+                # then replace them with naked values in bound immediately.
                 # This is the single source of truth for the rest of the digestion.
+                payloads = set()
                 for argname, val in bound.items():
                     if isinstance(val, ValidatedPayload):
+                        payloads.add(argname)
                         bound[argname] = val.value
                 # --------------------------------------------
 
@@ -236,9 +239,8 @@ def arg_digest(
                     visiting_path.append(argname)
 
                     # --- Passport Protocol: Check for ValidatedPayload ---
-                    val = bound.get(argname)
-                    if isinstance(val, ValidatedPayload):
-                        pass # Already handled by pass 1 or internal logic
+                    if argname in payloads:
+                        digested[argname] = bound.get(argname)
                         visiting_path.pop()
                         return
                     # ---------------------------------------------------
