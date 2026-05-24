@@ -1,13 +1,19 @@
 from __future__ import annotations
-from inspect import signature
+import inspect
 from typing import Any, Callable
 
 
-def bind_arguments(fn: Callable[..., Any], *args: Any, **kwargs: Any) -> dict[str, Any]:
-    sig = signature(fn)
-    
-    # Check if the function accepts **kwargs
-    var_keyword_name = next((p.name for p in sig.parameters.values() if p.kind == p.VAR_KEYWORD), None)
+def bind_arguments(
+    fn: Callable[..., Any],
+    *args: Any,
+    sig: inspect.Signature | None = None,
+    var_keyword_name: str | None = None,
+    **kwargs: Any
+) -> dict[str, Any]:
+    if sig is None:
+        sig = inspect.signature(fn)
+        # Check if the function accepts **kwargs
+        var_keyword_name = next((p.name for p in sig.parameters.values() if p.kind == p.VAR_KEYWORD), None)
     
     if not var_keyword_name:
         # Filter kwargs to only include valid parameters

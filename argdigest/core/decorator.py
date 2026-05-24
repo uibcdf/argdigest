@@ -72,6 +72,7 @@ class DigestionPlan:
     enable_argument_digestion: bool = True
     profiling: bool = False
     var_keyword_name: str | None = None
+    signature: inspect.Signature | None = None
 
 
 def arg_digest(
@@ -189,19 +190,24 @@ def arg_digest(
             standardizer=resolve_standardizer(eff_standardizer),
             enable_argument_digestion=enable_argument_digestion,
             profiling=bool(eff_profiling),
-            var_keyword_name=var_keyword_name
+            var_keyword_name=var_keyword_name,
+            signature=signature
         )
 
         @wraps(fn)
         @signal(tags=["digestion"], exception_level="DEBUG")
         def wrapper(*args: Any, **kwargs: Any):
+            # Fast-path check: if skip_digestion is passed in kwargs, bypass everything O(1)
+            if kwargs.get(plan.skip_param, False):
+                return fn_to_wrap(*args, **kwargs)
+
             logger.debug(f"Digesting arguments for {fn.__name__}")
             if plan.profiling:
                 wrapper.audit_log = []
 
             
             def _run_digestion():
-                bound = bind_arguments(fn, *args, **kwargs)
+                bound = bind_arguments(fn, *args, sig=plan.signature, var_keyword_name=plan.var_keyword_name, **kwargs)
                 if bound.get(plan.skip_param, False):
                     return fn_to_wrap(**bound)
 
