@@ -155,3 +155,8 @@ The `sci` kind has been added to provide standardized normalization for scientif
 
 ### Automatic Observability
 The `@arg_digest` decorator now automatically reports failures to `smonitor` with code `MSM-DBG-PROBE-001` at `DEBUG` level. It also captures the original exception as the `cause`, providing deep traceability without manual boilerplate in the host library.
+
+### ⚡ Performance Architecture (May 2026 Updates)
+To achieve near-zero decorator overhead in high-frequency internal loops and visualization loading, two major performance upgrades have been introduced:
+- **O(1) skip_digestion Fast-Path**: If `skip_digestion=True` is provided as a keyword argument (which occurs thousands of times when importing or rendering viewer models), `@arg_digest` intercepts it at the very entry of the decorator wrapper (`kwargs.get(plan.skip_param, False)`). If true, it returns `fn_to_wrap(*args, **kwargs)` immediately, bypassing argument binding and signature parsing completely with zero latency.
+- **Static Signature Caching**: Function signatures (`inspect.Signature`) are pre-calculated and cached once inside the `DigestionPlan` dataclass during module import / decorator setup time. Re-using this cached signature inside `bind_arguments` removes redundant `inspect.signature` overhead on active validation runs.
