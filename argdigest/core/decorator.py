@@ -23,6 +23,26 @@ from .contract import ValidatedPayload
 _UNSET = object()
 logger = get_logger()
 
+
+def _resolve_owner_module(fn: Callable[..., Any], args: tuple[Any, ...]) -> str:
+    """Resolve the logical owner module of a decorated callable.
+
+    For methods (``__qualname__`` is ``Class.method``) the logical owner is the
+    *runtime* class of the bound instance, which may differ from the module where
+    the function was physically defined — e.g. classes assembled from mixins
+    living in separate modules. Resolving from ``type(self)`` reports the class's
+    real module without requiring module-level ``__name__`` spoofing in the
+    defining files. Free functions keep their defining module.
+    """
+    qualname = getattr(fn, "__qualname__", "") or ""
+    if args and "." in qualname and "<locals>" not in qualname:
+        owner = type(args[0])
+        if isinstance(owner, type) and hasattr(owner, fn.__name__):
+            module = getattr(owner, "__module__", None)
+            if isinstance(module, str) and module:
+                return module
+    return fn.__module__
+
 # Global cache for digester metadata to avoid redundant inspect.signature calls
 # (fn_dig, argname) -> (sig, value_param)
 _DIGESTER_METADATA_CACHE: dict[tuple[Callable, str], tuple[inspect.Signature, str]] = {}
@@ -211,7 +231,7 @@ def arg_digest(
                 if bound.get(plan.skip_param, False):
                     return fn_to_wrap(**bound)
 
-                caller = f"{fn.__module__}.{fn.__name__}"
+                caller = f"{_resolve_owner_module(fn, args)}.{fn.__name__}"
                 
                 # --- Passport Protocol: Forced Unwrapping ---
                 # We register which arguments were ValidatedPayload instances,
