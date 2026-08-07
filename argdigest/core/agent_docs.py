@@ -5,6 +5,52 @@ from __future__ import annotations
 import os
 import importlib
 from .config import resolve_config
+from .function_contract import describe_contract
+from .function_loader import load_domains, load_function_contracts
+
+
+def _hashable(source):
+    """lru_cache keys must be hashable; a list of sources becomes a tuple."""
+
+    return tuple(source) if isinstance(source, list) else source
+
+
+def _render_axis_one(contracts, domains) -> str:
+    """Render the declared contracts and domains as a table an agent can read."""
+
+    if contracts is None:
+        return "_Axis 1 declarations could not be loaded._"
+
+    lines = []
+    if domains:
+        lines.append("**Declared domains**\n")
+        lines.append("| Domain | Members | Description |")
+        lines.append("| --- | ---: | --- |")
+        for name, domain in sorted(domains.items()):
+            members = domain.known_members()
+            size = str(len(members)) if members else "not enumerable"
+            lines.append(f"| `{name}` | {size} | {domain.description or ''} |")
+        lines.append("")
+
+    declared = contracts.declared_callers()
+    if declared:
+        lines.append("**Declared function contracts**\n")
+        lines.append("| Caller | Admits | Requires |")
+        lines.append("| --- | --- | --- |")
+        for key in declared:
+            contract = contracts.resolve(key) or contracts._exact.get(key)
+            if contract is None:
+                continue
+            described = describe_contract(contract, domains)
+            requires = described["requires_any_of"] or ""
+            lines.append(f"| `{key}` | `{described['admits']}` | {requires} |")
+        lines.append("")
+
+    if not lines:
+        return ("_No function contract declared. Every closed signature is still held to "
+                "its own parameters; functions taking `**kwargs` admit anything._")
+    return "\n".join(lines)
+
 
 def generate_agent_docs(module_name: str, output_file: str = "ARG_DIGEST_AGENTS.md"):
     """
@@ -25,6 +71,14 @@ def generate_agent_docs(module_name: str, output_file: str = "ARG_DIGEST_AGENTS.
         from .config import get_defaults
         cfg = get_defaults()
 
+    # Axis 1 declarations, rendered as data. This is what makes the accepted domain of a
+    # `**kwargs` function visible: `inspect.signature` cannot show it.
+    try:
+        contracts = load_function_contracts(_hashable(cfg.function_source))
+        domains = load_domains(_hashable(cfg.domain_source))
+    except Exception:
+        contracts, domains = None, {}
+
     content = f"""# ArgDigest Agent Instructions for {module_name}
 
 This document provides context and instructions for AI Agents (like yourself) to maintain and use **ArgDigest** within this project.
@@ -38,10 +92,18 @@ This document provides context and instructions for AI Agents (like yourself) to
 - **Bypass Parameter**: `{cfg.skip_param}`
 - **PUW Context**: `{cfg.puw_context}`
 
+### Axis 1 -- the function argument contract
+- **Function Source**: `{cfg.function_source}`
+- **Domain Source**: `{cfg.domain_source}`
+- **Unknown Argument Policy**: `{cfg.unknown_argument}`
+
+{_render_axis_one(contracts, domains)}
+
 ## 2. Your Mission as an Agent
 Whenever you modify or add a function in this library:
 1. **Apply Digestion**: Ensure the function is decorated with `@arg_digest()`.
 2. **Check Arguments**: If you add new arguments, check if they need a specific digester in the `digestion_source` directory.
+2b. **Declare the contract**: if the function takes `**kwargs`, declare in `function_source` which domain those keywords come from. Left undeclared, the function accepts anything, which is the defect axis 1 exists to prevent. A closed signature needs no declaration: it is held to its own parameters.
 3. **Use Pipelines**: For specific validation (e.g. ranges, types), use `arg_digest.map` with appropriate rules.
 4. **Maintenance**: If you change the ArgDigest configuration (e.g. adding a standardizer), you **MUST** run `argdigest agent update --module {module_name}` to keep this file in sync.
 

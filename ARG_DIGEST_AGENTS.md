@@ -11,10 +11,18 @@ This document provides context and instructions for AI Agents (like yourself) to
 - **Bypass Parameter**: `skip_digestion`
 - **PUW Context**: `None`
 
+### Axis 1 -- the function argument contract
+- **Function Source**: `None`
+- **Domain Source**: `None`
+- **Unknown Argument Policy**: `error`
+
+_No function contract declared. Every closed signature is still held to its own parameters; functions taking `**kwargs` admit anything._
+
 ## 2. Your Mission as an Agent
 Whenever you modify or add a function in this library:
 1. **Apply Digestion**: Ensure the function is decorated with `@arg_digest()`.
 2. **Check Arguments**: If you add new arguments, check if they need a specific digester in the `digestion_source` directory.
+2b. **Declare the contract**: if the function takes `**kwargs`, declare in `function_source` which domain those keywords come from. Left undeclared, the function accepts anything, which is the defect axis 1 exists to prevent. A closed signature needs no declaration: it is held to its own parameters.
 3. **Use Pipelines**: For specific validation (e.g. ranges, types), use `arg_digest.map` with appropriate rules.
 4. **Maintenance**: If you change the ArgDigest configuration (e.g. adding a standardizer), you **MUST** run `argdigest agent update --module argdigest` to keep this file in sync.
 
