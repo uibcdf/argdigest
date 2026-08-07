@@ -38,12 +38,36 @@ CATALOG = {
             "category": "argument",
             "level": "ERROR",
         },
+        "UnknownArgumentError": {
+            "code": "ARG-ERR-CONTRACT-001",
+            "source": "argdigest.error.contract.unknown_argument",
+            "category": "contract",
+            "level": "ERROR",
+        },
+        "MissingArgumentError": {
+            "code": "ARG-ERR-CONTRACT-002",
+            "source": "argdigest.error.contract.missing_argument",
+            "category": "contract",
+            "level": "ERROR",
+        },
+        "ArgumentConsistencyError": {
+            "code": "ARG-ERR-CONTRACT-003",
+            "source": "argdigest.error.contract.consistency",
+            "category": "contract",
+            "level": "ERROR",
+        },
     },
     "warnings": {
         "DigestNotDigestedWarning": {
             "code": "ARG-WARN-MISS-001",
             "source": "argdigest.warning.missing",
             "category": "argument",
+            "level": "WARNING",
+        },
+        "FunctionContractWarning": {
+            "code": "ARG-WARN-CONTRACT-001",
+            "source": "argdigest.warning.contract",
+            "category": "contract",
             "level": "WARNING",
         },
         "TypeCheckSkippedWarning": {
@@ -90,6 +114,34 @@ CODES = {
         "user_hint": "Define or register a digester for '{argname}'. Docs: {doc_url}",
         "dev_message": "Digester missing for '{argname}' in '{caller}'.",
         "dev_hint": "Implement or register the missing digester.",
+    },
+    "ARG-ERR-CONTRACT-001": {
+        "title": "Unknown argument",
+        "user_message": "{message}",
+        "user_hint": "{hint} Docs: {doc_url}",
+        "dev_message": "Argument '{argname}' is outside the declared contract of '{caller}'.",
+        "dev_hint": "Extend the function contract if the argument is legitimate. {hint}",
+    },
+    "ARG-ERR-CONTRACT-002": {
+        "title": "Missing required argument",
+        "user_message": "{message}",
+        "user_hint": "{hint} Docs: {doc_url}",
+        "dev_message": "Call to '{caller}' satisfies no required argument group.",
+        "dev_hint": "Check 'requires_any_of' in the function contract. {hint}",
+    },
+    "ARG-ERR-CONTRACT-003": {
+        "title": "Inconsistent arguments",
+        "user_message": "{message}",
+        "user_hint": "{hint} Docs: {doc_url}",
+        "dev_message": "Call to '{caller}' breaks an inter-argument rule.",
+        "dev_hint": "Check 'mutually_exclusive' and 'co_required'. {hint}",
+    },
+    "ARG-WARN-CONTRACT-001": {
+        "title": "Function contract violation",
+        "user_message": "{message}",
+        "user_hint": "{hint} Docs: {doc_url}",
+        "dev_message": "Contract violation in '{caller}': {message}",
+        "dev_hint": "The unknown_argument policy is set to 'warn'. {hint}",
     },
     "ARG-WARN-TYPECHECK-001": {
         "title": "Type check skipped",

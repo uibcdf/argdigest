@@ -25,4 +25,12 @@ signatures.
    DigestInvariantError
    DigestNotDigestedError
    DigestNotDigestedWarning
+   Domain
+   FunctionContract
+   FunctionContractError
+   FunctionContractWarning
+   UnknownArgumentError
+   MissingArgumentError
+   ArgumentConsistencyError
+   describe_contract
 ```

@@ -10,9 +10,19 @@ from .registry import Registry
 from .context import Context
 from .utils import bind_arguments
 from .argument_loader import load_argument_digesters, resolve_standardizer
+from .function_loader import load_domains, load_function_contracts
+from .function_contract import ContractRegistry, check_contract, default_contract
 from .argument_registry import ArgumentRegistry
 from .config import resolve_config, DigestConfig, get_env_config_module
-from .errors import DigestNotDigestedError, DigestNotDigestedWarning
+from .errors import (
+    ArgumentConsistencyError,
+    FunctionContractError,
+    DigestNotDigestedError,
+    DigestNotDigestedWarning,
+    FunctionContractWarning,
+    MissingArgumentError,
+    UnknownArgumentError,
+)
 from .logger import get_logger
 from smonitor import signal
 from depdigest import dep_digest
@@ -93,6 +103,74 @@ class DigestionPlan:
     profiling: bool = False
     var_keyword_name: str | None = None
     signature: inspect.Signature | None = None
+    # Axis 1: the function argument contract.
+    contracts: "ContractRegistry | None" = None
+    domains: dict[str, Any] = field(default_factory=dict)
+    unknown_argument: str = "error"
+
+
+def _hashable_source(source: Any) -> Any:
+    """lru_cache keys must be hashable; a list of sources becomes a tuple."""
+
+    if isinstance(source, list):
+        return tuple(source)
+    return source
+
+
+_CONTRACT_ERRORS = {
+    "unknown_argument": UnknownArgumentError,
+    "missing_argument": MissingArgumentError,
+    "mutually_exclusive": ArgumentConsistencyError,
+    "co_required": ArgumentConsistencyError,
+}
+
+
+def _enforce_function_contract(plan: "DigestionPlan", caller: str, fn: Callable[..., Any],
+                               bound: dict[str, Any], extras: dict[str, Any],
+                               supplied: set[str]) -> None:
+    """Axis 1: hold the call to the function's argument contract.
+
+    Runs after the standardizer, so aliases have already become their canonical names
+    and a legitimate alias is never mistaken for a typo, and before digestion, because
+    there is no point validating the value of an argument that should not be there.
+    """
+
+    if plan.contracts is None or plan.signature is None:
+        return
+
+    contract = plan.contracts.resolve(caller)
+    if contract is None:
+        contract = default_contract(caller, plan.var_keyword_name is not None)
+
+    signature_parameters = set(plan.signature.parameters)
+    signature_parameters.discard(plan.var_keyword_name)
+
+    defaulted = signature_parameters - supplied
+    present = (set(bound) | set(extras)) - defaulted
+    candidate_extras = list(extras) + [name for name in bound if name not in signature_parameters]
+
+    violations = check_contract(
+        contract, caller, signature_parameters, candidate_extras, plan.domains, present)
+    if not violations:
+        return
+
+    for violation in violations:
+        ctx_error = Context(function_name=caller, argname=violation.keyword or "unknown",
+                            value=bound.get(violation.keyword) if violation.keyword else None,
+                            all_args=bound)
+        # A contract naming a domain nobody registered is a declaration bug in the
+        # consumer library, not a mistake by whoever made the call. Silencing it would
+        # quietly weaken every check that contract was meant to perform.
+        if violation.kind == "unknown_domain":
+            raise FunctionContractError(violation.message, context=ctx_error, hint=violation.hint)
+        if plan.unknown_argument == "ignore":
+            continue
+        if plan.unknown_argument == "warn":
+            warnings.warn(FunctionContractWarning(
+                message=violation.message, context=ctx_error, hint=violation.hint))
+            continue
+        raise _CONTRACT_ERRORS[violation.kind](
+            violation.message, context=ctx_error, hint=violation.hint)
 
 
 def arg_digest(
@@ -104,6 +182,9 @@ def arg_digest(
     digestion_style: str | object = _UNSET,
     standardizer: Any | object = _UNSET,
     strictness: str | object = _UNSET,
+    unknown_argument: str | object = _UNSET,
+    function_source: str | list[str] | None | object = _UNSET,
+    domain_source: str | list[str] | None | object = _UNSET,
     skip_param: str | object = _UNSET,
     config: DigestConfig | str | None | object = _UNSET,
     type_check: bool = False,
@@ -166,6 +247,10 @@ def arg_digest(
         eff_strictness = _normalize_strictness(cfg.strictness if strictness is _UNSET else strictness)
         eff_skip_param = cfg.skip_param if skip_param is _UNSET else skip_param
         eff_profiling = cfg.profiling if profiling is _UNSET else profiling
+        eff_function_source = cfg.function_source if function_source is _UNSET else function_source
+        eff_domain_source = cfg.domain_source if domain_source is _UNSET else domain_source
+        eff_unknown_argument = _normalize_strictness(
+            cfg.unknown_argument if unknown_argument is _UNSET else unknown_argument)
         
         effective_puw_context = {**(cfg.puw_context or {}), **(puw_context or {})}
 
@@ -190,6 +275,10 @@ def arg_digest(
             and eff_standardizer is None
         )
 
+        # Axis 1 declarations. lru_cache needs hashable sources.
+        contracts = load_function_contracts(_hashable_source(eff_function_source))
+        domains = load_domains(_hashable_source(eff_domain_source))
+
         # Inspect signature once
         signature = inspect.signature(fn)
         var_keyword_name = next((p.name for p in signature.parameters.values() if p.kind == inspect.Parameter.VAR_KEYWORD), None)
@@ -211,7 +300,10 @@ def arg_digest(
             enable_argument_digestion=enable_argument_digestion,
             profiling=bool(eff_profiling),
             var_keyword_name=var_keyword_name,
-            signature=signature
+            signature=signature,
+            contracts=contracts,
+            domains=domains,
+            unknown_argument=eff_unknown_argument,
         )
 
         @wraps(fn)
@@ -227,7 +319,10 @@ def arg_digest(
 
             
             def _run_digestion():
-                bound = bind_arguments(fn, *args, sig=plan.signature, var_keyword_name=plan.var_keyword_name, **kwargs)
+                extras: dict[str, Any] = {}
+                bound = bind_arguments(fn, *args, sig=plan.signature,
+                                       var_keyword_name=plan.var_keyword_name,
+                                       extras_out=extras, **kwargs)
                 if bound.get(plan.skip_param, False):
                     return fn_to_wrap(**bound)
 
@@ -252,6 +347,14 @@ def arg_digest(
                 
                 if plan.standardizer:
                     bound = plan.standardizer(caller, bound)
+
+                # Axis 1 runs here: after names are canonical, before any value is
+                # digested.
+                supplied = set(kwargs)
+                if plan.signature is not None:
+                    positional = list(plan.signature.parameters)[:len(args)]
+                    supplied.update(positional)
+                _enforce_function_contract(plan, caller, fn, bound, extras, supplied)
 
                 digested: dict[str, Any] = {}
                 visiting_path: list[str] = []

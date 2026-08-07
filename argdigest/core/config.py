@@ -17,6 +17,13 @@ class DigestConfig:
     skip_param: str = "skip_digestion"
     puw_context: dict[str, Any] | None = None
     profiling: bool = False
+    # Axis 1: the function argument contract.
+    function_source: str | list[str] | None = None
+    domain_source: str | list[str] | None = None
+    # What to do when a call breaks its function contract. The default is 'error'
+    # because plain Python already raises TypeError for an unexpected keyword, and
+    # ArgDigest must not be more permissive than the language it wraps.
+    unknown_argument: str = "error"
 
 
 _DEFAULTS: DigestConfig = DigestConfig()
@@ -64,6 +71,9 @@ def _from_module(module_path: str) -> DigestConfig:
         skip_param=getattr(module, "SKIP_PARAM", "skip_digestion"),
         puw_context=getattr(module, "PUW_CONTEXT", None),
         profiling=getattr(module, "PROFILING", False),
+        function_source=getattr(module, "FUNCTION_SOURCE", None),
+        domain_source=getattr(module, "DOMAIN_SOURCE", None),
+        unknown_argument=getattr(module, "UNKNOWN_ARGUMENT", "error"),
     )
 
 def load_from_file(path: str | Path) -> DigestConfig:
@@ -91,6 +101,9 @@ def load_from_file(path: str | Path) -> DigestConfig:
             skip_param=getattr(module, "SKIP_PARAM", "skip_digestion"),
             puw_context=getattr(module, "PUW_CONTEXT", None),
             profiling=getattr(module, "PROFILING", False),
+            function_source=getattr(module, "FUNCTION_SOURCE", None),
+            domain_source=getattr(module, "DOMAIN_SOURCE", None),
+            unknown_argument=getattr(module, "UNKNOWN_ARGUMENT", "error"),
         )
     
     if ext in (".yaml", ".yml"):

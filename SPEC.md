@@ -11,6 +11,17 @@ license: MIT
 
 **ArgDigest** is a lightweight and extensible library for **auditing, validating, and normalizing function arguments** in scientific and analytical Python libraries.
 
+ArgDigest covers **two axes**, and a library needs both:
+
+1. **The function's argument contract** — *may this function receive this argument at
+   all, and does it have what it needs?* Declared as `FunctionContract` and `Domain`.
+2. **The argument's value contract** — *given an argument name, is its value valid and
+   in canonical form?* Declared as per-argument digesters.
+
+Without axis 1, function-dependent rules have nowhere to live and end up scattered
+across the per-argument digesters, one `if caller == ...` at a time, so the contract of
+a function is never written down in one readable place. Axis 1 gives it a home.
+
 Its purpose is to provide a generic infrastructure that:
 - Verifies the **coherence and type** of input arguments.
 - **Coerces** heterogeneous objects into the expected internal forms.
@@ -31,6 +42,8 @@ argdigest/
     registry.py         # Pipeline registry (kind/rules)
     argument_registry.py# Argument-centric registry (@argument_digest)
     argument_loader.py  # Discovery logic (packages, modules)
+    function_contract.py# Axis 1: FunctionContract, Domain, resolution and checking
+    function_loader.py  # Axis 1 discovery (contracts and domains)
     context.py          # Execution context (function, argname, value)
     errors.py           # Rich exception hierarchy
     logger.py           # Centralized logging
@@ -134,27 +147,123 @@ Exceptions are rich objects inheriting from `DigestError`. They include:
   - `DigestValueError`: Semantic validation failure.
   - `DigestInvariantError`: Multi-argument rule violation.
   - `DigestNotDigestedError`: Missing digester (when strictness="error") or cyclic dependency.
+- `FunctionContractError`: Base for axis-1 breaches.
+  - `UnknownArgumentError`: An argument the function does not accept.
+  - `MissingArgumentError`: A call satisfying no required argument group.
+  - `ArgumentConsistencyError`: Mutually exclusive or co-required arguments misused.
+
+`FunctionContractWarning` reports the same breaches when `unknown_argument="warn"`.
 
 ---
 
-## 6. Compatibility Profiles
+## 6. Axis 1: The Function Argument Contract
 
-### 6.1 MolSysMT Profile
-Recommended configuration for MolSysMT integration:
+### Why the default is strict
+
+Plain Python raises `TypeError` for an unexpected keyword. **ArgDigest must never end up
+more permissive than the language it wraps**, so `unknown_argument` defaults to
+`"error"`. This is not a new policy: it restores parity, with a better diagnostic and a
+near-miss suggestion.
+
+### What a consumer declares
+
+Only data. Discovery, resolution order, enforcement and introspection stay in ArgDigest.
 
 ```python
-@arg_digest(
-    digestion_source="molsysmt._private.digestion.argument",
-    digestion_style="package",
-    standardizer="molsysmt._private.digestion.argument_names_standardization",
-    skip_param="skip_digestion",
-    strictness="warn"
-)
+# mylib/_argdigest.py
+FUNCTION_SOURCE = "mylib._private.argdigest.function"
+DOMAIN_SOURCE = "mylib._private.argdigest.domain"
+UNKNOWN_ARGUMENT = "error"          # "error" | "warn" | "ignore"
 ```
+
+```python
+# mylib/_private/argdigest/domain/attribute.py
+from argdigest import Domain
+from mylib.attribute import attributes, is_attribute
+
+domain = Domain(name='attribute', contains=is_attribute,
+                members=lambda: tuple(attributes))
+```
+
+```python
+# mylib/_private/argdigest/function/get.py
+from argdigest import FunctionContract
+
+contract = FunctionContract(caller='mylib.basic.get.get', admits='attribute')
+```
+
+A module may declare one `contract`/`domain` or a list in `CONTRACTS`/`DOMAINS`.
+
+### Defaults when nothing is declared
+
+| Function | Default contract |
+| --- | --- |
+| closed signature | held to its own parameters |
+| declares `**kwargs` | admits anything until a domain is declared |
+
+A closed signature already declares its domain, so it is protected for free. A function
+with `**kwargs` deliberately opened its door and ArgDigest cannot guess what it meant.
+
+### Resolution order
+
+Exact `caller`, then the **longest matching** `caller_pattern` (fnmatch), then the
+default. Longest-pattern-wins keeps specificity predictable without asking consumers to
+declare priorities, and lets a whole family of adapters share one contract.
+
+### Where it runs
+
+`bind_arguments` → standardizer → **contract** → digestion.
+
+After the standardizer, so an alias that has just become its canonical name is never
+mistaken for a typo. Before digestion, because validating the value of an argument that
+should not be there is wasted work with a confusing failure. `bind_arguments` sets aside
+the keywords a closed signature cannot take and hands them to this stage rather than
+discarding them, so the policy layer sees what the caller actually wrote.
+
+### Introspection
+
+`describe_contract(contract, domains)` renders a contract as plain data. This is why a
+contract is declarative rather than an opaque callable: the accepted domain of a
+`**kwargs` function is invisible to `inspect.signature`, and this makes it readable
+again — for documentation, IDEs and agents.
+
+### Known gap
+
+A **delegating** domain, whose admissible keywords depend on values resolved at call
+time (for example a converter chosen by a `to_form` argument), is not expressible: a
+`Domain` decides membership from the keyword alone. Such functions keep the permissive
+default.
 
 ---
 
-## 7. Examples
+## 7. Compatibility Profiles
+
+### 7.1 MolSysMT Profile
+Recommended configuration for MolSysMT integration:
+
+MolSysMT configures both axes from one module, `molsysmt._argdigest`:
+
+```python
+DIGESTION_SOURCE = "molsysmt._private.arg_digestion.argument"
+DIGESTION_STYLE = "package"
+STANDARDIZER = "molsysmt._private.arg_digestion.argument_names_standardization:argument_names_standardization"
+STRICTNESS = "warn"
+SKIP_PARAM = "skip_digestion"
+
+FUNCTION_SOURCE = "molsysmt._private.arg_digestion.function"
+DOMAIN_SOURCE = "molsysmt._private.arg_digestion.domain"
+UNKNOWN_ARGUMENT = "error"
+```
+
+`STRICTNESS` and `UNKNOWN_ARGUMENT` answer different questions and have different
+audiences. A missing digester for a declared parameter is a to-do for the library
+author, so `warn` is right. A keyword nobody declared is a mistake by whoever made the
+call, and warning about it is not enough — warnings are routinely filtered off exactly
+where users read output.
+
+---
+
+## 8. Examples
 
 ### Explicit Mapping
 ```python

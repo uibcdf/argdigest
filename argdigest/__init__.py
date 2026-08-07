@@ -22,7 +22,17 @@ from .core.decorator import arg_digest  # noqa: E402
 from .core.registry import register_pipeline, get_pipelines  # noqa: E402
 from .core.argument_registry import argument_digest  # noqa: E402
 from .core.config import DigestConfig  # noqa: E402
+from .core.function_contract import (  # noqa: E402
+    Domain,
+    FunctionContract,
+    describe_contract,
+)
 from .core.errors import (  # noqa: E402
+    ArgumentConsistencyError,
+    FunctionContractError,
+    FunctionContractWarning,
+    MissingArgumentError,
+    UnknownArgumentError,
     DigestError,
     DigestTypeError,
     DigestValueError,
@@ -47,4 +57,12 @@ __all__ = [
     "DigestInvariantError",
     "DigestNotDigestedError",
     "DigestNotDigestedWarning",
+    "Domain",
+    "FunctionContract",
+    "FunctionContractError",
+    "FunctionContractWarning",
+    "UnknownArgumentError",
+    "MissingArgumentError",
+    "ArgumentConsistencyError",
+    "describe_contract",
 ]

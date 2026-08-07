@@ -22,6 +22,14 @@ EXPECTED_PUBLIC_API = [
     "DigestInvariantError",
     "DigestNotDigestedError",
     "DigestNotDigestedWarning",
+    "Domain",
+    "FunctionContract",
+    "FunctionContractError",
+    "FunctionContractWarning",
+    "UnknownArgumentError",
+    "MissingArgumentError",
+    "ArgumentConsistencyError",
+    "describe_contract",
 ]
 
 

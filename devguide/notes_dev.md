@@ -28,6 +28,46 @@
 - Design decision: the correct place to solve this is the digestion layer, not the downstream API. ArgDigest therefore grows a slightly richer caller helper surface while keeping the public top-level API stable.
 - These helpers remain outside the top-level public surface so the stable `argdigest.__all__` contract does not change during the pre-1.0 hardening window.
 
+## Recent implementation note — axis 1, the function argument contract
+
+- Added `argdigest.core.function_contract` (`Domain`, `FunctionContract`, resolution and
+  checking) and `argdigest.core.function_loader` (discovery), plus the
+  `unknown_argument` policy, the `FUNCTION_SOURCE` / `DOMAIN_SOURCE` configuration, and
+  the `UnknownArgumentError` / `MissingArgumentError` / `ArgumentConsistencyError` /
+  `FunctionContractWarning` catalogued diagnostics.
+- What changed in practice: ArgDigest covered one axis only — *given an argument name, is
+  its value valid?* It had no way to ask *may this function receive this argument at
+  all?*, and `bind_arguments` silently discarded any keyword a closed signature did not
+  declare. A mistyped argument therefore ran with the default and returned a plausible
+  wrong answer. Measured in MolSysMT: a one-letter slip in `structure_indices` returned
+  all 5000 structures of a trajectory instead of the three requested, with no
+  diagnostic. 22 of its 26 public callables behaved that way, and the other four failed
+  with a raw `KeyError` or a `TypeError` naming a private converter.
+- Why this was necessary now: **ArgDigest was more permissive than the language it
+  wraps.** Plain Python raises `TypeError` for an unexpected keyword; a decorated
+  function accepted it. Stabilizing `1.0.0` on top of that would have frozen the
+  anomaly into the contract every downstream library depends on.
+- Design decision: the consumer declares only data — a `Domain` pointing at its own
+  source of truth and a `FunctionContract` per function or family. Discovery, the
+  resolution order (exact caller, then longest matching pattern, then default),
+  enforcement, diagnostics and introspection stay in ArgDigest. A closed signature is
+  held to its own parameters with no declaration at all, which is why MolSysMT gained
+  protection on 19 functions without writing a rule for any of them.
+- Continuity with the previous note: `caller.endswith(...)` in downstream digesters,
+  which the `argdigest.core.caller` helpers made safer to write, was the symptom of this
+  missing axis. Function-dependent rules had nowhere to live and lodged inside
+  per-argument digesters — 102 of MolSysMT's 392 branch on `caller`. Axis 1 gives those
+  rules a home; the helpers remain the right tool for the value-digestion cases that
+  legitimately depend on the caller.
+- Known gap: a *delegating* domain, whose admissible keywords depend on values resolved
+  at call time (a converter chosen by `to_form`, for instance), is not expressible,
+  because a `Domain` decides membership from the keyword alone. Such functions keep the
+  permissive default. `molsysmt.basic.convert` is the live example.
+- Evidence: 148 ArgDigest tests, ~8300 MolSysMT tests with the policy set to `error`
+  plus its fast release gate at 12/12, and 1296 MolSysViewer tests with nothing declared
+  on its side. No downstream call in either consumer had to change, which is what a
+  defect that only reaches users looks like.
+
 ## Open technical items
 
 - Keep collective status aligned with sibling repos and `../molsyssuite/devguide/collective_v1_checklist.md`.

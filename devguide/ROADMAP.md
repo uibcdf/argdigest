@@ -49,6 +49,13 @@ Each stage has explicit exit criteria. No stage is considered complete until all
 - Docs and examples use the frozen API consistently.
 - Contract tests for public API symbols and behaviors pass.
 
+> **Superseded for `0.10.0` by an explicit release-owner decision (2026-08-07).** The
+> function argument contract (axis 1) is a deliberate breaking change taken before
+> `1.0.0` rather than after it, because shipping a stable ArgDigest that is *more
+> permissive than Python itself* would have frozen the defect into the contract every
+> downstream library then depends on. See
+> [`0.10.0_release_notes_draft.md`](0.10.0_release_notes_draft.md).
+
 ## 0.8.x - Release Candidate
 
 ### Objectives

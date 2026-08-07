@@ -59,3 +59,47 @@ class DigestNotDigestedWarning(ArgDigestCatalogWarning, RuntimeWarning):
             extra["caller"] = "unknown"
         
         super().__init__(message=message, code=self.code, extra=extra)
+
+
+class FunctionContractError(DigestError):
+    """Base class for breaches of a function's argument contract (axis 1)."""
+
+    catalog_key = "UnknownArgumentError"
+
+
+class UnknownArgumentError(FunctionContractError):
+    """An argument the function does not accept."""
+
+    catalog_key = "UnknownArgumentError"
+
+
+class MissingArgumentError(FunctionContractError):
+    """A call that satisfies no required argument group."""
+
+    catalog_key = "MissingArgumentError"
+
+
+class ArgumentConsistencyError(FunctionContractError):
+    """Mutually exclusive or co-required arguments used inconsistently."""
+
+    catalog_key = "ArgumentConsistencyError"
+
+
+class FunctionContractWarning(ArgDigestCatalogWarning, RuntimeWarning):
+    """A contract breach reported instead of raised, under the 'warn' policy."""
+
+    catalog_key = "FunctionContractWarning"
+
+    def __init__(self, message: str, context: Context | None = None, hint: str | None = None,
+                 code: str | None = None):
+        self.code = code or CATALOG["warnings"][self.catalog_key]["code"]
+        self.hint = hint or ""
+        extra = {"message": message, "hint": self.hint, "code": self.code}
+        if context:
+            extra["argname"] = context.argname
+            extra["caller"] = context.function_name
+        else:
+            extra["argname"] = "unknown"
+            extra["caller"] = "unknown"
+
+        super().__init__(message=message, code=self.code, extra=extra)
