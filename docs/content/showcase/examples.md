@@ -67,3 +67,17 @@ Two lightweight notebooks exist for quick demonstrations:
 - `docs/content/showcase/example_integration.ipynb`
 
 Use them as exploratory demos, not as canonical integration contracts.
+
+## Beyond digesters
+
+The examples above exercise the value contract. Two scenarios cover the rest of an
+integration:
+
+- [Integrating an API with `**kwargs`](kwargs-api-integration.md) — declaring a `Domain`
+  and a `FunctionContract` for the one case a signature cannot cover.
+- [Migrating a standardizer to alias tables](standardizer-to-alias-tables.md) — turning a
+  chain of `if caller == ...` renames into declared data.
+
+When adapting any example below, add one check that a mistyped keyword is refused. A
+closed signature gives you that with nothing declared, and it is the cheapest guard
+against a call running with the default and returning a plausible wrong answer.

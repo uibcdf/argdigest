@@ -18,7 +18,7 @@ import difflib
 from dataclasses import dataclass, field
 from functools import lru_cache
 from fnmatch import fnmatchcase
-from typing import Any, Callable, Iterable, Sequence
+from typing import Any, Callable, Iterable, Mapping, Sequence
 
 #: `admits` values with a reserved meaning. Anything else names a domain.
 ADMITS_SIGNATURE = "signature"
@@ -42,22 +42,98 @@ class Domain:
     name: str
     contains: Callable[[str], bool] | None = None
     members: Callable[[], Iterable[str]] | Iterable[str] | None = None
+    depends_on: str | Sequence[str] | None = None
+    by_value: Mapping[Any, Iterable[str]] | None = None
     description: str | None = None
 
     def __post_init__(self) -> None:
-        if self.contains is None and self.members is None:
+        delegating = self.depends_on is not None or self.by_value is not None
+        flat = self.contains is not None or self.members is not None
+
+        if delegating:
+            if self.depends_on is None or self.by_value is None:
+                raise ValueError(
+                    f"Domain {self.name!r} is delegating, so it needs both 'depends_on' "
+                    "and 'by_value'."
+                )
+            if flat:
+                raise ValueError(
+                    f"Domain {self.name!r} cannot be both flat and delegating: give it "
+                    "either 'contains'/'members' or 'depends_on'/'by_value'."
+                )
+            object.__setattr__(self, "depends_on", self._normalized_dependencies())
+        elif not flat:
             raise ValueError(
-                f"Domain {self.name!r} needs 'contains', 'members', or both."
+                f"Domain {self.name!r} needs 'contains', 'members', or "
+                "'depends_on' with 'by_value'."
             )
 
+    def _normalized_dependencies(self) -> tuple[str, ...]:
+        if isinstance(self.depends_on, str):
+            return (self.depends_on,)
+        return tuple(str(name) for name in self.depends_on or ())
+
+    @property
+    def is_delegating(self) -> bool:
+        return self.by_value is not None
+
     def __contains__(self, keyword: str) -> bool:
+        """Membership for a flat domain.
+
+        A delegating domain cannot answer without the call's arguments; use `admits`.
+        """
+
+        if self.is_delegating:
+            raise TypeError(
+                f"Domain {self.name!r} depends on {', '.join(self.depends_on or ())}, so "
+                "membership needs the call's arguments: use admits(keyword, bound)."
+            )
         if self.contains is not None:
             return bool(self.contains(keyword))
         return keyword in set(self.known_members())
 
+    def resolve_members(self, bound: Mapping[str, Any] | None = None
+                        ) -> tuple[str, ...] | None:
+        """The admissible names for one call, or None when they cannot be decided.
+
+        `None` is not "nothing is admissible". It means the value this domain depends on
+        names no entry -- usually because that value is itself wrong -- and the argument
+        that carries it is about to be rejected by its own digester, which will say so far
+        better than a complaint about domains would.
+        """
+
+        if not self.is_delegating:
+            return self.known_members()
+        if bound is None:
+            return None
+        key = tuple(bound.get(name) for name in self.depends_on or ())
+        lookup = key[0] if len(key) == 1 else key
+        try:
+            entry = (self.by_value or {}).get(lookup)
+        except TypeError:      # an unhashable value can name no entry
+            return None
+        if entry is None:
+            return None
+        return tuple(str(name) for name in entry)
+
+    def admits(self, keyword: str, bound: Mapping[str, Any] | None = None) -> bool | None:
+        """Whether this domain admits `keyword`, or None when it cannot decide."""
+
+        if not self.is_delegating:
+            return keyword in self
+        members = self.resolve_members(bound)
+        if members is None:
+            return None
+        return keyword in members
+
     def known_members(self) -> tuple[str, ...]:
         """Return the enumerable members, or an empty tuple when not enumerable."""
 
+        if self.is_delegating:
+            names: set[str] = set()
+            for entry in (self.by_value or {}).values():
+                names.update(str(name) for name in entry)
+            return tuple(sorted(names))
         if self.members is None:
             return ()
         members = self.members() if callable(self.members) else self.members
@@ -198,6 +274,7 @@ def check_contract(
     extras: Iterable[str],
     domains: dict[str, Domain],
     present: Iterable[str] = (),
+    bound: Mapping[str, Any] | None = None,
 ) -> list[Violation]:
     """Check one call against a contract and return every violation found.
 
@@ -225,7 +302,12 @@ def check_contract(
     if not contract.admits_anything():
         vocabulary: list[str] | None = None
         for keyword in extras:
-            if any(keyword in domain for domain in admitted_domains):
+            verdicts = [domain.admits(keyword, bound) for domain in admitted_domains]
+            # `None` means a delegating domain could not decide for this call, because the
+            # value it depends on names no entry. That value is about to be rejected by
+            # its own digester, which explains the real problem far better than a
+            # complaint about an unknown argument would.
+            if any(verdict is not False for verdict in verdicts) and verdicts:
                 continue
             # The vocabulary can run to hundreds of names, and it is needed only to
             # suggest a near miss. Building it eagerly would charge every correct call
@@ -233,7 +315,12 @@ def check_contract(
             if vocabulary is None:
                 vocabulary = sorted(signature_parameters)
                 for domain in admitted_domains:
-                    vocabulary.extend(domain.known_members())
+                    resolved = domain.resolve_members(bound)
+                    # Only what this call can actually accept. Falling back to the union
+                    # across every value would force a lazily computed table on the error
+                    # path, and would suggest a name that is wrong for this call anyway.
+                    if resolved is not None:
+                        vocabulary.extend(resolved)
             violations.append(Violation(
                 kind="unknown_argument",
                 keyword=keyword,
@@ -250,7 +337,7 @@ def check_contract(
         for name in required:
             domain = domains.get(name)
             if domain is not None:
-                if any(keyword in domain for keyword in present):
+                if any(domain.admits(keyword, bound) for keyword in present):
                     satisfied = True
                     break
             elif name in present:
@@ -304,6 +391,10 @@ def describe_contract(contract: FunctionContract, domains: dict[str, Domain]) ->
             "registered": domain is not None,
             "description": None if domain is None else domain.description,
             "members": () if domain is None else domain.known_members(),
+            "depends_on": None if domain is None else domain.depends_on,
+            "by_value": None if domain is None or not domain.is_delegating
+                        else {key: sorted(str(v) for v in value)
+                              for key, value in (domain.by_value or {}).items()},
         })
 
     return {

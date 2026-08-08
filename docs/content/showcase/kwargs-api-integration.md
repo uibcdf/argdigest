@@ -89,6 +89,37 @@ UnknownArgumentError: 'mylib.basic.get.get' does not accept the argument 'n_atom
 Did you mean 'n_atoms'?
 ```
 
+### A domain that depends on another argument
+
+Sometimes which keywords are admissible depends on a value in the same call: an engine, an
+output type, a mode. Declare the table and the argument it keys on:
+
+```python
+Domain(
+    name='engine_options',
+    depends_on='engine',
+    by_value={
+        'MolSysMT': ('threshold', 'parallel'),
+        'OpenMM':   ('threshold', 'platform'),
+    },
+)
+```
+
+`depends_on` may name several arguments, in which case the table is keyed by a tuple.
+
+It is still data: `describe_contract` renders the whole table, so the options each value
+accepts can be documented rather than discovered by reading code.
+
+**A value with no entry does not refuse anything.** It means the domain cannot decide for
+this call — usually because that value is itself wrong — and the argument carrying it is
+about to be rejected by its own digester, which explains the real problem far better than
+a complaint about an unknown argument would.
+
+**Key on an argument, not on a derivation.** The table is consulted per call, so the value
+must be cheap to read. If deciding the domain requires computing something expensive from
+another argument, the mechanism costs more than it saves and the function is better left
+permissive with the reason recorded.
+
 ## Requirements and exclusions
 
 A contract can also state rules that would otherwise live inside the function body:
@@ -108,12 +139,39 @@ Be careful with what a rule actually means. `requires_any_of` and `co_required` 
 **presence**; a rule conditional on a *value* — "if `pairs=True` then both flags must be
 true" — is not the same thing and does not belong in a contract.
 
-## When you cannot declare a domain
+## A large table that computes itself
 
-If the admissible keywords depend on something resolved at call time, such as a converter
-chosen by another argument, a `Domain` cannot express it: membership is decided from the
-keyword alone. Leave that function on the permissive default and record why, rather than
-declaring a domain that is not the real one.
+`by_value` takes any **Mapping**, and a mapping can be lazy. That is what makes the
+mechanism usable for a dispatcher with hundreds of edges, where a hand-written table would
+rot on the first signature change.
+
+The live example is a converter dispatcher with 89 target forms and 561 edges, 80 of them
+declared as module names so they are not imported until used. Its table knows its keys
+without importing anything, and computes a value the first time that target is asked for:
+
+```python
+class ConverterArguments(Mapping):
+    def __getitem__(self, to_form):
+        if to_form not in self._cache:
+            self._cache[to_form] = self._union_of_converter_signatures(to_form)
+        return self._cache[to_form]
+```
+
+Measured: 2 µs per call once warm, and the lazy import happens on the first conversion to
+that form — which is when it was going to happen anyway.
+
+**Group the key so it stays cheap.** The exact set for that dispatcher depends on the pair
+`(origin, target)`, but the origin is not an argument: deriving it costs 235 µs, about 14%
+of a whole conversion, on every call. Keying on the target alone admits the union across
+origins — measured, 4.9 names where the exact set averages 3.3. That is the right trade:
+the comparison is not 4.9 against 3.3 but 4.9 against *anything*, a mistyped keyword
+belongs to no union, and a keyword valid for another origin is rejected a moment later by
+the converter, where the origin is known.
+
+**Audit what computes itself.** A table derived from signatures cannot go stale, but it
+can silently *shrink*: if a signature becomes unreadable the edge is skipped, its names
+leave the domain, and valid calls start being refused. Keep a devtools check that fails
+when that happens, and have it ask the domain rather than reimplement it.
 
 ## Smoke check
 

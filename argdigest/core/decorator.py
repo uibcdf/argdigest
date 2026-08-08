@@ -167,7 +167,8 @@ def _enforce_function_contract(plan: "DigestionPlan", caller: str, fn: Callable[
     present = (set(bound) | set(extras)) - defaulted
 
     violations = check_contract(
-        contract, caller, signature_parameters, candidate_extras, plan.domains, present)
+        contract, caller, signature_parameters, candidate_extras, plan.domains, present,
+        bound=bound)
     if not violations:
         return
 

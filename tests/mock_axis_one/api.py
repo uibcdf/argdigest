@@ -39,3 +39,9 @@ def pick(molsys, by_name=None, by_index=None, skip_digestion=False):
 def wide_open(molsys, skip_digestion=False, **kwargs):
     """Open signature with no declared domain: admits anything, by design."""
     return sorted(kwargs)
+
+
+@arg_digest(config=CONFIG)
+def compute(molsys, engine="MolSysMT", skip_digestion=False, **kwargs):
+    """Open signature whose admissible keywords depend on the engine."""
+    return sorted(kwargs)

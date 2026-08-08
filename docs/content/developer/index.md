@@ -6,6 +6,21 @@ itself.
 If your goal is to integrate ArgDigest into your own library, start in the
 [User section](../user/index.md).
 
+## What the library does
+
+ArgDigest covers two axes, plus the renaming that has to happen before either can judge
+anything:
+
+| | Question | Consumer declares |
+| --- | --- | --- |
+| **Normalization** | is this keyword an alias of a canonical name? | `AliasTable` |
+| **Axis 1 — function contract** | may this function receive this argument at all, and does it have what it needs? | `FunctionContract`, `Domain` |
+| **Axis 2 — value contract** | is this argument's value valid and in canonical form? | one digester per argument name |
+
+All three follow the same shape: the consumer declares data in a package it names, and
+ArgDigest owns discovery, resolution and diagnostics. See
+[Implementation Patterns](implementation-patterns.md), pattern 5.
+
 ## Developer Path
 
 1. [Contributing Workflow](contributing-workflow.md)

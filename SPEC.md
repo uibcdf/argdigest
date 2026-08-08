@@ -228,12 +228,27 @@ contract is declarative rather than an opaque callable: the accepted domain of a
 `**kwargs` function is invisible to `inspect.signature`, and this makes it readable
 again — for documentation, IDEs and agents.
 
-### Known gap
+### A domain that depends on another argument
 
-A **delegating** domain, whose admissible keywords depend on values resolved at call
-time (for example a converter chosen by a `to_form` argument), is not expressible: a
-`Domain` decides membership from the keyword alone. Such functions keep the permissive
-default.
+`Domain(depends_on=..., by_value=...)` declares the admissible set per value of another
+argument, keyed by one name or by a tuple of names. It stays data, so `describe_contract`
+renders the whole table. A value with no entry means "cannot decide", not "refuse": the
+argument carrying it is about to be rejected by its own digester.
+
+The key must be an argument, not a derivation. The table is consulted per call, so
+deciding the domain has to be cheap.
+
+### Known limit
+
+`by_value` keys on **arguments**, read directly from the call. A domain whose key must be
+*derived*, when the derivation is expensive, does not fit: consulting it per call would
+cost more than the check saves. Group the key so it stays cheap, and accept the wider
+union that follows, or leave the function permissive and record the measurement.
+
+`by_value` accepts any `Mapping`, so a table with hundreds of entries can compute itself
+lazily rather than being written out. A table derived from live signatures cannot go
+stale, but it can silently shrink if one of those signatures becomes unreadable, so it
+should be paired with a check that fails when that happens.
 
 ---
 

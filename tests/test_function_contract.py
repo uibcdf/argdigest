@@ -261,3 +261,86 @@ def test_argdigest_is_never_more_permissive_than_python():
 
     with pytest.raises(UnknownArgumentError):
         api.extract('s', bogus=1)
+
+
+# --- delegating domains: the admissible set depends on another argument ----------------
+
+def test_a_delegating_domain_needs_both_halves():
+    with pytest.raises(ValueError, match="depends_on"):
+        Domain(name="opts", by_value={"a": ("x",)})
+    with pytest.raises(ValueError, match="depends_on"):
+        Domain(name="opts", depends_on="engine")
+
+
+def test_a_domain_cannot_be_both_flat_and_delegating():
+    with pytest.raises(ValueError, match="both flat and delegating"):
+        Domain(name="opts", members=("x",), depends_on="engine", by_value={"a": ("x",)})
+
+
+def test_a_delegating_domain_refuses_a_context_free_membership_test():
+    # Answering without the call's arguments would mean inventing a verdict.
+    domain = Domain(name="opts", depends_on="engine", by_value={"A": ("x",)})
+    with pytest.raises(TypeError, match="needs the call's arguments"):
+        "x" in domain
+
+
+def test_the_admissible_set_follows_the_value():
+    domain = Domain(name="opts", depends_on="engine",
+                    by_value={"A": ("threshold", "parallel"), "B": ("threshold", "platform")})
+
+    assert domain.admits("parallel", {"engine": "A"}) is True
+    assert domain.admits("parallel", {"engine": "B"}) is False
+    assert domain.admits("platform", {"engine": "B"}) is True
+
+
+def test_an_unknown_value_cannot_decide_rather_than_refusing():
+    # The value itself is wrong and its own digester will say so. Refusing here would
+    # report an unknown argument when the real problem is the engine name.
+    domain = Domain(name="opts", depends_on="engine", by_value={"A": ("x",)})
+
+    assert domain.admits("x", {"engine": "does-not-exist"}) is None
+    assert domain.resolve_members({"engine": "does-not-exist"}) is None
+
+
+def test_several_dependencies_are_keyed_as_a_tuple():
+    domain = Domain(name="opts", depends_on=("from_form", "to_form"),
+                    by_value={("a", "b"): ("only_here",)})
+
+    assert domain.admits("only_here", {"from_form": "a", "to_form": "b"}) is True
+    assert domain.admits("only_here", {"from_form": "a", "to_form": "z"}) is None
+
+
+def test_an_unhashable_value_cannot_decide():
+    # A list can name no entry; that is a "cannot decide", not a crash.
+    domain = Domain(name="opts", depends_on="engine", by_value={"A": ("x",)})
+    assert domain.admits("x", {"engine": ["A"]}) is None
+
+
+def test_known_members_is_the_union_across_values():
+    # Used for near-miss suggestions when the call's own entry cannot be resolved.
+    domain = Domain(name="opts", depends_on="engine",
+                    by_value={"A": ("alpha",), "B": ("beta",)})
+    assert domain.known_members() == ("alpha", "beta")
+
+
+def test_a_delegating_domain_describes_its_table():
+    contract = FunctionContract(caller="pkg.compute", admits="opts")
+    domains = {"opts": Domain(name="opts", depends_on="engine",
+                              by_value={"A": ("alpha",)})}
+
+    described = describe_contract(contract, domains)["admitted_domains"][0]
+
+    assert described["depends_on"] == ("engine",)
+    assert described["by_value"] == {"A": ["alpha"]}
+
+
+def test_a_delegating_domain_reaches_the_call():
+    assert api.compute("s", engine="MolSysMT", parallel=True) == ["parallel"]
+    assert api.compute("s", engine="OpenMM", platform="CUDA") == ["platform"]
+    with pytest.raises(UnknownArgumentError, match="platform"):
+        api.compute("s", engine="MolSysMT", platform="CUDA")
+
+
+def test_an_unresolvable_value_defers_instead_of_refusing_at_the_call():
+    # The engine name is wrong; the contract steps aside so its digester can say that.
+    assert api.compute("s", engine="does-not-exist", platform="CUDA") == ["platform"]
