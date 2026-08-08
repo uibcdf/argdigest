@@ -106,7 +106,7 @@ def test_data_pipelines_extra_branches(monkeypatch):
         data_pipelines.to_numpy("bad", _ctx("arr"))
     monkeypatch.setattr(data_pipelines.np, "asarray", original_asarray)
 
-    if data_pipelines.HAS_PANDAS:
+    if data_pipelines.has_pandas():
         import pandas as pd
 
         df = pd.DataFrame({"a": [1]})

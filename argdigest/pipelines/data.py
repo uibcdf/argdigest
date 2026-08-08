@@ -12,11 +12,36 @@ try:
 except ImportError:
     HAS_NUMPY = False
 
-try:
-    import pandas as pd
-    HAS_PANDAS = True
-except ImportError:
-    HAS_PANDAS = False
+#: Pandas is heavy -- it pulls a large dependency tree of its own -- and only two
+#: pipelines need it. Importing it here made every consumer pay for it just by decorating
+#: a function, so it is loaded the first time a pipeline actually asks.
+pd = None
+
+
+def _pandas(ctx: Any = None):
+    """Return pandas, importing it on first use, or fail with the usual diagnostic."""
+
+    global pd
+
+    if pd is None:
+        try:
+            import pandas
+        except ImportError as error:
+            raise DigestTypeError(
+                "Optional dependency 'pandas' is not installed. Install it to use data "
+                "pipelines.",
+                context=ctx,
+            ) from error
+        pd = pandas
+    return pd
+
+
+def has_pandas():
+    """Whether pandas is available, without importing it."""
+
+    from importlib.util import find_spec
+
+    return pd is not None or find_spec('pandas') is not None
 
 
 def _require_numpy(ctx: Any = None):
@@ -27,12 +52,6 @@ def _require_numpy(ctx: Any = None):
         )
 
 
-def _require_pandas(ctx: Any = None):
-    if not HAS_PANDAS:
-        raise DigestTypeError(
-            "Optional dependency 'pandas' is not installed. Install it to use data pipelines.",
-            context=ctx,
-        )
 
 # --- Coercers ---
 
@@ -51,7 +70,7 @@ def to_numpy(value: Any, ctx: Any = None) -> Any:
 @register_pipeline(kind="data", name="to_dataframe")
 def to_dataframe(value: Any, ctx: Any = None) -> Any:
     """Coerces input to a pandas DataFrame."""
-    _require_pandas(ctx)
+    pd = _pandas(ctx)
     if isinstance(value, pd.DataFrame):
         return value
     try:
@@ -105,7 +124,7 @@ def is_dtype(dtype: Any) -> Callable[[Any, Any], Any]:
 def has_columns(columns: List[str]) -> Callable[[Any, Any], Any]:
     """Factory: Validates that a DataFrame has specific columns."""
     def pipeline_columns(value: Any, ctx: Any) -> Any:
-        _require_pandas(ctx)
+        pd = _pandas(ctx)
         if not isinstance(value, pd.DataFrame):
             # Try to coerce if it's not a dataframe? 
             # Better to be strict here and rely on to_dataframe pipeline if needed.
