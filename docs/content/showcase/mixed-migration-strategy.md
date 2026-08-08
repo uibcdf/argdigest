@@ -23,6 +23,10 @@ DIGESTION_SOURCE = [
 ]
 DIGESTION_STYLE = "auto"
 STRICTNESS = "warn"
+FUNCTION_SOURCE = "mylib._private.argdigest.function"
+DOMAIN_SOURCE = "mylib._private.argdigest.domain"
+NORMALIZATION_SOURCE = "mylib._private.argdigest.normalization"
+UNKNOWN_ARGUMENT = "error"
 ```
 
 ## Migration checkpoints
@@ -37,3 +41,6 @@ Exit mixed mode when:
 - digestion coverage is complete,
 - chosen target style is stable,
 - migration warnings are resolved in CI.
+
+4. Call with a mistyped keyword and confirm it is refused, not ignored. A closed
+   signature gives you this with nothing declared.

@@ -19,6 +19,10 @@ mylib/
 DIGESTION_SOURCE = "mylib._private.argdigest.argument"
 DIGESTION_STYLE = "package"
 STRICTNESS = "warn"
+FUNCTION_SOURCE = "mylib._private.argdigest.function"
+DOMAIN_SOURCE = "mylib._private.argdigest.domain"
+NORMALIZATION_SOURCE = "mylib._private.argdigest.normalization"
+UNKNOWN_ARGUMENT = "error"
 ```
 
 ## Decorated function
@@ -42,3 +46,5 @@ def get(molecular_system, element=None, selection=None, syntax=None):
 1. Call a function with valid input and confirm normalization.
 2. Call with invalid input and confirm digestion error with context.
 3. Call with aliases and confirm standardization behavior (if configured).
+4. Call with a mistyped keyword and confirm it is refused, not ignored. A closed
+   signature gives you this with nothing declared.

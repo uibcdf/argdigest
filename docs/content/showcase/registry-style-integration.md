@@ -30,6 +30,10 @@ ARGUMENT_DIGESTERS = {
 DIGESTION_SOURCE = "mylib._private.argdigest.registry"
 DIGESTION_STYLE = "registry"
 STRICTNESS = "error"
+FUNCTION_SOURCE = "mylib._private.argdigest.function"
+DOMAIN_SOURCE = "mylib._private.argdigest.domain"
+NORMALIZATION_SOURCE = "mylib._private.argdigest.normalization"
+UNKNOWN_ARGUMENT = "error"
 ```
 
 ## Decorated function
@@ -47,3 +51,6 @@ def select(selection=None, syntax="MolSysMT"):
 - Single discovery surface for all active digesters.
 - Easy audit of digestion coverage by argument name.
 - Good fit for medium-size APIs with centralized maintenance.
+
+4. Call with a mistyped keyword and confirm it is refused, not ignored. A closed
+   signature gives you this with nothing declared.

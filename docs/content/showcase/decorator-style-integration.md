@@ -32,7 +32,8 @@ def digest_syntax(syntax, caller=None):
 ## Decorated function
 
 ```python
-@arg_digest(digestion_style="decorator", strictness="error")
+@arg_digest(digestion_style="decorator", strictness="error",
+            unknown_argument="error")
 def get(molecular_system, selection=None, syntax="MolSysMT"):
     return molecular_system, selection, syntax
 ```
@@ -43,8 +44,17 @@ def get(molecular_system, selection=None, syntax="MolSysMT"):
 - Refactors are simple because digesters move with the function.
 - Plugin modules can register additional digesters without touching package registries.
 
+## The function contract is style-independent
+
+Digestion style decides how per-argument digesters are found. It says nothing about which
+arguments a function may receive, which is declared through `FUNCTION_SOURCE` whichever
+style you pick — and a closed signature needs no declaration at all.
+
 ## Smoke check
 
 1. call with `selection=None` and verify default normalization.
 2. call with explicit `syntax` and verify no warning/error noise.
 3. call with malformed values and verify catalog-backed digest errors.
+
+4. Call with a mistyped keyword and confirm it is refused, not ignored. A closed
+   signature gives you this with nothing declared.
