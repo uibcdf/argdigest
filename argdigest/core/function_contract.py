@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import difflib
 from dataclasses import dataclass, field
+from functools import lru_cache
 from fnmatch import fnmatchcase
 from typing import Any, Callable, Iterable, Sequence
 
@@ -94,6 +95,11 @@ class FunctionContract:
     def admits_anything(self) -> bool:
         return self.admits == ADMITS_ANY
 
+    def has_rules_beyond_admission(self) -> bool:
+        """Whether anything has to be checked even when no extra keyword was passed."""
+
+        return bool(self.requires_any_of or self.mutually_exclusive or self.co_required)
+
     def admitted_domains(self) -> tuple[str, ...]:
         """Domain names this contract admits beyond its own signature."""
 
@@ -114,6 +120,7 @@ class Violation:
     keyword: str | None = None
 
 
+@lru_cache(maxsize=None)
 def default_contract(caller: str, has_var_keyword: bool) -> FunctionContract:
     """The contract of a function that declared none.
 
@@ -144,6 +151,10 @@ class ContractRegistry:
     def __init__(self, contracts: Iterable[FunctionContract] = ()) -> None:
         self._exact: dict[str, FunctionContract] = {}
         self._patterns: list[FunctionContract] = []
+        # Resolution runs on every decorated call, and a caller that matches no pattern
+        # would otherwise walk the whole pattern list each time. `None` is memoized too:
+        # "nothing declared here" is the answer for most callers in a real library.
+        self._resolved: dict[str, FunctionContract | None] = {}
         for contract in contracts:
             self.add(contract)
 
@@ -153,15 +164,21 @@ class ContractRegistry:
         else:
             self._patterns.append(contract)
             self._patterns.sort(key=lambda item: len(item.caller_pattern or ""), reverse=True)
+        self._resolved.clear()
 
     def resolve(self, caller: str) -> FunctionContract | None:
+        try:
+            return self._resolved[caller]
+        except KeyError:
+            pass
         contract = self._exact.get(caller)
-        if contract is not None:
-            return contract
-        for candidate in self._patterns:
-            if fnmatchcase(caller, candidate.caller_pattern or ""):
-                return candidate
-        return None
+        if contract is None:
+            for candidate in self._patterns:
+                if fnmatchcase(caller, candidate.caller_pattern or ""):
+                    contract = candidate
+                    break
+        self._resolved[caller] = contract
+        return contract
 
     def declared_callers(self) -> tuple[str, ...]:
         return tuple(self._exact) + tuple(c.caller_pattern or "" for c in self._patterns)
@@ -206,12 +223,17 @@ def check_contract(
         ))
 
     if not contract.admits_anything():
-        vocabulary: list[str] = sorted(signature_parameters)
-        for domain in admitted_domains:
-            vocabulary.extend(domain.known_members())
+        vocabulary: list[str] | None = None
         for keyword in extras:
             if any(keyword in domain for domain in admitted_domains):
                 continue
+            # The vocabulary can run to hundreds of names, and it is needed only to
+            # suggest a near miss. Building it eagerly would charge every correct call
+            # for a hint that only a wrong one ever reads.
+            if vocabulary is None:
+                vocabulary = sorted(signature_parameters)
+                for domain in admitted_domains:
+                    vocabulary.extend(domain.known_members())
             violations.append(Violation(
                 kind="unknown_argument",
                 keyword=keyword,

@@ -193,133 +193,71 @@ def test_a_contract_describes_itself_as_data(domains):
     assert set(described["admitted_domains"][0]["members"]) == ATTRIBUTES
 
 
-# --- end to end through the decorator ---------------------------------------------------
+# --- end to end, through the real discovery path -------------------------------------
+#
+# These go through `tests/mock_axis_one`, a consumer package that declares both axes in
+# its own `_argdigest.py`. That is the path a real library uses; reaching into the
+# decorator's closure to inject a registry would test a route nobody travels.
 
-def _build(policy="error", contract=None, domain=None):
-    registry = ContractRegistry([contract] if contract is not None else [])
-    table = {domain.name: domain} if domain is not None else {}
-
-    def decorate(fn):
-        wrapped = arg_digest(digestion_source=None, digestion_style="package",
-                             strictness="ignore", unknown_argument=policy)(fn)
-        plan = wrapped.__wrapped__ if False else None  # keep linters quiet
-        _patch_plan(wrapped, registry, table)
-        return wrapped
-
-    return decorate
+from tests.mock_axis_one import api  # noqa: E402
 
 
-def _patch_plan(wrapped, registry, table):
-    """Reach the plan the decorator built, to inject declarations without a package."""
-    from argdigest.core.decorator import DigestionPlan
-
-    seen = []
-
-    def walk(fn, depth=0):
-        if depth > 4 or fn is None:
-            return
-        for cell in getattr(fn, "__closure__", None) or ():
-            try:
-                content = cell.cell_contents
-            except ValueError:
-                continue
-            if isinstance(content, DigestionPlan):
-                seen.append(content)
-            elif callable(content):
-                walk(content, depth + 1)
-
-    walk(wrapped)
-    assert seen, "could not reach the digestion plan"
-    for plan in seen:
-        plan.contracts = registry
-        plan.domains = table
+def test_a_closed_function_rejects_an_unknown_keyword():
+    assert api.extract('s', structure_indices=[0]) == [0]
+    with pytest.raises(UnknownArgumentError, match='structure_indeces'):
+        api.extract('s', structure_indeces=[0])
 
 
-@pytest.fixture()
-def attribute_domain():
-    return Domain(name="attribute", contains=lambda k: k in ATTRIBUTES,
-                  members=lambda: ATTRIBUTES)
+def test_the_rejection_suggests_the_intended_name():
+    with pytest.raises(UnknownArgumentError, match='structure_indices'):
+        api.extract('s', structure_indeces=[0])
 
 
-def test_a_closed_function_rejects_an_unknown_keyword(attribute_domain):
-    @_build(domain=attribute_domain)
-    def extract(molsys, selection="all", structure_indices="all"):
-        return structure_indices
-
-    assert extract("s", structure_indices=[0]) == [0]
-    with pytest.raises(UnknownArgumentError, match="structure_indeces"):
-        extract("s", structure_indeces=[0])
+def test_an_open_function_is_held_to_its_declared_domain():
+    assert api.get('s', n_atoms=True) == ['n_atoms']
+    with pytest.raises(UnknownArgumentError, match='n_atomss'):
+        api.get('s', n_atomss=True)
 
 
-def test_the_policy_can_downgrade_the_rejection_to_a_warning(attribute_domain):
-    @_build(policy="warn", domain=attribute_domain)
-    def extract(molsys, selection="all"):
-        return selection
-
-    with pytest.warns(FunctionContractWarning):
-        assert extract("s", bogus=1) == "all"
-
-
-def test_the_policy_can_silence_the_rejection(attribute_domain):
-    @_build(policy="ignore", domain=attribute_domain)
-    def extract(molsys, selection="all"):
-        return selection
-
-    with warnings.catch_warnings():
-        warnings.simplefilter("error", FunctionContractWarning)
-        assert extract("s", bogus=1) == "all"
-
-
-def test_an_open_function_is_held_to_its_declared_domain(attribute_domain):
-    contract = FunctionContract(caller="tests.test_function_contract.get",
-                                admits="attribute", requires_any_of="attribute")
-
-    @_build(contract=contract, domain=attribute_domain)
-    def get(molsys, element="atom", **kwargs):
-        return sorted(kwargs)
-
-    assert get("s", n_atoms=True) == ["n_atoms"]
-    with pytest.raises(UnknownArgumentError, match="n_atomss"):
-        get("s", n_atomss=True)
+def test_a_declared_requirement_is_enforced():
+    assert api.measure('s', n_bonds=True) == ['n_bonds']
     with pytest.raises(MissingArgumentError):
-        get("s")
+        api.measure('s')
 
 
-def test_an_unregistered_domain_always_raises_whatever_the_policy(attribute_domain):
-    # A contract pointing at a domain nobody registered is a declaration bug in the
-    # consumer library. Tolerating it would silently disable the check it declares.
-    contract = FunctionContract(caller="tests.test_function_contract.get",
-                                admits="nonexistent")
-
-    @_build(policy="ignore", contract=contract, domain=attribute_domain)
-    def get(molsys, **kwargs):
-        return sorted(kwargs)
-
-    with pytest.raises(FunctionContractError, match="nonexistent"):
-        get("s", anything=True)
+def test_a_family_pattern_covers_a_function_with_no_exact_contract():
+    assert api.to_file_pdb('s', path='out.pdb') == 'out.pdb'
+    with pytest.raises(UnknownArgumentError, match='pathh'):
+        api.to_file_pdb('s', pathh='out.pdb')
 
 
-def test_argdigest_is_never_more_permissive_than_python(attribute_domain):
+def test_mutually_exclusive_arguments_are_refused_at_the_call():
+    assert api.pick('s', by_name='x') == 'x'
+    with pytest.raises(ArgumentConsistencyError):
+        api.pick('s', by_name='x', by_index=1)
+
+
+def test_an_open_function_without_a_declared_domain_still_admits_anything():
+    # The documented default. A library is never broken by a domain it has not written.
+    assert api.wide_open('s', anything=1) == ['anything']
+
+
+def test_skip_digestion_bypasses_the_contract_and_python_catches_it_instead():
+    # The escape hatch escapes both axes, as it must to stay an escape hatch. What it
+    # cannot do is make the call *less* safe than an undecorated function: with the
+    # contract skipped, the keyword reaches Python and Python refuses it.
+    assert api.extract('s', structure_indices=[0], skip_digestion=True) == [0]
+    with pytest.raises(TypeError, match='structure_indeces'):
+        api.extract('s', structure_indeces=[0], skip_digestion=True)
+
+
+def test_argdigest_is_never_more_permissive_than_python():
     # The property the whole axis exists to restore.
-    def plain(molsys, selection="all"):
+    def plain(molsys, selection='all'):
         return selection
 
     with pytest.raises(TypeError):
-        plain("s", bogus=1)
+        plain('s', bogus=1)
 
-    decorated = _build(domain=attribute_domain)(plain)
     with pytest.raises(UnknownArgumentError):
-        decorated("s", bogus=1)
-
-
-def test_consistency_rules_reach_the_call(attribute_domain):
-    contract = FunctionContract(caller="tests.test_function_contract.pick",
-                                mutually_exclusive=[("by_name", "by_index")])
-
-    @_build(contract=contract, domain=attribute_domain)
-    def pick(molsys, by_name=None, by_index=None):
-        return by_name or by_index
-
-    assert pick("s", by_name="x") == "x"
-    with pytest.raises(ArgumentConsistencyError):
-        pick("s", by_name="x", by_index=1)
+        api.extract('s', bogus=1)

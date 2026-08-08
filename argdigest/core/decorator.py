@@ -107,6 +107,8 @@ class DigestionPlan:
     contracts: "ContractRegistry | None" = None
     domains: dict[str, Any] = field(default_factory=dict)
     unknown_argument: str = "error"
+    # Precomputed once per decorated function; rebuilding it per call was measurable.
+    signature_parameter_names: frozenset[str] = field(default_factory=frozenset)
 
 
 def _hashable_source(source: Any) -> Any:
@@ -142,12 +144,22 @@ def _enforce_function_contract(plan: "DigestionPlan", caller: str, fn: Callable[
     if contract is None:
         contract = default_contract(caller, plan.var_keyword_name is not None)
 
-    signature_parameters = set(plan.signature.parameters)
-    signature_parameters.discard(plan.var_keyword_name)
+    signature_parameters = plan.signature_parameter_names
+    candidate_extras = list(extras)
+    if plan.var_keyword_name is not None:
+        # Only a function declaring **kwargs can carry extras inside `bound`; for a closed
+        # signature they were already set aside by bind_arguments, so scanning `bound`
+        # would be a guaranteed-empty pass over every argument on every call.
+        candidate_extras.extend(name for name in bound if name not in signature_parameters)
+
+    # The overwhelmingly common call is a correct one to a closed signature: no extra
+    # keyword, and a contract with nothing else to assert. There is then nothing that
+    # could be violated, so the stage costs one lookup and returns.
+    if not candidate_extras and not contract.has_rules_beyond_admission():
+        return
 
     defaulted = signature_parameters - supplied
     present = (set(bound) | set(extras)) - defaulted
-    candidate_extras = list(extras) + [name for name in bound if name not in signature_parameters]
 
     violations = check_contract(
         contract, caller, signature_parameters, candidate_extras, plan.domains, present)
@@ -304,6 +316,8 @@ def arg_digest(
             contracts=contracts,
             domains=domains,
             unknown_argument=eff_unknown_argument,
+            signature_parameter_names=frozenset(
+                name for name in signature.parameters if name != var_keyword_name),
         )
 
         @wraps(fn)
