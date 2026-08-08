@@ -11,17 +11,46 @@ the full User Guide for rationale and migration details.
 mylib/
   _argdigest.py
   basic.py
-  _private/digestion/argument/
-    selection.py
+  _private/argdigest/
+    argument/          # axis 2: one module per argument name
+      selection.py
+    function/          # axis 1: one module per function or family
+      get.py
+    domain/            # axis 1: named sets of admissible keywords
+      attribute.py
 ```
 
 ## `_argdigest.py`
 
 ```python
-DIGESTION_SOURCE = "mylib._private.digestion.argument"
+DIGESTION_SOURCE = "mylib._private.argdigest.argument"
 DIGESTION_STYLE = "package"
 STRICTNESS = "warn"
 SKIP_PARAM = "skip_digestion"
+
+FUNCTION_SOURCE = "mylib._private.argdigest.function"
+DOMAIN_SOURCE = "mylib._private.argdigest.domain"
+UNKNOWN_ARGUMENT = "error"
+```
+
+## Contract file (only for functions taking `**kwargs`)
+
+```python
+from argdigest import FunctionContract
+
+contract = FunctionContract(caller="mylib.basic.get.get", admits="attribute")
+```
+
+A closed signature needs no file: it is held to its own parameters automatically.
+
+## Domain file
+
+```python
+from argdigest import Domain
+from mylib.attribute import attributes, is_attribute
+
+domain = Domain(name="attribute", contains=is_attribute,
+                members=lambda: tuple(attributes))
 ```
 
 ## Digester file

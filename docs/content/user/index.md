@@ -6,6 +6,11 @@ ArgDigest into their own libraries.
 If you follow the pages in order, you will move from a first working setup to
 production-ready integration patterns.
 
+A complete integration declares **two axes**: what each function accepts and requires
+(`FunctionContract`, `Domain`), and what each argument's value must be (one digester per
+argument name). An integration that covers only the second leaves every `**kwargs`
+function admitting anything.
+
 The main audience is library integrators, but this section also includes one
 page for end users who consume libraries that already integrate ArgDigest.
 

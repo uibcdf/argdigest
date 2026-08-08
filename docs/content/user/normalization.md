@@ -32,7 +32,7 @@ Normalization runs before any argument digester.
 ## Recommended modular layout
 
 ```text
-mylib/_private/digestion/normalization/
+mylib/_private/argdigest/normalization/
   aliases.py
   caller_rules.py
   dynamic_rules.py

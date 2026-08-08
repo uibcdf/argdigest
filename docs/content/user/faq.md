@@ -10,6 +10,28 @@ Choose the one that fits your library architecture.
 It is strongly recommended. It centralizes defaults and avoids repeating
 decorator arguments throughout the codebase.
 
+## Do I have to declare a contract for every function?
+
+No. A closed signature already declares its own domain, so ArgDigest holds it to its own
+parameters with no declaration at all. Only a function taking `**kwargs` needs one: it
+opened its door deliberately and ArgDigest cannot guess what it meant, so it admits
+anything until you say otherwise.
+
+## Why does a typo now raise instead of being ignored?
+
+Because the alternative is worse. A discarded keyword means the call runs with the
+default and returns a well-formed, wrong answer, and nothing in the result reveals it.
+ArgDigest also should never end up more permissive than Python, which already raises
+`TypeError` for an unexpected keyword. Set `UNKNOWN_ARGUMENT = "warn"` while migrating an
+existing codebase.
+
+## My function legitimately takes many keywords. Must I list them all?
+
+No — declare a `Domain` pointing at whatever already defines them in your library. If the
+names live in a catalogue, the domain reads that catalogue, so the two cannot drift
+apart. It also makes those names readable from outside, which `inspect.signature` cannot
+show.
+
 ## Can I combine digesters and pipelines?
 
 Yes. Digestion runs first; pipelines run after digestion on updated values.

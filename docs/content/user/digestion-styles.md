@@ -1,5 +1,9 @@
 # Digestion Styles
 
+The style choice concerns **axis 2** only: how per-argument digesters are discovered.
+The function argument contract is style-independent — contracts and domains are always
+declared through `FUNCTION_SOURCE` and `DOMAIN_SOURCE`, whichever style you pick.
+
 ArgDigest supports multiple discovery styles so each library can keep its own
 architecture.
 
@@ -8,7 +12,7 @@ architecture.
 Digesters are discovered from a package with one module per argument:
 
 ```text
-mylib/_private/digestion/argument/
+mylib/_private/argdigest/argument/
   selection.py      -> digest_selection(...)
   syntax.py         -> digest_syntax(...)
 ```
@@ -25,7 +29,7 @@ because each argument has a clear home and ownership is naturally distributed.
 Digesters are collected in a dictionary mapping argument name to function:
 
 ```python
-# mylib/_private/digestion/registry.py
+# mylib/_private/argdigest/registry.py
 ARGUMENT_DIGESTERS = {
     "selection": digest_selection,
     "syntax": digest_syntax,

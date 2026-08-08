@@ -18,8 +18,8 @@ Mixed mode allows gradual migration with minimal disruption.
 
 ```python
 DIGESTION_SOURCE = [
-    "mylib._private.digestion.registry",
-    "mylib._private.digestion.argument",
+    "mylib._private.argdigest.registry",
+    "mylib._private.argdigest.argument",
 ]
 DIGESTION_STYLE = "auto"
 STRICTNESS = "warn"

@@ -11,7 +11,9 @@ Treat these as public API:
 - `register_pipeline`
 - `get_pipelines`
 - `DigestConfig`
-- documented error classes
+- `FunctionContract`, `Domain`, `describe_contract`
+- documented error classes, including `FunctionContractError` and its subclasses
+  `UnknownArgumentError`, `MissingArgumentError` and `ArgumentConsistencyError`
 - documented config behavior
 
 The exported surface is anchored by `argdigest.__all__` and protected by

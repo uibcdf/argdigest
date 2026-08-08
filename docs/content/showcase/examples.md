@@ -6,12 +6,12 @@ They are intended for manual smoke tests and documentation support.
 ## PackLib (package discovery)
 
 `packlib` demonstrates the **package** discovery style, where digesters live in
-`_private/digestion/argument/` and are named `digest_<argument>`.
+`_private/argdigest/argument/` and are named `digest_<argument>`.
 
 Key pieces:
 
 - `examples/packlib/basic.py` uses `@arg_digest(config="packlib._argdigest")` to keep defaults in one place.
-- `examples/packlib/_private/digestion/normalization/` shows a modular standardizer design
+- `examples/packlib/_private/argdigest/normalization/` shows a modular standardizer design
   that supports both declarative aliases and dynamic rules.
 
 Example dynamic rule (from `dynamic_rules.py`):
@@ -56,7 +56,7 @@ module exposing `ARGUMENT_DIGESTERS`.
 
 Key pieces:
 
-- `examples/reglib/_private/digestion/registry.py` defines the mapping.
+- `examples/reglib/_private/argdigest/registry.py` defines the mapping.
 - `examples/reglib/basic.py` shows dual mode (argument digestion + pipelines) with `@arg_digest(config="reglib._argdigest")`.
 
 ## Notebooks

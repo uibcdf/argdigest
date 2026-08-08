@@ -1,6 +1,16 @@
 # Strictness and Errors
 
-ArgDigest can warn, fail, or ignore when an argument has no digester.
+ArgDigest has **two** policies, for two different mistakes:
+
+| Policy | Fires when | Whose mistake | Default |
+| --- | --- | --- | --- |
+| `strictness` | a declared parameter has no digester | the library author | `warn` |
+| `unknown_argument` | a keyword is outside the function's contract | whoever made the call | `error` |
+
+They are deliberately separate. A missing digester is a to-do for you and can wait behind
+a warning. A keyword nobody declared is a caller's typo, and a warning is not enough for
+it: warnings are routinely filtered off exactly where users read output, and the call
+would then run with the default and hand back a plausible wrong answer.
 
 ## Strictness modes
 
@@ -24,6 +34,19 @@ def get(...):
     ...
 ```
 
+## The `unknown_argument` policy
+
+```python
+@arg_digest(unknown_argument="warn")   # error | warn | ignore
+def get(...):
+    ...
+```
+
+`error` is the default because **ArgDigest must never end up more permissive than the
+language it wraps**: plain Python already raises `TypeError` for an unexpected keyword,
+and a decorated function must not start accepting one. Use `warn` while cleaning up an
+existing codebase, and `ignore` only to reproduce the pre-`0.10.0` behaviour.
+
 ## Core exception model
 
 Main error types:
@@ -33,8 +56,15 @@ Main error types:
 - `DigestInvariantError`,
 - `DigestNotDigestedError`.
 
+Function contract errors, all deriving from `FunctionContractError`:
+- `UnknownArgumentError` — an argument the function does not accept, with a near-miss
+  suggestion when one is close;
+- `MissingArgumentError` — a call satisfying no required argument group;
+- `ArgumentConsistencyError` — mutually exclusive or co-required arguments misused.
+
 Warnings:
-- `DigestNotDigestedWarning`.
+- `DigestNotDigestedWarning`,
+- `FunctionContractWarning` — the contract errors above, when `unknown_argument="warn"`.
 
 ## Error context
 

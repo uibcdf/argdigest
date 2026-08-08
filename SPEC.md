@@ -282,7 +282,7 @@ def calculate_area(surface):
 ```
 
 ### Argument-Centric (Package Style)
-File: `mylib/_private/digestion.py`
+File: `mylib/_private/argdigest.py`
 ```python
 def digest_volume(volume, caller=None):
     return float(volume)
@@ -290,7 +290,7 @@ def digest_volume(volume, caller=None):
 
 File: `mylib/api.py`
 ```python
-@arg_digest(digestion_source="mylib._private.digestion", digestion_style="package")
+@arg_digest(digestion_source="mylib._private.argdigest", digestion_style="package")
 def compute(volume):
     # volume is guaranteed to be float here
     ...

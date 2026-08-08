@@ -7,7 +7,7 @@ Use this pattern when you want one digestion module per argument.
 ```text
 mylib/
   _argdigest.py
-  _private/digestion/argument/
+  _private/argdigest/argument/
     selection.py
     syntax.py
     element.py
@@ -16,7 +16,7 @@ mylib/
 ## `_argdigest.py`
 
 ```python
-DIGESTION_SOURCE = "mylib._private.digestion.argument"
+DIGESTION_SOURCE = "mylib._private.argdigest.argument"
 DIGESTION_STYLE = "package"
 STRICTNESS = "warn"
 ```

@@ -1,6 +1,14 @@
 # Migration: warn to error
 
-This page defines a practical path from permissive to strict digestion.
+This page defines a practical path from permissive to strict digestion, for the
+`strictness` policy — the one about **missing digesters**.
+
+The other policy, `unknown_argument`, migrates the other way round: it already defaults
+to `error`, because ArgDigest must not be more permissive than Python. If an existing
+codebase relies on extra keywords being tolerated, set `UNKNOWN_ARGUMENT = "warn"`, clean
+up what it reports, and return to `error`. Do not settle at `warn`: a warning about a
+typo is filtered off exactly where users read output, and the call still runs with the
+default.
 
 ## Stage 1: `strictness="warn"`
 

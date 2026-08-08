@@ -13,15 +13,38 @@ ArgDigest supports three configuration levels. Use them in this precedence order
 ```python
 # mylib/_argdigest.py
 
-DIGESTION_SOURCE = "mylib._private.digestion.argument"
+# Axis 2 -- the value contract of each argument.
+DIGESTION_SOURCE = "mylib._private.argdigest.argument"
 DIGESTION_STYLE = "package"  # package | registry | decorator | auto
-STANDARDIZER = "mylib._private.digestion.normalization.standardizer:argument_names_standardization"
+STANDARDIZER = "mylib._private.argdigest.argument_names_standardization:argument_names_standardization"
 STRICTNESS = "warn"          # warn | error | ignore
 SKIP_PARAM = "skip_digestion"
+
+# Axis 1 -- the argument contract of each function.
+FUNCTION_SOURCE = "mylib._private.argdigest.function"
+DOMAIN_SOURCE = "mylib._private.argdigest.domain"
+UNKNOWN_ARGUMENT = "error"   # error | warn | ignore
 ```
 
-`STRICTNESS` also accepts aliases: `raise` -> `error`, `warning` -> `warn`,
+Both policies accept the same aliases: `raise` -> `error`, `warning` -> `warn`,
 `silent`/`none` -> `ignore`.
+
+### The two policies are not the same knob
+
+| | Fires when | Who made the mistake | Default |
+| --- | --- | --- | --- |
+| `STRICTNESS` | a declared parameter has no digester | the library author | `warn` |
+| `UNKNOWN_ARGUMENT` | a keyword is outside the function's contract | whoever made the call | `error` |
+
+A missing digester is a to-do for you, so a warning is right. A keyword nobody declared
+is a caller's typo, and warning is not enough: warnings are routinely filtered off
+exactly where users read output, and the call would then run with the default and return
+a plausible wrong answer.
+
+`FUNCTION_SOURCE` and `DOMAIN_SOURCE` are optional. Without them every closed signature
+is still held to its own parameters -- ArgDigest never ends up more permissive than
+Python -- and only functions taking `**kwargs` stay unconstrained until you declare the
+domain their keywords come from.
 
 ## Using config in decorators
 
@@ -41,7 +64,7 @@ You can set defaults programmatically at import time:
 import argdigest.config
 
 argdigest.config.set_defaults(
-    digestion_source="mylib._private.digestion.argument",
+    digestion_source="mylib._private.argdigest.argument",
     digestion_style="package",
     strictness="warn",
 )

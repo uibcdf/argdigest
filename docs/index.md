@@ -45,7 +45,7 @@ without forcing a single internal architecture.
 from argdigest import arg_digest
 
 @arg_digest(
-    digestion_source="mylib._private.digestion.argument",
+    digestion_source="mylib._private.argdigest.argument",
     digestion_style="package",
     strictness="warn",
 )

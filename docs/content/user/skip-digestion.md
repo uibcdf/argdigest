@@ -47,3 +47,10 @@ silently as digestion logic evolves.
 ## Next
 
 Continue with [Pipeline Design Patterns](pipeline-design.md).
+
+## It bypasses both axes
+
+`skip_digestion=True` skips the function contract as well as the digesters. That is what
+makes it an escape hatch, and it does not make the call less safe than an undecorated
+function: with the contract skipped, an unexpected keyword reaches Python, which refuses
+it with its own `TypeError`.

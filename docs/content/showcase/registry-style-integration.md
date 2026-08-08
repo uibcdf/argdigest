@@ -7,7 +7,7 @@ Use this pattern when your team prefers a central explicit map.
 ```text
 mylib/
   _argdigest.py
-  _private/digestion/
+  _private/argdigest/
     registry.py
     digesters.py
 ```
@@ -15,7 +15,7 @@ mylib/
 ## Registry module
 
 ```python
-# mylib/_private/digestion/registry.py
+# mylib/_private/argdigest/registry.py
 from .digesters import digest_selection, digest_syntax
 
 ARGUMENT_DIGESTERS = {
@@ -27,7 +27,7 @@ ARGUMENT_DIGESTERS = {
 ## `_argdigest.py`
 
 ```python
-DIGESTION_SOURCE = "mylib._private.digestion.registry"
+DIGESTION_SOURCE = "mylib._private.argdigest.registry"
 DIGESTION_STYLE = "registry"
 STRICTNESS = "error"
 ```

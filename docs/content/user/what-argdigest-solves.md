@@ -6,16 +6,26 @@ API boundaries.
 ## What ArgDigest does
 
 ArgDigest gives you a dedicated layer where argument behavior is defined once and
-reused everywhere. In practice, this means you can normalize names before
-validation, digest values with explicit per-argument functions, and compose
-reusable validation/coercion rules with pipelines. It also gives you explicit
-policy control for missing digesters (`warn`, `error`, `ignore`) and structured
-errors with contextual information for debugging and support.
+reused everywhere, along **two axes**.
+
+*Given an argument name, is its value valid and in canonical form?* You normalize names
+before validation, digest values with explicit per-argument functions, and compose
+reusable validation and coercion rules with pipelines.
+
+*May this function receive this argument at all, and does it have what it needs?* You
+declare a contract per function: which keywords it admits, which it requires, and which
+exclude each other. Without this, a mistyped keyword is silently discarded, the call runs
+with the default, and the caller receives a plausible wrong answer — the worst failure
+mode a scientific library can have, because nothing in the result looks wrong.
+
+Both axes come with explicit policy control (`warn`, `error`, `ignore`) and structured
+errors carrying contextual information for debugging and support.
 
 ## What ArgDigest does not do
 
 ArgDigest does not replace your domain model or make scientific decisions for
-your library. It does not force a single package layout either, and it is not a
+your library. It cannot guess what a function taking `**kwargs` meant to accept, which is
+why that one case has to be declared while a closed signature is covered for free. It does not force a single package layout either, and it is not a
 substitute for thoughtful API design and testing. Its role is narrower and more
 practical: make argument handling coherent and maintainable.
 

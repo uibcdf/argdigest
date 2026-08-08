@@ -58,3 +58,19 @@ quickly.
 Run the [Production Checklist](production-checklist.md) before release.
 For user-facing message interpretation, see
 [For End Users of Integrating Libraries](end-users.md).
+
+## `UnknownArgumentError`: the function does not accept that argument
+
+Usually a typo, and the message suggests the intended name when one is close. If the
+argument is legitimate, the function's contract needs widening: a closed signature must
+declare the parameter, and a function taking `**kwargs` must admit the domain the keyword
+belongs to.
+
+If it appears after upgrading, the call was probably always wrong — earlier versions
+discarded the keyword silently and ran with the default.
+
+## `MissingArgumentError` / `ArgumentConsistencyError`
+
+The call satisfies no required argument group, or it combines arguments that exclude each
+other. Both come from a `FunctionContract`, so the rule is declared in the library's
+`FUNCTION_SOURCE` package rather than buried in the function body.

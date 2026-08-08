@@ -26,7 +26,7 @@ python -m pip install --no-deps --editable .
 Create a digester module in your library:
 
 ```python
-# mylib/_private/digestion/argument/selection.py
+# mylib/_private/argdigest/argument/selection.py
 def digest_selection(selection, caller=None, syntax=None):
     if selection is None:
         return "all"
@@ -39,7 +39,7 @@ def digest_selection(selection, caller=None, syntax=None):
 
 ```python
 # mylib/_argdigest.py
-DIGESTION_SOURCE = "mylib._private.digestion.argument"
+DIGESTION_SOURCE = "mylib._private.argdigest.argument"
 DIGESTION_STYLE = "package"
 STRICTNESS = "warn"
 SKIP_PARAM = "skip_digestion"
@@ -60,9 +60,41 @@ def get(molecular_system, selection=None, syntax="MolSysMT"):
 
 ## 5. Validate behavior
 
-Run two quick checks: `get(..., selection=None)` should produce
-`selection="all"`, and `get(..., selection=10)` should fail with a digestion
-error. This confirms both normalization and failure behavior are wired.
+Run three quick checks:
+
+- `get(..., selection=None)` produces `selection="all"` — normalization works;
+- `get(..., selection=10)` fails with a digestion error — the value contract works;
+- `get(..., selectionn="all")` fails with `UnknownArgumentError`, suggesting `selection`
+  — the **function** contract works, and it needed no declaration at all.
+
+That third check is the one people do not expect. `get` has a closed signature, so
+ArgDigest holds it to its own parameters automatically: a mistyped keyword is refused
+instead of being silently discarded and the call running with the default.
+
+## 6. Declare a domain, if a function takes `**kwargs`
+
+A function with `**kwargs` opened its door on purpose, and ArgDigest cannot guess what it
+meant, so it admits anything until you say otherwise:
+
+```python
+# mylib/_private/argdigest/domain/attribute.py
+from argdigest import Domain
+from mylib.attribute import attributes, is_attribute
+
+domain = Domain(name="attribute", contains=is_attribute,
+                members=lambda: tuple(attributes))
+```
+
+```python
+# mylib/_private/argdigest/function/get.py
+from argdigest import FunctionContract
+
+contract = FunctionContract(caller="mylib.basic.get.get", admits="attribute")
+```
+
+Then add `FUNCTION_SOURCE`, `DOMAIN_SOURCE` and `UNKNOWN_ARGUMENT` to `_argdigest.py`.
+Pointing the domain at your library's own catalogue, rather than copying names into a
+list, is what keeps the two from drifting apart.
 
 ## Common mistakes
 
@@ -74,6 +106,7 @@ or strict behavior is assumed without configuring it explicitly.
 
 - the decorated function runs with normalized arguments,
 - invalid inputs fail with actionable errors,
+- a mistyped keyword is refused rather than ignored,
 - your library does not need custom digestion logic inside business functions.
 
 ## Next

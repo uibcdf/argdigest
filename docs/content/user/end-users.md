@@ -6,6 +6,24 @@ normal workflows.
 
 This page explains how to interpret those messages and what to do next.
 
+## Two kinds of message
+
+Some messages are about a **value**: the argument exists, but what you passed is not
+valid or not in the expected form.
+
+Others are about the **argument itself**: the function does not accept it, or the call is
+missing something it needs. These usually mean a typo, and the message normally suggests
+the intended name:
+
+```
+UnknownArgumentError: 'mylib.basic.get.get' does not accept the argument 'n_atomss'.
+Did you mean 'n_atoms'?
+```
+
+If you see this after upgrading a library, the call was probably always wrong: earlier
+versions discarded the unknown keyword in silence, ran with the default, and returned a
+result that looked fine. It is worth re-checking any analysis that depended on it.
+
 ## What these messages usually mean
 
 When an input is invalid or ambiguous, ArgDigest-based validation often reports:

@@ -9,8 +9,8 @@ Auto mode allows combining sources, for example:
 ```python
 @arg_digest(
     digestion_source=[
-        "mylib._private.digestion.registry",
-        "mylib._private.digestion.argument",
+        "mylib._private.argdigest.registry",
+        "mylib._private.argdigest.argument",
     ],
     digestion_style="auto",
 )

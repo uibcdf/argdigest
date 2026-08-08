@@ -7,7 +7,7 @@ Each scenario targets a different digestion architecture.
 
 | Showcase | What you will find |
 |---|---|
-| [Package Style Integration](package-style-integration.md) | One-file-per-argument digestion in `_private/digestion/argument`, plus `_argdigest.py` defaults. |
+| [Package Style Integration](package-style-integration.md) | One-file-per-argument digestion in `_private/argdigest/argument`, plus `_argdigest.py` defaults. |
 | [Registry Style Integration](registry-style-integration.md) | Central `argument -> digester` mapping for teams that prefer explicit indexing. |
 | [Decorator Style Integration](decorator-style-integration.md) | Co-located digesters for compact modules and plugin-driven extension points. |
 | [Mixed Migration Strategy](mixed-migration-strategy.md) | Incremental rollout combining discovery styles while migrating legacy code. |
