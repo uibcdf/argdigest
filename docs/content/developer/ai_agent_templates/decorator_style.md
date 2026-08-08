@@ -22,6 +22,7 @@ SKIP_PARAM = "skip_digestion"
 FUNCTION_SOURCE = "my_lib._private.argdigest.function"
 DOMAIN_SOURCE = "my_lib._private.argdigest.domain"
 UNKNOWN_ARGUMENT = "error"
+NORMALIZATION_SOURCE = "my_lib._private.argdigest.normalization"
 ```
 
 ## Programmatic config alternative (`my_lib/__init__.py`)
@@ -87,6 +88,23 @@ Point the domain at the library's own source of truth rather than copying names,
 two cannot drift apart. A contract may also declare `requires_any_of`,
 `mutually_exclusive` and `co_required`, and `caller_pattern` covers a family of functions
 that share one contract.
+
+## Declaring argument-name aliases
+
+If the library should accept alternative names, declare them as data rather than renaming
+by hand:
+
+```python
+# my_lib/_private/argdigest/normalization/synonyms.py
+from argdigest import AliasTable
+
+table = AliasTable(aliases={"residue_index": "group_index"})
+```
+
+Scope with `applies_to` when the alias only holds for one function or family, and guard
+with `when={"element": "atom"}` when it depends on another argument of the same call.
+Aliases are applied before the function contract, so declaring a contract never breaks
+them.
 
 ## Notes
 - This style avoids a fixed directory layout, but you must import the modules that

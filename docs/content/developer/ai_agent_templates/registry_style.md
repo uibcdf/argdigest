@@ -24,6 +24,7 @@ SKIP_PARAM = "skip_digestion"
 FUNCTION_SOURCE = "my_lib._private.argdigest.function"
 DOMAIN_SOURCE = "my_lib._private.argdigest.domain"
 UNKNOWN_ARGUMENT = "error"
+NORMALIZATION_SOURCE = "my_lib._private.argdigest.normalization"
 ```
 
 ## Programmatic config alternative (`my_lib/__init__.py`)

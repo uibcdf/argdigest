@@ -8,3 +8,5 @@ STRICTNESS = "ignore"
 FUNCTION_SOURCE = "tests.mock_axis_one._private.digestion.function"
 DOMAIN_SOURCE = "tests.mock_axis_one._private.digestion.domain"
 UNKNOWN_ARGUMENT = "error"
+
+NORMALIZATION_SOURCE = "tests.mock_axis_one._private.digestion.normalization"

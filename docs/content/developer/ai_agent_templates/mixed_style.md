@@ -21,6 +21,9 @@ my_lib/
       domain/
         __init__.py
         attribute.py
+      normalization/
+        __init__.py
+        synonyms.py
   pipelines/
     __init__.py
     base.py
@@ -35,6 +38,7 @@ SKIP_PARAM = "skip_digestion"
 FUNCTION_SOURCE = "my_lib._private.argdigest.function"
 DOMAIN_SOURCE = "my_lib._private.argdigest.domain"
 UNKNOWN_ARGUMENT = "error"
+NORMALIZATION_SOURCE = "my_lib._private.argdigest.normalization"
 ```
 
 ## Pipeline example (`pipelines/base.py`)

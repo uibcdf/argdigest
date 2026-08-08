@@ -33,4 +33,7 @@ signatures.
    MissingArgumentError
    ArgumentConsistencyError
    describe_contract
+   AliasTable
+   describe_normalization
+   StandardizerContractError
 ```

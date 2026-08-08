@@ -73,3 +73,32 @@ def test_a_library_declaring_nothing_is_told_what_that_means():
 
 def test_unloadable_declarations_are_reported_rather_than_hidden():
     assert "could not be loaded" in _render_axis_one(None, {})
+
+
+# --- declared aliases in the generated instructions ------------------------------------
+
+def test_declared_aliases_are_rendered():
+    from argdigest import AliasTable
+    from argdigest.core.agent_docs import _render_normalization
+    from argdigest.core.normalization import NormalizationRegistry
+
+    registry = NormalizationRegistry([
+        AliasTable(aliases={"residue_index": "group_index"}),
+        AliasTable(applies_to="pkg.get", when={"element": "atom"},
+                   aliases={"name": "atom_name"}),
+    ])
+
+    rendered = _render_normalization(registry)
+
+    assert "`*`" in rendered
+    assert "`pkg.get`" in rendered
+    assert "element='atom'" in rendered
+
+
+def test_a_library_declaring_no_alias_is_told_what_that_means():
+    from argdigest.core.agent_docs import _render_normalization
+    from argdigest.core.normalization import NormalizationRegistry
+
+    rendered = _render_normalization(NormalizationRegistry())
+
+    assert "canonical argument names" in rendered

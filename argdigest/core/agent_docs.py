@@ -6,13 +6,32 @@ import os
 import importlib
 from .config import resolve_config
 from .function_contract import describe_contract
-from .function_loader import load_domains, load_function_contracts
+from .function_loader import load_domains, load_function_contracts, load_normalization
+from .normalization import describe_normalization
 
 
 def _hashable(source):
     """lru_cache keys must be hashable; a list of sources becomes a tuple."""
 
     return tuple(source) if isinstance(source, list) else source
+
+
+def _render_normalization(registry) -> str:
+    """Render the declared aliases so an agent can see what names already exist."""
+
+    if registry is None:
+        return "_Alias declarations could not be loaded._"
+    described = describe_normalization(registry)
+    if not described:
+        return ("_No alias declared. Users must type the canonical argument names "
+                "exactly._")
+
+    lines = ["| Applies to | When | Aliases |", "| --- | --- | ---: |"]
+    for entry in described:
+        when = "" if entry["when"] is None else ", ".join(
+            f"{k}={v!r}" for k, v in entry["when"].items())
+        lines.append(f"| `{entry['applies_to']}` | {when} | {len(entry['aliases'])} |")
+    return "\n".join(lines)
 
 
 def _render_axis_one(contracts, domains) -> str:
@@ -76,8 +95,9 @@ def generate_agent_docs(module_name: str, output_file: str = "ARG_DIGEST_AGENTS.
     try:
         contracts = load_function_contracts(_hashable(cfg.function_source))
         domains = load_domains(_hashable(cfg.domain_source))
+        normalization = load_normalization(_hashable(cfg.normalization_source))
     except Exception:
-        contracts, domains = None, {}
+        contracts, domains, normalization = None, {}, None
 
     content = f"""# ArgDigest Agent Instructions for {module_name}
 
@@ -99,10 +119,16 @@ This document provides context and instructions for AI Agents (like yourself) to
 
 {_render_axis_one(contracts, domains)}
 
+### Declared argument-name aliases
+- **Normalization Source**: `{cfg.normalization_source}`
+
+{_render_normalization(normalization)}
+
 ## 2. Your Mission as an Agent
 Whenever you modify or add a function in this library:
 1. **Apply Digestion**: Ensure the function is decorated with `@arg_digest()`.
 2. **Check Arguments**: If you add new arguments, check if they need a specific digester in the `digestion_source` directory.
+2a. **Declare aliases**: if users are likely to type another name for an argument, add an `AliasTable` in `normalization_source` rather than renaming by hand. Aliases are applied before the contract, so they never conflict with it.
 2b. **Declare the contract**: if the function takes `**kwargs`, declare in `function_source` which domain those keywords come from. Left undeclared, the function accepts anything, which is the defect axis 1 exists to prevent. A closed signature needs no declaration: it is held to its own parameters.
 3. **Use Pipelines**: For specific validation (e.g. ranges, types), use `arg_digest.map` with appropriate rules.
 4. **Maintenance**: If you change the ArgDigest configuration (e.g. adding a standardizer), you **MUST** run `argdigest agent update --module {module_name}` to keep this file in sync.

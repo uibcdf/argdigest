@@ -18,10 +18,16 @@ This document provides context and instructions for AI Agents (like yourself) to
 
 _No function contract declared. Every closed signature is still held to its own parameters; functions taking `**kwargs` admit anything._
 
+### Declared argument-name aliases
+- **Normalization Source**: `None`
+
+_No alias declared. Users must type the canonical argument names exactly._
+
 ## 2. Your Mission as an Agent
 Whenever you modify or add a function in this library:
 1. **Apply Digestion**: Ensure the function is decorated with `@arg_digest()`.
 2. **Check Arguments**: If you add new arguments, check if they need a specific digester in the `digestion_source` directory.
+2a. **Declare aliases**: if users are likely to type another name for an argument, add an `AliasTable` in `normalization_source` rather than renaming by hand. Aliases are applied before the contract, so they never conflict with it.
 2b. **Declare the contract**: if the function takes `**kwargs`, declare in `function_source` which domain those keywords come from. Left undeclared, the function accepts anything, which is the defect axis 1 exists to prevent. A closed signature needs no declaration: it is held to its own parameters.
 3. **Use Pipelines**: For specific validation (e.g. ranges, types), use `arg_digest.map` with appropriate rules.
 4. **Maintenance**: If you change the ArgDigest configuration (e.g. adding a standardizer), you **MUST** run `argdigest agent update --module argdigest` to keep this file in sync.

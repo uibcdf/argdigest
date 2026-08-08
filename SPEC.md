@@ -43,7 +43,8 @@ argdigest/
     argument_registry.py# Argument-centric registry (@argument_digest)
     argument_loader.py  # Discovery logic (packages, modules)
     function_contract.py# Axis 1: FunctionContract, Domain, resolution and checking
-    function_loader.py  # Axis 1 discovery (contracts and domains)
+    normalization.py    # Declared argument-name aliases (AliasTable)
+    function_loader.py  # Discovery of contracts, domains and alias tables
     context.py          # Execution context (function, argname, value)
     errors.py           # Rich exception hierarchy
     logger.py           # Centralized logging
@@ -212,7 +213,7 @@ declare priorities, and lets a whole family of adapters share one contract.
 
 ### Where it runs
 
-`bind_arguments` → standardizer → **contract** → digestion.
+`bind_arguments` → **normalization** → standardizer → **contract** → digestion.
 
 After the standardizer, so an alias that has just become its canonical name is never
 mistaken for a typo. Before digestion, because validating the value of an argument that
@@ -236,6 +237,34 @@ default.
 
 ---
 
+## 6b. Declared normalization
+
+Argument-name aliases are declared as data in `NORMALIZATION_SOURCE`, one module per
+family of rules exposing `table` or `TABLES`:
+
+```python
+from argdigest import AliasTable
+
+AliasTable(aliases={'residue_index': 'group_index'})                    # global
+AliasTable(applies_to='mylib.form.*', aliases={'idx': 'index'})        # family
+AliasTable(applies_to='mylib.basic.get.get', when={'element': 'atom'}, # context
+           aliases={'name': 'atom_name'})
+```
+
+`applies_to` is an exact caller, an `fnmatch` pattern or `"*"`. `when` is an equality test
+against already-bound arguments, deliberately not an expression language.
+
+Tables compose most-specific-first; renaming is one pass and never chains; argument order
+is preserved. `describe_normalization` renders them as data.
+
+Normalization runs **before** the function contract, which is what lets a library declare
+contracts without breaking its aliases: by the time a keyword is judged it is canonical,
+while a genuine typo survives unchanged and is refused.
+
+The `standardizer` hook still runs, after the declared tables. Its contract,
+`(caller, kwargs) -> mapping`, is now verified: the signature when the decorator is built
+and the return value on every call, reported as `StandardizerContractError`.
+
 ## 7. Compatibility Profiles
 
 ### 7.1 MolSysMT Profile
@@ -244,16 +273,19 @@ Recommended configuration for MolSysMT integration:
 MolSysMT configures both axes from one module, `molsysmt._argdigest`:
 
 ```python
-DIGESTION_SOURCE = "molsysmt._private.arg_digestion.argument"
+DIGESTION_SOURCE = "molsysmt._private.argdigest.argument"
 DIGESTION_STYLE = "package"
-STANDARDIZER = "molsysmt._private.arg_digestion.argument_names_standardization:argument_names_standardization"
 STRICTNESS = "warn"
 SKIP_PARAM = "skip_digestion"
 
-FUNCTION_SOURCE = "molsysmt._private.arg_digestion.function"
-DOMAIN_SOURCE = "molsysmt._private.arg_digestion.domain"
+FUNCTION_SOURCE = "molsysmt._private.argdigest.function"
+DOMAIN_SOURCE = "molsysmt._private.argdigest.domain"
+NORMALIZATION_SOURCE = "molsysmt._private.argdigest.normalization"
 UNKNOWN_ARGUMENT = "error"
 ```
+
+MolSysMT declares **no** `STANDARDIZER`: everything it used to rename by hand is now
+declared as alias tables, which is what the hook is meant to make unnecessary.
 
 `STRICTNESS` and `UNKNOWN_ARGUMENT` answer different questions and have different
 audiences. A missing digester for a declared parameter is a to-do for the library

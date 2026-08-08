@@ -10,12 +10,16 @@ from .registry import Registry
 from .context import Context
 from .utils import bind_arguments
 from .argument_loader import load_argument_digesters, resolve_standardizer
-from .function_loader import load_domains, load_function_contracts
+from .function_loader import load_domains, load_function_contracts, load_normalization
+from .normalization import NormalizationRegistry, apply_normalization
 from .function_contract import ContractRegistry, check_contract, default_contract
 from .argument_registry import ArgumentRegistry
 from .config import resolve_config, DigestConfig, get_env_config_module
+from collections.abc import Mapping
+
 from .errors import (
     ArgumentConsistencyError,
+    StandardizerContractError,
     FunctionContractError,
     DigestNotDigestedError,
     DigestNotDigestedWarning,
@@ -104,6 +108,7 @@ class DigestionPlan:
     var_keyword_name: str | None = None
     signature: inspect.Signature | None = None
     # Axis 1: the function argument contract.
+    normalization: "NormalizationRegistry | None" = None
     contracts: "ContractRegistry | None" = None
     domains: dict[str, Any] = field(default_factory=dict)
     unknown_argument: str = "error"
@@ -196,6 +201,7 @@ def arg_digest(
     strictness: str | object = _UNSET,
     unknown_argument: str | object = _UNSET,
     function_source: str | list[str] | None | object = _UNSET,
+    normalization_source: str | list[str] | None | object = _UNSET,
     domain_source: str | list[str] | None | object = _UNSET,
     skip_param: str | object = _UNSET,
     config: DigestConfig | str | None | object = _UNSET,
@@ -261,6 +267,9 @@ def arg_digest(
         eff_profiling = cfg.profiling if profiling is _UNSET else profiling
         eff_function_source = cfg.function_source if function_source is _UNSET else function_source
         eff_domain_source = cfg.domain_source if domain_source is _UNSET else domain_source
+        eff_normalization_source = (cfg.normalization_source
+                                    if normalization_source is _UNSET
+                                    else normalization_source)
         eff_unknown_argument = _normalize_strictness(
             cfg.unknown_argument if unknown_argument is _UNSET else unknown_argument)
         
@@ -290,6 +299,7 @@ def arg_digest(
         # Axis 1 declarations. lru_cache needs hashable sources.
         contracts = load_function_contracts(_hashable_source(eff_function_source))
         domains = load_domains(_hashable_source(eff_domain_source))
+        normalization = load_normalization(_hashable_source(eff_normalization_source))
 
         # Inspect signature once
         signature = inspect.signature(fn)
@@ -313,6 +323,7 @@ def arg_digest(
             profiling=bool(eff_profiling),
             var_keyword_name=var_keyword_name,
             signature=signature,
+            normalization=normalization,
             contracts=contracts,
             domains=domains,
             unknown_argument=eff_unknown_argument,
@@ -359,8 +370,22 @@ def arg_digest(
                     if isinstance(extra, dict):
                         bound.update(extra)
                 
+                if plan.normalization:
+                    bound = apply_normalization(plan.normalization, caller, bound)
+
                 if plan.standardizer:
-                    bound = plan.standardizer(caller, bound)
+                    standardized = plan.standardizer(caller, bound)
+                    if not isinstance(standardized, Mapping):
+                        raise StandardizerContractError(
+                            f"it returned {type(standardized).__name__} instead of a "
+                            "mapping of arguments",
+                            context=Context(function_name=caller, argname="-",
+                                            value=standardized, all_args=bound),
+                            hint="A standardizer takes (caller, kwargs) and returns the "
+                                 "mapping; forgetting the return statement is the usual "
+                                 "cause.",
+                        )
+                    bound = dict(standardized)
 
                 # Axis 1 runs here: after names are canonical, before any value is
                 # digested.

@@ -18,6 +18,8 @@ mylib/
       get.py
     domain/            # axis 1: named sets of admissible keywords
       attribute.py
+    normalization/     # argument-name aliases, applied before both axes
+      synonyms.py
 ```
 
 ## `_argdigest.py`
@@ -31,6 +33,7 @@ SKIP_PARAM = "skip_digestion"
 FUNCTION_SOURCE = "mylib._private.argdigest.function"
 DOMAIN_SOURCE = "mylib._private.argdigest.domain"
 UNKNOWN_ARGUMENT = "error"
+NORMALIZATION_SOURCE = "mylib._private.argdigest.normalization"
 ```
 
 ## Contract file (only for functions taking `**kwargs`)
@@ -42,6 +45,17 @@ contract = FunctionContract(caller="mylib.basic.get.get", admits="attribute")
 ```
 
 A closed signature needs no file: it is held to its own parameters automatically.
+
+## Alias table file
+
+```python
+from argdigest import AliasTable
+
+table = AliasTable(aliases={"residue_index": "group_index"})
+```
+
+Scope it with `applies_to` when the alias only means that in one function, and guard it
+with `when` when it depends on another argument.
 
 ## Domain file
 

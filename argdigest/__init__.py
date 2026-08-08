@@ -22,6 +22,10 @@ from .core.decorator import arg_digest  # noqa: E402
 from .core.registry import register_pipeline, get_pipelines  # noqa: E402
 from .core.argument_registry import argument_digest  # noqa: E402
 from .core.config import DigestConfig  # noqa: E402
+from .core.normalization import (  # noqa: E402
+    AliasTable,
+    describe_normalization,
+)
 from .core.function_contract import (  # noqa: E402
     Domain,
     FunctionContract,
@@ -29,6 +33,7 @@ from .core.function_contract import (  # noqa: E402
 )
 from .core.errors import (  # noqa: E402
     ArgumentConsistencyError,
+    StandardizerContractError,
     FunctionContractError,
     FunctionContractWarning,
     MissingArgumentError,
@@ -65,4 +70,7 @@ __all__ = [
     "MissingArgumentError",
     "ArgumentConsistencyError",
     "describe_contract",
+    "AliasTable",
+    "describe_normalization",
+    "StandardizerContractError",
 ]

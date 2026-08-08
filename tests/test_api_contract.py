@@ -30,6 +30,9 @@ EXPECTED_PUBLIC_API = [
     "MissingArgumentError",
     "ArgumentConsistencyError",
     "describe_contract",
+    "AliasTable",
+    "describe_normalization",
+    "StandardizerContractError",
 ]
 
 

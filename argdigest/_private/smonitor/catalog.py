@@ -50,6 +50,12 @@ CATALOG = {
             "category": "contract",
             "level": "ERROR",
         },
+        "StandardizerContractError": {
+            "code": "ARG-ERR-STD-001",
+            "source": "argdigest.error.standardizer",
+            "category": "normalization",
+            "level": "ERROR",
+        },
         "ArgumentConsistencyError": {
             "code": "ARG-ERR-CONTRACT-003",
             "source": "argdigest.error.contract.consistency",
@@ -135,6 +141,13 @@ CODES = {
         "user_hint": "{hint} Docs: {doc_url}",
         "dev_message": "Call to '{caller}' breaks an inter-argument rule.",
         "dev_hint": "Check 'mutually_exclusive' and 'co_required'. {hint}",
+    },
+    "ARG-ERR-STD-001": {
+        "title": "Standardizer broke its contract",
+        "user_message": "{message}",
+        "user_hint": "{hint} Docs: {doc_url}",
+        "dev_message": "The standardizer configured for '{caller}' broke its contract: {message}",
+        "dev_hint": "A standardizer takes (caller, kwargs) and must return the mapping. {hint}",
     },
     "ARG-WARN-CONTRACT-001": {
         "title": "Function contract violation",

@@ -5,8 +5,9 @@ per-argument digesters by dropping one module per argument into a package; decla
 function contract or a domain should not require learning a second idiom.
 
 A module in the function source declares `contract` or `CONTRACTS`. A module in the
-domain source declares `domain` or `DOMAINS`. Nothing else is imposed on the consumer:
-scanning, ordering, and validation happen here.
+domain source declares `domain` or `DOMAINS`. A module in the normalization source
+declares `table` or `TABLES`. Nothing else is imposed on the consumer: scanning,
+ordering, and validation happen here.
 """
 
 from __future__ import annotations
@@ -18,6 +19,7 @@ from types import ModuleType
 from typing import Iterable
 
 from .function_contract import ContractRegistry, Domain, FunctionContract
+from .normalization import AliasTable, NormalizationRegistry
 
 
 def _coerce_sources(source: str | Iterable[str] | None) -> list[str]:
@@ -94,3 +96,33 @@ def load_domains(domain_source: str | tuple[str, ...] | None) -> dict[str, Domai
             for domain in _collect_domains(module):
                 domains[domain.name] = domain
     return domains
+
+
+def _collect_alias_tables(module: ModuleType) -> list[AliasTable]:
+    collected: list[AliasTable] = []
+    single = getattr(module, "table", None)
+    if isinstance(single, AliasTable):
+        collected.append(single)
+    many = getattr(module, "TABLES", None)
+    if many is not None:
+        for item in many:
+            if not isinstance(item, AliasTable):
+                raise TypeError(
+                    f"{module.__name__}.TABLES must contain AliasTable instances; "
+                    f"got {type(item).__name__}."
+                )
+            collected.append(item)
+    return collected
+
+
+@lru_cache(maxsize=None)
+def load_normalization(normalization_source: str | tuple[str, ...] | None
+                       ) -> NormalizationRegistry:
+    """Build the alias registry declared by a consumer."""
+
+    registry = NormalizationRegistry()
+    for source in _coerce_sources(normalization_source):
+        for module in _iter_package_modules(source):
+            for table in _collect_alias_tables(module):
+                registry.add(table)
+    return registry

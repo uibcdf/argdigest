@@ -20,6 +20,8 @@ class DigestConfig:
     # Axis 1: the function argument contract.
     function_source: str | list[str] | None = None
     domain_source: str | list[str] | None = None
+    # Declared argument-name aliases, applied before both axes.
+    normalization_source: str | list[str] | None = None
     # What to do when a call breaks its function contract. The default is 'error'
     # because plain Python already raises TypeError for an unexpected keyword, and
     # ArgDigest must not be more permissive than the language it wraps.
@@ -73,6 +75,7 @@ def _from_module(module_path: str) -> DigestConfig:
         profiling=getattr(module, "PROFILING", False),
         function_source=getattr(module, "FUNCTION_SOURCE", None),
         domain_source=getattr(module, "DOMAIN_SOURCE", None),
+        normalization_source=getattr(module, "NORMALIZATION_SOURCE", None),
         unknown_argument=getattr(module, "UNKNOWN_ARGUMENT", "error"),
     )
 
@@ -103,6 +106,7 @@ def load_from_file(path: str | Path) -> DigestConfig:
             profiling=getattr(module, "PROFILING", False),
             function_source=getattr(module, "FUNCTION_SOURCE", None),
             domain_source=getattr(module, "DOMAIN_SOURCE", None),
+            normalization_source=getattr(module, "NORMALIZATION_SOURCE", None),
             unknown_argument=getattr(module, "UNKNOWN_ARGUMENT", "error"),
         )
     

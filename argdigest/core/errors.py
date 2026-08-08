@@ -103,3 +103,14 @@ class FunctionContractWarning(ArgDigestCatalogWarning, RuntimeWarning):
             extra["caller"] = "unknown"
 
         super().__init__(message=message, code=self.code, extra=extra)
+
+
+class StandardizerContractError(DigestError):
+    """A standardizer that did not honour `(caller, kwargs) -> mapping`.
+
+    Forgetting the `return` is the common case, and without this the failure surfaces
+    much later as `AttributeError: 'NoneType' object has no attribute 'items'`, which
+    names neither the standardizer nor the library that configured it.
+    """
+
+    catalog_key = "StandardizerContractError"

@@ -14,6 +14,7 @@ def resolve_standardizer(standardizer: Any) -> Callable[[str, dict[str, Any]], d
     if standardizer is None:
         return None
     if callable(standardizer):
+        _check_standardizer_signature(standardizer)
         return standardizer
     if isinstance(standardizer, str):
         module_path, _, attr = standardizer.partition(":")
@@ -25,8 +26,39 @@ def resolve_standardizer(standardizer: Any) -> Callable[[str, dict[str, Any]], d
         fn = getattr(module, attr)
         if not callable(fn):
             raise TypeError("standardizer must resolve to a callable")
+        _check_standardizer_signature(fn)
         return fn
     raise TypeError("standardizer must be a callable, a string, or None")
+
+
+def _check_standardizer_signature(fn: Callable[..., Any]) -> None:
+    """Verify a standardizer can be called as `(caller, kwargs)`.
+
+    Checked when the decorator is built rather than on the first call, so a wrong
+    signature fails at import with a message naming the standardizer, instead of
+    surfacing later as a TypeError about positional arguments.
+    """
+
+    try:
+        signature = inspect.signature(fn)
+    except (TypeError, ValueError):
+        return
+    positional = [
+        parameter for parameter in signature.parameters.values()
+        if parameter.kind in (parameter.POSITIONAL_ONLY, parameter.POSITIONAL_OR_KEYWORD)
+    ]
+    accepts_var_positional = any(
+        parameter.kind is parameter.VAR_POSITIONAL
+        for parameter in signature.parameters.values()
+    )
+    if accepts_var_positional:
+        return
+    required = [p for p in positional if p.default is p.empty]
+    if len(positional) < 2 or len(required) > 2:
+        raise TypeError(
+            f"standardizer {getattr(fn, '__qualname__', fn)!r} must be callable as "
+            f"(caller, kwargs); its signature is {signature}."
+        )
 
 
 def _coerce_sources(source: str | Iterable[str] | None) -> list[str]:

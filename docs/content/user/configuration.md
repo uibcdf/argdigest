@@ -24,6 +24,9 @@ SKIP_PARAM = "skip_digestion"
 FUNCTION_SOURCE = "mylib._private.argdigest.function"
 DOMAIN_SOURCE = "mylib._private.argdigest.domain"
 UNKNOWN_ARGUMENT = "error"   # error | warn | ignore
+
+# Declared argument-name aliases, applied before both axes.
+NORMALIZATION_SOURCE = "mylib._private.argdigest.normalization"
 ```
 
 Both policies accept the same aliases: `raise` -> `error`, `warning` -> `warn`,
