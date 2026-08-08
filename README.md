@@ -16,7 +16,15 @@
 It helps libraries normalize, validate, and standardize inputs with explicit,
 reusable contracts.
 
+ArgDigest covers **two axes**, and a library needs both:
+
+| Axis | Question | You declare |
+| --- | --- | --- |
+| **The function argument contract** | *May this function receive this argument at all, and does it have what it needs?* | a `FunctionContract`, and a `Domain` for functions taking `**kwargs` |
+| **The argument value contract** | *Given an argument name, is its value valid and in canonical form?* | one digester per argument name |
+
 It combines:
+- **Function contracts** (what each function admits and requires),
 - **Argument-centric digestion** (per-argument digesters),
 - **Pipeline rules** (reusable validation/coercion by kind and rule name),
 - **Structured diagnostics** (clear warnings and errors with context).
@@ -50,6 +58,40 @@ def get(molecular_system, selection=None, syntax="MolSysMT"):
     return molecular_system, selection, syntax
 ```
 
+### Declaring what a function accepts
+
+A closed signature is held to its own parameters with no declaration at all: ArgDigest
+never ends up more permissive than Python, which already raises `TypeError` for an
+unexpected keyword.
+
+A function taking `**kwargs` opened its door deliberately, so it declares the domain
+those keywords come from — pointing at your library's own source of truth rather than
+copying names:
+
+```python
+# mylib/_private/argdigest/domain/attribute.py
+from argdigest import Domain
+from mylib.attribute import attributes, is_attribute
+
+domain = Domain(name='attribute', contains=is_attribute,
+                members=lambda: tuple(attributes))
+```
+
+```python
+# mylib/_private/argdigest/function/get.py
+from argdigest import FunctionContract
+
+contract = FunctionContract(caller='mylib.basic.get.get', admits='attribute')
+```
+
+Then a typo fails where it happens, instead of running with the default and returning a
+plausible wrong answer:
+
+```
+UnknownArgumentError: 'mylib.basic.get.get' does not accept the argument 'n_atomss'.
+Did you mean 'n_atoms'?
+```
+
 Typical style options:
 - `package`: one module per argument (`digest_<argument>`),
 - `registry`: central mapping (`ARGUMENT_DIGESTERS`),
@@ -73,7 +115,11 @@ Runtime/config files:
 
 ## Current release status
 
-- Current stabilization tag: `0.9.2` (final pre-1.0 checkpoint).
+- Current tag: `0.10.0`, which introduces the function argument contract.
+- **Breaking change in `0.10.0`**: `unknown_argument` defaults to `error`, so a keyword
+  outside a function's contract is refused instead of silently ignored. Set
+  `UNKNOWN_ARGUMENT = "warn"` or `"ignore"` in your config module to restore the previous
+  behaviour. See `devguide/0.10.0_release_notes_draft.md`.
 - `1.0.0` tagging is intentionally gated by explicit release-owner confirmation.
 - Go/no-go evidence pack: `devguide/1.0.0_go_no_go_pack.md`.
 
