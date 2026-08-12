@@ -24,6 +24,17 @@ operational notes for ArgDigest.
 - `smonitor.md`: diagnostics integration rules and non-negotiable SMonitor practices.
 - `collective_evidence_pack.md`: cross-repo evidence handoff for collective 1.0 closure.
 
+## Incoming work
+
+- `pending_bugs/`: defects reported against a released version, one file each, written
+  from the reporter's side — what happens, how to reproduce it, how it was found.
+- `pending_proposals/`: designs proposed but not accepted. A proposal stays here until
+  it is either implemented or declined with the reason recorded.
+- `solved_bugs/`: reports whose defect has been fixed. A report is moved here rather
+  than deleted, with a note at the top naming the commits, the tests that hold the fix,
+  and anything a consumer has to do differently now. The report is the only place the
+  *symptom* is written down, which is what makes the next similar defect recognisable.
+
 ## Maintenance rule
 
 Keep this folder aligned with:

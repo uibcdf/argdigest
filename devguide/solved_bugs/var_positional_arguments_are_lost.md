@@ -4,15 +4,22 @@
 **Impact:** any positional call to a decorated `*args` function raises. Silent for
 keyword-only callers, which is why it can sit unnoticed in a released library.
 
-> **Fixed 2026-08-12**, unreleased. `core/utils.build_call` reconstructs the call shape
-> and `core/decorator._invoke` uses it at both call sites; `DigestionPlan.requires_call_shape`
-> decides once per decorated function whether a signature needs it, so a signature with
-> neither `*args` nor `/` keeps the single dict unpack it had. Held by
-> `tests/test_call_shape.py` (18 tests). The suspected positional-only failure was
-> confirmed and is fixed by the same change. The var-positional digestion semantics —
-> one tuple, one digester, named for the parameter — are now documented in `SPEC.md`
-> §4.4 and in `standards/ARGDIGEST_GUIDE.md` §5. **MolSysViewer's exemption test can be
-> retired once this ships.**
+> **Fixed 2026-08-12** — commits `59234f1` and `9bb2749` on `main`, not yet in a tagged
+> release. `core/utils.build_call` reconstructs the call shape and `core/decorator._invoke`
+> uses it at both call sites; `DigestionPlan.requires_call_shape` decides once per
+> decorated function whether a signature needs it, so a signature with neither `*args`
+> nor `/` keeps the single dict unpack it had. Held by `tests/test_call_shape.py`
+> (18 tests).
+>
+> The suspected positional-only failure was confirmed and is fixed by the same change.
+> The var-positional digestion semantics — one tuple, one digester, named for the
+> parameter — are now documented in `SPEC.md` §4.4 and in
+> `standards/ARGDIGEST_GUIDE.md` §5.
+>
+> **MolSysViewer can retire its exemption test now**, without waiting for a release: the
+> suite is installed editable from this working tree, so `main` is what it imports.
+> Note that `argdigest.__version__` still reports the commit the package was installed
+> at, so it cannot be used to tell whether the fix is present.
 
 ## What happens
 
