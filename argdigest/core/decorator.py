@@ -8,7 +8,7 @@ from typing import Any, Callable
 
 from .registry import Registry
 from .context import Context
-from .utils import bind_arguments
+from .utils import bind_arguments, build_call
 from .argument_loader import load_argument_digesters, resolve_standardizer
 from .function_loader import load_domains, load_function_contracts, load_normalization
 from .normalization import NormalizationRegistry, apply_normalization
@@ -114,6 +114,9 @@ class DigestionPlan:
     unknown_argument: str = "error"
     # Precomputed once per decorated function; rebuilding it per call was measurable.
     signature_parameter_names: frozenset[str] = field(default_factory=frozenset)
+    # Whether calling back with `**bound` would lose part of the call. Decided once at
+    # decoration time so the common signature keeps the single dict unpack it had.
+    requires_call_shape: bool = False
 
 
 def _hashable_source(source: Any) -> Any:
@@ -130,6 +133,22 @@ _CONTRACT_ERRORS = {
     "mutually_exclusive": ArgumentConsistencyError,
     "co_required": ArgumentConsistencyError,
 }
+
+
+def _invoke(plan: "DigestionPlan", fn_to_wrap: Callable[..., Any],
+            bound: dict[str, Any]) -> Any:
+    """Call the wrapped function with the arguments digestion produced.
+
+    Most signatures can be called back with `**bound`, and are: one dict unpack. A
+    signature carrying `*args` or a positional-only parameter cannot, because neither
+    has a keyword form, so its call is reconstructed instead. Which of the two applies
+    is a property of the signature, decided once at decoration time.
+    """
+
+    if not plan.requires_call_shape or plan.signature is None:
+        return fn_to_wrap(**bound)
+    call_args, call_kwargs = build_call(plan.signature, bound)
+    return fn_to_wrap(*call_args, **call_kwargs)
 
 
 def _enforce_function_contract(plan: "DigestionPlan", caller: str, fn: Callable[..., Any],
@@ -305,6 +324,12 @@ def arg_digest(
         # Inspect signature once
         signature = inspect.signature(fn)
         var_keyword_name = next((p.name for p in signature.parameters.values() if p.kind == inspect.Parameter.VAR_KEYWORD), None)
+        # `*args` has no keyword form and a positional-only parameter refuses one, so
+        # calling back with `**bound` would lose them. Only those two signatures pay for
+        # the reconstruction.
+        requires_call_shape = any(
+            p.kind in (inspect.Parameter.VAR_POSITIONAL, inspect.Parameter.POSITIONAL_ONLY)
+            for p in signature.parameters.values())
 
         # Build pipeline targets
         pipeline_targets = map or {}
@@ -330,6 +355,7 @@ def arg_digest(
             unknown_argument=eff_unknown_argument,
             signature_parameter_names=frozenset(
                 name for name in signature.parameters if name != var_keyword_name),
+            requires_call_shape=requires_call_shape,
         )
 
         @wraps(fn)
@@ -350,7 +376,7 @@ def arg_digest(
                                        var_keyword_name=plan.var_keyword_name,
                                        extras_out=extras, **kwargs)
                 if bound.get(plan.skip_param, False):
-                    return fn_to_wrap(**bound)
+                    return _invoke(plan, fn_to_wrap, bound)
 
                 caller = f"{_resolve_owner_module(fn, args)}.{fn.__name__}"
                 
@@ -516,7 +542,7 @@ def arg_digest(
                             pass
                         raise e
 
-                return fn_to_wrap(**bound)
+                return _invoke(plan, fn_to_wrap, bound)
 
             if effective_puw_context:
                 from ..contrib.pyunitwizard_support import context as puw_ctx_manager

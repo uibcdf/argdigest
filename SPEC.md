@@ -130,6 +130,25 @@ Digesters can declare dependencies on other arguments.
 ### 4.3 Hooks
 - **Standardizer**: Runs *before* digestion. It normalizes argument names (e.g., converting aliases like `sel` to `selection`) so that digesters match correctly.
 
+### 4.4 Call shape
+
+Digestion works on a flat `name -> value` mapping, which is what makes a digester
+reachable by argument name. The wrapped function is then called back **in the shape it
+was declared**, not as `fn(**mapping)`: a var-positional parameter has no keyword form
+at all, and a positional-only one refuses to be named, so both would arrive wrong or not
+arrive.
+
+- `*args` is bound as a single tuple, digested once under the parameter's own name, and
+  **unpacked** when the function is called. A digester named for the parameter therefore
+  receives the whole collection, which is what lets it assert something about the group
+  rather than about one operand.
+- Positional-only parameters (`/`) are passed positionally.
+- A non-empty `*args` forces the parameters before it to travel positionally too; when it
+  is empty they stay keywords.
+
+Which of the two call forms applies is a property of the signature, decided once at
+decoration time, so a signature with neither feature keeps the single dict unpack.
+
 ---
 
 ## 5. Error Model

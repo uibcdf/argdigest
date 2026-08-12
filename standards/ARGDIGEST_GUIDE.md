@@ -337,6 +337,18 @@ default.
 6.  **Use Normalization Passports (`ValidatedPayload`)**: For internal high-frequency calls where inputs are already validated, pass them wrapped in a `ValidatedPayload` (the passport protocol) to bypass redundant digestion and unit-safety check blocks with zero latency.
 7.  **Declare both axes**: a function taking `**kwargs` must declare the domain those keywords come from. Leaving it undeclared means the function accepts anything, which is the defect axis 1 exists to prevent. If a domain genuinely cannot be expressed, record why.
 
+### Functions taking `*args` or positional-only parameters
+
+Both are supported and keep their call shape: `*args` is unpacked back into operands,
+and a positional-only parameter is passed positionally.
+
+One consequence is worth knowing before you write the digester: **`*args` is bound as a
+single tuple and digested once**, under the parameter's own name. A digester named
+`digest_items` for `def combine(*items)` receives `('a', 'b')`, not `'a'` and then `'b'`.
+That is deliberate — it is what lets the digester assert something about the group, such
+as requiring at least one operand — but it means the digester must be written against a
+collection.
+
 ## SMonitor Integration
 
 ArgDigest is heavily instrumented with `@smonitor.signal`:
