@@ -1,5 +1,18 @@
 # Proposal: Selective JS ↔ Python Customs Aduana (`argdigest.bridge`)
 
+> **Out of scope for ArgDigest (2026-08-12); belongs with MolSysViewer.** This validates
+> *message schemas* crossing a WebSocket, not *arguments* of a Python function. The two
+> problems share a vocabulary and little else: there is no caller, no signature, no
+> argument name, and nothing for either axis to attach to.
+>
+> The idea itself is sound and the risk it names — a TypeScript release changing a
+> payload and silently corrupting `self._regions` — is real. It should be filed in
+> MolSysViewer, where the schemas and the transport live.
+>
+> One part does not survive the move: the "production bypass" tied to
+> `smonitor.PROFILE`. It carries the same defect that got `caching_and_skip_digestion`
+> declined — it removes the check from the users who need it, in the profile they run.
+
 ## Abstract
 
 We propose introducing `argdigest.bridge`, a specialized sub-module for validating and tracking structured signals passing through WebSocket boundaries (e.g., Jupyter Widgets). This includes the `@arg_digest.bridge_receiver` decorator for incoming events and the `BridgeEmitter` utility for outgoing JSON payloads.

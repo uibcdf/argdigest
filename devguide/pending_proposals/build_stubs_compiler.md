@@ -1,5 +1,14 @@
 # Proposal: Automated Type-Stub Generator (`argdigest build-stubs`)
 
+> **Kept, scheduled post-1.0 (2026-08-12).** It became more feasible than when it was
+> written: axis 1 already solved the hard half. `describe_contract()` renders the
+> accepted domain of a `**kwargs` function as plain data — precisely what
+> `inspect.signature` cannot see and what a stub generator needs. What is still missing
+> is annotations on the digesters themselves, which nothing currently requires.
+>
+> One correction for whoever picks this up: the proposal says the digestion directory is
+> `_private/arg_digestion/`. The convention is `_private/argdigest/argument/`.
+
 ## Abstract
 
 We propose introducing an automated, offline type-stub generator (`argdigest build-stubs`) to `argdigest`. This tool will parse a library's central digestion directory (`_private/arg_digestion/`) and dynamically compile PEP 484-compliant static type stub files (`.pyi`). 

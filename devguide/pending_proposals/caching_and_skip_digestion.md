@@ -1,5 +1,40 @@
 # Proposal: Automated Library Bypass and SMonitor Profile Coupling
 
+> **Declined 2026-08-12, on measurement.** The +5.25 ms is real; the diagnosis is not.
+> ArgDigest's own plumbing is **21.6 µs per call and flat** — 0.4% of the reported
+> overhead. The cost is one MolSysMT predicate, `has_attribute`, wearing a
+> boundary-grade digester nine times its own weight and being called **434 times per
+> `regions.add`** (~29 ms). Filed as `uibcdf/molsysmt` →
+> `devguide/pending_bugs/boundary_digestion_on_internal_predicates.md`, with the
+> attribution in MolSysViewer's `devguide/performance/argdigest_overhead_attribution_2026_08.md`.
+>
+> Three reasons, any one sufficient:
+>
+> 1. **Digestion transforms values; it does not only check them.** `to_numpy`,
+>    `convert(to_unit=...)`, form assessment. Bypassing does not skip a check — it
+>    changes what the function receives, so production would run a different program
+>    from the one tested. Unlike `assert` under `-O`, which guards internal invariants
+>    and alters no value.
+> 2. **It removes the check from the population it was built for.** The 0.10.0 note is
+>    explicit: the typo defect only ever reached users. Developers write correct calls;
+>    they wrote the API. Validating in `dev` and not in `user` validates the wrong people.
+> 3. **It would have hidden the real defect.** The number would have dropped and the 434
+>    redundant calls would have stayed. The overhead was a symptom pointing at a bug, and
+>    the proposal would have removed the symptom.
+>
+> Also, on the details: the profile names here (`production`/`development`) are not
+> ArgDigest's (`user`/`dev`/`qa`/`agent`/`debug`); the signature shown is not the real
+> one; and reading the profile at decoration time would freeze it against any later
+> `smonitor.configure(profile=...)`.
+>
+> **What replaces it.** The motivating case — a canonical value reused across many calls
+> — is served by value certification, under design: the claim travels with the value's
+> identity, so every call in a chain benefits rather than only the outermost, and it is
+> bound to the digester that issued it. For call sites you control, `skip_digestion` is
+> already the cheapest tool at 1.8 µs. The `bypass_validation` context manager is not
+> adopted: its scope is non-local, silently covering callees the block's author does not
+> know are decorated.
+
 ## Abstract
 
 We propose introducing an internal validation bypass mechanism (`arg_digest.bypass_validation`) and automatic SMonitor profile-driven short-circuiting to `argdigest`. Instead of placing the burden of performance optimization on the end-user (e.g. through explicit user-facing "turbo" flags), the validation framework will silently and automatically bypass validations on hot paths during production execution or controlled internal loops, achieving zero-cost execution speeds with absolute user-facing simplicity.
