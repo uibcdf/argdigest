@@ -97,6 +97,12 @@
   `puw.get_unit` costs 363 µs where pint's own attribute answers in 0.88, and the cost is
   flat with array size. Filed as a proposal in PyUnitWizard. **The lesson worth keeping:
   we nearly added a caching layer to compensate for a missing predicate upstream.**
+- **And the upstream fix landed the same day, which settles it.** PyUnitWizard
+  implemented the predicate: `puw.check(q, unit='nm')` went from 887 µs to 10.26, and
+  MolSysMT's `digest_coordinates` from 0.659 ms to 0.026 on already-canonical input — 25x
+  on the exact case certification was designed for, with nothing new for a digester
+  author to learn. Declining the mechanism was not a trade-off; the alternative was
+  simply better.
 - **Measurement discipline paid twice, and cost once.** The one performance defect
   actually found (`uibcdf/molsysmt#147`, a digester on an internal predicate called 434
   times per user action) came from refusing to accept a benchmark's own diagnosis. But

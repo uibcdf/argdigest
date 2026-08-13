@@ -84,13 +84,34 @@ With a ~1 µs predicate, a digester short-circuits locally in two lines, with no
 mechanism, no registry, and nothing new to learn. **This whole module exists to avoid
 asking a question that should be cheap.**
 
+## What happened instead, the same day
+
+The cheap predicate landed, and it was enough.
+
+| | before | after |
+|---|---:|---:|
+| `puw.check(q, unit='nm')` | 887 µs | **10.26 µs** |
+| MolSysMT `digest_coordinates`, input already in nm | 0.659 ms | **0.026 ms** |
+| the same, input needing conversion | 0.670 ms | 0.705 ms |
+
+PyUnitWizard implemented the fast paths (`430aaf3`, `5084a09`) and MolSysMT adopted the
+predicate in its digester (`cfe9984db`). **25x on the exact case this module was designed
+for, with nothing new for a digester author to learn** — no `by`, no `guard`, no
+`source`, no registry.
+
+That is as clear a verdict as this decision could get. The mechanism was not merely
+unnecessary; the alternative was better on the very measurement that would have
+justified it.
+
 ## When to reconsider
 
 Adopt this only when all three hold:
 
 1. A consumer has a **measured** chain where the same canonical value is re-digested
    across call sites it does not control, with the cost attributed.
-2. The cheap predicate in PyUnitWizard either landed and was not enough, or was refused.
+2. ~~The cheap predicate in PyUnitWizard either landed and was not enough, or was
+   refused.~~ **It landed and it was enough** — see above. Reopening this needs a case
+   the predicate does not cover, not a repeat of the one it does.
 3. The cost is not explained by digestion sitting somewhere it should not — check
    [#147](https://github.com/uibcdf/molsysmt/issues/147) first, because that was the
    answer last time.
