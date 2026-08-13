@@ -31,6 +31,14 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools.packages.find]
 include = ["argdigest*"]
 
+[tool.pytest.ini_options]
+# `devguide/` holds development documents, and a declined proposal may preserve the code
+# it proposed. That code is a record, not part of the package: it is not imported, not
+# maintained, and its tests must not run -- they were written against a module that is
+# deliberately no longer there. The rest of this list is pytest's own default.
+norecursedirs = ["*.egg", ".*", "_darcs", "build", "CVS", "dist", "node_modules",
+                 "venv", "{arch}", "devguide"]
+
 [project.scripts]
 argdigest = "argdigest.cli:main"
 
