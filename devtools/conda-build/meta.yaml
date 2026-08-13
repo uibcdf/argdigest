@@ -16,15 +16,15 @@ requirements:
     - pip
     - setuptools >=61.0
     - versioningit >=3.0.0
-    - pyyaml
   run:
     - python
-    - beartype
-    - pydantic
-    - pyunitwizard
-    - pyyaml
-    - numpy
-    - pandas
+    - depdigest >=0.9.1
+    - numpy >=1.20.0
+    - smonitor >=0.11.4
+
+test:
+  imports:
+    - argdigest
 
 about:
   home: "https://github.com/uibcdf/argdigest"

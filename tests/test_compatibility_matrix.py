@@ -87,10 +87,27 @@ def test_pyproject_declares_minimum_sibling_versions():
 
     assert "smonitor>=0.11.4" in deps
     assert "depdigest>=0.9.1" in deps
+    assert "numpy>=1.20.0" in deps
 
     extras = data["project"]["optional-dependencies"]
     assert "pyunitwizard>=0.11.0" in extras["pyunitwizard"]
     assert "pyunitwizard>=0.11.0" in extras["all"]
+
+
+def test_conda_recipe_matches_the_hard_runtime_dependency_set():
+    text = _read("devtools/conda-build/meta.yaml")
+
+    for dependency in (
+        "depdigest >=0.9.1",
+        "numpy >=1.20.0",
+        "smonitor >=0.11.4",
+    ):
+        assert f"- {dependency}" in text
+
+    for optional_dependency in ("beartype", "pydantic", "pyunitwizard", "pandas"):
+        assert f"- {optional_dependency}" not in text
+
+    assert re.search(r"test:\s+imports:\s+- argdigest", text)
 
 
 def test_docs_compatibility_matrix_mentions_expected_versions():

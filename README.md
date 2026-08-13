@@ -115,11 +115,12 @@ Runtime/config files:
 
 ## Current release status
 
-- Current tag: `0.10.0`, which introduces the function argument contract.
-- **Breaking change in `0.10.0`**: `unknown_argument` defaults to `error`, so a keyword
-  outside a function's contract is refused instead of silently ignored. Set
-  `UNKNOWN_ARGUMENT = "warn"` or `"ignore"` in your config module to restore the previous
-  behaviour. See `devguide/0.10.0_release_notes_draft.md`.
+- Current tag: `0.12.0`.
+- **Changes in `0.12.0`**: decorated callables preserve var-positional and
+  positional-only call shapes; supported Python is explicitly 3.11--3.13; and the
+  unused `ValidatedPayload` passport is removed in favor of explicit
+  `skip_digestion=True` delegation on trusted internal calls. See
+  `devguide/0.12.0_release_notes_draft.md`.
 - `1.0.0` tagging is intentionally gated by explicit release-owner confirmation.
 - Go/no-go evidence pack: `devguide/1.0.0_go_no_go_pack.md`.
 
