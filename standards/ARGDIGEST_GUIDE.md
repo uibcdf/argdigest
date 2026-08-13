@@ -5,10 +5,10 @@ Source of truth for integrating and using **ArgDigest** in this library.
 Metadata
 - Source repository: `argdigest`
 - Source document: `standards/ARGDIGEST_GUIDE.md`
-- Source version: `argdigest@0.11.0` plus unreleased `main`
+- Source version: `argdigest@0.12.0`
 - Last synced: 2026-08-13
 
-Since `0.11.0` this guide changed in two ways that affect an integration: `*args` and
+`0.12.0` changed this guide in two ways that affect an integration: `*args` and
 positional-only parameters are supported and documented (§5), and the `ValidatedPayload`
 passport was **removed** rather than replaced, leaving `skip_digestion` as the single
 mechanism (§6).
