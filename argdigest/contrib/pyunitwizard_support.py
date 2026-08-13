@@ -19,16 +19,6 @@ from ..core.errors import DigestValueError, DigestTypeError
 from ..core.registry import register_pipeline
 
 
-@dataclass(frozen=True, slots=True)
-class ValidatedPayload:
-    """Trusted normalized array plus the minimal canonical metadata contract."""
-
-    value: np.ndarray
-    unit: str
-    dtype: str
-    ndim: int
-    is_canonical: bool = True
-
 def _require_puw(ctx: Any = None):
     if not HAS_PUW:
         raise DigestTypeError(
@@ -146,28 +136,21 @@ def is_quantity() -> Callable[[Any, Any], Any]:
     return pipeline_is_quantity
 
 
-def _canonical_payload_pipeline(
+def _canonical_array_pipeline(
     unit_name: str,
     specialized_name: str,
     ndim: Optional[int] = None,
-) -> Callable[[Any, Any], ValidatedPayload]:
-    def pipeline_payload(value: Any, ctx: Any) -> ValidatedPayload:
-        if isinstance(value, ValidatedPayload):
-            if (
-                value.unit == unit_name
-                and value.dtype == "float64"
-                and (ndim is None or value.ndim == ndim)
-                and value.is_canonical
-            ):
-                return value
-            raise DigestValueError(
-                (
-                    f"Validated payload for {ctx.argname} does not match expected "
-                    f"contract ({unit_name}, float64, ndim={ndim})."
-                ),
-                context=ctx,
-            )
+) -> Callable[[Any, Any], np.ndarray]:
+    """Canonicalize a quantity to `unit_name` as a float64 array.
 
+    It returns the array, not a container carrying it. An earlier version returned a
+    `ValidatedPayload` so that a downstream call could recognise the value as already
+    canonical -- which required every function body in between to know about the box,
+    and a companion rule to take the value back out of it. The mechanism found no user
+    and cost every reader of a decorated function an extra concept, so it is gone.
+    """
+
+    def pipeline_canonical(value: Any, ctx: Any) -> np.ndarray:
         _require_puw(ctx)
         try:
             # Handle nested attributes like fast_track.to_nanometers
@@ -191,60 +174,34 @@ def _canonical_payload_pipeline(
                 context=ctx,
             )
 
-        return ValidatedPayload(
-            value=raw,
-            unit=unit_name,
-            dtype="float64",
-            ndim=raw.ndim,
-        )
+        return raw
 
-    pipeline_payload.__name__ = f"sci:{unit_name}_float64_payload"
-    return pipeline_payload
+    pipeline_canonical.__name__ = f"sci:{unit_name}_float64"
+    return pipeline_canonical
 
 
-def nm_float64_payload(ndim: Optional[int] = None) -> Callable[[Any, Any], ValidatedPayload]:
-    return _canonical_payload_pipeline("nm", "fast_track.to_nanometers", ndim=ndim)
+def nm_float64(ndim: Optional[int] = None) -> Callable[[Any, Any], np.ndarray]:
+    return _canonical_array_pipeline("nm", "fast_track.to_nanometers", ndim=ndim)
 
 
-def ps_float64_payload(ndim: Optional[int] = None) -> Callable[[Any, Any], ValidatedPayload]:
-    return _canonical_payload_pipeline("ps", "fast_track.to_picoseconds", ndim=ndim)
+def ps_float64(ndim: Optional[int] = None) -> Callable[[Any, Any], np.ndarray]:
+    return _canonical_array_pipeline("ps", "fast_track.to_picoseconds", ndim=ndim)
 
 
-def kelvin_float64_payload(ndim: Optional[int] = None) -> Callable[[Any, Any], ValidatedPayload]:
-    return _canonical_payload_pipeline("kelvin", "fast_track.to_kelvin", ndim=ndim)
+def kelvin_float64(ndim: Optional[int] = None) -> Callable[[Any, Any], np.ndarray]:
+    return _canonical_array_pipeline("kelvin", "fast_track.to_kelvin", ndim=ndim)
 
 
-def unwrap_validated_payload() -> Callable[[Any, Any], np.ndarray]:
-    def pipeline_unwrap(value: Any, ctx: Any) -> np.ndarray:
-        if not isinstance(value, ValidatedPayload):
-            raise DigestTypeError(
-                (
-                    f"Expected ValidatedPayload for {ctx.argname}, "
-                    f"got {type(value)}"
-                ),
-                context=ctx,
-            )
-        return value.value
-
-    pipeline_unwrap.__name__ = "sci:unwrap_validated_payload"
-    return pipeline_unwrap
+@register_pipeline(kind="sci", name="nm_float64")
+def _pipeline_nm_float64(value: Any, ctx: Any) -> np.ndarray:
+    return nm_float64()(value, ctx)
 
 
-@register_pipeline(kind="sci", name="nm_float64_payload")
-def _pipeline_nm_float64_payload(value: Any, ctx: Any) -> ValidatedPayload:
-    return nm_float64_payload()(value, ctx)
+@register_pipeline(kind="sci", name="ps_float64")
+def _pipeline_ps_float64(value: Any, ctx: Any) -> np.ndarray:
+    return ps_float64()(value, ctx)
 
 
-@register_pipeline(kind="sci", name="ps_float64_payload")
-def _pipeline_ps_float64_payload(value: Any, ctx: Any) -> ValidatedPayload:
-    return ps_float64_payload()(value, ctx)
-
-
-@register_pipeline(kind="sci", name="kelvin_float64_payload")
-def _pipeline_kelvin_float64_payload(value: Any, ctx: Any) -> ValidatedPayload:
-    return kelvin_float64_payload()(value, ctx)
-
-
-@register_pipeline(kind="sci", name="unwrap_validated_payload")
-def _pipeline_unwrap_validated_payload(value: Any, ctx: Any) -> np.ndarray:
-    return unwrap_validated_payload()(value, ctx)
+@register_pipeline(kind="sci", name="kelvin_float64")
+def _pipeline_kelvin_float64(value: Any, ctx: Any) -> np.ndarray:
+    return kelvin_float64()(value, ctx)

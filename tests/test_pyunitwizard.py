@@ -1,8 +1,9 @@
+import numpy as np
 import pytest
+
 try:
     import pyunitwizard as puw
     from argdigest.contrib import pyunitwizard_support as puw_support
-    from argdigest.contrib.pyunitwizard_support import ValidatedPayload
     HAS_PUW = True
 except ImportError:
     HAS_PUW = False
@@ -80,13 +81,20 @@ def test_puw_conversion_error():
 
 
 @pytest.mark.skipif(not HAS_PUW, reason="pyunitwizard not installed")
-def test_nm_float64_payload_bypasses_redundant_recanonicalization(monkeypatch):
+def test_the_canonical_pipeline_returns_the_array_itself(monkeypatch):
+    """No container: the body receives the array, and so does the next call.
+
+    An earlier design returned a `ValidatedPayload` so a nested call could recognise the
+    value as already canonical. It required every body in between to know about the box,
+    and it is gone. Canonicalizing again is the honest cost of not having it; a caller
+    that wants to avoid it passes `skip_digestion=True`, which is what that is for.
+    """
+
     puw.configure.reset()
     puw.configure.load_library(["pint"])
-    # Manually register fast-track for tests because they use a fresh puw import
     try:
         puw.register_fast_track("nanometers", puw.unit("nm"))
-    except:
+    except Exception:
         pass
 
     call_count = {"n": 0}
@@ -98,25 +106,21 @@ def test_nm_float64_payload_bypasses_redundant_recanonicalization(monkeypatch):
 
     monkeypatch.setattr(puw.fast_track, "to_nanometers", counted)
 
-    @arg_digest.map(coord={"kind": "q", "rules": [puw_support.nm_float64_payload(ndim=1)]})
-    def inner(coord):
+    @arg_digest.map(coord={"kind": "q", "rules": [puw_support.nm_float64(ndim=1)]})
+    def kernel(coord):
         return coord
 
-    @arg_digest.map(coord={"kind": "q", "rules": [puw_support.nm_float64_payload(ndim=1)]})
-    def outer(coord):
-        return inner(coord)
-
     q = puw.quantity([1.0, 2.0], "angstrom", form="pint")
-    output = outer(q)
+    output = kernel(q)
 
-    assert isinstance(output, ValidatedPayload)
-    assert output.unit == "nm"
-    assert output.dtype == "float64"
+    assert isinstance(output, np.ndarray)
+    assert output.dtype == np.float64
+    assert output.tolist() == pytest.approx([0.1, 0.2])
     assert call_count["n"] == 1
 
 
 @pytest.mark.skipif(not HAS_PUW, reason="pyunitwizard not installed")
-def test_registered_science_pipelines_can_return_naked_array():
+def test_the_registered_science_pipeline_yields_a_naked_array():
     puw.configure.reset()
     puw.configure.load_library(["pint"])
     # Manually register fast-track for tests because they use a fresh puw import
@@ -125,12 +129,7 @@ def test_registered_science_pipelines_can_return_naked_array():
     except:
         pass
 
-    @arg_digest.map(
-        coord={
-            "kind": "sci",
-            "rules": ["nm_float64_payload", "unwrap_validated_payload"],
-        }
-    )
+    @arg_digest.map(coord={"kind": "sci", "rules": ["nm_float64"]})
     def kernel(coord):
         return coord
 
@@ -143,7 +142,7 @@ def test_registered_science_pipelines_can_return_naked_array():
 
 
 @pytest.mark.skipif(not HAS_PUW, reason="pyunitwizard not installed")
-def test_payload_pipeline_ndim_mismatch_raises():
+def test_canonical_pipeline_ndim_mismatch_raises():
     puw.configure.reset()
     puw.configure.load_library(["pint"])
     # Manually register fast-track for tests because they use a fresh puw import
@@ -152,7 +151,7 @@ def test_payload_pipeline_ndim_mismatch_raises():
     except:
         pass
 
-    @arg_digest.map(coord={"kind": "q", "rules": [puw_support.nm_float64_payload(ndim=2)]})
+    @arg_digest.map(coord={"kind": "q", "rules": [puw_support.nm_float64(ndim=2)]})
     def kernel(coord):
         return coord
 

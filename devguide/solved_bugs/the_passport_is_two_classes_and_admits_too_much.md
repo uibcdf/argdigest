@@ -3,9 +3,22 @@
 **Found:** 2026-08-12, while preparing `ValidatedPayload` for the public API.
 **Impact:** low today, because measurement says no consumer uses the mechanism. High the
 moment one does, which is what we were about to invite by publishing it.
-**Status:** superseded in design by the value-certification model (see the end); this
-report exists so the two defects are on record and so the replacement is checked
-against them.
+> **Resolved 2026-08-12 by removing the mechanism.** Not repaired and not replaced:
+> `ValidatedPayload`, the passport protocol in the decorator, and the payload-emitting
+> PyUnitWizard pipelines are all gone. `skip_digestion` is now the single mechanism for
+> not re-digesting a value, and it is cheaper than the passport ever was (1.8 us against
+> the decorator's 21.6 us; 7.5 us against 65.6 us on a real digester).
+>
+> A replacement *was* designed, built and measured: certifying the value by identity
+> rather than wrapping it, with the claim bound to the digester that issued it. It closed
+> both defects below, it travelled through function bodies where the wrapper could not,
+> and it cost 3.5 us to issue and 0.46 us to consult. It was declined anyway, and the
+> reason is the durable lesson here: it asked every digester author to learn three new
+> concepts -- `by`, `guard`, `source` -- to solve a problem no consumer had hit. The one
+> performance defect actually measured in the ecosystem was a placement bug
+> (uibcdf/molsysmt#147), which no passport of any design would have fixed.
+>
+> The rules that survive are in `standards/ARGDIGEST_GUIDE.md` section 6.
 
 ## Defect 1 — two classes with the same name
 

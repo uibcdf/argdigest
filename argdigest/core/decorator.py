@@ -32,7 +32,6 @@ from smonitor import signal
 from depdigest import dep_digest
 
 from dataclasses import dataclass, field
-from .contract import ValidatedPayload
 
 _UNSET = object()
 logger = get_logger()
@@ -379,17 +378,6 @@ def arg_digest(
                     return _invoke(plan, fn_to_wrap, bound)
 
                 caller = f"{_resolve_owner_module(fn, args)}.{fn.__name__}"
-                
-                # --- Passport Protocol: Forced Unwrapping ---
-                # We register which arguments were ValidatedPayload instances,
-                # then replace them with naked values in bound immediately.
-                # This is the single source of truth for the rest of the digestion.
-                payloads = set()
-                for argname, val in bound.items():
-                    if isinstance(val, ValidatedPayload):
-                        payloads.add(argname)
-                        bound[argname] = val.value
-                # --------------------------------------------
 
                 if plan.var_keyword_name and plan.var_keyword_name in bound:
 
@@ -432,13 +420,6 @@ def arg_digest(
                         ctx_error = Context(function_name=fn.__name__, argname=argname, value=bound.get(argname), all_args=bound)
                         raise DigestNotDigestedError(f"Cycle: {' -> '.join(visiting_path + [argname])}", context=ctx_error)
                     visiting_path.append(argname)
-
-                    # --- Passport Protocol: Check for ValidatedPayload ---
-                    if argname in payloads:
-                        digested[argname] = bound.get(argname)
-                        visiting_path.pop()
-                        return
-                    # ---------------------------------------------------
 
                     fn_digest = plan.digesters.get(argname)
                     if fn_digest is None:
@@ -497,13 +478,6 @@ def arg_digest(
 
                     visiting_path.pop()
 
-                
-                # This ensures internal calls with "Passports" skip the line.
-                for argname, val in bound.items():
-                    if isinstance(val, ValidatedPayload):
-                        pass # Already handled by pass 1 or internal logic
-
-                
                 if plan.enable_argument_digestion:
                     for argname in bound:
                         if argname != "self":
