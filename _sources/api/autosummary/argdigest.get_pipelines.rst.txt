@@ -1,0 +1,6 @@
+﻿argdigest.get\_pipelines
+========================
+
+.. currentmodule:: argdigest
+
+.. autofunction:: get_pipelines

@@ -1,0 +1,6 @@
+﻿argdigest.describe\_normalization
+=================================
+
+.. currentmodule:: argdigest
+
+.. autofunction:: describe_normalization

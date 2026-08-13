@@ -1,0 +1,6 @@
+﻿argdigest.argument\_digest
+==========================
+
+.. currentmodule:: argdigest
+
+.. autofunction:: argument_digest

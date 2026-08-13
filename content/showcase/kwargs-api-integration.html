@@ -1,0 +1,728 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../../_static/favicon-16x16.png" sizes="16x16" rel="icon" type="image/png">
+    <link href="../../_static/favicon-124x124.png" sizes="124x124" rel="icon" type="image/png">
+    <link href="../../_static/favicon-128x128.png" sizes="128x128" rel="icon" type="image/png">
+    <link href="../../_static/favicon-192x192.png" sizes="192x192" rel="icon" type="image/png">
+    <link href="../../_static/icon.svg" rel="icon" type="image/svg+xml">
+  
+    <title>Integrating an API with **kwargs – ArgDigest 0.12.0</title>
+  
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=d5ef24d1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=d5ef24d1" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/documentation_options.js?v=61ccb1f1"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/showcase/kwargs-api-integration';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Migrating a standardizer to declared alias tables" href="standardizer-to-alias-tables.html" />
+    <link rel="prev" title="Mixed Migration Strategy" href="mixed-migration-strategy.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.12.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="ArgDigest 0.12.0 documentation - Home"/>
+    <img src="../../_static/logo.svg" class="logo__image only-dark pst-js-only" alt="ArgDigest 0.12.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about/index.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Showcase
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user/index.html">
+    User
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../developer/index.html">
+    Developers
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/uibcdf/argdigest" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about/index.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Showcase
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user/index.html">
+    User
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../developer/index.html">
+    Developers
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/uibcdf/argdigest" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="package-style-integration.html">Package Style Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="registry-style-integration.html">Registry Style Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decorator-style-integration.html">Decorator Style Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixed-migration-strategy.html">Mixed Migration Strategy</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Integrating an API with <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="standardizer-to-alias-tables.html">Migrating a standardizer to declared alias tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart — ArgDigest in action</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_integration.html">Example integration</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Showcase</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Integrating an API with <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code></span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="integrating-an-api-with-kwargs">
+<h1>Integrating an API with <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code><a class="headerlink" href="#integrating-an-api-with-kwargs" title="Link to this heading">#</a></h1>
+<p>Use this pattern when a function accepts a large, open set of keywords — attribute names,
+property names, feature flags — that can never be signature parameters.</p>
+<p>It is the one case where a library <strong>must</strong> declare something for the function argument
+contract to work. Every closed signature is covered for free.</p>
+<section id="the-problem">
+<h2>The problem<a class="headerlink" href="#the-problem" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">msm</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">molsys</span><span class="p">,</span> <span class="n">n_atoms</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>There are 118 attribute names. Listing them as parameters is not an option, so the
+function takes <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code>. And a function taking <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> accepts <em>anything</em> — so
+<code class="docutils literal notranslate"><span class="pre">n_atomss=True</span></code> is discarded in silence, the call runs with the default, and the caller
+receives a well-formed, wrong answer.</p>
+</section>
+<section id="structure">
+<h2>Structure<a class="headerlink" href="#structure" title="Link to this heading">#</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mylib/
+  _argdigest.py
+  attribute.py                     # the library&#39;s own catalogue of valid names
+  _private/argdigest/
+    argument/                      # axis 2: one module per argument name
+    domain/
+      attribute.py                 # the set of admissible keywords
+    function/
+      get.py                       # which functions admit that set
+</pre></div>
+</div>
+</section>
+<section id="argdigest-py">
+<h2><code class="docutils literal notranslate"><span class="pre">_argdigest.py</span></code><a class="headerlink" href="#argdigest-py" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DIGESTION_SOURCE</span> <span class="o">=</span> <span class="s2">&quot;mylib._private.argdigest.argument&quot;</span>
+<span class="n">DIGESTION_STYLE</span> <span class="o">=</span> <span class="s2">&quot;package&quot;</span>
+<span class="n">STRICTNESS</span> <span class="o">=</span> <span class="s2">&quot;warn&quot;</span>
+
+<span class="n">FUNCTION_SOURCE</span> <span class="o">=</span> <span class="s2">&quot;mylib._private.argdigest.function&quot;</span>
+<span class="n">DOMAIN_SOURCE</span> <span class="o">=</span> <span class="s2">&quot;mylib._private.argdigest.domain&quot;</span>
+<span class="n">UNKNOWN_ARGUMENT</span> <span class="o">=</span> <span class="s2">&quot;error&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="the-domain">
+<h2>The domain<a class="headerlink" href="#the-domain" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># mylib/_private/argdigest/domain/attribute.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">argdigest</span><span class="w"> </span><span class="kn">import</span> <span class="n">Domain</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">mylib.attribute</span><span class="w"> </span><span class="kn">import</span> <span class="n">attributes</span><span class="p">,</span> <span class="n">is_attribute</span>
+
+<span class="n">domain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;attribute&#39;</span><span class="p">,</span>
+    <span class="n">contains</span><span class="o">=</span><span class="n">is_attribute</span><span class="p">,</span>
+    <span class="n">members</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">attributes</span><span class="p">),</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;canonical attribute names&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Point at the catalogue; do not copy it.</strong> A domain that reads the library’s own source
+of truth cannot drift away from it, and a domain that lists names by hand will.</p>
+<p><code class="docutils literal notranslate"><span class="pre">contains</span></code> decides membership and <code class="docutils literal notranslate"><span class="pre">members</span></code> enumerates it. The enumeration is what makes
+near-miss suggestions and introspection possible, so provide it when the set is finite.</p>
+</section>
+<section id="the-contract">
+<h2>The contract<a class="headerlink" href="#the-contract" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># mylib/_private/argdigest/function/get.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">argdigest</span><span class="w"> </span><span class="kn">import</span> <span class="n">FunctionContract</span>
+
+<span class="n">CONTRACTS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">FunctionContract</span><span class="p">(</span><span class="n">caller</span><span class="o">=</span><span class="s1">&#39;mylib.basic.get.get&#39;</span><span class="p">,</span> <span class="n">admits</span><span class="o">=</span><span class="s1">&#39;attribute&#39;</span><span class="p">),</span>
+    <span class="n">FunctionContract</span><span class="p">(</span><span class="n">caller</span><span class="o">=</span><span class="s1">&#39;mylib.basic.set.set&#39;</span><span class="p">,</span> <span class="n">admits</span><span class="o">=</span><span class="s1">&#39;attribute&#39;</span><span class="p">),</span>
+    <span class="n">FunctionContract</span><span class="p">(</span><span class="n">caller</span><span class="o">=</span><span class="s1">&#39;mylib.basic.contains.contains&#39;</span><span class="p">,</span> <span class="n">admits</span><span class="o">=</span><span class="s1">&#39;attribute&#39;</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Several functions usually share one domain. Declare the domain once and point each
+function at it rather than repeating the set.</p>
+</section>
+<section id="what-the-caller-sees">
+<h2>What the caller sees<a class="headerlink" href="#what-the-caller-sees" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mylib</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">system</span><span class="p">,</span> <span class="n">n_atomss</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">UnknownArgumentError: &#39;mylib.basic.get.get&#39; does not accept the argument &#39;n_atomss&#39;.</span>
+<span class="go">Did you mean &#39;n_atoms&#39;?</span>
+</pre></div>
+</div>
+<section id="a-domain-that-depends-on-another-argument">
+<h3>A domain that depends on another argument<a class="headerlink" href="#a-domain-that-depends-on-another-argument" title="Link to this heading">#</a></h3>
+<p>Sometimes which keywords are admissible depends on a value in the same call: an engine, an
+output type, a mode. Declare the table and the argument it keys on:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Domain</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;engine_options&#39;</span><span class="p">,</span>
+    <span class="n">depends_on</span><span class="o">=</span><span class="s1">&#39;engine&#39;</span><span class="p">,</span>
+    <span class="n">by_value</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;MolSysMT&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;threshold&#39;</span><span class="p">,</span> <span class="s1">&#39;parallel&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;OpenMM&#39;</span><span class="p">:</span>   <span class="p">(</span><span class="s1">&#39;threshold&#39;</span><span class="p">,</span> <span class="s1">&#39;platform&#39;</span><span class="p">),</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">depends_on</span></code> may name several arguments, in which case the table is keyed by a tuple.</p>
+<p>It is still data: <code class="docutils literal notranslate"><span class="pre">describe_contract</span></code> renders the whole table, so the options each value
+accepts can be documented rather than discovered by reading code.</p>
+<p><strong>A value with no entry does not refuse anything.</strong> It means the domain cannot decide for
+this call — usually because that value is itself wrong — and the argument carrying it is
+about to be rejected by its own digester, which explains the real problem far better than
+a complaint about an unknown argument would.</p>
+<p><strong>Key on an argument, not on a derivation.</strong> The table is consulted per call, so the value
+must be cheap to read. If deciding the domain requires computing something expensive from
+another argument, the mechanism costs more than it saves and the function is better left
+permissive with the reason recorded.</p>
+</section>
+</section>
+<section id="requirements-and-exclusions">
+<h2>Requirements and exclusions<a class="headerlink" href="#requirements-and-exclusions" title="Link to this heading">#</a></h2>
+<p>A contract can also state rules that would otherwise live inside the function body:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FunctionContract</span><span class="p">(</span>
+    <span class="n">caller</span><span class="o">=</span><span class="s1">&#39;mylib.structure.get_neighbors.get_neighbors&#39;</span><span class="p">,</span>
+    <span class="n">mutually_exclusive</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;threshold&#39;</span><span class="p">,</span> <span class="s1">&#39;n_neighbors&#39;</span><span class="p">)],</span>
+    <span class="n">requires_any_of</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;threshold&#39;</span><span class="p">,</span> <span class="s1">&#39;n_neighbors&#39;</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Moving such a rule out of the body makes it fail before any work is done, and upgrades a
+bare <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> into a catalogued diagnostic naming both arguments.</p>
+<p>Be careful with what a rule actually means. <code class="docutils literal notranslate"><span class="pre">requires_any_of</span></code> and <code class="docutils literal notranslate"><span class="pre">co_required</span></code> test
+<strong>presence</strong>; a rule conditional on a <em>value</em> — “if <code class="docutils literal notranslate"><span class="pre">pairs=True</span></code> then both flags must be
+true” — is not the same thing and does not belong in a contract.</p>
+</section>
+<section id="a-large-table-that-computes-itself">
+<h2>A large table that computes itself<a class="headerlink" href="#a-large-table-that-computes-itself" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">by_value</span></code> takes any <strong>Mapping</strong>, and a mapping can be lazy. That is what makes the
+mechanism usable for a dispatcher with hundreds of edges, where a hand-written table would
+rot on the first signature change.</p>
+<p>The live example is a converter dispatcher with 89 target forms and 561 edges, 80 of them
+declared as module names so they are not imported until used. Its table knows its keys
+without importing anything, and computes a value the first time that target is asked for:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ConverterArguments</span><span class="p">(</span><span class="n">Mapping</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">to_form</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">to_form</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">[</span><span class="n">to_form</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_union_of_converter_signatures</span><span class="p">(</span><span class="n">to_form</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">[</span><span class="n">to_form</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Measured: 2 µs per call once warm, and the lazy import happens on the first conversion to
+that form — which is when it was going to happen anyway.</p>
+<p><strong>Group the key so it stays cheap.</strong> The exact set for that dispatcher depends on the pair
+<code class="docutils literal notranslate"><span class="pre">(origin,</span> <span class="pre">target)</span></code>, but the origin is not an argument: deriving it costs 235 µs, about 14%
+of a whole conversion, on every call. Keying on the target alone admits the union across
+origins — measured, 4.9 names where the exact set averages 3.3. That is the right trade:
+the comparison is not 4.9 against 3.3 but 4.9 against <em>anything</em>, a mistyped keyword
+belongs to no union, and a keyword valid for another origin is rejected a moment later by
+the converter, where the origin is known.</p>
+<p><strong>Audit what computes itself.</strong> A table derived from signatures cannot go stale, but it
+can silently <em>shrink</em>: if a signature becomes unreadable the edge is skipped, its names
+leave the domain, and valid calls start being refused. Keep a devtools check that fails
+when that happens, and have it ask the domain rather than reimplement it.</p>
+</section>
+<section id="smoke-check">
+<h2>Smoke check<a class="headerlink" href="#smoke-check" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>A valid keyword from the domain passes untouched.</p></li>
+<li><p>A near miss is refused and the message suggests the intended name.</p></li>
+<li><p>A closed signature in the same library refuses an unknown keyword with no declaration.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">describe_contract</span></code> lists the domain, so the accepted names can be documented.</p></li>
+</ol>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="mixed-migration-strategy.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Mixed Migration Strategy</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="standardizer-to-alias-tables.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Migrating a standardizer to declared alias tables</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem">The problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structure">Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#argdigest-py"><code class="docutils literal notranslate"><span class="pre">_argdigest.py</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-domain">The domain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-contract">The contract</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-caller-sees">What the caller sees</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-domain-that-depends-on-another-argument">A domain that depends on another argument</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements-and-exclusions">Requirements and exclusions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-large-table-that-computes-itself">A large table that computes itself</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#smoke-check">Smoke check</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item"><div>
+	&copy; 2026, <a href=contents/about/who.html>Liliana M. Moreno Vargas, Diego Prada Gracia
+		and contributors</a> | <a href="https://www.uibcdf.org/">UIBCDF Lab</a> 
+	at the <a href="http://himfg.com.mx">Federico Gómez Children’s Hospital of Mexico</a><br />
+	<a href="https://github.com/uibcdf/argdigest">DepDigest is an open source project</a> shared
+	under <a href="https://github.com/uibcdf/argdigest/blob/main/LICENSE">an MIT license</a>
+</div></div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0
+     | 
+    Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.20.0
+    <br/>
+  </p>
+
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><a href= "mailto:uibcdf@gmail.com">Contact us</a><br /></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
