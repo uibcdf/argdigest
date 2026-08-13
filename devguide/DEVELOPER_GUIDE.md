@@ -153,6 +153,39 @@ The `sci` kind has been added to provide standardized normalization for scientif
 - `to_float64_array`: Shortcut for float64 precision (mandatory for Numba kernels).
 - `to_int64_array`: Shortcut for int64 precision.
 
+### Optional PyUnitWizard integration boundary
+
+ArgDigest does not make PyUnitWizard part of its core argument engine. PyUnitWizard is
+an optional dependency used by `argdigest.contrib.pyunitwizard_support` and by
+scientific coercers when their input is a physical quantity. Installing and using the
+core decorator must not require importing PyUnitWizard.
+
+The integration layer is an adapter, not an independent units policy:
+
+- host libraries own their standard units, accepted dimensionalities, and whether a
+  public physical magnitude may be unitless;
+- the adapter delegates unit parsing, compatibility, conversion, and standardization
+  to PyUnitWizard's public API;
+- PyUnitWizard exceptions are translated to ArgDigest contract errors with the
+  original exception preserved as the cause and with argument/caller context intact;
+- exact-unit optimization uses PyUnitWizard's public `has_unit()` or a registered
+  `fast_track` normalizer, never direct Pint/Unyt/OpenMM/Astropy attributes;
+- `has_unit() is False` only means that the exact unit differs. It does not prove
+  dimensional compatibility. `False` and `None` require general validation unless the
+  host has already established that invariant;
+- `ensure_quantity()` is the preferred single operation when a pipeline owns the full
+  parse/reject/validate/standardize boundary. Separate `check()` and `standardize()`
+  factories remain valid composable primitives when a host intentionally builds those
+  stages independently;
+- `nm_float64()` and analogous canonical-array rules should delegate to registered
+  PyUnitWizard fast tracks and then normalize only the array dtype/shape that belongs
+  to ArgDigest.
+
+Do not add identity passports or mutable-object certification caches merely to remember
+that a quantity is canonical. Canonicality belongs to PyUnitWizard; trusted delegation
+of an already digested complete argument set belongs to `skip_digestion=True` at the
+host call boundary.
+
 ### Automatic Observability
 The `@arg_digest` decorator now automatically reports failures to `smonitor` with code `MSM-DBG-PROBE-001` at `DEBUG` level. It also captures the original exception as the `cause`, providing deep traceability without manual boilerplate in the host library.
 
