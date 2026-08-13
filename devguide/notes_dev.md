@@ -2,6 +2,12 @@
 
 ## Current state snapshot
 
+- Latest tag: `0.11.0`. `main` carries seven commits beyond it, drafted in
+  [`0.12.0_release_notes_draft.md`](0.12.0_release_notes_draft.md).
+- Supported Python is `>=3.11,<3.14`, closed at both ends and held to the CI matrix by
+  `tests/test_compatibility_matrix.py`.
+- **There is one mechanism for not re-digesting a value: `skip_digestion`.** The
+  `ValidatedPayload` passport is gone.
 - Current stabilization tag: `0.9.2` (final pre-1.0 checkpoint).
 - Core decorator: `arg_digest` supports argument-centric, pipeline-centric, and mixed modes.
 - Config model: explicit args, config module (`_argdigest.py`), env override (`ARGDIGEST_CONFIG`), and auto-discovery.
@@ -67,6 +73,36 @@
   plus its fast release gate at 12/12, and 1296 MolSysViewer tests with nothing declared
   on its side. No downstream call in either consumer had to change, which is what a
   defect that only reaches users looks like.
+
+## Recent implementation note — call shape, and the passport removed (2026-08-12/13)
+
+- **A decorated function is now called back the way it was declared.** `fn(**bound)` lost
+  `*args` entirely and mishandled positional-only parameters; `core/utils.build_call`
+  reconstructs the split, and `DigestionPlan.requires_call_shape` decides once at
+  decoration time so signatures with neither feature pay nothing. Reported from
+  MolSysViewer; the suspected positional-only failure was confirmed and fixed by the same
+  change. The var-positional digestion semantics — one tuple, one digester, named for the
+  parameter — are now written down rather than discoverable from a warning.
+- **`ValidatedPayload` is removed, not replaced.** Two live defects, both consequences of
+  its shape: declared twice so the decorator could never match a payload from the
+  PyUnitWizard pipelines, and honoured by argument *name* with no record of which
+  verification it represented, so one library's claim silenced another's digester.
+- **A replacement was built, measured, and declined.** Value certification by identity,
+  claim bound to the issuing digester, 3.5 µs to issue and 0.46 µs to consult, 27 tests
+  green. Declined because it asked every digester author to learn `by`, `guard` and
+  `source` for a problem no consumer had — the mechanism it replaced had zero users
+  across MolSysMT, MolSysViewer and PyUnitWizard. Preserved with its code in
+  `pending_proposals/value_certification/`.
+- **The root cause was not ours.** A digester cannot cheaply short-circuit because
+  `puw.get_unit` costs 363 µs where pint's own attribute answers in 0.88, and the cost is
+  flat with array size. Filed as a proposal in PyUnitWizard. **The lesson worth keeping:
+  we nearly added a caching layer to compensate for a missing predicate upstream.**
+- **Measurement discipline paid twice, and cost once.** The one performance defect
+  actually found (`uibcdf/molsysmt#147`, a digester on an internal predicate called 434
+  times per user action) came from refusing to accept a benchmark's own diagnosis. But
+  two of my own counts were wrong the same way — enumerating `(module, name)` pairs
+  instead of object identities inflated 13 319 decorated callables to 26 519. Count
+  identities.
 
 ## Open technical items
 

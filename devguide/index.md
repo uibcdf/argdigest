@@ -17,6 +17,8 @@ operational notes for ArgDigest.
 - `0.9.2_release_notes_draft.md`: draft notes for the `0.9.2` final pre-1.0 stabilization checkpoint.
 - `0.10.0_release_notes_draft.md`: the function argument contract (axis 1) and its
   deliberate pre-`1.0.0` breaking change.
+- `0.12.0_release_notes_draft.md`: the call-shape fix, the closed Python range, and the
+  removal of the `ValidatedPayload` passport.
 - `1.0.0_checklist.md`: final stability and interoperability gate for `1.0.0`.
 - `1.0.0_release_notes_and_migration_summary.md`: release narrative and migration summary draft for final promotion.
 - `1.0.0_go_no_go_pack.md`: final pre-tag evidence pack used for go/no-go decision.
