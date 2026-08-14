@@ -9,6 +9,14 @@ order, so reordering an otherwise equivalent call can change a scientific result
 
 **Status:** open. This is a pre-1.0 correctness blocker; no runtime fix has been applied.
 
+**Execution checkpoint — segment 1, 2026-08-14:** the collision contract is now
+executable in `tests/test_normalization_rules.py`. Four cases cover both insertion orders
+of alias plus canonical, two aliases converging on one target, and the decorated-call
+boundary. They are deliberately `xfail(strict=True)`: the suite remains green while the
+known defect is present, and any implementation that starts satisfying the contract
+must remove the markers in the same atomic segment or fail with an unexpected pass. No
+runtime, exception hierarchy or public API changed in this segment.
+
 ## What happens
 
 `apply_normalization()` first records `coords -> coordinates`, then rebuilds the mapping
@@ -147,5 +155,9 @@ about two distinct supplied names converging on one target during a call.
 
 ## Resolution
 
-Pending. Move this report to `devguide/solved_bugs/` when the implementation, core
-regressions, documentation and downstream MolSysViewer recheck are complete.
+Pending. Segment 1 (executable expected-failure contract) is complete. Segment 2 must be
+atomic: choose the existing catalog-backed exception or justify a dedicated public type,
+detect collisions before rebuilding the normalized dictionary, remove all four strict
+expected-failure markers, and leave the focused suite green. Move this report to
+`devguide/solved_bugs/` only after the implementation, documentation and downstream
+MolSysMT/MolSysViewer rechecks are complete.

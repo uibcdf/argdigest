@@ -19,9 +19,7 @@ from argdigest.core.normalization import (
     NormalizationRegistry,
     apply_normalization,
 )
-
 from tests.mock_axis_one import api
-
 
 # --- declaration ----------------------------------------------------------------------
 
@@ -118,6 +116,66 @@ def test_argument_order_is_preserved():
 def test_an_empty_registry_returns_the_arguments_untouched():
     bound = {"a": 1}
     assert apply_normalization(NormalizationRegistry(), "pkg.f", bound) is bound
+
+
+# --- collision contract --------------------------------------------------------------
+
+def _assert_alias_collision(registry, bound, conflicting_names):
+    """Require a diagnostic without deciding its public exception type yet."""
+    with pytest.raises(Exception) as exc_info:
+        apply_normalization(registry, "pkg.f", bound)
+
+    message = str(exc_info.value)
+    assert "pkg.f" in message
+    assert "coordinates" in message
+    assert all(name in message for name in conflicting_names)
+
+
+@pytest.mark.xfail(
+    strict=True,
+    reason="alias and canonical keywords currently collapse silently",
+)
+@pytest.mark.parametrize(
+    "bound",
+    [
+        {"coords": True, "coordinates": False},
+        {"coordinates": False, "coords": True},
+    ],
+)
+def test_an_alias_and_its_canonical_name_are_rejected_in_both_orders(bound):
+    registry = NormalizationRegistry([AliasTable(aliases={"coords": "coordinates"})])
+
+    _assert_alias_collision(registry, bound, {"coords", "coordinates"})
+
+
+@pytest.mark.xfail(
+    strict=True,
+    reason="two aliases with one canonical target currently collapse silently",
+)
+def test_two_supplied_aliases_with_one_target_are_rejected():
+    registry = NormalizationRegistry([
+        AliasTable(aliases={"coords": "coordinates", "positions": "coordinates"}),
+    ])
+
+    _assert_alias_collision(
+        registry,
+        {"coords": True, "positions": False},
+        {"coords", "positions"},
+    )
+
+
+@pytest.mark.xfail(
+    strict=True,
+    reason="decorated calls currently receive an already-collapsed mapping",
+)
+def test_a_decorated_call_rejects_alias_and_canonical_before_its_body():
+    with pytest.raises(Exception) as exc_info:
+        api.get("s", coords=True, coordinates=False)
+
+    message = str(exc_info.value)
+    assert "tests.mock_axis_one.api.get" in message
+    assert "coordinates" in message
+    assert "coords" in message
 
 
 # --- introspection --------------------------------------------------------------------
