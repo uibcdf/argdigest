@@ -7,8 +7,10 @@ normalization API against ArgDigest 0.12.0 and current `main` (`0514b86`).
 without an exception or warning. Which value survives depends on keyword insertion
 order, so reordering an otherwise equivalent call can change a scientific result.
 
-**Status:** active. The runtime correction and direct regressions are complete; closure
-still requires the downstream MolSysMT and MolSysViewer rechecks.
+**Status:** resolved on 2026-08-14. Runtime commit `c46cd01`; downstream guards
+`uibcdf/molsysmt@c7a5c514a` and `uibcdf/molsysviewer@8281360a`. The core guard is
+`tests/test_normalization_rules.py`. Distribution as ArgDigest 0.12.1 remains release
+delivery work, not an open runtime defect.
 
 **Execution checkpoint — segment 1, 2026-08-14:** the collision contract is now
 executable in `tests/test_normalization_rules.py`. Four cases cover both insertion orders
@@ -168,9 +170,32 @@ uniform predicate over scientific values and because duplicate intent remains am
 Self-alias handling is a separate, already guarded declaration error. This report is
 about two distinct supplied names converging on one target during a call.
 
+A collision created *inside* an opaque custom standardizer cannot reach ArgDigest as two
+distinct sources: the standardizer returns a mapping, and a Python mapping already has
+unique keys. Declared-table collisions are rejected before the standardizer runs. Any
+custom standardizer that overwrites one of its own inputs must enforce its own dynamic
+rename contract; there is no remaining cross-mechanism duplicate for ArgDigest to
+observe after the mapping is returned.
+
 ## Resolution
 
-Pending downstream closure. Segments 1 and 2 are complete. Segment 3 must run the full
-ArgDigest suite and the focused MolSysMT/MolSysViewer alias surfaces, verify that the
-compact diagnostic is sufficient, and update any downstream contract prose. Move this
-report to `devguide/solved_bugs/` only after those rechecks are complete.
+`apply_normalization()` now groups supplied source names by their resolved output before
+constructing the normalized dictionary. Any non-unique target raises the existing
+catalog-backed `ArgumentConsistencyError` with code `ARG-ERR-CONTRACT-003`, structured
+caller/target context, every conflicting source and an actionable hint. No new public
+exception was needed.
+
+The final evidence is:
+
+- ArgDigest: 218/218 tests pass, including both keyword orders, equal values, aliases
+  from different table scopes and a decorated end-to-end call; Ruff passes.
+- MolSysMT: 16 focused dependency/alias tests pass, its complete fast release gate passes
+  13/13, and the public `msm.get()` boundary has a regression.
+- MolSysViewer: 34 normalization/distribution tests pass, including the original public
+  reproduction through `view.get()`.
+- Both consumers document the exception contract and require `argdigest>=0.12.1` in
+  wheel metadata and Conda recipes, preventing the resolver from selecting affected
+  0.12.0 once the patch release is published.
+
+The source defect is closed. The next release workflow must publish ArgDigest 0.12.1
+before clean-install MolSysSuite dogfooding can begin.
