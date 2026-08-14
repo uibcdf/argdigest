@@ -2,8 +2,10 @@
 Logic for generating and updating AI Agent instructions based on library configuration.
 """
 from __future__ import annotations
-import os
+
 import importlib
+import os
+
 from .config import resolve_config
 from .function_contract import describe_contract
 from .function_loader import load_domains, load_function_contracts, load_normalization
@@ -85,7 +87,7 @@ def generate_agent_docs(module_name: str, output_file: str = "ARG_DIGEST_AGENTS.
     try:
         import_module_path = f"{module_name}._argdigest"
         cfg = resolve_config(import_module_path)
-    except Exception:
+    except Exception:  # noqa: BLE001 - agent generation tolerates missing client config
         # Fallback to current global defaults if _argdigest.py is missing
         from .config import get_defaults
         cfg = get_defaults()
@@ -96,7 +98,7 @@ def generate_agent_docs(module_name: str, output_file: str = "ARG_DIGEST_AGENTS.
         contracts = load_function_contracts(_hashable(cfg.function_source))
         domains = load_domains(_hashable(cfg.domain_source))
         normalization = load_normalization(_hashable(cfg.normalization_source))
-    except Exception:
+    except Exception:  # noqa: BLE001 - partial client registries must still render
         contracts, domains, normalization = None, {}, None
 
     content = f"""# ArgDigest Agent Instructions for {module_name}
@@ -128,7 +130,7 @@ This document provides context and instructions for AI Agents (like yourself) to
 Whenever you modify or add a function in this library:
 1. **Apply Digestion**: Ensure the function is decorated with `@arg_digest()`.
 2. **Check Arguments**: If you add new arguments, check if they need a specific digester in the `digestion_source` directory.
-2a. **Declare aliases**: if users are likely to type another name for an argument, add an `AliasTable` in `normalization_source` rather than renaming by hand. Aliases are applied before the contract, so they never conflict with it.
+2a. **Declare aliases**: if users are likely to type another name for an argument, add an `AliasTable` in `normalization_source` rather than renaming by hand. Aliases are applied before the contract. An alias and its canonical name are alternatives; passing both raises `ArgumentConsistencyError`.
 2b. **Declare the contract**: if the function takes `**kwargs`, declare in `function_source` which domain those keywords come from. Left undeclared, the function accepts anything, which is the defect axis 1 exists to prevent. A closed signature needs no declaration: it is held to its own parameters.
 3. **Use Pipelines**: For specific validation (e.g. ranges, types), use `arg_digest.map` with appropriate rules.
 4. **Maintenance**: If you change the ArgDigest configuration (e.g. adding a standardizer), you **MUST** run `argdigest agent update --module {module_name}` to keep this file in sync.

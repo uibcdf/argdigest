@@ -45,6 +45,12 @@ NORMALIZATION_SOURCE = "mylib._private.argdigest.normalization"
 That is the whole mechanism. ArgDigest discovers the tables, composes them and applies
 them; you never write dispatch logic.
 
+An alias and its canonical name are alternatives. Passing both in one call raises
+`ArgumentConsistencyError`, even if their values compare equal. The same rule applies to
+two supplied aliases that resolve to one canonical target. ArgDigest never uses keyword
+order as a conflict-resolution policy, and the diagnostic names the caller, target and
+every conflicting source name.
+
 ### Scoping a table to one function or a family
 
 ```python
@@ -90,6 +96,8 @@ the unreal name is refused where it is written.
 - **One pass, never a chain.** Once `a` has become `b`, it is not reconsidered. Chaining
   would make the result depend on declaration order, which nobody could reason about.
 - **Order is preserved.** Arguments keep the order they were written in.
+- **Targets stay unique.** Two supplied names may not resolve to one output argument;
+  aliases are alternative spellings, not additional values.
 
 ## Reading the aliases back
 

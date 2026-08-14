@@ -14,7 +14,12 @@ from __future__ import annotations
 
 import pytest
 
-from argdigest import AliasTable, UnknownArgumentError, describe_normalization
+from argdigest import (
+    AliasTable,
+    ArgumentConsistencyError,
+    UnknownArgumentError,
+    describe_normalization,
+)
 from argdigest.core.normalization import (
     NormalizationRegistry,
     apply_normalization,
@@ -121,25 +126,23 @@ def test_an_empty_registry_returns_the_arguments_untouched():
 # --- collision contract --------------------------------------------------------------
 
 def _assert_alias_collision(registry, bound, conflicting_names):
-    """Require a diagnostic without deciding its public exception type yet."""
-    with pytest.raises(Exception) as exc_info:
+    with pytest.raises(ArgumentConsistencyError) as exc_info:
         apply_normalization(registry, "pkg.f", bound)
 
+    assert exc_info.value.code == "ARG-ERR-CONTRACT-003"
+    assert exc_info.value.context.function_name == "pkg.f"
     message = str(exc_info.value)
     assert "pkg.f" in message
     assert "coordinates" in message
     assert all(name in message for name in conflicting_names)
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="alias and canonical keywords currently collapse silently",
-)
 @pytest.mark.parametrize(
     "bound",
     [
         {"coords": True, "coordinates": False},
         {"coordinates": False, "coords": True},
+        {"coords": True, "coordinates": True},
     ],
 )
 def test_an_alias_and_its_canonical_name_are_rejected_in_both_orders(bound):
@@ -148,13 +151,10 @@ def test_an_alias_and_its_canonical_name_are_rejected_in_both_orders(bound):
     _assert_alias_collision(registry, bound, {"coords", "coordinates"})
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="two aliases with one canonical target currently collapse silently",
-)
 def test_two_supplied_aliases_with_one_target_are_rejected():
     registry = NormalizationRegistry([
-        AliasTable(aliases={"coords": "coordinates", "positions": "coordinates"}),
+        AliasTable(aliases={"coords": "coordinates"}),
+        AliasTable(applies_to="pkg.f", aliases={"positions": "coordinates"}),
     ])
 
     _assert_alias_collision(
@@ -164,14 +164,12 @@ def test_two_supplied_aliases_with_one_target_are_rejected():
     )
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="decorated calls currently receive an already-collapsed mapping",
-)
 def test_a_decorated_call_rejects_alias_and_canonical_before_its_body():
-    with pytest.raises(Exception) as exc_info:
+    with pytest.raises(ArgumentConsistencyError) as exc_info:
         api.get("s", coords=True, coordinates=False)
 
+    assert exc_info.value.code == "ARG-ERR-CONTRACT-003"
+    assert exc_info.value.context.function_name == "tests.mock_axis_one.api.get"
     message = str(exc_info.value)
     assert "tests.mock_axis_one.api.get" in message
     assert "coordinates" in message

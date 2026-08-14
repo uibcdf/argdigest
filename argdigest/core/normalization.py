@@ -18,9 +18,13 @@ defines. A table declares only what is real.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from collections.abc import Iterable, Mapping
+from dataclasses import dataclass
 from fnmatch import fnmatchcase
-from typing import Any, Iterable, Mapping
+from typing import Any
+
+from .context import Context
+from .errors import ArgumentConsistencyError
 
 #: Applied to every caller.
 APPLIES_TO_ALL = "*"
@@ -130,6 +134,37 @@ def apply_normalization(registry: NormalizationRegistry, caller: str,
                 renames[source] = target
     if not renames:
         return bound
+
+    sources_by_target: dict[str, list[str]] = {}
+    for source in bound:
+        target = renames.get(source, source)
+        sources_by_target.setdefault(target, []).append(source)
+
+    conflicts = {
+        target: sources
+        for target, sources in sources_by_target.items()
+        if len(sources) > 1
+    }
+    if conflicts:
+        details = "; ".join(
+            f"{target!r} from {', '.join(repr(source) for source in sources)}"
+            for target, sources in conflicts.items()
+        )
+        conflicting_values = {
+            target: {source: bound[source] for source in sources}
+            for target, sources in conflicts.items()
+        }
+        raise ArgumentConsistencyError(
+            f"Call to {caller!r} supplies more than one name for the same argument: "
+            f"{details}. Aliases and canonical names are alternatives.",
+            context=Context(
+                function_name=caller,
+                argname=", ".join(conflicts),
+                value=conflicting_values,
+                all_args=bound,
+            ),
+            hint="Pass exactly one of the conflicting names.",
+        )
 
     return {renames.get(name, name): value for name, value in bound.items()}
 

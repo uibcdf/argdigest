@@ -7,7 +7,8 @@ normalization API against ArgDigest 0.12.0 and current `main` (`0514b86`).
 without an exception or warning. Which value survives depends on keyword insertion
 order, so reordering an otherwise equivalent call can change a scientific result.
 
-**Status:** open. This is a pre-1.0 correctness blocker; no runtime fix has been applied.
+**Status:** active. The runtime correction and direct regressions are complete; closure
+still requires the downstream MolSysMT and MolSysViewer rechecks.
 
 **Execution checkpoint — segment 1, 2026-08-14:** the collision contract is now
 executable in `tests/test_normalization_rules.py`. Four cases cover both insertion orders
@@ -17,9 +18,20 @@ known defect is present, and any implementation that starts satisfying the contr
 must remove the markers in the same atomic segment or fail with an unexpected pass. No
 runtime, exception hierarchy or public API changed in this segment.
 
-## What happens
+**Implementation checkpoint — segment 2, 2026-08-14:** collision detection now runs
+after table resolution but before the normalized dictionary is rebuilt. It groups every
+supplied source by its resolved target and raises the existing catalog-backed
+`ArgumentConsistencyError` (`ARG-ERR-CONTRACT-003`) whenever a target has more than one
+source. The diagnostic carries the caller and canonical target in structured context and
+names every conflicting source. A dedicated exception was rejected because this is
+already an inter-argument consistency violation and no caller needs another public type.
+All strict expected-failure markers were removed; the regression also rejects equal
+values and covers aliases contributed by tables of different specificity. User and agent
+documentation now state that aliases are alternatives.
 
-`apply_normalization()` first records `coords -> coordinates`, then rebuilds the mapping
+## Original behavior
+
+Before segment 2, `apply_normalization()` recorded `coords -> coordinates`, then rebuilt the mapping
 with a dictionary comprehension:
 
 ```python
@@ -52,15 +64,18 @@ apply_normalization(
 # {'coordinates': True}
 ```
 
+Those outputs reproduce commit `0514b86`; current `main` raises
+`ArgumentConsistencyError` for both calls before rebuilding the mapping.
+
 The same defect applies when two simultaneously supplied aliases target one canonical
 name. It is not limited to a source/canonical pair or to one table: caller-specific,
 pattern and global tables compose before the mapping is rebuilt.
 
 ## Downstream evidence
 
-MolSysViewer imports MolSysMT's attribute aliases for query wrappers. Against current
-checkouts, both calls are accepted but return different results solely because the two
-keywords were reversed:
+MolSysViewer imports MolSysMT's attribute aliases for query wrappers. Against the
+checkouts used to file the report, both calls were accepted but returned different
+results solely because the two keywords were reversed:
 
 ```python
 view.get(element="atom", atom_names=True, atom_name=False)
@@ -155,9 +170,7 @@ about two distinct supplied names converging on one target during a call.
 
 ## Resolution
 
-Pending. Segment 1 (executable expected-failure contract) is complete. Segment 2 must be
-atomic: choose the existing catalog-backed exception or justify a dedicated public type,
-detect collisions before rebuilding the normalized dictionary, remove all four strict
-expected-failure markers, and leave the focused suite green. Move this report to
-`devguide/solved_bugs/` only after the implementation, documentation and downstream
-MolSysMT/MolSysViewer rechecks are complete.
+Pending downstream closure. Segments 1 and 2 are complete. Segment 3 must run the full
+ArgDigest suite and the focused MolSysMT/MolSysViewer alias surfaces, verify that the
+compact diagnostic is sufficient, and update any downstream contract prose. Move this
+report to `devguide/solved_bugs/` only after those rechecks are complete.
