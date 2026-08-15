@@ -28,6 +28,7 @@ from .errors import (
     UnknownArgumentError,
 )
 from .logger import get_logger
+from .._private.smonitor.emitter import warn
 from smonitor import signal
 from depdigest import dep_digest
 
@@ -202,7 +203,7 @@ def _enforce_function_contract(plan: "DigestionPlan", caller: str, fn: Callable[
         if plan.unknown_argument == "ignore":
             continue
         if plan.unknown_argument == "warn":
-            warnings.warn(FunctionContractWarning(
+            warn(FunctionContractWarning(
                 message=violation.message, context=ctx_error, hint=violation.hint))
             continue
         raise _CONTRACT_ERRORS[violation.kind](
@@ -433,8 +434,10 @@ def arg_digest(
                         if plan.strictness == "error": 
                             raise DigestNotDigestedError(f"No digester for {argname}", context=ctx_error)
                         if plan.strictness == "warn":
-                            # Always issue standard Python warning for testing/simple setups
-                            warnings.warn(
+                            # `warn` emits the catalog event and raises the standard
+                            # Python warning, so ARG-WARN-MISS-001 reaches SMonitor
+                            # while `pytest.warns` and user filters keep working.
+                            warn(
                                 DigestNotDigestedWarning(
                                     message=f"No digester for {argname}",
                                     context=ctx_error,
