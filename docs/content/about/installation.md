@@ -1,39 +1,46 @@
 # Installation
 
-ArgDigest can be installed with conda or pip.
+ArgDigest is released on the `uibcdf` conda channel. There is no PyPI release yet, so
+`pip install argdigest` does not work; from source it installs like any other package.
 
 ## Basic Installation
 
 ```bash
-conda install -c uibcdf argdigest
+conda install -c uibcdf -c conda-forge argdigest
 ```
 
-or:
-
-```bash
-pip install argdigest
-```
+Both channels are needed: `depdigest` and `smonitor` come from `uibcdf`, the rest from
+`conda-forge`.
 
 ## With Optional Dependencies
 
-To enable seamless integration with **Pydantic**, **Beartype**, **Numpy**, and **Pandas**, install with extras:
+The conda package carries the runtime dependencies only, so the integrations with
+**PyUnitWizard**, **Pydantic**, **Beartype** and **Pandas** are installed alongside it:
 
 ```bash
-# Install everything (recommended for most users)
-pip install argdigest[all]
-
-# Or pick specific integrations
-pip install argdigest[pydantic]
-pip install argdigest[beartype]
-pip install argdigest[pyunitwizard]
+conda install -c uibcdf pyunitwizard
+conda install -c conda-forge beartype pydantic pandas
 ```
 
-These extras enable features like passing Pydantic models as rules, using `type_check=True`, or using specialized Data Science pipelines.
+These enable features like passing Pydantic models as rules, using `type_check=True`, or
+using the specialized data-science pipelines.
 
-Install from source:
+## Install from source
 
 ```bash
 git clone https://github.com/uibcdf/argdigest
 cd argdigest
 pip install -e .
+```
+
+From a source checkout the same integrations are declared as extras:
+
+```bash
+# Everything at once
+pip install -e ".[all]"
+
+# Or pick specific integrations
+pip install -e ".[pydantic]"
+pip install -e ".[beartype]"
+pip install -e ".[pyunitwizard]"
 ```

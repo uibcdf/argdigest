@@ -1,3 +1,3 @@
-DOC_URL = "https://www.uibcdf.com/argdigest"
+DOC_URL = "https://www.uibcdf.org/argdigest"
 ISSUES_URL = "https://github.com/uibcdf/argdigest/issues"
-API_URL = "https://www.uibcdf.com/argdigest"
+API_URL = "https://www.uibcdf.org/argdigest"

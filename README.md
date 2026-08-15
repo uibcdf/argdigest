@@ -1,7 +1,6 @@
 # ArgDigest
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![DOI](https://zenodo.org/badge/137937243.svg)](https://zenodo.org/badge/latestdoi/137937243)
 [![](https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-blue.svg)](https://www.python.org/downloads/)
 [![CI](https://github.com/uibcdf/argdigest/actions/workflows/CI.yaml/badge.svg)](https://github.com/uibcdf/argdigest/actions/workflows/CI.yaml)
 [![codecov](https://codecov.io/github/uibcdf/argdigest/graph/badge.svg?token=rkYkIOfPIs)](https://codecov.io/github/uibcdf/argdigest)
@@ -31,17 +30,41 @@ It combines:
 
 ## Installation
 
+ArgDigest is released on the `uibcdf` conda channel:
+
 ```bash
-pip install argdigest
+conda install -c uibcdf -c conda-forge argdigest
 ```
 
-Optional integrations:
+Both channels are needed: `depdigest` and `smonitor` come from `uibcdf`, the rest from
+`conda-forge`.
+
+There is no PyPI release yet, so `pip install argdigest` does not work. To work from
+source:
 
 ```bash
-pip install argdigest[beartype]
-pip install argdigest[pydantic]
-pip install argdigest[pyunitwizard]
-pip install argdigest[all]
+git clone https://github.com/uibcdf/argdigest
+cd argdigest
+pip install -e .
+```
+
+### Optional integrations
+
+The conda package carries the runtime dependencies only, so the integrations are
+installed alongside it:
+
+```bash
+conda install -c uibcdf pyunitwizard
+conda install -c conda-forge beartype pydantic
+```
+
+From a source checkout the same integrations are declared as extras:
+
+```bash
+pip install -e ".[beartype]"
+pip install -e ".[pydantic]"
+pip install -e ".[pyunitwizard]"
+pip install -e ".[all]"
 ```
 
 ## Quick example
