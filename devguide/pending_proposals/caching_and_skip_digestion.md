@@ -28,12 +28,16 @@
 > `smonitor.configure(profile=...)`.
 >
 > **What replaces it.** The motivating case — a canonical value reused across many calls
-> — is served by value certification, under design: the claim travels with the value's
-> identity, so every call in a chain benefits rather than only the outermost, and it is
-> bound to the digester that issued it. For call sites you control, `skip_digestion` is
-> already the cheapest tool at 1.8 µs. The `bypass_validation` context manager is not
-> adopted: its scope is non-local, silently covering callees the block's author does not
-> know are decorated.
+> — was going to be served by value certification, then under design. It was built,
+> measured and **declined the next day**
+> ([`value_certification/`](value_certification/README.md)): it asked every digester
+> author to learn three concepts for a problem no consumer had. What actually served the
+> case was the cheap canonicity predicate PyUnitWizard shipped the same day, which took
+> `puw.check(q, unit='nm')` from 887 µs to 10.26 and let a digester short-circuit in two
+> lines with no mechanism at all. For call sites you control, `skip_digestion` remains
+> the cheapest tool at 1.8 µs. The `bypass_validation` context manager is not adopted:
+> its scope is non-local, silently covering callees the block's author does not know are
+> decorated.
 
 ## Abstract
 

@@ -30,8 +30,11 @@ operational notes for ArgDigest.
 
 - `pending_bugs/`: defects reported against a released version, one file each, written
   from the reporter's side — what happens, how to reproduce it, how it was found.
-- `pending_proposals/`: designs proposed but not accepted. A proposal stays here until
-  it is either implemented or declined with the reason recorded.
+- `pending_proposals/`: designs proposed but not implemented, whether still open or
+  already declined. A proposal leaves only by being implemented. A declined one stays,
+  with a verdict header at the top naming the date, the reason, and what serves the case
+  instead — the reasoning is the part worth keeping, because it is what stops the same
+  design being proposed again, and it only does that where the proposals are read.
 - `solved_bugs/`: reports whose defect has been fixed. A report is moved here rather
   than deleted, with a note at the top naming the commits, the tests that hold the fix,
   and anything a consumer has to do differently now. The report is the only place the
