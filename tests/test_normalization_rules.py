@@ -220,3 +220,40 @@ def test_a_genuine_typo_is_still_refused():
     # point of running them in this order.
     with pytest.raises(UnknownArgumentError, match="n_atomzz"):
         api.get("s", n_atomzz=True)
+
+
+# --- defaults are not a second name --------------------------------------------------
+
+def test_a_default_is_not_counted_as_a_supplied_name():
+    """A canonical name resting on its default is not a competing alias.
+
+    `bind_arguments` applies defaults, so by the time normalization sees the call it
+    cannot tell `attribute_type=None` (filled in from the signature) from a value the
+    caller wrote. Counting both made every alias whose target has a default a collision:
+    passing only `coords` was rejected because `coordinates` was "also present".
+    """
+    bound = {"coords": True, "coordinates": None}
+    registry = NormalizationRegistry([
+        AliasTable(applies_to="pkg.f", aliases={"coords": "coordinates"}),
+    ])
+
+    # Only `coords` came from the caller.
+    result = apply_normalization(registry, "pkg.f", bound, supplied={"coords"})
+    assert result["coordinates"] is True
+    assert "coords" not in result
+
+
+def test_both_names_supplied_is_still_a_collision():
+    """The rule itself is unchanged: writing both really is ambiguous."""
+    bound = {"coords": True, "coordinates": False}
+    registry = NormalizationRegistry([
+        AliasTable(applies_to="pkg.f", aliases={"coords": "coordinates"}),
+    ])
+
+    with pytest.raises(ArgumentConsistencyError):
+        apply_normalization(registry, "pkg.f", bound, supplied={"coords", "coordinates"})
+
+
+def test_a_decorated_call_accepts_an_alias_whose_target_has_a_default():
+    """End to end, through the decorator that binds and applies the defaults."""
+    assert api.get("s", coords=True) == ["coordinates"]

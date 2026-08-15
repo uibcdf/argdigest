@@ -110,7 +110,8 @@ class NormalizationRegistry:
 
 
 def apply_normalization(registry: NormalizationRegistry, caller: str,
-                        bound: dict[str, Any]) -> dict[str, Any]:
+                        bound: dict[str, Any],
+                        supplied: set[str] | None = None) -> dict[str, Any]:
     """Rename the arguments of one call according to the declared tables.
 
     Tables are applied most specific first, so a caller-scoped alias wins over a global
@@ -119,6 +120,12 @@ def apply_normalization(registry: NormalizationRegistry, caller: str,
 
     Insertion order is preserved, because a caller reading a traceback or a repr should
     see arguments in the order they were written.
+
+    `supplied` names the arguments the caller actually wrote. Collision detection needs
+    it: `bound` has defaults applied, so without it a canonical name resting on its
+    default looks exactly like one the caller passed, and every alias whose target has a
+    default would be rejected as a duplicate. Omitting it keeps the older, defaults-blind
+    behaviour.
     """
 
     tables = registry.for_caller(caller)
@@ -135,8 +142,11 @@ def apply_normalization(registry: NormalizationRegistry, caller: str,
     if not renames:
         return bound
 
+    # Two names are alternatives only if the caller wrote both. A name present merely
+    # because `apply_defaults` put it there was never a choice the caller made.
+    contested = bound if supplied is None else [n for n in bound if n in supplied]
     sources_by_target: dict[str, list[str]] = {}
-    for source in bound:
+    for source in contested:
         target = renames.get(source, source)
         sources_by_target.setdefault(target, []).append(source)
 
@@ -166,7 +176,24 @@ def apply_normalization(registry: NormalizationRegistry, caller: str,
             hint="Pass exactly one of the conflicting names.",
         )
 
-    return {renames.get(name, name): value for name, value in bound.items()}
+    if supplied is None:
+        return {renames.get(name, name): value for name, value in bound.items()}
+
+    # A canonical name that is present only because defaults were applied is superseded
+    # by the alias the caller did write. Without this it would depend on dict order
+    # which of the two survived, and the default would overwrite the supplied value
+    # whenever the canonical name is declared later in the signature.
+    superseded = {
+        renames[source]
+        for source in renames
+        if source in supplied and renames[source] not in supplied
+    }
+    result: dict[str, Any] = {}
+    for name, value in bound.items():
+        if name in superseded and name not in renames:
+            continue
+        result[renames.get(name, name)] = value
+    return result
 
 
 def describe_normalization(registry: NormalizationRegistry,

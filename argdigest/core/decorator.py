@@ -371,9 +371,13 @@ def arg_digest(
             
             def _run_digestion():
                 extras: dict[str, Any] = {}
+                # Which names the caller actually wrote, as opposed to the ones
+                # `bind_arguments` fills in from the signature's defaults.
+                supplied: set[str] = set()
                 bound = bind_arguments(fn, *args, sig=plan.signature,
                                        var_keyword_name=plan.var_keyword_name,
-                                       extras_out=extras, **kwargs)
+                                       extras_out=extras, supplied_out=supplied, **kwargs)
+                supplied.update(extras)
                 if bound.get(plan.skip_param, False):
                     return _invoke(plan, fn_to_wrap, bound)
 
@@ -384,9 +388,11 @@ def arg_digest(
                     extra = bound.pop(plan.var_keyword_name) or {}
                     if isinstance(extra, dict):
                         bound.update(extra)
-                
+                        supplied.discard(plan.var_keyword_name)
+                        supplied.update(extra)
+
                 if plan.normalization:
-                    bound = apply_normalization(plan.normalization, caller, bound)
+                    bound = apply_normalization(plan.normalization, caller, bound, supplied)
 
                 if plan.standardizer:
                     standardized = plan.standardizer(caller, bound)

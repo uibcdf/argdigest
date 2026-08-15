@@ -9,6 +9,7 @@ def bind_arguments(
     sig: inspect.Signature | None = None,
     var_keyword_name: str | None = None,
     extras_out: dict[str, Any] | None = None,
+    supplied_out: set[str] | None = None,
     **kwargs: Any
 ) -> dict[str, Any]:
     """Bind a call to a signature, setting aside what the signature cannot take.
@@ -19,6 +20,12 @@ def bind_arguments(
     legitimate open-domain keyword, or something to tolerate. Deciding that here would
     put a policy in a binding step, and would make the decision invisible to the layer
     designed to take it.
+
+    The returned mapping has defaults applied, so it cannot say which names the caller
+    actually wrote. Pass `supplied_out` to receive exactly those: this is the only point
+    in the pipeline where the distinction still exists, and later stages need it — an
+    alias rule, for one, must not treat a parameter resting on its default as a second
+    name for the same argument.
     """
 
     if sig is None:
@@ -33,15 +40,23 @@ def bind_arguments(
         kwargs = {k: v for k, v in kwargs.items() if k in valid_params}
 
     bound = sig.bind_partial(*args, **kwargs)
+    # Recorded before defaults are applied: afterwards the two are indistinguishable.
+    if supplied_out is not None:
+        supplied_out.update(bound.arguments)
     bound.apply_defaults()
-    
+
     arguments = dict(bound.arguments)
-    
+
     # Flatten var_keyword arguments if present
     if var_keyword_name and var_keyword_name in arguments:
         extra = arguments.pop(var_keyword_name)
         if isinstance(extra, dict):
             arguments.update(extra)
+            # Keywords the caller wrote, so they count as supplied even though they
+            # arrived through **kwargs rather than a declared parameter.
+            if supplied_out is not None:
+                supplied_out.discard(var_keyword_name)
+                supplied_out.update(extra)
 
     return arguments
 
