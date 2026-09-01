@@ -1,13 +1,13 @@
 ---
 summary: Argument digestion retains arguments in recursive closure cycles.
 issue: uibcdf/argdigest#3
-status: active
+status: resolved
 opened: 2026-09-01
-closed:
+closed: 2026-09-01
 severity: high
 verification: reproduced
 area: [digestion, performance]
-guard:
+guard: tests/test_argument_digestion.py::test_argument_digestion_does_not_retain_arguments_in_a_reference_cycle
 normative:
 blocked_by: []
 supersedes: []
@@ -68,3 +68,14 @@ otherwise unreachable argument when automatic cyclic GC is disabled.
 Changing recursion mechanics could break dependency ordering or cycle reporting. The
 existing dependency and cyclic-dependency tests are therefore part of the required
 guard set.
+
+## Resolution
+
+Resolved in `fd09a24`. Recursive visits now receive their traversal callable explicitly,
+so the local function no longer closes over itself. This preserves dependency ordering
+and cycle diagnostics while allowing bound arguments to be released by reference
+counting when the decorated call returns.
+
+The complete suite passes with 222 tests under Python 3.13. The integrated MolSysMT
+probe leaves no unreachable ArgDigest objects after 1,000 calls with automatic cyclic
+GC disabled, and its RSS delta falls from about 99 MiB to about 0.01 MiB in that probe.
