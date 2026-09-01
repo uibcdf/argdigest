@@ -24,7 +24,7 @@ gets a fast answer; the full six-cell matrix runs weekly and on demand.
 
 | Component | Minimum Version | Role |
 |---|---:|---|
-| `smonitor` | `0.11.4` | diagnostics, signaling, catalog-backed messaging |
+| `smonitor` | `0.13.0` | diagnostics, signaling, catalog-backed messaging |
 | `depdigest` | `0.9.1` | optional dependency routing and hints |
 | `pyunitwizard` | `0.11.0` | optional unit-aware pipelines (`argdigest[pyunitwizard]`) |
 
