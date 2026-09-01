@@ -420,7 +420,7 @@ def arg_digest(
                 digested: dict[str, Any] = {}
                 visiting_path: list[str] = []
 
-                def gut(argname: str) -> None:
+                def gut(argname: str, visit: Callable[[str, Any], None]) -> None:
                     if argname in digested:
                         return
                     if argname in visiting_path:
@@ -457,7 +457,7 @@ def arg_digest(
                         elif p_name == "caller":
                             kwargs_for_digest[p_name] = caller
                         elif p_name in bound:
-                            gut(p_name)
+                            visit(p_name, visit)
                             kwargs_for_digest[p_name] = digested[p_name]
                         elif p_name in digestion_params:
                             kwargs_for_digest[p_name] = digestion_params[p_name]
@@ -490,7 +490,7 @@ def arg_digest(
                 if plan.enable_argument_digestion:
                     for argname in bound:
                         if argname != "self":
-                            gut(argname)
+                            gut(argname, gut)
                     bound.update(digested)
                 for argname, cfg_pipe in plan.pipeline_targets.items():
                     if argname not in bound:

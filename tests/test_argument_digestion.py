@@ -1,11 +1,14 @@
+import gc
+import weakref
+
 import pytest
 
 from argdigest import (
-    argument_digest,
-    arg_digest,
-    register_pipeline,
     DigestNotDigestedError,
     DigestNotDigestedWarning,
+    arg_digest,
+    argument_digest,
+    register_pipeline,
 )
 from argdigest.core.config import DigestConfig, set_defaults
 
@@ -139,3 +142,26 @@ def test_cyclic_dependency_error_message():
     msg = str(excinfo.value)
     # The order depends on iteration, but it should contain one of these paths
     assert "x_cyc -> y_cyc -> x_cyc" in msg or "y_cyc -> x_cyc -> y_cyc" in msg
+
+
+def test_argument_digestion_does_not_retain_arguments_in_a_reference_cycle():
+    class Payload:
+        pass
+
+    @arg_digest(digestion_style="decorator", strictness="ignore")
+    def consume(cycle_probe_payload):
+        return None
+
+    payload = Payload()
+    payload_reference = weakref.ref(payload)
+    gc.collect()
+    garbage_collection_was_enabled = gc.isenabled()
+    gc.disable()
+    try:
+        consume(payload)
+        del payload
+        assert payload_reference() is None
+    finally:
+        if garbage_collection_was_enabled:
+            gc.enable()
+        gc.collect()
