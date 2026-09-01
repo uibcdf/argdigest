@@ -1,0 +1,6 @@
+﻿argdigest.FunctionContractError
+===============================
+
+.. currentmodule:: argdigest
+
+.. autoexception:: FunctionContractError

@@ -1,0 +1,6 @@
+﻿argdigest.ArgumentConsistencyError
+==================================
+
+.. currentmodule:: argdigest
+
+.. autoexception:: ArgumentConsistencyError

@@ -1,0 +1,37 @@
+﻿argdigest.Domain
+================
+
+.. currentmodule:: argdigest
+
+.. autoclass:: Domain
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Domain.__init__
+      ~Domain.admits
+      ~Domain.known_members
+      ~Domain.resolve_members
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Domain.by_value
+      ~Domain.contains
+      ~Domain.depends_on
+      ~Domain.description
+      ~Domain.is_delegating
+      ~Domain.members
+      ~Domain.name
+   
+   

@@ -1,0 +1,38 @@
+﻿argdigest.FunctionContract
+==========================
+
+.. currentmodule:: argdigest
+
+.. autoclass:: FunctionContract
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~FunctionContract.__init__
+      ~FunctionContract.admits_anything
+      ~FunctionContract.admitted_domains
+      ~FunctionContract.has_rules_beyond_admission
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~FunctionContract.admits
+      ~FunctionContract.caller
+      ~FunctionContract.caller_pattern
+      ~FunctionContract.description
+      ~FunctionContract.key
+      ~FunctionContract.requires_any_of
+      ~FunctionContract.mutually_exclusive
+      ~FunctionContract.co_required
+   
+   
