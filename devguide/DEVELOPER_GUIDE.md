@@ -88,6 +88,7 @@ pytest
 
 ```bash
 ruff check .
+ruff format --check .
 ```
 
 3. Install + CLI sanity:
@@ -97,7 +98,7 @@ pip install -e .
 argdigest --help
 ```
 
-Release quality rule: tests and lint must both pass.
+Release quality rule: tests, lint, and formatting must all pass.
 
 ## 6. Packaging Rules
 

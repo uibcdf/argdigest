@@ -28,6 +28,8 @@ operational notes for ArgDigest.
 
 ## Incoming work
 
+- `pending_proposals/adopt_molsyssuite_policy_v1.md`: tracked adoption of the shared
+  governance and Ruff gate in `uibcdf/argdigest#4` and `uibcdf/molsyssuite#6`.
 - `pending_bugs/`: defects reported against a released version, one file each, written
   from the reporter's side — what happens, how to reproduce it, how it was found.
 - `pending_proposals/`: designs proposed but not implemented, whether still open or

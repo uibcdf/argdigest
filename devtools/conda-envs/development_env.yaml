@@ -9,7 +9,7 @@ dependencies:
   - jupyterlab
 
   # --- Dev tools: formatting, linting, testing ---
-  - ruff
+  - ruff=0.16.5
   - pytest
   - pytest-cov
   - beartype
@@ -35,4 +35,3 @@ dependencies:
   - ipykernel
   - pandoc
   - myst-nb
-
