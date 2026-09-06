@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from .meta import DOC_URL, ISSUES_URL, API_URL
+from .meta import API_URL, DOC_URL, ISSUES_URL
 
 PACKAGE_ROOT = Path(__file__).resolve().parents[2]
 
@@ -82,7 +82,7 @@ CATALOG = {
             "category": "dependency",
             "level": "WARNING",
         },
-    }
+    },
 }
 
 CODES = {

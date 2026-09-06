@@ -98,7 +98,9 @@ class NormalizationRegistry:
             return self._by_caller[caller]
         except KeyError:
             pass
-        matching = tuple(table for table in self._tables if table.matches_caller(caller))
+        matching = tuple(
+            table for table in self._tables if table.matches_caller(caller)
+        )
         self._by_caller[caller] = matching
         return matching
 
@@ -109,9 +111,12 @@ class NormalizationRegistry:
         return bool(self._tables)
 
 
-def apply_normalization(registry: NormalizationRegistry, caller: str,
-                        bound: dict[str, Any],
-                        supplied: set[str] | None = None) -> dict[str, Any]:
+def apply_normalization(
+    registry: NormalizationRegistry,
+    caller: str,
+    bound: dict[str, Any],
+    supplied: set[str] | None = None,
+) -> dict[str, Any]:
     """Rename the arguments of one call according to the declared tables.
 
     Tables are applied most specific first, so a caller-scoped alias wins over a global
@@ -196,8 +201,9 @@ def apply_normalization(registry: NormalizationRegistry, caller: str,
     return result
 
 
-def describe_normalization(registry: NormalizationRegistry,
-                           caller: str | None = None) -> list[dict[str, Any]]:
+def describe_normalization(
+    registry: NormalizationRegistry, caller: str | None = None
+) -> list[dict[str, Any]]:
     """Render the declared aliases as plain data, optionally for one caller.
 
     Declaring rules as data rather than as a callable is what makes this possible: the

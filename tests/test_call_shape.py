@@ -15,6 +15,7 @@ from argdigest.core.utils import bind_arguments, build_call
 
 # --- var-positional ---------------------------------------------------------------
 
+
 def test_var_positional_survives_a_positional_call():
     @arg_digest(strictness="ignore")
     def combine(*items, tag=None):
@@ -69,6 +70,7 @@ def test_defaults_still_apply_around_a_var_positional():
 
 # --- positional-only --------------------------------------------------------------
 
+
 def test_positional_only_parameter_survives():
     @arg_digest(strictness="ignore")
     def positioned(a, /, b=2):
@@ -89,6 +91,7 @@ def test_positional_only_together_with_var_positional():
 
 # --- the bypass path --------------------------------------------------------------
 
+
 def test_skip_digestion_keyword_bypasses_without_losing_the_call_shape():
     @arg_digest(strictness="ignore")
     def combine(*items, skip_digestion=False):
@@ -106,6 +109,7 @@ def test_skip_digestion_default_still_runs_digestion():
 
 
 # --- digestion still reaches the parameters ---------------------------------------
+
 
 def test_var_positional_is_digested_as_one_tuple_under_its_own_name():
     """Documented behaviour: `*items` is bound as a single tuple and digested once.
@@ -163,6 +167,7 @@ def test_digestion_reaches_a_positional_only_parameter():
 
 # --- the contract layer keeps working on these signatures -------------------------
 
+
 def test_unknown_keyword_is_still_refused_on_a_positional_only_signature():
     from argdigest import UnknownArgumentError
 
@@ -186,11 +191,11 @@ def test_var_positional_name_is_not_reported_as_an_unknown_argument():
 
 # --- the reconstruction helper itself ---------------------------------------------
 
+
 def test_build_call_splits_a_signature_into_positional_and_keyword():
     import inspect
 
-    def sample(a, /, b, *rest, tag=None, **extra):
-        ...
+    def sample(a, /, b, *rest, tag=None, **extra): ...
 
     signature = inspect.signature(sample)
     bound = bind_arguments(sample, 1, 2, 3, 4, tag="x", other=9)
@@ -203,8 +208,7 @@ def test_build_call_splits_a_signature_into_positional_and_keyword():
 def test_build_call_keeps_named_parameters_as_keywords_when_nothing_forces_them():
     import inspect
 
-    def sample(a, b=2):
-        ...
+    def sample(a, b=2): ...
 
     signature = inspect.signature(sample)
     bound = bind_arguments(sample, 1)

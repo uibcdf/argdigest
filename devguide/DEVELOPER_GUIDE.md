@@ -27,8 +27,9 @@ arg_digest.map(
     feature={"kind": "feature", "rules": ["feature.base", "feature.shape"]},
     parent={"kind": "feature", "rules": ["feature.base"]},
 )
-def link(feature, parent):
-    ...
+
+
+def link(feature, parent): ...
 ```
 
 ### 2.3 Configuration resolution
@@ -62,6 +63,7 @@ Instrumentation:
 
 ```python
 from argdigest.config import load_from_file
+
 cfg = load_from_file("my_config.yaml")
 ```
 
@@ -127,14 +129,18 @@ include = ["argdigest*"]
 from pydantic import BaseModel
 from argdigest import arg_digest
 
+
 class Feature(BaseModel):
     feature_id: str
     shape_type: str
+
 
 arg_digest.map(
     feature={"kind": "feature", "rules": [Feature]},
     type_check=True,
 )
+
+
 def register_feature(feature: Feature):
     return feature.feature_id
 ```

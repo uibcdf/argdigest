@@ -4,7 +4,7 @@ import importlib
 import sys
 
 from argdigest.core.context import Context
-from argdigest.core.errors import DigestTypeError, DigestNotDigestedWarning
+from argdigest.core.errors import DigestNotDigestedWarning, DigestTypeError
 from argdigest.core.registry import Registry, get_pipelines
 
 

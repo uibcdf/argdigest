@@ -9,8 +9,7 @@ normal behavior, not as the default usage pattern.
 
 ```python
 @arg_digest(config="mylib._argdigest")
-def get(molecular_system, selection=None, skip_digestion=False):
-    ...
+def get(molecular_system, selection=None, skip_digestion=False): ...
 ```
 
 with:

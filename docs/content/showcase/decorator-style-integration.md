@@ -32,8 +32,7 @@ def digest_syntax(syntax, caller=None):
 ## Decorated function
 
 ```python
-@arg_digest(digestion_style="decorator", strictness="error",
-            unknown_argument="error")
+@arg_digest(digestion_style="decorator", strictness="error", unknown_argument="error")
 def get(molecular_system, selection=None, syntax="MolSysMT"):
     return molecular_system, selection, syntax
 ```

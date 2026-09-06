@@ -35,7 +35,9 @@ def _iter_package_modules(package_path: str) -> list[ModuleType]:
     if not hasattr(package, "__path__"):
         return [package]
     modules = []
-    for module_info in sorted(pkgutil.iter_modules(package.__path__), key=lambda item: item.name):
+    for module_info in sorted(
+        pkgutil.iter_modules(package.__path__), key=lambda item: item.name
+    ):
         modules.append(import_module(f"{package_path}.{module_info.name}"))
     return modules
 
@@ -75,7 +77,9 @@ def _collect_domains(module: ModuleType) -> list[Domain]:
 
 
 @lru_cache(maxsize=None)
-def load_function_contracts(function_source: str | tuple[str, ...] | None) -> ContractRegistry:
+def load_function_contracts(
+    function_source: str | tuple[str, ...] | None,
+) -> ContractRegistry:
     """Build the contract registry declared by a consumer."""
 
     registry = ContractRegistry()
@@ -116,8 +120,9 @@ def _collect_alias_tables(module: ModuleType) -> list[AliasTable]:
 
 
 @lru_cache(maxsize=None)
-def load_normalization(normalization_source: str | tuple[str, ...] | None
-                       ) -> NormalizationRegistry:
+def load_normalization(
+    normalization_source: str | tuple[str, ...] | None,
+) -> NormalizationRegistry:
     """Build the alias registry declared by a consumer."""
 
     registry = NormalizationRegistry()

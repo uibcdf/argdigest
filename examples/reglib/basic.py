@@ -8,6 +8,8 @@ def double(value, ctx):
     return value * 2
 
 
-@arg_digest(config="reglib._argdigest", map={"a": {"kind": "scalar", "rules": ["double"]}})
+@arg_digest(
+    config="reglib._argdigest", map={"a": {"kind": "scalar", "rules": ["double"]}}
+)
 def analyze(a, b, skip_digestion=False):
     return a, b

@@ -51,7 +51,7 @@ More serious, and independent of the duplication. `core/decorator.py`:
 
 ```python
 if argname in payloads:
-    digested[argname] = bound.get(argname)   # skip the digester, whichever it is
+    digested[argname] = bound.get(argname)  # skip the digester, whichever it is
 ```
 
 The claim carries `unit`, `dtype`, `ndim` — but **nothing about which verification was
@@ -72,18 +72,21 @@ import numpy as np
 
 calls = []
 
+
 @argument_digest("coordinates")
 def digest_coordinates(coordinates):
     calls.append(coordinates)
     return coordinates
 
+
 @arg_digest(digestion_style="decorator", strictness="ignore")
 def measure(coordinates):
     return coordinates
 
+
 result = measure(emitted(value=np.zeros((4, 3)), unit="nm", dtype="float64", ndim=2))
-assert calls == []                          # fails: the digester ran
-assert isinstance(result, np.ndarray)       # fails: the body got the wrapper
+assert calls == []  # fails: the digester ran
+assert isinstance(result, np.ndarray)  # fails: the body got the wrapper
 ```
 
 ## How it was found

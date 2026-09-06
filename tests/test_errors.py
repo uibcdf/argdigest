@@ -1,5 +1,7 @@
 import pytest
-from argdigest import arg_digest, DigestNotDigestedError
+
+from argdigest import DigestNotDigestedError, arg_digest
+
 
 def test_rich_error_message():
     @arg_digest(digestion_style="decorator", strictness="error")

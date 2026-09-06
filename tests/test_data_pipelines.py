@@ -1,13 +1,16 @@
-import pytest
 import numpy as np
+import pytest
+
 try:
     import pandas as pd
+
     HAS_PANDAS = True
 except ImportError:
     HAS_PANDAS = False
 
-from argdigest import arg_digest, DigestValueError, DigestTypeError
+from argdigest import DigestTypeError, DigestValueError, arg_digest
 from argdigest.pipelines import data as data_pipelines
+
 
 def test_numpy_coercion():
     @arg_digest.map(arr={"kind": "data", "rules": ["to_numpy"]})
@@ -17,6 +20,7 @@ def test_numpy_coercion():
     res = f([1, 2, 3])
     assert isinstance(res, np.ndarray)
     assert np.array_equal(res, np.array([1, 2, 3]))
+
 
 def test_numpy_ndim_validation():
     @arg_digest.map(matrix={"kind": "data", "rules": [data_pipelines.has_ndim(2)]})
@@ -30,6 +34,7 @@ def test_numpy_ndim_validation():
     with pytest.raises(DigestValueError, match="Expected 2 dimensions"):
         f(np.array([1, 2, 3]))
 
+
 def test_numpy_shape_validation():
     @arg_digest.map(vec={"kind": "data", "rules": [data_pipelines.is_shape((3,))]})
     def f(vec):
@@ -40,15 +45,17 @@ def test_numpy_shape_validation():
     with pytest.raises(DigestValueError, match="Dimension 0 mismatch"):
         f(np.array([1, 2]))
 
+
 def test_numpy_dtype_validation():
-    @arg_digest.map(arr={"kind": "data", "rules": [data_pipelines.is_dtype('float64')]})
+    @arg_digest.map(arr={"kind": "data", "rules": [data_pipelines.is_dtype("float64")]})
     def f(arr):
         return arr
 
-    f(np.array([1.0, 2.0], dtype='float64'))
+    f(np.array([1.0, 2.0], dtype="float64"))
 
     with pytest.raises(DigestTypeError, match="Expected dtype float64"):
-        f(np.array([1, 2], dtype='int32'))
+        f(np.array([1, 2], dtype="int32"))
+
 
 @pytest.mark.skipif(not HAS_PANDAS, reason="pandas not installed")
 def test_pandas_coercion():
@@ -60,9 +67,15 @@ def test_pandas_coercion():
     assert isinstance(res, pd.DataFrame)
     assert len(res) == 2
 
+
 @pytest.mark.skipif(not HAS_PANDAS, reason="pandas not installed")
 def test_pandas_columns_validation():
-    @arg_digest.map(df={"kind": "data", "rules": ["to_dataframe", data_pipelines.has_columns(["id", "val"])]})
+    @arg_digest.map(
+        df={
+            "kind": "data",
+            "rules": ["to_dataframe", data_pipelines.has_columns(["id", "val"])],
+        }
+    )
     def f(df):
         return df
 
@@ -73,10 +86,13 @@ def test_pandas_columns_validation():
     with pytest.raises(DigestValueError, match="Missing columns"):
         f({"id": [1]})
 
+
 @pytest.mark.skipif(not HAS_PANDAS, reason="pandas not installed")
 def test_data_min_rows():
     # Test with numpy
-    @arg_digest.map(arr={"kind": "data", "rules": ["to_numpy", data_pipelines.min_rows(3)]})
+    @arg_digest.map(
+        arr={"kind": "data", "rules": ["to_numpy", data_pipelines.min_rows(3)]}
+    )
     def f(arr):
         return arr
 

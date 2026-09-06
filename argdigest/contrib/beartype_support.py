@@ -11,8 +11,11 @@ Usage in a user library:
 """
 
 from __future__ import annotations
+
 from typing import Any, Callable
+
 from depdigest import dep_digest
+
 from ..core.decorator import arg_digest
 
 
@@ -24,24 +27,25 @@ def _load_beartype():
 
 
 def beartype_digest(
-    *, 
-    kind: str | None = None, 
-    rules: list[str] | None = None, 
+    *,
+    kind: str | None = None,
+    rules: list[str] | None = None,
     map: dict[str, dict] | None = None,
-    **kwargs: Any
+    **kwargs: Any,
 ):
     def deco(fn: Callable[..., Any]):
         beartype = _load_beartype()
         # We want digestion to happen FIRST (outer wrapper), so it transforms values.
         # Then beartype (inner wrapper) checks the transformed values.
-        
+
         # 1. Apply beartype to the original function
         type_checked_fn = beartype(fn)
-        
+
         # 2. Wrap the type-checked function with argdigest
         wrapped = arg_digest(kind=kind, rules=rules, map=map, **kwargs)(type_checked_fn)
-        
+
         return wrapped
+
     return deco
 
 

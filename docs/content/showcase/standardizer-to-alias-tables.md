@@ -14,18 +14,18 @@ One callable, holding every rule:
 def argument_names_standardization(caller, kwargs):
     from mylib.attribute import _attribute_synonyms
 
-    if caller == 'mylib.basic.get.get':
-        element = kwargs['element']
-        if 'name' in kwargs:
-            kwargs = _replace_key(kwargs, 'name', element + '_name')
-        if 'index' in kwargs:
-            kwargs = _replace_key(kwargs, 'index', element + '_index')
+    if caller == "mylib.basic.get.get":
+        element = kwargs["element"]
+        if "name" in kwargs:
+            kwargs = _replace_key(kwargs, "name", element + "_name")
+        if "index" in kwargs:
+            kwargs = _replace_key(kwargs, "index", element + "_index")
         ...
         for arg in kwargs:
             if arg in _attribute_synonyms:
                 kwargs = _replace_key(kwargs, arg, _attribute_synonyms[arg])
 
-    elif caller == 'mylib.build.mutate.mutate':
+    elif caller == "mylib.build.mutate.mutate":
         ...
     return kwargs
 ```
@@ -48,9 +48,9 @@ from argdigest import AliasTable
 from mylib.attribute import _attribute_synonyms
 
 _ATTRIBUTE_TAKING_CALLERS = (
-    'mylib.basic.get.get',
-    'mylib.basic.contains.contains',
-    'mylib.basic.is_composed_of.is_composed_of',
+    "mylib.basic.get.get",
+    "mylib.basic.contains.contains",
+    "mylib.basic.is_composed_of.is_composed_of",
 )
 
 TABLES = [
@@ -62,13 +62,27 @@ TABLES = [
 ```python
 # get_element_names.py
 TABLES = [
-    AliasTable(applies_to='mylib.basic.get.get', when={'element': 'atom'},
-               aliases={'name': 'atom_name', 'index': 'atom_index',
-                        'id': 'atom_id', 'type': 'atom_type'}),
-    AliasTable(applies_to='mylib.basic.get.get', when={'element': 'bond'},
-               aliases={'index': 'bond_index', 'id': 'bond_id',
-                        'type': 'bond_type', 'order': 'bond_order'}),
-    ...
+    AliasTable(
+        applies_to="mylib.basic.get.get",
+        when={"element": "atom"},
+        aliases={
+            "name": "atom_name",
+            "index": "atom_index",
+            "id": "atom_id",
+            "type": "atom_type",
+        },
+    ),
+    AliasTable(
+        applies_to="mylib.basic.get.get",
+        when={"element": "bond"},
+        aliases={
+            "index": "bond_index",
+            "id": "bond_id",
+            "type": "bond_type",
+            "order": "bond_order",
+        },
+    ),
+    ...,
 ]
 ```
 

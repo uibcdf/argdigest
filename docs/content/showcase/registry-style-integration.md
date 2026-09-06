@@ -41,9 +41,9 @@ UNKNOWN_ARGUMENT = "error"
 ```python
 from argdigest import arg_digest
 
+
 @arg_digest(config="mylib._argdigest")
-def select(selection=None, syntax="MolSysMT"):
-    ...
+def select(selection=None, syntax="MolSysMT"): ...
 ```
 
 ## Why this style works

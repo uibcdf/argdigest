@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
-from importlib import import_module
-from typing import Any
-from functools import lru_cache
-from pathlib import Path
 import os
+from dataclasses import dataclass
+from functools import lru_cache
+from importlib import import_module
+from pathlib import Path
+from typing import Any
 
 
 @dataclass(frozen=True)
@@ -33,17 +33,20 @@ _DEFAULTS: DigestConfig = DigestConfig()
 
 def set_defaults(config: DigestConfig | None = None, **kwargs: Any) -> None:
     global _DEFAULTS
-    
+
     if config is not None:
         if kwargs:
-            raise ValueError("Cannot specify both 'config' object and keyword arguments.")
+            raise ValueError(
+                "Cannot specify both 'config' object and keyword arguments."
+            )
         _DEFAULTS = config
         return
 
     if kwargs:
         from dataclasses import replace
+
         _DEFAULTS = replace(_DEFAULTS, **kwargs)
-    
+
     # Invalidate cache if defaults change
     resolve_config.cache_clear()
 
@@ -62,6 +65,7 @@ def get_env_config_module() -> str | None:
     value = value.strip()
     return value or None
 
+
 @lru_cache(maxsize=128)
 def _from_module(module_path: str) -> DigestConfig:
     module = import_module(module_path)
@@ -79,6 +83,7 @@ def _from_module(module_path: str) -> DigestConfig:
         unknown_argument=getattr(module, "UNKNOWN_ARGUMENT", "error"),
     )
 
+
 def load_from_file(path: str | Path) -> DigestConfig:
     """
     Load configuration from a Python, YAML, or JSON file path.
@@ -86,11 +91,12 @@ def load_from_file(path: str | Path) -> DigestConfig:
     path = Path(path)
     if not path.exists():
         raise FileNotFoundError(f"Config file not found: {path}")
-    
+
     ext = path.suffix.lower()
-    
+
     if ext == ".py":
         import importlib.util
+
         spec = importlib.util.spec_from_file_location("_argdigest_ext", str(path))
         if spec is None or spec.loader is None:
             raise ImportError(f"Could not load config from {path}")
@@ -109,20 +115,23 @@ def load_from_file(path: str | Path) -> DigestConfig:
             normalization_source=getattr(module, "NORMALIZATION_SOURCE", None),
             unknown_argument=getattr(module, "UNKNOWN_ARGUMENT", "error"),
         )
-    
+
     if ext in (".yaml", ".yml"):
         import yaml
+
         with open(path, "r") as f:
             data = yaml.safe_load(f)
         return DigestConfig(**data)
-    
+
     if ext == ".json":
         import json
+
         with open(path, "r") as f:
             data = json.load(f)
         return DigestConfig(**data)
-    
+
     raise ValueError(f"Unsupported config file extension: {ext}")
+
 
 def resolve_config(config: Any) -> DigestConfig:
     if config is None:
@@ -132,6 +141,7 @@ def resolve_config(config: Any) -> DigestConfig:
     if isinstance(config, str):
         return _from_module(config)
     raise TypeError("config must be a DigestConfig, a module path string, or None")
+
 
 # Export a cached version of resolve_config too
 resolve_config = lru_cache(maxsize=128)(resolve_config)

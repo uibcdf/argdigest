@@ -13,7 +13,9 @@ def test_get_digester_metadata_ambiguous_value_param_raises():
     def digest_a(x, y, caller=None):
         return x
 
-    with pytest.raises(DigestNotDigestedError, match="Cannot determine value parameter"):
+    with pytest.raises(
+        DigestNotDigestedError, match="Cannot determine value parameter"
+    ):
         get_digester_metadata(digest_a, "a")
 
 
@@ -31,12 +33,16 @@ def test_type_check_missing_beartype_falls_back_to_runtime_warning(monkeypatch):
 
     with warnings.catch_warnings(record=True) as rec:
         warnings.simplefilter("always")
+
         @arg_digest(digestion_style="auto", strictness="ignore", type_check=True)
         def f(a):
             return a
 
         assert f(3) == 3
-        assert any("type_check=True but 'beartype' is not installed" in str(w.message) for w in rec)
+        assert any(
+            "type_check=True but 'beartype' is not installed" in str(w.message)
+            for w in rec
+        )
 
 
 def test_var_keyword_flattening_and_digestion_params_injection():

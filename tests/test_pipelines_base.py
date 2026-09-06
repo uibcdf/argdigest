@@ -1,5 +1,7 @@
 import pytest
-from argdigest import arg_digest, DigestTypeError
+
+from argdigest import DigestTypeError, arg_digest
+
 
 def test_feature_base_pipeline():
     @arg_digest.map(feat={"kind": "feature", "rules": ["feature.base"]})
@@ -12,6 +14,7 @@ def test_feature_base_pipeline():
     # Invalid
     with pytest.raises(DigestTypeError, match="must have 'feature_id'"):
         f({"id": "f1"})
+
 
 def test_feature_shape_pipeline():
     @arg_digest.map(feat={"kind": "feature", "rules": ["feature.shape"]})

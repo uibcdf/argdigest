@@ -6,7 +6,13 @@ from argdigest.core.health import run_health_check
 
 def test_run_health_check_contract():
     report = run_health_check()
-    expected = {"smonitor", "depdigest", "pyunitwizard_optional", "diagnostics", "profiles"}
+    expected = {
+        "smonitor",
+        "depdigest",
+        "pyunitwizard_optional",
+        "diagnostics",
+        "profiles",
+    }
     assert set(report.keys()) == expected
     for item in report.values():
         assert "ok" in item

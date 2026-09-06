@@ -70,20 +70,23 @@ ArgDigest can read the active SMonitor profile during initialization. When SMoni
 # argdigest/decorators.py
 import smonitor
 
+
 def arg_digest(*rules, high_frequency=False):
     def decorator(func):
         # Cache check status at import/decoration time
         is_production = getattr(smonitor, "PROFILE", "production") == "production"
         should_bypass = high_frequency and is_production
-        
+
         def wrapper(*args, **kwargs):
             if should_bypass or getattr(_local_state, "bypass_active", False):
                 # Total zero-overhead passthrough on the user's hot path
                 return func(*args, **kwargs)
-            
+
             # Run standard validation for development profile
             return run_validation(func, rules, args, kwargs)
+
         return wrapper
+
     return decorator
 ```
 
@@ -98,8 +101,10 @@ import threading
 
 _local_state = threading.local()
 
+
 class bypass_validation:
     """Internal developer context manager to temporarily suspend validation checks."""
+
     def __enter__(self):
         self.previous = getattr(_local_state, "bypass_active", False)
         _local_state.bypass_active = True
@@ -113,6 +118,7 @@ class bypass_validation:
 ```python
 # molsysviewer/viewer/load.py (Internal playback loop)
 from argdigest import bypass_validation
+
 
 def _play_trajectory_loop(self):
     # Hide the validation bypass from the user

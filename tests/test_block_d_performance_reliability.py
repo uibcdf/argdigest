@@ -56,7 +56,7 @@ def test_decorator_overhead_with_disabled_digestion_stays_bounded(monkeypatch):
     start = time.perf_counter()
     for _ in range(loops):
         plain(1)
-    plain_elapsed = time.perf_counter() - start
+    _plain_elapsed = time.perf_counter() - start
 
     start = time.perf_counter()
     for _ in range(loops):

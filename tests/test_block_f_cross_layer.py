@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-import smonitor
 import pytest
+import smonitor
 
 from argdigest import DigestTypeError, DigestValueError, arg_digest
 from argdigest.contrib import pyunitwizard_support as puw_support

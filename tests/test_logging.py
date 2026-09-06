@@ -1,10 +1,13 @@
 import logging
+
 from argdigest import arg_digest
 from argdigest.config import setup_logging
+
 
 @arg_digest(digestion_style="decorator", strictness="ignore")
 def sample_func(a):
     return a
+
 
 def test_logging_output(caplog):
     setup_logging(level=logging.DEBUG)

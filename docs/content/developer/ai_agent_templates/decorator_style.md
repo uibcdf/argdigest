@@ -29,15 +29,13 @@ NORMALIZATION_SOURCE = "my_lib._private.argdigest.normalization"
 ```python
 import argdigest.config
 
-argdigest.config.set_defaults(
-    digestion_style="decorator",
-    strictness="warn"
-)
+argdigest.config.set_defaults(digestion_style="decorator", strictness="warn")
 ```
 
 ## Digester module (`digestion/arguments.py`)
 ```python
 from argdigest import argument_digest
+
 
 @argument_digest("selection")
 def digest_selection(selection, syntax="MyLib", caller=None):
@@ -50,9 +48,9 @@ def digest_selection(selection, syntax="MyLib", caller=None):
 ```python
 from argdigest import arg_digest
 
+
 @arg_digest(config="my_lib._argdigest")
-def get(molecular_system, selection=None, skip_digestion=False):
-    ...
+def get(molecular_system, selection=None, skip_digestion=False): ...
 ```
 
 ## Declaring the function argument contract
@@ -73,8 +71,9 @@ A function taking `**kwargs` must declare the domain of those keywords:
 from argdigest import Domain
 from my_lib.attribute import attributes, is_attribute
 
-domain = Domain(name="attribute", contains=is_attribute,
-                members=lambda: tuple(attributes))
+domain = Domain(
+    name="attribute", contains=is_attribute, members=lambda: tuple(attributes)
+)
 ```
 
 ```python

@@ -1,6 +1,7 @@
 """
 Logic for generating and updating AI Agent instructions based on library configuration.
 """
+
 from __future__ import annotations
 
 import importlib
@@ -25,13 +26,17 @@ def _render_normalization(registry) -> str:
         return "_Alias declarations could not be loaded._"
     described = describe_normalization(registry)
     if not described:
-        return ("_No alias declared. Users must type the canonical argument names "
-                "exactly._")
+        return (
+            "_No alias declared. Users must type the canonical argument names exactly._"
+        )
 
     lines = ["| Applies to | When | Aliases |", "| --- | --- | ---: |"]
     for entry in described:
-        when = "" if entry["when"] is None else ", ".join(
-            f"{k}={v!r}" for k, v in entry["when"].items())
+        when = (
+            ""
+            if entry["when"] is None
+            else ", ".join(f"{k}={v!r}" for k, v in entry["when"].items())
+        )
         lines.append(f"| `{entry['applies_to']}` | {when} | {len(entry['aliases'])} |")
     return "\n".join(lines)
 
@@ -68,8 +73,10 @@ def _render_axis_one(contracts, domains) -> str:
         lines.append("")
 
     if not lines:
-        return ("_No function contract declared. Every closed signature is still held to "
-                "its own parameters; functions taking `**kwargs` admit anything._")
+        return (
+            "_No function contract declared. Every closed signature is still held to "
+            "its own parameters; functions taking `**kwargs` admit anything._"
+        )
     return "\n".join(lines)
 
 
@@ -80,7 +87,9 @@ def generate_agent_docs(module_name: str, output_file: str = "ARG_DIGEST_AGENTS.
     try:
         importlib.import_module(module_name)
     except ImportError as e:
-        raise ImportError(f"Could not import module '{module_name}' to detect configuration: {e}")
+        raise ImportError(
+            f"Could not import module '{module_name}' to detect configuration: {e}"
+        )
 
     # Try to resolve config for this module
     # We use the same auto-discovery logic as the decorator
@@ -90,6 +99,7 @@ def generate_agent_docs(module_name: str, output_file: str = "ARG_DIGEST_AGENTS.
     except Exception:  # noqa: BLE001 - agent generation tolerates missing client config
         # Fallback to current global defaults if _argdigest.py is missing
         from .config import get_defaults
+
         cfg = get_defaults()
 
     # Axis 1 declarations, rendered as data. This is what makes the accepted domain of a
@@ -160,5 +170,5 @@ Whenever you modify or add a function in this library:
 """
     with open(output_file, "w") as f:
         f.write(content)
-    
+
     return os.path.abspath(output_file)

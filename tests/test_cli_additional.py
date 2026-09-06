@@ -51,7 +51,9 @@ def test_cli_agent_error_path(capsys, monkeypatch):
     def _raise(_module):
         raise RuntimeError("generation failed")
 
-    monkeypatch.setattr("sys.argv", ["argdigest", "agent", "init", "--module", "argdigest"])
+    monkeypatch.setattr(
+        "sys.argv", ["argdigest", "agent", "init", "--module", "argdigest"]
+    )
     monkeypatch.setattr("argdigest.core.agent_docs.generate_agent_docs", _raise)
     main()
 

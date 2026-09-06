@@ -4,6 +4,7 @@ from argdigest.core.config import DigestConfig
 # Use a concrete config to avoid auto-discovery of tests._argdigest
 cfg_decorator = DigestConfig(digestion_style="decorator", strictness="ignore")
 
+
 def test_explicit_map_digestion():
     @register_pipeline(kind="x", name="to-int")
     def to_int(v, ctx):
@@ -39,7 +40,12 @@ def test_map_overrides_default_kind():
     def minus_one(v, ctx):
         return v - 1
 
-    @arg_digest(kind="z", rules=["plus-one"], map={"b": {"kind": "w", "rules": ["minus-one"]}}, config=cfg_decorator)
+    @arg_digest(
+        kind="z",
+        rules=["plus-one"],
+        map={"b": {"kind": "w", "rules": ["minus-one"]}},
+        config=cfg_decorator,
+    )
     def f(a, b):
         return a, b
 

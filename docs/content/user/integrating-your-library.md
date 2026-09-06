@@ -69,15 +69,16 @@ the two cannot drift apart:
 from argdigest import Domain
 from mylib.attribute import attributes, is_attribute
 
-domain = Domain(name='attribute', contains=is_attribute,
-                members=lambda: tuple(attributes))
+domain = Domain(
+    name="attribute", contains=is_attribute, members=lambda: tuple(attributes)
+)
 ```
 
 ```python
 # mylib/_private/argdigest/function/get.py
 from argdigest import FunctionContract
 
-contract = FunctionContract(caller='mylib.basic.get.get', admits='attribute')
+contract = FunctionContract(caller="mylib.basic.get.get", admits="attribute")
 ```
 
 This is also where a rule already living inside a function body belongs. Grep your code

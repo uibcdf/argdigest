@@ -39,7 +39,6 @@ def caller_is_one_of(caller, values: Iterable[str]) -> bool:
     return normalized in set(values)
 
 
-
 def caller_startswith(caller, *prefixes: str) -> bool:
     """Returning whether the normalized caller starts with any prefix."""
 

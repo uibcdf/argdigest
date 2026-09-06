@@ -52,10 +52,10 @@ from argdigest import Domain
 from mylib.attribute import attributes, is_attribute
 
 domain = Domain(
-    name='attribute',
+    name="attribute",
     contains=is_attribute,
     members=lambda: tuple(attributes),
-    description='canonical attribute names',
+    description="canonical attribute names",
 )
 ```
 
@@ -72,9 +72,9 @@ near-miss suggestions and introspection possible, so provide it when the set is 
 from argdigest import FunctionContract
 
 CONTRACTS = [
-    FunctionContract(caller='mylib.basic.get.get', admits='attribute'),
-    FunctionContract(caller='mylib.basic.set.set', admits='attribute'),
-    FunctionContract(caller='mylib.basic.contains.contains', admits='attribute'),
+    FunctionContract(caller="mylib.basic.get.get", admits="attribute"),
+    FunctionContract(caller="mylib.basic.set.set", admits="attribute"),
+    FunctionContract(caller="mylib.basic.contains.contains", admits="attribute"),
 ]
 ```
 
@@ -96,11 +96,11 @@ output type, a mode. Declare the table and the argument it keys on:
 
 ```python
 Domain(
-    name='engine_options',
-    depends_on='engine',
+    name="engine_options",
+    depends_on="engine",
     by_value={
-        'MolSysMT': ('threshold', 'parallel'),
-        'OpenMM':   ('threshold', 'platform'),
+        "MolSysMT": ("threshold", "parallel"),
+        "OpenMM": ("threshold", "platform"),
     },
 )
 ```
@@ -126,9 +126,9 @@ A contract can also state rules that would otherwise live inside the function bo
 
 ```python
 FunctionContract(
-    caller='mylib.structure.get_neighbors.get_neighbors',
-    mutually_exclusive=[('threshold', 'n_neighbors')],
-    requires_any_of=['threshold', 'n_neighbors'],
+    caller="mylib.structure.get_neighbors.get_neighbors",
+    mutually_exclusive=[("threshold", "n_neighbors")],
+    requires_any_of=["threshold", "n_neighbors"],
 )
 ```
 

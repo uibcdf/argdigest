@@ -50,9 +50,9 @@ Digesters register themselves with `@argument_digest(...)`:
 ```python
 from argdigest import argument_digest
 
+
 @argument_digest("selection")
-def digest_selection(selection, caller=None):
-    ...
+def digest_selection(selection, caller=None): ...
 ```
 
 Use when:

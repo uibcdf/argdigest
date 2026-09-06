@@ -79,8 +79,9 @@ def test_full_matrix_tests_every_supported_python_on_every_platform():
     """The full matrix is what makes the declared range true rather than aspirational."""
 
     text = _read(".github/workflows/CI_full_matrix.yaml")
-    cells = set(re.findall(
-        r"os:\s*([\w.-]+)\s*,\s*python-version:\s*\"([\d.]+)\"", text))
+    cells = set(
+        re.findall(r"os:\s*([\w.-]+)\s*,\s*python-version:\s*\"([\d.]+)\"", text)
+    )
 
     assert cells == {
         (platform, version)
@@ -132,11 +133,13 @@ def test_pyproject_declares_minimum_sibling_versions():
     for extra in ("pyunitwizard", "all"):
         floors = _declared_floors(extras[extra])
         assert floors.get("pyunitwizard") is not None, (
-            f"pyunitwizard is unbounded in the {extra!r} extra")
+            f"pyunitwizard is unbounded in the {extra!r} extra"
+        )
 
-    assert _declared_floors(extras["pyunitwizard"])["pyunitwizard"] == \
-        _declared_floors(extras["all"])["pyunitwizard"], (
-        "the pyunitwizard extra and the all extra declare different floors")
+    assert (
+        _declared_floors(extras["pyunitwizard"])["pyunitwizard"]
+        == _declared_floors(extras["all"])["pyunitwizard"]
+    ), "the pyunitwizard extra and the all extra declare different floors"
 
 
 def test_conda_recipe_matches_the_hard_runtime_dependency_set():
@@ -151,15 +154,19 @@ def test_conda_recipe_matches_the_hard_runtime_dependency_set():
     run_block = re.search(r"(?m)^  run:\n(?P<body>(?:    - .*\n)+)", text)
     assert run_block is not None, "the conda recipe has no requirements.run block"
 
-    recipe = _declared_floors([
-        line.strip()[2:] for line in run_block.group("body").splitlines()
-        if line.strip().startswith("- ")
-    ])
+    recipe = _declared_floors(
+        [
+            line.strip()[2:]
+            for line in run_block.group("body").splitlines()
+            if line.strip().startswith("- ")
+        ]
+    )
     recipe.pop("python", None)
 
     assert recipe == _runtime_floors(), (
         "the conda recipe and pyproject.toml declare different runtime dependencies "
-        f"or floors: recipe={recipe}, pyproject={_runtime_floors()}")
+        f"or floors: recipe={recipe}, pyproject={_runtime_floors()}"
+    )
 
     for optional_dependency in ("beartype", "pydantic", "pyunitwizard", "pandas"):
         assert f"- {optional_dependency}" not in text
@@ -183,11 +190,14 @@ def test_docs_compatibility_matrix_mentions_expected_versions():
             continue
         assert documented.get(name) == floor, (
             f"the matrix page documents {name} {documented.get(name)!r}, "
-            f"the manifests declare {floor!r}")
+            f"the manifests declare {floor!r}"
+        )
 
     extras = _pyproject()["project"]["optional-dependencies"]
-    assert documented.get("pyunitwizard") == \
-        _declared_floors(extras["pyunitwizard"])["pyunitwizard"]
+    assert (
+        documented.get("pyunitwizard")
+        == _declared_floors(extras["pyunitwizard"])["pyunitwizard"]
+    )
 
 
 def test_docs_compatibility_matrix_states_the_python_range_and_platforms():
@@ -195,5 +205,6 @@ def test_docs_compatibility_matrix_states_the_python_range_and_platforms():
 
     assert _expected_requires_python() in text
     for version in SUPPORTED_PYTHON:
-        assert re.search(rf"\|\s*`{re.escape(version)}`\s*\|\s*tested\s*\|\s*tested\s*\|", text), (
-            f"the matrix page does not show {version} as tested on both platforms")
+        assert re.search(
+            rf"\|\s*`{re.escape(version)}`\s*\|\s*tested\s*\|\s*tested\s*\|", text
+        ), f"the matrix page does not show {version} as tested on both platforms"

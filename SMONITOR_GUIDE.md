@@ -60,7 +60,7 @@ SMONITOR = {
     "capture_warnings": True,
     "capture_logging": True,
     "theme": "plain",
-    "silence": ["pint", "networkx"], # Noisy loggers to ignore
+    "silence": ["pint", "networkx"],  # Noisy loggers to ignore
 }
 ```
 - `mylib/_private/smonitor/catalog.py`: Catalog entries (meta-data about each signal).
@@ -118,9 +118,11 @@ All custom exceptions must inherit from `CatalogException` (provided by `smonito
 from smonitor.integrations import CatalogException
 from . import CATALOG, META
 
+
 class MyLibException(CatalogException):
     def __init__(self, message=None, **kwargs):
         super().__init__(message, catalog=CATALOG, meta=META, **kwargs)
+
 
 class ArgumentError(MyLibException):
     catalog_key = "ArgumentError"
@@ -217,7 +219,7 @@ keeps working:
 ```python
 # Your users' filters apply as usual.
 warnings.filterwarnings("ignore", category=UnknownAtomNameWarning)
-warnings.simplefilter("error")           # promotes it to an exception
+warnings.simplefilter("error")  # promotes it to an exception
 
 # Your tests assert on it as usual.
 with pytest.warns(UnknownAtomNameWarning, match="XXX"):
@@ -256,9 +258,9 @@ To enable execution traceability (breadcrumbs), decorate all major API entry poi
 ```python
 from smonitor import signal
 
+
 @signal(tags=["topology"])
-def get_atoms(molecular_system, selection="all"):
-    ...
+def get_atoms(molecular_system, selection="all"): ...
 ```
 
 **Benefits**:
@@ -296,12 +298,12 @@ Recommended usage:
 ```python
 from smonitor import signal
 
+
 @signal(
     tags=["api", "selection"],
     extra_factory=lambda args, kwargs: {"selection": kwargs.get("selection")},
 )
-def get_atoms(molecular_system, selection="all"):
-    ...
+def get_atoms(molecular_system, selection="all"): ...
 ```
 
 These features are intended for observability and QA; they should remain opt-in and must not flood end-user output by default.

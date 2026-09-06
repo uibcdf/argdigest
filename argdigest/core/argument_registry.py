@@ -29,7 +29,9 @@ def argument_digest(name: str):
     """
     Decorator to register an argument digester by argument name.
     """
+
     def deco(fn: Callable[..., Any]):
         ArgumentRegistry.register(name, fn)
         return fn
+
     return deco

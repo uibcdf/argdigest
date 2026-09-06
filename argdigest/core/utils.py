@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 import inspect
 from typing import Any, Callable
 
@@ -10,7 +11,7 @@ def bind_arguments(
     var_keyword_name: str | None = None,
     extras_out: dict[str, Any] | None = None,
     supplied_out: set[str] | None = None,
-    **kwargs: Any
+    **kwargs: Any,
 ) -> dict[str, Any]:
     """Bind a call to a signature, setting aside what the signature cannot take.
 
@@ -31,12 +32,16 @@ def bind_arguments(
     if sig is None:
         sig = inspect.signature(fn)
         # Check if the function accepts **kwargs
-        var_keyword_name = next((p.name for p in sig.parameters.values() if p.kind == p.VAR_KEYWORD), None)
+        var_keyword_name = next(
+            (p.name for p in sig.parameters.values() if p.kind == p.VAR_KEYWORD), None
+        )
 
     if not var_keyword_name:
         valid_params = set(sig.parameters.keys())
         if extras_out is not None:
-            extras_out.update({k: v for k, v in kwargs.items() if k not in valid_params})
+            extras_out.update(
+                {k: v for k, v in kwargs.items() if k not in valid_params}
+            )
         kwargs = {k: v for k, v in kwargs.items() if k in valid_params}
 
     bound = sig.bind_partial(*args, **kwargs)
@@ -84,7 +89,8 @@ def build_call(
 
     parameters = list(sig.parameters.values())
     var_positional = next(
-        (p.name for p in parameters if p.kind is inspect.Parameter.VAR_POSITIONAL), None)
+        (p.name for p in parameters if p.kind is inspect.Parameter.VAR_POSITIONAL), None
+    )
     # A non-empty `*rest` forces every parameter before it to travel positionally: there
     # is no way to pass a later positional value while naming an earlier one. When it is
     # empty, the earlier parameters stay keywords, which keeps the common call unchanged.
@@ -107,9 +113,12 @@ def build_call(
             args.extend(value)
             continue
         if positional_open and (
-                parameter.kind is inspect.Parameter.POSITIONAL_ONLY
-                or (parameter.kind is inspect.Parameter.POSITIONAL_OR_KEYWORD
-                    and positional_required)):
+            parameter.kind is inspect.Parameter.POSITIONAL_ONLY
+            or (
+                parameter.kind is inspect.Parameter.POSITIONAL_OR_KEYWORD
+                and positional_required
+            )
+        ):
             args.append(value)
             continue
         # Either the parameter has a keyword form, or the gap above left no way to pass

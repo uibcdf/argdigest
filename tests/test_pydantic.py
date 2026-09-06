@@ -1,16 +1,20 @@
 import pytest
+
 from argdigest import arg_digest
 
 try:
     from pydantic import BaseModel
+
     HAS_PYDANTIC = True
 except ImportError:
     HAS_PYDANTIC = False
 
 if HAS_PYDANTIC:
+
     class User(BaseModel):
         name: str
         age: int
+
 
 @pytest.mark.skipif(not HAS_PYDANTIC, reason="pydantic not installed")
 def test_pydantic_native_integration():

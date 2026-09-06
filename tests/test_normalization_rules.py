@@ -28,6 +28,7 @@ from tests.mock_axis_one import api
 
 # --- declaration ----------------------------------------------------------------------
 
+
 def test_a_table_needs_at_least_one_alias():
     with pytest.raises(ValueError):
         AliasTable(aliases={})
@@ -41,66 +42,99 @@ def test_an_alias_to_itself_is_refused():
 
 # --- resolution -----------------------------------------------------------------------
 
+
 def test_a_global_table_applies_to_every_caller():
-    registry = NormalizationRegistry([AliasTable(aliases={"residue_index": "group_index"})])
+    registry = NormalizationRegistry(
+        [AliasTable(aliases={"residue_index": "group_index"})]
+    )
 
     for caller in ("pkg.a.f", "other.b.g"):
-        assert apply_normalization(registry, caller, {"residue_index": 1}) == {"group_index": 1}
+        assert apply_normalization(registry, caller, {"residue_index": 1}) == {
+            "group_index": 1
+        }
 
 
 def test_a_caller_scoped_table_applies_only_there():
-    registry = NormalizationRegistry([
-        AliasTable(applies_to="pkg.basic.compare.compare",
-                   aliases={"attributes_type": "attribute_type"}),
-    ])
+    registry = NormalizationRegistry(
+        [
+            AliasTable(
+                applies_to="pkg.basic.compare.compare",
+                aliases={"attributes_type": "attribute_type"},
+            ),
+        ]
+    )
 
-    assert apply_normalization(registry, "pkg.basic.compare.compare",
-                               {"attributes_type": 1}) == {"attribute_type": 1}
-    assert apply_normalization(registry, "pkg.basic.get.get",
-                               {"attributes_type": 1}) == {"attributes_type": 1}
+    assert apply_normalization(
+        registry, "pkg.basic.compare.compare", {"attributes_type": 1}
+    ) == {"attribute_type": 1}
+    assert apply_normalization(
+        registry, "pkg.basic.get.get", {"attributes_type": 1}
+    ) == {"attributes_type": 1}
 
 
 def test_a_pattern_covers_a_family():
-    registry = NormalizationRegistry([
-        AliasTable(applies_to="pkg.form.*", aliases={"idx": "index"}),
-    ])
+    registry = NormalizationRegistry(
+        [
+            AliasTable(applies_to="pkg.form.*", aliases={"idx": "index"}),
+        ]
+    )
 
-    assert apply_normalization(registry, "pkg.form.pdb.read", {"idx": 3}) == {"index": 3}
+    assert apply_normalization(registry, "pkg.form.pdb.read", {"idx": 3}) == {
+        "index": 3
+    }
     assert apply_normalization(registry, "pkg.basic.get", {"idx": 3}) == {"idx": 3}
 
 
 def test_the_more_specific_table_wins_for_the_same_name():
-    registry = NormalizationRegistry([
-        AliasTable(aliases={"name": "global_name"}),
-        AliasTable(applies_to="pkg.get", aliases={"name": "specific_name"}),
-    ])
+    registry = NormalizationRegistry(
+        [
+            AliasTable(aliases={"name": "global_name"}),
+            AliasTable(applies_to="pkg.get", aliases={"name": "specific_name"}),
+        ]
+    )
 
     assert apply_normalization(registry, "pkg.get", {"name": 1}) == {"specific_name": 1}
     assert apply_normalization(registry, "pkg.other", {"name": 1}) == {"global_name": 1}
 
 
 def test_a_context_guard_selects_between_tables():
-    registry = NormalizationRegistry([
-        AliasTable(applies_to="pkg.get", when={"element": "atom"},
-                   aliases={"name": "atom_name"}),
-        AliasTable(applies_to="pkg.get", when={"element": "group"},
-                   aliases={"name": "group_name"}),
-    ])
+    registry = NormalizationRegistry(
+        [
+            AliasTable(
+                applies_to="pkg.get",
+                when={"element": "atom"},
+                aliases={"name": "atom_name"},
+            ),
+            AliasTable(
+                applies_to="pkg.get",
+                when={"element": "group"},
+                aliases={"name": "group_name"},
+            ),
+        ]
+    )
 
-    assert apply_normalization(registry, "pkg.get", {"element": "atom", "name": "CA"}) == {
-        "element": "atom", "atom_name": "CA"}
-    assert apply_normalization(registry, "pkg.get", {"element": "group", "name": "ALA"}) == {
-        "element": "group", "group_name": "ALA"}
+    assert apply_normalization(
+        registry, "pkg.get", {"element": "atom", "name": "CA"}
+    ) == {"element": "atom", "atom_name": "CA"}
+    assert apply_normalization(
+        registry, "pkg.get", {"element": "group", "name": "ALA"}
+    ) == {"element": "group", "group_name": "ALA"}
 
 
 def test_an_unmatched_guard_leaves_the_name_alone():
-    registry = NormalizationRegistry([
-        AliasTable(applies_to="pkg.get", when={"element": "atom"},
-                   aliases={"name": "atom_name"}),
-    ])
+    registry = NormalizationRegistry(
+        [
+            AliasTable(
+                applies_to="pkg.get",
+                when={"element": "atom"},
+                aliases={"name": "atom_name"},
+            ),
+        ]
+    )
 
-    assert apply_normalization(registry, "pkg.get", {"element": "chain", "name": "A"}) == {
-        "element": "chain", "name": "A"}
+    assert apply_normalization(
+        registry, "pkg.get", {"element": "chain", "name": "A"}
+    ) == {"element": "chain", "name": "A"}
 
 
 def test_renaming_is_one_pass_never_a_chain():
@@ -114,7 +148,9 @@ def test_renaming_is_one_pass_never_a_chain():
 def test_argument_order_is_preserved():
     registry = NormalizationRegistry([AliasTable(aliases={"middle": "renamed"})])
 
-    result = apply_normalization(registry, "pkg.f", {"first": 1, "middle": 2, "last": 3})
+    result = apply_normalization(
+        registry, "pkg.f", {"first": 1, "middle": 2, "last": 3}
+    )
     assert list(result) == ["first", "renamed", "last"]
 
 
@@ -124,6 +160,7 @@ def test_an_empty_registry_returns_the_arguments_untouched():
 
 
 # --- collision contract --------------------------------------------------------------
+
 
 def _assert_alias_collision(registry, bound, conflicting_names):
     with pytest.raises(ArgumentConsistencyError) as exc_info:
@@ -152,10 +189,12 @@ def test_an_alias_and_its_canonical_name_are_rejected_in_both_orders(bound):
 
 
 def test_two_supplied_aliases_with_one_target_are_rejected():
-    registry = NormalizationRegistry([
-        AliasTable(aliases={"coords": "coordinates"}),
-        AliasTable(applies_to="pkg.f", aliases={"positions": "coordinates"}),
-    ])
+    registry = NormalizationRegistry(
+        [
+            AliasTable(aliases={"coords": "coordinates"}),
+            AliasTable(applies_to="pkg.f", aliases={"positions": "coordinates"}),
+        ]
+    )
 
     _assert_alias_collision(
         registry,
@@ -178,11 +217,14 @@ def test_a_decorated_call_rejects_alias_and_canonical_before_its_body():
 
 # --- introspection --------------------------------------------------------------------
 
+
 def test_the_declared_aliases_can_be_read_back():
-    registry = NormalizationRegistry([
-        AliasTable(aliases={"residue_index": "group_index"}, description="anatomy"),
-        AliasTable(applies_to="pkg.get", aliases={"attr": "attribute"}),
-    ])
+    registry = NormalizationRegistry(
+        [
+            AliasTable(aliases={"residue_index": "group_index"}, description="anatomy"),
+            AliasTable(applies_to="pkg.get", aliases={"attr": "attribute"}),
+        ]
+    )
 
     described = describe_normalization(registry, caller="pkg.get")
 
@@ -194,11 +236,15 @@ def test_the_declared_aliases_can_be_read_back():
 
 # --- end to end, through the real discovery path ---------------------------------------
 
-@pytest.mark.parametrize("keyword,expected", [
-    ("coords", "coordinates"),
-    ("n_atomz", "n_atoms"),
-    ("attr", "n_bonds"),
-])
+
+@pytest.mark.parametrize(
+    "keyword,expected",
+    [
+        ("coords", "coordinates"),
+        ("n_atomz", "n_atoms"),
+        ("attr", "n_bonds"),
+    ],
+)
 def test_declared_aliases_reach_the_call(keyword, expected):
     assert api.get("s", **{keyword: True}) == [expected]
 
@@ -224,6 +270,7 @@ def test_a_genuine_typo_is_still_refused():
 
 # --- defaults are not a second name --------------------------------------------------
 
+
 def test_a_default_is_not_counted_as_a_supplied_name():
     """A canonical name resting on its default is not a competing alias.
 
@@ -233,9 +280,11 @@ def test_a_default_is_not_counted_as_a_supplied_name():
     passing only `coords` was rejected because `coordinates` was "also present".
     """
     bound = {"coords": True, "coordinates": None}
-    registry = NormalizationRegistry([
-        AliasTable(applies_to="pkg.f", aliases={"coords": "coordinates"}),
-    ])
+    registry = NormalizationRegistry(
+        [
+            AliasTable(applies_to="pkg.f", aliases={"coords": "coordinates"}),
+        ]
+    )
 
     # Only `coords` came from the caller.
     result = apply_normalization(registry, "pkg.f", bound, supplied={"coords"})
@@ -246,12 +295,16 @@ def test_a_default_is_not_counted_as_a_supplied_name():
 def test_both_names_supplied_is_still_a_collision():
     """The rule itself is unchanged: writing both really is ambiguous."""
     bound = {"coords": True, "coordinates": False}
-    registry = NormalizationRegistry([
-        AliasTable(applies_to="pkg.f", aliases={"coords": "coordinates"}),
-    ])
+    registry = NormalizationRegistry(
+        [
+            AliasTable(applies_to="pkg.f", aliases={"coords": "coordinates"}),
+        ]
+    )
 
     with pytest.raises(ArgumentConsistencyError):
-        apply_normalization(registry, "pkg.f", bound, supplied={"coords", "coordinates"})
+        apply_normalization(
+            registry, "pkg.f", bound, supplied={"coords", "coordinates"}
+        )
 
 
 def test_a_decorated_call_accepts_an_alias_whose_target_has_a_default():

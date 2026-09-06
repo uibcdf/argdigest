@@ -1,21 +1,23 @@
 """
 Integration with PyUnitWizard for physical quantity validation and standardization.
 """
+
 from __future__ import annotations
-from dataclasses import dataclass
-from typing import Any, Dict, Optional, Callable
+
 from contextlib import contextmanager
+from typing import Any, Callable, Dict, Optional
 
 import numpy as np
 
 try:
     import pyunitwizard as puw
+
     HAS_PUW = True
-    puw = puw # Export for tests
+    puw = puw  # Export for tests
 except ImportError:
     HAS_PUW = False
 
-from ..core.errors import DigestValueError, DigestTypeError
+from ..core.errors import DigestTypeError, DigestValueError
 from ..core.registry import register_pipeline
 
 
@@ -30,6 +32,7 @@ def _require_puw(ctx: Any = None):
                 "if your host library uses DepDigest, enable its pyunitwizard capability."
             ),
         )
+
 
 @contextmanager
 def context(**kwargs: Any):
@@ -49,20 +52,22 @@ def context(**kwargs: Any):
     # Map kwargs to puw.context parameters if names differ?
     # ArgDigest config might use 'form' instead of 'default_form'.
     # Let's map them for convenience.
-    
+
     puw_kwargs = {}
-    if 'form' in kwargs:
-        puw_kwargs['default_form'] = kwargs.pop('form')
-    if 'parser' in kwargs:
-        puw_kwargs['default_parser'] = kwargs.pop('parser')
-    
+    if "form" in kwargs:
+        puw_kwargs["default_form"] = kwargs.pop("form")
+    if "parser" in kwargs:
+        puw_kwargs["default_parser"] = kwargs.pop("parser")
+
     # Pass rest (like standard_units) directly
     puw_kwargs.update(kwargs)
-    
+
     with puw.context(**puw_kwargs):
         yield
 
+
 # --- Factories for Pipelines ---
+
 
 def check(
     dimensionality: Optional[Dict[str, int]] = None,
@@ -73,6 +78,7 @@ def check(
     """
     Returns a pipeline function that uses puw.check() to validate the input.
     """
+
     def pipeline_check(value: Any, ctx: Any) -> Any:
         _require_puw(ctx)
         # puw.check returns True/False
@@ -81,13 +87,13 @@ def check(
             dimensionality=dimensionality,
             value_type=value_type,
             shape=shape,
-            unit=unit
+            unit=unit,
         )
         if not valid:
             raise DigestValueError(
                 f"Physical validation failed for {ctx.argname}. "
                 f"Expected dimensionality={dimensionality}, unit={unit}, type={value_type}",
-                context=ctx
+                context=ctx,
             )
         return value
 
@@ -100,6 +106,7 @@ def standardize() -> Callable[[Any, Any], Any]:
     Returns a pipeline function that calls puw.standardize().
     It respects the global pyunitwizard configuration (form/units).
     """
+
     def pipeline_standardize(value: Any, ctx: Any) -> Any:
         _require_puw(ctx)
         try:
@@ -115,12 +122,15 @@ def convert(to_unit: str, to_form: Optional[str] = None) -> Callable[[Any, Any],
     """
     Returns a pipeline function that converts the quantity to a specific unit/form.
     """
+
     def pipeline_convert(value: Any, ctx: Any) -> Any:
         _require_puw(ctx)
         try:
             return puw.convert(value, to_unit=to_unit, to_form=to_form)
         except Exception as e:
-            raise DigestValueError(f"Conversion to {to_unit} failed: {e}", context=ctx) from e
+            raise DigestValueError(
+                f"Conversion to {to_unit} failed: {e}", context=ctx
+            ) from e
 
     pipeline_convert.__name__ = f"puw.convert({to_unit})"
     return pipeline_convert
@@ -130,8 +140,11 @@ def is_quantity() -> Callable[[Any, Any], Any]:
     def pipeline_is_quantity(value: Any, ctx: Any) -> Any:
         _require_puw(ctx)
         if not puw.is_quantity(value):
-             raise DigestTypeError(f"Expected a quantity, got {type(value)}", context=ctx)
+            raise DigestTypeError(
+                f"Expected a quantity, got {type(value)}", context=ctx
+            )
         return value
+
     pipeline_is_quantity.__name__ = "puw.is_quantity"
     return pipeline_is_quantity
 

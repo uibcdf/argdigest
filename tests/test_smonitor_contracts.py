@@ -1,10 +1,10 @@
 import pytest
 
 from argdigest import arg_digest
+from argdigest.contrib import pyunitwizard_support as puw_support
 from argdigest.core.context import Context
 from argdigest.core.errors import DigestNotDigestedWarning, DigestTypeError
 from argdigest.pipelines import data as data_pipelines
-from argdigest.contrib import pyunitwizard_support as puw_support
 
 
 def test_missing_digester_warning_has_readable_message():

@@ -11,19 +11,14 @@ must not start accepting it.
 
 from __future__ import annotations
 
-import warnings
-
 import pytest
 
 from argdigest import (
     ArgumentConsistencyError,
     Domain,
     FunctionContract,
-    FunctionContractError,
-    FunctionContractWarning,
     MissingArgumentError,
     UnknownArgumentError,
-    arg_digest,
     describe_contract,
 )
 from argdigest.core.function_contract import (
@@ -31,7 +26,6 @@ from argdigest.core.function_contract import (
     check_contract,
     default_contract,
 )
-
 
 ATTRIBUTES = {"n_atoms", "n_bonds", "coordinates"}
 
@@ -49,6 +43,7 @@ def domains():
 
 
 # --- Domain -------------------------------------------------------------------------
+
 
 def test_a_domain_needs_a_way_to_decide_membership():
     with pytest.raises(ValueError):
@@ -70,6 +65,7 @@ def test_a_domain_defined_only_by_a_predicate_is_not_enumerable():
 
 # --- contract declaration -------------------------------------------------------------
 
+
 def test_a_contract_targets_a_caller_or_a_pattern_but_not_both():
     with pytest.raises(ValueError):
         FunctionContract(caller="a.b", caller_pattern="a.*")
@@ -88,6 +84,7 @@ def test_the_default_contract_admits_anything_when_the_function_opened_the_door(
 
 
 # --- resolution order -----------------------------------------------------------------
+
 
 def test_an_exact_caller_wins_over_a_pattern():
     exact = FunctionContract(caller="pkg.mod.fn", admits="any")
@@ -114,6 +111,7 @@ def test_an_unmatched_caller_resolves_to_nothing():
 
 # --- checking -------------------------------------------------------------------------
 
+
 def test_an_unknown_keyword_is_a_violation(domains):
     contract = FunctionContract(caller="pkg.fn")
     violations = check_contract(contract, "pkg.fn", {"selection"}, ["bogus"], domains)
@@ -125,7 +123,8 @@ def test_an_unknown_keyword_is_a_violation(domains):
 def test_the_violation_suggests_a_near_miss(domains):
     contract = FunctionContract(caller="pkg.fn")
     violations = check_contract(
-        contract, "pkg.fn", {"structure_indices"}, ["structure_indeces"], domains)
+        contract, "pkg.fn", {"structure_indices"}, ["structure_indeces"], domains
+    )
 
     assert "structure_indices" in violations[0].hint
 
@@ -147,42 +146,57 @@ def test_a_contract_naming_an_unregistered_domain_is_reported(domains):
 
 
 def test_requires_any_of_is_satisfied_by_one_member(domains):
-    contract = FunctionContract(caller="pkg.fn", admits="attribute",
-                                requires_any_of="attribute")
-    assert check_contract(contract, "pkg.fn", {"element"}, ["n_atoms"], domains,
-                          present={"n_atoms"}) == []
+    contract = FunctionContract(
+        caller="pkg.fn", admits="attribute", requires_any_of="attribute"
+    )
+    assert (
+        check_contract(
+            contract, "pkg.fn", {"element"}, ["n_atoms"], domains, present={"n_atoms"}
+        )
+        == []
+    )
 
 
 def test_requires_any_of_is_violated_when_nothing_is_asked(domains):
-    contract = FunctionContract(caller="pkg.fn", admits="attribute",
-                                requires_any_of="attribute")
-    violations = check_contract(contract, "pkg.fn", {"element"}, [], domains,
-                                present={"element"})
+    contract = FunctionContract(
+        caller="pkg.fn", admits="attribute", requires_any_of="attribute"
+    )
+    violations = check_contract(
+        contract, "pkg.fn", {"element"}, [], domains, present={"element"}
+    )
     assert [v.kind for v in violations] == ["missing_argument"]
 
 
 def test_mutually_exclusive_arguments(domains):
     contract = FunctionContract(caller="pkg.fn", mutually_exclusive=[("a", "b")])
-    violations = check_contract(contract, "pkg.fn", {"a", "b"}, [], domains,
-                                present={"a", "b"})
+    violations = check_contract(
+        contract, "pkg.fn", {"a", "b"}, [], domains, present={"a", "b"}
+    )
     assert [v.kind for v in violations] == ["mutually_exclusive"]
 
 
 def test_co_required_arguments(domains):
     contract = FunctionContract(caller="pkg.fn", co_required=[("a", "b")])
-    violations = check_contract(contract, "pkg.fn", {"a", "b"}, [], domains,
-                                present={"a"})
+    violations = check_contract(
+        contract, "pkg.fn", {"a", "b"}, [], domains, present={"a"}
+    )
     assert [v.kind for v in violations] == ["co_required"]
-    assert check_contract(contract, "pkg.fn", {"a", "b"}, [], domains,
-                          present={"a", "b"}) == []
+    assert (
+        check_contract(contract, "pkg.fn", {"a", "b"}, [], domains, present={"a", "b"})
+        == []
+    )
 
 
 # --- introspection --------------------------------------------------------------------
 
+
 def test_a_contract_describes_itself_as_data(domains):
-    contract = FunctionContract(caller="pkg.get", admits="attribute",
-                                requires_any_of="attribute",
-                                description="asks for attributes")
+    contract = FunctionContract(
+        caller="pkg.get",
+        admits="attribute",
+        requires_any_of="attribute",
+        description="asks for attributes",
+    )
     described = describe_contract(contract, domains)
 
     # This is what makes the real domain of a **kwargs function readable, which
@@ -203,67 +217,68 @@ from tests.mock_axis_one import api  # noqa: E402
 
 
 def test_a_closed_function_rejects_an_unknown_keyword():
-    assert api.extract('s', structure_indices=[0]) == [0]
-    with pytest.raises(UnknownArgumentError, match='structure_indeces'):
-        api.extract('s', structure_indeces=[0])
+    assert api.extract("s", structure_indices=[0]) == [0]
+    with pytest.raises(UnknownArgumentError, match="structure_indeces"):
+        api.extract("s", structure_indeces=[0])
 
 
 def test_the_rejection_suggests_the_intended_name():
-    with pytest.raises(UnknownArgumentError, match='structure_indices'):
-        api.extract('s', structure_indeces=[0])
+    with pytest.raises(UnknownArgumentError, match="structure_indices"):
+        api.extract("s", structure_indeces=[0])
 
 
 def test_an_open_function_is_held_to_its_declared_domain():
-    assert api.get('s', n_atoms=True) == ['n_atoms']
-    with pytest.raises(UnknownArgumentError, match='n_atomss'):
-        api.get('s', n_atomss=True)
+    assert api.get("s", n_atoms=True) == ["n_atoms"]
+    with pytest.raises(UnknownArgumentError, match="n_atomss"):
+        api.get("s", n_atomss=True)
 
 
 def test_a_declared_requirement_is_enforced():
-    assert api.measure('s', n_bonds=True) == ['n_bonds']
+    assert api.measure("s", n_bonds=True) == ["n_bonds"]
     with pytest.raises(MissingArgumentError):
-        api.measure('s')
+        api.measure("s")
 
 
 def test_a_family_pattern_covers_a_function_with_no_exact_contract():
-    assert api.to_file_pdb('s', path='out.pdb') == 'out.pdb'
-    with pytest.raises(UnknownArgumentError, match='pathh'):
-        api.to_file_pdb('s', pathh='out.pdb')
+    assert api.to_file_pdb("s", path="out.pdb") == "out.pdb"
+    with pytest.raises(UnknownArgumentError, match="pathh"):
+        api.to_file_pdb("s", pathh="out.pdb")
 
 
 def test_mutually_exclusive_arguments_are_refused_at_the_call():
-    assert api.pick('s', by_name='x') == 'x'
+    assert api.pick("s", by_name="x") == "x"
     with pytest.raises(ArgumentConsistencyError):
-        api.pick('s', by_name='x', by_index=1)
+        api.pick("s", by_name="x", by_index=1)
 
 
 def test_an_open_function_without_a_declared_domain_still_admits_anything():
     # The documented default. A library is never broken by a domain it has not written.
-    assert api.wide_open('s', anything=1) == ['anything']
+    assert api.wide_open("s", anything=1) == ["anything"]
 
 
 def test_skip_digestion_bypasses_the_contract_and_python_catches_it_instead():
     # The escape hatch escapes both axes, as it must to stay an escape hatch. What it
     # cannot do is make the call *less* safe than an undecorated function: with the
     # contract skipped, the keyword reaches Python and Python refuses it.
-    assert api.extract('s', structure_indices=[0], skip_digestion=True) == [0]
-    with pytest.raises(TypeError, match='structure_indeces'):
-        api.extract('s', structure_indeces=[0], skip_digestion=True)
+    assert api.extract("s", structure_indices=[0], skip_digestion=True) == [0]
+    with pytest.raises(TypeError, match="structure_indeces"):
+        api.extract("s", structure_indeces=[0], skip_digestion=True)
 
 
 def test_argdigest_is_never_more_permissive_than_python():
     # The property the whole axis exists to restore.
-    def plain(molsys, selection='all'):
+    def plain(molsys, selection="all"):
         return selection
 
     with pytest.raises(TypeError):
-        plain('s', bogus=1)
+        plain("s", bogus=1)
 
     with pytest.raises(UnknownArgumentError):
-        api.extract('s', bogus=1)
+        api.extract("s", bogus=1)
 
 
 # --- delegating domains: the admissible set depends on another argument ----------------
+
 
 def test_a_delegating_domain_needs_both_halves():
     with pytest.raises(ValueError, match="depends_on"):
@@ -285,8 +300,11 @@ def test_a_delegating_domain_refuses_a_context_free_membership_test():
 
 
 def test_the_admissible_set_follows_the_value():
-    domain = Domain(name="opts", depends_on="engine",
-                    by_value={"A": ("threshold", "parallel"), "B": ("threshold", "platform")})
+    domain = Domain(
+        name="opts",
+        depends_on="engine",
+        by_value={"A": ("threshold", "parallel"), "B": ("threshold", "platform")},
+    )
 
     assert domain.admits("parallel", {"engine": "A"}) is True
     assert domain.admits("parallel", {"engine": "B"}) is False
@@ -303,8 +321,11 @@ def test_an_unknown_value_cannot_decide_rather_than_refusing():
 
 
 def test_several_dependencies_are_keyed_as_a_tuple():
-    domain = Domain(name="opts", depends_on=("from_form", "to_form"),
-                    by_value={("a", "b"): ("only_here",)})
+    domain = Domain(
+        name="opts",
+        depends_on=("from_form", "to_form"),
+        by_value={("a", "b"): ("only_here",)},
+    )
 
     assert domain.admits("only_here", {"from_form": "a", "to_form": "b"}) is True
     assert domain.admits("only_here", {"from_form": "a", "to_form": "z"}) is None
@@ -318,15 +339,17 @@ def test_an_unhashable_value_cannot_decide():
 
 def test_known_members_is_the_union_across_values():
     # Used for near-miss suggestions when the call's own entry cannot be resolved.
-    domain = Domain(name="opts", depends_on="engine",
-                    by_value={"A": ("alpha",), "B": ("beta",)})
+    domain = Domain(
+        name="opts", depends_on="engine", by_value={"A": ("alpha",), "B": ("beta",)}
+    )
     assert domain.known_members() == ("alpha", "beta")
 
 
 def test_a_delegating_domain_describes_its_table():
     contract = FunctionContract(caller="pkg.compute", admits="opts")
-    domains = {"opts": Domain(name="opts", depends_on="engine",
-                              by_value={"A": ("alpha",)})}
+    domains = {
+        "opts": Domain(name="opts", depends_on="engine", by_value={"A": ("alpha",)})
+    }
 
     described = describe_contract(contract, domains)["admitted_domains"][0]
 

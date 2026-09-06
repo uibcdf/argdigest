@@ -16,8 +16,8 @@ from __future__ import annotations
 
 import difflib
 from dataclasses import dataclass, field
-from functools import lru_cache
 from fnmatch import fnmatchcase
+from functools import lru_cache
 from typing import Any, Callable, Iterable, Mapping, Sequence
 
 #: `admits` values with a reserved meaning. Anything else names a domain.
@@ -92,8 +92,9 @@ class Domain:
             return bool(self.contains(keyword))
         return keyword in set(self.known_members())
 
-    def resolve_members(self, bound: Mapping[str, Any] | None = None
-                        ) -> tuple[str, ...] | None:
+    def resolve_members(
+        self, bound: Mapping[str, Any] | None = None
+    ) -> tuple[str, ...] | None:
         """The admissible names for one call, or None when they cannot be decided.
 
         `None` is not "nothing is admissible". It means the value this domain depends on
@@ -110,13 +111,15 @@ class Domain:
         lookup = key[0] if len(key) == 1 else key
         try:
             entry = (self.by_value or {}).get(lookup)
-        except TypeError:      # an unhashable value can name no entry
+        except TypeError:  # an unhashable value can name no entry
             return None
         if entry is None:
             return None
         return tuple(str(name) for name in entry)
 
-    def admits(self, keyword: str, bound: Mapping[str, Any] | None = None) -> bool | None:
+    def admits(
+        self, keyword: str, bound: Mapping[str, Any] | None = None
+    ) -> bool | None:
         """Whether this domain admits `keyword`, or None when it cannot decide."""
 
         if not self.is_delegating:
@@ -239,7 +242,9 @@ class ContractRegistry:
             self._exact[contract.caller] = contract
         else:
             self._patterns.append(contract)
-            self._patterns.sort(key=lambda item: len(item.caller_pattern or ""), reverse=True)
+            self._patterns.sort(
+                key=lambda item: len(item.caller_pattern or ""), reverse=True
+            )
         self._resolved.clear()
 
     def resolve(self, caller: str) -> FunctionContract | None:
@@ -257,11 +262,15 @@ class ContractRegistry:
         return contract
 
     def declared_callers(self) -> tuple[str, ...]:
-        return tuple(self._exact) + tuple(c.caller_pattern or "" for c in self._patterns)
+        return tuple(self._exact) + tuple(
+            c.caller_pattern or "" for c in self._patterns
+        )
 
 
 def _suggest(keyword: str, candidates: Iterable[str]) -> str:
-    matches = difflib.get_close_matches(keyword, sorted(set(candidates)), n=1, cutoff=0.75)
+    matches = difflib.get_close_matches(
+        keyword, sorted(set(candidates)), n=1, cutoff=0.75
+    )
     if not matches:
         return ""
     return f" Did you mean {matches[0]!r}?"
@@ -289,15 +298,23 @@ def check_contract(
     extras = list(extras)
     present = set(present)
 
-    admitted_domains = [domains[name] for name in contract.admitted_domains() if name in domains]
-    missing_domains = [name for name in contract.admitted_domains() if name not in domains]
+    admitted_domains = [
+        domains[name] for name in contract.admitted_domains() if name in domains
+    ]
+    missing_domains = [
+        name for name in contract.admitted_domains() if name not in domains
+    ]
     for name in missing_domains:
-        violations.append(Violation(
-            kind="unknown_domain",
-            message=(f"Function contract for {caller!r} admits domain {name!r}, "
-                     "which is not registered."),
-            hint="Declare the domain in the consumer's domain source, or fix the name.",
-        ))
+        violations.append(
+            Violation(
+                kind="unknown_domain",
+                message=(
+                    f"Function contract for {caller!r} admits domain {name!r}, "
+                    "which is not registered."
+                ),
+                hint="Declare the domain in the consumer's domain source, or fix the name.",
+            )
+        )
 
     if not contract.admits_anything():
         vocabulary: list[str] | None = None
@@ -321,18 +338,22 @@ def check_contract(
                     # path, and would suggest a name that is wrong for this call anyway.
                     if resolved is not None:
                         vocabulary.extend(resolved)
-            violations.append(Violation(
-                kind="unknown_argument",
-                keyword=keyword,
-                message=f"{caller!r} does not accept the argument {keyword!r}.",
-                hint=_suggest(keyword, vocabulary).strip() or
-                     "Check the function signature for the accepted arguments.",
-            ))
+            violations.append(
+                Violation(
+                    kind="unknown_argument",
+                    keyword=keyword,
+                    message=f"{caller!r} does not accept the argument {keyword!r}.",
+                    hint=_suggest(keyword, vocabulary).strip()
+                    or "Check the function signature for the accepted arguments.",
+                )
+            )
 
     if contract.requires_any_of is not None:
-        required = ([contract.requires_any_of]
-                    if isinstance(contract.requires_any_of, str)
-                    else list(contract.requires_any_of))
+        required = (
+            [contract.requires_any_of]
+            if isinstance(contract.requires_any_of, str)
+            else list(contract.requires_any_of)
+        )
         satisfied = False
         for name in required:
             domain = domains.get(name)
@@ -345,37 +366,49 @@ def check_contract(
                 break
         if not satisfied:
             wanted = ", ".join(required)
-            violations.append(Violation(
-                kind="missing_argument",
-                message=(f"{caller!r} needs at least one argument from: {wanted}."),
-                hint="The call carries no such argument, so it cannot mean anything.",
-            ))
+            violations.append(
+                Violation(
+                    kind="missing_argument",
+                    message=(f"{caller!r} needs at least one argument from: {wanted}."),
+                    hint="The call carries no such argument, so it cannot mean anything.",
+                )
+            )
 
     for group in contract.mutually_exclusive:
         given = [name for name in group if name in present]
         if len(given) > 1:
-            violations.append(Violation(
-                kind="mutually_exclusive",
-                message=(f"{caller!r} accepts only one of {', '.join(group)}; "
-                         f"got {', '.join(given)}."),
-                hint="Pass exactly one of them.",
-            ))
+            violations.append(
+                Violation(
+                    kind="mutually_exclusive",
+                    message=(
+                        f"{caller!r} accepts only one of {', '.join(group)}; "
+                        f"got {', '.join(given)}."
+                    ),
+                    hint="Pass exactly one of them.",
+                )
+            )
 
     for group in contract.co_required:
         given = [name for name in group if name in present]
         if given and len(given) != len(group):
             missing = [name for name in group if name not in present]
-            violations.append(Violation(
-                kind="co_required",
-                message=(f"{caller!r} needs {', '.join(group)} together; "
-                         f"{', '.join(missing)} missing."),
-                hint="These arguments only mean something as a group.",
-            ))
+            violations.append(
+                Violation(
+                    kind="co_required",
+                    message=(
+                        f"{caller!r} needs {', '.join(group)} together; "
+                        f"{', '.join(missing)} missing."
+                    ),
+                    hint="These arguments only mean something as a group.",
+                )
+            )
 
     return violations
 
 
-def describe_contract(contract: FunctionContract, domains: dict[str, Domain]) -> dict[str, Any]:
+def describe_contract(
+    contract: FunctionContract, domains: dict[str, Domain]
+) -> dict[str, Any]:
     """Render a contract as plain data, for documentation and introspection.
 
     This is why a contract is declarative rather than an opaque callable: the accepted
@@ -386,16 +419,21 @@ def describe_contract(contract: FunctionContract, domains: dict[str, Domain]) ->
     described_domains = []
     for name in contract.admitted_domains():
         domain = domains.get(name)
-        described_domains.append({
-            "name": name,
-            "registered": domain is not None,
-            "description": None if domain is None else domain.description,
-            "members": () if domain is None else domain.known_members(),
-            "depends_on": None if domain is None else domain.depends_on,
-            "by_value": None if domain is None or not domain.is_delegating
-                        else {key: sorted(str(v) for v in value)
-                              for key, value in (domain.by_value or {}).items()},
-        })
+        described_domains.append(
+            {
+                "name": name,
+                "registered": domain is not None,
+                "description": None if domain is None else domain.description,
+                "members": () if domain is None else domain.known_members(),
+                "depends_on": None if domain is None else domain.depends_on,
+                "by_value": None
+                if domain is None or not domain.is_delegating
+                else {
+                    key: sorted(str(v) for v in value)
+                    for key, value in (domain.by_value or {}).items()
+                },
+            }
+        )
 
     return {
         "caller": contract.caller,

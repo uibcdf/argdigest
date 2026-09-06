@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+
 def digest_selection(selection, syntax="PackLib", caller=None):
     if selection is None:
         return "all"

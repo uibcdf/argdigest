@@ -50,6 +50,7 @@ SKIP_PARAM = "skip_digestion"
 ```python
 from argdigest import arg_digest
 
+
 @arg_digest(
     config="mylib._argdigest",
     map={"syntax": {"kind": "std", "rules": ["is_str"]}},
@@ -81,8 +82,9 @@ meant, so it admits anything until you say otherwise:
 from argdigest import Domain
 from mylib.attribute import attributes, is_attribute
 
-domain = Domain(name="attribute", contains=is_attribute,
-                members=lambda: tuple(attributes))
+domain = Domain(
+    name="attribute", contains=is_attribute, members=lambda: tuple(attributes)
+)
 ```
 
 ```python

@@ -30,9 +30,9 @@ UNKNOWN_ARGUMENT = "error"
 ```python
 from argdigest import arg_digest
 
+
 @arg_digest(config="mylib._argdigest")
-def get(molecular_system, element=None, selection=None, syntax=None):
-    ...
+def get(molecular_system, element=None, selection=None, syntax=None): ...
 ```
 
 ## Why this style works

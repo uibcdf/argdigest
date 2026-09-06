@@ -44,6 +44,7 @@ without forcing a single internal architecture.
 ```python
 from argdigest import arg_digest
 
+
 @arg_digest(
     digestion_source="mylib._private.argdigest.argument",
     digestion_style="package",
@@ -87,15 +88,16 @@ purpose, so it declares the domain those keywords come from:
 from argdigest import Domain
 from mylib.attribute import attributes, is_attribute
 
-domain = Domain(name='attribute', contains=is_attribute,
-                members=lambda: tuple(attributes))
+domain = Domain(
+    name="attribute", contains=is_attribute, members=lambda: tuple(attributes)
+)
 ```
 
 ```python
 # mylib/_private/argdigest/function/get.py
 from argdigest import FunctionContract
 
-contract = FunctionContract(caller='mylib.basic.get.get', admits='attribute')
+contract = FunctionContract(caller="mylib.basic.get.get", admits="attribute")
 ```
 
 Pointing the domain at your library's own catalogue, rather than copying names into a

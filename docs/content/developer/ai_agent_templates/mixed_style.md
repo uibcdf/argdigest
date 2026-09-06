@@ -45,6 +45,7 @@ NORMALIZATION_SOURCE = "my_lib._private.argdigest.normalization"
 ```python
 from argdigest import register_pipeline
 
+
 @register_pipeline(kind="feature", name="feature.base")
 def feature_base(obj, ctx):
     if not hasattr(obj, "feature_id"):
@@ -57,16 +58,19 @@ def feature_base(obj, ctx):
 from argdigest import arg_digest
 from pydantic import BaseModel
 
+
 class User(BaseModel):
     name: str
 
+
 arg_digest.map(
-    type_check=True, # Enforce beartype
+    type_check=True,  # Enforce beartype
     feature={"kind": "feature", "rules": ["feature.base"]},
-    user={"kind": "data", "rules": [User]} # Native pydantic rule
+    user={"kind": "data", "rules": [User]},  # Native pydantic rule
 )
-def register_feature(feature, user, skip_digestion=False):
-    ...
+
+
+def register_feature(feature, user, skip_digestion=False): ...
 ```
 
 ## Declaring the function argument contract
@@ -87,8 +91,9 @@ A function taking `**kwargs` must declare the domain of those keywords:
 from argdigest import Domain
 from my_lib.attribute import attributes, is_attribute
 
-domain = Domain(name="attribute", contains=is_attribute,
-                members=lambda: tuple(attributes))
+domain = Domain(
+    name="attribute", contains=is_attribute, members=lambda: tuple(attributes)
+)
 ```
 
 ```python

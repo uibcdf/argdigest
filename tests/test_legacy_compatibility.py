@@ -1,10 +1,12 @@
 from argdigest import arg_digest
 
+
 def test_legacy_package_style_with_injection():
     """
     Tests that ArgDigest can load digesters from a package (MolSysMT style)
     and inject arguments like 'syntax' into them.
     """
+
     @arg_digest(config="tests.mock_molsysmt._argdigest")
     def select(selection, syntax="MolSysMT"):
         return selection
@@ -17,6 +19,7 @@ def test_legacy_package_style_with_injection():
     res2 = select("1-10", syntax="Amber")
     assert res2 == "Selection: 1-10, Syntax: Amber"
 
+
 def test_legacy_injection_missing_optional():
     """
     If the digester asks for 'syntax' but the function doesn't have it,
@@ -24,6 +27,7 @@ def test_legacy_injection_missing_optional():
     Actually, ArgDigest injects None for params in digester signature that aren't in bound args.
     Let's verify this behavior is what we want (tolerance).
     """
+
     @arg_digest(config="tests.mock_molsysmt._argdigest")
     def simple_select(selection):
         return selection

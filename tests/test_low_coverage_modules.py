@@ -11,13 +11,18 @@ from argdigest import DigestTypeError, DigestValueError
 from argdigest.contrib import pyunitwizard_support as puw_support
 from argdigest.core import argument_loader
 from argdigest.core.context import Context
-from argdigest.core.errors_base import ArgDigestCatalogException, ArgDigestCatalogWarning
+from argdigest.core.errors_base import (
+    ArgDigestCatalogException,
+    ArgDigestCatalogWarning,
+)
 from argdigest.core.registry import Registry, get_pipelines
 from argdigest.pipelines import data as data_pipelines
 
 
 def _ctx(name: str = "x", profiling: bool = False) -> Context:
-    return Context(function_name="f", argname=name, value=None, _profiling=profiling, audit_log=[])
+    return Context(
+        function_name="f", argname=name, value=None, _profiling=profiling, audit_log=[]
+    )
 
 
 def test_errors_base_default_extra_is_injected():
@@ -30,9 +35,13 @@ def test_errors_base_default_extra_is_injected():
 def test_registry_unregistered_kind_and_unknown_rule(monkeypatch):
     assert get_pipelines("kind_not_registered") == {}
     called = []
-    monkeypatch.setattr("argdigest.core.registry.logger.warning", lambda msg: called.append(msg))
+    monkeypatch.setattr(
+        "argdigest.core.registry.logger.warning", lambda msg: called.append(msg)
+    )
 
-    out = Registry.run(kind="kind_not_registered", rules=["missing_rule", 42], value=1, ctx=_ctx("arg"))
+    out = Registry.run(
+        kind="kind_not_registered", rules=["missing_rule", 42], value=1, ctx=_ctx("arg")
+    )
     assert out == 1
     assert called and "Unknown rule type" in called[0]
 
@@ -101,7 +110,11 @@ def test_data_pipelines_extra_branches(monkeypatch):
     assert data_pipelines.to_numpy(arr, _ctx("arr")) is arr
 
     original_asarray = data_pipelines.np.asarray
-    monkeypatch.setattr(data_pipelines.np, "asarray", lambda _v: (_ for _ in ()).throw(RuntimeError("x")))
+    monkeypatch.setattr(
+        data_pipelines.np,
+        "asarray",
+        lambda _v: (_ for _ in ()).throw(RuntimeError("x")),
+    )
     with pytest.raises(DigestTypeError, match="Cannot convert to numpy array"):
         data_pipelines.to_numpy("bad", _ctx("arr"))
     monkeypatch.setattr(data_pipelines.np, "asarray", original_asarray)

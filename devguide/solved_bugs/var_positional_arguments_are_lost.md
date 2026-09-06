@@ -51,12 +51,14 @@ operands would simply act on nothing.
 ```python
 from argdigest import digest
 
+
 @digest()
 def combine(*items, tag=None, skip_digestion=False):
     return items
 
-combine("a", "b")          # TypeError: too many positional arguments
-combine(tag="x")           # fine — never touches the var-positional
+
+combine("a", "b")  # TypeError: too many positional arguments
+combine(tag="x")  # fine — never touches the var-positional
 ```
 
 ## How it was found

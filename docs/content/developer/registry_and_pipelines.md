@@ -7,6 +7,7 @@ Pipelines are registered by `kind` and `name`.
 ```python
 from argdigest import register_pipeline
 
+
 @register_pipeline(kind="feature", name="feature.base")
 def feature_base(obj, ctx):
     if not hasattr(obj, "feature_id"):
@@ -25,6 +26,7 @@ Argument digesters can be registered with a decorator:
 
 ```python
 from argdigest import argument_digest
+
 
 @argument_digest("selection")
 def digest_selection(selection, caller=None, syntax=None):

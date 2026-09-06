@@ -32,8 +32,8 @@ Aliases are data. Drop one module per family of rules into the package named by
 from argdigest import AliasTable
 
 table = AliasTable(
-    aliases={'residue_index': 'group_index', 'residue_indices': 'group_index'},
-    description='anatomical synonyms of the canonical names',
+    aliases={"residue_index": "group_index", "residue_indices": "group_index"},
+    description="anatomical synonyms of the canonical names",
 )
 ```
 
@@ -54,11 +54,15 @@ every conflicting source name.
 ### Scoping a table to one function or a family
 
 ```python
-AliasTable(applies_to='mylib.basic.compare.compare',
-           aliases={'attributes_type': 'attribute_type'})
+AliasTable(
+    applies_to="mylib.basic.compare.compare",
+    aliases={"attributes_type": "attribute_type"},
+)
 
-AliasTable(applies_to='mylib.form.*',          # fnmatch pattern
-           aliases={'idx': 'index'})
+AliasTable(
+    applies_to="mylib.form.*",  # fnmatch pattern
+    aliases={"idx": "index"},
+)
 ```
 
 `applies_to` defaults to `"*"`, every caller. **Scope is not a detail.** A name that is
@@ -72,11 +76,17 @@ the alias means the same thing everywhere.
 `when` guards a table on the value of another argument in the same call:
 
 ```python
-AliasTable(applies_to='mylib.basic.get.get', when={'element': 'atom'},
-           aliases={'name': 'atom_name', 'index': 'atom_index'})
+AliasTable(
+    applies_to="mylib.basic.get.get",
+    when={"element": "atom"},
+    aliases={"name": "atom_name", "index": "atom_index"},
+)
 
-AliasTable(applies_to='mylib.basic.get.get', when={'element': 'group'},
-           aliases={'name': 'group_name', 'index': 'group_index'})
+AliasTable(
+    applies_to="mylib.basic.get.get",
+    when={"element": "group"},
+    aliases={"name": "group_name", "index": "group_index"},
+)
 ```
 
 So `get(molsys, element='atom', name=True)` asks for `atom_name`, and the same `name`

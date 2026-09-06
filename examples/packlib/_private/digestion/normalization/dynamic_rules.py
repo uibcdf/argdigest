@@ -1,4 +1,3 @@
-
 def normalize_get(caller, kwargs):
     if "name" in kwargs and "element" in kwargs:
         kwargs = dict(kwargs)

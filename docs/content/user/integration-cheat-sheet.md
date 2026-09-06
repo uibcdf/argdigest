@@ -63,8 +63,9 @@ with `when` when it depends on another argument.
 from argdigest import Domain
 from mylib.attribute import attributes, is_attribute
 
-domain = Domain(name="attribute", contains=is_attribute,
-                members=lambda: tuple(attributes))
+domain = Domain(
+    name="attribute", contains=is_attribute, members=lambda: tuple(attributes)
+)
 ```
 
 ## Digester file
@@ -82,6 +83,7 @@ def digest_selection(selection, caller=None):
 
 ```python
 from argdigest import arg_digest
+
 
 @arg_digest(config="mylib._argdigest")
 def get(molecular_system, selection=None, skip_digestion=False):

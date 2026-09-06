@@ -47,9 +47,11 @@ Python keeps the value inserted last and silently discards the other one:
 from argdigest import AliasTable
 from argdigest.core.normalization import NormalizationRegistry, apply_normalization
 
-registry = NormalizationRegistry([
-    AliasTable(aliases={"coords": "coordinates"}),
-])
+registry = NormalizationRegistry(
+    [
+        AliasTable(aliases={"coords": "coordinates"}),
+    ]
+)
 
 apply_normalization(
     registry,

@@ -7,7 +7,6 @@ from pathlib import Path
 
 import pytest
 
-
 REPO_ROOT = Path(__file__).resolve().parents[2]
 SIBLING_PYW = REPO_ROOT.parent / "pyunitwizard"
 SIBLING_ARG = REPO_ROOT.parent / "argdigest"
@@ -16,7 +15,9 @@ SIBLING_SMON = REPO_ROOT.parent / "smonitor"
 
 
 def _siblings_available() -> bool:
-    return all(path.exists() for path in [SIBLING_PYW, SIBLING_ARG, SIBLING_DEP, SIBLING_SMON])
+    return all(
+        path.exists() for path in [SIBLING_PYW, SIBLING_ARG, SIBLING_DEP, SIBLING_SMON]
+    )
 
 
 @contextmanager
@@ -44,15 +45,21 @@ def _force_fresh_imports(packages: list[str]):
         # Drop modules loaded during the context for tracked packages.
         for package in packages:
             for key in list(sys.modules):
-                if (key == package or key.startswith(f"{package}.")) and key not in before_keys:
+                if (
+                    key == package or key.startswith(f"{package}.")
+                ) and key not in before_keys:
                     sys.modules.pop(key, None)
         sys.modules.update(removed)
 
 
-@pytest.mark.skipif(not _siblings_available(), reason="Sibling repos are not available in this environment")
+@pytest.mark.skipif(
+    not _siblings_available(),
+    reason="Sibling repos are not available in this environment",
+)
 def test_collective_error_path_emits_contract_signal_and_dependency_hints():
-    with _prepend_paths([SIBLING_PYW, SIBLING_ARG, SIBLING_DEP, SIBLING_SMON]), _force_fresh_imports(
-        ["pyunitwizard", "argdigest", "depdigest", "smonitor"]
+    with (
+        _prepend_paths([SIBLING_PYW, SIBLING_ARG, SIBLING_DEP, SIBLING_SMON]),
+        _force_fresh_imports(["pyunitwizard", "argdigest", "depdigest", "smonitor"]),
     ):
         puw = importlib.import_module("pyunitwizard")
         argdigest = importlib.import_module("argdigest")
@@ -84,7 +91,9 @@ def test_collective_error_path_emits_contract_signal_and_dependency_hints():
             _accept_distance(wrong_distance)
 
         recent = manager.recent_events()[start:]
-        assert any((event.get("code") or "").startswith(("ARG-", "PUW-")) for event in recent)
+        assert any(
+            (event.get("code") or "").startswith(("ARG-", "PUW-")) for event in recent
+        )
 
         payload = depdigest.get_info("pyunitwizard", format="dict")
         dependencies = payload.get("dependencies", [])

@@ -3,7 +3,11 @@ from argdigest import arg_digest
 
 def _molsysmt_get_standardizer(caller, kwargs):
     """Mimic MolSysMT get-name rewriting: name -> <element>_name."""
-    caller_name = caller.rsplit(".", 1)[-1] if isinstance(caller, str) else getattr(caller, "__name__", "")
+    caller_name = (
+        caller.rsplit(".", 1)[-1]
+        if isinstance(caller, str)
+        else getattr(caller, "__name__", "")
+    )
     if caller_name != "get":
         return kwargs
     if "name" not in kwargs:

@@ -7,6 +7,7 @@ def test_init_uses_local_version_fallback_when_metadata_missing(monkeypatch):
     import argdigest._version as local_version
 
     with monkeypatch.context() as m:
+
         def _raise_package_not_found(_name):
             raise importlib_metadata.PackageNotFoundError
 

@@ -17,9 +17,13 @@ def test_smonitor_profile_user_vs_dev_message_shape():
     ctx = Context(function_name="f", argname="x", value="bad", all_args={})
     try:
         smonitor.configure(profile="user")
-        user_msg = str(DigestValueError("invalid", context=ctx, hint="set a valid value"))
+        user_msg = str(
+            DigestValueError("invalid", context=ctx, hint="set a valid value")
+        )
         smonitor.configure(profile="dev")
-        dev_msg = str(DigestValueError("invalid", context=ctx, hint="set a valid value"))
+        dev_msg = str(
+            DigestValueError("invalid", context=ctx, hint="set a valid value")
+        )
     finally:
         smonitor.configure(profile="user")
 
@@ -37,7 +41,9 @@ def test_pyunitwizard_conversion_error_keeps_caller_context(monkeypatch):
     monkeypatch.setattr(puw_support, "HAS_PUW", True)
     monkeypatch.setattr(puw_support, "puw", FakePuw)
 
-    ctx = Context(function_name="my_pkg.api.get", argname="dist", value="bad", all_args={})
+    ctx = Context(
+        function_name="my_pkg.api.get", argname="dist", value="bad", all_args={}
+    )
     with pytest.raises(DigestValueError) as excinfo:
         puw_support.convert(to_unit="nm")("bad", ctx)
 
@@ -60,6 +66,7 @@ def test_strictness_aliases_and_ignore_behavior():
 
 def test_invalid_strictness_value_raises():
     with pytest.raises(ValueError, match="strictness must be one of"):
+
         @arg_digest(digestion_style="decorator", strictness="boom")
         def f(a):
             return a
@@ -67,7 +74,9 @@ def test_invalid_strictness_value_raises():
         f("x")
 
 
-def test_warning_taxonomy_consistent_across_package_and_registry_styles(tmp_path, monkeypatch):
+def test_warning_taxonomy_consistent_across_package_and_registry_styles(
+    tmp_path, monkeypatch
+):
     # Package style: mock_molsysmt only digests "selection", so "other" should warn.
     @arg_digest(config="tests.mock_molsysmt._argdigest", strictness="warn")
     def f_pkg(selection, other):

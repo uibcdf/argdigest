@@ -1,14 +1,17 @@
 from __future__ import annotations
+
 from typing import Any
 
-from ..core.registry import register_pipeline
 from ..core.errors import DigestTypeError, DigestValueError
+from ..core.registry import register_pipeline
 
 
 @register_pipeline(kind="feature", name="feature.base")
 def feature_base(obj: Any, ctx):
     # example: require it to have `feature_id`
-    if not hasattr(obj, "feature_id") and not (isinstance(obj, dict) and "feature_id" in obj):
+    if not hasattr(obj, "feature_id") and not (
+        isinstance(obj, dict) and "feature_id" in obj
+    ):
         raise DigestTypeError(
             f"Argument '{ctx.argname}' in '{ctx.function_name}' must have 'feature_id'",
             context=ctx,

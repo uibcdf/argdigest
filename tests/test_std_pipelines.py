@@ -1,5 +1,7 @@
 import pytest
-from argdigest import arg_digest, DigestValueError, DigestTypeError
+
+from argdigest import DigestTypeError, DigestValueError, arg_digest
+
 
 def test_std_coercers_all():
     @arg_digest.map(
@@ -10,13 +12,13 @@ def test_std_coercers_all():
         t1={"kind": "std", "rules": ["to_tuple"]},
         s1={"kind": "std", "rules": ["strip"]},
         low={"kind": "std", "rules": ["lower"]},
-        up={"kind": "std", "rules": ["upper"]}
+        up={"kind": "std", "rules": ["upper"]},
     )
     def f(b1, b2, l1, l2, t1, s1, low, up):
         return b1, b2, l1, l2, t1, s1, low, up
 
     res = f("yes", "no", "scalar", [1, 2], "tuple_me", "  spaces  ", "HELLO", "world")
-    
+
     assert res[0] is True
     assert res[1] is False
     assert res[2] == ["scalar"]
@@ -26,14 +28,17 @@ def test_std_coercers_all():
     assert res[6] == "hello"
     assert res[7] == "WORLD"
 
+
 def test_to_bool_edge_cases():
     @arg_digest.map(v={"kind": "std", "rules": ["to_bool"]})
-    def f(v): return v
-    
+    def f(v):
+        return v
+
     assert f("on") is True
     assert f("off") is False
     assert f("1") is True
     assert f(0) is False
+
 
 def test_std_validators_extended(tmp_path):
     # Create a dummy file and dir
@@ -48,7 +53,7 @@ def test_std_validators_extended(tmp_path):
         file_p={"kind": "std", "rules": ["is_file"]},
         dir_p={"kind": "std", "rules": ["is_dir"]},
         i={"kind": "std", "rules": ["is_int"]},
-        s={"kind": "std", "rules": ["is_str"]}
+        s={"kind": "std", "rules": ["is_str"]},
     )
     def validate(pos, non_neg, file_p, dir_p, i, s):
         return True
@@ -70,18 +75,24 @@ def test_std_validators_extended(tmp_path):
     with pytest.raises(DigestTypeError, match="Expected int"):
         validate(1, 0, str(f_path), str(d), "not_int", "hi")
 
+
 def test_to_list_iterables():
     @arg_digest.map(v={"kind": "std", "rules": ["to_list"]})
-    def f(v): return v
+    def f(v):
+        return v
 
     assert f((1, 2)) == [1, 2]
     import numpy as np
+
     res = f(np.array([1, 2]))
     assert isinstance(res, list)
     assert res == [1, 2]
 
+
 def test_string_coercers_non_string():
     @arg_digest.map(v={"kind": "std", "rules": ["strip", "lower", "upper"]})
-    def f(v): return v
+    def f(v):
+        return v
+
     # Should ignore non-string inputs
     assert f(123) == 123

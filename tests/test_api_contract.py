@@ -8,7 +8,6 @@ import argdigest
 from argdigest import DigestConfig, arg_digest
 from argdigest.core.config import get_defaults, set_defaults
 
-
 EXPECTED_PUBLIC_API = [
     "arg_digest",
     "register_pipeline",
@@ -67,7 +66,10 @@ def test_public_callable_signatures():
     assert sig_map.parameters["map_config"].kind is inspect.Parameter.VAR_KEYWORD
 
     assert list(inspect.signature(argdigest.argument_digest).parameters) == ["name"]
-    assert list(inspect.signature(argdigest.register_pipeline).parameters) == ["kind", "name"]
+    assert list(inspect.signature(argdigest.register_pipeline).parameters) == [
+        "kind",
+        "name",
+    ]
     assert list(inspect.signature(argdigest.get_pipelines).parameters) == ["kind"]
 
 

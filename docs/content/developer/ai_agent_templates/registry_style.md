@@ -32,8 +32,7 @@ NORMALIZATION_SOURCE = "my_lib._private.argdigest.normalization"
 import argdigest.config
 
 argdigest.config.set_defaults(
-    digestion_source="my_lib._private.argdigest.registry",
-    digestion_style="registry"
+    digestion_source="my_lib._private.argdigest.registry", digestion_style="registry"
 )
 ```
 
@@ -57,9 +56,9 @@ ARGUMENT_DIGESTERS = {
 ```python
 from argdigest import arg_digest
 
+
 @arg_digest(config="my_lib._argdigest")
-def analyze(a, b, skip_digestion=False):
-    ...
+def analyze(a, b, skip_digestion=False): ...
 ```
 
 ## Declaring the function argument contract
@@ -80,8 +79,9 @@ A function taking `**kwargs` must declare the domain of those keywords:
 from argdigest import Domain
 from my_lib.attribute import attributes, is_attribute
 
-domain = Domain(name="attribute", contains=is_attribute,
-                members=lambda: tuple(attributes))
+domain = Domain(
+    name="attribute", contains=is_attribute, members=lambda: tuple(attributes)
+)
 ```
 
 ```python

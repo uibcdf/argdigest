@@ -72,6 +72,7 @@ pip install -e ".[all]"
 ```python
 from argdigest import arg_digest
 
+
 @arg_digest(
     config="mylib._argdigest",
     strictness="warn",
@@ -96,15 +97,16 @@ copying names:
 from argdigest import Domain
 from mylib.attribute import attributes, is_attribute
 
-domain = Domain(name='attribute', contains=is_attribute,
-                members=lambda: tuple(attributes))
+domain = Domain(
+    name="attribute", contains=is_attribute, members=lambda: tuple(attributes)
+)
 ```
 
 ```python
 # mylib/_private/argdigest/function/get.py
 from argdigest import FunctionContract
 
-contract = FunctionContract(caller='mylib.basic.get.get', admits='attribute')
+contract = FunctionContract(caller="mylib.basic.get.get", admits="attribute")
 ```
 
 Then a typo fails where it happens, instead of running with the default and returning a

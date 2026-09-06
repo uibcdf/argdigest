@@ -17,7 +17,6 @@ from argdigest import Domain, FunctionContract
 from argdigest.core.agent_docs import _render_axis_one
 from argdigest.core.function_contract import ContractRegistry
 
-
 ATTRIBUTES = ("n_atoms", "n_bonds", "coordinates")
 
 
@@ -33,9 +32,11 @@ def _domains():
 
 
 def test_the_declared_domain_and_its_size_are_rendered():
-    registry = ContractRegistry([
-        FunctionContract(caller="pkg.basic.get.get", admits="attribute"),
-    ])
+    registry = ContractRegistry(
+        [
+            FunctionContract(caller="pkg.basic.get.get", admits="attribute"),
+        ]
+    )
 
     rendered = _render_axis_one(registry, _domains())
 
@@ -46,18 +47,27 @@ def test_the_declared_domain_and_its_size_are_rendered():
 
 
 def test_a_requirement_is_rendered():
-    registry = ContractRegistry([
-        FunctionContract(caller="pkg.basic.get.get", admits="attribute",
-                         requires_any_of="attribute"),
-    ])
+    registry = ContractRegistry(
+        [
+            FunctionContract(
+                caller="pkg.basic.get.get",
+                admits="attribute",
+                requires_any_of="attribute",
+            ),
+        ]
+    )
 
     assert "attribute" in _render_axis_one(registry, _domains())
 
 
 def test_a_pattern_contract_is_rendered_by_its_pattern():
-    registry = ContractRegistry([
-        FunctionContract(caller_pattern="pkg.form.*.to_file_h5msm", admits="signature"),
-    ])
+    registry = ContractRegistry(
+        [
+            FunctionContract(
+                caller_pattern="pkg.form.*.to_file_h5msm", admits="signature"
+            ),
+        ]
+    )
 
     assert "pkg.form.*.to_file_h5msm" in _render_axis_one(registry, {})
 
@@ -77,16 +87,22 @@ def test_unloadable_declarations_are_reported_rather_than_hidden():
 
 # --- declared aliases in the generated instructions ------------------------------------
 
+
 def test_declared_aliases_are_rendered():
     from argdigest import AliasTable
     from argdigest.core.agent_docs import _render_normalization
     from argdigest.core.normalization import NormalizationRegistry
 
-    registry = NormalizationRegistry([
-        AliasTable(aliases={"residue_index": "group_index"}),
-        AliasTable(applies_to="pkg.get", when={"element": "atom"},
-                   aliases={"name": "atom_name"}),
-    ])
+    registry = NormalizationRegistry(
+        [
+            AliasTable(aliases={"residue_index": "group_index"}),
+            AliasTable(
+                applies_to="pkg.get",
+                when={"element": "atom"},
+                aliases={"name": "atom_name"},
+            ),
+        ]
+    )
 
     rendered = _render_normalization(registry)
 

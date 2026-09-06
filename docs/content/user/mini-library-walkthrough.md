@@ -59,6 +59,7 @@ def digest_syntax(syntax, caller=None):
 # mylib/basic.py
 from argdigest import arg_digest
 
+
 @arg_digest(config="mylib._argdigest")
 def get(molecular_system, selection=None, syntax=None, skip_digestion=False):
     return molecular_system, selection, syntax
@@ -79,8 +80,9 @@ from argdigest import Domain
 
 ATTRIBUTES = ("n_atoms", "n_bonds", "coordinates")
 
-domain = Domain(name="attribute", contains=lambda k: k in ATTRIBUTES,
-                members=lambda: ATTRIBUTES)
+domain = Domain(
+    name="attribute", contains=lambda k: k in ATTRIBUTES, members=lambda: ATTRIBUTES
+)
 ```
 
 ```python
@@ -90,7 +92,7 @@ from argdigest import FunctionContract
 contract = FunctionContract(
     caller="mylib.basic.get_attributes",
     admits="attribute",
-    requires_any_of="attribute",   # asking for nothing would be meaningless
+    requires_any_of="attribute",  # asking for nothing would be meaningless
 )
 ```
 
@@ -109,6 +111,7 @@ than repeating them, so the two cannot drift apart.
 
 ```python
 from argdigest import register_pipeline
+
 
 @register_pipeline(kind="selection", name="selection.non_empty")
 def selection_non_empty(value, ctx):

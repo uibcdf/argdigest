@@ -17,13 +17,13 @@ ArgDigest supports three configuration levels. Use them in this precedence order
 DIGESTION_SOURCE = "mylib._private.argdigest.argument"
 DIGESTION_STYLE = "package"  # package | registry | decorator | auto
 STANDARDIZER = "mylib._private.argdigest.argument_names_standardization:argument_names_standardization"
-STRICTNESS = "warn"          # warn | error | ignore
+STRICTNESS = "warn"  # warn | error | ignore
 SKIP_PARAM = "skip_digestion"
 
 # Axis 1 -- the argument contract of each function.
 FUNCTION_SOURCE = "mylib._private.argdigest.function"
 DOMAIN_SOURCE = "mylib._private.argdigest.domain"
-UNKNOWN_ARGUMENT = "error"   # error | warn | ignore
+UNKNOWN_ARGUMENT = "error"  # error | warn | ignore
 
 # Declared argument-name aliases, applied before both axes.
 NORMALIZATION_SOURCE = "mylib._private.argdigest.normalization"

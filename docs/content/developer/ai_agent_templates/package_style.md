@@ -41,7 +41,7 @@ FUNCTION_SOURCE = "my_lib._private.argdigest.function"
 DOMAIN_SOURCE = "my_lib._private.argdigest.domain"
 UNKNOWN_ARGUMENT = "error"
 NORMALIZATION_SOURCE = "my_lib._private.argdigest.normalization"
-PUW_CONTEXT = {"standard_units": ["nm", "ps"]} # Optional: for Science libraries
+PUW_CONTEXT = {"standard_units": ["nm", "ps"]}  # Optional: for Science libraries
 ```
 
 ## Programmatic config alternative (`my_lib/__init__.py`)
@@ -51,7 +51,7 @@ import argdigest.config
 argdigest.config.set_defaults(
     digestion_source="my_lib._private.argdigest.argument",
     digestion_style="package",
-    strictness="warn"
+    strictness="warn",
 )
 ```
 
@@ -71,9 +71,9 @@ def digest_selection(selection, syntax="MyLib", caller=None):
 ```python
 from argdigest import arg_digest
 
+
 @arg_digest(config="my_lib._argdigest")
-def get(molecular_system, selection=None, syntax="MyLib", skip_digestion=False):
-    ...
+def get(molecular_system, selection=None, syntax="MyLib", skip_digestion=False): ...
 ```
 
 ## Declaring the function argument contract
@@ -94,8 +94,9 @@ A function taking `**kwargs` must declare the domain of those keywords:
 from argdigest import Domain
 from my_lib.attribute import attributes, is_attribute
 
-domain = Domain(name="attribute", contains=is_attribute,
-                members=lambda: tuple(attributes))
+domain = Domain(
+    name="attribute", contains=is_attribute, members=lambda: tuple(attributes)
+)
 ```
 
 ```python

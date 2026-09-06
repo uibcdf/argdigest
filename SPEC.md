@@ -91,8 +91,10 @@ A convenient alias for defining explicit mappings using keyword arguments:
 ```python
 arg_digest.map(
     arg_name={"kind": "feature", "rules": ["validate_shape"]},
-    other_arg={"kind": "topology"}
+    other_arg={"kind": "topology"},
 )
+
+
 def my_func(arg_name, other_arg): ...
 ```
 
@@ -193,7 +195,7 @@ Only data. Discovery, resolution order, enforcement and introspection stay in Ar
 # mylib/_argdigest.py
 FUNCTION_SOURCE = "mylib._private.argdigest.function"
 DOMAIN_SOURCE = "mylib._private.argdigest.domain"
-UNKNOWN_ARGUMENT = "error"          # "error" | "warn" | "ignore"
+UNKNOWN_ARGUMENT = "error"  # "error" | "warn" | "ignore"
 ```
 
 ```python
@@ -201,15 +203,16 @@ UNKNOWN_ARGUMENT = "error"          # "error" | "warn" | "ignore"
 from argdigest import Domain
 from mylib.attribute import attributes, is_attribute
 
-domain = Domain(name='attribute', contains=is_attribute,
-                members=lambda: tuple(attributes))
+domain = Domain(
+    name="attribute", contains=is_attribute, members=lambda: tuple(attributes)
+)
 ```
 
 ```python
 # mylib/_private/argdigest/function/get.py
 from argdigest import FunctionContract
 
-contract = FunctionContract(caller='mylib.basic.get.get', admits='attribute')
+contract = FunctionContract(caller="mylib.basic.get.get", admits="attribute")
 ```
 
 A module may declare one `contract`/`domain` or a list in `CONTRACTS`/`DOMAINS`.
@@ -279,10 +282,13 @@ family of rules exposing `table` or `TABLES`:
 ```python
 from argdigest import AliasTable
 
-AliasTable(aliases={'residue_index': 'group_index'})                    # global
-AliasTable(applies_to='mylib.form.*', aliases={'idx': 'index'})        # family
-AliasTable(applies_to='mylib.basic.get.get', when={'element': 'atom'}, # context
-           aliases={'name': 'atom_name'})
+AliasTable(aliases={"residue_index": "group_index"})  # global
+AliasTable(applies_to="mylib.form.*", aliases={"idx": "index"})  # family
+AliasTable(
+    applies_to="mylib.basic.get.get",
+    when={"element": "atom"},  # context
+    aliases={"name": "atom_name"},
+)
 ```
 
 `applies_to` is an exact caller, an `fnmatch` pattern or `"*"`. `when` is an equality test
@@ -335,16 +341,18 @@ where users read output.
 ```python
 from argdigest import arg_digest, register_pipeline
 
+
 @register_pipeline(kind="feature", name="is_2d")
 def check_2d(val, ctx):
-    if val.dim != 2: raise ValueError("Not 2D")
+    if val.dim != 2:
+        raise ValueError("Not 2D")
     return val
 
-arg_digest.map(
-    surface={"kind": "feature", "rules": ["is_2d"]}
-)
-def calculate_area(surface):
-    ...
+
+arg_digest.map(surface={"kind": "feature", "rules": ["is_2d"]})
+
+
+def calculate_area(surface): ...
 ```
 
 ### Argument-Centric (Package Style)
