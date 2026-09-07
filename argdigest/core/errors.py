@@ -19,14 +19,16 @@ class DigestError(ArgDigestCatalogException):
         hint: str | None = None,
         code: str | None = None,
     ):
-        self.raw_message = message
         self.context = context
         self.raw_hint = hint or ""
         resolved_code = code or CATALOG["exceptions"][self.catalog_key]["code"]
-        self.code = resolved_code
+        # `code`, `message`, `raw_message` and `extra` belong to the catalog base
+        # classes, which assign them last from what they are given below. Setting
+        # them here writes into variables about to be overwritten. `hint` is not
+        # theirs yet and stays until uibcdf/smonitor#5 lands it as a property.
         self.hint = self.raw_hint
 
-        extra = {"message": message, "hint": self.hint, "code": self.code}
+        extra = {"message": message, "hint": self.hint, "code": resolved_code}
         if context:
             extra["argname"] = context.argname
             extra["caller"] = context.function_name
@@ -73,9 +75,10 @@ class DigestNotDigestedWarning(ArgDigestCatalogWarning, RuntimeWarning):
         hint: str | None = None,
         code: str | None = None,
     ):
-        self.code = code or CATALOG["warnings"][self.catalog_key]["code"]
+        resolved_code = code or CATALOG["warnings"][self.catalog_key]["code"]
+        # See `DigestError`: `code` is the base's to assign.
         self.hint = hint or ""
-        extra = {"message": message, "hint": self.hint, "code": self.code}
+        extra = {"message": message, "hint": self.hint, "code": resolved_code}
         if context:
             extra["argname"] = context.argname
             extra["caller"] = context.function_name
@@ -83,7 +86,7 @@ class DigestNotDigestedWarning(ArgDigestCatalogWarning, RuntimeWarning):
             extra["argname"] = "unknown"
             extra["caller"] = "unknown"
 
-        super().__init__(message=message, code=self.code, extra=extra)
+        super().__init__(message=message, code=resolved_code, extra=extra)
 
 
 class FunctionContractError(DigestError):
@@ -122,9 +125,10 @@ class FunctionContractWarning(ArgDigestCatalogWarning, RuntimeWarning):
         hint: str | None = None,
         code: str | None = None,
     ):
-        self.code = code or CATALOG["warnings"][self.catalog_key]["code"]
+        resolved_code = code or CATALOG["warnings"][self.catalog_key]["code"]
+        # See `DigestError`: `code` is the base's to assign.
         self.hint = hint or ""
-        extra = {"message": message, "hint": self.hint, "code": self.code}
+        extra = {"message": message, "hint": self.hint, "code": resolved_code}
         if context:
             extra["argname"] = context.argname
             extra["caller"] = context.function_name
@@ -132,7 +136,7 @@ class FunctionContractWarning(ArgDigestCatalogWarning, RuntimeWarning):
             extra["argname"] = "unknown"
             extra["caller"] = "unknown"
 
-        super().__init__(message=message, code=self.code, extra=extra)
+        super().__init__(message=message, code=resolved_code, extra=extra)
 
 
 class StandardizerContractError(DigestError):
