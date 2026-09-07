@@ -21,7 +21,9 @@ def test_cross_layer_missing_puw_reemits_contract_error_with_context(monkeypatch
     assert exc.context is not None
     assert exc.context.function_name == "f"
     assert exc.context.argname == "val"
-    assert exc.code == "ARG-ERR-TYPE-001"
+    # A missing optional dependency has its own code now: it is not a type
+    # error, and the remedy lives in the catalog rather than at the raise site.
+    assert exc.code == "ARG-ERR-OPTDEP-001"
     assert "install_optional:argdigest[pyunitwizard]" in exc.hint
     assert "DepDigest" in exc.hint
 
@@ -70,5 +72,5 @@ def test_cross_layer_diagnostics_coherent_between_user_and_dev_profiles(monkeypa
         smonitor.configure(profile="user")
 
     assert msg_user != msg_dev
-    assert "Check the expected type" in msg_user
-    assert "Validate type logic" in msg_dev
+    assert "Install it with" in msg_user
+    assert "install_optional:argdigest[pyunitwizard]" in msg_dev

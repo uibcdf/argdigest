@@ -9,7 +9,9 @@ from ..core.registry import register_pipeline
 def is_positive(value: Any, ctx: Any = None) -> Any:
     """Validates that value is > 0."""
     if not (value > 0):
-        raise DigestValueError(f"Value must be positive, got {value}", context=ctx)
+        raise DigestValueError(
+            context=ctx, detail=f"Value must be positive, got {value}."
+        )
     return value
 
 
@@ -17,7 +19,9 @@ def is_positive(value: Any, ctx: Any = None) -> Any:
 def is_non_negative(value: Any, ctx: Any = None) -> Any:
     """Validates that value is >= 0."""
     if not (value >= 0):
-        raise DigestValueError(f"Value must be non-negative, got {value}", context=ctx)
+        raise DigestValueError(
+            context=ctx, detail=f"Value must be non-negative, got {value}."
+        )
     return value
 
 
@@ -25,7 +29,7 @@ def is_non_negative(value: Any, ctx: Any = None) -> Any:
 def is_file(value: Any, ctx: Any = None) -> Any:
     """Validates that value is an existing file path."""
     if not os.path.isfile(value):
-        raise DigestValueError(f"File not found: {value}", context=ctx)
+        raise DigestValueError(context=ctx, detail=f"File not found: {value}.")
     return value
 
 
@@ -33,7 +37,7 @@ def is_file(value: Any, ctx: Any = None) -> Any:
 def is_dir(value: Any, ctx: Any = None) -> Any:
     """Validates that value is an existing directory."""
     if not os.path.isdir(value):
-        raise DigestValueError(f"Directory not found: {value}", context=ctx)
+        raise DigestValueError(context=ctx, detail=f"Directory not found: {value}.")
     return value
 
 
@@ -44,7 +48,9 @@ def is_dir(value: Any, ctx: Any = None) -> Any:
 def is_int(value: Any, ctx: Any = None) -> int:
     """Strictly checks for int type."""
     if not isinstance(value, int):
-        raise DigestTypeError(f"Expected int, got {type(value).__name__}", context=ctx)
+        raise DigestTypeError(
+            context=ctx, detail=f"Expected int, got {type(value).__name__}."
+        )
     return value
 
 
@@ -52,5 +58,7 @@ def is_int(value: Any, ctx: Any = None) -> int:
 def is_str(value: Any, ctx: Any = None) -> str:
     """Strictly checks for str type."""
     if not isinstance(value, str):
-        raise DigestTypeError(f"Expected str, got {type(value).__name__}", context=ctx)
+        raise DigestTypeError(
+            context=ctx, detail=f"Expected str, got {type(value).__name__}."
+        )
     return value

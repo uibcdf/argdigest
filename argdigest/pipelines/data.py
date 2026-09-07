@@ -32,9 +32,9 @@ def _pandas(ctx: Any = None):
             import pandas
         except ImportError as error:
             raise DigestTypeError(
-                "Optional dependency 'pandas' is not installed. Install it to use data "
-                "pipelines.",
                 context=ctx,
+                detail="Optional dependency 'pandas' is not installed. Install it to use data "
+                "pipelines.",
             ) from error
         pd = pandas
     return pd
@@ -51,8 +51,8 @@ def has_pandas():
 def _require_numpy(ctx: Any = None):
     if not HAS_NUMPY:
         raise DigestTypeError(
-            "Optional dependency 'numpy' is not installed. Install it to use data pipelines.",
             context=ctx,
+            detail="Optional dependency 'numpy' is not installed. Install it to use data pipelines.",
         )
 
 
@@ -68,7 +68,9 @@ def to_numpy(value: Any, ctx: Any = None) -> Any:
     try:
         return np.asarray(value)
     except Exception as e:
-        raise DigestTypeError(f"Cannot convert to numpy array: {e}", context=ctx) from e
+        raise DigestTypeError(
+            context=ctx, detail=f"Cannot convert to numpy array: {e}."
+        ) from e
 
 
 @register_pipeline(kind="data", name="to_dataframe")
@@ -81,7 +83,7 @@ def to_dataframe(value: Any, ctx: Any = None) -> Any:
         return pd.DataFrame(value)
     except Exception as e:
         raise DigestTypeError(
-            f"Cannot convert to pandas DataFrame: {e}", context=ctx
+            context=ctx, detail=f"Cannot convert to pandas DataFrame: {e}."
         ) from e
 
 
@@ -96,7 +98,7 @@ def has_ndim(n: int) -> Callable[[Any, Any], Any]:
         arr = value if isinstance(value, np.ndarray) else np.asarray(value)
         if arr.ndim != n:
             raise DigestValueError(
-                f"Expected {n} dimensions, got {arr.ndim}", context=ctx
+                context=ctx, detail=f"Expected {n} dimensions, got {arr.ndim}."
             )
         return value
 
@@ -115,14 +117,14 @@ def is_shape(shape: Tuple[int | None, ...]) -> Callable[[Any, Any], Any]:
         arr = value if isinstance(value, np.ndarray) else np.asarray(value)
         if len(arr.shape) != len(shape):
             raise DigestValueError(
-                f"Expected ndim={len(shape)}, got {len(arr.shape)}", context=ctx
+                context=ctx, detail=f"Expected ndim={len(shape)}, got {len(arr.shape)}."
             )
 
         for i, (actual, expected) in enumerate(zip(arr.shape, shape)):
             if expected is not None and actual != expected:
                 raise DigestValueError(
-                    f"Dimension {i} mismatch: expected {expected}, got {actual}",
                     context=ctx,
+                    detail=f"Dimension {i} mismatch: expected {expected}, got {actual}.",
                 )
         return value
 
@@ -139,7 +141,7 @@ def is_dtype(dtype: Any) -> Callable[[Any, Any], Any]:
         target_dtype = np.dtype(dtype)
         if arr.dtype != target_dtype:
             raise DigestTypeError(
-                f"Expected dtype {target_dtype}, got {arr.dtype}", context=ctx
+                context=ctx, detail=f"Expected dtype {target_dtype}, got {arr.dtype}."
             )
         return value
 
@@ -156,13 +158,13 @@ def has_columns(columns: List[str]) -> Callable[[Any, Any], Any]:
             # Try to coerce if it's not a dataframe?
             # Better to be strict here and rely on to_dataframe pipeline if needed.
             raise DigestTypeError(
-                f"Expected DataFrame, got {type(value).__name__}", context=ctx
+                context=ctx, detail=f"Expected DataFrame, got {type(value).__name__}."
             )
 
         missing = [col for col in columns if col not in value.columns]
         if missing:
             raise DigestValueError(
-                f"Missing columns in DataFrame: {missing}", context=ctx
+                context=ctx, detail=f"Missing columns in DataFrame: {missing}."
             )
         return value
 
@@ -181,12 +183,13 @@ def min_rows(n: int) -> Callable[[Any, Any], Any]:
             length = value.shape[0]
         else:
             raise DigestTypeError(
-                f"Object of type {type(value).__name__} has no length", context=ctx
+                context=ctx,
+                detail=f"Object of type {type(value).__name__} has no length.",
             )
 
         if length < n:
             raise DigestValueError(
-                f"Expected at least {n} rows, got {length}", context=ctx
+                context=ctx, detail=f"Expected at least {n} rows, got {length}."
             )
         return value
 

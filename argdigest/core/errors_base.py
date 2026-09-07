@@ -6,16 +6,22 @@ from .._private.smonitor.catalog import CATALOG, META
 
 
 class ArgDigestCatalogException(CatalogException):
-    def __init__(self, **kwargs):
-        if "extra" not in kwargs:
-            kwargs["extra"] = {}
+    """Binds every ArgDigest exception to this package's catalog and metadata.
 
-        super().__init__(catalog=CATALOG, meta=META, **kwargs)
+    `message` is positional-or-keyword, as section 3.3.1 of `SMONITOR_GUIDE.md`
+    requires: Python rebuilds an exception as `type(e)(*e.args)`, and a
+    keyword-only signature makes that call -- and `warnings.warn(text, category)`,
+    which uses it -- fail with `TypeError`.
+    """
+
+    def __init__(self, message: str | None = None, **kwargs: object):
+        kwargs.setdefault("extra", {})
+        super().__init__(message, catalog=CATALOG, meta=META, **kwargs)
 
 
 class ArgDigestCatalogWarning(CatalogWarning):
-    def __init__(self, **kwargs):
-        if "extra" not in kwargs:
-            kwargs["extra"] = {}
+    """The warning half of the same binding. See above for why `message` is first."""
 
-        super().__init__(catalog=CATALOG, meta=META, **kwargs)
+    def __init__(self, message: str | None = None, **kwargs: object):
+        kwargs.setdefault("extra", {})
+        super().__init__(message, catalog=CATALOG, meta=META, **kwargs)

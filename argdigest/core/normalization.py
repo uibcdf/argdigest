@@ -170,15 +170,14 @@ def apply_normalization(
             for target, sources in conflicts.items()
         }
         raise ArgumentConsistencyError(
-            f"Call to {caller!r} supplies more than one name for the same argument: "
-            f"{details}. Aliases and canonical names are alternatives.",
+            detail=f"Call to {caller!r} supplies more than one name for the same "
+            f"argument: {details}. Aliases and canonical names are alternatives.",
             context=Context(
                 function_name=caller,
                 argname=", ".join(conflicts),
                 value=conflicting_values,
                 all_args=bound,
             ),
-            hint="Pass exactly one of the conflicting names.",
         )
 
     if supplied is None:

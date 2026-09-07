@@ -9,34 +9,58 @@ if TYPE_CHECKING:
     from .context import Context
 
 
+def _context_extra(context: Context | None, **fields: object) -> dict[str, object]:
+    """The structured payload every catalog template here interpolates.
+
+    `argname` and `caller` are what the templates name, and they are the two
+    facts a `Context` carries. A raise site with no context still emits both, as
+    `"unknown"`, so a template never renders a hole.
+    """
+    extra: dict[str, object] = {
+        "argname": context.argname if context else "unknown",
+        "caller": context.function_name if context else "unknown",
+    }
+    extra.update({key: value for key, value in fields.items() if value is not None})
+    return extra
+
+
 class DigestError(ArgDigestCatalogException):
-    """Base class for all ArgDigest exceptions."""
+    """Base class for all ArgDigest exceptions.
+
+    `message` comes first and every field is keyword-only. That is what makes
+    `type(e)(*e.args)` reproduce the instance, which is how `pickle`,
+    `copy.deepcopy`, `warnings.warn(text, category)` and pytest-xdist all rebuild
+    one. Section 3.3.1 of `SMONITOR_GUIDE.md` explains the failure it prevents.
+
+    Raise sites do **not** pass `message`. They pass typed fields, and the
+    catalog template renders the sentence: a message handed over here is used
+    verbatim and the template is bypassed entirely, which is what used to happen
+    and why four of the templates had never rendered for a user.
+
+        raise DigestTypeError(context=ctx, detail=f"Expected int, got {type(v).__name__}.")
+
+    `detail` is the specific fact the raise site knows and the catalog cannot:
+    the framing around it belongs to the template.
+    """
 
     def __init__(
         self,
-        message: str,
+        message: str | None = None,
+        *,
         context: Context | None = None,
-        hint: str | None = None,
+        detail: str | None = None,
         code: str | None = None,
+        **fields: object,
     ):
         self.context = context
-        self.raw_hint = hint or ""
         resolved_code = code or CATALOG["exceptions"][self.catalog_key]["code"]
         # `code`, `message`, `raw_message` and `extra` belong to the catalog base
-        # classes, which assign them last from what they are given below. Setting
-        # them here writes into variables about to be overwritten. `hint` is not
-        # theirs yet and stays until uibcdf/smonitor#5 lands it as a property.
-        self.hint = self.raw_hint
-
-        extra = {"message": message, "hint": self.hint, "code": resolved_code}
-        if context:
-            extra["argname"] = context.argname
-            extra["caller"] = context.function_name
-        else:
-            extra["argname"] = "unknown"
-            extra["caller"] = "unknown"
-
-        super().__init__(message=message, code=resolved_code, extra=extra)
+        # classes, which assign them last from what they are given here.
+        super().__init__(
+            message,
+            code=resolved_code,
+            extra=_context_extra(context, detail=detail, **fields),
+        )
 
 
 class DigestTypeError(DigestError, TypeError):
@@ -70,23 +94,20 @@ class DigestNotDigestedWarning(ArgDigestCatalogWarning, RuntimeWarning):
 
     def __init__(
         self,
-        message: str,
+        message: str | None = None,
+        *,
         context: Context | None = None,
-        hint: str | None = None,
+        detail: str | None = None,
         code: str | None = None,
+        **fields: object,
     ):
+        self.context = context
         resolved_code = code or CATALOG["warnings"][self.catalog_key]["code"]
-        # See `DigestError`: `code` is the base's to assign.
-        self.hint = hint or ""
-        extra = {"message": message, "hint": self.hint, "code": resolved_code}
-        if context:
-            extra["argname"] = context.argname
-            extra["caller"] = context.function_name
-        else:
-            extra["argname"] = "unknown"
-            extra["caller"] = "unknown"
-
-        super().__init__(message=message, code=resolved_code, extra=extra)
+        super().__init__(
+            message,
+            code=resolved_code,
+            extra=_context_extra(context, detail=detail, **fields),
+        )
 
 
 class FunctionContractError(DigestError):
@@ -120,23 +141,20 @@ class FunctionContractWarning(ArgDigestCatalogWarning, RuntimeWarning):
 
     def __init__(
         self,
-        message: str,
+        message: str | None = None,
+        *,
         context: Context | None = None,
-        hint: str | None = None,
+        detail: str | None = None,
         code: str | None = None,
+        **fields: object,
     ):
+        self.context = context
         resolved_code = code or CATALOG["warnings"][self.catalog_key]["code"]
-        # See `DigestError`: `code` is the base's to assign.
-        self.hint = hint or ""
-        extra = {"message": message, "hint": self.hint, "code": resolved_code}
-        if context:
-            extra["argname"] = context.argname
-            extra["caller"] = context.function_name
-        else:
-            extra["argname"] = "unknown"
-            extra["caller"] = "unknown"
-
-        super().__init__(message=message, code=resolved_code, extra=extra)
+        super().__init__(
+            message,
+            code=resolved_code,
+            extra=_context_extra(context, detail=detail, **fields),
+        )
 
 
 class StandardizerContractError(DigestError):

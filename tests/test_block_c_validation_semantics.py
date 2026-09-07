@@ -27,8 +27,8 @@ def test_smonitor_profile_user_vs_dev_message_shape():
     finally:
         smonitor.configure(profile="user")
 
-    assert "Check the valid values" in user_msg
-    assert "Validate value constraints" in dev_msg
+    assert "Check the values this argument accepts" in user_msg
+    assert "Validate the value constraints for" in dev_msg
     assert user_msg != dev_msg
 
 

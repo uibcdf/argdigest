@@ -23,14 +23,14 @@ from ..core.registry import register_pipeline
 
 def _require_puw(ctx: Any = None):
     if not HAS_PUW:
+        # Its own code: a missing optional dependency is not a type error, and
+        # the remedy -- which distribution to install, and that DepDigest can
+        # supply it -- belongs in the catalog rather than at this raise site.
         raise DigestTypeError(
-            "Optional dependency 'pyunitwizard' is not installed. Install it to use PyUnitWizard pipelines.",
             context=ctx,
-            hint=(
-                "install_optional:argdigest[pyunitwizard] "
-                "(pip install argdigest[pyunitwizard]); "
-                "if your host library uses DepDigest, enable its pyunitwizard capability."
-            ),
+            code="ARG-ERR-OPTDEP-001",
+            dependency="pyunitwizard",
+            distribution="argdigest[pyunitwizard]",
         )
 
 
@@ -91,9 +91,9 @@ def check(
         )
         if not valid:
             raise DigestValueError(
-                f"Physical validation failed for {ctx.argname}. "
-                f"Expected dimensionality={dimensionality}, unit={unit}, type={value_type}",
                 context=ctx,
+                detail=f"Physical validation failed for {ctx.argname}. "
+                f"Expected dimensionality={dimensionality}, unit={unit}, type={value_type}.",
             )
         return value
 
@@ -112,7 +112,9 @@ def standardize() -> Callable[[Any, Any], Any]:
         try:
             return puw.standardize(value)
         except Exception as e:
-            raise DigestValueError(f"Standardization failed: {e}", context=ctx) from e
+            raise DigestValueError(
+                context=ctx, detail=f"Standardization failed: {e}."
+            ) from e
 
     pipeline_standardize.__name__ = "puw.standardize"
     return pipeline_standardize
@@ -129,7 +131,7 @@ def convert(to_unit: str, to_form: Optional[str] = None) -> Callable[[Any, Any],
             return puw.convert(value, to_unit=to_unit, to_form=to_form)
         except Exception as e:
             raise DigestValueError(
-                f"Conversion to {to_unit} failed: {e}", context=ctx
+                context=ctx, detail=f"Conversion to {to_unit} failed: {e}."
             ) from e
 
     pipeline_convert.__name__ = f"puw.convert({to_unit})"
@@ -141,7 +143,7 @@ def is_quantity() -> Callable[[Any, Any], Any]:
         _require_puw(ctx)
         if not puw.is_quantity(value):
             raise DigestTypeError(
-                f"Expected a quantity, got {type(value)}", context=ctx
+                context=ctx, detail=f"Expected a quantity, got {type(value)}."
             )
         return value
 
@@ -174,17 +176,17 @@ def _canonical_array_pipeline(
             raw = np.asarray(puw.get_value(canonical), dtype=np.float64)
         except Exception as e:
             raise DigestValueError(
-                f"Canonical normalization to {unit_name} failed: {e}",
                 context=ctx,
+                detail=f"Canonical normalization to {unit_name} failed: {e}.",
             ) from e
 
         if ndim is not None and raw.ndim != ndim:
             raise DigestValueError(
-                (
+                context=ctx,
+                detail=(
                     f"Normalized value for {ctx.argname} has ndim={raw.ndim}; "
                     f"expected ndim={ndim}."
                 ),
-                context=ctx,
             )
 
         return raw

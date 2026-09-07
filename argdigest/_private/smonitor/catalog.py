@@ -38,6 +38,12 @@ CATALOG = {
             "category": "argument",
             "level": "ERROR",
         },
+        "OptionalDependencyError": {
+            "code": "ARG-ERR-OPTDEP-001",
+            "source": "argdigest.error.optional_dependency",
+            "category": "dependency",
+            "level": "ERROR",
+        },
         "UnknownArgumentError": {
             "code": "ARG-ERR-CONTRACT-001",
             "source": "argdigest.error.contract.unknown_argument",
@@ -85,83 +91,107 @@ CATALOG = {
     },
 }
 
+#: The wording lives here, and only here. A raise site passes typed fields --
+#: `detail` for the specific fact it knows, `guess` for a did-you-mean -- and
+#: never a rendered sentence: a sentence handed over as `message` bypasses these
+#: templates entirely, which is what used to happen and why four of them had been
+#: written and never rendered for a single user.
+#:
+#: `argname`, `caller`, `doc_url` and `issues_url` arrive on every event:
+#: the first two from the `Context`, the last two from `META`.
 CODES = {
     "ARG-ERR-TYPE-001": {
         "title": "Argument Type Error",
-        "user_message": "Type mismatch for argument '{argname}'. {message}",
-        "user_hint": "Check the expected type in the docs. {hint} Docs: {doc_url}",
-        "dev_message": "Type error in '{caller}' for '{argname}': {message}",
-        "dev_hint": "Validate type logic. {hint}",
+        "user_message": "Argument '{argname}' of '{caller}' has the wrong type. {detail}",
+        "user_hint": "Check the type this argument expects. See {doc_url}.",
+        "dev_message": "Type contract failed on {caller}({argname}=...): {detail}",
+        "dev_hint": "Validate the type logic for '{argname}'.",
     },
     "ARG-ERR-VAL-001": {
         "title": "Argument Value Error",
-        "user_message": "Invalid value for argument '{argname}'. {message}",
-        "user_hint": "Check the valid values. {hint} Docs: {doc_url}",
-        "dev_message": "Value error in '{caller}' for '{argname}': {message}",
-        "dev_hint": "Validate value constraints. {hint}",
+        "user_message": "Argument '{argname}' of '{caller}' has an invalid value. {detail}",
+        "user_hint": "Check the values this argument accepts. See {doc_url}.",
+        "dev_message": "Value contract failed on {caller}({argname}=...): {detail}",
+        "dev_hint": "Validate the value constraints for '{argname}'.",
     },
     "ARG-ERR-INV-001": {
         "title": "Argument Invariant Error",
-        "user_message": "Invariant violation for argument '{argname}'. {message}",
-        "user_hint": "Check relationships between arguments. {hint} Docs: {doc_url}",
-        "dev_message": "Invariant error in '{caller}': {message}",
-        "dev_hint": "Check inter-argument constraints. {hint}",
+        "user_message": "The arguments of '{caller}' are inconsistent with each other. {detail}",
+        "user_hint": "Check how '{argname}' relates to the other arguments. See {doc_url}.",
+        "dev_message": "Invariant failed on '{caller}' at '{argname}': {detail}",
+        "dev_hint": "Check the inter-argument constraints.",
     },
     "ARG-ERR-MISS-001": {
         "title": "Argument Not Digested Error",
-        "user_message": "Digester missing or cyclic dependency for '{argname}'. {message}",
-        "user_hint": "Report this internal issue. {hint} Docs: {doc_url}",
-        "dev_message": "Missing digester for '{argname}' in '{caller}'.",
-        "dev_hint": "Implement digester or check cycles. {hint}",
+        "user_message": "Argument '{argname}' of '{caller}' could not be digested. {detail}",
+        "user_hint": "This is an ArgDigest problem rather than yours. "
+        "Please report it at {issues_url}.",
+        "dev_message": "No digester for '{argname}' in '{caller}', or a cycle. {detail}",
+        "dev_hint": "Implement the digester, or check the map for a cyclic dependency.",
     },
     "ARG-WARN-MISS-001": {
         "title": "Argument Not Digested Warning",
-        "user_message": "Digester missing for '{argname}'. Skipping validation.",
-        "user_hint": "Define or register a digester for '{argname}'. Docs: {doc_url}",
-        "dev_message": "Digester missing for '{argname}' in '{caller}'.",
-        "dev_hint": "Implement or register the missing digester.",
+        "user_message": "No digester is registered for argument '{argname}' of '{caller}', "
+        "so it was not validated.",
+        "user_hint": "Define or register a digester for '{argname}'. See {doc_url}.",
+        "dev_message": "Digestion skipped for '{argname}' in '{caller}'. {detail}",
+        "dev_hint": "Register a digester, or remove '{argname}' from the map.",
     },
     "ARG-ERR-CONTRACT-001": {
         "title": "Unknown argument",
-        "user_message": "{message}",
-        "user_hint": "{hint} Docs: {doc_url}",
+        "user_message": "'{caller}' does not accept the argument '{argname}'.",
+        "user_hint": "Check the arguments it accepts.{guess} See {doc_url}.",
         "dev_message": "Argument '{argname}' is outside the declared contract of '{caller}'.",
-        "dev_hint": "Extend the function contract if the argument is legitimate. {hint}",
+        "dev_hint": "Extend the function contract if the argument is legitimate.{guess}",
     },
     "ARG-ERR-CONTRACT-002": {
         "title": "Missing required argument",
-        "user_message": "{message}",
-        "user_hint": "{hint} Docs: {doc_url}",
-        "dev_message": "Call to '{caller}' satisfies no required argument group.",
-        "dev_hint": "Check 'requires_any_of' in the function contract. {hint}",
+        "user_message": "The call to '{caller}' is incomplete. {detail}",
+        "user_hint": "It carries none of the required arguments, so it cannot mean "
+        "anything. See {doc_url}.",
+        "dev_message": "Call to '{caller}' satisfies no required argument group. {detail}",
+        "dev_hint": "Check 'requires_any_of' in the function contract.",
     },
     "ARG-ERR-CONTRACT-003": {
         "title": "Inconsistent arguments",
-        "user_message": "{message}",
-        "user_hint": "{hint} Docs: {doc_url}",
-        "dev_message": "Call to '{caller}' breaks an inter-argument rule.",
-        "dev_hint": "Check 'mutually_exclusive' and 'co_required'. {hint}",
+        "user_message": "The arguments given to '{caller}' cannot be used together. {detail}",
+        "user_hint": "Pass the ones that belong together, and only those. See {doc_url}.",
+        "dev_message": "Call to '{caller}' breaks an inter-argument rule. {detail}",
+        "dev_hint": "Check 'mutually_exclusive' and 'co_required' in the function contract.",
     },
     "ARG-ERR-STD-001": {
         "title": "Standardizer broke its contract",
-        "user_message": "{message}",
-        "user_hint": "{hint} Docs: {doc_url}",
-        "dev_message": "The standardizer configured for '{caller}' broke its contract: {message}",
-        "dev_hint": "A standardizer takes (caller, kwargs) and must return the mapping. {hint}",
+        "user_message": "The standardizer configured for '{caller}' misbehaved. {detail}",
+        "user_hint": "This is a configuration problem in the library that registered it. "
+        "See {doc_url}.",
+        "dev_message": "The standardizer configured for '{caller}' broke its contract. {detail}",
+        "dev_hint": "A standardizer takes (caller, kwargs) and must return the mapping; "
+        "forgetting the return statement is the usual cause.",
     },
     "ARG-WARN-CONTRACT-001": {
         "title": "Function contract violation",
-        "user_message": "{message}",
-        "user_hint": "{hint} Docs: {doc_url}",
-        "dev_message": "Contract violation in '{caller}': {message}",
-        "dev_hint": "The unknown_argument policy is set to 'warn'. {hint}",
+        "user_message": "The call to '{caller}' breaks its argument contract. {detail}",
+        "user_hint": "It was reported instead of raised. See {doc_url}.",
+        "dev_message": "Contract violation in '{caller}'. {detail}",
+        "dev_hint": "The unknown_argument policy is set to 'warn' for this caller.",
+    },
+    "ARG-ERR-OPTDEP-001": {
+        "title": "Optional dependency missing",
+        "user_message": "'{caller}' needs the optional dependency '{dependency}', "
+        "which is not installed.",
+        "user_hint": "Install it with `pip install {distribution}`. If your library "
+        "uses DepDigest, enable its '{dependency}' capability instead. "
+        "Machine-readable: install_optional:{distribution}",
+        "dev_message": "Optional dependency '{dependency}' absent at '{caller}'.",
+        "dev_hint": "install_optional:{distribution}",
     },
     "ARG-WARN-TYPECHECK-001": {
         "title": "Type check skipped",
-        "user_message": "Type checks are disabled because optional dependency 'beartype' is not available.",
+        "user_message": "Type checks are disabled because the optional dependency "
+        "'beartype' is not available.",
         "user_hint": "Install 'beartype' to enable runtime type checking.",
-        "dev_message": "type_check=True but 'beartype' is not installed in '{caller}'.",
-        "dev_hint": "Install beartype or set type_check=False.",
+        "dev_message": "type_check=True but 'beartype' is not installed, in '{caller}'.",
+        "dev_hint": "Install beartype, or set type_check=False.",
     },
 }
 

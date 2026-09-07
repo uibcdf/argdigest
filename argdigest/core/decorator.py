@@ -83,7 +83,7 @@ def _resolve_value_param(sig: inspect.Signature, argname: str) -> str:
     if len(candidates) == 1:
         return candidates[0]
     raise DigestNotDigestedError(
-        f"Cannot determine value parameter for digester '{argname}'",
+        detail=f"Cannot determine value parameter for digester '{argname}'."
     )
 
 
@@ -224,19 +224,19 @@ def _enforce_function_contract(
         # quietly weaken every check that contract was meant to perform.
         if violation.kind == "unknown_domain":
             raise FunctionContractError(
-                violation.message, context=ctx_error, hint=violation.hint
+                context=ctx_error, detail=violation.message, guess=violation.hint
             )
         if plan.unknown_argument == "ignore":
             continue
         if plan.unknown_argument == "warn":
             warn(
                 FunctionContractWarning(
-                    message=violation.message, context=ctx_error, hint=violation.hint
+                    context=ctx_error, detail=violation.message, guess=violation.hint
                 )
             )
             continue
         raise _CONTRACT_ERRORS[violation.kind](
-            violation.message, context=ctx_error, hint=violation.hint
+            context=ctx_error, detail=violation.message, guess=violation.hint
         )
 
 
@@ -475,17 +475,14 @@ def arg_digest(
                     standardized = plan.standardizer(caller, bound)
                     if not isinstance(standardized, Mapping):
                         raise StandardizerContractError(
-                            f"it returned {type(standardized).__name__} instead of a "
-                            "mapping of arguments",
+                            detail=f"It returned {type(standardized).__name__} "
+                            f"instead of a mapping of arguments.",
                             context=Context(
                                 function_name=caller,
                                 argname="-",
                                 value=standardized,
                                 all_args=bound,
                             ),
-                            hint="A standardizer takes (caller, kwargs) and returns the "
-                            "mapping; forgetting the return statement is the usual "
-                            "cause.",
                         )
                     bound = dict(standardized)
 
@@ -511,8 +508,8 @@ def arg_digest(
                             all_args=bound,
                         )
                         raise DigestNotDigestedError(
-                            f"Cycle: {' -> '.join(visiting_path + [argname])}",
                             context=ctx_error,
+                            detail=f"Cycle: {' -> '.join(visiting_path + [argname])}.",
                         )
                     visiting_path.append(argname)
 
@@ -526,7 +523,8 @@ def arg_digest(
                         )
                         if plan.strictness == "error":
                             raise DigestNotDigestedError(
-                                f"No digester for {argname}", context=ctx_error
+                                context=ctx_error,
+                                detail=f"No digester for '{argname}'.",
                             )
                         if plan.strictness == "warn":
                             # `warn` emits the catalog event and raises the standard
@@ -534,8 +532,8 @@ def arg_digest(
                             # while `pytest.warns` and user filters keep working.
                             warn(
                                 DigestNotDigestedWarning(
-                                    message=f"No digester for {argname}",
                                     context=ctx_error,
+                                    detail=f"No digester for '{argname}'.",
                                 )
                             )
                         digested[argname] = bound.get(argname)

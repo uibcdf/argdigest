@@ -312,7 +312,6 @@ def check_contract(
                     f"Function contract for {caller!r} admits domain {name!r}, "
                     "which is not registered."
                 ),
-                hint="Declare the domain in the consumer's domain source, or fix the name.",
             )
         )
 
@@ -343,8 +342,9 @@ def check_contract(
                     kind="unknown_argument",
                     keyword=keyword,
                     message=f"{caller!r} does not accept the argument {keyword!r}.",
-                    hint=_suggest(keyword, vocabulary).strip()
-                    or "Check the function signature for the accepted arguments.",
+                    # Only the part the catalog cannot know. The framing around
+                    # it belongs to ARG-ERR-CONTRACT-001.
+                    hint=_suggest(keyword, vocabulary),
                 )
             )
 
@@ -370,7 +370,6 @@ def check_contract(
                 Violation(
                     kind="missing_argument",
                     message=(f"{caller!r} needs at least one argument from: {wanted}."),
-                    hint="The call carries no such argument, so it cannot mean anything.",
                 )
             )
 
@@ -384,7 +383,6 @@ def check_contract(
                         f"{caller!r} accepts only one of {', '.join(group)}; "
                         f"got {', '.join(given)}."
                     ),
-                    hint="Pass exactly one of them.",
                 )
             )
 
@@ -399,7 +397,6 @@ def check_contract(
                         f"{caller!r} needs {', '.join(group)} together; "
                         f"{', '.join(missing)} missing."
                     ),
-                    hint="These arguments only mean something as a group.",
                 )
             )
 

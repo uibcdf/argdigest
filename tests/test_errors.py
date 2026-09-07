@@ -14,6 +14,8 @@ def test_rich_error_message():
     msg = str(excinfo.value)
     print(f"\nCaught error message:\n{msg}")
 
-    assert "No digester for my_arg" in msg
-    # Catalog-backed messages include actionable hints and docs links.
-    assert "Docs:" in msg
+    # The catalog frames the sentence; the raise site contributes the fact.
+    assert "Argument 'my_arg' of" in msg
+    assert "No digester for 'my_arg'." in msg
+    # A catalog-backed message carries an actionable hint and a link.
+    assert "Please report it at" in msg

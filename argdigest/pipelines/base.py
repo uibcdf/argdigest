@@ -13,8 +13,8 @@ def feature_base(obj: Any, ctx):
         isinstance(obj, dict) and "feature_id" in obj
     ):
         raise DigestTypeError(
-            f"Argument '{ctx.argname}' in '{ctx.function_name}' must have 'feature_id'",
             context=ctx,
+            detail=f"Argument '{ctx.argname}' in '{ctx.function_name}' must have 'feature_id'.",
         )
     return obj
 
@@ -32,6 +32,6 @@ def feature_shape(obj: Any, ctx):
         return obj
 
     raise DigestValueError(
-        f"Argument '{ctx.argname}' in '{ctx.function_name}' lacks 'shape_type'",
         context=ctx,
+        detail=f"Argument '{ctx.argname}' in '{ctx.function_name}' lacks 'shape_type'.",
     )

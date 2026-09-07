@@ -9,19 +9,33 @@ from argdigest.core.registry import Registry, get_pipelines
 
 
 def test_catalog_errors_expose_code_and_hint_fields():
+    """`hint` comes from the catalog now, not from the raise site.
+
+    It used to be whatever the raise site passed as `hint=`. That parameter is
+    gone: the wording belongs to the catalog, and SMonitor exposes it as a
+    derived property re-resolved from `code` and `extra` (uibcdf/smonitor#5).
+    What the test is for -- a catalog error carries its code and its hint as
+    fields, rather than fused into prose a caller has to parse -- is unchanged.
+    """
     ctx = Context(function_name="f", argname="x", value="bad", all_args={})
-    exc = DigestTypeError("boom", context=ctx, hint="fix this")
+    exc = DigestTypeError(context=ctx, detail="Expected an int.")
 
     assert exc.code == "ARG-ERR-TYPE-001"
-    assert exc.hint == "fix this"
+    assert (
+        exc.hint
+        == "Check the type this argument expects. See https://www.uibcdf.org/argdigest."
+    )
+    assert "Expected an int." in str(exc)
 
 
 def test_catalog_warning_exposes_code_and_hint_fields():
     ctx = Context(function_name="f", argname="x", value="bad", all_args={})
-    warning = DigestNotDigestedWarning("missing", context=ctx, hint="add digester")
+    warning = DigestNotDigestedWarning(context=ctx)
 
     assert warning.code == "ARG-WARN-MISS-001"
-    assert warning.hint == "add digester"
+    assert warning.hint == (
+        "Define or register a digester for 'x'. See https://www.uibcdf.org/argdigest."
+    )
 
 
 def test_registry_entrypoints_are_smonitor_instrumented():
