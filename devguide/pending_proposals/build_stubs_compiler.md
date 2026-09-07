@@ -1,3 +1,17 @@
+---
+summary: Generate offline type stubs from ArgDigest contracts after 1.0.
+issue: uibcdf/argdigest#9
+status: open
+opened: 2026-09-07
+closed:
+verification: inspected
+area: [typing, tooling]
+guard:
+normative:
+blocked_by: []
+supersedes: []
+---
+
 # Proposal: Automated Type-Stub Generator (`argdigest build-stubs`)
 
 > **Kept, scheduled post-1.0 (2026-08-12).** It became more feasible than when it was

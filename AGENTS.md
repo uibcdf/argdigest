@@ -15,5 +15,7 @@ These guides are required reading for anyone developing this library. They descr
   problems in `uibcdf/molsyssuite`.
 - Keep ArgDigest-specific implementation, tests, releases, and product issues in this
   repository.
+- Follow `devguide/reporting_protocol.md` for the issue-backed lifecycle of local bugs
+  and proposals; it maps the common `uibcdf/molsyssuite#11` contract to local paths.
 - Follow the versioned policy caller in `.github/workflows/molsyssuite-policy.yml`; do not
   duplicate its common checks in repository-owned workflows.

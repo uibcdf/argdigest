@@ -1,3 +1,17 @@
+---
+summary: Decline a production digestion bypass coupled to SMonitor profiles.
+issue: uibcdf/argdigest#7
+status: withdrawn
+opened: 2026-09-07
+closed: 2026-09-07
+verification: measured
+area: [performance, digestion]
+guard:
+normative:
+blocked_by: []
+supersedes: []
+---
+
 # Proposal: Automated Library Bypass and SMonitor Profile Coupling
 
 > **Declined 2026-08-12, on measurement.** The +5.25 ms is real; the diagnosis is not.

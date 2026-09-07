@@ -1,3 +1,17 @@
+---
+summary: Move JavaScript and Python message-schema validation out of ArgDigest scope.
+issue: uibcdf/argdigest#8
+status: withdrawn
+opened: 2026-09-07
+closed: 2026-09-07
+verification: inspected
+area: [scope, validation]
+guard:
+normative:
+blocked_by: []
+supersedes: []
+---
+
 # Proposal: Selective JS ↔ Python Customs Aduana (`argdigest.bridge`)
 
 > **Out of scope for ArgDigest (2026-08-12); belongs with MolSysViewer.** This validates
