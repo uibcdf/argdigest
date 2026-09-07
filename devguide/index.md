@@ -25,11 +25,10 @@ operational notes for ArgDigest.
 - `notes_dev.md`: active engineering notes, recent decisions, and pending work.
 - `smonitor.md`: diagnostics integration rules and non-negotiable SMonitor practices.
 - `collective_evidence_pack.md`: cross-repo evidence handoff for collective 1.0 closure.
+- `completed_proposals/`: implemented proposals retained with their validation evidence.
 
 ## Incoming work
 
-- `pending_proposals/adopt_molsyssuite_policy_v1.md`: tracked adoption of the shared
-  governance and Ruff gate in `uibcdf/argdigest#4` and `uibcdf/molsyssuite#6`.
 - `pending_bugs/`: defects reported against a released version, one file each, written
   from the reporter's side — what happens, how to reproduce it, how it was found.
 - `pending_proposals/`: designs proposed but not implemented, whether still open or

@@ -1,7 +1,20 @@
+---
+summary: Adopt the shared MolSysSuite policy and Ruff gate.
+issue: uibcdf/argdigest#4
+status: resolved
+opened: 2026-09-06
+closed: 2026-09-07
+verification: measured
+area: [governance, tooling]
+guard: .github/workflows/molsyssuite-policy.yml
+normative: AGENTS.md
+blocked_by: []
+supersedes: []
+---
+
 # Adopt the shared MolSysSuite policy and Ruff gate
 
-**Status:** Active since 2026-09-06.
-**Issue:** `uibcdf/argdigest#4`.
+**Completed:** 2026-09-07 at `22ad5da`.  
 **Suite rollout:** `uibcdf/molsyssuite#6`.
 
 ## Proposal
@@ -34,3 +47,12 @@ surfaces.
   settings from a parent directory.
 - Ruff lint and format checks pass without changing ArgDigest behavior.
 - The complete test suite and the shared MolSysSuite workflow pass.
+
+## Resolution evidence
+
+Ruff 0.16.5 fixed 70 safe lint findings and reformatted 103 maintained files in a
+dedicated mechanical commit. A clean-checkout import discrepancy led to an explicit
+first-party package setting and exposed the central false positives fixed by
+`uibcdf/molsyssuite#9` and `#10`. Ruff lint and format checks pass, all 222 tests pass,
+and Sphinx builds with three pre-existing heading warnings. GitHub Actions policy run
+`34062887147` and repository CI run `34062886826` both pass on `main`.
