@@ -5,11 +5,12 @@ their established locations so existing references remain valid.
 
 <!-- generated: devguide_index -->
 
-### Resolved (3)
+### Resolved (4)
 
 - [`adopt_molsyssuite_policy_v1.md`](../completed_proposals/adopt_molsyssuite_policy_v1.md) — [#4](https://github.com/uibcdf/argdigest/issues/4) — Adopt the shared MolSysSuite policy and Ruff gate. *(resolved, measured)*
 - [`adopt_shared_reporting_lifecycle.md`](../completed_proposals/adopt_shared_reporting_lifecycle.md) — [#6](https://github.com/uibcdf/argdigest/issues/6) — Adopt the shared issue-backed developer-guide lifecycle. *(resolved, inspected)*
 - [`argument_digestion_retains_arguments_in_recursive_closure_cycles.md`](../solved_bugs/argument_digestion_retains_arguments_in_recursive_closure_cycles.md) — [#3](https://github.com/uibcdf/argdigest/issues/3) — Argument digestion retains arguments in recursive closure cycles. *(resolved, reproduced)*
+- [`receptor_misclassifies_composite_conda_publication.md`](../solved_bugs/receptor_misclassifies_composite_conda_publication.md) — [#10](https://github.com/uibcdf/argdigest/issues/10) — Use the release profile for action-internal Conda publication. *(resolved, reproduced)*
 
 ### Withdrawn (2)
 
