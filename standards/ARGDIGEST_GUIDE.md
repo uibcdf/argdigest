@@ -1,3 +1,8 @@
+<!--
+SYNCHRONIZED MOLSYSSUITE GUIDE — DO NOT EDIT COMPONENT COPIES.
+Canonical source: https://github.com/uibcdf/argdigest/blob/main/standards/ARGDIGEST_GUIDE.md
+-->
+
 # ArgDigest Guide (Canonical)
 
 Source of truth for integrating and using **ArgDigest** in this library.

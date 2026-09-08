@@ -43,16 +43,13 @@ norecursedirs = ["*.egg", ".*", "_darcs", "build", "CVS", "dist", "node_modules"
 [tool.ruff]
 target-version = "py311"
 line-length = 88
-# Guides vendored from another repository are excluded: they are synced copies
-# of a canonical document, so a local reformat here is reverted by the next sync.
-# They are also formatted under their source repository's Ruff configuration,
-# which is not this one -- `SMONITOR_GUIDE.md` is `ruff format` clean at
-# smonitor's line-length of 100 and not at the 88 configured here, and no single
-# version of the file satisfies both. Tracked in uibcdf/molsyssuite#12.
+# Root integration guides are synchronized, read-only copies. Their canonical
+# repositories own formatting; MolSysSuite checks byte drift (#12).
 extend-exclude = [
     "devguide/pending_proposals/value_certification",
     "DEPDIGEST_GUIDE.md",
     "GH_RUN_RECEPTOR_GUIDE.md",
+    "MOLSYSSUITE_GUIDE.md",
     "SMONITOR_GUIDE.md",
 ]
 
