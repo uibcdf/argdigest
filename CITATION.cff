@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use ArgDigest, please cite the software using this metadata."
+title: ArgDigest
+type: software
+authors:
+  - family-names: Prada-Gracia
+    given-names: Diego
+    orcid: "https://orcid.org/0000-0003-3375-870X"
+    affiliation: Hospital Infantil de México Federico Gómez (HIMFG) – UIBCDF
+  - family-names: Moreno-Vargas
+    given-names: Liliana M.
+    orcid: "https://orcid.org/0000-0003-2812-1499"
+    affiliation: Hospital Infantil de México Federico Gómez (HIMFG) – UIBCDF
+version: 0.12.1
+date-released: 2026-09-01
+url: "https://github.com/uibcdf/argdigest"
+repository-code: "https://github.com/uibcdf/argdigest"
+license: MIT
+abstract: >-
+  Flexible argument auditing, validation, and normalization for scientific Python
+  libraries.
+keywords:
+  - argument validation
+  - scientific Python
+  - API contracts
+  - normalization
+  - MolSysSuite
