@@ -32,6 +32,13 @@ date, cite a test in `guard` or a durable rule in `normative` for resolved work,
 record to its mapped archive, regenerate indexes, and close the issue with the outcome,
 guard, and final record path.
 
+For reports resolved on or after 2026-09-20, the local validator applies the default
+Python guard profile defined by MolSysSuite: one addressable pytest module, function, or
+class-method selector under `tests/` or `devtools/tests/`. This mechanical check proves
+addressability, not relevance; the resolution must explain why the selected assertion
+protects the reported failure mechanism. See `MOLSYSSUITE_GUIDE.md` and the canonical
+`uibcdf/molsyssuite` reporting protocol for the complete contract.
+
 **Archive, never delete.** Correct open reports in place. Append a dated correction to
 an archived report rather than rewriting the original historical claim.
 
