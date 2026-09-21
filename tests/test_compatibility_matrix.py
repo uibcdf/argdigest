@@ -112,7 +112,7 @@ def test_conda_packages_are_built_for_every_supported_python():
 def test_readme_badge_lists_the_supported_pythons():
     badge = "%20%7C%20".join(SUPPORTED_PYTHON)
 
-    assert f"Python-{badge}-blue" in _read("README.md")
+    assert f"Python-{badge}-" in _read("README.md")
 
 
 def test_pyproject_declares_minimum_sibling_versions():

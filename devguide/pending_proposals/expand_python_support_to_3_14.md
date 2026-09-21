@@ -1,0 +1,59 @@
+---
+summary: Release ArgDigest with independently verified Python 3.14 support.
+issue: uibcdf/argdigest#13
+status: active
+opened: 2026-09-21
+closed:
+severity: medium
+verification: measured
+area: [python, compatibility, packaging, ci]
+guard:
+normative:
+blocked_by: []
+supersedes: []
+---
+
+# Expand ArgDigest support to Python 3.14
+
+## What
+
+Deliver a public ArgDigest release supporting Python 3.14 under
+`uibcdf/molsyssuite#29`. This is a component-specific transition; neither a
+source checkout nor another component's admission authorizes a public claim.
+
+## How
+
+The first Linux feasibility environment resolved public DepDigest 0.11.0 build
+`py_2` and SMonitor 0.16.0 build `py_1` with Python 3.14.7. From this source
+checkout, 224 tests passed using 12 workers; seven optional PyUnitWizard tests
+were skipped because PyUnitWizard was not installed. Pint was included for the
+cross-repository source E2E test. Two pre-existing testability defects were
+exposed: an optional PyUnitWizard import left the test-mockable `puw` name
+undefined, and the compatibility test expected an obsolete badge color. Both
+were corrected locally before this measurement. This is source feasibility,
+not installed-package or hosted-platform evidence.
+
+Next, run a non-claiming Python 3.14 feasibility matrix on hosted Linux,
+macOS, and Windows with public dependencies. Only after it passes, register
+ArgDigest as `authorized` in the central transition and update metadata,
+CI, Conda recipe, tests, docs, and release notes together. Stage an exact
+commit and file; run the full source matrix, clean installed-package matrix,
+and consumer checks before promoting the same bytes. Independently verify
+the public Conda coordinate and required Zenodo source archive before central
+`admitted` status.
+
+## Why
+
+Published ArgDigest 0.12.1 is restricted to Python 3.11--3.13, blocking the
+next members of the dependency chain on Python 3.14. The now-public noarch
+DepDigest and SMonitor packages remove the hard-runtime dependency boundary,
+but ArgDigest must prove its own behavior and package delivery.
+
+## Acceptance criteria
+
+- Hosted, non-claiming 3.14 source feasibility passes on Linux, macOS, Windows.
+- Central `authorized` state precedes the target-range metadata change.
+- Metadata, tests, CI, recipe, compatibility docs, and release notes agree.
+- A staged exact-file artifact passes clean installed-package tests on 3.11--3.14.
+- A GitHub Release, exact-file public Conda promotion, clean public installs,
+  and independently verified Zenodo record precede central `admitted` status.

@@ -1,0 +1,32 @@
+name: Python 3.14 feasibility (not a support claim)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  source-feasibility:
+    name: Source feasibility on ${{ matrix.os }}, Python 3.14
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: mamba-org/setup-micromamba@v3.2.1
+        with:
+          environment-file: devtools/conda-envs/python314_feasibility.yaml
+          environment-name: feasibility
+          condarc: |
+            channels:
+              - uibcdf
+              - conda-forge
+            channel_priority: strict
+          cache-downloads: true
+      - name: Test source without an installed ArgDigest distribution
+        shell: bash -l {0}
+        run: |
+          set -euo pipefail
+          python -m pytest --receptor=llm -n 4 -q

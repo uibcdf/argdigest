@@ -16,6 +16,7 @@ try:
     puw = puw  # Export for tests
 except ImportError:
     HAS_PUW = False
+    puw = None
 
 from ..core.errors import DigestTypeError, DigestValueError
 from ..core.registry import register_pipeline

@@ -1,0 +1,19 @@
+channels:
+  - uibcdf
+  - conda-forge
+
+dependencies:
+  - python=3.14
+  - pip
+  - pytest
+  - pytest-xdist
+  - pytest-receptor
+  - numpy
+  - pydantic
+  - beartype
+  - pandas
+  - pyyaml
+  - pint
+  - versioningit
+  - depdigest >=0.11.0
+  - smonitor >=0.16.0
