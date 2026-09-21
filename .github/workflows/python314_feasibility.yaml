@@ -25,7 +25,12 @@ jobs:
               - conda-forge
             channel_priority: strict
           cache-downloads: true
-      - name: Test source without an installed ArgDigest distribution
+      - name: Generate version and install development source
+        shell: bash -l {0}
+        run: |
+          set -euo pipefail
+          python -m pip install --no-build-isolation --no-deps --ignore-requires-python -e .
+      - name: Test editable development source (no public support claim)
         shell: bash -l {0}
         run: |
           set -euo pipefail

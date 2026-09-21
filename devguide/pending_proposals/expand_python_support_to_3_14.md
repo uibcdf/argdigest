@@ -33,6 +33,12 @@ undefined, and the compatibility test expected an obsolete badge color. Both
 were corrected locally before this measurement. This is source feasibility,
 not installed-package or hosted-platform evidence.
 
+The first hosted feasibility run `35668425976` failed identically on all three
+platforms because a clean checkout lacks the generated `argdigest/_version.py`
+that existed in the local development checkout. The workflow must install the
+editable development source with `--ignore-requires-python` while the declared
+upper bound is still 3.14. That is intentionally not a public support claim.
+
 Next, run a non-claiming Python 3.14 feasibility matrix on hosted Linux,
 macOS, and Windows with public dependencies. Only after it passes, register
 ArgDigest as `authorized` in the central transition and update metadata,
