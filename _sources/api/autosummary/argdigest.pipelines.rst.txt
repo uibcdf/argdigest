@@ -1,0 +1,6 @@
+﻿argdigest.pipelines
+===================
+
+.. automodule:: argdigest.pipelines
+
+   
