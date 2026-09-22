@@ -2,14 +2,14 @@
 
 ## Current state snapshot
 
-- Latest public tag: `0.12.1`. The `0.13.0` development candidate targets
-  Python `>=3.11,<3.15` under `uibcdf/argdigest#13`; the public support claim
-  remains 3.11--3.13 until exact-file release verification.
+- Latest public tag: `0.13.0`, supporting Python `>=3.11,<3.15` after
+  exact-file Conda promotion, public Python 3.14 installation, and verified
+  Zenodo source archival under `uibcdf/argdigest#13`.
 - The required source matrix is Linux, macOS, and Windows on Python 3.11--3.14;
   `tests/test_compatibility_matrix.py` checks the declared range and cells.
 - **There is one mechanism for not re-digesting a value: `skip_digestion`.** The
   `ValidatedPayload` passport is gone.
-- Current stabilization tag: `0.9.2` (final pre-1.0 checkpoint).
+- Historical stabilization checkpoint: `0.9.2`.
 - Core decorator: `arg_digest` supports argument-centric, pipeline-centric, and mixed modes.
 - Config model: explicit args, config module (`_argdigest.py`), env override (`ARGDIGEST_CONFIG`), and auto-discovery.
 - Diagnostics: catalog-backed errors/warnings integrated with smonitor.

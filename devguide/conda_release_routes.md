@@ -27,6 +27,16 @@ and route receipts, Anaconda file name/SHA-256 records, public package
 installation, and Zenodo source-archive verification separately. The public
 Python badge and central `admitted` state change only after those gates pass.
 
-The 0.13.0 plan selects `staged`. Its eventual exact candidate SHA, staging
-file, installed matrix, promotion receipt, public install, and DOI evidence
-belong in this document before issue closure.
+The 0.13.0 plan selected `staged`. Candidate commit
+`9880fa7b990fd0987ff0de715b665eb9e11c11b2` passed the 12-cell source
+matrix (`35695504353`) and policy gate (`35695504851`). Staging producer run
+`35695683898` created `argdigest-0.13.0-py_1.tar.bz2`; run `35696336418`
+verified its receipts and twelve clean installations. GitHub Release 0.13.0
+is public, and release run `35697325021` skipped rebuilding. Promotion run
+`35697373110` moved the same file to `uibcdf/noarch`. Independent public
+registry inspection matched SHA-256
+`273ae5053d0aaa2d207ec9a2c684588fe3da539219b1d91cdea3b1f8dd265007`.
+A fresh Linux Python 3.14.7 environment installed `argdigest=0.13.0=py_1`
+from public `uibcdf` and `conda-forge`, imported the package off-checkout,
+and ran its CLI. Zenodo record `22892326` verified the source snapshot only;
+it does not claim Conda archival.

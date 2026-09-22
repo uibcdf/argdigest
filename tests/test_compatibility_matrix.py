@@ -110,8 +110,7 @@ def test_conda_recipe_is_one_python_noarch_artifact():
 
 
 def test_readme_badge_lists_the_supported_pythons():
-    # Until admission the badge describes the published 0.12.1 release.
-    badge = "%20%7C%20".join(SUPPORTED_PYTHON[:-1])
+    badge = "%20%7C%20".join(SUPPORTED_PYTHON)
 
     assert f"Python-{badge}-" in _read("README.md")
 

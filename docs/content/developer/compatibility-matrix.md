@@ -5,10 +5,10 @@ validated for ArgDigest 1.0 stabilization.
 
 ## Supported Python versions
 
-The development candidate declares `requires-python = ">=3.11,<3.15"`.
-The public 0.12.1 release still supports only Python 3.11--3.13; the 3.14
-claim waits for the exact candidate's full CI, staged package, public release,
-and clean-install gates under `uibcdf/argdigest#13`. The bound is closed at both ends
+Public release 0.13.0 declares `requires-python = ">=3.11,<3.15"` and supports
+Python 3.11--3.14. The exact source and staged installed-package matrices both
+passed all twelve Linux, macOS, and Windows cells under `uibcdf/argdigest#13`;
+the same staged file was promoted to the public `uibcdf` channel. The bound is closed at both ends
 on purpose: the lower end is the oldest version the test suite can run on, and the upper
 end is the newest version actually exercised. An open upper bound would promise support
 for a Python that has never been tested against.
@@ -25,6 +25,9 @@ Every required cell is a job in `.github/workflows/CI_full_matrix.yaml`. The per
 gets a fast answer; the full twelve-cell matrix runs weekly and on demand. The
 3.14 and Windows cells exercise the core with public SMonitor and DepDigest;
 optional PyUnitWizard tests are omitted there until its own 3.14 transition.
+The 0.13.0 source matrix is run `35695504353`; the installed-package matrix
+is run `35696336418`. The public `noarch` file is
+`argdigest-0.13.0-py_1.tar.bz2`.
 
 ## Sibling libraries
 

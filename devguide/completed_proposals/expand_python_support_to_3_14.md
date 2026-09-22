@@ -1,14 +1,14 @@
 ---
 summary: Release ArgDigest with independently verified Python 3.14 support.
 issue: uibcdf/argdigest#13
-status: active
+status: resolved
 opened: 2026-09-21
-closed:
+closed: 2026-09-22
 severity: medium
 verification: measured
 area: [python, compatibility, packaging, ci]
-guard:
-normative:
+guard: tests/test_compatibility_matrix.py::test_readme_badge_lists_the_supported_pythons
+normative: devguide/conda_release_routes.md
 blocked_by: []
 supersedes: []
 ---
@@ -39,8 +39,8 @@ that existed in the local development checkout. The workflow must install the
 editable development source with `--ignore-requires-python` while the declared
 upper bound is still 3.14. That is intentionally not a public support claim.
 
-Next, run a non-claiming Python 3.14 feasibility matrix on hosted Linux,
-macOS, and Windows with public dependencies. Only after it passes, register
+The agreed sequence was to run a non-claiming Python 3.14 feasibility matrix on hosted Linux,
+macOS, and Windows with public dependencies. Only after it passed, register
 ArgDigest as `authorized` in the central transition and update metadata,
 CI, Conda recipe, tests, docs, and release notes together. Stage an exact
 commit and file; run the full source matrix, clean installed-package matrix,
@@ -52,7 +52,7 @@ The corrected hosted run `35668756549` passed all three platforms at commit
 `4fdbf19d386bbf476455d35c9988bf00624873e1`. GH Run Receptor reported
 3/3 passing jobs, and GitHub independently confirmed that SHA and each job
 conclusion. MolSysSuite registered ArgDigest as `authorized` in commit
-`292c46f`; it is not yet `admitted`. Release 0.13.0 is the intended first
+`292c46f`; it was not yet `admitted` at that point. Release 0.13.0 became the first
 candidate. The committed release plan selects the staged route because both
 the support range and Conda package topology change.
 
@@ -69,16 +69,32 @@ evidence, not public support.
 
 The policy gate on the original candidate failed because immutable
 `policy-v1.4.1` predates ArgDigest's central authorization. MolSysSuite
-published `policy-v1.4.2`, which contains that authorization; the ArgDigest
-caller is being updated. That change creates a new candidate SHA, so the
-original staged build is diagnostic evidence only. The final candidate must
-repeat exact-commit source, staging, and installed-package gates before
-publication; build number 1 will distinguish it from the superseded staged
-build 0.
+published `policy-v1.4.2`, which contains that authorization. That change
+created a new candidate SHA, so the original staged build is diagnostic
+evidence only. Build number 1 distinguished the final staged artifact from
+the superseded build 0.
+
+The final commit `9880fa7b990fd0987ff0de715b665eb9e11c11b2` passed the
+12-cell source matrix (`35695504353`) and policy gate (`35695504851`).
+Staging run `35695683898` produced noarch build `py_1`; run `35696336418`
+verified its producer receipts and twelve clean installed-package cells.
+GitHub Release `0.13.0` is public. Its release-triggered workflow
+`35697325021` checked the staged route and skipped rebuilding. Promotion run
+`35697373110` moved the exact file to `uibcdf/noarch`; the independent public
+channel query matched SHA-256
+`273ae5053d0aaa2d207ec9a2c684588fe3da539219b1d91cdea3b1f8dd265007`.
+A clean public-channel Linux Python 3.14.7 environment installed ArgDigest
+0.13.0, DepDigest 0.11.0, and SMonitor 0.16.0, imported them outside the
+checkout, and ran the ArgDigest CLI. Zenodo record `22892326` confirms the
+public 0.13.0 source snapshot, concept DOI `10.5281/zenodo.22892325`, and
+version DOI `10.5281/zenodo.22892326`. The central public audit verified its
+file name, size, and checksum. The archive covers source, not Conda bytes.
+MolSysSuite admitted ArgDigest under `uibcdf/molsyssuite#29` and published
+policy `1.4.3` to authorize the updated Python badge.
 
 ## Why
 
-Published ArgDigest 0.12.1 is restricted to Python 3.11--3.13, blocking the
+At opening, published ArgDigest 0.12.1 was restricted to Python 3.11--3.13, blocking the
 next members of the dependency chain on Python 3.14. The now-public noarch
 DepDigest and SMonitor packages remove the hard-runtime dependency boundary,
 but ArgDigest must prove its own behavior and package delivery.

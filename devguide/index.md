@@ -19,7 +19,8 @@ operational notes for ArgDigest.
   deliberate pre-`1.0.0` breaking change.
 - `0.12.0_release_notes_draft.md`: the call-shape fix, the closed Python range, and the
   removal of the `ValidatedPayload` passport.
-- `0.13.0_release_notes_draft.md`: Python 3.14 and noarch release candidate notes.
+- `0.13.0_release_notes_draft.md`: final Python 3.14 and noarch release notes,
+  retained at the preparation path for continuity.
 - `conda_release_routes.md`: local two-route Conda publication contract and evidence.
 - `1.0.0_checklist.md`: final stability and interoperability gate for `1.0.0`.
 - `1.0.0_release_notes_and_migration_summary.md`: release narrative and migration summary draft for final promotion.
