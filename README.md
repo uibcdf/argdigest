@@ -144,12 +144,10 @@ Runtime/config files:
 
 ## Current release status
 
-- Current tag: `0.12.0`.
-- **Changes in `0.12.0`**: decorated callables preserve var-positional and
-  positional-only call shapes; supported Python is explicitly 3.11--3.13; and the
-  unused `ValidatedPayload` passport is removed in favor of explicit
-  `skip_digestion=True` delegation on trusted internal calls. See
-  `devguide/0.12.0_release_notes_draft.md`.
+- Current public tag: `0.12.1`, supporting Python 3.11--3.13.
+- The next release is a Python 3.14 candidate under `uibcdf/argdigest#13`.
+  Development metadata may admit 3.14 during validation; the public support
+  badge changes only after the exact packaged release is independently verified.
 - `1.0.0` tagging is intentionally gated by explicit release-owner confirmation.
 - Go/no-go evidence pack: `devguide/1.0.0_go_no_go_pack.md`.
 

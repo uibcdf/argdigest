@@ -104,7 +104,7 @@ jobs:
 
       run: |
         export PYTHONPATH=$PYTHONPATH:$(pwd)
-        pytest -v --cov-config=.coveragerc --cov=argdigest --cov-report=xml --junitxml=junit.xml --color=yes
+        python -m pytest --receptor=llm -n 4 --cov-config=.coveragerc --cov=argdigest --cov-report=xml --junitxml=junit.xml
 
     - name: Check coverage
       shell: bash -l {0}

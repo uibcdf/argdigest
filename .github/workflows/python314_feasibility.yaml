@@ -17,13 +17,15 @@ jobs:
           fetch-depth: 0
       - uses: mamba-org/setup-micromamba@v3.2.1
         with:
-          environment-file: devtools/conda-envs/python314_feasibility.yaml
+          environment-file: devtools/conda-envs/test_env_core.yaml
           environment-name: feasibility
           condarc: |
             channels:
               - uibcdf
               - conda-forge
             channel_priority: strict
+          create-args: >-
+            python=3.14
           cache-downloads: true
       - name: Generate version and install development source
         shell: bash -l {0}

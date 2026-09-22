@@ -1,0 +1,6 @@
+# Reviewed candidate decision. This file alone authorizes no public publication.
+version = "0.13.0"
+route = "staged"
+reason = "First Python 3.14 noarch release requires clean installed-package and consumer gates before public visibility."
+decision_by = "ArgDigest release coordination, 2026-09-21"
+required_workflows = [".github/workflows/CI_full_matrix.yaml"]

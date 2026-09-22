@@ -7,8 +7,8 @@ from pathlib import Path
 #: The Python versions ArgDigest supports, and the platforms each one is tested on.
 #: Everything else in this file is derived from these three constants, so widening or
 #: narrowing support is one edit here plus the files the tests then point at.
-SUPPORTED_PYTHON = ("3.11", "3.12", "3.13")
-SUPPORTED_PLATFORMS = ("ubuntu-latest", "macos-latest")
+SUPPORTED_PYTHON = ("3.11", "3.12", "3.13", "3.14")
+SUPPORTED_PLATFORMS = ("ubuntu-latest", "macos-latest", "windows-latest")
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
@@ -68,7 +68,7 @@ def _expected_requires_python() -> str:
 
 
 def test_the_declared_range_matches_the_versions_actually_tested():
-    assert _expected_requires_python() == ">=3.11,<3.14"
+    assert _expected_requires_python() == ">=3.11,<3.15"
 
 
 def test_pyproject_declares_the_supported_python_range():
@@ -101,16 +101,17 @@ def test_fast_gate_runs_a_cell_of_the_supported_matrix():
     assert versions <= set(SUPPORTED_PYTHON)
 
 
-def test_conda_packages_are_built_for_every_supported_python():
+def test_conda_recipe_is_one_python_noarch_artifact():
     text = _read(".github/workflows/build_and_upload_conda_packages.yaml")
-    declared = re.search(r"python-version:\s*\[([^\]]+)\]", text)
-
-    assert declared is not None
-    assert tuple(re.findall(r"\"([\d.]+)\"", declared.group(1))) == SUPPORTED_PYTHON
+    recipe = _read("devtools/conda-build/meta.yaml")
+    assert "noarch: python" in recipe
+    assert "matrix:" not in text
+    assert "python-version: [" not in text
 
 
 def test_readme_badge_lists_the_supported_pythons():
-    badge = "%20%7C%20".join(SUPPORTED_PYTHON)
+    # Until admission the badge describes the published 0.12.1 release.
+    badge = "%20%7C%20".join(SUPPORTED_PYTHON[:-1])
 
     assert f"Python-{badge}-" in _read("README.md")
 
@@ -206,5 +207,6 @@ def test_docs_compatibility_matrix_states_the_python_range_and_platforms():
     assert _expected_requires_python() in text
     for version in SUPPORTED_PYTHON:
         assert re.search(
-            rf"\|\s*`{re.escape(version)}`\s*\|\s*tested\s*\|\s*tested\s*\|", text
-        ), f"the matrix page does not show {version} as tested on both platforms"
+            rf"\|\s*`{re.escape(version)}`\s*\|\s*required\s*\|\s*required\s*\|\s*required\s*\|",
+            text,
+        ), f"the matrix page does not require {version} on all platforms"

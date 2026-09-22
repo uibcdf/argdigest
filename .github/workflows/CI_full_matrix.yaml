@@ -17,12 +17,18 @@ jobs:
       fail-fast: false
       matrix:
         cfg:
-          - { os: ubuntu-latest, python-version: "3.11"}
-          - { os: ubuntu-latest, python-version: "3.12"}
-          - { os: ubuntu-latest, python-version: "3.13"}
-          - { os: macos-latest,  python-version: "3.11"}
-          - { os: macos-latest,  python-version: "3.12"}
-          - { os: macos-latest,  python-version: "3.13"}
+          - { os: ubuntu-latest, python-version: "3.11", environment-file: "devtools/conda-envs/test_env.yaml" }
+          - { os: ubuntu-latest, python-version: "3.12", environment-file: "devtools/conda-envs/test_env.yaml" }
+          - { os: ubuntu-latest, python-version: "3.13", environment-file: "devtools/conda-envs/test_env.yaml" }
+          - { os: ubuntu-latest, python-version: "3.14", environment-file: "devtools/conda-envs/test_env_core.yaml" }
+          - { os: macos-latest, python-version: "3.11", environment-file: "devtools/conda-envs/test_env.yaml" }
+          - { os: macos-latest, python-version: "3.12", environment-file: "devtools/conda-envs/test_env.yaml" }
+          - { os: macos-latest, python-version: "3.13", environment-file: "devtools/conda-envs/test_env.yaml" }
+          - { os: macos-latest, python-version: "3.14", environment-file: "devtools/conda-envs/test_env_core.yaml" }
+          - { os: windows-latest, python-version: "3.11", environment-file: "devtools/conda-envs/test_env_core.yaml" }
+          - { os: windows-latest, python-version: "3.12", environment-file: "devtools/conda-envs/test_env_core.yaml" }
+          - { os: windows-latest, python-version: "3.13", environment-file: "devtools/conda-envs/test_env_core.yaml" }
+          - { os: windows-latest, python-version: "3.14", environment-file: "devtools/conda-envs/test_env_core.yaml" }
 
     steps:
     - uses: actions/checkout@v6
@@ -42,7 +48,7 @@ jobs:
     - name: Setup conda env
       uses: mamba-org/setup-micromamba@v3.2.1
       with:
-        environment-file: devtools/conda-envs/test_env.yaml
+          environment-file: ${{ matrix.cfg.environment-file }}
         environment-name: test
         condarc: |
           channels:
@@ -78,5 +84,4 @@ jobs:
     - name: Run tests
       shell: bash -l {0}
       run: |
-        export PYTHONPATH=$PYTHONPATH:$(pwd)
-        pytest -n logical -v --color=yes
+        python -m pytest --receptor=llm -n 4 -q

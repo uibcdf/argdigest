@@ -48,6 +48,14 @@ and consumer checks before promoting the same bytes. Independently verify
 the public Conda coordinate and required Zenodo source archive before central
 `admitted` status.
 
+The corrected hosted run `35668756549` passed all three platforms at commit
+`4fdbf19d386bbf476455d35c9988bf00624873e1`. GH Run Receptor reported
+3/3 passing jobs, and GitHub independently confirmed that SHA and each job
+conclusion. MolSysSuite registered ArgDigest as `authorized` in commit
+`292c46f`; it is not yet `admitted`. Release 0.13.0 is the intended first
+candidate. The committed release plan selects the staged route because both
+the support range and Conda package topology change.
+
 ## Why
 
 Published ArgDigest 0.12.1 is restricted to Python 3.11--3.13, blocking the

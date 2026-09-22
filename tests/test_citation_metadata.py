@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import re
 import subprocess
+import tomllib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,7 +32,15 @@ def test_citation_metadata_identifies_argdigest() -> None:
     assert "https://orcid.org/0000-0003-2812-1499" in text
 
 
-def test_citation_version_matches_the_latest_repository_tag() -> None:
+def test_citation_version_matches_the_committed_release_plan() -> None:
+    plan = tomllib.loads(
+        (ROOT / "devtools/conda-build/release_plan.toml").read_text(encoding="utf-8")
+    )
+    text = CITATION.read_text(encoding="utf-8")
+    assert _scalar(text, "version") == plan["version"]
+
+    # A pre-tag candidate is expected to be newer than the latest public tag.
+    # After publication the same test accepts equality with the new tag.
     completed = subprocess.run(
         ["git", "describe", "--tags", "--abbrev=0"],
         cwd=ROOT,
@@ -42,5 +51,7 @@ def test_citation_version_matches_the_latest_repository_tag() -> None:
     if completed.returncode != 0:
         return  # Source archives and shallow CI checkouts may not contain Git tags.
 
-    text = CITATION.read_text(encoding="utf-8")
-    assert _scalar(text, "version") == completed.stdout.strip()
+    latest = completed.stdout.strip()
+    planned = plan["version"]
+    assert all(re.fullmatch(r"\d+\.\d+\.\d+", item) for item in (latest, planned))
+    assert tuple(map(int, planned.split("."))) >= tuple(map(int, latest.split(".")))

@@ -7,7 +7,18 @@ workflows:
       path: .github/workflows/CI_full_matrix.yaml
     profile: ci
   - match:
+      path: .github/workflows/python314_feasibility.yaml
+    profile: ci
+  - match:
       path: .github/workflows/build_and_upload_conda_packages.yaml
+    profile: conda
+    settings:
+      package_kind: noarch
+  - match:
+      path: .github/workflows/test_staged_conda_package.yaml
+    profile: ci
+  - match:
+      path: .github/workflows/promote_conda_package.yaml
     profile: release
   - match:
       path: .github/workflows/sphinx_docs_to_gh_pages.yaml

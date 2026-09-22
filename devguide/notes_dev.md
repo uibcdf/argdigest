@@ -2,10 +2,11 @@
 
 ## Current state snapshot
 
-- Latest tag: `0.11.0`. `main` carries seven commits beyond it, drafted in
-  [`0.12.0_release_notes_draft.md`](0.12.0_release_notes_draft.md).
-- Supported Python is `>=3.11,<3.14`, closed at both ends and held to the CI matrix by
-  `tests/test_compatibility_matrix.py`.
+- Latest public tag: `0.12.1`. The `0.13.0` development candidate targets
+  Python `>=3.11,<3.15` under `uibcdf/argdigest#13`; the public support claim
+  remains 3.11--3.13 until exact-file release verification.
+- The required source matrix is Linux, macOS, and Windows on Python 3.11--3.14;
+  `tests/test_compatibility_matrix.py` checks the declared range and cells.
 - **There is one mechanism for not re-digesting a value: `skip_digestion`.** The
   `ValidatedPayload` passport is gone.
 - Current stabilization tag: `0.9.2` (final pre-1.0 checkpoint).
