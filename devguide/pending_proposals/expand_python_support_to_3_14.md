@@ -56,6 +56,26 @@ conclusion. MolSysSuite registered ArgDigest as `authorized` in commit
 candidate. The committed release plan selects the staged route because both
 the support range and Conda package topology change.
 
+The complete hosted source matrix passed 12/12 jobs on Linux, macOS, and
+Windows with Python 3.11--3.14 at commit
+`751d4087e8ff50f3249bef2e3405366907adc8a0` (run `35693030023`).
+The first staging attempt (`35694025305`) stopped before building because its
+GitHub run-list query did not yet return that successful run; the same gate
+subsequently passed locally. Repeating the workflow produced the noarch
+`argdigest-0.13.0-py_0.tar.bz2` in `uibcdf/label/staging` (run `35694350694`).
+Producer receipts and 12 clean installed-package cells passed in run
+`35694760523`, including Python 3.14 on all three platforms. This is staged
+evidence, not public support.
+
+The policy gate on the original candidate failed because immutable
+`policy-v1.4.1` predates ArgDigest's central authorization. MolSysSuite
+published `policy-v1.4.2`, which contains that authorization; the ArgDigest
+caller is being updated. That change creates a new candidate SHA, so the
+original staged build is diagnostic evidence only. The final candidate must
+repeat exact-commit source, staging, and installed-package gates before
+publication; build number 1 will distinguish it from the superseded staged
+build 0.
+
 ## Why
 
 Published ArgDigest 0.12.1 is restricted to Python 3.11--3.13, blocking the
