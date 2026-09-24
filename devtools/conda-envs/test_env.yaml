@@ -9,7 +9,7 @@ dependencies:
 
   # --- Test tools ---
   - pytest
-  - pytest-receptor
+  - pytest-receptor =1.1.0
   - pytest-cov
   - pytest-xdist
   - ruff

@@ -36,4 +36,4 @@ jobs:
         shell: bash -l {0}
         run: |
           set -euo pipefail
-          python -m pytest --receptor=llm -n 4 -q
+          python -m pytest --receptor=ci -n 4 -q

@@ -33,6 +33,7 @@ build-backend = "setuptools.build_meta"
 include = ["argdigest*"]
 
 [tool.pytest.ini_options]
+receptor_rerun_command = "python -m pytest"
 # `devguide/` holds development documents, and a declined proposal may preserve the code
 # it proposed. That code is a record, not part of the package: it is not imported, not
 # maintained, and its tests must not run -- they were written against a module that is

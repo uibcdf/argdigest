@@ -8,7 +8,7 @@ dependencies:
   - setuptools
   - pytest
   - pytest-xdist
-  - pytest-receptor
+  - pytest-receptor =1.1.0
   - numpy
   - pydantic
   - beartype
