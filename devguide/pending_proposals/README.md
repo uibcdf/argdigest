@@ -7,7 +7,7 @@ Open ArgDigest proposals with issue-backed reports. See
 
 ### Active (1)
 
-- [`review_inherited_python_ecosystem_policy.md`](review_inherited_python_ecosystem_policy.md) — [#20](https://github.com/uibcdf/argdigest/issues/20) — Review inherited Python ecosystem policy in ArgDigest. *(active, inspected)*
+- [`review_inherited_python_ecosystem_policy.md`](review_inherited_python_ecosystem_policy.md) — [#20](https://github.com/uibcdf/argdigest/issues/20) — Review inherited Python ecosystem policy in ArgDigest. *(active, measured)*
 
 ### Open (1)
 

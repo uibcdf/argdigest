@@ -4,7 +4,7 @@ issue: uibcdf/argdigest#20
 status: active
 opened: 2026-09-24
 closed:
-verification: inspected
+verification: measured
 area: [governance, dependencies, ci]
 guard:
 normative:
@@ -48,6 +48,24 @@ Review the inherited support-library boundaries separately:
 The developer-tool changes satisfy the inherited CI presentation and release
 pin requirements. An honest partial support-library review prevents optional
 integration code from being mistaken for verified public support.
+
+## Evidence and current state
+
+Source commit `1d8e337726ee9647aa3a56671b5c6c7def063257` contains the
+developer-tool changes. The isolated local checkout passed 274 tests with
+`python -m pytest --receptor=llm -q tests`, full-tree Ruff check and format,
+the developer-guide index check, and MolSysSuite's repository checker.
+
+The exact-commit routine CI `36064688726` passed with 273 tests and one
+skip; its log confirmed published `pytest-receptor 1.1.0 py_1` from
+`uibcdf` and `--receptor=ci`. The shared policy run `36064689045` passed.
+The full Python/OS matrix `36101321876` passed 12/12 cells, and the
+Python 3.14 feasibility run `36101321962` passed 3/3. GH Run Receptor
+inspected all four runs. The developer-tools review is therefore adopted.
+The support-library review remains partial until the optional
+PyUnitWizard integration has published-release evidence on every claimed
+Python minor, especially 3.14, or a bounded exception is recorded under
+`uibcdf/argdigest#20`.
 
 ## Acceptance criteria
 
