@@ -105,6 +105,38 @@ def test_only_literal_true_skips_digestion_before_validating_the_flag():
             f("5", bad_value)
 
 
+def test_classmethod_receiver_is_not_digested_in_either_decorator_order():
+    @argument_digest("value")
+    def digest_value(value):
+        return int(value)
+
+    class Example:
+        @classmethod
+        @arg_digest(digestion_style="decorator", strictness="error")
+        def inner(cls, value):
+            return cls, value
+
+        @arg_digest(digestion_style="decorator", strictness="error")
+        @classmethod
+        def outer(cls, value):
+            return cls, value
+
+    assert Example.inner("5") == (Example, 5)
+    assert Example.outer("6") == (Example, 6)
+
+
+def test_free_function_cls_parameter_is_still_digested():
+    @argument_digest("cls")
+    def digest_cls(cls):
+        return int(cls)
+
+    @arg_digest(digestion_style="decorator", strictness="error")
+    def f(cls):
+        return cls
+
+    assert f("7") == 7
+
+
 def test_strictness_error_for_undigested():
     @arg_digest(digestion_style="decorator", strictness="error")
     def f(a, b):

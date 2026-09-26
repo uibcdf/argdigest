@@ -262,6 +262,8 @@ def arg_digest(
 ):
     @dep_digest("beartype", when={"type_check": True})
     def deco(fn: Callable[..., Any]):
+        if isinstance(fn, classmethod):
+            return classmethod(deco(fn.__func__))
         fn_to_wrap = fn
         if type_check:
             try:
@@ -397,11 +399,22 @@ def arg_digest(
             for p in signature.parameters.values()
         )
 
+        # Method receivers are supplied by Python's descriptor, not the caller.
+        # A free function named ``cls`` is still an ordinary argument.
+        implicit_receiver = next(iter(signature.parameters), None)
+        owner_name = (
+            fn.__qualname__.rsplit(".", 2)[-2] if "." in fn.__qualname__ else ""
+        )
+        if implicit_receiver != "self" and not (
+            implicit_receiver == "cls" and owner_name != "<locals>" and owner_name
+        ):
+            implicit_receiver = None
+
         # Build pipeline targets
         pipeline_targets = map or {}
         if kind is not None:
             for p in signature.parameters.values():
-                if p.name != "self" and p.kind not in (
+                if p.name != implicit_receiver and p.kind not in (
                     inspect.Parameter.VAR_KEYWORD,
                     inspect.Parameter.VAR_POSITIONAL,
                 ):
@@ -588,7 +601,7 @@ def arg_digest(
 
                 if plan.enable_argument_digestion:
                     for argname in bound:
-                        if argname != "self":
+                        if argname != implicit_receiver:
                             gut(argname, gut)
                     bound.update(digested)
                 for argname, cfg_pipe in plan.pipeline_targets.items():
