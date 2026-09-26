@@ -57,6 +57,17 @@ def _resolve_owner_module(fn: Callable[..., Any], args: tuple[Any, ...]) -> str:
     return fn.__module__
 
 
+def _display_qualname(
+    fn: Callable[..., Any], args: tuple[Any, ...], implicit_receiver: str | None
+) -> str:
+    """Name the runtime method owner without changing the contract lookup key."""
+    if implicit_receiver and args:
+        owner = args[0] if isinstance(args[0], type) else type(args[0])
+        return f"{owner.__module__}.{owner.__name__}.{fn.__name__}"
+    name = fn.__qualname__.split(".<locals>.")[-1]
+    return f"{fn.__module__}.{name}"
+
+
 # Global cache for digester metadata to avoid redundant inspect.signature calls
 # (fn_dig, argname) -> (sig, value_param)
 _DIGESTER_METADATA_CACHE: dict[tuple[Callable, str], tuple[inspect.Signature, str]] = {}
@@ -79,7 +90,7 @@ def _normalize_strictness(strictness: str) -> str:
 def _resolve_value_param(sig: inspect.Signature, argname: str) -> str:
     if argname in sig.parameters:
         return argname
-    candidates = [p for p in sig.parameters if p != "caller"]
+    candidates = [p for p in sig.parameters if p not in {"caller", "qualname"}]
     if len(candidates) == 1:
         return candidates[0]
     raise DigestNotDigestedError(
@@ -471,6 +482,7 @@ def arg_digest(
                     return _invoke(plan, fn_to_wrap, bound)
 
                 caller = f"{_resolve_owner_module(fn, args)}.{fn.__name__}"
+                qualname = _display_qualname(fn, args, implicit_receiver)
 
                 if plan.var_keyword_name and plan.var_keyword_name in bound:
                     extra = bound.pop(plan.var_keyword_name) or {}
@@ -562,6 +574,8 @@ def arg_digest(
                             kwargs_for_digest[p_name] = bound.get(argname)
                         elif p_name == "caller":
                             kwargs_for_digest[p_name] = caller
+                        elif p_name == "qualname":
+                            kwargs_for_digest[p_name] = qualname
                         elif p_name in bound:
                             visit(p_name, visit)
                             kwargs_for_digest[p_name] = digested[p_name]
