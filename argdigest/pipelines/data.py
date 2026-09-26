@@ -9,12 +9,7 @@ from typing import Any, Callable, List, Tuple
 from ..core.errors import DigestTypeError, DigestValueError
 from ..core.registry import register_pipeline
 
-try:
-    import numpy as np
-
-    HAS_NUMPY = True
-except ImportError:
-    HAS_NUMPY = False
+np = None
 
 #: Pandas is heavy -- it pulls a large dependency tree of its own -- and only two
 #: pipelines need it. Importing it here made every consumer pay for it just by decorating
@@ -49,11 +44,21 @@ def has_pandas():
 
 
 def _require_numpy(ctx: Any = None):
-    if not HAS_NUMPY:
-        raise DigestTypeError(
-            context=ctx,
-            detail="Optional dependency 'numpy' is not installed. Install it to use data pipelines.",
-        )
+    global np
+
+    if np is None:
+        try:
+            import numpy
+        except ImportError as error:
+            raise DigestTypeError(
+                context=ctx,
+                detail=(
+                    "Optional dependency 'numpy' is not installed. "
+                    "Install argdigest[science] to use data pipelines."
+                ),
+            ) from error
+        np = numpy
+    return np
 
 
 # --- Coercers ---

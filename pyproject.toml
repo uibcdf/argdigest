@@ -10,14 +10,14 @@ license = { text = "MIT" }
 requires-python = ">=3.11,<3.15"
 dependencies = [
   "depdigest>=0.11.0",
-  "numpy>=1.20.0",
   "smonitor>=0.16.0",
 ]
 
 [project.optional-dependencies]
+science = ["numpy>=1.20.0"]
 beartype = ["beartype>=0.16.0"]
 pydantic = ["pydantic>=2.0.0"]
-pyunitwizard = ["pyunitwizard>=0.11.0"]
+pyunitwizard = ["pyunitwizard>=0.11.0", "numpy>=1.20.0"]
 all = ["beartype>=0.16.0", "pydantic>=2.0.0", "pyunitwizard>=0.11.0", "PyYAML>=6.0", "numpy>=1.20.0", "pandas>=2.0.0"]
 
 [project.urls]

@@ -22,7 +22,17 @@ def test_missing_digester_warning_has_readable_message():
 
 def test_data_pipeline_missing_numpy_raises_catalog_error(monkeypatch):
     ctx = Context(function_name="f", argname="arr", value=[1, 2, 3], all_args={})
-    monkeypatch.setattr(data_pipelines, "HAS_NUMPY", False)
+    import builtins
+
+    original_import = builtins.__import__
+
+    def without_numpy(name, *args, **kwargs):
+        if name == "numpy" or name.startswith("numpy."):
+            raise ImportError("numpy unavailable for this test")
+        return original_import(name, *args, **kwargs)
+
+    monkeypatch.setattr(data_pipelines, "np", None)
+    monkeypatch.setattr(builtins, "__import__", without_numpy)
 
     with pytest.raises(DigestTypeError) as excinfo:
         data_pipelines.to_numpy([1, 2, 3], ctx)
