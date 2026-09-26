@@ -1,13 +1,13 @@
 ---
 summary: A truthy non-boolean skip_digestion bypasses validation before its digester runs.
 issue: uibcdf/argdigest#17
-status: open
+status: resolved
 opened: 2026-09-24
-closed:
+closed: 2026-09-26
 severity: high
 verification: reproduced
 area: [api, validation]
-guard:
+guard: tests/test_argument_digestion.py::test_only_literal_true_skips_digestion_before_validating_the_flag
 normative:
 blocked_by: []
 supersedes: []
@@ -47,3 +47,12 @@ this is provider behavior and belongs in ArgDigest.
 - `False` still takes the normal digestion path.
 - The canonical guide states the literal-boolean rule; registered consumers
   receive their copy through MolSysSuite's guide synchronizer.
+
+## Resolution
+
+Both bypass checks now require literal `True`. The regression asserts that
+keyword and positional `True` bypass digestion, `False` takes the normal path,
+and strings and integers reach the skip-flag digester for rejection. The
+canonical guide was distributed with MolSysSuite's guide synchronizer to all
+seven registered consumers. The ArgDigest CI and MolSysSuite policy runs for
+`acbead8` passed; the local test suite passed with 274 tests and 1 skip.
