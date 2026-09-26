@@ -5,7 +5,7 @@ their established locations so existing references remain valid.
 
 <!-- generated: devguide_index -->
 
-### Resolved (9)
+### Resolved (10)
 
 - [`adopt_molsyssuite_policy_v1.md`](../completed_proposals/adopt_molsyssuite_policy_v1.md) — [#4](https://github.com/uibcdf/argdigest/issues/4) — Adopt the shared MolSysSuite policy and Ruff gate. *(resolved, measured)*
 - [`adopt_shared_reporting_lifecycle.md`](../completed_proposals/adopt_shared_reporting_lifecycle.md) — [#6](https://github.com/uibcdf/argdigest/issues/6) — Adopt the shared issue-backed developer-guide lifecycle. *(resolved, inspected)*
@@ -16,6 +16,7 @@ their established locations so existing references remain valid.
 - [`numpy_loaded_by_non_scientific_consumers.md`](../solved_bugs/numpy_loaded_by_non_scientific_consumers.md) — [#15](https://github.com/uibcdf/argdigest/issues/15) — NumPy is loaded by consumers that never use scientific pipelines. *(resolved, reproduced)*
 - [`receptor_misclassifies_composite_conda_publication.md`](../solved_bugs/receptor_misclassifies_composite_conda_publication.md) — [#10](https://github.com/uibcdf/argdigest/issues/10) — Use the release profile for action-internal Conda publication. *(resolved, reproduced)*
 - [`truthy_skip_digestion_bypasses_validation.md`](../solved_bugs/truthy_skip_digestion_bypasses_validation.md) — [#17](https://github.com/uibcdf/argdigest/issues/17) — A truthy non-boolean skip_digestion bypasses validation before its digester runs. *(resolved, reproduced)*
+- [`warnings_inside_decorated_functions_point_to_wrapper.md`](../solved_bugs/warnings_inside_decorated_functions_point_to_wrapper.md) — [#16](https://github.com/uibcdf/argdigest/issues/16) — Warnings inside decorated functions point to the ArgDigest wrapper. *(resolved, inspected)*
 
 ### Withdrawn (2)
 
