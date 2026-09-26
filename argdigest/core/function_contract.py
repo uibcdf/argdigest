@@ -172,7 +172,11 @@ class FunctionContract:
         return self.caller if self.caller is not None else self.caller_pattern  # type: ignore[return-value]
 
     def admits_anything(self) -> bool:
-        return self.admits == ADMITS_ANY
+        return (
+            self.admits == ADMITS_ANY
+            if isinstance(self.admits, str)
+            else ADMITS_ANY in self.admits
+        )
 
     def has_rules_beyond_admission(self) -> bool:
         """Whether anything has to be checked even when no extra keyword was passed."""
@@ -186,7 +190,11 @@ class FunctionContract:
             if self.admits in (ADMITS_SIGNATURE, ADMITS_ANY):
                 return ()
             return (self.admits,)
-        return tuple(str(name) for name in self.admits)
+        return tuple(
+            str(name)
+            for name in self.admits
+            if name not in (ADMITS_SIGNATURE, ADMITS_ANY)
+        )
 
 
 @dataclass(frozen=True)
@@ -276,6 +284,15 @@ def _suggest(keyword: str, candidates: Iterable[str]) -> str:
     return f" Did you mean {matches[0]!r}?"
 
 
+def _accepted_hint(candidates: Iterable[str]) -> str:
+    names = sorted(set(candidates))
+    if not names:
+        return ""
+    shown = names[:10]
+    rest = f" (and {len(names) - 10} more)" if len(names) > 10 else ""
+    return f" It accepts: {', '.join(shown)}{rest}."
+
+
 def check_contract(
     contract: FunctionContract,
     caller: str,
@@ -344,7 +361,7 @@ def check_contract(
                     message=f"{caller!r} does not accept the argument {keyword!r}.",
                     # Only the part the catalog cannot know. The framing around
                     # it belongs to ARG-ERR-CONTRACT-001.
-                    hint=_suggest(keyword, vocabulary),
+                    hint=_suggest(keyword, vocabulary) + _accepted_hint(vocabulary),
                 )
             )
 

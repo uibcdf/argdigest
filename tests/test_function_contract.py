@@ -145,6 +145,34 @@ def test_a_contract_naming_an_unregistered_domain_is_reported(domains):
     assert "unknown_domain" in kinds
 
 
+def test_signature_token_in_a_sequence_is_not_treated_as_a_domain(domains):
+    contract = FunctionContract(caller="pkg.fn", admits=["signature", "attribute"])
+    assert contract.admitted_domains() == ("attribute",)
+    assert check_contract(contract, "pkg.fn", {"element"}, ["n_atoms"], domains) == []
+
+
+def test_a_rejection_names_the_arguments_accepted_for_this_call():
+    dynamic = Domain(
+        name="format_options",
+        depends_on="format",
+        by_value={"latex": ("style",), "html": ("theme",)},
+    )
+    contract = FunctionContract(
+        caller="pkg.report", admits=["signature", "format_options"]
+    )
+    violations = check_contract(
+        contract,
+        "pkg.report",
+        {"format"},
+        ["stlye"],
+        {"format_options": dynamic},
+        bound={"format": "latex"},
+    )
+    assert [v.kind for v in violations] == ["unknown_argument"]
+    assert "It accepts: format, style." in violations[0].hint
+    assert "theme" not in violations[0].hint
+
+
 def test_requires_any_of_is_satisfied_by_one_member(domains):
     contract = FunctionContract(
         caller="pkg.fn", admits="attribute", requires_any_of="attribute"
@@ -231,6 +259,15 @@ def test_an_open_function_is_held_to_its_declared_domain():
     assert api.get("s", n_atoms=True) == ["n_atoms"]
     with pytest.raises(UnknownArgumentError, match="n_atomss"):
         api.get("s", n_atomss=True)
+
+
+def test_dynamic_domain_rejection_shows_current_accepted_names():
+    with pytest.raises(UnknownArgumentError) as caught:
+        api.compute("s", engine="OpenMM", platfrom="CUDA")
+    message = str(caught.value)
+    assert "It accepts:" in message
+    assert "platform" in message
+    assert "parallel" not in message
 
 
 def test_a_declared_requirement_is_enforced():
