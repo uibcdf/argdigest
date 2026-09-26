@@ -431,8 +431,8 @@ def arg_digest(
         @wraps(fn)
         @signal(tags=["digestion"], exception_level="DEBUG")
         def wrapper(*args: Any, **kwargs: Any):
-            # Fast-path check: if skip_digestion is passed in kwargs, bypass everything O(1)
-            if kwargs.get(plan.skip_param, False):
+            # Only the literal boolean True may bypass the flag's own digester.
+            if kwargs.get(plan.skip_param, False) is True:
                 return fn_to_wrap(*args, **kwargs)
 
             logger.debug(f"Digesting arguments for {fn.__name__}")
@@ -454,7 +454,7 @@ def arg_digest(
                     **kwargs,
                 )
                 supplied.update(extras)
-                if bound.get(plan.skip_param, False):
+                if bound.get(plan.skip_param, False) is True:
                     return _invoke(plan, fn_to_wrap, bound)
 
                 caller = f"{_resolve_owner_module(fn, args)}.{fn.__name__}"

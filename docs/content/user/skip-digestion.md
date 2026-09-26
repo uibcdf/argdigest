@@ -21,8 +21,12 @@ SKIP_PARAM = "skip_digestion"
 
 ## What happens when bypass is enabled
 
-When bypass is enabled, argument digesters and pipeline rules are both skipped,
-so raw function arguments flow directly into your function logic.
+Only the literal boolean `True` enables bypass, whether passed by name or by
+position. Other values go through ordinary digestion, including a registered
+digester for `skip_digestion`; a library should use that digester to reject
+non-boolean values. When bypass is enabled, argument digesters and pipeline
+rules are both skipped, so raw function arguments flow directly into your
+function logic.
 
 ## Safe usage guidance
 

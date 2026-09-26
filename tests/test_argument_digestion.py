@@ -71,6 +71,40 @@ def test_skip_digestion_bypasses_argument_digesters():
     assert f("5", skip_digestion=True) == "5"
 
 
+def test_only_literal_true_skips_digestion_before_validating_the_flag():
+    seen = []
+
+    @argument_digest("value")
+    def digest_value(value):
+        seen.append("value")
+        return int(value)
+
+    @argument_digest("skip_digestion")
+    def digest_skip_digestion(skip_digestion):
+        seen.append("skip_digestion")
+        if type(skip_digestion) is not bool:
+            raise TypeError("skip_digestion must be a bool")
+        return skip_digestion
+
+    @arg_digest(digestion_style="decorator", strictness="error")
+    def f(value, skip_digestion=False):
+        return value
+
+    assert f("5", skip_digestion=True) == "5"
+    assert f("5", True) == "5"
+    assert seen == []
+
+    assert f("5", skip_digestion=False) == 5
+    assert "value" in seen
+    assert "skip_digestion" in seen
+
+    for bad_value in ("yes", "False", 1):
+        with pytest.raises(TypeError, match="skip_digestion must be a bool"):
+            f("5", skip_digestion=bad_value)
+        with pytest.raises(TypeError, match="skip_digestion must be a bool"):
+            f("5", bad_value)
+
+
 def test_strictness_error_for_undigested():
     @arg_digest(digestion_style="decorator", strictness="error")
     def f(a, b):
