@@ -1,12 +1,12 @@
 ---
 summary: Review inherited Python ecosystem policy in ArgDigest.
 issue: uibcdf/argdigest#20
-status: active
+status: resolved
 opened: 2026-09-24
-closed:
+closed: 2026-09-27
 verification: measured
 area: [governance, dependencies, ci]
-guard:
+guard: tests/test_pyunitwizard.py::test_puw_integration_check_and_standardize
 normative:
 blocked_by: []
 supersedes: []
@@ -16,8 +16,8 @@ supersedes: []
 
 ## What
 
-ArgDigest inherits MOLI's Python developer-tools and support-library policies
-through MolSysSuite. A synchronized guide and compatible policy caller do not
+ArgDigest follows MolSysSuite's Python developer-tools and support-library policies.
+A synchronized guide and compatible policy caller do not
 establish their adoption. The routine, full-matrix, and Python 3.14 feasibility
 workflows used pytest-receptor's `llm` profile in hosted logs, and the two
 test environments did not pin an exact published receptor release.
@@ -37,17 +37,17 @@ Review the inherited support-library boundaries separately:
 - DepDigest is a runtime dependency for optional integrations, and SMonitor is
   a runtime dependency for diagnostics. Both have exercised implementation
   paths and dedicated tests.
-- PyUnitWizard is an optional physical-quantity adapter. Its `check`,
-  `standardize`, `convert`, and quantity-extraction paths have tests, but the
-  optional integration still needs exact published-release evidence on every
-  Python minor ArgDigest claims, including Python 3.14. Keep this review
-  partial until that evidence or a bounded exception is recorded.
+- PyUnitWizard is an optional physical-quantity adapter. Pin published 0.27.0
+  in both test environments, including the core environment used on Windows
+  and Python 3.14. Import it explicitly before tests so an accidental skip
+  cannot pass CI, and exercise its `check`, `standardize`, `convert`, and
+  quantity-extraction paths across every claimed Python minor.
 
 ## Why
 
 The developer-tool changes satisfy the inherited CI presentation and release
-pin requirements. An honest partial support-library review prevents optional
-integration code from being mistaken for verified public support.
+pin requirements. The published optional integration now has hosted evidence
+across the complete claimed Python and operating-system matrix.
 
 ## Evidence and current state
 
@@ -62,10 +62,22 @@ skip; its log confirmed published `pytest-receptor 1.1.0 py_1` from
 The full Python/OS matrix `36101321876` passed 12/12 cells, and the
 Python 3.14 feasibility run `36101321962` passed 3/3. GH Run Receptor
 inspected all four runs. The developer-tools review is therefore adopted.
-The support-library review remains partial until the optional
-PyUnitWizard integration has published-release evidence on every claimed
-Python minor, especially 3.14, or a bounded exception is recorded under
-`uibcdf/argdigest#20`.
+
+Source commit `d6dcebef9174ad2427aeea8711394afeea880bcf` installed
+PyUnitWizard 0.27.0 from the public Conda channel in both CI environments and
+made routine CI and the full matrix fail if the adapter cannot be imported.
+Local `tests/test_pyunitwizard.py` passed all seven integration tests; the full
+suite passed 283 with one unrelated sibling-checkout skip. Exact-commit routine
+CI `36335205697`, policy `36335206079`, and full matrix `36335240891` all
+passed. GH Run Receptor inspected each run. The matrix completed 12/12 jobs
+on Linux, macOS, and Windows with Python 3.11–3.14. Each native job log showed
+PyUnitWizard 0.27.0 imported and 283 tests passed with the same one unrelated
+skip. These runs establish the optional published integration without adding
+PyUnitWizard to ArgDigest's required runtime dependencies.
+
+The selected guard exercises a physical dimensionality rule using the optional
+adapter. Its skip remains valid for a lean local checkout; the CI import step
+and pinned environments make that guard active in the hosted matrix.
 
 ## Acceptance criteria
 
@@ -73,6 +85,5 @@ Python minor, especially 3.14, or a bounded exception is recorded under
   and MolSysSuite conformance checks pass.
 - Hosted routine CI, policy, full matrix, and Python 3.14 probe confirm the
   exact release pin and `ci` profile on the same source commit.
-- MolSysSuite records developer-tools and support-libraries states with
-  separate evidence, retaining any unresolved optional-integration check in
-  `uibcdf/argdigest#20`.
+- MolSysSuite records developer-tools and support-libraries adoption with
+  separate evidence from their exact implementation commits.

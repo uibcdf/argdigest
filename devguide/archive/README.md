@@ -5,7 +5,7 @@ their established locations so existing references remain valid.
 
 <!-- generated: devguide_index -->
 
-### Resolved (11)
+### Resolved (12)
 
 - [`adopt_molsyssuite_policy_v1.md`](../completed_proposals/adopt_molsyssuite_policy_v1.md) — [#4](https://github.com/uibcdf/argdigest/issues/4) — Adopt the shared MolSysSuite policy and Ruff gate. *(resolved, measured)*
 - [`adopt_shared_reporting_lifecycle.md`](../completed_proposals/adopt_shared_reporting_lifecycle.md) — [#6](https://github.com/uibcdf/argdigest/issues/6) — Adopt the shared issue-backed developer-guide lifecycle. *(resolved, inspected)*
@@ -16,6 +16,7 @@ their established locations so existing references remain valid.
 - [`method_caller_omits_runtime_class.md`](../solved_bugs/method_caller_omits_runtime_class.md) — [#18](https://github.com/uibcdf/argdigest/issues/18) — Method caller names the module and method but omits the runtime class. *(resolved, reproduced)*
 - [`numpy_loaded_by_non_scientific_consumers.md`](../solved_bugs/numpy_loaded_by_non_scientific_consumers.md) — [#15](https://github.com/uibcdf/argdigest/issues/15) — NumPy is loaded by consumers that never use scientific pipelines. *(resolved, reproduced)*
 - [`receptor_misclassifies_composite_conda_publication.md`](../solved_bugs/receptor_misclassifies_composite_conda_publication.md) — [#10](https://github.com/uibcdf/argdigest/issues/10) — Use the release profile for action-internal Conda publication. *(resolved, reproduced)*
+- [`review_inherited_python_ecosystem_policy.md`](../completed_proposals/review_inherited_python_ecosystem_policy.md) — [#20](https://github.com/uibcdf/argdigest/issues/20) — Review inherited Python ecosystem policy in ArgDigest. *(resolved, measured)*
 - [`truthy_skip_digestion_bypasses_validation.md`](../solved_bugs/truthy_skip_digestion_bypasses_validation.md) — [#17](https://github.com/uibcdf/argdigest/issues/17) — A truthy non-boolean skip_digestion bypasses validation before its digester runs. *(resolved, reproduced)*
 - [`warnings_inside_decorated_functions_point_to_wrapper.md`](../solved_bugs/warnings_inside_decorated_functions_point_to_wrapper.md) — [#16](https://github.com/uibcdf/argdigest/issues/16) — Warnings inside decorated functions point to the ArgDigest wrapper. *(resolved, inspected)*
 
