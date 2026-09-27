@@ -79,7 +79,7 @@ jobs:
         trap 'echo "::endgroup::"' EXIT
         cd
         pwd
-        python -c 'import argdigest; print("Version of the package: {}".format(argdigest.__version__))'
+        python -c 'import argdigest, pyunitwizard; print("ArgDigest: {} PyUnitWizard: {}".format(argdigest.__version__, pyunitwizard.__version__))'
 
     - name: Run tests
       shell: bash -l {0}

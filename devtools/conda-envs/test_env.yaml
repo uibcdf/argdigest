@@ -17,7 +17,7 @@ dependencies:
   # --- Dependencies ---
   - beartype
   - pydantic
-  - pyunitwizard
+  - pyunitwizard =0.27.0
   - versioningit
   - pyyaml
   - numpy

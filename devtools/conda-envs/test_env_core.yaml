@@ -18,3 +18,4 @@ dependencies:
   - versioningit
   - depdigest >=0.11.0
   - smonitor >=0.16.0
+  - pyunitwizard =0.27.0
