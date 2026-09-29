@@ -52,5 +52,16 @@ in `uibcdf/molsyssuite#39` without requiring a full matrix after each commit.
 
 ## Resolution
 
-The workflow and detector are implemented with focused local tests. Hosted
-results, branch protection and central adoption review are pending.
+Commit `d1df25b` implements the workflow and detector. At that exact commit,
+[routine CI](https://github.com/uibcdf/argdigest/actions/runs/36531091052)
+and [MolSysSuite policy](https://github.com/uibcdf/argdigest/actions/runs/36531091809)
+passed. The [probe-only dispatch](https://github.com/uibcdf/argdigest/actions/runs/36531106522)
+recognized the executed weekly matrix `36455538074` at `ca537d2` as its
+watermark, found zero later skipped commits, and omitted all matrix jobs.
+
+The `main` branch now requires the strict `Test on ubuntu-latest, Python 3.13`
+check. Administrators are exempt from the PR gate; the only current
+collaborators with push permission are `dprada` and `LMMV`, both
+administrators. Hosted PR, a deliberately skipped direct push and the first
+real nightly execution remain to be observed. Keep the issue open until
+those outcomes and the platform-claim review are recorded centrally.
