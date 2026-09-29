@@ -66,6 +66,13 @@ administrators. The direct push of `8a34746` with `[skip ci]` exercised that
 bypass. A [second probe-only dispatch](https://github.com/uibcdf/argdigest/actions/runs/36531382436)
 found exactly that skipped commit after the `ca537d2` full-matrix watermark
 and reported that full recovery is due. It omitted all matrix jobs because
-the dispatch was diagnostic. Hosted PR and the first real nightly execution
-remain to be observed. Keep the issue open until those outcomes and the
-platform-claim review are recorded centrally.
+the dispatch was diagnostic. GitHub did not show the new 00:37 scheduled run
+during the observation window, so a
+[manual full-matrix dispatch](https://github.com/uibcdf/argdigest/actions/runs/36532458998)
+tested the current workflow at `9bb0a8e` and passed all twelve jobs,
+including the four Linux `Run tests` steps. The
+[post-matrix probe](https://github.com/uibcdf/argdigest/actions/runs/36532645259)
+recognized `9bb0a8e` as the new executed watermark and found zero pending
+skipped commits; its matrix jobs were omitted. Hosted PR and the first real
+nightly execution remain to be observed. Keep the issue open until those
+outcomes and the platform-claim review are recorded centrally.
