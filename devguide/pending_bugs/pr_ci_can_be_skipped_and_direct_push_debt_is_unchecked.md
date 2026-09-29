@@ -15,6 +15,14 @@ supersedes: []
 
 # PR CI can be skipped and direct-push debt is unchecked
 
+**Detector correction on 2026-09-29:** the review in
+`uibcdf/pyunitwizard#91` reproduced an old workflow-run listing from GitHub's
+`branch=main` API filter, and the same behavior was observed in SMonitor.
+This detector now lists runs without that API filter and checks
+`head_branch=main` locally, together with commit ancestry and executed
+Linux test steps. A focused regression rejects an otherwise green run from
+a feature branch. Hosted probe evidence for this correction follows below.
+
 ## What
 
 At `ca537d2`, the primary `CI.yaml` PR test ignored documentation paths and
