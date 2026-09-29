@@ -21,7 +21,19 @@ supersedes: []
 This detector now lists runs without that API filter and checks
 `head_branch=main` locally, together with commit ancestry and executed
 Linux test steps. A focused regression rejects an otherwise green run from
-a feature branch. Hosted probe evidence for this correction follows below.
+a feature branch.
+
+At `6223e01`, routine CI `36640865049` and policy `36640865725`
+passed. The [corrected probe](https://github.com/uibcdf/argdigest/actions/runs/36640897094)
+recognized `417ab9e` as the new executed full-matrix watermark and found
+zero pending skipped commits; matrix jobs were omitted. The
+[actual daily scheduled run](https://github.com/uibcdf/argdigest/actions/runs/36573874803)
+had passed all twelve cells at `417ab9e`, including their test steps.
+That run used the previous detector and reported no usable watermark plus
+68 historical skipped commits, despite the earlier verified green manual
+matrix. This is additional evidence for replacing the API branch filter.
+The first real daily trigger is observed; hosted PR and platform-claim review
+remain pending.
 
 ## What
 
