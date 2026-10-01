@@ -11,6 +11,8 @@
 [![Conda](https://img.shields.io/conda/vn/uibcdf/argdigest)](https://anaconda.org/uibcdf/argdigest)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22892325.svg)](https://doi.org/10.5281/zenodo.22892325)
 
+Coverage: ArgDigest Python tests, uploaded by the routine Linux/Python 3.13 CI lane. The badge reflects the last uploaded report, which may lag later direct or skip-CI commits; it does not certify a full matrix or scientific correctness.
+
 *Digesting function arguments into clear, reliable contracts.*
 
 
