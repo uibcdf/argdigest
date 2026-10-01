@@ -5,6 +5,11 @@ validated for ArgDigest 1.0 stabilization.
 
 ## Supported Python versions
 
+Current macOS support is limited to Apple Silicon (arm64). Intel macOS is
+outside the supported matrix; concrete user demand may reopen
+[the suite decision](https://github.com/uibcdf/molsyssuite/issues/59).
+Previously recorded release evidence keeps its original scope.
+
 Public release 0.13.0 declares `requires-python = ">=3.11,<3.15"` and supports
 Python 3.11--3.14. The exact source and staged installed-package matrices both
 passed all twelve Linux, macOS, and Windows cells under `uibcdf/argdigest#13`;

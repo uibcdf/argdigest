@@ -149,6 +149,10 @@ Runtime/config files:
 
 ## Current release status
 
+Current macOS support is limited to Apple Silicon (arm64). Intel-based macOS
+(x86_64) is outside the supported matrix. Concrete user demand may reopen
+[the MolSysSuite decision](https://github.com/uibcdf/molsyssuite/issues/59).
+
 - Current public tag: `0.13.0`, supporting Python 3.11--3.14.
 - The `uibcdf` channel serves one `noarch` Conda artifact for all supported
   platforms and interpreters. The previous 0.12.1 line supported 3.11--3.13.
