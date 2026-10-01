@@ -23,3 +23,13 @@ These guides are required reading for anyone developing this library. They descr
   and proposals; it maps the common `uibcdf/molsyssuite#11` contract to local paths.
 - Follow the versioned policy caller in `.github/workflows/molsyssuite-policy.yml`; do not
   duplicate its common checks in repository-owned workflows.
+
+## Modular reusable tools
+
+Before adding a feature, inspect existing tools and identify the owning module or
+component. Implement or extend independently useful operations as documented reusable
+tools in that owner, with their own contracts and tests; have consumers call them.
+Keep task-specific decisions local and report missing sibling capabilities to the
+provider with linked consumer evidence. Follow
+[MOLSYSSUITE_GUIDE.md#modular-reusable-tools](MOLSYSSUITE_GUIDE.md#modular-reusable-tools)
+for applicability, compatibility, performance and tracked exceptions.
