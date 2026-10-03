@@ -96,3 +96,20 @@ recognized `9bb0a8e` as the new executed watermark and found zero pending
 skipped commits; its matrix jobs were omitted. Hosted PR and the first real
 nightly execution remain to be observed. Keep the issue open until those
 outcomes and the platform-claim review are recorded centrally.
+
+## Routine policy 1.5.4 adoption — 2026-10-03
+
+The maintainer authorized publication and adoption of policy-v1.5.4 under
+uibcdf/molsyssuite#39. The immutable tag points to central e459ea0; the
+component now calls that published gate and receives the byte-identical
+canonical guide through the suite synchronizer. Routine development uses
+Python 3.14. The existing full Python 3.11–3.14 matrices and skipped-commit
+recovery semantics are preserved; no public package is published here.
+Local conformance and changed-workflow Actionlint checks pass. Hosted
+policy and applicable routine checks are dispatched separately from skipped
+direct pushes; their exact commits and outcomes remain to be measured.
+
+The single Linux routine package suite moves to Python 3.14; the required
+PR check must use its new name while preserving strict checks and administrator
+direct-push bypass. The complete weekly matrix still includes every older minor.
+
