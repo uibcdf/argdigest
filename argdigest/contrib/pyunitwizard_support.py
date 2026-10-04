@@ -5,24 +5,31 @@ Integration with PyUnitWizard for physical quantity validation and standardizati
 from __future__ import annotations
 
 from contextlib import contextmanager
+from importlib.util import find_spec
 from typing import Any, Callable, Dict, Optional
 
 import numpy as np
-
-try:
-    import pyunitwizard as puw
-
-    HAS_PUW = True
-    puw = puw  # Export for tests
-except ImportError:
-    HAS_PUW = False
-    puw = None
+from depdigest import dep_digest
 
 from ..core.errors import DigestTypeError, DigestValueError
 from ..core.registry import register_pipeline
 
+# Availability is not an import: constructing an adapter must remain cheap and
+# usable without the optional provider. Its module is loaded only on execution.
+HAS_PUW = find_spec("pyunitwizard") is not None
+puw = None
+
+
+@dep_digest("pyunitwizard")
+def _load_puw():
+    import pyunitwizard
+
+    return pyunitwizard
+
 
 def _require_puw(ctx: Any = None):
+    global puw
+
     if not HAS_PUW:
         # Its own code: a missing optional dependency is not a type error, and
         # the remedy -- which distribution to install, and that DepDigest can
@@ -33,6 +40,10 @@ def _require_puw(ctx: Any = None):
             dependency="pyunitwizard",
             distribution="argdigest[pyunitwizard]",
         )
+    if puw is None:
+        # Do not interpret a provider's transitive import failure as absence.
+        # DepDigest checks availability; the original import exception propagates.
+        puw = _load_puw()
 
 
 @contextmanager
@@ -49,6 +60,8 @@ def context(**kwargs: Any):
             pass
         yield
         return
+
+    _require_puw()
 
     # Map kwargs to puw.context parameters if names differ?
     # ArgDigest config might use 'form' instead of 'default_form'.

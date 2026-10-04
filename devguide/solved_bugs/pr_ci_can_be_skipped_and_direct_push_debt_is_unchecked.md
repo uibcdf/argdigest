@@ -1,9 +1,9 @@
 ---
 summary: PR CI can be skipped and direct-push debt is unchecked
 issue: uibcdf/argdigest#21
-status: partial
+status: resolved
 opened: 2026-09-29
-closed:
+closed: 2026-10-04
 severity: high
 verification: inspected
 area: [ci, governance]
@@ -113,3 +113,58 @@ The single Linux routine package suite moves to Python 3.14; the required
 PR check must use its new name while preserving strict checks and administrator
 direct-push bypass. The complete weekly matrix still includes every older minor.
 
+## Current hosted evidence — 2026-10-04
+
+At `fc07dcf`, GitHub's live branch protection requires the strict
+`Test on ubuntu-latest, Python 3.14` check (GitHub Actions app 15368) and leaves
+administrator enforcement disabled. The executed routine Python 3.14
+[manual run](https://github.com/uibcdf/argdigest/actions/runs/37122613868)
+passed at `0e175dd`.
+
+The real daily [scheduled recovery](https://github.com/uibcdf/argdigest/actions/runs/37121306376)
+passed at `7d88628`; all twelve operating-system/interpreter jobs executed their
+`Run tests` steps successfully. This is executed full-matrix evidence, rather
+than a successful probe whose tests were omitted. Source and installed public
+artifact qualification remain distinct. A real PR exercising the formerly
+excluded branch/title route is still pending; the issue remains partial.
+
+The Python 3.14 macOS job's native log identifies `macos-26-arm64`, reports
+`RELEASE_ARM64_VMAPPLE arm64` from `uname -a`, and records 286 tests passed
+plus one skipped. The matrix therefore has an observed Apple Silicon 3.14
+execution, without extending support to Intel macOS or treating this source
+test result as qualification of a new public artifact.
+
+## Final verification — 2026-10-04
+
+[PR #23](https://github.com/uibcdf/argdigest/pull/23) exercises the former skip
+conditions with branch `fix/skip-ci-pyunitwizard-import` and initial title
+`[skip ci] Defer optional PyUnitWizard imports until use`. The source commit
+`965cdf01b1952a22b080b939360ffff9a64dab83` has no skip marker. Its real
+`pull_request` [CI run](https://github.com/uibcdf/argdigest/actions/runs/37201939802)
+executes and passes the mandatory `Test on ubuntu-latest, Python 3.14` job,
+including wheel build/install, external-checkout import and the full test step
+(290 passed, one skipped, three warnings). The
+[suite policy](https://github.com/uibcdf/argdigest/actions/runs/37201940155)
+also passes. Source inspection confirms the PR trigger has no path filters and
+its job condition has no PR-title or branch exclusions.
+
+The real scheduled twelve-cell recovery, observed macOS arm64/Python 3.14
+execution, strict renamed branch check and administrator direct-push bypass are
+recorded above. This closes the ArgDigest routing/enforcement observation gap;
+`uibcdf/molsyssuite#39` retains ownership of the suite-wide rollout and any
+other component's scientific, installed or platform qualification.
+
+The guard `tests/test_ci_backlog.py` verifies that ordinary commits and green
+probe runs cannot clear skipped-commit debt, rejects non-main matrix watermarks,
+and selects full recovery when the API is uncertain. Hosted PR and scheduled
+evidence complement that detector regression; it does not itself test GitHub
+branch protection. No common policy is duplicated or changed here.
+
+## Documentation-only PR checkpoint — 2026-10-04
+
+The following commit `13feb2d4b431ac99304c1f18677f0f5d8a59ca50` changed only
+developer-guide records and indexes. Its real `pull_request`
+[routine CI](https://github.com/uibcdf/argdigest/actions/runs/37202605038)
+and [suite policy](https://github.com/uibcdf/argdigest/actions/runs/37202605332)
+both passed while the same formerly excluded title and branch remained in place.
+This independently exercises the removed documentation-path exclusion.
