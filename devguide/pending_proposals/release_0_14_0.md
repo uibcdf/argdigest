@@ -30,6 +30,13 @@ full installed tests outside source, and a separate minimal-core lower-bound
 matrix. Promote the validated digest only after the public release exists.
 Zenodo uses bounded probes and six-hour recovery with a fixed adoption date.
 
+The off-checkout wheel rehearsal found four administrative failures: the API
+reference test used a relative working-directory path, and the reporting tests
+could import a sibling `devtools.devguide_reports`. Resolve maintained evidence
+from the test file and load the owning script by its exact path. These corrections
+preserve the complete installed selection and keep ArgDigest runtime imports
+outside source.
+
 ## Why
 
 Dependency resolution changes need artifact evidence before public visibility.
