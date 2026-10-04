@@ -113,3 +113,23 @@ The single Linux routine package suite moves to Python 3.14; the required
 PR check must use its new name while preserving strict checks and administrator
 direct-push bypass. The complete weekly matrix still includes every older minor.
 
+## Current hosted evidence — 2026-10-04
+
+At `fc07dcf`, GitHub's live branch protection requires the strict
+`Test on ubuntu-latest, Python 3.14` check (GitHub Actions app 15368) and leaves
+administrator enforcement disabled. The executed routine Python 3.14
+[manual run](https://github.com/uibcdf/argdigest/actions/runs/37122613868)
+passed at `0e175dd`.
+
+The real daily [scheduled recovery](https://github.com/uibcdf/argdigest/actions/runs/37121306376)
+passed at `7d88628`; all twelve operating-system/interpreter jobs executed their
+`Run tests` steps successfully. This is executed full-matrix evidence, rather
+than a successful probe whose tests were omitted. Source and installed public
+artifact qualification remain distinct. A real PR exercising the formerly
+excluded branch/title route is still pending; the issue remains partial.
+
+The Python 3.14 macOS job's native log identifies `macos-26-arm64`, reports
+`RELEASE_ARM64_VMAPPLE arm64` from `uname -a`, and records 286 tests passed
+plus one skipped. The matrix therefore has an observed Apple Silicon 3.14
+execution, without extending support to Intel macOS or treating this source
+test result as qualification of a new public artifact.

@@ -45,6 +45,16 @@ depending on import-time side effects, and silently swallowing invalid input.
 These patterns make behavior hard to reason about and usually create subtle
 regressions later.
 
+## Optional physical-quantity pipelines
+
+Importing `argdigest.contrib.pyunitwizard_support` and constructing its pipeline
+factories do not import PyUnitWizard. The provider is loaded through a guarded
+operation when a pipeline or an available provider context executes. Executing a
+quantity pipeline without the provider produces the catalogued optional-dependency
+error with argument context;
+a failure importing one of the provider's own dependencies retains its original
+exception. Install the `pyunitwizard` extra before executing these pipelines.
+
 ## Next
 
 Continue with [Strictness and Errors](strictness-and-errors.md).
