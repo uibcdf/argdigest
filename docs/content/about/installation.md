@@ -20,6 +20,7 @@ The conda package carries the runtime dependencies only, so the integrations wit
 ```bash
 conda install -c uibcdf pyunitwizard
 conda install -c conda-forge beartype pydantic pandas
+conda install -c conda-forge numpy
 ```
 
 These enable features like passing Pydantic models as rules, using `type_check=True`, or
@@ -43,4 +44,9 @@ pip install -e ".[all]"
 pip install -e ".[pydantic]"
 pip install -e ".[beartype]"
 pip install -e ".[pyunitwizard]"
+pip install -e ".[science]"
 ```
+
+From 0.14.0, NumPy is optional. Basic installation supports core digestion and
+standard pipelines without it. Install NumPy for scientific array pipelines;
+the source `pyunitwizard` extra includes it automatically.

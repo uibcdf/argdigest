@@ -1,5 +1,31 @@
 # Conda release routes
 
+## Current route from 0.14.0
+
+Release ownership: `uibcdf/argdigest#24`; consumer notice:
+`uibcdf/molsyssuite#98`. The reviewed plan and resource inventory now use the
+shared noarch workflows at `5090a656cd8223826947575f329ee52aa664c725`.
+This adopts the qualified build/upload repairs without requesting the deferred
+general provider v2.3.0 rollout.
+
+The build checks every declared source job and test step, builds once, inspects
+embedded metadata/resources, then seals and uploads the exact file. The full
+installed workflow runs all `tests/` outside source with public scientific
+dependencies and checks provenance before/after. A separate twelve-cell
+minimal-core matrix checks public dependency lower bounds without NumPy and
+exercises classmethods, runtime `qualname` and literal-True bypass behavior.
+Both matrices must pass before promotion. The promoter binds the full installed
+run, verifies the public GitHub release and minimal-core matrix, then adds the
+main label to the same SHA-256 and independently checks registry and solver index.
+
+Use the committed build number. Repairs require a new candidate and additive
+build number; never retry an uncertain upload or promotion. Read-only public
+verification may be repeated independently. Zenodo uses the pinned resumable
+workflow, exact-tag manual probes and six-hour discovery from the fixed
+2026-10-04 adoption cutoff. Pending ingestion is not an archival claim.
+
+## Historical local route through 0.13.0
+
 ArgDigest follows the two-route contract being developed in
 `uibcdf/molsyssuite#27`. Before tagging, the committed
 `devtools/conda-build/release_plan.toml` names one canonical version, direct or

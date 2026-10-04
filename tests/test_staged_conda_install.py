@@ -111,24 +111,36 @@ def test_wrong_or_failed_producer_evidence_is_rejected(
 
 
 def test_staged_matrix_checks_twelve_clean_installs_and_no_pip_source_install():
+    import tomllib
+
     workflow = yaml.safe_load(WORKFLOW.read_text(encoding="utf-8"))
-    jobs = workflow["jobs"]
-    assert jobs["install"]["needs"] == "verify-producer"
-    matrix = jobs["install"]["strategy"]["matrix"]
-    assert matrix["os"] == ["ubuntu-latest", "macos-latest", "windows-latest"]
-    assert matrix["python"] == ["3.11", "3.12", "3.13", "3.14"]
-    steps = jobs["install"]["steps"]
-    setup = next(
-        step for step in steps if step.get("name", "").startswith("Create a clean")
+    assert "test-installed-noarch-conda.yaml@" in workflow["jobs"]["installed"]["uses"]
+    inventory = tomllib.loads(
+        (ROOT / "devtools/conda-build/resources.toml").read_text()
     )
-    args = setup["with"]["create-args"]
-    assert "channel_priority: flexible" in setup["with"]["condarc"]
-    assert "uibcdf/label/staging::argdigest=" in args
+    assert inventory["installed_gate"]["platforms"] == [
+        "linux-64",
+        "osx-arm64",
+        "win-64",
+    ]
+    assert inventory["installed_gate"]["python_versions"] == [
+        "3.11",
+        "3.12",
+        "3.13",
+        "3.14",
+    ]
+    core = yaml.safe_load(
+        (ROOT / ".github/workflows/test_staged_core_conda_package.yaml").read_text()
+    )
+    matrix = core["jobs"]["core"]["strategy"]["matrix"]
+    assert len(matrix["os"]) * len(matrix["python"]) == 12
+    steps = core["jobs"]["core"]["steps"]
+    args = steps[1]["with"]["create-args"]
     assert "uibcdf::depdigest=0.11.0=py_2" in args
     assert "uibcdf::smonitor=0.16.0=py_1" in args
     assert all("pip install" not in step.get("run", "") for step in steps)
     assert 'cd "$RUNNER_TEMP"' in steps[-1]["run"]
-    assert "cygpath -u" in steps[-1]["run"]
+    assert 'python -P "$probe"' in steps[-1]["run"]
 
 
 @pytest.mark.parametrize(

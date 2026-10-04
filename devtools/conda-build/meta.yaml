@@ -1,13 +1,15 @@
 package:
   name: argdigest
-  version: "{{ environ['GIT_DESCRIBE_TAG'] }}"
+  version: "{{ environ['MOLSYSSUITE_CONDA_VERSION'] }}"
 
 source:
   path: ../../   # repo root
 
 build:
-  number: "{{ environ.get('ARGDIGEST_CONDA_BUILD_NUMBER', '0') }}"
+  number: {{ environ['MOLSYSSUITE_CONDA_BUILD_NUMBER'] }}
+  string: "py_{{ environ['MOLSYSSUITE_CONDA_BUILD_NUMBER'] }}"
   noarch: python
+  script: python -m pip install --no-deps --no-build-isolation .
   entry_points:
     - argdigest = argdigest.cli:main
 

@@ -10,5 +10,6 @@ how to install it, and where it fits in the UIBCDF ecosystem.
 what_is_argdigest.md
 installation.md
 citation.md
+release-notes.md
 who_is_behind.md
 ```
