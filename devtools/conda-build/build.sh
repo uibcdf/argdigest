@@ -1,4 +1,3 @@
-echo "Building"
-$PYTHON devtools/conda-build/freeze_project_version.py "$PKG_VERSION"
-$PYTHON -m pip install --no-deps --no-build-isolation --ignore-installed .
-echo "Done"
+set -euo pipefail
+# The shared publisher already freezes the reviewed version before conda-build.
+"$PYTHON" -m pip install --no-deps --no-build-isolation --ignore-installed .

@@ -16,7 +16,10 @@ def test_recipe_declares_one_supported_noarch_python_artifact():
     assert "noarch: python" in recipe
     assert recipe.count("python >=3.11,<3.15") == 2
     assert "MOLSYSSUITE_CONDA_BUILD_NUMBER" in recipe
-    assert "--no-deps --no-build-isolation" in recipe
+    build_script = (RECIPE.parent / "build.sh").read_text()
+    assert "--no-deps --no-build-isolation" in build_script
+    assert "  script:" not in recipe
+    assert "freeze_project_version.py" not in build_script
 
 
 def test_manual_candidates_are_exact_and_staging_only():

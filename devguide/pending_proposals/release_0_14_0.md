@@ -37,6 +37,13 @@ from the test file and load the owning script by its exact path. These correctio
 preserve the complete installed selection and keep ArgDigest runtime imports
 outside source.
 
+Staging attempt `37209744706` failed before upload because the migrated recipe
+declared `build.script` alongside the existing `build.sh`. Both upload steps
+were skipped. Keep `build.sh` as the sole installer and remove its old version
+freezing call: the shared publisher already freezes the reviewed version in the
+ephemeral checkout. No artifact coordinate was occupied by this attempt; build 0
+remains available. Requalify the new producer candidate before retrying staging.
+
 ## Why
 
 Dependency resolution changes need artifact evidence before public visibility.
