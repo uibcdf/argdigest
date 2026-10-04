@@ -4,7 +4,10 @@
 
 Release ownership: `uibcdf/argdigest#24`; consumer notice:
 `uibcdf/molsyssuite#98`. The reviewed plan and resource inventory now use the
-shared noarch workflows at `5090a656cd8223826947575f329ee52aa664c725`.
+shared producer, promoter and archival workflows at
+`5090a656cd8223826947575f329ee52aa664c725`. Installed qualification pins
+`13a661e348275496a677a1bfe9650d68a03713a3`, the accepted native Windows Conda
+repair in `uibcdf/molsyssuite#99` / `uibcdf/molsyssuite#100`.
 This adopts the qualified build/upload repairs without requesting the deferred
 general provider v2.3.0 rollout.
 
@@ -18,11 +21,24 @@ Both matrices must pass before promotion. The promoter binds the full installed
 run, verifies the public GitHub release and minimal-core matrix, then adds the
 main label to the same SHA-256 and independently checks registry and solver index.
 
-Use the committed build number. Repairs require a new candidate and additive
-build number; never retry an uncertain upload or promotion. Read-only public
+Use the committed build number. Package repairs require a new candidate and
+additive build number. Administrative workflow repairs can qualify the unchanged
+artifact under a separate full `qualification_sha`; preserve the original
+producer, scientific selection, file digest and numeric tag. Never retry an
+uncertain upload or promotion. Read-only public
 verification may be repeated independently. Zenodo uses the pinned resumable
 workflow, exact-tag manual probes and six-hour discovery from the fixed
 2026-10-04 adoption cutoff. Pending ingestion is not an archival claim.
+
+Public 0.14.0 is `argdigest-0.14.0-py_0.tar.bz2`, SHA-256
+`983dca0f6bd0944d81fb1efc01e1dfa5c951e95abac6e7a0a08a13b7370d3b9e`.
+The producer/tag identify `0fa776af2d271065c60727c28480b20c3ce09aee`;
+installed workflow qualification identifies
+`be39e899f3b9fef2d4ce705799ae19770f41f769`. Full installed run `37213239915`
+and minimal-core run `37211211381` passed all twelve cells each. Promotion run
+`37215001335` published the same digest; fresh public installation and source-only
+Zenodo record `23139769` were independently verified. Complete receipts:
+`completed_proposals/release_0_14_0.md`.
 
 ## Historical local route through 0.13.0
 
