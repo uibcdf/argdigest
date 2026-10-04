@@ -1,0 +1,24 @@
+version_file = "site-packages/argdigest/_version.py"
+import_name = "argdigest"
+reason = "Pure Python code with Python catalog/configuration modules; no bundled native code or platform-dependent resources. Verify the generated version, core decorator, optional adapter, diagnostic catalog and CLI."
+required_paths = [
+  "site-packages/argdigest/__init__.py",
+  "site-packages/argdigest/_version.py",
+  "site-packages/argdigest/core/decorator.py",
+  "site-packages/argdigest/contrib/pyunitwizard_support.py",
+  "site-packages/argdigest/_smonitor.py",
+  "site-packages/argdigest/cli.py",
+]
+
+[installed_gate]
+workflow = ".github/workflows/test_staged_conda_package.yaml"
+platforms = ["linux-64", "osx-arm64", "win-64"]
+python_versions = ["3.11", "3.12", "3.13", "3.14"]
+prepare_job = "installed / prepare"
+job_template = "installed / {platform} · Python {python}"
+required_steps = ["Install exact artifact", "Validate installed files", "Run installed tests", "Recheck installed provenance after scientific tests"]
+
+[installed_tests]
+paths = ["tests"]
+pytest_args = ["--receptor=ci", "-q"]
+conda_dependencies = ["numpy>=1.26,<3", "pandas>=2,<4", "beartype>=0.16,<1", "pydantic>=2,<3", "pyunitwizard==0.27.0", "pint>=0.24,<1"]

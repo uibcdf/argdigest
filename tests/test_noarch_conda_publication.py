@@ -1,111 +1,99 @@
+import re
+import tomllib
 from pathlib import Path
 
+import yaml
+
 ROOT = Path(__file__).resolve().parents[1]
-RECIPE = ROOT / "devtools" / "conda-build" / "meta.yaml"
-WORKFLOW = ROOT / ".github" / "workflows" / "build_and_upload_conda_packages.yaml"
-PROMOTION_WORKFLOW = ROOT / ".github" / "workflows" / "promote_conda_package.yaml"
+RECIPE = ROOT / "devtools/conda-build/meta.yaml"
+WORKFLOW = ROOT / ".github/workflows/build_and_upload_conda_packages.yaml"
+PROMOTION_WORKFLOW = ROOT / ".github/workflows/promote_conda_package.yaml"
+PIN = "5090a656cd8223826947575f329ee52aa664c725"
 
 
 def test_recipe_declares_one_supported_noarch_python_artifact():
-    recipe = RECIPE.read_text(encoding="utf-8")
-
+    recipe = RECIPE.read_text()
     assert "noarch: python" in recipe
     assert recipe.count("python >=3.11,<3.15") == 2
-    assert (
-        "number: \"{{ environ.get('ARGDIGEST_CONDA_BUILD_NUMBER', '0') }}\"" in recipe
-    )
+    assert "MOLSYSSUITE_CONDA_BUILD_NUMBER" in recipe
+    assert "--no-deps --no-build-isolation" in recipe
 
 
 def test_manual_candidates_are_exact_and_staging_only():
-    workflow = WORKFLOW.read_text(encoding="utf-8")
-
-    assert "candidate_sha:" in workflow
-    assert (
-        "ref: ${{ inputs.candidate_sha || github.event.release.tag_name }}" in workflow
-    )
-    assert 'test "$(git rev-parse HEAD)" = "$CANDIDATE_SHA"' in workflow
-    assert "Build, test, and upload the staging candidate" in workflow
-    assert "label: staging" in workflow
-    assert (
-        "id: conda_staging\n        if: github.event_name == 'workflow_dispatch'"
-        in workflow
-    )
-    assert "--route staged" in workflow
+    workflow = WORKFLOW.read_text()
+    assert "sha == os.environ['CANDIDATE_SHA']" in workflow
+    assert "assert plan['route'] == 'staged'" in workflow
+    jobs = yaml.safe_load(workflow)["jobs"]
+    assert jobs["publish"]["needs"] == "decision"
+    assert jobs["publish"]["uses"].endswith("@" + PIN)
 
 
 def test_stable_releases_have_a_guarded_direct_route():
-    workflow = WORKFLOW.read_text(encoding="utf-8")
-
+    workflow = WORKFLOW.read_text()
     assert "types: ['released']" in workflow
-    assert "prereleased" not in workflow
-    assert "Build, test, and upload the unstaged release" in workflow
-    assert "label: main" in workflow
-    assert (
-        "id: conda_release\n        if: github.event_name == 'release' "
-        "&& steps.plan.outputs.route == 'direct'"
-    ) in workflow
-    assert "--route direct" in workflow
-    assert workflow.index("--route direct") < workflow.index("label: main")
-    assert (
-        "argdigest-conda-${{ inputs.version || github.event.release.tag_name }}"
-        in workflow
-    )
+    job = yaml.safe_load(workflow)["jobs"]["publish"]
+    assert "needs.decision.outputs.route == 'direct'" in job["if"]
+    assert "publish-noarch-conda.yaml@" in job["uses"]
+    assert "inputs.version || github.event.release.tag_name" in job["with"]["version"]
 
 
 def test_staged_release_event_checks_plan_but_does_not_rebuild():
-    workflow = WORKFLOW.read_text(encoding="utf-8")
-    assert "id: route_release_staged" in workflow
+    workflow = WORKFLOW.read_text()
+    assert "assert tag_sha == sha" in workflow
+    assert "plan['route'] in ('staged', 'direct')" in workflow
+    condition = yaml.safe_load(workflow)["jobs"]["publish"]["if"]
+    # A release event with route=staged has no eligible build job.
     assert (
-        "if: github.event_name == 'release' && steps.plan.outputs.route == 'staged'"
-        in workflow
+        condition
+        == "github.event_name == 'workflow_dispatch' || needs.decision.outputs.route == 'direct'"
     )
-    assert "--route staged" in workflow
-    assert (
-        "id: conda_release\n        if: github.event_name == 'release' "
-        "&& steps.plan.outputs.route == 'direct'"
-    ) in workflow
-    assert (
-        "Setup the public release build environment\n"
-        "        if: github.event_name == 'release' "
-        "&& steps.plan.outputs.route == 'direct'"
-    ) in workflow
 
 
 def test_noarch_workflow_has_one_job_and_retains_producer_evidence():
-    workflow = WORKFLOW.read_text(encoding="utf-8")
-
-    assert "matrix:" not in workflow
-    assert "@v2.1.0" in workflow
-    assert "--python" not in workflow
-    assert "platform_linux-64: false" in workflow
-    assert "platform_win-64: false" in workflow
-    assert "always() && steps.conda_staging.outputs.evidence_path != ''" in workflow
-    assert "always() && steps.conda_release.outputs.evidence_path != ''" in workflow
-    assert '--built-paths "$BUILT_PATHS"' in workflow
+    workflow = yaml.safe_load(WORKFLOW.read_text())
+    job = workflow["jobs"]["publish"]
     assert (
-        "argdigest-conda-route-${{ github.run_id }}-${{ github.run_attempt }}"
-        in workflow
+        job["uses"]
+        == f"uibcdf/molsyssuite/.github/workflows/publish-noarch-conda.yaml@{PIN}"
     )
+    assert job["secrets"]["ANACONDA_TOKEN"] == "${{ secrets.ANACONDA_UIBCDF_TOKEN }}"
+    inventory = tomllib.loads(
+        (ROOT / "devtools/conda-build/resources.toml").read_text()
+    )
+    assert inventory["version_file"] in inventory["required_paths"]
+    assert inventory["installed_tests"]["paths"] == ["tests"]
 
 
 def test_promotion_workflow_checks_exact_release_and_file_identity():
-    workflow = PROMOTION_WORKFLOW.read_text(encoding="utf-8")
+    workflow = yaml.safe_load(PROMOTION_WORKFLOW.read_text())
+    job = workflow["jobs"]["promote"]
+    assert job["needs"] == "release"
+    assert (
+        job["uses"]
+        == f"uibcdf/molsyssuite/.github/workflows/promote-noarch-conda.yaml@{PIN}"
+    )
+    assert job["with"]["installed_run_id"] == "${{ inputs.installed_run_id }}"
+    assert job["with"]["sha256"] == "${{ inputs.sha256 }}"
+    guard = (ROOT / "devtools/conda-build/verify_core_release.py").read_text()
+    assert "refs/heads/main" in guard
+    assert "releases/tags/" in guard
 
-    assert 'test "$GITHUB_REF" = refs/heads/main' in workflow
-    assert 'test "$(git rev-parse HEAD)" = "$CANDIDATE_SHA"' in workflow
-    assert (
-        'test "$(git rev-list -n 1 "$RELEASE_VERSION")" = "$CANDIDATE_SHA"' in workflow
+
+def test_source_gate_declares_every_executed_matrix_cell():
+    plan = tomllib.loads((ROOT / "devtools/conda-build/release_plan.toml").read_text())
+    matrix = yaml.safe_load(
+        (ROOT / ".github/workflows/CI_full_matrix.yaml").read_text()
+    )["jobs"]["full-test"]["strategy"]["matrix"]["cfg"]
+    expected = {
+        f"Full test on {cell['os']}, Python {cell['python-version']}" for cell in matrix
+    }
+    assert set(plan["gate_jobs"][".github/workflows/CI_full_matrix.yaml"]) == expected
+    assert all(
+        steps == ["Run tests"]
+        for steps in plan["gate_jobs"][".github/workflows/CI_full_matrix.yaml"].values()
     )
-    assert "releases/tags/$RELEASE_VERSION" in workflow
-    assert (
-        "uibcdf/argdigest/$RELEASE_VERSION/noarch/argdigest-$RELEASE_VERSION-py_$BUILD_NUMBER.tar.bz2"
-        in workflow
-    )
-    assert "action-build-and-upload-conda-packages/promote@v2.2.2" in workflow
-    assert "--route staged" in workflow
-    assert "expected-sha256: ${{ inputs.sha256 }}" in workflow
-    assert "from-label: staging" in workflow
-    assert "to-label: main" in workflow
-    assert 'record.get("sha256") == expected' in workflow
-    assert 'record["channel"] != "https://conda.anaconda.org/uibcdf/noarch"' in workflow
-    assert "ANACONDA_UIBCDF_TOKEN" in workflow
+    for job in yaml.safe_load(
+        (ROOT / ".github/workflows/verify_zenodo_releases.yaml").read_text()
+    )["jobs"].values():
+        assert re.fullmatch(r"[0-9a-f]{40}", job["uses"].rsplit("@", 1)[1])
+        assert job["with"]["since"] == "2026-10-04T00:00:00Z"
