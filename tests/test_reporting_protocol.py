@@ -1,12 +1,18 @@
 from __future__ import annotations
 
+import importlib.util
 import subprocess
 import sys
 from pathlib import Path
 
-from devtools import devguide_reports
-
 ROOT = Path(__file__).resolve().parents[1]
+SPEC = importlib.util.spec_from_file_location(
+    "argdigest_devguide_reports", ROOT / "devtools/devguide_reports.py"
+)
+assert SPEC is not None and SPEC.loader is not None
+devguide_reports = importlib.util.module_from_spec(SPEC)
+sys.modules[SPEC.name] = devguide_reports
+SPEC.loader.exec_module(devguide_reports)
 
 
 def test_report_metadata_and_lifecycle_are_valid():

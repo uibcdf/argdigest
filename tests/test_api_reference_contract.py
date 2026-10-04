@@ -27,6 +27,8 @@ def _extract_autosummary_items(api_index: str) -> list[str]:
 
 
 def test_api_reference_matches_public_exports():
-    api_index = Path("docs/api/index.md").read_text(encoding="utf-8")
+    api_index = (Path(__file__).resolve().parents[1] / "docs/api/index.md").read_text(
+        encoding="utf-8"
+    )
     documented = _extract_autosummary_items(api_index)
     assert documented == list(argdigest.__all__)
