@@ -159,3 +159,12 @@ probe runs cannot clear skipped-commit debt, rejects non-main matrix watermarks,
 and selects full recovery when the API is uncertain. Hosted PR and scheduled
 evidence complement that detector regression; it does not itself test GitHub
 branch protection. No common policy is duplicated or changed here.
+
+## Documentation-only PR checkpoint — 2026-10-04
+
+The following commit `13feb2d4b431ac99304c1f18677f0f5d8a59ca50` changed only
+developer-guide records and indexes. Its real `pull_request`
+[routine CI](https://github.com/uibcdf/argdigest/actions/runs/37202605038)
+and [suite policy](https://github.com/uibcdf/argdigest/actions/runs/37202605332)
+both passed while the same formerly excluded title and branch remained in place.
+This independently exercises the removed documentation-path exclusion.

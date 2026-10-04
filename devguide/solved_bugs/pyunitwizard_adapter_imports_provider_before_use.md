@@ -87,3 +87,11 @@ The addressable guard `tests/test_pyunitwizard_boundary.py` protects the exact
 eager-import mechanism and preserves the absence/transitive-failure distinction.
 Public-provider runtime evidence and the local expanded audit are recorded above.
 Guide synchronization remains with the central `uibcdf/molsyssuite#95` owner.
+
+## Guide delivery — 2026-10-04
+
+The central owner delivered the expanded public DepDigest 0.13.0 guide in
+ArgDigest `1790e4a7cb32bf3f621447396955877c73654dbd` while PR #23 was being
+verified. The PR incorporates that upstream commit unchanged. The source audit
+contract is now available in the synchronized copy; the earlier pending-guide
+statement above records the state before this independent delivery.
