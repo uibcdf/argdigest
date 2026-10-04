@@ -1,9 +1,9 @@
 ---
 summary: Defer the optional PyUnitWizard adapter import until pipeline execution.
 issue: uibcdf/argdigest#22
-status: active
+status: resolved
 opened: 2026-10-04
-closed:
+closed: 2026-10-04
 severity: medium
 verification: reproduced
 area: [dependencies, integration]
@@ -67,7 +67,23 @@ and generated indexes pass. Beartype 0.22.9 was added to the development
 environment before the full-suite run; Conda also updated OpenSSL to 3.6.5.
 HTML documentation builds in the repository's documented Python 3.13 docs
 environment, with three existing heading warnings in `docs/index.md`.
-Hosted qualification is pending.
+Hosted qualification passed in [PR #23](https://github.com/uibcdf/argdigest/pull/23)
+at source head `965cdf01b1952a22b080b939360ffff9a64dab83`:
+[routine CI](https://github.com/uibcdf/argdigest/actions/runs/37201939802)
+executed the Python 3.14 test job (290 passed, one skipped, three warnings),
+wheel build/install and import from outside the checkout. The hosted environment
+installed public DepDigest 0.13.0 and PyUnitWizard 0.27.0. The
+[suite policy](https://github.com/uibcdf/argdigest/actions/runs/37201940155)
+also passed. These are PR/source and wheel-smoke checks, not a new ArgDigest
+release or its full installed compatibility matrix.
 
 Canonical `DEPDIGEST_GUIDE.md` synchronization remains centrally owned; this
 change does not edit a generated guide or claim adoption by another consumer.
+
+## Resolution — 2026-10-04
+
+The narrowed guarded import is implemented and tested without an audit exemption.
+The addressable guard `tests/test_pyunitwizard_boundary.py` protects the exact
+eager-import mechanism and preserves the absence/transitive-failure distinction.
+Public-provider runtime evidence and the local expanded audit are recorded above.
+Guide synchronization remains with the central `uibcdf/molsyssuite#95` owner.
