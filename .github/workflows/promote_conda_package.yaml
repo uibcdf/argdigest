@@ -16,6 +16,10 @@ on:
         description: Successful full installed matrix run
         required: true
         type: string
+      qualification_sha:
+        description: Full workflow-repair SHA for the unchanged producer artifact
+        required: false
+        type: string
       core_run_id:
         description: Successful minimal-core lower-bound matrix run
         required: true
@@ -48,5 +52,6 @@ jobs:
       version: ${{ inputs.version }}
       sha256: ${{ inputs.sha256 }}
       installed_run_id: ${{ inputs.installed_run_id }}
+      qualification_sha: ${{ inputs.qualification_sha }}
     secrets:
       ANACONDA_TOKEN: ${{ secrets.ANACONDA_UIBCDF_TOKEN }}

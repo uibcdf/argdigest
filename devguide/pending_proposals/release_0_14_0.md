@@ -9,7 +9,7 @@ verification: asserted
 area: [release, distribution]
 guard:
 normative:
-blocked_by: []
+blocked_by: [uibcdf/molsyssuite#99]
 supersedes: []
 ---
 
@@ -43,6 +43,23 @@ were skipped. Keep `build.sh` as the sole installer and remove its old version
 freezing call: the shared publisher already freezes the reviewed version in the
 ephemeral checkout. No artifact coordinate was occupied by this attempt; build 0
 remains available. Requalify the new producer candidate before retrying staging.
+
+Producer `37210475369` successfully staged the immutable original candidate
+`0fa776af2d271065c60727c28480b20c3ce09aee` as
+`argdigest-0.14.0-py_0.tar.bz2`, SHA-256
+`983dca0f6bd0944d81fb1efc01e1dfa5c951e95abac6e7a0a08a13b7370d3b9e`.
+Minimal-core run `37211211381` passed all twelve cells without NumPy, with the
+public DepDigest 0.11.0 and SMonitor 0.16.0 lower-bound builds.
+
+Full installed run `37211210817` passed Linux and macOS, but Windows failed
+before installing ArgDigest: the shared provider's Python subprocess could not
+resolve its Conda batch entry (`WinError 2`). The provider owns the repair in
+`uibcdf/molsyssuite#99`. The installed caller pins proposed provider commit
+`13a661e348275496a677a1bfe9650d68a03713a3` for hosted qualification; provider
+owner review is pending. The promoter accepts a separate administrative
+`qualification_sha`, preserving the original producer SHA, package, plan,
+complete scientific test selection and digest. Do not rebuild the occupied
+coordinate or move the eventual numeric tag away from the original producer.
 
 ## Why
 
