@@ -5,10 +5,6 @@ Open ArgDigest proposals with issue-backed reports. See
 
 <!-- generated: devguide_index -->
 
-### Partial (1)
-
-- [`complete_distribution_adoption.md`](complete_distribution_adoption.md) — [#28](https://github.com/uibcdf/argdigest/issues/28) — Complete the distribution contract review and preserve required provider floors in runtime environments. *(partial, reproduced)*
-
 ### Open (1)
 
 - [`build_stubs_compiler.md`](build_stubs_compiler.md) — [#9](https://github.com/uibcdf/argdigest/issues/9) — Generate offline type stubs from ArgDigest contracts after 1.0. *(open, inspected)*

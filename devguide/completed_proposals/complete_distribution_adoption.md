@@ -1,12 +1,12 @@
 ---
 summary: Complete the distribution contract review and preserve required provider floors in runtime environments.
 issue: uibcdf/argdigest#28
-status: partial
+status: resolved
 opened: 2026-10-06
-closed:
+closed: 2026-10-06
 verification: reproduced
 area: [distribution, governance]
-guard: tests/test_compatibility_matrix.py::test_runtime_environments_preserve_required_provider_floors
+guard: tests/test_noarch_conda_publication.py::test_dependency_preflight_precedes_tests_and_candidate_builds
 normative: MOLSYSSUITE_GUIDE.md
 blocked_by: []
 supersedes: []
@@ -78,7 +78,7 @@ providers than the installed package supports.
 
 ## Acceptance criteria
 
-- Correct and guard the six omitted provider minima (implemented locally).
+- Correct and guard the six omitted provider minima (published in `94cffa8`).
 - Inspect the applicable hosted gates on the published correction commit.
 - Complete the remaining local whole-policy review: classify applicable
   public/source/development/optional routes, confirm their Python and provider
@@ -87,8 +87,8 @@ providers than the installed package supports.
   The existing verified Conda delivery is evidence for that observed route,
   not future credentials or an additional public route.
 
-The minimum-floor correction is a completed subset; the owning issue remains
-open with overall distribution adoption **partial**.
+The initial minimum-floor correction completed one subset. The subsequent
+whole-route review and hosted evidence below complete this adoption theme.
 
 ## Complete route review — 2026-10-06
 
@@ -149,7 +149,37 @@ CLI are the other reviewed critical Python resources. No bundled native or
 platform-generated payload requires another profile. Existing exact-file
 installed and public poststate checks remain prerequisites of any new release.
 
-The route review and invocation are implemented. Hosted exact-head caller
-validation and final central adoption handoff remain; overall status stays
-**partial** until that evidence is inspected. Provider acceptance alone does
-not qualify these revised source inputs or transfer the old artifact's gates.
+## Completion evidence — 2026-10-06
+
+Implementation commit `ad920c515f7c08b6a85492f6aa2094405683899d` passes all
+applicable ordinary hosted gates:
+
+- [CI 37448382735](https://github.com/uibcdf/argdigest/actions/runs/37448382735)
+  executes the pinned shared preflight successfully for all 17 inventoried
+  routes, then the existing normal Linux/Python 3.14 test job passes **315 tests**
+  with **one** unavailable sibling-repository integration skip. Normal fixtures,
+  installed-wheel import, coverage and scientific selection remain in place.
+- [Suite policy 37448383684](https://github.com/uibcdf/argdigest/actions/runs/37448383684)
+  and [publication policy 37448383685](https://github.com/uibcdf/argdigest/actions/runs/37448383685)
+  pass on that same implementation SHA.
+- Provider integration `689e226fe22367d39ee9aedbd3c0230b313f4edf` retains
+  accepted tool commit `43b9f94bf5ab0ec3f54a4b2ca5b23b791d6af0bc` and passes
+  [350 native governance tests](https://github.com/uibcdf/molsyssuite/actions/runs/37445938579).
+  Native identities/results were inspected with GH Run Receptor; CI logs confirm
+  executed input preflight and pytest counts, rather than only green conclusions.
+
+The registered local guard rejects loss of the pinned shared invocation or its
+ordering before expensive tests/candidate builds. Shared provider guards own the
+actual constraint/source/resource negative fixtures; the earlier local floor
+guards remain. The reviewed public/runtime/build/optional/source applicability,
+exact-file publication controls and retained public installation evidence meet
+the current member distribution-policy review. CI/recipe readiness is **ready**;
+member adoption is **adopted**. Publication access remains bounded to the observed
+authorized original delivery, with no promise of future credential availability.
+
+This resolution is source-route adoption, not a new release, another member's
+acceptance or qualification of changed public bytes. No artifact was rebuilt,
+replaced, uploaded or promoted; no extra scientific matrix was dispatched.
+The closing record/index update is administrative: completed implementation
+tests remain applicable because runtime, inputs, callers and tests are unchanged.
+Its local reporting checks and applicable hosted policies are verified separately.
