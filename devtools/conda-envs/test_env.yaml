@@ -22,5 +22,5 @@ dependencies:
   - pyyaml
   - numpy
   - pandas
-  - smonitor
-  - depdigest
+  - smonitor >=0.16.0
+  - depdigest >=0.11.0

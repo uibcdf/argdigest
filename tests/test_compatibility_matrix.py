@@ -4,13 +4,24 @@ import re
 import tomllib
 from pathlib import Path
 
+import pytest
+import yaml
+from packaging.version import Version
+
 #: The Python versions ArgDigest supports, and the platforms each one is tested on.
-#: Everything else in this file is derived from these three constants, so widening or
-#: narrowing support is one edit here plus the files the tests then point at.
+#: Compatibility assertions derive their supported matrix from these constants;
+#: provider floors derive from packaging metadata and environment roles below.
 SUPPORTED_PYTHON = ("3.11", "3.12", "3.13", "3.14")
 SUPPORTED_PLATFORMS = ("ubuntu-latest", "macos-latest", "windows-latest")
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+RUNTIME_ENVIRONMENTS = (
+    "development_env.yaml",
+    "docs_env.yaml",
+    "test_env.yaml",
+    "test_env_core.yaml",
+)
+BUILD_ONLY_ENVIRONMENTS = ("build_env.yaml",)
 
 
 def _read(relative_path: str) -> str:
@@ -30,8 +41,8 @@ def _requirement_name(requirement: str) -> str:
 def _declared_floors(requirements: list[str]) -> dict[str, str | None]:
     """Map each requirement to the lower bound it declares, or `None` if it declares none.
 
-    Parsed with a regular expression rather than `packaging` so this file keeps to the
-    standard library, as the rest of it does.
+    This bounded parser covers the explicit >= constraints used in the reviewed
+    manifests. Environment comparisons use packaging for version ordering.
     """
 
     floors: dict[str, str | None] = {}
@@ -52,6 +63,57 @@ def _runtime_floors() -> dict[str, str | None]:
     """
 
     return _declared_floors(_pyproject()["project"]["dependencies"])
+
+
+def _environment_requirements(name: str) -> list[str]:
+    document = yaml.safe_load(_read(f"devtools/conda-envs/{name}"))
+    return [item for item in document["dependencies"] if isinstance(item, str)]
+
+
+def _assert_environment_floors(requirements: list[str], route: str) -> None:
+    """Protect required provider floors; stricter environment floors remain valid."""
+    observed = _declared_floors(requirements)
+    for name, expected in _runtime_floors().items():
+        actual = observed.get(name)
+        assert expected is not None, f"metadata: {name} has no reviewed minimum"
+        assert actual is not None, f"{route}: {name} is missing or unbounded"
+        assert Version(actual) >= Version(expected), (
+            f"{route}: {name}>={actual} weakens the metadata minimum >={expected}"
+        )
+
+
+def test_every_conda_environment_has_a_reviewed_role():
+    paths = REPO_ROOT / "devtools/conda-envs"
+    actual = {path.name for path in paths.iterdir() if path.suffix in {".yaml", ".yml"}}
+    assert actual == set(RUNTIME_ENVIRONMENTS) | set(BUILD_ONLY_ENVIRONMENTS), (
+        "Classify new environments before claiming their dependency contract."
+    )
+
+
+@pytest.mark.parametrize("route", RUNTIME_ENVIRONMENTS)
+def test_runtime_environments_preserve_required_provider_floors(route):
+    _assert_environment_floors(_environment_requirements(route), route)
+
+
+@pytest.mark.parametrize("provider", ("smonitor", "depdigest"))
+@pytest.mark.parametrize("mutation", ("missing", "unbounded", "stale"))
+def test_environment_guard_rejects_missing_or_weaker_provider(provider, mutation):
+    requirements = [
+        item
+        for item in _environment_requirements("test_env_core.yaml")
+        if _requirement_name(item) != provider
+    ]
+    if mutation == "unbounded":
+        requirements.append(provider)
+    elif mutation == "stale":
+        requirements.append(f"{provider} >=0.0.0")
+    with pytest.raises(AssertionError, match=provider):
+        _assert_environment_floors(requirements, "mutated runtime environment")
+
+
+def test_environment_guard_accepts_stricter_provider_floors():
+    requirements = [f"{name} >=99.0.0" for name in _runtime_floors()]
+    _assert_environment_floors(requirements, "reviewed stricter environment")
 
 
 def _expected_requires_python() -> str:
