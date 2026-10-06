@@ -90,14 +90,15 @@ policy applies when that decorator is invoked in any thread.
 
 ### Provider availability
 
-The last verified public SMonitor release, 0.18.0, does **not** provide scoped
-capture. The API is implemented at SMonitor commit
-`6feac9728cc35d57cbc92f284d7040d7f04cb35b` under `uibcdf/smonitor#37`/#38.
-Qualification against that source is not public-package compatibility.
+SMonitor 0.19.0 provides scoped capture through its public Conda package.
+Use that version or a compatible newer provider for restrictive diagnostics.
+SMonitor 0.16.0–0.18.0 retain compatibility with detailed diagnostics but do not
+provide the scoped API introduced by `uibcdf/smonitor#37`/#38.
 Explicit restrictive selection raises `DigestError` with code
 `ARG-ERR-CAPTURE-001` when the installed provider lacks the capability; ArgDigest
 never silently substitutes detailed capture or changes global configuration.
 Existing detailed use retains the declared SMonitor dependency floor.
-The source implementation is recorded in `uibcdf/argdigest#29`. Package
-publication is separate release work; consumer applicability and installed
-qualification remain with `uibcdf/recorda#2` and `uibcdf/molsyssuite#106`.
+ArgDigest's implementation is recorded in `uibcdf/argdigest#29`; the 0.15.0
+release and installed qualification are tracked in `uibcdf/argdigest#31`.
+Consumer applicability and receiving qualification remain with
+`uibcdf/recorda#2` and `uibcdf/molsyssuite#106`.

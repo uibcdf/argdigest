@@ -8,7 +8,7 @@ import sys
 
 def main() -> None:
     assert importlib.util.find_spec("numpy") is None, "Core solve installed NumPy"
-    from argdigest import arg_digest, argument_digest
+    from argdigest import DigestConfig, DigestError, arg_digest, argument_digest
     from argdigest.pipelines.coercers import to_bool
     from argdigest.pipelines.science import to_quantity_array
 
@@ -62,7 +62,30 @@ def main() -> None:
         else:
             raise AssertionError("A truthy nonboolean bypassed digestion")
     assert "numpy" not in sys.modules
-    print("PASS: NumPy-free core, science remedy, classmethods, qualname and bypass")
+
+    @arg_digest.map(
+        config=DigestConfig(argument_digestion=False, strictness="error"),
+        name={"kind": "std", "rules": ["strip", "upper"]},
+    )
+    def normalize(name):
+        return name
+
+    assert normalize(" name ") == "NAME"
+    assert normalize.digestion_plan.argument_digestion is False
+    assert normalize.digestion_plan.enable_argument_digestion is False
+    try:
+        arg_digest(capture_policy="metadata_only")(lambda value: value)
+    except DigestError as error:
+        assert error.code == "ARG-ERR-CAPTURE-001"
+    else:
+        raise AssertionError(
+            "A lower-bound provider silently accepted restrictive capture"
+        )
+    assert "numpy" not in sys.modules
+    print(
+        "PASS: NumPy-free core, science remedy, classmethods, qualname, bypass, "
+        "explicit pipelines and restrictive refusal on the lower-bound provider"
+    )
 
 
 if __name__ == "__main__":

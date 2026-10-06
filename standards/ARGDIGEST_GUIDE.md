@@ -10,8 +10,8 @@ Source of truth for integrating and using **ArgDigest** in this library.
 Metadata
 - Source repository: `argdigest`
 - Source document: `standards/ARGDIGEST_GUIDE.md`
-- Source version: `argdigest@0.12.0`
-- Last synced: 2026-08-13
+- Source version: `argdigest@0.15.0`
+- Last synced: 2026-10-06
 
 `0.12.0` changed this guide in two ways that affect an integration: `*args` and
 positional-only parameters are supported and documented (§5), and the `ValidatedPayload`
@@ -81,7 +81,7 @@ ArgDigest requires:
 - `smonitor` for diagnostics and telemetry.
 - `depdigest` for conditional dependency checks via `@dep_digest`.
 
-The next ArgDigest release makes NumPy optional. Basic argument contracts and `std`
+From ArgDigest 0.14.0, NumPy is optional. Basic argument contracts and `std`
 pipelines neither install nor import it. Consumers using `data` or `sci` NumPy pipelines
 should install `argdigest[science]`; the `pyunitwizard` extra includes NumPy as well.
 Scientific pipelines raise a clear missing-dependency error if NumPy is absent.
@@ -459,12 +459,12 @@ adapter translations keep their existing type and original cause. User validator
 formatting and independently implemented provider conversions are outside this
 guarantee. SMonitor owns scope nesting and task/thread propagation.
 
-The observed public SMonitor 0.18.0 lacks this capability. It exists at provider
-source commit `6feac9728cc35d57cbc92f284d7040d7f04cb35b`; source testing does not
-qualify a public installation route. Explicit restrictive requests fail closed
+SMonitor 0.19.0 provides this capability in its public Conda package. Earlier
+supported providers retain detailed compatibility. Explicit restrictive requests fail closed
 with `ARG-ERR-CAPTURE-001` on older providers; existing detailed defaults retain
-the declared dependency floor. Publication/adoption belongs to
-`uibcdf/argdigest#29` and `uibcdf/molsyssuite#106`.
+the declared dependency floor. ArgDigest 0.15.0 release qualification is tracked
+in `uibcdf/argdigest#31`; consumer adoption remains under its own owner and
+`uibcdf/molsyssuite#106` coordination.
 
 ---
 *Document created on February 6, 2026, as the authority for ArgDigest integration.*

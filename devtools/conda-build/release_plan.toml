@@ -1,18 +1,18 @@
 # Reviewed candidate decision. This file alone authorizes no public publication.
 schema = "molsyssuite.conda-plan@1"
-version = "0.14.0"
+version = "0.15.0"
 package = "argdigest"
 build_number = 0
 route = "staged"
 profile = "noarch-python"
-reason = "NumPy becomes optional; qualify minimal core and scientific installed behavior before public visibility."
-decision_by = "Diego Prada-Gracia, release authorized 2026-10-04 (uibcdf/argdigest#24)"
+reason = "Qualify scoped diagnostics with public SMonitor 0.19.0 and explicit digestion selection, plus retained lower-bound minimal-core compatibility, before public visibility."
+decision_by = "Release maintainer, publication explicitly authorized 2026-10-06 (uibcdf/argdigest#31)"
 artifact_subdirs = ["noarch"]
 test_platforms = ["linux-64", "osx-arm64", "win-64"]
 python_versions = ["3.11", "3.12", "3.13", "3.14"]
 required_workflows = [".github/workflows/CI_full_matrix.yaml", ".github/workflows/CI.yaml"]
 requires_installed_gate = true
-new_compatibility_surface = false
+new_compatibility_surface = true
 coupled_release = false
 dependencies_public = true
 

@@ -49,8 +49,10 @@ class NativeError(ValueError):
 
 
 @pytest.fixture
-def capture_api():
+def capture_api(request):
     if not hasattr(smonitor, "diagnostic_scope"):
+        if request.config.getoption("--require-scoped-capture"):
+            pytest.fail("The installed release gate requires SMonitor scoped capture")
         pytest.skip("Scoped capture is not available in this SMonitor version")
     handler = MemoryHandler()
     manager = smonitor.get_manager()
