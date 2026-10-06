@@ -5,7 +5,7 @@ their established locations so existing references remain valid.
 
 <!-- generated: devguide_index -->
 
-### Resolved (16)
+### Resolved (18)
 
 - [`adopt_molsyssuite_policy_v1.md`](../completed_proposals/adopt_molsyssuite_policy_v1.md) — [#4](https://github.com/uibcdf/argdigest/issues/4) — Adopt the shared MolSysSuite policy and Ruff gate. *(resolved, measured)*
 - [`adopt_shared_reporting_lifecycle.md`](../completed_proposals/adopt_shared_reporting_lifecycle.md) — [#6](https://github.com/uibcdf/argdigest/issues/6) — Adopt the shared issue-backed developer-guide lifecycle. *(resolved, inspected)*
@@ -14,6 +14,7 @@ their established locations so existing references remain valid.
 - [`complete_distribution_adoption.md`](../completed_proposals/complete_distribution_adoption.md) — [#28](https://github.com/uibcdf/argdigest/issues/28) — Complete the distribution contract review and preserve required provider floors in runtime environments. *(resolved, reproduced)*
 - [`contract_refusal_hides_cause_and_allowed_arguments.md`](../solved_bugs/contract_refusal_hides_cause_and_allowed_arguments.md) — [#14](https://github.com/uibcdf/argdigest/issues/14) — A function-contract refusal hid a reserved-token error and the arguments accepted for the call. *(resolved, reproduced)*
 - [`expand_python_support_to_3_14.md`](../completed_proposals/expand_python_support_to_3_14.md) — [#13](https://github.com/uibcdf/argdigest/issues/13) — Release ArgDigest with independently verified Python 3.14 support. *(resolved, measured)*
+- [`explicit_argument_digestion.md`](../completed_proposals/explicit_argument_digestion.md) — [#30](https://github.com/uibcdf/argdigest/issues/30) — Select argument digestion independently of configuration and pipelines. *(resolved, measured)*
 - [`method_caller_omits_runtime_class.md`](../solved_bugs/method_caller_omits_runtime_class.md) — [#18](https://github.com/uibcdf/argdigest/issues/18) — Method caller names the module and method but omits the runtime class. *(resolved, reproduced)*
 - [`numpy_loaded_by_non_scientific_consumers.md`](../solved_bugs/numpy_loaded_by_non_scientific_consumers.md) — [#15](https://github.com/uibcdf/argdigest/issues/15) — NumPy is loaded by consumers that never use scientific pipelines. *(resolved, reproduced)*
 - [`pr_ci_can_be_skipped_and_direct_push_debt_is_unchecked.md`](../solved_bugs/pr_ci_can_be_skipped_and_direct_push_debt_is_unchecked.md) — [#21](https://github.com/uibcdf/argdigest/issues/21) — PR CI can be skipped and direct-push debt is unchecked *(resolved, inspected)*
@@ -21,6 +22,7 @@ their established locations so existing references remain valid.
 - [`receptor_misclassifies_composite_conda_publication.md`](../solved_bugs/receptor_misclassifies_composite_conda_publication.md) — [#10](https://github.com/uibcdf/argdigest/issues/10) — Use the release profile for action-internal Conda publication. *(resolved, reproduced)*
 - [`release_0_14_0.md`](../completed_proposals/release_0_14_0.md) — [#24](https://github.com/uibcdf/argdigest/issues/24) — Publish 0.14.0 after exact-source and staged installed qualification. *(resolved, measured)*
 - [`review_inherited_python_ecosystem_policy.md`](../completed_proposals/review_inherited_python_ecosystem_policy.md) — [#20](https://github.com/uibcdf/argdigest/issues/20) — Review inherited Python ecosystem policy in ArgDigest. *(resolved, measured)*
+- [`scoped_metadata_only_diagnostics.md`](../completed_proposals/scoped_metadata_only_diagnostics.md) — [#29](https://github.com/uibcdf/argdigest/issues/29) — Apply SMonitor capture policy before ArgDigest-owned diagnostic collection. *(resolved, measured)*
 - [`truthy_skip_digestion_bypasses_validation.md`](../solved_bugs/truthy_skip_digestion_bypasses_validation.md) — [#17](https://github.com/uibcdf/argdigest/issues/17) — A truthy non-boolean skip_digestion bypasses validation before its digester runs. *(resolved, reproduced)*
 - [`warnings_inside_decorated_functions_point_to_wrapper.md`](../solved_bugs/warnings_inside_decorated_functions_point_to_wrapper.md) — [#16](https://github.com/uibcdf/argdigest/issues/16) — Warnings inside decorated functions point to the ArgDigest wrapper. *(resolved, inspected)*
 

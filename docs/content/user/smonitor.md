@@ -98,5 +98,6 @@ Explicit restrictive selection raises `DigestError` with code
 `ARG-ERR-CAPTURE-001` when the installed provider lacks the capability; ArgDigest
 never silently substitutes detailed capture or changes global configuration.
 Existing detailed use retains the declared SMonitor dependency floor.
-Publication and receiving qualification remain tracked by
-`uibcdf/argdigest#29` and `uibcdf/molsyssuite#106`.
+The source implementation is recorded in `uibcdf/argdigest#29`. Package
+publication is separate release work; consumer applicability and installed
+qualification remain with `uibcdf/recorda#2` and `uibcdf/molsyssuite#106`.
