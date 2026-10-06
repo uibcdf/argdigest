@@ -118,11 +118,13 @@ This document provides context and instructions for AI Agents (like yourself) to
 ## 1. Project Context
 - **Library Module**: `{module_name}`
 - **Digestion Style**: `{cfg.digestion_style}`
+- **Argument Digestion Selection**: `{cfg.argument_digestion}` (None infers, True enables, False disables value digesters)
 - **Digestion Source**: `{cfg.digestion_source}`
 - **Standardizer**: `{cfg.standardizer}`
 - **Strictness Level**: `{cfg.strictness}`
 - **Bypass Parameter**: `{cfg.skip_param}`
 - **PUW Context**: `{cfg.puw_context}`
+- **Diagnostic Capture Policy**: `{cfg.capture_policy}`
 
 ### Axis 1 -- the function argument contract
 - **Function Source**: `{cfg.function_source}`

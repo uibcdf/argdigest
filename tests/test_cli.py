@@ -18,6 +18,8 @@ def test_agent_docs_generation(tmp_path):
         assert "# ArgDigest Agent Instructions for argdigest" in content
         assert "## 1. Project Context" in content
         assert "argdigest agent update" in content
+        assert "**Argument Digestion Selection**: `None`" in content
+        assert "**Diagnostic Capture Policy**: `None`" in content
 
 
 def test_cli_agent_init_help(capsys):

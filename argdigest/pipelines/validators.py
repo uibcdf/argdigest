@@ -1,6 +1,7 @@
 import os
 from typing import Any
 
+from ..core.diagnostics import diagnostic_detail
 from ..core.errors import DigestTypeError, DigestValueError
 from ..core.registry import register_pipeline
 
@@ -10,7 +11,8 @@ def is_positive(value: Any, ctx: Any = None) -> Any:
     """Validates that value is > 0."""
     if not (value > 0):
         raise DigestValueError(
-            context=ctx, detail=f"Value must be positive, got {value}."
+            context=ctx,
+            detail=diagnostic_detail(lambda: f"Value must be positive, got {value}."),
         )
     return value
 
@@ -20,7 +22,10 @@ def is_non_negative(value: Any, ctx: Any = None) -> Any:
     """Validates that value is >= 0."""
     if not (value >= 0):
         raise DigestValueError(
-            context=ctx, detail=f"Value must be non-negative, got {value}."
+            context=ctx,
+            detail=diagnostic_detail(
+                lambda: f"Value must be non-negative, got {value}."
+            ),
         )
     return value
 
@@ -29,7 +34,9 @@ def is_non_negative(value: Any, ctx: Any = None) -> Any:
 def is_file(value: Any, ctx: Any = None) -> Any:
     """Validates that value is an existing file path."""
     if not os.path.isfile(value):
-        raise DigestValueError(context=ctx, detail=f"File not found: {value}.")
+        raise DigestValueError(
+            context=ctx, detail=diagnostic_detail(lambda: f"File not found: {value}.")
+        )
     return value
 
 
@@ -37,7 +44,10 @@ def is_file(value: Any, ctx: Any = None) -> Any:
 def is_dir(value: Any, ctx: Any = None) -> Any:
     """Validates that value is an existing directory."""
     if not os.path.isdir(value):
-        raise DigestValueError(context=ctx, detail=f"Directory not found: {value}.")
+        raise DigestValueError(
+            context=ctx,
+            detail=diagnostic_detail(lambda: f"Directory not found: {value}."),
+        )
     return value
 
 

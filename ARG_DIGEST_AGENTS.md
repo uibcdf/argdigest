@@ -5,11 +5,13 @@ This document provides context and instructions for AI Agents (like yourself) to
 ## 1. Project Context
 - **Library Module**: `argdigest`
 - **Digestion Style**: `auto`
+- **Argument Digestion Selection**: `None` (None infers, True enables, False disables value digesters)
 - **Digestion Source**: `None`
 - **Standardizer**: `None`
 - **Strictness Level**: `warn`
 - **Bypass Parameter**: `skip_digestion`
 - **PUW Context**: `None`
+- **Diagnostic Capture Policy**: `None`
 
 ### Axis 1 -- the function argument contract
 - **Function Source**: `None`

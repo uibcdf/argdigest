@@ -72,6 +72,7 @@ The primary entry point is the `@arg_digest` decorator. It supports both **argum
     standardizer=None,           # callable | "module:func": Normalizes arg names
     strictness="warn",           # "warn" | "error" | "ignore": For missing digesters
     skip_param="skip_digestion", # str: Name of param to bypass digestion
+    argument_digestion=None,     # None: infer; True: digesters; False: pipelines only
     
     # Configuration for Explicit Mode
     map=None,                    # dict: Explicit {arg: {kind, rules}} mapping
@@ -79,7 +80,8 @@ The primary entry point is the `@arg_digest` decorator. It supports both **argum
     rules=None,                  # list[str]: Default rules for all args
     
     # Extra config
-    config=None                  # str | object: Config object or module path
+    config=None,                 # str | object: Config object or module path
+    capture_policy=None,         # Inherit | "detailed" | "metadata_only" | CapturePolicy
 )
 def my_func(...): ...
 ```
@@ -122,7 +124,21 @@ When `digestion_source` or `digestion_style` is used, ArgDigest attempts to find
     - If a digester is found, it is executed. The digester receives the raw value and can request other arguments (dependency injection).
     - If no digester is found, `strictness` determines the action (`warn`, `error`, or `ignore`).
     - If no argument-centric configuration is provided and no digesters are discovered, ArgDigest runs in pipeline-only mode without emitting missing-digester warnings.
+    - `argument_digestion=None` preserves that inference. Explicit `True` enables
+      digesters and missing-digester checks; `False` skips digester discovery and
+      execution regardless of configuration. Signature binding, normalization,
+      declared function/domain contracts, standardization, pipelines and requested
+      type checks remain active. The selector is accepted by the decorator/map
+      alias, `DigestConfig`, modules (`ARGUMENT_DIGESTION`) and files.
 3.  **Result**: The original function is called with the *transformed* values.
+
+`capture_policy` controls automatic diagnostic collection independently of
+execution selection. It delegates to SMonitor's public scoped API, applies before
+decorator construction and the outermost signal, and cannot relax an enclosing
+restriction. Restrictive capture suppresses native error text and arbitrary value
+formatting without bypassing validation; it preserves native failure identity and
+existing adapter translations. Explicit restrictive requests fail closed if the
+provider lacks the API. See [provider availability](docs/content/user/smonitor.md#provider-availability).
 
 ### 4.2 Dependency Resolution
 Digesters can declare dependencies on other arguments.

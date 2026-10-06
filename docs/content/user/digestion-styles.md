@@ -7,6 +7,13 @@ declared through `FUNCTION_SOURCE` and `DOMAIN_SOURCE`, whichever style you pick
 ArgDigest supports multiple discovery styles so each library can keep its own
 architecture.
 
+Styles govern discovery when argument digestion is active. Use
+`argument_digestion=False` to select pipeline-only processing independently of
+the style and supplied configuration; use `True` to require argument digestion.
+The default `None` preserves automatic inference. See
+[explicit selection](configuration.md#select-argument-digestion-explicitly) for
+precedence and the contracts retained in pipeline-only processing.
+
 ## 1) Package style
 
 Digesters are discovered from a package with one module per argument:

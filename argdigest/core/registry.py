@@ -6,6 +6,8 @@ from typing import Any, Callable
 
 from smonitor import signal
 
+from .._private.smonitor.catalog import CODES
+from .diagnostics import diagnostic_detail
 from .logger import get_logger
 
 logger = get_logger()
@@ -40,7 +42,7 @@ class Registry:
 
         for rule in rules or []:
             fn = None
-            rule_name = str(rule)
+            rule_name = "unknown_rule"
 
             if isinstance(rule, str):
                 fn = pipelines.get(rule)
@@ -73,13 +75,20 @@ class Registry:
                         ctx.audit_log.append({"rule": rule_name, "duration": duration})
                 except Exception as e:
                     raise ValueError(
-                        f"Validation failed for argument '{ctx.argname}' against model {rule.__name__}: {e}"
+                        diagnostic_detail(
+                            lambda error=e: (
+                                f"Validation failed for argument '{ctx.argname}' against model {rule.__name__}: {error}"
+                            )
+                        )
+                        or CODES["ARG-ERR-MODEL-001"]["metadata_message"]
                     ) from e
                 continue
 
             # 3. If it's a callable (direct function)
             if callable(rule):
                 rule_name = getattr(rule, "__name__", "anonymous_callable")
+                if type(rule_name) is not str:
+                    rule_name = "anonymous_callable"
                 logger.debug(
                     f"Running callable rule '{rule_name}' on argument='{ctx.argname}'"
                 )
@@ -91,11 +100,11 @@ class Registry:
                 continue
 
             logger.warning(
-                f"Unknown rule type {type(rule)} for argument='{ctx.argname}'. Skipping."
+                f"Unknown rule type {type(rule).__name__} for argument='{ctx.argname}'. Skipping."
             )
 
         logger.debug(
-            f"Finished pipelines for argument='{ctx.argname}'. Final value type: {type(current)}"
+            f"Finished pipelines for argument='{ctx.argname}'. Final value type: {type(current).__name__}"
         )
         return current
 

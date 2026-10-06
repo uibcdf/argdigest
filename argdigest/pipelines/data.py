@@ -6,6 +6,7 @@ from __future__ import annotations
 
 from typing import Any, Callable, List, Tuple
 
+from ..core.diagnostics import diagnostic_detail
 from ..core.errors import DigestTypeError, DigestValueError
 from ..core.registry import register_pipeline
 
@@ -74,7 +75,10 @@ def to_numpy(value: Any, ctx: Any = None) -> Any:
         return np.asarray(value)
     except Exception as e:
         raise DigestTypeError(
-            context=ctx, detail=f"Cannot convert to numpy array: {e}."
+            context=ctx,
+            detail=diagnostic_detail(
+                lambda error=e: f"Cannot convert to numpy array: {error}."
+            ),
         ) from e
 
 
@@ -88,7 +92,10 @@ def to_dataframe(value: Any, ctx: Any = None) -> Any:
         return pd.DataFrame(value)
     except Exception as e:
         raise DigestTypeError(
-            context=ctx, detail=f"Cannot convert to pandas DataFrame: {e}."
+            context=ctx,
+            detail=diagnostic_detail(
+                lambda error=e: f"Cannot convert to pandas DataFrame: {error}."
+            ),
         ) from e
 
 
@@ -103,11 +110,14 @@ def has_ndim(n: int) -> Callable[[Any, Any], Any]:
         arr = value if isinstance(value, np.ndarray) else np.asarray(value)
         if arr.ndim != n:
             raise DigestValueError(
-                context=ctx, detail=f"Expected {n} dimensions, got {arr.ndim}."
+                context=ctx,
+                detail=diagnostic_detail(
+                    lambda: f"Expected {n} dimensions, got {arr.ndim}."
+                ),
             )
         return value
 
-    pipeline_ndim.__name__ = f"has_ndim({n})"
+    pipeline_ndim.__name__ = diagnostic_detail(lambda: f"has_ndim({n})") or "has_ndim"
     return pipeline_ndim
 
 
@@ -122,18 +132,27 @@ def is_shape(shape: Tuple[int | None, ...]) -> Callable[[Any, Any], Any]:
         arr = value if isinstance(value, np.ndarray) else np.asarray(value)
         if len(arr.shape) != len(shape):
             raise DigestValueError(
-                context=ctx, detail=f"Expected ndim={len(shape)}, got {len(arr.shape)}."
+                context=ctx,
+                detail=diagnostic_detail(
+                    lambda: f"Expected ndim={len(shape)}, got {len(arr.shape)}."
+                ),
             )
 
         for i, (actual, expected) in enumerate(zip(arr.shape, shape)):
             if expected is not None and actual != expected:
                 raise DigestValueError(
                     context=ctx,
-                    detail=f"Dimension {i} mismatch: expected {expected}, got {actual}.",
+                    detail=diagnostic_detail(
+                        lambda: (
+                            f"Dimension {i} mismatch: expected {expected}, got {actual}."
+                        )
+                    ),
                 )
         return value
 
-    pipeline_shape.__name__ = f"is_shape({shape})"
+    pipeline_shape.__name__ = (
+        diagnostic_detail(lambda: f"is_shape({shape})") or "is_shape"
+    )
     return pipeline_shape
 
 
@@ -146,11 +165,16 @@ def is_dtype(dtype: Any) -> Callable[[Any, Any], Any]:
         target_dtype = np.dtype(dtype)
         if arr.dtype != target_dtype:
             raise DigestTypeError(
-                context=ctx, detail=f"Expected dtype {target_dtype}, got {arr.dtype}."
+                context=ctx,
+                detail=diagnostic_detail(
+                    lambda: f"Expected dtype {target_dtype}, got {arr.dtype}."
+                ),
             )
         return value
 
-    pipeline_dtype.__name__ = f"is_dtype({dtype})"
+    pipeline_dtype.__name__ = (
+        diagnostic_detail(lambda: f"is_dtype({dtype})") or "is_dtype"
+    )
     return pipeline_dtype
 
 
@@ -169,11 +193,16 @@ def has_columns(columns: List[str]) -> Callable[[Any, Any], Any]:
         missing = [col for col in columns if col not in value.columns]
         if missing:
             raise DigestValueError(
-                context=ctx, detail=f"Missing columns in DataFrame: {missing}."
+                context=ctx,
+                detail=diagnostic_detail(
+                    lambda: f"Missing columns in DataFrame: {missing}."
+                ),
             )
         return value
 
-    pipeline_columns.__name__ = f"has_columns({columns})"
+    pipeline_columns.__name__ = (
+        diagnostic_detail(lambda: f"has_columns({columns})") or "has_columns"
+    )
     return pipeline_columns
 
 
@@ -194,9 +223,14 @@ def min_rows(n: int) -> Callable[[Any, Any], Any]:
 
         if length < n:
             raise DigestValueError(
-                context=ctx, detail=f"Expected at least {n} rows, got {length}."
+                context=ctx,
+                detail=diagnostic_detail(
+                    lambda: f"Expected at least {n} rows, got {length}."
+                ),
             )
         return value
 
-    pipeline_min_rows.__name__ = f"min_rows({n})"
+    pipeline_min_rows.__name__ = (
+        diagnostic_detail(lambda: f"min_rows({n})") or "min_rows"
+    )
     return pipeline_min_rows

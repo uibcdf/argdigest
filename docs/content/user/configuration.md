@@ -18,6 +18,7 @@ DIGESTION_SOURCE = "mylib._private.argdigest.argument"
 DIGESTION_STYLE = "package"  # package | registry | decorator | auto
 STANDARDIZER = "mylib._private.argdigest.argument_names_standardization:argument_names_standardization"
 STRICTNESS = "warn"  # warn | error | ignore
+ARGUMENT_DIGESTION = None  # None infers | True enables | False selects pipelines only
 SKIP_PARAM = "skip_digestion"
 
 # Axis 1 -- the argument contract of each function.
@@ -27,6 +28,9 @@ UNKNOWN_ARGUMENT = "error"  # error | warn | ignore
 
 # Declared argument-name aliases, applied before both axes.
 NORMALIZATION_SOURCE = "mylib._private.argdigest.normalization"
+
+# Diagnostics only; requires SMonitor's public scoped-capture capability.
+CAPTURE_POLICY = None  # inherit | "metadata_only" | "detailed" | CapturePolicy
 ```
 
 Both policies accept the same aliases: `raise` -> `error`, `warning` -> `warn`,
@@ -73,6 +77,45 @@ argdigest.config.set_defaults(
 )
 ```
 
+## Select argument digestion explicitly
+
+Providing configuration participates in the historical automatic selection of
+argument digesters. For a boundary that only uses pipelines, select
+`argument_digestion=False` explicitly:
+
+```python
+from argdigest import DigestConfig, arg_digest
+
+cfg = DigestConfig(strictness="error", argument_digestion=False)
+
+
+@arg_digest.map(config=cfg, name={"kind": "std", "rules": ["strip", "upper"]})
+def normalize_name(name):
+    return name
+
+
+assert normalize_name(" name ") == "NAME"
+```
+
+| Selection | Argument digesters | Missing-digester policy |
+| --- | --- | --- |
+| `None` (default) | Historical inference from configuration and discovered digesters | Applies when inferred active |
+| `True` | Discover and execute selected digesters | Uses `strictness` |
+| `False` | Do not discover or execute argument digesters | Inactive |
+
+`False` keeps Python binding, declared function/domain contracts, alias
+normalization, the standardizer, pipelines and requested type checks active.
+It differs from `skip_digestion=True`, which bypasses processing for a call.
+`digestion_style` chooses a discovery source; it does not select execution.
+
+Use the same selector on `arg_digest`, `arg_digest.map` or `DigestConfig`.
+Python modules/files use `ARGUMENT_DIGESTION`; JSON/YAML files use
+`argument_digestion` with a boolean or null. Explicit decorator selection takes
+precedence, including an explicit `None` to restore automatic inference.
+The callable's `digestion_plan.argument_digestion` records the requested selector;
+`digestion_plan.enable_argument_digestion` records the effective boolean.
+`argdigest audit` displays both.
+
 ## Practical guidance
 
 - Prefer a single `_argdigest.py` per library package.
@@ -82,3 +125,8 @@ argdigest.config.set_defaults(
 ## Next
 
 Continue with [Configuration Precedence](config-precedence.md).
+
+`DigestConfig(capture_policy=...)` and Python configuration modules use the same
+policy selection as the decorator. JSON/YAML files use `capture_policy` with a
+named string. See [scoped diagnostic capture](smonitor.md#restrict-collection-before-validation)
+for availability, compatibility and concurrency boundaries.

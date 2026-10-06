@@ -8,6 +8,7 @@ from types import ModuleType
 from typing import Any, Callable, Iterable
 
 from .argument_registry import ArgumentRegistry
+from .diagnostics import diagnostic_detail
 
 
 def resolve_standardizer(
@@ -62,8 +63,13 @@ def _check_standardizer_signature(fn: Callable[..., Any]) -> None:
     required = [p for p in positional if p.default is p.empty]
     if len(positional) < 2 or len(required) > 2:
         raise TypeError(
-            f"standardizer {getattr(fn, '__qualname__', fn)!r} must be callable as "
-            f"(caller, kwargs); its signature is {signature}."
+            diagnostic_detail(
+                lambda: (
+                    f"standardizer {getattr(fn, '__qualname__', fn)!r} must be callable as "
+                    f"(caller, kwargs); its signature is {signature}."
+                )
+            )
+            or "standardizer must be callable as (caller, kwargs)."
         )
 
 

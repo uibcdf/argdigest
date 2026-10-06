@@ -26,6 +26,10 @@ class DigestConfig:
     # because plain Python already raises TypeError for an unexpected keyword, and
     # ArgDigest must not be more permissive than the language it wraps.
     unknown_argument: str = "error"
+    # None inherits the active SMonitor scope; named policies also work in files.
+    capture_policy: Any = None
+    # None preserves automatic inference; False disables only value digesters.
+    argument_digestion: bool | None = None
 
 
 _DEFAULTS: DigestConfig = DigestConfig()
@@ -81,6 +85,8 @@ def _from_module(module_path: str) -> DigestConfig:
         domain_source=getattr(module, "DOMAIN_SOURCE", None),
         normalization_source=getattr(module, "NORMALIZATION_SOURCE", None),
         unknown_argument=getattr(module, "UNKNOWN_ARGUMENT", "error"),
+        capture_policy=getattr(module, "CAPTURE_POLICY", None),
+        argument_digestion=getattr(module, "ARGUMENT_DIGESTION", None),
     )
 
 
@@ -114,6 +120,8 @@ def load_from_file(path: str | Path) -> DigestConfig:
             domain_source=getattr(module, "DOMAIN_SOURCE", None),
             normalization_source=getattr(module, "NORMALIZATION_SOURCE", None),
             unknown_argument=getattr(module, "UNKNOWN_ARGUMENT", "error"),
+            capture_policy=getattr(module, "CAPTURE_POLICY", None),
+            argument_digestion=getattr(module, "ARGUMENT_DIGESTION", None),
         )
 
     if ext in (".yaml", ".yml"):

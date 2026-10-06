@@ -11,6 +11,7 @@ from typing import Any, Callable, Dict, Optional
 import numpy as np
 from depdigest import dep_digest
 
+from ..core.diagnostics import diagnostic_detail
 from ..core.errors import DigestTypeError, DigestValueError
 from ..core.registry import register_pipeline
 
@@ -106,8 +107,12 @@ def check(
         if not valid:
             raise DigestValueError(
                 context=ctx,
-                detail=f"Physical validation failed for {ctx.argname}. "
-                f"Expected dimensionality={dimensionality}, unit={unit}, type={value_type}.",
+                detail=diagnostic_detail(
+                    lambda: (
+                        f"Physical validation failed for {ctx.argname}. "
+                        f"Expected dimensionality={dimensionality}, unit={unit}, type={value_type}."
+                    )
+                ),
             )
         return value
 
@@ -127,7 +132,10 @@ def standardize() -> Callable[[Any, Any], Any]:
             return puw.standardize(value)
         except Exception as e:
             raise DigestValueError(
-                context=ctx, detail=f"Standardization failed: {e}."
+                context=ctx,
+                detail=diagnostic_detail(
+                    lambda error=e: f"Standardization failed: {error}."
+                ),
             ) from e
 
     pipeline_standardize.__name__ = "puw.standardize"
@@ -145,10 +153,15 @@ def convert(to_unit: str, to_form: Optional[str] = None) -> Callable[[Any, Any],
             return puw.convert(value, to_unit=to_unit, to_form=to_form)
         except Exception as e:
             raise DigestValueError(
-                context=ctx, detail=f"Conversion to {to_unit} failed: {e}."
+                context=ctx,
+                detail=diagnostic_detail(
+                    lambda error=e: f"Conversion to {to_unit} failed: {error}."
+                ),
             ) from e
 
-    pipeline_convert.__name__ = f"puw.convert({to_unit})"
+    pipeline_convert.__name__ = (
+        diagnostic_detail(lambda: f"puw.convert({to_unit})") or "puw.convert"
+    )
     return pipeline_convert
 
 
@@ -157,7 +170,10 @@ def is_quantity() -> Callable[[Any, Any], Any]:
         _require_puw(ctx)
         if not puw.is_quantity(value):
             raise DigestTypeError(
-                context=ctx, detail=f"Expected a quantity, got {type(value)}."
+                context=ctx,
+                detail=diagnostic_detail(
+                    lambda: f"Expected a quantity, got {type(value)}."
+                ),
             )
         return value
 
@@ -191,15 +207,21 @@ def _canonical_array_pipeline(
         except Exception as e:
             raise DigestValueError(
                 context=ctx,
-                detail=f"Canonical normalization to {unit_name} failed: {e}.",
+                detail=diagnostic_detail(
+                    lambda error=e: (
+                        f"Canonical normalization to {unit_name} failed: {error}."
+                    )
+                ),
             ) from e
 
         if ndim is not None and raw.ndim != ndim:
             raise DigestValueError(
                 context=ctx,
-                detail=(
-                    f"Normalized value for {ctx.argname} has ndim={raw.ndim}; "
-                    f"expected ndim={ndim}."
+                detail=diagnostic_detail(
+                    lambda: (
+                        f"Normalized value for {ctx.argname} has ndim={raw.ndim}; "
+                        f"expected ndim={ndim}."
+                    )
                 ),
             )
 

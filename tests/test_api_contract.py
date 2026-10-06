@@ -53,6 +53,8 @@ def test_public_callable_signatures():
     assert "type_check" in sig.parameters
     assert "puw_context" in sig.parameters
     assert "profiling" in sig.parameters
+    assert "capture_policy" in sig.parameters
+    assert "argument_digestion" in sig.parameters
     assert "digestion_params" in sig.parameters
     assert sig.parameters["kind"].kind is inspect.Parameter.KEYWORD_ONLY
     assert sig.parameters["digestion_params"].kind is inspect.Parameter.VAR_KEYWORD
@@ -62,6 +64,8 @@ def test_public_callable_signatures():
     assert "puw_context" in sig_map.parameters
     assert "profiling" in sig_map.parameters
     assert "config" in sig_map.parameters
+    assert "capture_policy" in sig_map.parameters
+    assert "argument_digestion" in sig_map.parameters
     assert "map_config" in sig_map.parameters
     assert sig_map.parameters["map_config"].kind is inspect.Parameter.VAR_KEYWORD
 

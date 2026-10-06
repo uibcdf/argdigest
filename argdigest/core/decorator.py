@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import inspect
 import threading
-import warnings
 from collections.abc import Mapping
 from dataclasses import dataclass, field
 from functools import wraps
@@ -11,15 +10,17 @@ from typing import Any, Callable
 from depdigest import dep_digest
 from smonitor import signal
 
-from .._private.smonitor.emitter import warn
+from .._private.smonitor.emitter import diagnostic_failure, type_check_skipped, warn
 from .argument_loader import load_argument_digesters, resolve_standardizer
 from .argument_registry import ArgumentRegistry
 from .config import DigestConfig, get_env_config_module, resolve_config
 from .context import Context
+from .diagnostics import diagnostic_scope, resolve_capture_policy
 from .errors import (
     ArgumentConsistencyError,
     DigestNotDigestedError,
     DigestNotDigestedWarning,
+    DigestValueError,
     FunctionContractError,
     FunctionContractWarning,
     MissingArgumentError,
@@ -135,6 +136,8 @@ class DigestionPlan:
     # Whether calling back with `**bound` would lose part of the call. Decided once at
     # decoration time so the common signature keeps the single dict unpack it had.
     requires_call_shape: bool = False
+    capture_policy: Any = None
+    argument_digestion: bool | None = None
 
 
 def _hashable_source(source: Any) -> Any:
@@ -269,41 +272,13 @@ def arg_digest(
     type_check: bool = False,
     puw_context: dict[str, Any] | None = None,
     profiling: bool | object = _UNSET,
+    capture_policy: Any | object = _UNSET,
+    argument_digestion: bool | None | object = _UNSET,
     **digestion_params: Any,
 ):
-    @dep_digest("beartype", when={"type_check": True})
     def deco(fn: Callable[..., Any]):
         if isinstance(fn, classmethod):
             return classmethod(deco(fn.__func__))
-        fn_to_wrap = fn
-        if type_check:
-            try:
-                from beartype import beartype
-
-                fn_to_wrap = beartype(fn)
-            except ImportError:
-                try:
-                    from smonitor.integrations import emit_from_catalog, merge_extra
-
-                    from .._private.smonitor import CATALOG, META, PACKAGE_ROOT
-
-                    emit_from_catalog(
-                        CATALOG["warnings"]["TypeCheckSkippedWarning"],
-                        package_root=PACKAGE_ROOT,
-                        extra=merge_extra(
-                            META, {"caller": f"{fn.__module__}.{fn.__name__}"}
-                        ),
-                    )
-                except Exception as exc:
-                    warnings.warn(
-                        (
-                            "type_check=True but 'beartype' is not installed. "
-                            f"Skipping in {fn.__module__}.{fn.__name__}. "
-                            f"SMonitor emission failed with: {exc!r}"
-                        ),
-                        RuntimeWarning,
-                    )
-
         # Resolve effective parameters
         eff_config = config
         auto_module_config = None
@@ -330,6 +305,23 @@ def arg_digest(
             else:
                 cfg = resolve_config(None)
 
+        selected_policy = (
+            cfg.capture_policy if capture_policy is _UNSET else capture_policy
+        )
+        policy = resolve_capture_policy(selected_policy)
+        # Provider/dependency instrumentation during construction must inherit the
+        # same restriction as the callable's outermost signal.
+        with diagnostic_scope(policy):
+            return build(fn, cfg, policy)
+
+    def build(fn, cfg, policy):
+        fn_to_wrap = fn
+        if type_check:
+            try:
+                fn_to_wrap = _load_beartype()(fn)
+            except ImportError:
+                type_check_skipped(f"{fn.__module__}.{fn.__name__}")
+
         eff_source = (
             cfg.digestion_source if digestion_source is _UNSET else digestion_source
         )
@@ -342,6 +334,18 @@ def arg_digest(
         )
         eff_skip_param = cfg.skip_param if skip_param is _UNSET else skip_param
         eff_profiling = cfg.profiling if profiling is _UNSET else profiling
+        eff_argument_digestion = (
+            cfg.argument_digestion
+            if argument_digestion is _UNSET
+            else argument_digestion
+        )
+        if (
+            eff_argument_digestion is not None
+            and type(eff_argument_digestion) is not bool
+        ):
+            raise DigestValueError(
+                detail="argument_digestion must be None, True or False."
+            )
         eff_function_source = (
             cfg.function_source if function_source is _UNSET else function_source
         )
@@ -360,7 +364,9 @@ def arg_digest(
         effective_puw_context = {**(cfg.puw_context or {}), **(puw_context or {})}
 
         # Pre-load digesters
-        if eff_style == "decorator":
+        if eff_argument_digestion is False:
+            available_digesters = {}
+        elif eff_style == "decorator":
             available_digesters = ArgumentRegistry.get_all()
         else:
             available_digesters = load_argument_digesters(eff_source, eff_style)
@@ -385,6 +391,8 @@ def arg_digest(
             and not available_digesters
             and eff_standardizer is None
         )
+        if eff_argument_digestion is not None:
+            enable_argument_digestion = eff_argument_digestion
 
         # Axis 1 declarations. lru_cache needs hashable sources.
         contracts = load_function_contracts(_hashable_source(eff_function_source))
@@ -450,10 +458,14 @@ def arg_digest(
                 name for name in signature.parameters if name != var_keyword_name
             ),
             requires_call_shape=requires_call_shape,
+            capture_policy=policy,
+            argument_digestion=eff_argument_digestion,
         )
 
+        signal_options = {"capture_policy": policy} if policy is not None else {}
+
         @wraps(fn)
-        @signal(tags=["digestion"], exception_level="DEBUG")
+        @signal(tags=["digestion"], exception_level="DEBUG", **signal_options)
         def wrapper(*args: Any, **kwargs: Any):
             # Only the literal boolean True may bypass the flag's own digester.
             if kwargs.get(plan.skip_param, False) is True:
@@ -587,29 +599,10 @@ def arg_digest(
                     try:
                         digested[argname] = fn_digest(**kwargs_for_digest)
                     except Exception as e:
-                        # Centralized observability: report to smonitor
-                        try:
-                            from smonitor import emit
-
-                            emit(
-                                "DEBUG",
-                                f"Digestion failed for argument '{argname}'",
-                                extra={
-                                    "code": "MSM-DBG-PROBE-001",
-                                    "argname": argname,
-                                    "caller": caller,
-                                    "cause_exception": type(e).__name__,
-                                    "cause_message": str(e),
-                                },
-                            )
-                        except Exception:
-                            pass
-                        # Re-raise with cause attached
-                        if hasattr(
-                            e, "message"
-                        ):  # Some custom errors might have message
-                            raise e
-                        raise e
+                        diagnostic_failure(
+                            e, stage="digestion", caller=caller, argname=argname
+                        )
+                        raise
 
                     visiting_path.pop()
 
@@ -639,23 +632,10 @@ def arg_digest(
                             eff_kind, eff_rules, bound[argname], ctx
                         )
                     except Exception as e:
-                        try:
-                            from smonitor import emit
-
-                            emit(
-                                "DEBUG",
-                                f"Pipeline failed for argument '{argname}'",
-                                extra={
-                                    "code": "MSM-DBG-PROBE-001",
-                                    "argname": argname,
-                                    "pipeline": f"{eff_kind}.{eff_rules}",
-                                    "cause_exception": type(e).__name__,
-                                    "cause_message": str(e),
-                                },
-                            )
-                        except Exception:
-                            pass
-                        raise e
+                        diagnostic_failure(
+                            e, stage="pipeline", caller=caller, argname=argname
+                        )
+                        raise
 
                 return _invoke(plan, fn_to_wrap, bound)
 
@@ -674,7 +654,13 @@ def arg_digest(
 
 
 def _arg_digest_map(
-    type_check=False, puw_context=None, profiling=_UNSET, config=_UNSET, **map_config
+    type_check=False,
+    puw_context=None,
+    profiling=_UNSET,
+    config=_UNSET,
+    capture_policy=_UNSET,
+    argument_digestion=_UNSET,
+    **map_config,
 ):
     return arg_digest(
         map=map_config,
@@ -682,7 +668,16 @@ def _arg_digest_map(
         puw_context=puw_context,
         profiling=profiling,
         config=config,
+        capture_policy=capture_policy,
+        argument_digestion=argument_digestion,
     )
 
 
 arg_digest.map = _arg_digest_map
+
+
+@dep_digest("beartype")
+def _load_beartype():
+    from beartype import beartype
+
+    return beartype

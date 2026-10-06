@@ -1,7 +1,7 @@
-import argparse
 import types
 
 from argdigest.cli import audit_module, main
+from argdigest.core.decorator import DigestionPlan
 
 
 def test_audit_module_import_error(capsys, monkeypatch):
@@ -21,7 +21,7 @@ def test_audit_module_reports_digestion_plan(capsys, monkeypatch):
     def decorated():
         return None
 
-    decorated.digestion_plan = argparse.Namespace(
+    decorated.digestion_plan = DigestionPlan(
         strictness="warn",
         skip_param="skip_digestion",
         profiling=False,
@@ -36,6 +36,8 @@ def test_audit_module_reports_digestion_plan(capsys, monkeypatch):
     out, _ = capsys.readouterr()
     assert "Audit Report for module: fake.module" in out
     assert "Function: decorated" in out
+    assert "Argument Digestion Selection: None" in out
+    assert "Argument Digestion Enabled: True" in out
     assert "Argument Digesters: ['selection']" in out
     assert "kind='std'" in out
 

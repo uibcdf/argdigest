@@ -44,6 +44,12 @@ CATALOG = {
             "category": "dependency",
             "level": "ERROR",
         },
+        "CapturePolicyUnavailable": {
+            "code": "ARG-ERR-CAPTURE-001",
+            "source": "argdigest.error.capture",
+            "category": "configuration",
+            "level": "ERROR",
+        },
         "UnknownArgumentError": {
             "code": "ARG-ERR-CONTRACT-001",
             "source": "argdigest.error.contract.unknown_argument",
@@ -70,6 +76,12 @@ CATALOG = {
         },
     },
     "warnings": {
+        "DiagnosticEmissionWarning": {
+            "code": "ARG-WARN-DIAGNOSTICS-001",
+            "source": "argdigest.warning.diagnostics",
+            "category": "diagnostics",
+            "level": "WARNING",
+        },
         "DigestNotDigestedWarning": {
             "code": "ARG-WARN-MISS-001",
             "source": "argdigest.warning.missing",
@@ -89,6 +101,20 @@ CATALOG = {
             "level": "WARNING",
         },
     },
+    "info": {
+        "DigesterFailure": {
+            "code": "ARG-DBG-DIGEST-001",
+            "source": "argdigest.digestion",
+            "category": "argument",
+            "level": "DEBUG",
+        },
+        "PipelineFailure": {
+            "code": "ARG-DBG-PIPELINE-001",
+            "source": "argdigest.pipeline",
+            "category": "argument",
+            "level": "DEBUG",
+        },
+    },
 }
 
 #: The wording lives here, and only here. A raise site passes typed fields --
@@ -100,6 +126,32 @@ CATALOG = {
 #: `argname`, `caller`, `doc_url` and `issues_url` arrive on every event:
 #: the first two from the `Context`, the last two from `META`.
 CODES = {
+    "ARG-ERR-MODEL-001": {
+        "title": "Model validation failed",
+        "user_message": "Pydantic argument validation failed.",
+        "metadata_message": "Pydantic argument validation failed.",
+    },
+    "ARG-ERR-CAPTURE-001": {
+        "title": "Diagnostic capture policy unavailable",
+        "user_message": "The installed SMonitor does not provide scoped diagnostic capture.",
+        "user_hint": "Use a SMonitor version providing CapturePolicy and diagnostic_scope. "
+        "Restrictive capture cannot fall back to detailed diagnostics.",
+    },
+    "ARG-WARN-DIAGNOSTICS-001": {
+        "title": "Diagnostic emission failed",
+        "user_message": "ArgDigest could not emit a diagnostic.",
+        "user_hint": "Check diagnostic configuration and optional dependency availability.",
+    },
+    "ARG-DBG-DIGEST-001": {
+        "title": "Argument digestion failed",
+        "user_message": "Argument '{argname}' of '{caller}' failed digestion. {cause_message}",
+        "metadata_message": "Argument digestion failed.",
+    },
+    "ARG-DBG-PIPELINE-001": {
+        "title": "Argument pipeline failed",
+        "user_message": "Argument '{argname}' of '{caller}' failed its pipeline. {cause_message}",
+        "metadata_message": "Argument pipeline validation failed.",
+    },
     "ARG-ERR-TYPE-001": {
         "title": "Argument Type Error",
         "user_message": "Argument '{argname}' of '{caller}' has the wrong type. {detail}",
@@ -192,8 +244,14 @@ CODES = {
         "user_hint": "Install 'beartype' to enable runtime type checking.",
         "dev_message": "type_check=True but 'beartype' is not installed, in '{caller}'.",
         "dev_hint": "Install beartype, or set type_check=False.",
+        "metadata_message": "type_check=True but 'beartype' is not installed. Type checking was skipped.",
     },
 }
+
+# Restrictive events render without free-text details or runtime value fields.
+for _entry in CODES.values():
+    _entry.setdefault("metadata_message", _entry["title"] + ".")
+    _entry.setdefault("metadata_hint", "Check the declared argument contract.")
 
 SIGNALS = {
     "argdigest.error.type": {"extra_required": ["argname", "message", "caller"]},

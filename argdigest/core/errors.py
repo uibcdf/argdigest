@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from .._private.smonitor.catalog import CATALOG
+from .diagnostics import detailed_diagnostics
 from .errors_base import ArgDigestCatalogException, ArgDigestCatalogWarning
 
 if TYPE_CHECKING:
@@ -20,7 +21,8 @@ def _context_extra(context: Context | None, **fields: object) -> dict[str, objec
         "argname": context.argname if context else "unknown",
         "caller": context.function_name if context else "unknown",
     }
-    extra.update({key: value for key, value in fields.items() if value is not None})
+    if detailed_diagnostics():
+        extra.update({key: value for key, value in fields.items() if value is not None})
     return extra
 
 

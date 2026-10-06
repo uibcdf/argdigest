@@ -27,6 +27,8 @@ def audit_module(module_name: str):
             print(f"  Strictness: {plan.strictness}")
             print(f"  Skip Param: {plan.skip_param}")
             print(f"  Profiling:  {plan.profiling}")
+            print(f"  Argument Digestion Selection: {plan.argument_digestion}")
+            print(f"  Argument Digestion Enabled: {plan.enable_argument_digestion}")
 
             if plan.digesters:
                 print(f"  Argument Digesters: {list(plan.digesters.keys())}")
