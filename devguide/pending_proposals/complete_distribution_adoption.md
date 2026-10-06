@@ -89,3 +89,67 @@ providers than the installed package supports.
 
 The minimum-floor correction is a completed subset; the owning issue remains
 open with overall distribution adoption **partial**.
+
+## Complete route review — 2026-10-06
+
+The accepted shared operation from uibcdf/molsyssuite#105 is reused at immutable
+tool commit `43b9f94bf5ab0ec3f54a4b2ca5b23b791d6af0bc`; no local comparison
+engine is added. `devtools/dependency_routes.toml` classifies all **17** routes:
+one recipe, five environments and eleven workflows. It preserves metadata
+authority and records complete workflow hashes to expose later route changes.
+
+| Route | Reviewed contract |
+| --- | --- |
+| Public Conda recipe | One Python noarch file; required DepDigest/SMonitor and Python metadata agree; console entry point and six version/runtime resources use existing shared controls. |
+| Development | Complete required runtime; reviewed Python 3.14 narrowing and strict channels. Removed one duplicate documentation tool declaration. |
+| Documentation | Complete required runtime because Sphinx imports ArgDigest; supported Python 3.13 narrowing and strict channels remain. |
+| Routine/core test tooling | Explicit Python `>=3.11,<3.15` bounds, required provider minima and workflow-selected supported cells. Exact `==` spelling retains the existing Pytest Receptor 1.1.0 and PyUnitWizard 0.27.0 tool versions. |
+| Build bootstrap | Tools only; the recipe creates its own host environment. It does not install the ArgDigest runtime. |
+| Required sibling source routes | Inapplicable: maintained member workflows acquire required SMonitor/DepDigest from public Conda. Editable ArgDigest is the subject package, not its own sibling dependency. Future source replacement requires a reviewed commit and installed provenance. |
+| Optional scientific fixtures | PyUnitWizard/science/type-validation dependencies remain optional in metadata. Test fixtures and their existing release evidence do not become hard runtime dependencies. |
+| Normal wheel/source CI | Explicit pinned offline preflight precedes the existing normal test job. Ordinary wheel/import/coverage and full-matrix selection are retained. Internal wheel testing is not a public PyPI route. |
+| Candidate build wrapper | The same pinned preflight audits the exact checked-out candidate in the decision job, before the unchanged shared publisher can build. Existing source-gate/coordinate controls remain. |
+| Installed full/core and promotion | Exact staged bytes, twelve full-installed cells, separate twelve-cell NumPy-free lower-bound core, and original producer/source/file verification retain ownership. The core artifact profile resolves exact staging/public coordinates with flexible priority and independent installed checks; it is distinct from ordinary strict tooling environments. |
+| Documentation, policy and archival workflows | Actual install/admin/source-only routes have individual inventory reasons; no new package route is inferred. |
+
+Runtime/environment bounds now pass the shared profile. Ruff retains its
+existing 0.16.5 version with exact `==` spelling. No Python selection, supported
+matrix cell, scientific test selection, runtime metadata or public artifact
+changes. Normal CI and the candidate decision delegate directly to the shared
+CLI; a local guard checks that both use the inventory's full provider commit
+and that expensive jobs depend on these mandatory checks.
+
+Local validation passes the 17 routes and 36 administrative compatibility,
+publication and reporting tests. Provider-owned negative tests protect omitted
+recipe requirements, stale floors/ceilings, unsupported Python, changed routes,
+below-floor source versions, wrong installed provenance and archive resource/
+embedded-version mismatches. The local guard is
+`tests/test_noarch_conda_publication.py::test_dependency_preflight_precedes_tests_and_candidate_builds`.
+
+The prior correction's ordinary CI `37441396269` passed 314 tests / one
+unavailable sibling-integration skip. New input/caller changes still require
+their own exact-head normal CI and policy checks. The current local workspace
+check reports nine unrelated dependency findings (retained, not repaired here);
+administrative validation does not establish joint dependency closure.
+
+## Retained delivery and remaining acceptance
+
+The claimed public route is `uibcdf` Conda, with optional science packages from
+`conda-forge`; no public PyPI artifact or new delivery is claimed. The closed
+uibcdf/argdigest#24 record retains the original twelve-cell source/installed/core
+qualification, byte-preserving promotion and clean public Linux/Python 3.14
+installation with matching archive resources, import origins, CLI and `pip check`.
+That public-install result remains owner-measured evidence, separate from the
+central independent original-file inspection and this current-source preflight.
+
+Shared resource/archive and immutable-public-state negative guards are reused
+rather than copied into ArgDigest. The generated version is frozen in the
+ephemeral build; the core decorator, optional adapter, diagnostic catalog and
+CLI are the other reviewed critical Python resources. No bundled native or
+platform-generated payload requires another profile. Existing exact-file
+installed and public poststate checks remain prerequisites of any new release.
+
+The route review and invocation are implemented. Hosted exact-head caller
+validation and final central adoption handoff remain; overall status stays
+**partial** until that evidence is inspected. Provider acceptance alone does
+not qualify these revised source inputs or transfer the old artifact's gates.

@@ -9,7 +9,7 @@ dependencies:
   - jupyterlab
 
   # --- Dev tools: formatting, linting, testing ---
-  - ruff=0.16.5
+  - ruff ==0.16.5
   - pytest
   - pytest-cov
   - beartype
@@ -30,7 +30,6 @@ dependencies:
   - sphinx-design
   - sphinx-favicon
   - sphinx-tabs
-  - pydata-sphinx-theme
   - nbsphinx
   - ipykernel
   - pandoc

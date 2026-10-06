@@ -1,0 +1,103 @@
+# Member-owned route classification; requirements remain in pyproject.toml.
+# Coordination: uibcdf/argdigest#28 and uibcdf/molsyssuite#45.
+schema = "molsyssuite.dependency-routes@1"
+reason = "Reviewed ArgDigest required-runtime, build, optional-test and publication routes"
+source_routes = []
+source_reason = "Required DepDigest and SMonitor remain publicly Conda-supplied in maintained member workflows. Editable ArgDigest is the subject package, not a required sibling replacement. The optional PyUnitWizard fixture is pinned to public 0.27.0. A future required sibling source route needs its own reviewed full commit and installed provenance."
+
+[shared_tool]
+repository = "uibcdf/molsyssuite"
+commit = "43b9f94bf5ab0ec3f54a4b2ca5b23b791d6af0bc"
+
+[[recipes]]
+path = "devtools/conda-build/meta.yaml"
+kind = "shared-noarch"
+plan = "devtools/conda-build/release_plan.toml"
+resources = "devtools/conda-build/resources.toml"
+reason = "One public noarch artifact; shared recipe/run/version/resource/launcher controls are retained."
+
+[[environments]]
+path = "devtools/conda-envs/development_env.yaml"
+kind = "runtime"
+reason = "Routine Python 3.14 development plus docs/test tools; create with strict priority."
+channel_priority = "strict"
+python_minor = "3.14"
+
+[[environments]]
+path = "devtools/conda-envs/docs_env.yaml"
+kind = "runtime"
+reason = "Sphinx imports installed ArgDigest; the supported 3.13 documentation selection remains reviewed."
+channel_priority = "strict"
+python_minor = "3.13"
+
+[[environments]]
+path = "devtools/conda-envs/test_env.yaml"
+kind = "runtime"
+reason = "Routine wheel/source tests supply required runtime through Conda; workflows select their supported interpreter cell."
+channel_priority = "strict"
+
+[[environments]]
+path = "devtools/conda-envs/test_env_core.yaml"
+kind = "runtime"
+reason = "Full-matrix and historical feasibility source tests; this tooling environment includes optional science fixtures and is distinct from the NumPy-free installed-core artifact profile."
+channel_priority = "strict"
+
+[[environments]]
+path = "devtools/conda-envs/build_env.yaml"
+kind = "build-only"
+reason = "Build/upload bootstrap; the recipe host supplies the separate build environment and this file does not install ArgDigest."
+
+[[workflows]]
+path = ".github/workflows/CI.yaml"
+sha256 = "5ca6104a4741fb157e33f15b4d8f4426bb665666c0a92bf249f7ddeee157cbee"
+reason = "Pinned administrative preflight precedes normal Linux 3.14 wheel/install/coverage tests; test_env.yaml and strict channels supply required runtime. No scientific selection is weakened."
+
+[[workflows]]
+path = ".github/workflows/CI_full_matrix.yaml"
+sha256 = "d0fe9cbb4c33a7318ff2c0ed17838e3b2feedae1e5226a51e8db8239fc2190b5"
+reason = "Scheduled/manual twelve-cell source suite uses reviewed test/core environments, explicit Python selections and strict priority. Backlog checking is administrative; no required sibling is installed from source."
+
+[[workflows]]
+path = ".github/workflows/build_and_upload_conda_packages.yaml"
+sha256 = "e831104bf6b140b289ef6b443ef0d61686547e88499157a163c4dfeaff3e9e97"
+reason = "Exact-source/version/route decision and pinned dependency preflight precede the existing shared single-file build. No shared publisher pin or public artifact is changed."
+
+[[workflows]]
+path = ".github/workflows/conda-publication-policy.yml"
+sha256 = "9c1cec90c6400c92e829e29556628a9ecdd4a97bfb7c2751d1df5d36eb37823b"
+reason = "Pinned shared administrative recipe/resource/publisher audit; no ArgDigest runtime installation."
+
+[[workflows]]
+path = ".github/workflows/molsyssuite-policy.yml"
+sha256 = "6cc62208156f765ca0456e3bc5f398934263e03afc7063c69afa692c5dafdffd"
+reason = "Versioned suite repository and quality audit; no ArgDigest runtime installation."
+
+[[workflows]]
+path = ".github/workflows/promote_conda_package.yaml"
+sha256 = "bc6802e542c6121d947f3883bba0f3e47f3a599ded696e27aff33ec7e51ba39d"
+reason = "Original public-release/minimal-core evidence and shared installed/source/exact-file verification precede byte-preserving label promotion; no source rebuild."
+
+[[workflows]]
+path = ".github/workflows/python314_feasibility.yaml"
+sha256 = "90244153f1fddcba206a0be34507d61e3c51e04f3114a951459fd31b93e25591"
+reason = "Historical manual name; editable subject-package source uses core test tooling and Python 3.14/strict priority. ignore-requires-python is historical and does not waive metadata in the new preflight or create a support claim."
+
+[[workflows]]
+path = ".github/workflows/sphinx_docs_to_gh_pages.yaml"
+sha256 = "b10713fc0345488d605cb320c4f194845bc46ace8c8863b66733b547a70bac3f"
+reason = "Docs environment imports the installed subject wheel with no-deps; supported Python 3.13 and strict priority are explicit. Documentation publishing action remains a local maintained route."
+
+[[workflows]]
+path = ".github/workflows/test_staged_conda_package.yaml"
+sha256 = "6af3779b151a6d18626ea5bae35fcf53d2464530cd703954e7b10ebedacc1dd9"
+reason = "Pinned shared exact-file installed matrix uses archive runtime requirements, reviewed resources and full installed tests; it preserves original producer identity."
+
+[[workflows]]
+path = ".github/workflows/test_staged_core_conda_package.yaml"
+sha256 = "bd13d4b6a0e2b66bed8620ad4ddd580650f7c86a537d643fb82cfa5dc276b6ea"
+reason = "Normally resolved exact staged subject archive plus public lower-bound provider builds in clean twelve-cell environments; flexible staging priority is paired with exact coordinates and installed-byte/channel verification. This artifact route is independent of the ordinary strict runtime-environment profile."
+
+[[workflows]]
+path = ".github/workflows/verify_zenodo_releases.yaml"
+sha256 = "58c77fcc3da6d6a3a3add861f276e7a4f211bce42c765f49d1c0ab678db8c348"
+reason = "Pinned read-only source archival verification and recovery; no runtime installation or package-publication proof."

@@ -100,3 +100,30 @@ def test_source_gate_declares_every_executed_matrix_cell():
     )["jobs"].values():
         assert re.fullmatch(r"[0-9a-f]{40}", job["uses"].rsplit("@", 1)[1])
         assert job["with"]["since"] == "2026-10-04T00:00:00Z"
+
+
+def test_dependency_preflight_precedes_tests_and_candidate_builds():
+    """No expensive job can bypass the reviewed exact-source input audit."""
+    inventory = tomllib.loads((ROOT / "devtools/dependency_routes.toml").read_text())
+    provider = inventory["shared_tool"]
+    assert provider["repository"] == "uibcdf/molsyssuite"
+    assert re.fullmatch(r"[0-9a-f]{40}", provider["commit"])
+    ci = yaml.safe_load((ROOT / ".github/workflows/CI.yaml").read_text())["jobs"]
+    publisher = yaml.safe_load(WORKFLOW.read_text())["jobs"]
+    assert ci["test"]["needs"] == "dependency-contract"
+    assert publisher["publish"]["needs"] == "decision"
+    for job in (ci["dependency-contract"], publisher["decision"]):
+        assert "if" not in job
+        checkouts = [
+            step["with"]
+            for step in job["steps"]
+            if step.get("with", {}).get("repository") == provider["repository"]
+        ]
+        assert len(checkouts) == 1
+        assert checkouts[0]["ref"] == provider["commit"]
+        assert checkouts[0]["path"] == ".molsyssuite-dependencies"
+        command = (
+            "python -B .molsyssuite-dependencies/devtools/scripts/dependency_routes.py "
+            "--root . --inventory devtools/dependency_routes.toml"
+        )
+        assert any(step.get("run") == command for step in job["steps"])
