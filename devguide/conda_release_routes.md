@@ -1,6 +1,27 @@
 # Conda release routes
 
-## Current route from 0.14.0
+## Current release 0.15.0
+
+Release ownership: `uibcdf/argdigest#31`; consumer coordination:
+`uibcdf/molsyssuite#106`. The staged route and provider pins described below
+remain in use. Full installed qualification now requires public SMonitor 0.19.0
+and `--require-scoped-capture`, making an unavailable scoped API fail rather than
+skip. All eight declared resources are checked before and after scientific
+tests. The independent NumPy-free matrix retains the public SMonitor 0.16.0 /
+DepDigest 0.11.0 floors and adds explicit digestion selection and restrictive
+capture refusal checks.
+
+Public `argdigest-0.15.0-py_0.tar.bz2` has SHA-256
+`b0f22038a8ad1c888dca10adedaca0fa14d2383a685a97c0602b7ca05f29d6a1`.
+Original producer and tag identify `57447cc4ec1f7ce85078f8a939892efd075bc919`.
+Producer `37524900085`, full installed `37525789576`, minimal-core
+`37525794773` and promotion `37526759902` passed. Public metadata, solver index,
+fresh installation, published documentation and source-only Zenodo record
+`23197285` were independently verified. Complete receipts:
+`completed_proposals/release_0_15_0.md` and
+`evidence/release_0_15_0_2026-10-06.json`.
+
+## Shared route adopted in 0.14.0
 
 Release ownership: `uibcdf/argdigest#24`; consumer notice:
 `uibcdf/molsyssuite#98`. The reviewed plan and resource inventory now use the
