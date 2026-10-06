@@ -1,0 +1,6 @@
+﻿argdigest.UnknownArgumentError
+==============================
+
+.. currentmodule:: argdigest
+
+.. autoexception:: UnknownArgumentError

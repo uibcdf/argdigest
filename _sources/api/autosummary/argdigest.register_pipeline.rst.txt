@@ -1,0 +1,6 @@
+﻿argdigest.register\_pipeline
+============================
+
+.. currentmodule:: argdigest
+
+.. autofunction:: register_pipeline
