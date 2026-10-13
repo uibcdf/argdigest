@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-13",
+  "owner_issue": "uibcdf/argdigest#33",
+  "coordination_issue": "uibcdf/molsyssuite#104",
+  "scope": "Explicit ArgDigest-owned paths and applicable operations; no global temporary-directory inventory",
+  "pre_removal_checks": {
+    "owner_uid": 2001,
+    "roots_are_symlinks": false,
+    "foreign_owned_entries": 0,
+    "observed_owned_process_references": 0,
+    "unreadable_owned_processes": 0,
+    "git_worktrees_clean": true,
+    "candidate_head": "0fa776af2d271065c60727c28480b20c3ce09aee",
+    "windows_provider_head": "13a661e348275496a677a1bfe9650d68a03713a3"
+  },
+  "retired_roots": [
+    "/tmp/argdigest-governance",
+    "/tmp/argdigest-014-candidate",
+    "/tmp/argdigest-windows-provider",
+    "/tmp/argdigest-014-core-rehearsal",
+    "/tmp/argdigest-014-public",
+    "/tmp/argdigest-014-wheel",
+    "/tmp/argdigest-014-wheel-source",
+    "/tmp/argdigest-014-wheel-target"
+  ],
+  "retirement": {
+    "explicit_removal_command_exit": 0,
+    "all_eight_roots_confirmed_absent_after_removal": true,
+    "private_floor_venv_retired_before_base_prefix": true,
+    "historical_unattributed_absence_is_not_removal_evidence": true,
+    "physical_reclaimed_bytes": null
+  },
+  "retained": {
+    "producer_receipts_root": "/tmp/argdigest-014-producer",
+    "regular_files": 4,
+    "logical_bytes": 5900,
+    "purpose": "Original sanitized release provenance after hosted artifact expiry",
+    "owner": "ArgDigest maintainers",
+    "review_by": "2026-11-03",
+    "review_trigger": "Next affected qualification, or stated date",
+    "retirement_condition": "Equivalent durable evidence established and these receipts no longer needed",
+    "active_issue_32_resources": "Task-owned source-provider checkout and private wheel retained through owner review and qualification"
+  },
+  "caller_custody_guard": {
+    "selector": "tests/test_cli_resource_ownership.py::test_real_cli_tests_preserve_caller_files_and_retire_outputs",
+    "controls": 4,
+    "outcome": "passed",
+    "assertions": [
+      "Exact caller sentinel bytes survive both real CLI nodes",
+      "Success and controlled post-write failure both retire child scratch",
+      "Parent managed workspace is absent after context exit"
+    ]
+  },
+  "private_floor_wheel_probe": {
+    "artifact_identity": "argdigest-0.15.0+7.gfd74607.dirty-py3-none-any.whl",
+    "sha256": "7281b76ad6d35b4953622b9ad02cc827b21f43965b04ddf72a48aab0a5ad0628",
+    "python": "3.14.7",
+    "depdigest": "0.11.0",
+    "smonitor": "0.16.0",
+    "outcome": "Core probe, off-checkout installed origin, CLI help, absent NumPy and pip check passed",
+    "boundary": "Private development wheel compatibility; no public release or scientific qualification"
+  },
+  "preserved": [
+    "Primary repositories and human changes",
+    "Shared environments and caches",
+    "External prunable worktree registration owned by another task",
+    "Useful immutable small release receipts and source archive"
+  ],
+  "environment_limit": "Seven existing shared-environment conflicts tracked by uibcdf/molsyssuite#82 remain unchanged"
+}

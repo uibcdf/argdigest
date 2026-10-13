@@ -1,9 +1,20 @@
 import os
+import tempfile
+from pathlib import Path
 
 import pytest
 
 from argdigest.cli import main
 from argdigest.core.agent_docs import generate_agent_docs
+
+
+@pytest.fixture
+def agent_cli_workspace(monkeypatch):
+    # Restore cwd before removing the private output directory, including on failure.
+    with tempfile.TemporaryDirectory(prefix="argdigest-cli-test-") as workspace:
+        with monkeypatch.context() as patch:
+            patch.chdir(workspace)
+            yield Path(workspace)
 
 
 def test_agent_docs_generation(tmp_path):
@@ -33,7 +44,7 @@ def test_cli_agent_init_help(capsys):
     assert "Agent sub-commands" in out
 
 
-def test_cli_agent_init_real(capsys):
+def test_cli_agent_init_real(capsys, agent_cli_workspace):
     # Test real execution of agent init
     with pytest.MonkeyPatch().context() as m:
         # Use argdigest as the module to audit
@@ -41,8 +52,7 @@ def test_cli_agent_init_real(capsys):
         main()
     out, _ = capsys.readouterr()
     assert "Initialized agent instructions" in out
-    assert os.path.exists("ARG_DIGEST_AGENTS.md")
-    os.remove("ARG_DIGEST_AGENTS.md")
+    assert (agent_cli_workspace / "ARG_DIGEST_AGENTS.md").is_file()
 
 
 def test_agent_docs_error():
@@ -62,9 +72,10 @@ def test_cli_audit_command(capsys):
     assert "Audit Report for module: argdigest" in out
 
 
-def test_cli_agent_update(capsys):
+def test_cli_agent_update(capsys, agent_cli_workspace):
     with pytest.MonkeyPatch().context() as m:
         m.setattr("sys.argv", ["argdigest", "agent", "update", "--module", "argdigest"])
         main()
     out, _ = capsys.readouterr()
     assert "Updated agent instructions" in out
+    assert (agent_cli_workspace / "ARG_DIGEST_AGENTS.md").is_file()

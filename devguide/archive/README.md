@@ -5,7 +5,7 @@ their established locations so existing references remain valid.
 
 <!-- generated: devguide_index -->
 
-### Resolved (19)
+### Resolved (20)
 
 - [`adopt_molsyssuite_policy_v1.md`](../completed_proposals/adopt_molsyssuite_policy_v1.md) — [#4](https://github.com/uibcdf/argdigest/issues/4) — Adopt the shared MolSysSuite policy and Ruff gate. *(resolved, measured)*
 - [`adopt_shared_reporting_lifecycle.md`](../completed_proposals/adopt_shared_reporting_lifecycle.md) — [#6](https://github.com/uibcdf/argdigest/issues/6) — Adopt the shared issue-backed developer-guide lifecycle. *(resolved, inspected)*
@@ -24,6 +24,7 @@ their established locations so existing references remain valid.
 - [`release_0_15_0.md`](../completed_proposals/release_0_15_0.md) — [#31](https://github.com/uibcdf/argdigest/issues/31) — Publish 0.15.0 with scoped capture and explicit digestion after installed qualification. *(resolved, measured)*
 - [`review_inherited_python_ecosystem_policy.md`](../completed_proposals/review_inherited_python_ecosystem_policy.md) — [#20](https://github.com/uibcdf/argdigest/issues/20) — Review inherited Python ecosystem policy in ArgDigest. *(resolved, measured)*
 - [`scoped_metadata_only_diagnostics.md`](../completed_proposals/scoped_metadata_only_diagnostics.md) — [#29](https://github.com/uibcdf/argdigest/issues/29) — Apply SMonitor capture policy before ArgDigest-owned diagnostic collection. *(resolved, measured)*
+- [`temporary_resource_review.md`](../completed_proposals/temporary_resource_review.md) — [#33](https://github.com/uibcdf/argdigest/issues/33) — Preserve caller resources and complete ArgDigest's bounded tool closeout. *(resolved, reproduced)*
 - [`truthy_skip_digestion_bypasses_validation.md`](../solved_bugs/truthy_skip_digestion_bypasses_validation.md) — [#17](https://github.com/uibcdf/argdigest/issues/17) — A truthy non-boolean skip_digestion bypasses validation before its digester runs. *(resolved, reproduced)*
 - [`warnings_inside_decorated_functions_point_to_wrapper.md`](../solved_bugs/warnings_inside_decorated_functions_point_to_wrapper.md) — [#16](https://github.com/uibcdf/argdigest/issues/16) — Warnings inside decorated functions point to the ArgDigest wrapper. *(resolved, inspected)*
 
