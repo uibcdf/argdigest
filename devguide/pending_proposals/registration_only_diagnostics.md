@@ -15,6 +15,14 @@ supersedes: []
 
 # Registration-only diagnostics
 
+## Maintainer disposition — 2026-10-13
+
+Diego explicitly authorized direct integration/push of the prepared provider
+and consumer changes. Provider owner review is complete; the source changes
+are accepted for main. SMonitor publication and the new exact ArgDigest
+installed/release qualification remain pending. Source integration does not
+make the capability available in the existing public packages.
+
 ## What
 
 Recorda needs public ArgDigest declarations without implicit application setup.
