@@ -1,7 +1,7 @@
 ---
 summary: Register diagnostics without bootstrapping the application's policy.
 issue: uibcdf/argdigest#32
-status: partial
+status: blocked
 opened: 2026-10-13
 closed:
 severity: medium
@@ -9,7 +9,7 @@ verification: reproduced
 area: [diagnostics, initialization, integration]
 guard: tests/test_diagnostic_registration.py
 normative:
-blocked_by: [uibcdf/smonitor#48]
+blocked_by: [uibcdf/smonitor#48, uibcdf/smonitor#50]
 supersedes: []
 ---
 
@@ -22,6 +22,13 @@ and consumer changes. Provider owner review is complete; the source changes
 are accepted for main. SMonitor publication and the new exact ArgDigest
 installed/release qualification remain pending. Source integration does not
 make the capability available in the existing public packages.
+
+Diego chose to hand SMonitor 0.20.0 publication to its maintainers and wait for
+uibcdf/smonitor#50. ArgDigest release preparation is deferred until that
+provider release is publicly available with its exact artifact and installed
+qualification evidence. Then verify the published registration-only capability
+and resume ArgDigest's own new-version qualification. An issue closure alone
+does not replace the required public-package evidence.
 
 ## What
 

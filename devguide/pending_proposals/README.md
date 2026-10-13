@@ -5,9 +5,9 @@ Open ArgDigest proposals with issue-backed reports. See
 
 <!-- generated: devguide_index -->
 
-### Partial (1)
+### Blocked (1)
 
-- [`registration_only_diagnostics.md`](registration_only_diagnostics.md) — [#32](https://github.com/uibcdf/argdigest/issues/32) — Register diagnostics without bootstrapping the application's policy. *(partial, reproduced)*
+- [`registration_only_diagnostics.md`](registration_only_diagnostics.md) — [#32](https://github.com/uibcdf/argdigest/issues/32) — Register diagnostics without bootstrapping the application's policy. *(blocked, reproduced)*
 
 ### Open (1)
 
