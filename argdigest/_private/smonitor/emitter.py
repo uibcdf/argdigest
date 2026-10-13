@@ -3,9 +3,16 @@ from __future__ import annotations
 from smonitor.integrations import DiagnosticBundle
 
 from ...core.diagnostics import detailed_diagnostics, get_capture_policy
+from ...diagnostics import _registration_only_available
 from .catalog import CATALOG, CODES, META, PACKAGE_ROOT
 
-bundle = DiagnosticBundle(CATALOG, META, PACKAGE_ROOT)
+_registration_only = _registration_only_available()
+bundle = DiagnosticBundle(
+    CATALOG,
+    META,
+    PACKAGE_ROOT,
+    **({"bootstrap_policy": False} if _registration_only else {}),
+)
 
 warn = bundle.warn
 warn_once = bundle.warn_once
@@ -39,6 +46,8 @@ def diagnostic_failure(error, *, stage, caller, argname):
         if detailed_diagnostics():
             extra["cause_message"] = str(error)
         options = {}
+        if _registration_only:
+            options["bootstrap_policy"] = False
         policy = get_capture_policy()
         if policy is not None and not policy.extra:
             # The enclosing scope already carries approved caller facts. Keep
@@ -63,8 +72,9 @@ def type_check_skipped(caller):
 
         emit_from_catalog(
             CATALOG["warnings"]["TypeCheckSkippedWarning"],
-            package_root=PACKAGE_ROOT,
+            package_root=None if _registration_only else PACKAGE_ROOT,
             extra=merge_extra(META, {"caller": caller}),
+            **({"bootstrap_policy": False} if _registration_only else {}),
         )
     except Exception:
         _fallback_warning("ARG-WARN-TYPECHECK-001")

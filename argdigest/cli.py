@@ -3,6 +3,7 @@ import importlib
 import inspect
 
 from .core.health import run_health_check
+from .diagnostics import configure_diagnostics
 
 
 def audit_module(module_name: str):
@@ -86,6 +87,7 @@ def main():
     )
 
     args = parser.parse_args()
+    configure_diagnostics()
 
     if args.command == "audit":
         audit_module(args.module)

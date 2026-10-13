@@ -7,7 +7,6 @@ from dataclasses import dataclass, field
 from functools import wraps
 from typing import Any, Callable
 
-from depdigest import dep_digest
 from smonitor import signal
 
 from .._private.smonitor.emitter import diagnostic_failure, type_check_skipped, warn
@@ -676,8 +675,15 @@ def _arg_digest_map(
 arg_digest.map = _arg_digest_map
 
 
-@dep_digest("beartype")
 def _load_beartype():
-    from beartype import beartype
+    # Dependency inspection itself may configure diagnostics on older providers.
+    # Keep that import at the optional engine's actual use boundary.
+    from depdigest import dep_digest
 
-    return beartype
+    @dep_digest("beartype")
+    def load():
+        from beartype import beartype
+
+        return beartype
+
+    return load()

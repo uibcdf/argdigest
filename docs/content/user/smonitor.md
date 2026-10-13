@@ -42,6 +42,36 @@ configure SMonitor at the library level and keep catalog definitions in:
 For contributors working on ArgDigest itself, see the developer page:
 [SMonitor integration](../developer/smonitor.md).
 
+## Declaration-only registration (proposed capability)
+
+The source route tracked in `uibcdf/argdigest#32` exposes
+`register_diagnostics()` and `configure_diagnostics()`. With SMonitor's proposed
+`DiagnosticBundle(bootstrap_policy=False)` capability (`uibcdf/smonitor#48`),
+importing ArgDigest registers its catalogs without configuring the application.
+Basic decorator/pipeline registration, execution and warning emission preserve
+the application's hooks, handlers and scoped capture policy.
+
+Applications choose bootstrap explicitly:
+
+```python
+from argdigest import configure_diagnostics
+
+configure_diagnostics()  # preserve an already configured application
+```
+
+Only `use_provider_policy=True` deliberately selects ArgDigest's recommendations
+over existing application policy. The CLI explicitly bootstraps its diagnostics
+as an application. Optional external engines retain their own initialization
+contracts and are imported only when requested; the registration route does not
+promise control over their configuration.
+
+SMonitor 0.19.0 does not provide the new bundle keyword. Existing supported
+providers retain import-time bootstrap, and explicitly requesting
+`register_diagnostics()` raises an actionable error. No dependency floor or
+installed publication claim changes in this source proposal. Provider owner
+review and separate installed/release qualification must precede receiving
+adoption; source integration is not a public installation route.
+
 ## Restrict collection before validation
 
 Use `capture_policy="metadata_only"` when a boundary must not automatically

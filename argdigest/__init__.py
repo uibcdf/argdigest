@@ -13,11 +13,13 @@ except PackageNotFoundError:
     except ImportError:
         __version__ = "0.0.0+unknown"
 
-from smonitor.integrations import ensure_configured as _ensure_smonitor_configured
+from .diagnostics import (
+    _initialize_diagnostics,
+    configure_diagnostics,
+    register_diagnostics,
+)
 
-from ._private.smonitor import PACKAGE_ROOT as _SMONITOR_PACKAGE_ROOT
-
-_ensure_smonitor_configured(_SMONITOR_PACKAGE_ROOT)
+_initialize_diagnostics()
 
 # Register standard pipelines
 from . import pipelines  # noqa: E402
@@ -73,4 +75,6 @@ __all__ = [
     "AliasTable",
     "describe_normalization",
     "StandardizerContractError",
+    "register_diagnostics",
+    "configure_diagnostics",
 ]

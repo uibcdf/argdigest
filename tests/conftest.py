@@ -9,6 +9,11 @@ def pytest_addoption(parser):
         action="store_true",
         help="Fail instead of skipping scoped capture in the installed release gate.",
     )
+    parser.addoption(
+        "--require-registration-only",
+        action="store_true",
+        help="Fail instead of skipping declaration-only diagnostics qualification.",
+    )
 
 
 @pytest.fixture(autouse=True)

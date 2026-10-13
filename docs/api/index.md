@@ -36,4 +36,6 @@ signatures.
    AliasTable
    describe_normalization
    StandardizerContractError
+   register_diagnostics
+   configure_diagnostics
 ```

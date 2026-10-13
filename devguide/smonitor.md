@@ -2,6 +2,23 @@
 
 ArgDigest uses SMonitor as the single diagnostics layer.
 
+The proposed application-owned setup in `uibcdf/argdigest#32` detects the public
+declaration-only bundle capability from `uibcdf/smonitor#48`. When available,
+the root registers catalogs and uses nonbootstrapping bundle/direct emission.
+Applications call `configure_diagnostics()` explicitly; the CLI performs that
+step itself. Older supported providers retain their existing initialization and
+refuse an explicit registration-only request. Do not present the source-provider
+integration as a shipped dependency guarantee or silently copy the provider's
+warning implementation. DepDigest is imported at the optional Beartype use
+boundary rather than while exporting the core API.
+
+Qualification uses `tests/test_diagnostic_registration.py` with
+`--require-registration-only`: a missing provider capability is a failure in
+that gate, while ordinary compatibility checks on old providers may skip the
+capability-specific cases. The future release must select a published qualified
+provider and a new committed version/plan; existing 0.15.0 artifacts and receipts
+remain immutable.
+
 SMonitor is a runtime dependency (hard dependency) in ArgDigest releases.
 
 ## Files
