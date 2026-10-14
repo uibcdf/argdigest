@@ -1,5 +1,23 @@
 # Release notes
 
+## 0.16.0
+
+With SMonitor 0.20.0 or newer, importing ArgDigest registers its diagnostic
+catalog without configuring application policy, handlers or exception hooks.
+The public `register_diagnostics()` helper exposes this idempotent operation.
+`configure_diagnostics()` preserves existing application configuration by
+default; `use_provider_policy=True` explicitly requests provider recommendations
+when supported. The CLI configures its own diagnostic session.
+
+Optional type-check engine loading is deferred until use. Older supported
+providers retain legacy initialization and reject explicit registration-only
+requests with an actionable capability error. Python 3.11–3.14 and the core
+dependency floors remain unchanged.
+
+The staged release requires full installed qualification with public SMonitor
+0.21.0 and DepDigest 0.15.1 and a separate NumPy-free lower-bound matrix before
+exact-file promotion. Consumer adoption remains independently owned.
+
 ## 0.15.0
 
 `capture_policy="metadata_only"` delegates diagnostic collection restrictions

@@ -1,6 +1,6 @@
 # Conda release routes
 
-## Next-release registration qualification
+## 0.16.0 registration qualification
 
 The unreleased profile prepared under `uibcdf/argdigest#32` selects public
 SMonitor 0.21.0 and DepDigest 0.15.1 and requires both
@@ -11,10 +11,11 @@ rather than silently skipping it. Nine declared resources include the public
 SMonitor 0.16.0 / DepDigest 0.11.0; its probe explicitly checks refusal of both
 restrictive capture and registration-only diagnostics on the older provider.
 
-This prepares the required tests before 0.16.0; it does not choose a new release
-candidate, replace the committed historical 0.15.0 plan, create a tag or qualify
-a new Conda artifact. The new version/route must be committed and its exact
-source/full installed/minimal-core gates completed in the release phase.
+The maintainer authorized release 0.16.0 on 2026-10-14 under
+`uibcdf/argdigest#36`. The committed plan selects staged build 0 and preserves
+the existing complete source/full installed/minimal-core gates. Qualification
+and publication receipts belong to `pending_proposals/release_0_16_0.md` until
+completion. The historical 0.15.0 plan remains available in its immutable tag.
 
 ## Released 0.15.0
 
