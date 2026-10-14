@@ -8,7 +8,13 @@ import sys
 
 def main() -> None:
     assert importlib.util.find_spec("numpy") is None, "Core solve installed NumPy"
-    from argdigest import DigestConfig, DigestError, arg_digest, argument_digest
+    from argdigest import (
+        DigestConfig,
+        DigestError,
+        arg_digest,
+        argument_digest,
+        register_diagnostics,
+    )
     from argdigest.pipelines.coercers import to_bool
     from argdigest.pipelines.science import to_quantity_array
 
@@ -81,10 +87,19 @@ def main() -> None:
         raise AssertionError(
             "A lower-bound provider silently accepted restrictive capture"
         )
+    try:
+        register_diagnostics()
+    except RuntimeError as error:
+        assert "bootstrap_policy=False" in str(error)
+    else:
+        raise AssertionError(
+            "A lower-bound provider silently accepted registration-only diagnostics"
+        )
     assert "numpy" not in sys.modules
     print(
         "PASS: NumPy-free core, science remedy, classmethods, qualname, bypass, "
-        "explicit pipelines and restrictive refusal on the lower-bound provider"
+        "explicit pipelines, restrictive and registration-only refusals "
+        "on the lower-bound provider"
     )
 
 

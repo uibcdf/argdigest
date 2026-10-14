@@ -27,6 +27,15 @@ case is unavailable. Installed origins/archive bytes and pip check pass.
 `evidence/registration_only_receiving_2026-10-14.json` records the boundary;
 new exact ArgDigest Conda/release qualification remains pending.
 
+The follow-up #32 review requires `--require-registration-only` as well as
+`--require-scoped-capture` in the maintained installed profile, using public
+SMonitor 0.21.0 / DepDigest 0.15.1. Its injected-unavailability guard executes
+that profile and proves a missing capability cannot pass as a skipped case.
+Fresh-process controls cover owned handlers, repeated registration and explicit
+provider-policy override. Final private-wheel receiving passes 393 tests with
+one unavailable sibling-source case; all eight registration cases execute.
+See `evidence/registration_only_final_review_2026-10-14.json`.
+
 SMonitor is a runtime dependency (hard dependency) in ArgDigest releases.
 
 ## Files

@@ -23,5 +23,5 @@ required_steps = ["Install exact artifact", "Validate installed files", "Run ins
 
 [installed_tests]
 paths = ["tests"]
-pytest_args = ["--receptor=ci", "-q", "--require-scoped-capture"]
-conda_dependencies = ["smonitor==0.19.0", "numpy>=1.26,<3", "pandas>=2,<4", "beartype>=0.16,<1", "pydantic>=2,<3", "pyunitwizard==0.27.0", "pint>=0.24,<1"]
+pytest_args = ["--receptor=ci", "-q", "--require-scoped-capture", "--require-registration-only"]
+conda_dependencies = ["smonitor==0.21.0", "depdigest==0.15.1", "numpy>=1.26,<3", "pandas>=2,<4", "beartype>=0.16,<1", "pydantic>=2,<3", "pyunitwizard==0.27.0", "pint>=0.24,<1"]

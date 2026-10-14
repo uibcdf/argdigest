@@ -1,0 +1,135 @@
+{
+  "date": "2026-10-14",
+  "owner_issue": "uibcdf/argdigest#32",
+  "source_base": "372b6bf94de7e513faba11d9580be3de8ef4857f",
+  "tested_working_changes_sha256": {
+    "tests/test_diagnostic_registration.py": "11308ac80dd0936c97ea3e9ab3bd540884121ecff38d442a6e02037a02bd3d6c",
+    "devtools/conda-build/resources.toml": "c8bf71ef6a7383f8e0ff67fadaeb74b647adee88146659185d2035728d864a73"
+  },
+  "runtime_changes": "None; strengthened registration contracts and installed qualification profile",
+  "platform": "linux",
+  "python": "3.14.8",
+  "private_wheel": {
+    "filename": "argdigest-0.15.0+15.g372b6bf.dirty-py3-none-any.whl",
+    "sha256": "1d4b73ed1a16513190603bc8c5fb7e11f996a0ead93e55c1752bd58b10b6720c",
+    "status": "Development artifact; not a new public ArgDigest release"
+  },
+  "public_providers": {
+    "smonitor": {
+      "version": "0.21.0",
+      "build": "py_2",
+      "sha256": "62b6cbae37f7fa06374af87923792f00253020955d000294b1a7d37eb9d04e56",
+      "public_url": "https://conda.anaconda.org/uibcdf/noarch/smonitor-0.21.0-py_2.tar.bz2"
+    },
+    "depdigest": {
+      "version": "0.15.1",
+      "build": "py_0",
+      "sha256": "2765c692de4e6aacff4197c4226ebb42ec1f0df9edb27e92f196ef1390cb1850",
+      "public_url": "https://conda.anaconda.org/uibcdf/noarch/depdigest-0.15.1-py_0.tar.bz2"
+    }
+  },
+  "installed_origins_relative_to_prefix": {
+    "argdigest": {
+      "version": "0.15.0+15.g372b6bf.dirty",
+      "origin": "lib/python3.14/site-packages/argdigest/__init__.py"
+    },
+    "smonitor": {
+      "version": "0.21.0",
+      "origin": "lib/python3.14/site-packages/smonitor/__init__.py"
+    },
+    "depdigest": {
+      "version": "0.15.1",
+      "origin": "lib/python3.14/site-packages/depdigest/__init__.py"
+    }
+  },
+  "installed_python_files_matching_original_archives_after_tests": {
+    "smonitor": 40,
+    "depdigest": 17,
+    "argdigest": 39
+  },
+  "tests": {
+    "passed": 393,
+    "skipped": 1,
+    "failed": 0,
+    "registration_cases_passed": [
+      "test_registration_execution_and_warnings_preserve_application_policy[unconfigured]",
+      "test_registration_execution_and_warnings_preserve_application_policy[configured]",
+      "test_registration_execution_and_warnings_preserve_application_policy[configured_override]",
+      "test_registration_execution_and_warnings_preserve_application_policy[submodule]",
+      "test_old_provider_refuses_registration_only_but_keeps_explicit_bootstrap",
+      "test_explicit_bootstrap_rejects_nonboolean_policy_override",
+      "test_unsupported_policy_override_refuses_before_configuration",
+      "test_installed_qualification_refuses_unavailable_registration"
+    ],
+    "skip": "test_collective_error_path_emits_contract_signal_and_dependency_hints",
+    "skip_reason": "Sibling source repositories unavailable in isolated parent"
+  },
+  "installed_profile": {
+    "paths": [
+      "tests"
+    ],
+    "pytest_args": [
+      "--receptor=ci",
+      "-q",
+      "--require-scoped-capture",
+      "--require-registration-only"
+    ],
+    "conda_dependencies": [
+      "smonitor==0.21.0",
+      "depdigest==0.15.1",
+      "numpy>=1.26,<3",
+      "pandas>=2,<4",
+      "beartype>=0.16,<1",
+      "pydantic>=2,<3",
+      "pyunitwizard==0.27.0",
+      "pint>=0.24,<1"
+    ]
+  },
+  "negative_control": {
+    "before_profile_fix": "The new regression guard fails: injected missing capability is skipped and child pytest returns 0",
+    "after_profile_fix": "The same child is required to fail with the qualification-specific diagnostic; guard passes",
+    "selector": "tests/test_diagnostic_registration.py::test_installed_qualification_refuses_unavailable_registration"
+  },
+  "pip_check": "passed",
+  "review": {
+    "open_prs": [],
+    "other_open_issue": "uibcdf/argdigest#9 is scheduled after 1.0"
+  },
+  "remaining": "Exact new-version ArgDigest Conda artifact, supported-platform/source/installed/minimal-core gates and publication before receiving adoption",
+  "boundaries": [
+    "One fresh Linux/Python 3.14.8 environment",
+    "Unchanged runtime floors and public 0.15.0 artifacts",
+    "Shared environment and sibling sources untouched"
+  ],
+  "minimum_core": {
+    "python": "3.14.8",
+    "providers": {
+      "smonitor": {
+        "version": "0.16.0",
+        "build": "py_1",
+        "sha256": "a7f0ea073786354695c606e89959e67fcd4afc910a42683bba00955eb17163d7",
+        "url": "https://conda.anaconda.org/uibcdf/noarch/smonitor-0.16.0-py_1.tar.bz2",
+        "matching_python_files": 36
+      },
+      "depdigest": {
+        "version": "0.11.0",
+        "build": "py_2",
+        "sha256": "b6ba665d9125f49506b7e4231e6065f164d3b643117a22288b44baafceff270f",
+        "url": "https://conda.anaconda.org/uibcdf/noarch/depdigest-0.11.0-py_2.tar.bz2",
+        "matching_python_files": 16
+      }
+    },
+    "argdigest_version": "0.15.0+15.g372b6bf.dirty",
+    "numpy": "absent",
+    "pip_check": "passed",
+    "probe": "passed",
+    "probe_path": "devtools/conda-build/core_runtime_probe.py",
+    "probe_sha256": "0de8a9ae796d0202324e2bc0279466eacf49b8dde1b4b50219902a31682ce776",
+    "assertions": [
+      "Core/science-remedy/classmethod/runtime-qualname/literal-True bypass and explicit pipeline controls",
+      "Unavailable restrictive capture refuses with ARG-ERR-CAPTURE-001",
+      "Unavailable registration-only request refuses with the expected public capability error"
+    ],
+    "boundary": "One clean Linux/Python 3.14.8 lower-bound environment; complete supported matrix remains release work"
+  }
+}

@@ -15,6 +15,39 @@ supersedes: []
 
 # Registration-only diagnostics
 
+## Pre-release review — 2026-10-14
+
+The remaining implementation review strengthens the fresh-process contract:
+repeated registration returns the same declaration receipt, application-owned
+root/diagnostic handlers survive real emissions, ordinary explicit setup keeps
+the application's policy, and only `use_provider_policy=True` applies the
+provider's recommendations. An unsupported override refuses before setup.
+
+The installed test profile still selected SMonitor 0.19.0 and lacked
+`--require-registration-only`. A new subprocess guard reproduced the resulting
+false success: an injected unavailable capability skipped its case and pytest
+returned zero. The profile now selects public SMonitor 0.21.0 / DepDigest
+0.15.1 and requires registration-only plus scoped capture. The guard now passes
+only when that real profile refuses the unavailable capability with the expected
+qualification diagnostic. Lower-bound minimal-core compatibility is unchanged.
+
+A fresh installed private wheel passes 393 tests with one unavailable
+sibling-source collective case. All eight registration cases execute, pip check
+passes and installed Python bytes still match the original archives. Final
+bounded evidence is `devguide/evidence/registration_only_final_review_2026-10-14.json`.
+A separate clean NumPy-free installation of the same wheel with public SMonitor
+0.16.0 / DepDigest 0.11.0 passes the extended minimal-core probe, including the
+new registration-only refusal and existing restrictive refusal. Its pip check
+and original provider-archive byte checks pass. This remains one platform.
+The source/profile work is ready for the next release. This issue stays partial
+until its separately qualified public release satisfies the final acceptance
+criterion; it is not closed on the strength of a private one-platform wheel.
+
+The subsequent board review finds no open PRs or queued bugs. The only other
+open issue, uibcdf/argdigest#9, is explicitly scheduled after 1.0 and does not
+block 0.16.0. The 0.16.0 version decision, exact-source/full installed/minimal-core
+matrices, artifact and publication remain the release phase, not completed work.
+
 ## Public-provider receiving — 2026-10-14
 
 The external publication block is lifted: SMonitor 0.20.0 delivered the

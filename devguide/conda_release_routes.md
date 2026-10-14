@@ -1,10 +1,26 @@
 # Conda release routes
 
-## Current release 0.15.0
+## Next-release registration qualification
+
+The unreleased profile prepared under `uibcdf/argdigest#32` selects public
+SMonitor 0.21.0 and DepDigest 0.15.1 and requires both
+`--require-registration-only` and `--require-scoped-capture`. An actual child
+pytest guard proves that missing registration capability fails this profile
+rather than silently skipping it. Nine declared resources include the public
+`argdigest/diagnostics.py` module. The separate minimal-core matrix retains
+SMonitor 0.16.0 / DepDigest 0.11.0; its probe explicitly checks refusal of both
+restrictive capture and registration-only diagnostics on the older provider.
+
+This prepares the required tests before 0.16.0; it does not choose a new release
+candidate, replace the committed historical 0.15.0 plan, create a tag or qualify
+a new Conda artifact. The new version/route must be committed and its exact
+source/full installed/minimal-core gates completed in the release phase.
+
+## Released 0.15.0
 
 Release ownership: `uibcdf/argdigest#31`; consumer coordination:
-`uibcdf/molsyssuite#106`. The staged route and provider pins described below
-remain in use. Full installed qualification now requires public SMonitor 0.19.0
+`uibcdf/molsyssuite#106`. Its original staged route and provider pins are retained
+in the immutable tag and receipts. Full installed qualification required public SMonitor 0.19.0
 and `--require-scoped-capture`, making an unavailable scoped API fail rather than
 skip. All eight declared resources are checked before and after scientific
 tests. The independent NumPy-free matrix retains the public SMonitor 0.16.0 /
