@@ -42,9 +42,9 @@ configure SMonitor at the library level and keep catalog definitions in:
 For contributors working on ArgDigest itself, see the developer page:
 [SMonitor integration](../developer/smonitor.md).
 
-## Declaration-only registration (next ArgDigest release)
+## Declaration-only registration (ArgDigest 0.16.0)
 
-The source route tracked in `uibcdf/argdigest#32` exposes
+ArgDigest 0.16.0, tracked in `uibcdf/argdigest#32`, exposes
 `register_diagnostics()` and `configure_diagnostics()`. With the public
 `DiagnosticBundle(bootstrap_policy=False)` capability in SMonitor >=0.20.0
 (`uibcdf/smonitor#48` and `uibcdf/smonitor#50`),
@@ -68,11 +68,11 @@ promise control over their configuration.
 
 SMonitor 0.16.0–0.19.0 do not provide the new bundle keyword. Those supported
 providers retain import-time bootstrap, and explicitly requesting
-`register_diagnostics()` raises an actionable error. This source route is not
-part of public ArgDigest 0.15.0. Local installed receiving with public SMonitor
-0.21.0 and DepDigest 0.15.1 passes; ArgDigest's new exact Conda/release
-qualification remains pending before receiving adoption. Existing dependency
-floors remain unchanged.
+`register_diagnostics()` raises an actionable error. ArgDigest 0.16.0 is public
+and its exact Conda artifact passed the complete installed matrix with public
+SMonitor 0.21.0 and DepDigest 0.15.1, plus a separate NumPy-free lower-bound
+matrix. Release receipts are tracked in `uibcdf/argdigest#36`. Consumer adoption
+remains independently owned. Existing dependency floors remain unchanged.
 
 ## Restrict collection before validation
 
