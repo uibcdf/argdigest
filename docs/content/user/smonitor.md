@@ -42,11 +42,12 @@ configure SMonitor at the library level and keep catalog definitions in:
 For contributors working on ArgDigest itself, see the developer page:
 [SMonitor integration](../developer/smonitor.md).
 
-## Declaration-only registration (proposed capability)
+## Declaration-only registration (next ArgDigest release)
 
 The source route tracked in `uibcdf/argdigest#32` exposes
-`register_diagnostics()` and `configure_diagnostics()`. With SMonitor's proposed
-`DiagnosticBundle(bootstrap_policy=False)` capability (`uibcdf/smonitor#48`),
+`register_diagnostics()` and `configure_diagnostics()`. With the public
+`DiagnosticBundle(bootstrap_policy=False)` capability in SMonitor >=0.20.0
+(`uibcdf/smonitor#48` and `uibcdf/smonitor#50`),
 importing ArgDigest registers its catalogs without configuring the application.
 Basic decorator/pipeline registration, execution and warning emission preserve
 the application's hooks, handlers and scoped capture policy.
@@ -65,12 +66,13 @@ as an application. Optional external engines retain their own initialization
 contracts and are imported only when requested; the registration route does not
 promise control over their configuration.
 
-SMonitor 0.19.0 does not provide the new bundle keyword. Existing supported
+SMonitor 0.16.0–0.19.0 do not provide the new bundle keyword. Those supported
 providers retain import-time bootstrap, and explicitly requesting
-`register_diagnostics()` raises an actionable error. No dependency floor or
-installed publication claim changes in this source proposal. Provider owner
-review and separate installed/release qualification must precede receiving
-adoption; source integration is not a public installation route.
+`register_diagnostics()` raises an actionable error. This source route is not
+part of public ArgDigest 0.15.0. Local installed receiving with public SMonitor
+0.21.0 and DepDigest 0.15.1 passes; ArgDigest's new exact Conda/release
+qualification remains pending before receiving adoption. Existing dependency
+floors remain unchanged.
 
 ## Restrict collection before validation
 

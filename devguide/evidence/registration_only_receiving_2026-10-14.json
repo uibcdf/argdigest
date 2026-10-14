@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-14",
+  "owner_issue": "uibcdf/argdigest#32",
+  "source_commit": "823146808b4af3203b8d3886c1d215b46b2c9f6f",
+  "platform": "linux",
+  "python": "3.14.8",
+  "argdigest_wheel": {
+    "filename": "argdigest-0.15.0+14.g8231468-py3-none-any.whl",
+    "sha256": "a044bd0741cc933bd8c82cab12c2077373cdf6127367e20f926c72d6e4a9fc9a",
+    "status": "Private development wheel, not a public ArgDigest release"
+  },
+  "public_providers": {
+    "smonitor": {
+      "version": "0.21.0",
+      "filename": "smonitor-0.21.0-py_2.tar.bz2",
+      "sha256": "62b6cbae37f7fa06374af87923792f00253020955d000294b1a7d37eb9d04e56",
+      "public_url": "https://conda.anaconda.org/uibcdf/noarch/smonitor-0.21.0-py_2.tar.bz2"
+    },
+    "depdigest": {
+      "version": "0.15.1",
+      "filename": "depdigest-0.15.1-py_0.tar.bz2",
+      "sha256": "2765c692de4e6aacff4197c4226ebb42ec1f0df9edb27e92f196ef1390cb1850",
+      "public_url": "https://conda.anaconda.org/uibcdf/noarch/depdigest-0.15.1-py_0.tar.bz2"
+    }
+  },
+  "installed_origins_relative_to_prefix": {
+    "argdigest": {
+      "version": "0.15.0+14.g8231468",
+      "origin": "lib/python3.14/site-packages/argdigest/__init__.py"
+    },
+    "smonitor": {
+      "version": "0.21.0",
+      "origin": "lib/python3.14/site-packages/smonitor/__init__.py"
+    },
+    "depdigest": {
+      "version": "0.15.1",
+      "origin": "lib/python3.14/site-packages/depdigest/__init__.py"
+    }
+  },
+  "python_files_matching_original_archives_after_tests": {
+    "argdigest": 39,
+    "smonitor": 40,
+    "depdigest": 17
+  },
+  "tests": {
+    "passed": 390,
+    "skipped": 1,
+    "failed": 0,
+    "required_options": [
+      "--require-scoped-capture",
+      "--require-registration-only"
+    ],
+    "import_mode": "importlib",
+    "python_safe_path": true,
+    "pythonpath": "unset",
+    "cwd": "outside source checkout",
+    "skip": "tests/e2e/test_collective_error_path.py: sibling source repositories absent from isolated task parent",
+    "skip_boundary": "Workspace-only source composition not exercised; strict registration/capture cases executed"
+  },
+  "pip_check": "passed",
+  "boundaries": [
+    "One Linux/Python 3.14.8 fresh environment",
+    "Published providers and private installed ArgDigest wheel",
+    "Not a new exact ArgDigest Conda artifact or supported-platform release qualification",
+    "Existing dependency floors and public 0.15.0 artifacts remain unchanged"
+  ]
+}

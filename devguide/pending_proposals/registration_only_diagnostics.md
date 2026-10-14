@@ -1,7 +1,7 @@
 ---
 summary: Register diagnostics without bootstrapping the application's policy.
 issue: uibcdf/argdigest#32
-status: blocked
+status: partial
 opened: 2026-10-13
 closed:
 severity: medium
@@ -9,11 +9,33 @@ verification: reproduced
 area: [diagnostics, initialization, integration]
 guard: tests/test_diagnostic_registration.py
 normative:
-blocked_by: [uibcdf/smonitor#48, uibcdf/smonitor#50]
+blocked_by: []
 supersedes: []
 ---
 
 # Registration-only diagnostics
+
+## Public-provider receiving — 2026-10-14
+
+The external publication block is lifted: SMonitor 0.20.0 delivered the
+capability and uibcdf/smonitor#48 and uibcdf/smonitor#50 are closed. Receiving now uses public
+SMonitor 0.21.0 `py_2` and DepDigest 0.15.1 `py_0`. Their downloaded archives
+match the release digests and their installed Python files match those archives.
+
+A fresh Linux/Python 3.14.8 Conda environment installed a private ArgDigest
+wheel built from `823146808b4af3203b8d3886c1d215b46b2c9f6f`. Outside the source
+checkout, with PYTHONPATH unset, safe Python paths and importlib collection,
+390 tests passed; one sibling-source collective test was unavailable in the
+isolated parent. The required registration-only and scoped-capture cases ran;
+`pip check` passed. After testing, 39 ArgDigest, 40 SMonitor and 17 DepDigest
+Python files still matched their original wheel/public archives. Receipt:
+`devguide/evidence/registration_only_receiving_2026-10-14.json`.
+
+This is one installed private-wheel receiving check, not a new public ArgDigest
+release or a complete platform/Conda-artifact qualification. Resume preparation
+of the new exact ArgDigest release and its required gates. The existing 0.15.0
+plan/artifacts and declared dependency floors remain unchanged. DepDigest's new
+DeclaredRegistry features are not adopted by this compatibility check.
 
 ## Maintainer disposition — 2026-10-13
 
@@ -44,8 +66,8 @@ registration only when the provider exposes the supported declaration-only
 bundle capability. Older providers preserve their existing behavior and refuse
 an explicit unsupported request. The CLI chooses application bootstrap itself.
 
-SMonitor owns bundle/direct emission and its console fallback. Proposed provider
-issue uibcdf/smonitor#48 adds the per-bundle/per-call bootstrap_policy=False
+SMonitor owns bundle/direct emission and its console fallback. Provider
+issue uibcdf/smonitor#48 delivered the per-bundle/per-call bootstrap_policy=False
 choice; ArgDigest delegates instead of copying warning replay, formatting or
 deduplication. DiagnosticBundle, direct failure events and type-check fallback
 all honor the choice. DepDigest's bootstrap-prone import is deferred until the
@@ -59,10 +81,12 @@ on Python 3.14.7 with the proposed provider. The original provider has separate
 compatibility evidence: 388 passed and three capability-specific skips on the
 published 0.19.0 provider.
 
-The shared development environment has seven unrelated conflicts tracked under
-uibcdf/molsyssuite#82. Source origins were checked; these runs do not establish a
-fresh installed dependency closure, more platforms or public delivery. No
-metadata floor, immutable release plan/version or public artifact is changed.
+The earlier source runs used a shared development environment with seven
+unrelated conflicts tracked under uibcdf/molsyssuite#82. Those runs do not prove
+a fresh installed closure. The separately created receiving environment above
+passes pip check; it does not repair or modify that shared environment or prove
+additional platforms/public ArgDigest delivery. No metadata floor, immutable
+release plan/version or public artifact is changed.
 
 ## Why
 
