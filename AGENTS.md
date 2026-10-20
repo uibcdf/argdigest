@@ -24,6 +24,14 @@ These guides are required reading for anyone developing this library. They descr
 - Follow the versioned policy caller in `.github/workflows/molsyssuite-policy.yml`; do not
   duplicate its common checks in repository-owned workflows.
 
+## Public release titles
+
+When preparing, publishing or intentionally editing a public GitHub Release, use
+exactly `X.Y.Z` as its title/name, matching the canonical tag and package/project
+version. Put descriptions in the body/notes. Read
+[the local release-title guide](devguide/release_titles.md) and
+[the canonical rule](MOLSYSSUITE_GUIDE.md#github-release-titles).
+
 ## Modular reusable tools
 
 Before adding a feature, inspect existing tools and identify the owning module or
