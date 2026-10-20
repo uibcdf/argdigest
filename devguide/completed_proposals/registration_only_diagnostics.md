@@ -1,9 +1,9 @@
 ---
 summary: Register diagnostics without bootstrapping the application's policy.
 issue: uibcdf/argdigest#32
-status: partial
+status: resolved
 opened: 2026-10-13
-closed:
+closed: 2026-10-20
 severity: medium
 verification: reproduced
 area: [diagnostics, initialization, integration]
@@ -39,7 +39,7 @@ A separate clean NumPy-free installation of the same wheel with public SMonitor
 0.16.0 / DepDigest 0.11.0 passes the extended minimal-core probe, including the
 new registration-only refusal and existing restrictive refusal. Its pip check
 and original provider-archive byte checks pass. This remains one platform.
-The source/profile work is ready for the next release. This issue stays partial
+At that checkpoint the source/profile work was ready for the next release. At that checkpoint this issue remained partial
 until its separately qualified public release satisfies the final acceptance
 criterion; it is not closed on the strength of a private one-platform wheel.
 
@@ -135,3 +135,50 @@ explicit, without environment-wide switches or private downstream patches.
 - Existing providers and standalone CLI retain compatible behavior.
 - Normal provider/shared notice in uibcdf/moli#62 before rollout.
 - New exact ArgDigest release/installed qualification before Recorda adoption.
+
+## Public qualification and reconciliation — 2026-10-20
+
+The release was published on 2026-10-14; the queued status had not been
+reconciled. Independent review now binds original source
+`2b9c9b289ae9b1d97d3bf04250f5c882feab3d41`, annotated numeric tag and stable
+release to `noarch/argdigest-0.16.0-py_0.tar.bz2`, SHA-256
+`e82d82680d79ae3d5df9917b1662d2855ed8485128943b72ddec87a5769a467d`.
+The original source/full matrix, repository/publication policies, producer,
+twelve full installed cells, twelve NumPy-free lower-bound cells and same-file
+promotion passed their exact required native jobs and steps on attempt 1.
+
+Producer `38567520662`, installed matrix `38568051160`, minimal-core matrix
+`38568053243` and promotion `38572471948` retain separate identities. Receipt
+ZIP digests, original producer and archive coordinate/digest were checked,
+including the independent actual upload receipt (the build-only action's
+`upload_not_requested` is not the subsequent staging upload). Public registry,
+solver index and downloaded archive agree; 38 nongenerated Python runtime
+files match the original candidate.
+
+Independent central run `39469657236` at
+`b199b7e1805ed054d924b00eac8d68793e07916d` installs the same public bytes on
+Linux, macOS arm64 and Windows with Python 3.14 and executes the installed
+console `--help` outside source. All three exact installation/command receipts
+pass. This is explicitly a console smoke check; the original twelve-cell full
+installed and core matrices supply the broader release evidence.
+
+Documentation run `38572423608` passed its installed-wheel and Sphinx steps.
+Archival run `38572426093` and independent public source-archive verification
+confirm source-only Zenodo record `23369539`, version DOI
+`10.5281/zenodo.23369539`, concept DOI `10.5281/zenodo.22892325`. The downloaded
+541,645-byte ZIP matches its published checksum; all 330 source files match
+the original tagged Git tree. Package files are not claimed as Zenodo contents.
+
+Normalized immutable identities, native jobs/steps, artifact digests and public
+receipts are retained in
+`devguide/evidence/release_0_16_0_public_receiving_2026-10-20.json`. The existing
+`tests/test_diagnostic_registration.py` guard exercises the repaired bootstrap
+mechanism in fresh processes and makes unavailable mandatory capabilities fail
+qualification; it is relevant to this resolution, beyond mere addressability.
+
+No rebuild, substitution, retagging, new upload/promotion, historical release-title
+edit or scientific rerun was performed during reconciliation. Consumer
+receiving remains separately owned, including Recorda #24 and Praxis #10 under
+uibcdf/molsyssuite#82 / uibcdf/moli#40; publication alone does not widen a
+consumer's metadata. Shared provider receiving is reported to
+uibcdf/molsyssuite#106 and publication coordination to uibcdf/molsyssuite#45.

@@ -1,0 +1,1796 @@
+{
+  "schema": "molsyssuite.argdigest-public-receiving@1",
+  "issues": [
+    "uibcdf/molsyssuite#106",
+    "uibcdf/molsyssuite#45",
+    "uibcdf/argdigest#36",
+    "uibcdf/argdigest#32"
+  ],
+  "observed_at": "2026-10-20T17:49:52.032371+00:00",
+  "repository": "uibcdf/argdigest",
+  "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+  "version": "0.16.0",
+  "filename": "argdigest-0.16.0-py_0.tar.bz2",
+  "sha256": "e82d82680d79ae3d5df9917b1662d2855ed8485128943b72ddec87a5769a467d",
+  "public_url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.16.0-py_0.tar.bz2",
+  "download_bytes": 54056,
+  "archive": {
+    "package": "argdigest",
+    "version": "0.16.0",
+    "subdir": "noarch",
+    "filename": "argdigest-0.16.0-py_0.tar.bz2",
+    "sha256": "e82d82680d79ae3d5df9917b1662d2855ed8485128943b72ddec87a5769a467d",
+    "artifact": "/tmp/molsyssuite-82-106-20261020-hcq5ZBu5/argdigest-0.16.0-py_0.tar.bz2"
+  },
+  "runtime_files_matching_original_candidate": {
+    "argdigest/contrib/__init__.py": "780dc788fb0ee7e7d9273c45992a3568176dc0ef168dccce12a3e236c3f5cf75",
+    "argdigest/_private/smonitor/meta.py": "2b5313a344e848dcddeb2181d8e352664b77c0d02b5c421fb4726767b15ae81f",
+    "argdigest/pipelines/__init__.py": "0d9efba3909e8afac995b4b260756d48321a2d02a7968f49d388672ad3694d1b",
+    "argdigest/_private/smonitor/__init__.py": "3a7c8e505add1e4a4ff8fdb866c97edd043b830f6b7a59f768abd829ee419632",
+    "argdigest/_depdigest.py": "e3eede5f993fd789c55068769ec794e771fb7b233fa7e10df2f0439a8d531cd9",
+    "argdigest/core/context.py": "04ce1ef61eed153411c9a83d388899de1886f6f561be406373a6b112e639b81c",
+    "argdigest/config.py": "1e06c210d8cb24a6298e03961f5ad9a1a7eda56d5e473e8f2c791c0484e1ea38",
+    "argdigest/_smonitor.py": "8c64a540b48708d6b2cff8bb49ff05465c44be5cdc3b4511f40b514796b0d37d",
+    "argdigest/core/__init__.py": "fde4100e15ab833df34916a47a36a19a9c21925b6042ee93328afb270f835fca",
+    "argdigest/core/logger.py": "2fc318cb37f9c9863e809b51d516b5de6fc340cd6f962e9688484fe71f35a65b",
+    "argdigest/core/argument_registry.py": "b2698707760710bd5e103350f2a761f96b4d0178eb4d7f2b02fe03e55f3ea3bf",
+    "argdigest/core/errors_base.py": "bd1a04038e7e9fb50ce422291ae61e2f4cc1bac04342ab0f0230a6ef8b12247b",
+    "argdigest/pipelines/base.py": "20c07d367c9d121a07c77105127f5a950cced551aa77e65f5f2e80261b3de045",
+    "argdigest/contrib/beartype_support.py": "a18088bc90a02f56e44c5e5b5ad96da346d136baec861dacb739c6f86273acd2",
+    "argdigest/core/caller.py": "649e5bee66a4fcd8795548d70b164d950144a5967b97436c723b387cd2490124",
+    "argdigest/contrib/pydantic_support.py": "e52140c341096d5ad04fc056a2dccb39c4f368138758d2e6086a9ef9bee8df71",
+    "argdigest/core/diagnostics.py": "aaf2b4bf15562206d9c4ed16d2f3075214669948fb2523d6b6007698f339ed32",
+    "argdigest/pipelines/science.py": "f5ce2af693b9b9e714c0145c1601b4b2c2223efaa3fe0f3469c21883306bb464",
+    "argdigest/__init__.py": "07518ec0f8d53c99d67f40aa76dc1a9f021ab659fc97ee4eb24a2e325e4feaee",
+    "argdigest/pipelines/validators.py": "5b844a9bce602f734aafcf28bd671ccc53571ba3ba8dd4f54acc20b31c162f52",
+    "argdigest/diagnostics.py": "2ab1c77c7832f2b62161b8da57b228b12b89e7a667c6973d19ec8b9e041c2559",
+    "argdigest/pipelines/coercers.py": "83e3bffbb67474633c15f88420215110dd25e1bd9db9d9a148b1b352e8fb01d8",
+    "argdigest/_private/smonitor/emitter.py": "ed30989f4ebe8cf69720a9e01da83b4ae8d44aef6abbdf3dbeba253084566dac",
+    "argdigest/core/health.py": "edbb0c304f137455ab31ab33c8d3f21e84d89446c258c8060c6b559cc24a92b7",
+    "argdigest/cli.py": "6973b6906efd26b9f09e7850505c64b1987f366ff7792eade042fec0190b6b82",
+    "argdigest/core/registry.py": "3a8a81354ce299e4795d105441e0d029b2bf93a636c1c94f01adda1d2b19e48a",
+    "argdigest/core/function_loader.py": "3970949c2553a706b617380e8601cf97113f1b13837c8de1f1abb613838014b1",
+    "argdigest/core/argument_loader.py": "cb45b08e78282b98408e7d43fb004db2b2585003aadd074c7de1ef585b6f6dff",
+    "argdigest/core/config.py": "31c271135fadc73f8a2ec8a5855b5e712188a0c68d117749f0cb12f6ae967eb5",
+    "argdigest/core/errors.py": "d0cfd6413717fb69bb2243fd2d05059a2aa1bedf99828553459f889bc403a29d",
+    "argdigest/core/utils.py": "7135b40b7871db2c3a5c21cf228d9bb5390e6f0b93705525edd527bb834e7512",
+    "argdigest/pipelines/data.py": "c0132959ab06f447f2f5d202e5b1ddf0dc50efaa392d3470d5c1fa0b942f0521",
+    "argdigest/core/agent_docs.py": "7458f56d2eef25b63741044b0d0b4cfd55c0e7cef8876fd7676e1460a6cb50fa",
+    "argdigest/contrib/pyunitwizard_support.py": "8c7f896ed03cc72735ed1a4faa577b8705e52be43d859f278e7ec423dfce5922",
+    "argdigest/core/normalization.py": "32db2bece263eac13308e4052a2c5dbafac13ab672d11f6d655d8133d995d691",
+    "argdigest/_private/smonitor/catalog.py": "bca3d51c79c6088bf1efe5392097297a4aab4c95bee5dd4983dfa95be953aff6",
+    "argdigest/core/function_contract.py": "e25f37ee180f650b596b4d61f84ed1c93191cb5ab5837afed78945a3586536fb",
+    "argdigest/core/decorator.py": "d0d09ccaa80b5739c994b4dafe4edd8a0b744507eda5c3a21cef5380a69b737c"
+  },
+  "native_gates": {
+    "source_full": {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 38533827215,
+      "run_attempt": 1,
+      "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+      "workflow": ".github/workflows/CI_full_matrix.yaml",
+      "jobs": [
+        {
+          "name": "Full test on ubuntu-latest, Python 3.11",
+          "job_id": 115751790438,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on ubuntu-latest, Python 3.12",
+          "job_id": 115751789614,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on ubuntu-latest, Python 3.13",
+          "job_id": 115751789800,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on ubuntu-latest, Python 3.14",
+          "job_id": 115751789411,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on macos-latest, Python 3.11",
+          "job_id": 115751789450,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on macos-latest, Python 3.12",
+          "job_id": 115751789882,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on macos-latest, Python 3.13",
+          "job_id": 115751789961,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on macos-latest, Python 3.14",
+          "job_id": 115751789696,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on windows-latest, Python 3.11",
+          "job_id": 115751789477,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on windows-latest, Python 3.12",
+          "job_id": 115751789385,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on windows-latest, Python 3.13",
+          "job_id": 115751789964,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on windows-latest, Python 3.14",
+          "job_id": 115751789451,
+          "required_steps": [
+            "Run tests"
+          ]
+        }
+      ],
+      "event": "workflow_dispatch"
+    },
+    "source_ci": {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 38533787300,
+      "run_attempt": 1,
+      "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+      "workflow": ".github/workflows/CI.yaml",
+      "jobs": [
+        {
+          "name": "Test on ubuntu-latest, Python 3.14",
+          "job_id": 115751736618,
+          "required_steps": [
+            "Build wheel",
+            "Install from wheel",
+            "Test import module (installed wheel)",
+            "Run tests"
+          ]
+        }
+      ],
+      "event": "push"
+    },
+    "policy": {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 38533787832,
+      "run_attempt": 1,
+      "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+      "workflow": ".github/workflows/molsyssuite-policy.yml",
+      "jobs": [
+        {
+          "name": "policy / conformance",
+          "job_id": 115751657460,
+          "required_steps": [
+            "Check repository conformance",
+            "Check Python lint and imports",
+            "Check Python formatting"
+          ]
+        }
+      ],
+      "event": "push",
+      "exact_jobs": true
+    },
+    "publication_policy": {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 38533787833,
+      "run_attempt": 1,
+      "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+      "workflow": ".github/workflows/conda-publication-policy.yml",
+      "jobs": [
+        {
+          "name": "publication / check",
+          "job_id": 115751657854,
+          "required_steps": [
+            "Check publication workflow controls",
+            "Check declared noarch recipe and resources without building"
+          ]
+        }
+      ],
+      "event": "push",
+      "exact_jobs": true
+    },
+    "producer": {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 38567520662,
+      "run_attempt": 1,
+      "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+      "workflow": ".github/workflows/build_and_upload_conda_packages.yaml",
+      "jobs": [
+        {
+          "name": "decision",
+          "job_id": 115863907916,
+          "required_steps": [
+            "Validate exact source, tag and committed route",
+            "Check exact candidate dependency routes before building"
+          ]
+        },
+        {
+          "name": "publish / publish",
+          "job_id": 115863998505,
+          "required_steps": [
+            "Bootstrap administrative checks",
+            "Check recipe and committed resource inventory before building",
+            "Acquire exact-source executed CI gates and route preflight",
+            "Freeze reviewed metadata in the ephemeral build checkout",
+            "Build once and run recipe tests without uploading or conversion",
+            "Inspect exact built metadata, embedded version and resources",
+            "Upload exact reviewed file to staging",
+            "Retain candidate, producer and independent receipts"
+          ]
+        }
+      ],
+      "event": "workflow_dispatch",
+      "exact_jobs": true
+    },
+    "installed": {
+      "schema": "molsyssuite.installed-matrix@1",
+      "state": "verified",
+      "run_id": 38568051160,
+      "run_attempt": 1,
+      "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+      "workflow": ".github/workflows/test_staged_conda_package.yaml",
+      "title": "Installed argdigest-0.16.0-py_0.tar.bz2 e82d82680d79ae3d5df9917b1662d2855ed8485128943b72ddec87a5769a467d",
+      "jobs": [
+        {
+          "kind": "prepare",
+          "name": "installed / prepare",
+          "job_id": 115865728662,
+          "conclusion": "success"
+        },
+        {
+          "kind": "installed",
+          "platform": "osx-arm64",
+          "python": "3.11",
+          "name": "installed / osx-arm64 \u00b7 Python 3.11",
+          "job_id": 115868031661,
+          "conclusion": "success"
+        },
+        {
+          "kind": "installed",
+          "platform": "linux-64",
+          "python": "3.14",
+          "name": "installed / linux-64 \u00b7 Python 3.14",
+          "job_id": 115868031702,
+          "conclusion": "success"
+        },
+        {
+          "kind": "installed",
+          "platform": "linux-64",
+          "python": "3.12",
+          "name": "installed / linux-64 \u00b7 Python 3.12",
+          "job_id": 115868031728,
+          "conclusion": "success"
+        },
+        {
+          "kind": "installed",
+          "platform": "linux-64",
+          "python": "3.11",
+          "name": "installed / linux-64 \u00b7 Python 3.11",
+          "job_id": 115868031743,
+          "conclusion": "success"
+        },
+        {
+          "kind": "installed",
+          "platform": "osx-arm64",
+          "python": "3.12",
+          "name": "installed / osx-arm64 \u00b7 Python 3.12",
+          "job_id": 115868031764,
+          "conclusion": "success"
+        },
+        {
+          "kind": "installed",
+          "platform": "win-64",
+          "python": "3.11",
+          "name": "installed / win-64 \u00b7 Python 3.11",
+          "job_id": 115868031807,
+          "conclusion": "success"
+        },
+        {
+          "kind": "installed",
+          "platform": "osx-arm64",
+          "python": "3.13",
+          "name": "installed / osx-arm64 \u00b7 Python 3.13",
+          "job_id": 115868031844,
+          "conclusion": "success"
+        },
+        {
+          "kind": "installed",
+          "platform": "win-64",
+          "python": "3.13",
+          "name": "installed / win-64 \u00b7 Python 3.13",
+          "job_id": 115868031870,
+          "conclusion": "success"
+        },
+        {
+          "kind": "installed",
+          "platform": "osx-arm64",
+          "python": "3.14",
+          "name": "installed / osx-arm64 \u00b7 Python 3.14",
+          "job_id": 115868031896,
+          "conclusion": "success"
+        },
+        {
+          "kind": "installed",
+          "platform": "linux-64",
+          "python": "3.13",
+          "name": "installed / linux-64 \u00b7 Python 3.13",
+          "job_id": 115868031929,
+          "conclusion": "success"
+        },
+        {
+          "kind": "installed",
+          "platform": "win-64",
+          "python": "3.14",
+          "name": "installed / win-64 \u00b7 Python 3.14",
+          "job_id": 115868031962,
+          "conclusion": "success"
+        },
+        {
+          "kind": "installed",
+          "platform": "win-64",
+          "python": "3.12",
+          "name": "installed / win-64 \u00b7 Python 3.12",
+          "job_id": 115868032080,
+          "conclusion": "success"
+        }
+      ],
+      "checked_at": "2026-10-20T17:49:34.083879+00:00",
+      "repository": "uibcdf/argdigest"
+    },
+    "minimal_core": {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 38568053243,
+      "run_attempt": 1,
+      "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+      "workflow": ".github/workflows/test_staged_core_conda_package.yaml",
+      "jobs": [
+        {
+          "name": "Core ubuntu-latest / Python 3.11",
+          "job_id": 115865729856,
+          "required_steps": [
+            "Create a clean environment from the exact staged build",
+            "Verify exact installed core without NumPy"
+          ]
+        },
+        {
+          "name": "Core ubuntu-latest / Python 3.12",
+          "job_id": 115865729919,
+          "required_steps": [
+            "Create a clean environment from the exact staged build",
+            "Verify exact installed core without NumPy"
+          ]
+        },
+        {
+          "name": "Core ubuntu-latest / Python 3.13",
+          "job_id": 115865729677,
+          "required_steps": [
+            "Create a clean environment from the exact staged build",
+            "Verify exact installed core without NumPy"
+          ]
+        },
+        {
+          "name": "Core ubuntu-latest / Python 3.14",
+          "job_id": 115865730038,
+          "required_steps": [
+            "Create a clean environment from the exact staged build",
+            "Verify exact installed core without NumPy"
+          ]
+        },
+        {
+          "name": "Core macos-latest / Python 3.11",
+          "job_id": 115865729938,
+          "required_steps": [
+            "Create a clean environment from the exact staged build",
+            "Verify exact installed core without NumPy"
+          ]
+        },
+        {
+          "name": "Core macos-latest / Python 3.12",
+          "job_id": 115865729901,
+          "required_steps": [
+            "Create a clean environment from the exact staged build",
+            "Verify exact installed core without NumPy"
+          ]
+        },
+        {
+          "name": "Core macos-latest / Python 3.13",
+          "job_id": 115865730002,
+          "required_steps": [
+            "Create a clean environment from the exact staged build",
+            "Verify exact installed core without NumPy"
+          ]
+        },
+        {
+          "name": "Core macos-latest / Python 3.14",
+          "job_id": 115865729805,
+          "required_steps": [
+            "Create a clean environment from the exact staged build",
+            "Verify exact installed core without NumPy"
+          ]
+        },
+        {
+          "name": "Core windows-latest / Python 3.11",
+          "job_id": 115865729974,
+          "required_steps": [
+            "Create a clean environment from the exact staged build",
+            "Verify exact installed core without NumPy"
+          ]
+        },
+        {
+          "name": "Core windows-latest / Python 3.12",
+          "job_id": 115865729823,
+          "required_steps": [
+            "Create a clean environment from the exact staged build",
+            "Verify exact installed core without NumPy"
+          ]
+        },
+        {
+          "name": "Core windows-latest / Python 3.13",
+          "job_id": 115865730365,
+          "required_steps": [
+            "Create a clean environment from the exact staged build",
+            "Verify exact installed core without NumPy"
+          ]
+        },
+        {
+          "name": "Core windows-latest / Python 3.14",
+          "job_id": 115865729881,
+          "required_steps": [
+            "Create a clean environment from the exact staged build",
+            "Verify exact installed core without NumPy"
+          ]
+        }
+      ],
+      "title": "Core installed argdigest-0.16.0-py_0.tar.bz2 e82d82680d79ae3d5df9917b1662d2855ed8485128943b72ddec87a5769a467d",
+      "event": "workflow_dispatch",
+      "exact_jobs": true
+    },
+    "promotion": {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 38572471948,
+      "run_attempt": 1,
+      "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+      "workflow": ".github/workflows/promote_conda_package.yaml",
+      "jobs": [
+        {
+          "name": "release",
+          "job_id": 115880959603,
+          "required_steps": [
+            "Verify public release and minimal-core qualification"
+          ]
+        },
+        {
+          "name": "promote / promote",
+          "job_id": 115881062565,
+          "required_steps": [
+            "Bootstrap administrative checks",
+            "Acquire exact-source executed CI gates",
+            "Bind installed matrix to the planned exact file",
+            "Verify existing installed matrix and executed steps",
+            "Add public label to the same tested file without rebuilding",
+            "Independently verify public label and solver index",
+            "Retain source, installed, promotion and public receipts"
+          ]
+        }
+      ],
+      "event": "workflow_dispatch",
+      "exact_jobs": true
+    },
+    "docs": {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 38572423608,
+      "run_attempt": 1,
+      "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+      "workflow": ".github/workflows/sphinx_docs_to_gh_pages.yaml",
+      "jobs": [
+        {
+          "name": "Sphinx docs to gh-pages",
+          "job_id": 115880781019,
+          "required_steps": [
+            "Build wheel",
+            "Install from wheel",
+            "Test import module (installed wheel)",
+            "Running the Sphinx to gh-pages Action"
+          ]
+        }
+      ],
+      "event": "release",
+      "exact_jobs": true
+    },
+    "archival": {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 38572426093,
+      "run_attempt": 1,
+      "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+      "workflow": ".github/workflows/verify_zenodo_releases.yaml",
+      "jobs": [
+        {
+          "name": "archival / verify",
+          "job_id": 115880791762,
+          "required_steps": [
+            "Probe public archival evidence once",
+            "Preserve sanitized evidence"
+          ]
+        }
+      ],
+      "event": "release",
+      "exact_jobs": true
+    }
+  },
+  "receipts": [
+    {
+      "run_id": 38567520662,
+      "run_attempt": 1,
+      "identity": {
+        "id": 11896297547,
+        "name": "noarch-publication-38567520662-1",
+        "digest": "sha256:d0111c93adc2cdc6ce2d4cec2b5d17abaa88dff0a5cb93f63bc95bd3ee050ffc",
+        "size_in_bytes": 2576,
+        "workflow_run": {
+          "id": 38567520662,
+          "repository_id": 1088948514,
+          "head_repository_id": 1088948514,
+          "head_branch": "main",
+          "head_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41"
+        }
+      },
+      "expires_at": "2026-11-13T12:57:47Z",
+      "receipts": {
+        "argdigest/argdigest/noarch-preflight.json": {
+          "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+          "checked_at": "2026-10-14T12:55:30.968173+00:00",
+          "checkout_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+          "decision_by": "Release maintainer, publication explicitly authorized 2026-10-14 (uibcdf/argdigest#36)",
+          "event": "workflow_dispatch",
+          "gates": [
+            {
+              "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+              "conclusion": "success",
+              "executed_jobs": {
+                "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+                "jobs": [
+                  {
+                    "job_id": 115751790438,
+                    "name": "Full test on ubuntu-latest, Python 3.11",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789614,
+                    "name": "Full test on ubuntu-latest, Python 3.12",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789800,
+                    "name": "Full test on ubuntu-latest, Python 3.13",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789411,
+                    "name": "Full test on ubuntu-latest, Python 3.14",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789450,
+                    "name": "Full test on macos-latest, Python 3.11",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789882,
+                    "name": "Full test on macos-latest, Python 3.12",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789961,
+                    "name": "Full test on macos-latest, Python 3.13",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789696,
+                    "name": "Full test on macos-latest, Python 3.14",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789477,
+                    "name": "Full test on windows-latest, Python 3.11",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789385,
+                    "name": "Full test on windows-latest, Python 3.12",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789964,
+                    "name": "Full test on windows-latest, Python 3.13",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789451,
+                    "name": "Full test on windows-latest, Python 3.14",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  }
+                ],
+                "run_attempt": 1,
+                "run_id": 38533827215,
+                "schema": "molsyssuite.native-gate@1",
+                "state": "verified",
+                "workflow": ".github/workflows/CI_full_matrix.yaml"
+              },
+              "run_id": 38533827215,
+              "workflow": ".github/workflows/CI_full_matrix.yaml"
+            },
+            {
+              "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+              "conclusion": "success",
+              "executed_jobs": {
+                "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+                "jobs": [
+                  {
+                    "job_id": 115751736618,
+                    "name": "Test on ubuntu-latest, Python 3.14",
+                    "required_steps": [
+                      "Build wheel",
+                      "Install from wheel",
+                      "Test import module (installed wheel)",
+                      "Run tests"
+                    ]
+                  }
+                ],
+                "run_attempt": 1,
+                "run_id": 38533787300,
+                "schema": "molsyssuite.native-gate@1",
+                "state": "verified",
+                "workflow": ".github/workflows/CI.yaml"
+              },
+              "run_id": 38533787300,
+              "workflow": ".github/workflows/CI.yaml"
+            }
+          ],
+          "package": "argdigest",
+          "reason": "Qualify registration-only and scoped diagnostics with public SMonitor 0.21.0 and DepDigest 0.15.1, plus retained lower-bound minimal-core compatibility, before public visibility.",
+          "route": "staged",
+          "schema": "molsyssuite.conda-preflight@1",
+          "tag_sha": null,
+          "version": "0.16.0"
+        },
+        "argdigest/argdigest/noarch-artifact.json": {
+          "artifact": "/tmp/compilation-HCDV1SBSzu/noarch/argdigest-0.16.0-py_0.tar.bz2",
+          "build_number": 0,
+          "filename": "argdigest-0.16.0-py_0.tar.bz2",
+          "package": "argdigest",
+          "route": "staged",
+          "sha256": "e82d82680d79ae3d5df9917b1662d2855ed8485128943b72ddec87a5769a467d",
+          "subdir": "noarch",
+          "version": "0.16.0"
+        },
+        "_temp/gh-run-receptor-events-38567520662-1-publish-0/gh-run-receptor-events.json": {
+          "events": [
+            {
+              "artifact": "argdigest-0.16.0-py_0.tar.bz2",
+              "build": "success",
+              "kind": "conda.package",
+              "platform": "noarch",
+              "sha256": "e82d82680d79ae3d5df9917b1662d2855ed8485128943b72ddec87a5769a467d",
+              "upload": "not_requested"
+            }
+          ],
+          "producer": {
+            "ref": "8da628d9b393e184c3bf3722708b19dcfbf7ef0a",
+            "repository": "uibcdf/action-build-and-upload-conda-packages"
+          },
+          "schema": "gh-run-receptor.events@1",
+          "subject": {
+            "head_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+            "job_key": "publish",
+            "matrix_index": null,
+            "repository": "uibcdf/argdigest",
+            "run_attempt": 1,
+            "run_id": 38567520662
+          }
+        },
+        "_temp/conda-upload-receipt.json": {
+          "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+          "checked_at": "2026-10-14T12:57:47.249516+00:00",
+          "coordinate": {
+            "filename": "argdigest-0.16.0-py_0.tar.bz2",
+            "owner": "uibcdf",
+            "package": "argdigest",
+            "subdir": "noarch",
+            "version": "0.16.0"
+          },
+          "label": "staging",
+          "preflight": {
+            "scope": "all-labels",
+            "state": "absent"
+          },
+          "schema": "uibcdf.conda-upload@1",
+          "sha256": "e82d82680d79ae3d5df9917b1662d2855ed8485128943b72ddec87a5769a467d",
+          "state": "verified",
+          "subject": {
+            "repository": "uibcdf/argdigest",
+            "run_attempt": "1",
+            "run_id": "38567520662"
+          }
+        }
+      }
+    },
+    {
+      "run_id": 38572471948,
+      "run_attempt": 1,
+      "identity": {
+        "id": 11898452666,
+        "name": "noarch-promotion-38572471948-1",
+        "digest": "sha256:8913d03ed8c3d00f1a6e27ef5c507bbb82285c3058617d5609a61d3e0282ff82",
+        "size_in_bytes": 3198,
+        "workflow_run": {
+          "id": 38572471948,
+          "repository_id": 1088948514,
+          "head_repository_id": 1088948514,
+          "head_branch": "main",
+          "head_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41"
+        }
+      },
+      "expires_at": "2026-11-13T13:32:40Z",
+      "receipts": {
+        "argdigest/argdigest/noarch-preflight.json": {
+          "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+          "checked_at": "2026-10-14T13:31:44.222647+00:00",
+          "checkout_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+          "decision_by": "Release maintainer, publication explicitly authorized 2026-10-14 (uibcdf/argdigest#36)",
+          "event": "workflow_dispatch",
+          "gates": [
+            {
+              "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+              "conclusion": "success",
+              "executed_jobs": {
+                "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+                "jobs": [
+                  {
+                    "job_id": 115751790438,
+                    "name": "Full test on ubuntu-latest, Python 3.11",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789614,
+                    "name": "Full test on ubuntu-latest, Python 3.12",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789800,
+                    "name": "Full test on ubuntu-latest, Python 3.13",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789411,
+                    "name": "Full test on ubuntu-latest, Python 3.14",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789450,
+                    "name": "Full test on macos-latest, Python 3.11",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789882,
+                    "name": "Full test on macos-latest, Python 3.12",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789961,
+                    "name": "Full test on macos-latest, Python 3.13",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789696,
+                    "name": "Full test on macos-latest, Python 3.14",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789477,
+                    "name": "Full test on windows-latest, Python 3.11",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789385,
+                    "name": "Full test on windows-latest, Python 3.12",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789964,
+                    "name": "Full test on windows-latest, Python 3.13",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 115751789451,
+                    "name": "Full test on windows-latest, Python 3.14",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  }
+                ],
+                "run_attempt": 1,
+                "run_id": 38533827215,
+                "schema": "molsyssuite.native-gate@1",
+                "state": "verified",
+                "workflow": ".github/workflows/CI_full_matrix.yaml"
+              },
+              "run_id": 38533827215,
+              "workflow": ".github/workflows/CI_full_matrix.yaml"
+            },
+            {
+              "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+              "conclusion": "success",
+              "executed_jobs": {
+                "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+                "jobs": [
+                  {
+                    "job_id": 115751736618,
+                    "name": "Test on ubuntu-latest, Python 3.14",
+                    "required_steps": [
+                      "Build wheel",
+                      "Install from wheel",
+                      "Test import module (installed wheel)",
+                      "Run tests"
+                    ]
+                  }
+                ],
+                "run_attempt": 1,
+                "run_id": 38533787300,
+                "schema": "molsyssuite.native-gate@1",
+                "state": "verified",
+                "workflow": ".github/workflows/CI.yaml"
+              },
+              "run_id": 38533787300,
+              "workflow": ".github/workflows/CI.yaml"
+            }
+          ],
+          "package": "argdigest",
+          "reason": "Qualify registration-only and scoped diagnostics with public SMonitor 0.21.0 and DepDigest 0.15.1, plus retained lower-bound minimal-core compatibility, before public visibility.",
+          "route": "staged",
+          "schema": "molsyssuite.conda-preflight@1",
+          "tag_sha": null,
+          "version": "0.16.0"
+        },
+        "argdigest/argdigest/noarch-promotion.json": {
+          "build_number": 0,
+          "filename": "argdigest-0.16.0-py_0.tar.bz2",
+          "package": "argdigest",
+          "profile": "{\"platforms\": [\"linux-64\", \"osx-arm64\", \"win-64\"], \"python_versions\": [\"3.11\", \"3.12\", \"3.13\", \"3.14\"], \"prepare_job\": \"installed / prepare\", \"required_steps\": [\"Install exact artifact\", \"Validate installed files\", \"Run installed tests\", \"Recheck installed provenance after scientific tests\"], \"job_template\": \"installed / {platform} \\u00b7 Python {python}\"}",
+          "route": "staged",
+          "title": "Installed argdigest-0.16.0-py_0.tar.bz2 e82d82680d79ae3d5df9917b1662d2855ed8485128943b72ddec87a5769a467d",
+          "version": "0.16.0",
+          "workflow": ".github/workflows/test_staged_conda_package.yaml"
+        },
+        "argdigest/argdigest/noarch-installed-matrix.json": {
+          "candidate_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+          "checked_at": "2026-10-14T13:31:50.345177+00:00",
+          "jobs": [
+            {
+              "conclusion": "success",
+              "job_id": 115865728662,
+              "kind": "prepare",
+              "name": "installed / prepare"
+            },
+            {
+              "conclusion": "success",
+              "job_id": 115868031661,
+              "kind": "installed",
+              "name": "installed / osx-arm64 \u00b7 Python 3.11",
+              "platform": "osx-arm64",
+              "python": "3.11"
+            },
+            {
+              "conclusion": "success",
+              "job_id": 115868031702,
+              "kind": "installed",
+              "name": "installed / linux-64 \u00b7 Python 3.14",
+              "platform": "linux-64",
+              "python": "3.14"
+            },
+            {
+              "conclusion": "success",
+              "job_id": 115868031728,
+              "kind": "installed",
+              "name": "installed / linux-64 \u00b7 Python 3.12",
+              "platform": "linux-64",
+              "python": "3.12"
+            },
+            {
+              "conclusion": "success",
+              "job_id": 115868031743,
+              "kind": "installed",
+              "name": "installed / linux-64 \u00b7 Python 3.11",
+              "platform": "linux-64",
+              "python": "3.11"
+            },
+            {
+              "conclusion": "success",
+              "job_id": 115868031764,
+              "kind": "installed",
+              "name": "installed / osx-arm64 \u00b7 Python 3.12",
+              "platform": "osx-arm64",
+              "python": "3.12"
+            },
+            {
+              "conclusion": "success",
+              "job_id": 115868031807,
+              "kind": "installed",
+              "name": "installed / win-64 \u00b7 Python 3.11",
+              "platform": "win-64",
+              "python": "3.11"
+            },
+            {
+              "conclusion": "success",
+              "job_id": 115868031844,
+              "kind": "installed",
+              "name": "installed / osx-arm64 \u00b7 Python 3.13",
+              "platform": "osx-arm64",
+              "python": "3.13"
+            },
+            {
+              "conclusion": "success",
+              "job_id": 115868031870,
+              "kind": "installed",
+              "name": "installed / win-64 \u00b7 Python 3.13",
+              "platform": "win-64",
+              "python": "3.13"
+            },
+            {
+              "conclusion": "success",
+              "job_id": 115868031896,
+              "kind": "installed",
+              "name": "installed / osx-arm64 \u00b7 Python 3.14",
+              "platform": "osx-arm64",
+              "python": "3.14"
+            },
+            {
+              "conclusion": "success",
+              "job_id": 115868031929,
+              "kind": "installed",
+              "name": "installed / linux-64 \u00b7 Python 3.13",
+              "platform": "linux-64",
+              "python": "3.13"
+            },
+            {
+              "conclusion": "success",
+              "job_id": 115868031962,
+              "kind": "installed",
+              "name": "installed / win-64 \u00b7 Python 3.14",
+              "platform": "win-64",
+              "python": "3.14"
+            },
+            {
+              "conclusion": "success",
+              "job_id": 115868032080,
+              "kind": "installed",
+              "name": "installed / win-64 \u00b7 Python 3.12",
+              "platform": "win-64",
+              "python": "3.12"
+            }
+          ],
+          "repository": "uibcdf/argdigest",
+          "run_attempt": 1,
+          "run_id": 38568051160,
+          "schema": "molsyssuite.installed-matrix@1",
+          "state": "verified",
+          "title": "Installed argdigest-0.16.0-py_0.tar.bz2 e82d82680d79ae3d5df9917b1662d2855ed8485128943b72ddec87a5769a467d",
+          "workflow": ".github/workflows/test_staged_conda_package.yaml"
+        },
+        "_temp/conda-promotion-receipt.json": {
+          "package": "uibcdf/argdigest/0.16.0/noarch/argdigest-0.16.0-py_0.tar.bz2",
+          "schema": "uibcdf.conda-promotion@1",
+          "sha256": "e82d82680d79ae3d5df9917b1662d2855ed8485128943b72ddec87a5769a467d",
+          "source_label": "staging",
+          "status": "verified",
+          "target_label": "main"
+        },
+        "_temp/public-conda-nbxmhW0D.json": {
+          "checked_at": "2026-10-14T13:32:40.095316+00:00",
+          "files": [
+            {
+              "filename": "argdigest-0.16.0-py_0.tar.bz2",
+              "main_label": "verified",
+              "owner": "uibcdf",
+              "package": "argdigest",
+              "sha256": "e82d82680d79ae3d5df9917b1662d2855ed8485128943b72ddec87a5769a467d",
+              "solver_index": "verified",
+              "subdir": "noarch",
+              "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.16.0-py_0.tar.bz2",
+              "version": "0.16.0"
+            }
+          ],
+          "schema": "molsyssuite.public-conda@1",
+          "state": "verified"
+        }
+      }
+    },
+    {
+      "run_id": 38572426093,
+      "run_attempt": 1,
+      "identity": {
+        "id": 11896849900,
+        "name": "zenodo-public-evidence",
+        "digest": "sha256:305178bd97fa99d6ce4183bc3317ec53eb50d539e56993a9db6904fccaf47d00",
+        "size_in_bytes": 509,
+        "workflow_run": {
+          "id": 38572426093,
+          "repository_id": 1088948514,
+          "head_repository_id": 1088948514,
+          "head_branch": "0.16.0",
+          "head_sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41"
+        }
+      },
+      "expires_at": "2026-11-13T13:31:29Z",
+      "receipts": {
+        "zenodo-evidence.json": {
+          "repository": "uibcdf/argdigest",
+          "observed_at": "2026-10-14T13:31:06.838337+00:00",
+          "exit_status": 0,
+          "results": [
+            {
+              "repository": "uibcdf/argdigest",
+              "tag": "0.16.0",
+              "version": "0.16.0",
+              "published_at": "2026-10-14T13:30:55Z",
+              "observed_at": "2026-10-14T13:31:06.838337+00:00",
+              "age_hours": 0.003,
+              "archive_coverage": "source-snapshot",
+              "escalation_required": false,
+              "state": "verified",
+              "record_id": 23369539,
+              "concept_doi": "10.5281/zenodo.22892325",
+              "version_doi": "10.5281/zenodo.23369539",
+              "files": [
+                {
+                  "key": "uibcdf/argdigest-0.16.0.zip",
+                  "size": 541645,
+                  "checksum": "md5:8615b3ac02dbd5a912aa4dbf3f03acec"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "release": {
+    "url": "https://api.github.com/repos/uibcdf/argdigest/releases/412753446",
+    "assets_url": "https://api.github.com/repos/uibcdf/argdigest/releases/412753446/assets",
+    "upload_url": "https://uploads.github.com/repos/uibcdf/argdigest/releases/412753446/assets{?name,label}",
+    "html_url": "https://github.com/uibcdf/argdigest/releases/tag/0.16.0",
+    "id": 412753446,
+    "author": {
+      "login": "dprada",
+      "id": 531231,
+      "node_id": "MDQ6VXNlcjUzMTIzMQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/531231?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/dprada",
+      "html_url": "https://github.com/dprada",
+      "followers_url": "https://api.github.com/users/dprada/followers",
+      "following_url": "https://api.github.com/users/dprada/following{/other_user}",
+      "gists_url": "https://api.github.com/users/dprada/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/dprada/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/dprada/subscriptions",
+      "organizations_url": "https://api.github.com/users/dprada/orgs",
+      "repos_url": "https://api.github.com/users/dprada/repos",
+      "events_url": "https://api.github.com/users/dprada/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/dprada/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "node_id": "RE_kwDOQOgJIs4Ymh4m",
+    "tag_name": "0.16.0",
+    "target_commitish": "main",
+    "name": "ArgDigest 0.16.0",
+    "draft": false,
+    "immutable": false,
+    "prerelease": false,
+    "created_at": "2026-10-14T13:28:39Z",
+    "updated_at": "2026-10-14T13:30:55Z",
+    "published_at": "2026-10-14T13:30:55Z",
+    "assets": [],
+    "tarball_url": "https://api.github.com/repos/uibcdf/argdigest/tarball/0.16.0",
+    "zipball_url": "https://api.github.com/repos/uibcdf/argdigest/zipball/0.16.0",
+    "body": "ArgDigest 0.16.0 adds public registration-only diagnostics for application-owned SMonitor configuration (#32).\n\n- With SMonitor 0.20.0 or newer, imports and `register_diagnostics()` register the catalog without configuring application policy, handlers or exception hooks.\n- `configure_diagnostics()` preserves existing application configuration by default; `use_provider_policy=True` explicitly requests provider recommendations when supported.\n- The CLI configures its own diagnostics, and optional type-check engine loading is deferred until use.\n- Older supported providers retain legacy initialization and refuse explicit registration-only requests with an actionable capability error.\n\nPython 3.11\u20133.14, the optional NumPy boundary and core dependency floors remain unchanged. Consumer adoption is independently owned.\n\nThe exact candidate passed the complete source matrix. One staged noarch artifact passed all twelve full installed cells with public SMonitor 0.21.0 / DepDigest 0.15.1 and all twelve NumPy-free lower-bound cells with SMonitor 0.16.0 / DepDigest 0.11.0. Registration-only and scoped-capture availability are mandatory in the full installed gate. Public Conda promotion and source-only Zenodo archival are verified separately in the release issue.\n\nArtifact: `noarch/argdigest-0.16.0-py_0.tar.bz2`  \nSHA-256: `e82d82680d79ae3d5df9917b1662d2855ed8485128943b72ddec87a5769a467d`  \nSource: `2b9c9b289ae9b1d97d3bf04250f5c882feab3d41`\n\nRelease receipts and publication status: https://github.com/uibcdf/argdigest/issues/36.\nShared consumer coordination: https://github.com/uibcdf/molsyssuite/issues/106.\n"
+  },
+  "tag": {
+    "ref": "refs/tags/0.16.0",
+    "node_id": "REF_kwDOQOgJIrByZWZzL3RhZ3MvMC4xNi4w",
+    "url": "https://api.github.com/repos/uibcdf/argdigest/git/refs/tags/0.16.0",
+    "object": {
+      "sha": "f63d64e063cfa1ad61fa38167c5e66ff5fb30fab",
+      "type": "tag",
+      "url": "https://api.github.com/repos/uibcdf/argdigest/git/tags/f63d64e063cfa1ad61fa38167c5e66ff5fb30fab"
+    }
+  },
+  "annotated_tag": {
+    "node_id": "TA_kwDOQOgJItoAKGY2M2Q2NGUwNjNjZmExYWQ2MWZhMzgxNjdjNWU2NmZmNWZiMzBmYWI",
+    "sha": "f63d64e063cfa1ad61fa38167c5e66ff5fb30fab",
+    "url": "https://api.github.com/repos/uibcdf/argdigest/git/tags/f63d64e063cfa1ad61fa38167c5e66ff5fb30fab",
+    "tagger": {
+      "name": "Diego Prada",
+      "email": "prada.gracia@gmail.com",
+      "date": "2026-10-14T13:28:39Z"
+    },
+    "object": {
+      "sha": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+      "type": "commit",
+      "url": "https://api.github.com/repos/uibcdf/argdigest/git/commits/2b9c9b289ae9b1d97d3bf04250f5c882feab3d41"
+    },
+    "tag": "0.16.0",
+    "message": "ArgDigest 0.16.0: qualified registration-only diagnostics (#36)\n",
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "guide": {
+    "source": "origin/main",
+    "sha256": "7cada7b5afc796ccc35505760210117053c8c5ab8b9c03ab0a84ad452e26e97a"
+  },
+  "limits": [
+    "No rebuild, replacement, retag, upload, promotion, historical-title change or scientific rerun.",
+    "Public provider evidence does not imply consumer receiving.",
+    "Public installation and source archive verification retain their own scope; do not infer them from guide/source or generic run conclusions."
+  ],
+  "source_archive": {
+    "state": "verified",
+    "record_id": 23369539,
+    "version_doi": "10.5281/zenodo.23369539",
+    "concept_doi": "10.5281/zenodo.22892325",
+    "source_commit": "2b9c9b289ae9b1d97d3bf04250f5c882feab3d41",
+    "filename": "uibcdf/argdigest-0.16.0.zip",
+    "download_bytes": 541645,
+    "checksum": "md5:8615b3ac02dbd5a912aa4dbf3f03acec",
+    "download_sha256": "77f6c24879381243452117e66a002fff99741439a005f23a2646d7c1e9bacd33",
+    "source_files": {
+      ".codecov.yml": "167515c92906c29c4a847cbaa241f94e333e3fd28b15ab4c6eb9a122e9ae4155",
+      ".coveragerc": "e99c9c6b7327f0d77c0bcdf75779d60d3f28a631192e75b0d99f1d5a76871d13",
+      ".github/CONTRIBUTING.md": "5f1a3c7451be5d2c751b1024b9be1489fe676e91235fcf467d5850bd1e13286f",
+      ".github/PULL_REQUEST_TEMPLATE.md": "68f151e2c2a8a690a8e9daa736c2f8c1552652d41454564bc966633b0d2fe7ed",
+      ".github/gh-run-receptor.yaml": "d272478f5ef26c9a75df42d96d02cf66f2e4f7f95b9e8b3dfa2ca81d444b2c27",
+      ".github/workflows/CI.yaml": "5ca6104a4741fb157e33f15b4d8f4426bb665666c0a92bf249f7ddeee157cbee",
+      ".github/workflows/CI_full_matrix.yaml": "d0fe9cbb4c33a7318ff2c0ed17838e3b2feedae1e5226a51e8db8239fc2190b5",
+      ".github/workflows/build_and_upload_conda_packages.yaml": "e831104bf6b140b289ef6b443ef0d61686547e88499157a163c4dfeaff3e9e97",
+      ".github/workflows/conda-publication-policy.yml": "9c1cec90c6400c92e829e29556628a9ecdd4a97bfb7c2751d1df5d36eb37823b",
+      ".github/workflows/molsyssuite-policy.yml": "6cc62208156f765ca0456e3bc5f398934263e03afc7063c69afa692c5dafdffd",
+      ".github/workflows/promote_conda_package.yaml": "bc6802e542c6121d947f3883bba0f3e47f3a599ded696e27aff33ec7e51ba39d",
+      ".github/workflows/python314_feasibility.yaml": "90244153f1fddcba206a0be34507d61e3c51e04f3114a951459fd31b93e25591",
+      ".github/workflows/sphinx_docs_to_gh_pages.yaml": "b10713fc0345488d605cb320c4f194845bc46ace8c8863b66733b547a70bac3f",
+      ".github/workflows/test_staged_conda_package.yaml": "6af3779b151a6d18626ea5bae35fcf53d2464530cd703954e7b10ebedacc1dd9",
+      ".github/workflows/test_staged_core_conda_package.yaml": "bd13d4b6a0e2b66bed8620ad4ddd580650f7c86a537d643fb82cfa5dc276b6ea",
+      ".github/workflows/verify_zenodo_releases.yaml": "58c77fcc3da6d6a3a3add861f276e7a4f211bce42c765f49d1c0ab678db8c348",
+      ".gitignore": "7224dae52fe39478ebd1ae62b8d782d3b9e642af573d45b8c3e7fdc6688608d9",
+      "AGENTS.md": "88cf89c5a113ceecc476b6f1eb803969cb9fae96802ce10c041d0215bbe7870a",
+      "ARG_DIGEST_AGENTS.md": "7cbc9f0db75b5e6477c8a53b71c8e347dd652fea8eff69bf2b77b3da1c353a35",
+      "CITATION.cff": "0a5389d4e6b4770f75fed6c94932ffa2071df3c80d447f08828c3eac0474ae0f",
+      "DEPDIGEST_GUIDE.md": "f09328b84dfbfb0a51e2970c9f6c2b8b48d61e238cd4920637de629de261be55",
+      "GH_RUN_RECEPTOR_GUIDE.md": "a3cf5c4d17c3dae3f9f419d1ddd9cf298017f9b4bca7e224e5d517b75cfc60f8",
+      "LICENSE": "89774af33c83f6ac673838d2621666d25f65b18f6d15fd67a04004901bd90b01",
+      "MOLSYSSUITE_GUIDE.md": "549ddc692d29693b4b2f8b4ff7fed93598c68de9b153278f81fa5fd61f7a04eb",
+      "PYTEST_RECEPTOR_GUIDE.md": "edc16aef94ed06b7770b60e6bcda4fc5c2c468bf86a59ded93f41ec67dbce383",
+      "README.md": "3bb3f79f5c801a6ae2d2dfd55e586fdfa8c04a6eefd7159b6dd61f4b49b73d9a",
+      "SMONITOR_GUIDE.md": "e4c9464fffc29f442e2a53d6f7c029cbe96a54e76f29e808f3ebbddc4dbfa11d",
+      "SPEC.md": "b2b621a530dc1afb126aff385b9be7c44512380e6bbed9b296816096612e2a92",
+      "argdigest/__init__.py": "07518ec0f8d53c99d67f40aa76dc1a9f021ab659fc97ee4eb24a2e325e4feaee",
+      "argdigest/_depdigest.py": "e3eede5f993fd789c55068769ec794e771fb7b233fa7e10df2f0439a8d531cd9",
+      "argdigest/_private/smonitor/__init__.py": "3a7c8e505add1e4a4ff8fdb866c97edd043b830f6b7a59f768abd829ee419632",
+      "argdigest/_private/smonitor/catalog.py": "bca3d51c79c6088bf1efe5392097297a4aab4c95bee5dd4983dfa95be953aff6",
+      "argdigest/_private/smonitor/emitter.py": "ed30989f4ebe8cf69720a9e01da83b4ae8d44aef6abbdf3dbeba253084566dac",
+      "argdigest/_private/smonitor/meta.py": "2b5313a344e848dcddeb2181d8e352664b77c0d02b5c421fb4726767b15ae81f",
+      "argdigest/_smonitor.py": "8c64a540b48708d6b2cff8bb49ff05465c44be5cdc3b4511f40b514796b0d37d",
+      "argdigest/cli.py": "6973b6906efd26b9f09e7850505c64b1987f366ff7792eade042fec0190b6b82",
+      "argdigest/config.py": "1e06c210d8cb24a6298e03961f5ad9a1a7eda56d5e473e8f2c791c0484e1ea38",
+      "argdigest/contrib/__init__.py": "780dc788fb0ee7e7d9273c45992a3568176dc0ef168dccce12a3e236c3f5cf75",
+      "argdigest/contrib/beartype_support.py": "a18088bc90a02f56e44c5e5b5ad96da346d136baec861dacb739c6f86273acd2",
+      "argdigest/contrib/pydantic_support.py": "e52140c341096d5ad04fc056a2dccb39c4f368138758d2e6086a9ef9bee8df71",
+      "argdigest/contrib/pyunitwizard_support.py": "8c7f896ed03cc72735ed1a4faa577b8705e52be43d859f278e7ec423dfce5922",
+      "argdigest/core/__init__.py": "fde4100e15ab833df34916a47a36a19a9c21925b6042ee93328afb270f835fca",
+      "argdigest/core/agent_docs.py": "7458f56d2eef25b63741044b0d0b4cfd55c0e7cef8876fd7676e1460a6cb50fa",
+      "argdigest/core/argument_loader.py": "cb45b08e78282b98408e7d43fb004db2b2585003aadd074c7de1ef585b6f6dff",
+      "argdigest/core/argument_registry.py": "b2698707760710bd5e103350f2a761f96b4d0178eb4d7f2b02fe03e55f3ea3bf",
+      "argdigest/core/caller.py": "649e5bee66a4fcd8795548d70b164d950144a5967b97436c723b387cd2490124",
+      "argdigest/core/config.py": "31c271135fadc73f8a2ec8a5855b5e712188a0c68d117749f0cb12f6ae967eb5",
+      "argdigest/core/context.py": "04ce1ef61eed153411c9a83d388899de1886f6f561be406373a6b112e639b81c",
+      "argdigest/core/decorator.py": "d0d09ccaa80b5739c994b4dafe4edd8a0b744507eda5c3a21cef5380a69b737c",
+      "argdigest/core/diagnostics.py": "aaf2b4bf15562206d9c4ed16d2f3075214669948fb2523d6b6007698f339ed32",
+      "argdigest/core/errors.py": "d0cfd6413717fb69bb2243fd2d05059a2aa1bedf99828553459f889bc403a29d",
+      "argdigest/core/errors_base.py": "bd1a04038e7e9fb50ce422291ae61e2f4cc1bac04342ab0f0230a6ef8b12247b",
+      "argdigest/core/function_contract.py": "e25f37ee180f650b596b4d61f84ed1c93191cb5ab5837afed78945a3586536fb",
+      "argdigest/core/function_loader.py": "3970949c2553a706b617380e8601cf97113f1b13837c8de1f1abb613838014b1",
+      "argdigest/core/health.py": "edbb0c304f137455ab31ab33c8d3f21e84d89446c258c8060c6b559cc24a92b7",
+      "argdigest/core/logger.py": "2fc318cb37f9c9863e809b51d516b5de6fc340cd6f962e9688484fe71f35a65b",
+      "argdigest/core/normalization.py": "32db2bece263eac13308e4052a2c5dbafac13ab672d11f6d655d8133d995d691",
+      "argdigest/core/registry.py": "3a8a81354ce299e4795d105441e0d029b2bf93a636c1c94f01adda1d2b19e48a",
+      "argdigest/core/utils.py": "7135b40b7871db2c3a5c21cf228d9bb5390e6f0b93705525edd527bb834e7512",
+      "argdigest/diagnostics.py": "2ab1c77c7832f2b62161b8da57b228b12b89e7a667c6973d19ec8b9e041c2559",
+      "argdigest/pipelines/__init__.py": "0d9efba3909e8afac995b4b260756d48321a2d02a7968f49d388672ad3694d1b",
+      "argdigest/pipelines/base.py": "20c07d367c9d121a07c77105127f5a950cced551aa77e65f5f2e80261b3de045",
+      "argdigest/pipelines/coercers.py": "83e3bffbb67474633c15f88420215110dd25e1bd9db9d9a148b1b352e8fb01d8",
+      "argdigest/pipelines/data.py": "c0132959ab06f447f2f5d202e5b1ddf0dc50efaa392d3470d5c1fa0b942f0521",
+      "argdigest/pipelines/science.py": "f5ce2af693b9b9e714c0145c1601b4b2c2223efaa3fe0f3469c21883306bb464",
+      "argdigest/pipelines/validators.py": "5b844a9bce602f734aafcf28bd671ccc53571ba3ba8dd4f54acc20b31c162f52",
+      "devguide/0.10.0_release_notes_draft.md": "6f2a2e1937cd60576832b25189e6c39c8c23fbae6dc0bb8b8b552a249e336eb5",
+      "devguide/0.12.0_release_notes_draft.md": "23a7d0d90929732d0a6b44a665a97ec4cfddf17c3cd621a63bdd1d63550f728e",
+      "devguide/0.12.1_release_notes_draft.md": "afacef258fc5e0c4a9288dbee619862fcaaa4081b43b67065b159cb9dfdff325",
+      "devguide/0.13.0_release_notes_draft.md": "3f584fdc5508684ff52184ce243965013fd773f42b9972cdabc67349a30b075f",
+      "devguide/0.14.0_release_notes_draft.md": "2cb68a500977a54074e9684f6ff7f0b22cc00fe3a1f0a51c63365b7ecf98eade",
+      "devguide/0.15.0_release_notes_draft.md": "7840a4749229c2eb196d03554457f56f8d5f4f82274bc844e455bc778bce0f2c",
+      "devguide/0.16.0_release_notes_draft.md": "ca5240688768ead89697f4d5a48ff05d6ecf60f75bd7442891441dd073c60f3f",
+      "devguide/0.6.x_checklist.md": "08b871d6bb8c2bfe05319603906b9a4f4ca49768d83b9fc606b0b60cf00a2803",
+      "devguide/0.7.x_checklist.md": "f4b64e1342c619548aadf8d6ecea7bb7f91d1ed87339076f2aca74b65683a961",
+      "devguide/0.8.0_release_notes_draft.md": "e69a392ebaad70d56bad21f0ff3d7f7458bd214a6bd5eab89851842d25e72fb5",
+      "devguide/0.8.x_checklist.md": "deee88995879cc72da006a28a3c3f5d6aa8cf181ee988c85a0e08b5ad88db4f2",
+      "devguide/0.9.0_release_notes_draft.md": "c16e8a2e5139221db48b58f99984bfa3f65673d6d419bc265429db953eca5a33",
+      "devguide/0.9.1_release_notes_draft.md": "a5d9c6879a8fed4b7368d2e014e9ae249da9c357eb692e8499c2e7d0630ca1d1",
+      "devguide/0.9.2_release_notes_draft.md": "7095a43a0e733358e1120449a97b2e7f264450d65027516fa5e345d68abe8bdf",
+      "devguide/0.9.x_checklist.md": "521518bdef168ae3aaa89e14a2631442b9e630e0b923a7b2d574eb667c46c47c",
+      "devguide/1.0.0_checklist.md": "22b7cea031935e1a138f702d1ca2d7f7cb7a5f28da4fe03347a89d07726de408",
+      "devguide/1.0.0_go_no_go_pack.md": "13730229c4d6c5f38199d441a167247baece7ff66e218ecea9a9c5cf14feade4",
+      "devguide/1.0.0_release_notes_and_migration_summary.md": "c98ee6ab96a7b26a29ddb57d9739daadfffa0aa156955de74d90d47e7b299d1d",
+      "devguide/AGENTS.md": "49f2d2fc4050ce8235d81d71801b6dc0dd4eb745e9f8f3365e03a2de2add71bc",
+      "devguide/DEVELOPER_GUIDE.md": "edd8d48d30b07463c1127c2e75345115378025e6140f9c571b37b13da6d479a1",
+      "devguide/ROADMAP.md": "0f68bdb4563478f87d6f115407f7dafd21b605ad829f7073f8cd092e3d67c52a",
+      "devguide/archive/README.md": "4564bee70c06b09a325422394dcc0f55438bce9ad11ad8029ec65a4a6e9c4e53",
+      "devguide/archive/withdrawn_proposals/README.md": "99dd7c094daa4a0d5afc88a565d95be9b4ed680e3e0271c532ecb1d7b91cf098",
+      "devguide/archive/withdrawn_proposals/caching_and_skip_digestion.md": "362805f4c1227cdd30bdbe54a673efd5fe95826d3d8ca94fca52482c829f9806",
+      "devguide/archive/withdrawn_proposals/selective_bridge_validator.md": "76b26e190c07b8bd0f3edb5abb26b6105ee5df7d170aef07a96c55d19d099b6c",
+      "devguide/collective_evidence_pack.md": "52eb40d62fa380b703e8c4117b5bf004ac701a8718c9038e79bd5a2042966345",
+      "devguide/completed_proposals/adopt_molsyssuite_policy_v1.md": "e5e293d92814cd388b23e2d1828a714f651b78120175f93ffc707873df42eb76",
+      "devguide/completed_proposals/adopt_shared_reporting_lifecycle.md": "e65bd289be0533159044385aada2a278f0612af38efa21950c27403ffa76f196",
+      "devguide/completed_proposals/complete_distribution_adoption.md": "7a7517520e83e8fc0b7088d39819b7c1bc0dc539c39f184cca7696869239ef19",
+      "devguide/completed_proposals/expand_python_support_to_3_14.md": "a0d1edd443a645501fe503575443d98112e922f474576f14e3ef3a7d6cfe8999",
+      "devguide/completed_proposals/explicit_argument_digestion.md": "69702e310639adac6ad3d66ef1de0178ded827315b864425a5699f7a572f3e6d",
+      "devguide/completed_proposals/release_0_14_0.md": "e543bbd45e0c638f2b1f57272c8829548ba8b98d8ced3d678d43f02b2df0c9d4",
+      "devguide/completed_proposals/release_0_15_0.md": "1f52368e72415423300d6dd1d1d400cd01c2ebe8f23b14a9e27332c952a56c3d",
+      "devguide/completed_proposals/review_inherited_python_ecosystem_policy.md": "67638c3bb779ecdfa626cbea0bfade0124c916f941f257c206bd0eb22d8c8942",
+      "devguide/completed_proposals/scoped_metadata_only_diagnostics.md": "998440743fbd172e7f04f5554898ae9c50bd1a41ea53f9092d03fde28e02f654",
+      "devguide/completed_proposals/temporary_resource_review.md": "80b478b1aad4c9aad5fd303451ec0478401e06722eefbe20bc8dfee682ec8096",
+      "devguide/conda_release_routes.md": "4c834afd7b0457fef09f937954432c180f1a1b9d1a5c626a77871e74e9751fdc",
+      "devguide/evidence/registration_only_final_review_2026-10-14.json": "b37aed2e3e0b28ee1f352f8651b3a4affbed6a49399c0094150338ab7e113baa",
+      "devguide/evidence/registration_only_receiving_2026-10-14.json": "8390bd1e6edaf080baadb640fe82efa04d41a6c7783dce1533f621108de9696c",
+      "devguide/evidence/release_0_15_0_2026-10-06.json": "f83e8c4c30364f3340540194b4f98ae1b574687e134322410abf283b96f255b0",
+      "devguide/evidence/resource_review_33_2026_10_13.json": "7385423ded609561f5571c056b74cab3eb3848f453d16d61cc1f9d77355478ec",
+      "devguide/index.md": "be11e0809eb97061b9ce08a618d661cf5d62693ce32f3b3f96478e4960665d23",
+      "devguide/notes_dev.md": "4f4abe2ebf4a2cd1e7bce59d4114819f7a89250686b546a9b60fa0d310df298f",
+      "devguide/pending_bugs/README.md": "68942dfe0f49afd1fc904007e37c2930585605e9340bc40a640e1a40d6cd9187",
+      "devguide/pending_proposals/README.md": "afe4e4a424ad3b37462d0dc87163a7ee39cb17dafa34f63167f10a668439dce4",
+      "devguide/pending_proposals/build_stubs_compiler.md": "fb9cf1ea978afa6235ffb01dc19414edd05bb11c10566c5820406923ca1b677b",
+      "devguide/pending_proposals/registration_only_diagnostics.md": "225c85ff9ea1aaf1ab098e25d80d3d660600f3f7435a398b1e2d8b6e7dfa7583",
+      "devguide/pending_proposals/release_0_16_0.md": "161e372e72cc45ec71449e9b0f5c58d3475bb6082f01db1cbf1e32507f1e8994",
+      "devguide/pending_proposals/value_certification/README.md": "c68d1709496c1d5c5432b761c3b0df822fc7f612be345f73e3afaaeb3a23aa73",
+      "devguide/pending_proposals/value_certification/canonical.py": "2af5b504e06a755933194d52a8049653f95d02f1ce81e1cc459aa380c8ae6a51",
+      "devguide/pending_proposals/value_certification/test_canonical.py": "dd907ad17825ce846d80b14bafcb27ed17df89031fab9dd4800e657cbac89b7a",
+      "devguide/reporting_protocol.md": "e8985e2caf8343f31d9667b25f2ed55629426872b71fce9d9077f9bbaceecbba",
+      "devguide/resource_lifecycle_review.md": "de9e69fd887b94ae19ad6696537a25dcc11966d4ae1801edd4f5c5c65248a66b",
+      "devguide/smonitor.md": "daba4b57b81b41065e87ce25778234aeeb7303bf2aab8eb83883a8e36f2421c9",
+      "devguide/solved_bugs/alias_and_canonical_keywords_collide_silently.md": "7019e85c19521c2ca432ff4e771f305d9688585331356e393dca4f70d9e6b9eb",
+      "devguide/solved_bugs/argument_digestion_retains_arguments_in_recursive_closure_cycles.md": "104486bed2ccd54f3eb93ca451bdc836dfabc2478e813ba00d33c4b1693b8c84",
+      "devguide/solved_bugs/classmethod_receiver_is_digested.md": "812eb1b8ce1cf65949b69b5ae410c8e6af22b625052df00a320b7290694d9552",
+      "devguide/solved_bugs/contract_refusal_hides_cause_and_allowed_arguments.md": "1c231ece78d08d70f5fd543ce8e852fad5b02283f4d0a88734de8bb57ba1cf70",
+      "devguide/solved_bugs/method_caller_omits_runtime_class.md": "d634d9a4dc6b3624f8c346c64a1d6f411ee319e65fc0971e69b24b7986bad8f1",
+      "devguide/solved_bugs/numpy_loaded_by_non_scientific_consumers.md": "09b39047304c4e9de1895dc7302beeee19722777bd30dd3d152cd99941992da8",
+      "devguide/solved_bugs/pr_ci_can_be_skipped_and_direct_push_debt_is_unchecked.md": "70667f6371640b0fc0bd5da687bb654df0a0798fc778c806094b6b4336966964",
+      "devguide/solved_bugs/pyunitwizard_adapter_imports_provider_before_use.md": "ea3540794d44ca6172f88b0f309aa8dc97e017f643a77735845b8770ace34a96",
+      "devguide/solved_bugs/receptor_misclassifies_composite_conda_publication.md": "599ef817eddb2b5444b94faf0b2b809e21ef29ce0663eb9b054dd5f282c1676c",
+      "devguide/solved_bugs/the_passport_is_two_classes_and_admits_too_much.md": "c76667f510d0b289e95ecc1b967b373ace210c21ea6bc3c5d6a93a9272b3bad6",
+      "devguide/solved_bugs/truthy_skip_digestion_bypasses_validation.md": "e614ac0d36c5f7d5af6a7ca8e18e5206a492cf8f8332d93e498705502a7f0e00",
+      "devguide/solved_bugs/var_positional_arguments_are_lost.md": "4d7bdb91cf455048bf34979bdceb0f91b78ae993af60ee141911d22741cf45ca",
+      "devguide/solved_bugs/warnings_inside_decorated_functions_point_to_wrapper.md": "d3da9a9d362d1dd88aa304e9f08726fa1d67d505c6db013eabfe4228fc5d9800",
+      "devguide/templates/report.md": "c3d74efe4cefcff7247b08b2f3645b695152cb9a48736e7695b2e7cf076d52c0",
+      "devtools/README.md": "07666fd55be1a6f89e604760852b98c7b988cdc2d246f3325a7f6c8aeb720796",
+      "devtools/ci_backlog.py": "51d53c3bbbde23756e06f0e6819e5fe48c6422edb1f6caa304376c6fb9872344",
+      "devtools/conda-build/build.sh": "013bf2bf5e0eaaaf6565ceed5dd0d1eb8f4bd943b166d7b3237bec2993fa5557",
+      "devtools/conda-build/core_runtime_probe.py": "0de8a9ae796d0202324e2bc0279466eacf49b8dde1b4b50219902a31682ce776",
+      "devtools/conda-build/freeze_project_version.py": "dd6ca6d48e464be76bec06becb194d209a78a4bc4928168c4c5ddbd1553be2c5",
+      "devtools/conda-build/meta.yaml": "9d42ea109950da604e5aa5455e0e142237e73efc18e7a4f367246442ac3ed0c4",
+      "devtools/conda-build/release_plan.toml": "9d5d3ae2f6f38575728b116ed25a95d498609a7226f691f0982f11299fcd36b2",
+      "devtools/conda-build/release_route.py": "8a3fbdabddefd792467a461014e9a4199087baff290f3b9a9deafb60b6f576b5",
+      "devtools/conda-build/resources.toml": "c8bf71ef6a7383f8e0ff67fadaeb74b647adee88146659185d2035728d864a73",
+      "devtools/conda-build/verify_core_release.py": "9a2f78d29858bf48e06e4b0124b36148fcd8638d179dc29ced94660084085f08",
+      "devtools/conda-build/verify_staged_install.py": "168a548798d054824400b424979756964bac936ff68c2bc617398ff97325a453",
+      "devtools/conda-envs/build_env.yaml": "37b9bd5b9bfee915dfdba04b7fe06167809d78e60992b4b184b21dbec4e2766c",
+      "devtools/conda-envs/development_env.yaml": "7a86a671ca2bb48e660f037436a1d8f73f02cec97396809c68c7436654cb4d5e",
+      "devtools/conda-envs/docs_env.yaml": "d1f582dc56749094e5c3ec3dfe8a17181283c6d4984c2dce376b24acf4d8b937",
+      "devtools/conda-envs/test_env.yaml": "c885a73a664d0b47006abb151c5032c36932b2c60dfdae27b19d85a62dc1b0c2",
+      "devtools/conda-envs/test_env_core.yaml": "a8c683a2710b1aa8bb7c854921749eb0defdf672e935f50b23b81acbf269fe81",
+      "devtools/dependency_routes.toml": "4542dbb36e0063de92105a51238618f49aabcdb6f8fb84c58d597210f338de7e",
+      "devtools/devguide_index.py": "b250b88b24177a19afb894bfd51a2a506834f2a832f255265ef15ec9dc808238",
+      "devtools/devguide_reports.py": "3bca6d8c8039cf02dc2adc2d1200c2cc89424cffa1ae3fccd7232be7fc1d1c06",
+      "docs/Makefile": "68e2a5518cf74ed1f3479886ac7e743b08f8ebd9543c7cc2f82daf37794122d4",
+      "docs/_static/custom.css": "a8d47dc737148634f4531757ec358007765dbba2a2be4c72025ea05adf998bbe",
+      "docs/_static/favicon-124x124.png": "2d6c6724413b4b49f6cea5572e1b4e25c60390ea6caf3882c11978388a8aedd7",
+      "docs/_static/favicon-128x128.png": "b6825f4f90710e801f89a15e2acb962a285caed1ed94177b9483626b058d45e6",
+      "docs/_static/favicon-16x16.png": "7348f77306902b4132f3f2fb4a44ebc590121db06917fdd4064b8e3f4a108948",
+      "docs/_static/favicon-192x192.png": "b367940a940556cf29b423a5da64d601d2edff2858f562d8a433fa023cc62f60",
+      "docs/_static/icon.svg": "b5c0ec20ab8597fca4e357cbdf5f4e3a1527d7df7a0dbc47191e22442c6aae7a",
+      "docs/_static/logo.svg": "5e85c978e25f67760ad4528d8682896d12d4fbde906720e272e986fb80a4713d",
+      "docs/_static/sphinx_tabs.css": "faf7f5b5f7896d711550cf1c5d39d3ab92f897acadaa0febb794733f859cf1a4",
+      "docs/_templates/README.md": "cba748f964e9e1a9a8100186d9e0ec6a4ab5ff178375abcffc07e81dbcd8cba9",
+      "docs/_templates/copyright.html": "d50d63bd750625463c5929b25019b8abeb61d5410f8679cc0de0d177f1ec555b",
+      "docs/_templates/layout.html": "3657ef48c01a02a03a774d3cb984c3d56704d57d3cd4fda6d7d3d0a74b92ebbf",
+      "docs/_templates/sphinx-version.html": "6d1cbd3ab155a15a6411e944bd2a10b195f9c7b0ec7063e80250f085609d2729",
+      "docs/_templates/theme-version.html": "19596dd3f73ef0f54a64efcb58a17958c8571775485c6020ac4b8ae77c271ba4",
+      "docs/api/index.md": "1a9005df2e50276bdae7a5d9d8149f8707369c27b5c3aaa3275cbaccf73aace2",
+      "docs/conf.py": "e1ad6162221cd508374b6c584fb0ed177f88e157ab62123e41df0820596809ff",
+      "docs/content/about/citation.md": "0184b01d1a7a0ae54f2835b28aadc17102e80702737cb926e75b8bc83f23fdb0",
+      "docs/content/about/index.md": "284e066a85b65325757614a233c9201337ad3b8914d0f2668d7f157d3a780e79",
+      "docs/content/about/installation.md": "752803dab6ba158864e4c542505bb981814d01fd63438f34b12428c1e176cb51",
+      "docs/content/about/release-notes.md": "da7f909e0df0b0d5ec80bdd9f441b95a33806a9eabb0e532219d4c8124e7fe06",
+      "docs/content/about/what_is_argdigest.md": "aeb35dbfbe47caa09a258ae284c8a97ac4815d5c97122054eaa7fa3dd97b74a0",
+      "docs/content/about/who_is_behind.md": "89d2dab79256cf1b3260d7db8e4bd640417a69305533323b3e878377631b0710",
+      "docs/content/developer/ai_agent_templates/decorator_style.md": "4b52b0e6be542dc342a235b62189df30a53def2b4cf7207ec214ae868e98d75c",
+      "docs/content/developer/ai_agent_templates/index.md": "1a0ef2ed8cfa9b4baafd6f92e0247b54f9290841a577f3a4e07909952657d23d",
+      "docs/content/developer/ai_agent_templates/mixed_style.md": "57da552ea6609b53b2be325c5f4f0048daf6397f4e2a69ac9d755bb231c34277",
+      "docs/content/developer/ai_agent_templates/package_style.md": "d6bcae085ecce7ae550da8c559f795e5f1c0ee817f019874c73103663c76396b",
+      "docs/content/developer/ai_agent_templates/registry_style.md": "e569f0e901683e48833f05e6d503e3e330c9664c264e0445f785907de7514db1",
+      "docs/content/developer/api-stability.md": "b380fe10494ceb0e2fcf991a1d22ea556d1de8c0a2a2d590e5752a77fde63e29",
+      "docs/content/developer/architecture.md": "cd34d90a208f8bba4526340aacb333b46e4f7332b12503db3d5a8907c94332d8",
+      "docs/content/developer/compatibility-matrix.md": "aeffe1345190581fdfbbdd2b27ce0183afc024b8ba638dcb85d2ecc6228e04ba",
+      "docs/content/developer/contributing-workflow.md": "c34d3103e246e4ded23b2b3561211dc758697cfe5bc7d3f188114c85acca9a11",
+      "docs/content/developer/contributing.md": "eaa022366d77c83d035f01074d406a7815bf7cc576691919d3aad584b5484223",
+      "docs/content/developer/contributor-checklist.md": "9828023fa0e3b6de10602983fb13bc3eefe18a616843866df473c9ef492fa3d2",
+      "docs/content/developer/decorator_design.md": "f7368f03660cec2ad47f1dbf574bb1af795ccfcf7b00b58ed3e6d5b4e9441ddd",
+      "docs/content/developer/deprecation-and-support.md": "585364be561681853d66526aef595959eb6110272449a29e2f2fb278c0a9ca16",
+      "docs/content/developer/development-environment.md": "71c41578e0a8d01215fbe7647f6a2bd396d5fe1d180751a19780fd994243837e",
+      "docs/content/developer/editorial-guide.md": "c1e05f930ffac997de3204cee6da79ce1bea6901582fade8e1d0259aa0ac8b10",
+      "docs/content/developer/implementation-patterns.md": "1e6301b55041d5860b63b0141205a2dc7728700c5fe9a8c330d8dcd2be55ab4f",
+      "docs/content/developer/index.md": "609b334be8d2658f64fc2fd4e78a6107e725a8c75d3b9a96ca2a6b682d8da8d8",
+      "docs/content/developer/registry_and_pipelines.md": "949abc89a9ece8798de5aad23b47fe5042bf85ea2fccd8f6eea80faec4a97708",
+      "docs/content/developer/release-and-versioning.md": "3156578d1762800d2216fc7bb40bdf2a372571af58e4f4220def94638c46ce35",
+      "docs/content/developer/smonitor.md": "337183364976045c082a42c03203927808711d3719b0718a69c3784ff9b2e43e",
+      "docs/content/developer/testing_and_ci.md": "0c9bc590482155dba6d8a324a423868718c27efd38b96e01487b77cf88a7e1c9",
+      "docs/content/showcase/decorator-style-integration.md": "b6857289ae7a4510a6e44d5a9a2efa89cfb67c65d1ab6154df867d902ed46f9a",
+      "docs/content/showcase/example_integration.ipynb": "2f45cbe8bb0b40aa965cedbafcea8ffc719b4b7f2053a77a6e7cad05db5972c6",
+      "docs/content/showcase/examples.md": "c26cf0d934d59f31e30e928d347ad7e5d003d3ce33cc545d9f4f38ac1c0bd0dc",
+      "docs/content/showcase/index.md": "eed22c3413297640a53236d5b192a4d3b978c725eab0428828e8468b547ed3fe",
+      "docs/content/showcase/kwargs-api-integration.md": "c092c24280396aef4fab71dd025fdc0008f4928a9267a7c6ff39745b22389fc3",
+      "docs/content/showcase/mixed-migration-strategy.md": "dccc6ebbb61b6817ee33fac3b643820925fd1f882dcb7bd91f7961f5b146a6b0",
+      "docs/content/showcase/package-style-integration.md": "92709cd2899e3390fcf4607e8442e768a2c26f8157791dfd58ba76a1a932a0af",
+      "docs/content/showcase/quickstart.ipynb": "499da4ab5913d1f6e7bf5ce3e077d5269221231a4acbe93609bc7de014bebe5d",
+      "docs/content/showcase/registry-style-integration.md": "82914d0710ad6d0a8e462718e0ef9bbfd617100d69d73854173e4e4e2b71fbe4",
+      "docs/content/showcase/standardizer-to-alias-tables.md": "42757e09537c83d3489ba2b296f7e438b963989c4040e44bd2874d5a80b9df39",
+      "docs/content/user/auto-and-conflicts.md": "a9255ed3c08470e0f04cd9f8cac220046789b9a0f5ffe363fc97a862a72a23dd",
+      "docs/content/user/config-precedence.md": "4a235385257bd9ac82eee0b1b42f8a9bd0713b33a028fa7d094717d45bbb9143",
+      "docs/content/user/configuration.md": "609a7ba954206a272b5b028a1758e3f953dd309d580f0ee5317f00aab46a661c",
+      "docs/content/user/digestion-styles.md": "e8cc17af6fe35fabbb29196747bafa8c8252dd5ac02e5a0e107960cf5391e148",
+      "docs/content/user/end-users.md": "eed8ed3656bc23ec4a00e02b86ee69b0acd581321b10aabb2c6d677bcbe11f17",
+      "docs/content/user/examples.md": "c831216bc0e4a5b656219edf6aba0530b7a968ce1b05da4df0143f405f8451a1",
+      "docs/content/user/faq.md": "9b1a2884e821e55b00204cc3fcc137a14bc9a393c6487ba8fd47c4c1f9562b62",
+      "docs/content/user/index.md": "900e16931abee23fcdd987ba5608680e3c83c49d883b17395d10348cf1de255f",
+      "docs/content/user/integrating-your-library.md": "6fb323bff7cf61ce22590643b15ca38e158a7b4247e3232a36a5fdc4c86448b6",
+      "docs/content/user/integration-cheat-sheet.md": "a138314bf1a0437c512b4d8c5a75eebd615cdc8c2648b5335ec521d9105c2042",
+      "docs/content/user/migration-warn-to-error.md": "e1be4c10827af5485c643ac20929297439ed0b827b9b2a70ebe8a0abcbc8f303",
+      "docs/content/user/mini-library-walkthrough.md": "26e261a84409f62bfbc32e2015c7ed6d44f1cf63a6184736ff897ea8f504cb4a",
+      "docs/content/user/normalization.md": "6a7aa9f7cdfa2ef4ca0ea079e7c9b345d76c353455291679432e60fecd4ec816",
+      "docs/content/user/pipeline-design.md": "c1b70b4a9d9a074cb6aa0bbcd14aa6ef82315413969ce013b973efc1b4ea0c5f",
+      "docs/content/user/production-checklist.md": "a8de9ef26c5457e915caa8d4d5f45749cac0a554a68f475969d2def1757bfa79",
+      "docs/content/user/quickstart.md": "45da8fb821e2ec7897a23acb193752ea6906440cda7e51ef3f1c3027124a4de6",
+      "docs/content/user/skip-digestion.md": "e666733113d87e1dc32c3bb67b8fbbf25569a99281844522d9a3ac94d6cacc5c",
+      "docs/content/user/smonitor.md": "2f03b0f58104d171e65cf9b0e64d58f81aa160bdc8ac3373b3d688f0d04fbd8d",
+      "docs/content/user/strictness-and-errors.md": "1c52471e8769aadb7f56cc069c875fe75eaf4f5da2af27e7b5d06e803b720752",
+      "docs/content/user/troubleshooting.md": "8aff3a81f6d8d0ae1fe9bc325cd7d80d2ad36646408508dd51bb192ad3907258",
+      "docs/content/user/what-argdigest-solves.md": "3f43af72a89167ca03be8c395a5fb587e352b65dd21f0729f1dfb2a69827f208",
+      "docs/index.md": "031f6501b9f4c56541827d857067f063bccd90db04369471c8722d52960e8b0e",
+      "examples/packlib/__init__.py": "8ef46eeebc53e3b223150fec54c9d74857e31d4b95819a3de9d8520b8b4f74ad",
+      "examples/packlib/_argdigest.py": "13e54667a776421b0727383f00fe27d00306cff7cdc3d35acdc4866cd9a3aadb",
+      "examples/packlib/_private/digestion/argument/__init__.py": "629522a8ecd3f6e4932916753f44127df2fb8a2c245f3f8dd6046cd1b661b0ae",
+      "examples/packlib/_private/digestion/argument/selection.py": "fb7eb2fc53fadd1d9e0e955ba581a7287ecda727b569af62383b16f2656f03fb",
+      "examples/packlib/_private/digestion/argument_names_standardization.py": "8cddeebc32013415524fa7811ab2d329d5496e8e0a44027755b4548729ec1249",
+      "examples/packlib/_private/digestion/normalization/__init__.py": "ac84b6da4fdf0eeae09a334d05fe1db8244b307ec3b068d52388364493b7c297",
+      "examples/packlib/_private/digestion/normalization/aliases.py": "cf787438c8a9c4e34a35232c5277ea7aa0169978d00075f8655fde3bfbf21a84",
+      "examples/packlib/_private/digestion/normalization/caller_rules.py": "e8e086c76021e58c7712bc9b08c6fe9382018003a60cafb49122f6dfc5f3b25f",
+      "examples/packlib/_private/digestion/normalization/dynamic_rules.py": "40d9717c4eaedc202bd5310b7b66027658aae95ecaa0fc22ee884a99f7b18688",
+      "examples/packlib/_private/digestion/normalization/standardizer.py": "0a92aa19fac9bfce2a455a4f5fb2b53c13a1cf5cff4602a38dc64b2035ffc4be",
+      "examples/packlib/auto.py": "df36cd873b5d35dfd37a2e97030a38c7d8c037cd80ad17ccd2c05ea47c3b65eb",
+      "examples/packlib/basic.py": "675e9f5684bd087eada7c391cb6ad551c993db5f41135be0613666ed167e2e47",
+      "examples/reglib/__init__.py": "01d439d83bb59e01f7e74b30494054ce36d18d58b982f92e24a370afd79a59b7",
+      "examples/reglib/_argdigest.py": "26fa46609cbd96f8196a1250703386b06f89cb82f72695ff05e6ab60dd663861",
+      "examples/reglib/_private/digestion/registry.py": "6e1a4dc8524feedc61335767adc96c77051e613ef8eb34c3d6b252a73d619f6e",
+      "examples/reglib/basic.py": "e6b4ddff79985f12412f4f1e611e41207c56fa4c42cb66b7fddf7ea169a7a797",
+      "logos/README.md": "7d1ec0b3ca57d6aad80130961a7fe4f13d37dd44cd30b65477a8b2e0152bda99",
+      "logos/logo.svg": "5e85c978e25f67760ad4528d8682896d12d4fbde906720e272e986fb80a4713d",
+      "logos/logo_no_path.svg": "99f09a6c75c376324fe2fe7c3b24d0845be4d3aead39ac260c4d700b36a6ff2f",
+      "pyproject.toml": "534df88de0b933d2c2da2a1e9d1b2cdf1893eb72d984dca4d57610bca89e7acf",
+      "standards/ARGDIGEST_GUIDE.md": "7cada7b5afc796ccc35505760210117053c8c5ab8b9c03ab0a84ad452e26e97a",
+      "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/conftest.py": "e2bf6d22a814a7545c89e10b87c8e431fe493647a30212b46894709b0e7a4433",
+      "tests/e2e/test_collective_error_path.py": "9d6606f08905b1f016a2413b603ef1538ba791c7e8ccb77574e3b99178becede",
+      "tests/mock_axis_one/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_axis_one/_argdigest.py": "3f7706f82130feef8c86404d20576d46fe645bbeb793141d83a5b9d8cfc1b759",
+      "tests/mock_axis_one/_private/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_axis_one/_private/digestion/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_axis_one/_private/digestion/argument/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_axis_one/_private/digestion/domain/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_axis_one/_private/digestion/domain/attribute.py": "303c97f8b60f78b509b56c6ed0cb249d46e0bfb8dc3f2d826a30449227cb4487",
+      "tests/mock_axis_one/_private/digestion/domain/engine_options.py": "1b59e4ea386a2cc1bf2d013d92ec0b4489263803cc2b9256821a108fa8f6c7dc",
+      "tests/mock_axis_one/_private/digestion/function/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_axis_one/_private/digestion/function/api.py": "5fcd376f1d8b9d9dc4f70702c16b3a7d6ce48da570d3408348d2c24ddcc70f9b",
+      "tests/mock_axis_one/_private/digestion/normalization/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_axis_one/_private/digestion/normalization/aliases.py": "3dfed135de3f2a6e57f15ba0daf29e4c089123bf63aa1bbdd187702142388226",
+      "tests/mock_axis_one/api.py": "c6bd4999dce4254855672c39cb2cde63e5162e082e60e1ab5af43b35e6a3048a",
+      "tests/mock_molsysmt/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_molsysmt/_argdigest.py": "209486be67121b3b400ad975de9597d5b3b41611dd139272e4435e8d500dc1f6",
+      "tests/mock_molsysmt/_private/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_molsysmt/_private/digestion/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_molsysmt/_private/digestion/argument/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_molsysmt/_private/digestion/argument/selection.py": "b6c2351e12d2ac46d4546503a75ad107bb0341af18d5af2085c2fb499b435114",
+      "tests/test_agent_docs_axis_one.py": "feac0de50f864e2253926048145fc7013287e09495261e1133356d5344d44c5a",
+      "tests/test_api_contract.py": "c25fddd50d17815707b546b1554acfa2a32b4fab77d21628a1886eb971b36e46",
+      "tests/test_api_reference_contract.py": "51c88e6c8ff1323afdbd2302ca693cf3bb03bb2e14c2da18366b9cc9bde24fd8",
+      "tests/test_argument_digestion.py": "24e2ab76550b1c60d665658380d5b757a501b96a8d24076195f7f01f84712651",
+      "tests/test_argument_digestion_selection.py": "1110b8dc8528a39afa88b0f29d96f4d6b5045661b9ed4d1b047fa9e47d789b58",
+      "tests/test_argument_loader_order.py": "533243e4f86be9b6985e99221a398e6b2ee499d2b446fdbd7ecd4c0c4067ddcb",
+      "tests/test_beartype.py": "2933742f31941d6eb61bedb2b5e854f340de76561f4a211bcbbda6a139fea876",
+      "tests/test_bind_arguments.py": "0f92efce013906378f962fea68f51dc4e9415c0efdfb6c7b100e9cf705da133f",
+      "tests/test_block_c_validation_semantics.py": "1ea47cd264b0a07342bba9ffc7f08fb088614f844d1dd5ec57433ae60bf50f57",
+      "tests/test_block_d_performance_reliability.py": "99b99f8501702920d169aaceb0ab99219f0be301f2f6404c37991cb3609a0ba0",
+      "tests/test_block_f_cross_layer.py": "b75e99778f6b2fe5a0bfe8a82778b5091f000074cac0872627ec1ef70e144c63",
+      "tests/test_call_shape.py": "e07ec97d7a3205b4708342d9ce559414fcacd3d484124180804b3a86581d54d8",
+      "tests/test_caller_helpers.py": "02a85e19c4543e7c12e0e4c5a73b0fd796e3a5d85025091d5d5d2788dc1b97bd",
+      "tests/test_capture_policy.py": "c483a248d0268248eb1defa3195535df55700205156380c4f13fd84ffb17d1b4",
+      "tests/test_ci_backlog.py": "493db498cd0a9060f080d26030fad314a83d45525edf9032660994ebe26382bd",
+      "tests/test_citation_metadata.py": "2ed36f15e9cadd6d171a854ed73a3f427b63bad6f4d78ade5b296d81442caca3",
+      "tests/test_cli.py": "3c373cbbd5d20a00752f196316524112f5daf294de03b8b9dcd6bfecf5be240a",
+      "tests/test_cli_additional.py": "199ad1644275cdaf187c7c0625c62008569720aa3e8961c24387419140e66f60",
+      "tests/test_cli_resource_ownership.py": "47d335719405eecf3b9a7e3cb975885cf90faec0abf23a20a376e0d1d02dfd55",
+      "tests/test_compatibility_matrix.py": "3b000c6bbb396351b0b7362c3da6aa8097de27bccc5a2da82ae4a78a92a46190",
+      "tests/test_conda_release_route.py": "fc98cd104a95de0f0d6e68a53036f52a859021c2f29a41caf8d7c09c2d7ffa75",
+      "tests/test_config_file.py": "b2dc5286e1b28cf21833baf3170f80713839dca73957f22243faedccabfc9d22",
+      "tests/test_config_precedence_env.py": "8717fbc9a87d39243eb63be05b4456510b164b710ede7dfbf0787d8518f09007",
+      "tests/test_contrib.py": "829508c84907454f49c3307f0e14644c1fd2851a5b536c83333e9ca4c1d6a056",
+      "tests/test_core_config_additional.py": "772265b96332bee7a4983af4b3e7376780b30a8bc897219d8e77cf8058128b71",
+      "tests/test_core_release_gate.py": "dd797f75e1064895df9e36114554aa448670f5865c02c97382bc8a738f3cc340",
+      "tests/test_data_pipelines.py": "60cf98fd4ffbf9b6132f726ba2b5d4c6ae0702c159bb084cdcfdd5cf99d392ef",
+      "tests/test_decorator.py": "83d2995f8c066d6e19ef1d99658951657fb1c96165e75e9618a83ac945f6227a",
+      "tests/test_decorator_additional.py": "85669127b489c336ef2f49f67ccc00df18ff6b28c787802febb805bc2d595ec6",
+      "tests/test_diagnostic_registration.py": "11308ac80dd0936c97ea3e9ab3bd540884121ecff38d442a6e02037a02bd3d6c",
+      "tests/test_errors.py": "c007d0918cfc3322d2a5942aaf58820988edcf5dd534ba4f4012ff8c468f9f6e",
+      "tests/test_errors_additional.py": "abcefd823c4f1297ffd9989a04e47781ab8a8d2381da3221ab391dc70f7ec5ae",
+      "tests/test_function_contract.py": "1def1e686482bb48784d1d5eb68d63ce52e7e3166d07de2cd1dd099f36c8387b",
+      "tests/test_gh_run_receptor_policy.py": "73bff915d7c1a55db76f1a204a77f4fff912c305add2fac12938dce4ef400807",
+      "tests/test_health_check.py": "ddc9d10d4b48a6b997f1d70101aa053fa6bef33dd113c8319d8a38fc434342d0",
+      "tests/test_init_version_fallback.py": "18904822c0cc437581d723456fa423b4af82d21ff79d18d3c42aad1ceb1d2d64",
+      "tests/test_interop_block_b.py": "e17c659ec95a4f0674d73c4c75e5f639ca448a02bdd3ecb9596b4d3b8cf63233",
+      "tests/test_legacy_compatibility.py": "a55763961cd2da37f71e6d30ccdd26493e6b62a8f7d1e630069e72012225dc99",
+      "tests/test_logging.py": "db779069e692af3294619f0183babc07e5c36efc0f99c499cfa331cf53e0b0a9",
+      "tests/test_low_coverage_modules.py": "d5df5347f316e96786b6a1af7bcd5c89a6fdb524afab0b19ad14b4bb12dfa1a5",
+      "tests/test_molsysmt_representative_paths.py": "6cbfabc3e03cbf737607d4db22f39643723a391c7759201bc5b0fc0d46aea120",
+      "tests/test_noarch_conda_publication.py": "dd9280b74f22c3c17bc79dac6530c1d0a148147d7f163459b4e964ba82f5d1c3",
+      "tests/test_normalization_rules.py": "f1252cb096b0d813e119f2cbbf3218719790541048b50aacde17a4b695ffb42d",
+      "tests/test_numpy_optional.py": "8eeed7ce2611408ffb817af7d69fe0426f8225a6d5f1bcc2a87a8fa6cecac1e1",
+      "tests/test_pipelines_base.py": "646706f3d1d7bc5a077dcece249c401bb810e19ff4e0e3c16b18f8d9bb63772c",
+      "tests/test_pipelines_base_additional.py": "aa137007895f4752048b4ab79ed35d0fb6b46784317348f48c90ccc0ef7ca5e5",
+      "tests/test_profiling.py": "221e9f2f9c27a56da10ad1e6e00cbb459e92af0ce23d91cce4644bc6fc8d753b",
+      "tests/test_pydantic.py": "01bd7adb6973877cf075406476bb87749324cc0450161a51fd1fb20c643cbffe",
+      "tests/test_pyunitwizard.py": "cf5bbcf736ee48159d5aa88771d84a3fb0acb7f7def13294547a6aca72a3ceb8",
+      "tests/test_pyunitwizard_boundary.py": "ca433700319642526fcc3d9a34bed9906d43aba78cae208c48404b78bc4ace7d",
+      "tests/test_qualified_caller.py": "d995f0af109e6ee0fdd1eac00e25d1d563daba32845e064ebd2996298f184b15",
+      "tests/test_registry.py": "962a437507e9035a04cd9defc7f1c5a39e5ea86df1c61f421a5c7286caa44b93",
+      "tests/test_reporting_protocol.py": "4eb4f5d8983a63a85ee5c73684c146c259f1e4f56fd73df2d571c96b019a37f0",
+      "tests/test_smoke_examples.py": "5e0c3b2f5726b09082bda9c9db300fb334ffa8abd962c6c974acc2ce7983834b",
+      "tests/test_smonitor_contracts.py": "f10f612333083ec727aee596ca3bd93c2006e4e80bd42a33fcf7fd79409baa00",
+      "tests/test_staged_conda_install.py": "7d20e053fdfedf701a63de822d092d39de8dc82fb720a0630fdf97822aa11321",
+      "tests/test_std_pipelines.py": "e6db96b8e9de0637f589ec859666f5e3a1bdb41c25ec8e6d2a6883c622c18cd5",
+      "tests/test_utils_coverage.py": "ef3e0883cb14958b5cec77fe92e8be9237671e47be2aa9d3b9786034927715c5",
+      "tests/test_workflow_yaml_syntax.py": "267316f7713fd14b51f00d7c89e71d3676ab1e04b8c458f608f4ceb212be1555"
+    },
+    "files_matched": 330,
+    "scope": "Complete source ZIP compared byte-for-byte by file hashes with original immutable Git tag; separate from Conda artifact."
+  },
+  "receipt_identity_assertions": "passed: original source/version/build/coordinate/digest, installed run/attempt, staged upload and main-label promotion",
+  "independent_public_commands": {
+    "gate": {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 39469657236,
+      "run_attempt": 1,
+      "candidate_sha": "b199b7e1805ed054d924b00eac8d68793e07916d",
+      "workflow": ".github/workflows/verify-public-noarch-commands.yaml",
+      "jobs": [
+        {
+          "name": "prepare",
+          "job_id": 118790082646,
+          "required_steps": [
+            "Validate selected command-receiving platforms"
+          ]
+        },
+        {
+          "name": "Commands linux-64 \u00b7 Python 3.14",
+          "job_id": 118790544965,
+          "required_steps": [
+            "Bootstrap reviewed provider helpers",
+            "Verify exact public file and execute installed commands outside source",
+            "Retain installed command receiving evidence"
+          ]
+        },
+        {
+          "name": "Commands osx-arm64 \u00b7 Python 3.14",
+          "job_id": 118790544605,
+          "required_steps": [
+            "Bootstrap reviewed provider helpers",
+            "Verify exact public file and execute installed commands outside source",
+            "Retain installed command receiving evidence"
+          ]
+        },
+        {
+          "name": "Commands win-64 \u00b7 Python 3.14",
+          "job_id": 118790544859,
+          "required_steps": [
+            "Bootstrap reviewed provider helpers",
+            "Verify exact public file and execute installed commands outside source",
+            "Retain installed command receiving evidence"
+          ]
+        }
+      ],
+      "event": "workflow_dispatch",
+      "exact_jobs": true
+    },
+    "receipts": [
+      {
+        "platform": "linux-64",
+        "identity": {
+          "id": 12286372476,
+          "name": "public-noarch-commands-linux-64-py3.14-39469657236-1",
+          "digest": "sha256:ac2aced52a2a3ce1a33b8a00ea2dd87395a88d95b69e385e05af08fabd035d68",
+          "size_in_bytes": 800,
+          "workflow_run": {
+            "id": 39469657236,
+            "repository_id": 1124320485,
+            "head_repository_id": 1124320485,
+            "head_branch": "main",
+            "head_sha": "b199b7e1805ed054d924b00eac8d68793e07916d"
+          }
+        },
+        "receipts": {
+          "public-noarch-commands.json": {
+            "schema": "molsyssuite.public-noarch-commands@1",
+            "state": "verified",
+            "coordinate": {
+              "package": "argdigest",
+              "version": "0.16.0",
+              "subdir": "noarch",
+              "filename": "argdigest-0.16.0-py_0.tar.bz2",
+              "sha256": "e82d82680d79ae3d5df9917b1662d2855ed8485128943b72ddec87a5769a467d"
+            },
+            "public_url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.16.0-py_0.tar.bz2",
+            "platform": "linux-64",
+            "python": "3.14",
+            "prefix": "/home/runner/miniconda3/envs/public-commands",
+            "commands": [
+              {
+                "command": "argdigest",
+                "target": "argdigest.cli:main",
+                "launcher": "/home/runner/miniconda3/envs/public-commands/bin/argdigest",
+                "module_origin": "/home/runner/miniconda3/envs/public-commands/lib/python3.14/site-packages/argdigest/cli.py",
+                "exit_code": 0,
+                "stdout": {
+                  "bytes": 403,
+                  "sha256": "7c2447f86957f860b8419405948d5a60f93abff37679b35865868439f079553a"
+                },
+                "stderr": {
+                  "bytes": 0,
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                }
+              }
+            ],
+            "installed_record": {
+              "name": "argdigest",
+              "version": "0.16.0",
+              "build": "py_0",
+              "sha256": "e82d82680d79ae3d5df9917b1662d2855ed8485128943b72ddec87a5769a467d",
+              "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.16.0-py_0.tar.bz2"
+            },
+            "scope": "Installed console --help only; not full installed/scientific/release qualification",
+            "temporary_download_removed": true
+          }
+        }
+      },
+      {
+        "platform": "osx-arm64",
+        "identity": {
+          "id": 12286482340,
+          "name": "public-noarch-commands-osx-arm64-py3.14-39469657236-1",
+          "digest": "sha256:83306f423bb0de49fa4a838e6a22da8a3d89a784e1ca3ca983c9a73547ab2766",
+          "size_in_bytes": 804,
+          "workflow_run": {
+            "id": 39469657236,
+            "repository_id": 1124320485,
+            "head_repository_id": 1124320485,
+            "head_branch": "main",
+            "head_sha": "b199b7e1805ed054d924b00eac8d68793e07916d"
+          }
+        },
+        "receipts": {
+          "public-noarch-commands.json": {
+            "schema": "molsyssuite.public-noarch-commands@1",
+            "state": "verified",
+            "coordinate": {
+              "package": "argdigest",
+              "version": "0.16.0",
+              "subdir": "noarch",
+              "filename": "argdigest-0.16.0-py_0.tar.bz2",
+              "sha256": "e82d82680d79ae3d5df9917b1662d2855ed8485128943b72ddec87a5769a467d"
+            },
+            "public_url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.16.0-py_0.tar.bz2",
+            "platform": "osx-arm64",
+            "python": "3.14",
+            "prefix": "/Users/runner/miniconda3/envs/public-commands",
+            "commands": [
+              {
+                "command": "argdigest",
+                "target": "argdigest.cli:main",
+                "launcher": "/Users/runner/miniconda3/envs/public-commands/bin/argdigest",
+                "module_origin": "/Users/runner/miniconda3/envs/public-commands/lib/python3.14/site-packages/argdigest/cli.py",
+                "exit_code": 0,
+                "stdout": {
+                  "bytes": 403,
+                  "sha256": "7c2447f86957f860b8419405948d5a60f93abff37679b35865868439f079553a"
+                },
+                "stderr": {
+                  "bytes": 0,
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                }
+              }
+            ],
+            "installed_record": {
+              "name": "argdigest",
+              "version": "0.16.0",
+              "build": "py_0",
+              "sha256": "e82d82680d79ae3d5df9917b1662d2855ed8485128943b72ddec87a5769a467d",
+              "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.16.0-py_0.tar.bz2"
+            },
+            "scope": "Installed console --help only; not full installed/scientific/release qualification",
+            "temporary_download_removed": true
+          }
+        }
+      },
+      {
+        "platform": "win-64",
+        "identity": {
+          "id": 12286487231,
+          "name": "public-noarch-commands-win-64-py3.14-39469657236-1",
+          "digest": "sha256:8966f301f41acf9dcbf5360cb4f74f28b55ec95fe8b0486864edc1db6757abf5",
+          "size_in_bytes": 829,
+          "workflow_run": {
+            "id": 39469657236,
+            "repository_id": 1124320485,
+            "head_repository_id": 1124320485,
+            "head_branch": "main",
+            "head_sha": "b199b7e1805ed054d924b00eac8d68793e07916d"
+          }
+        },
+        "receipts": {
+          "public-noarch-commands.json": {
+            "schema": "molsyssuite.public-noarch-commands@1",
+            "state": "verified",
+            "coordinate": {
+              "package": "argdigest",
+              "version": "0.16.0",
+              "subdir": "noarch",
+              "filename": "argdigest-0.16.0-py_0.tar.bz2",
+              "sha256": "e82d82680d79ae3d5df9917b1662d2855ed8485128943b72ddec87a5769a467d"
+            },
+            "public_url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.16.0-py_0.tar.bz2",
+            "platform": "win-64",
+            "python": "3.14",
+            "prefix": "C:\\Users\\runneradmin\\miniconda3\\envs\\public-commands",
+            "commands": [
+              {
+                "command": "argdigest",
+                "target": "argdigest.cli:main",
+                "launcher": "C:\\Users\\runneradmin\\miniconda3\\envs\\public-commands\\Scripts\\argdigest.EXE",
+                "module_origin": "C:\\Users\\runneradmin\\miniconda3\\envs\\public-commands\\Lib\\site-packages\\argdigest\\cli.py",
+                "exit_code": 0,
+                "stdout": {
+                  "bytes": 416,
+                  "sha256": "b9962d4dd91c8451fc5fc1c13bd31a02685894cd3c75783c7f778c934e73a629"
+                },
+                "stderr": {
+                  "bytes": 0,
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                }
+              }
+            ],
+            "installed_record": {
+              "name": "argdigest",
+              "version": "0.16.0",
+              "build": "py_0",
+              "sha256": "e82d82680d79ae3d5df9917b1662d2855ed8485128943b72ddec87a5769a467d",
+              "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.16.0-py_0.tar.bz2"
+            },
+            "scope": "Installed console --help only; not full installed/scientific/release qualification",
+            "temporary_download_removed": true
+          }
+        }
+      }
+    ]
+  }
+}

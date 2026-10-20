@@ -5,7 +5,7 @@ their established locations so existing references remain valid.
 
 <!-- generated: devguide_index -->
 
-### Resolved (20)
+### Resolved (22)
 
 - [`adopt_molsyssuite_policy_v1.md`](../completed_proposals/adopt_molsyssuite_policy_v1.md) — [#4](https://github.com/uibcdf/argdigest/issues/4) — Adopt the shared MolSysSuite policy and Ruff gate. *(resolved, measured)*
 - [`adopt_shared_reporting_lifecycle.md`](../completed_proposals/adopt_shared_reporting_lifecycle.md) — [#6](https://github.com/uibcdf/argdigest/issues/6) — Adopt the shared issue-backed developer-guide lifecycle. *(resolved, inspected)*
@@ -20,8 +20,10 @@ their established locations so existing references remain valid.
 - [`pr_ci_can_be_skipped_and_direct_push_debt_is_unchecked.md`](../solved_bugs/pr_ci_can_be_skipped_and_direct_push_debt_is_unchecked.md) — [#21](https://github.com/uibcdf/argdigest/issues/21) — PR CI can be skipped and direct-push debt is unchecked *(resolved, inspected)*
 - [`pyunitwizard_adapter_imports_provider_before_use.md`](../solved_bugs/pyunitwizard_adapter_imports_provider_before_use.md) — [#22](https://github.com/uibcdf/argdigest/issues/22) — Defer the optional PyUnitWizard adapter import until pipeline execution. *(resolved, reproduced)*
 - [`receptor_misclassifies_composite_conda_publication.md`](../solved_bugs/receptor_misclassifies_composite_conda_publication.md) — [#10](https://github.com/uibcdf/argdigest/issues/10) — Use the release profile for action-internal Conda publication. *(resolved, reproduced)*
+- [`registration_only_diagnostics.md`](../completed_proposals/registration_only_diagnostics.md) — [#32](https://github.com/uibcdf/argdigest/issues/32) — Register diagnostics without bootstrapping the application's policy. *(resolved, reproduced)*
 - [`release_0_14_0.md`](../completed_proposals/release_0_14_0.md) — [#24](https://github.com/uibcdf/argdigest/issues/24) — Publish 0.14.0 after exact-source and staged installed qualification. *(resolved, measured)*
 - [`release_0_15_0.md`](../completed_proposals/release_0_15_0.md) — [#31](https://github.com/uibcdf/argdigest/issues/31) — Publish 0.15.0 with scoped capture and explicit digestion after installed qualification. *(resolved, measured)*
+- [`release_0_16_0.md`](../completed_proposals/release_0_16_0.md) — [#36](https://github.com/uibcdf/argdigest/issues/36) — Publish 0.16.0 after exact-artifact registration-only qualification. *(resolved, inspected)*
 - [`review_inherited_python_ecosystem_policy.md`](../completed_proposals/review_inherited_python_ecosystem_policy.md) — [#20](https://github.com/uibcdf/argdigest/issues/20) — Review inherited Python ecosystem policy in ArgDigest. *(resolved, measured)*
 - [`scoped_metadata_only_diagnostics.md`](../completed_proposals/scoped_metadata_only_diagnostics.md) — [#29](https://github.com/uibcdf/argdigest/issues/29) — Apply SMonitor capture policy before ArgDigest-owned diagnostic collection. *(resolved, measured)*
 - [`temporary_resource_review.md`](../completed_proposals/temporary_resource_review.md) — [#33](https://github.com/uibcdf/argdigest/issues/33) — Preserve caller resources and complete ArgDigest's bounded tool closeout. *(resolved, reproduced)*
