@@ -23,6 +23,63 @@ supersedes: []
 > One correction for whoever picks this up: the proposal says the digestion directory is
 > `_private/arg_digestion/`. The convention is `_private/argdigest/argument/`.
 
+## Reassessment — 2026-10-22
+
+The maintainer requested a reassessment after `uibcdf/argdigest#37`. The
+recommendation is to advance a small feasibility pilot, rather than the full
+compiler/watch service. The full generator remains scheduled after 1.0 until
+the pilot establishes a useful, accurate type source. No pilot or generator is
+implemented by this reassessment.
+
+A static AST inspection of the clean MolSysMT argument-digester directory at
+`55f04ebfe364c1918a912e2d76aee8db95959dde` found 461 top-level `digest_*`
+functions: zero annotate their value input and zero annotate their return.
+460 read `caller` in their bodies; that syntactic count includes forwarding
+and does not mean every result type depends on the caller. The existing
+`n_atoms` digester demonstrates context-dependent acceptance rules. This is
+evidence for one concrete consumer, not an audit of every suite member.
+
+There are three distinct type questions:
+
+1. Which input types may users pass to the decorated function?
+2. Which canonical type reaches its implementation after digestion?
+3. What does the decorated function itself return?
+
+The return annotation of a value digester can inform question 2; it cannot
+determine question 3. The original proposal's promise of checking an otherwise
+unannotated scientific implementation solely through companion stubs is too
+broad. Stubs describe the interface that users import; they do not themselves
+teach a type checker that a runtime decorator changed local parameter types.
+See the primary [stub specification](https://typing.python.org/en/latest/spec/distributing.html)
+and [mypy stub documentation](https://mypy.readthedocs.io/en/stable/stubs.html).
+
+`describe_contract()` helps enumerate declared keyword interfaces, but it is a
+runtime operation. A strictly offline compiler cannot generally execute
+consumer imports, arbitrary domain predicates, standardizers or pipeline
+factories. A pilot must define its supported input declarations and report
+unknowns, rather than infer scientific types from argument names. Existing
+stub generators can provide scaffolding; the useful ArgDigest contribution
+would be trustworthy contract-derived information. See the primary
+[stub-writing guide](https://typing.python.org/en/latest/guides/writing_stubs.html).
+
+Proposed pilot acceptance:
+
+- Use 3–5 representative digesters, including simple normalization, a scientific
+  value and caller-dependent behavior; explicitly declare accepted/canonical
+  types and preserve the public function's own return contract separately.
+- Choose whether declarations use annotations or a separate static schema;
+  require an explicit representation for contextual alternatives.
+- Demonstrate useful consumer signatures with a real type checker: valid calls
+  pass and invalid calls fail. Assess implementation-body checking separately.
+- Cover inheritance/explicit contract ownership from #37, aliases and unknown
+  contracts; emit explicit incomplete types when information is unavailable.
+- Generate a reviewed preview into a separate output directory. Measure the
+  benefit and required manual declarations before expanding scope.
+
+Watcher integration, automatic adjacent `.pyi` writes and the original
+unmeasured sub-50-ms target are deferred. Advancing the complete original scope
+now would front-load tooling before the necessary type information exists.
+
 ## Abstract
 
 We propose introducing an automated, offline type-stub generator (`argdigest build-stubs`) to `argdigest`. This tool will parse a library's central digestion directory (`_private/arg_digestion/`) and dynamically compile PEP 484-compliant static type stub files (`.pyi`). 
