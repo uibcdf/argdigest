@@ -30,6 +30,7 @@ def test_agent_docs_generation(tmp_path):
         assert "## 1. Project Context" in content
         assert "argdigest agent update" in content
         assert "**Argument Digestion Selection**: `None`" in content
+        assert "**Contract Owner**: `None`" in content
         assert "**Diagnostic Capture Policy**: `None`" in content
 
 

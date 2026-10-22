@@ -25,6 +25,8 @@ def test_audit_module_reports_digestion_plan(capsys, monkeypatch):
         strictness="warn",
         skip_param="skip_digestion",
         profiling=False,
+        contract_owner="definition",
+        contract_caller="fake_module.decorated",
         digesters={"selection": object()},
         pipeline_targets={"syntax": {"kind": "std", "rules": ["is_str"]}},
     )
@@ -38,6 +40,8 @@ def test_audit_module_reports_digestion_plan(capsys, monkeypatch):
     assert "Function: decorated" in out
     assert "Argument Digestion Selection: None" in out
     assert "Argument Digestion Enabled: True" in out
+    assert "Contract Owner: definition" in out
+    assert "Declared Contract Caller: fake_module.decorated" in out
     assert "Argument Digesters: ['selection']" in out
     assert "kind='std'" in out
 

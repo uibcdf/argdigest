@@ -12,6 +12,7 @@ from smonitor import signal
 from .._private.smonitor.emitter import diagnostic_failure, type_check_skipped, warn
 from .argument_loader import load_argument_digesters, resolve_standardizer
 from .argument_registry import ArgumentRegistry
+from .caller import resolve_contract_owner
 from .config import DigestConfig, get_env_config_module, resolve_config
 from .context import Context
 from .diagnostics import diagnostic_scope, resolve_capture_policy
@@ -137,6 +138,8 @@ class DigestionPlan:
     requires_call_shape: bool = False
     capture_policy: Any = None
     argument_digestion: bool | None = None
+    contract_owner: str | None = None
+    contract_caller: str | None = None
 
 
 def _hashable_source(source: Any) -> Any:
@@ -179,6 +182,7 @@ def _enforce_function_contract(
     bound: dict[str, Any],
     extras: dict[str, Any],
     supplied: set[str],
+    display_name: str | None = None,
 ) -> None:
     """Axis 1: hold the call to the function's argument contract.
 
@@ -215,7 +219,7 @@ def _enforce_function_contract(
 
     violations = check_contract(
         contract,
-        caller,
+        display_name or caller,
         signature_parameters,
         candidate_extras,
         plan.domains,
@@ -227,7 +231,7 @@ def _enforce_function_contract(
 
     for violation in violations:
         ctx_error = Context(
-            function_name=caller,
+            function_name=display_name or caller,
             argname=violation.keyword or "unknown",
             value=bound.get(violation.keyword) if violation.keyword else None,
             all_args=bound,
@@ -459,6 +463,8 @@ def arg_digest(
             requires_call_shape=requires_call_shape,
             capture_policy=policy,
             argument_digestion=eff_argument_digestion,
+            contract_owner=cfg.contract_owner,
+            contract_caller=resolve_contract_owner(fn, cfg.contract_owner),
         )
 
         signal_options = {"capture_policy": policy} if policy is not None else {}
@@ -492,8 +498,11 @@ def arg_digest(
                 if bound.get(plan.skip_param, False) is True:
                     return _invoke(plan, fn_to_wrap, bound)
 
-                caller = f"{_resolve_owner_module(fn, args)}.{fn.__name__}"
+                caller = plan.contract_caller
+                if caller is None:
+                    caller = f"{_resolve_owner_module(fn, args)}.{fn.__name__}"
                 qualname = _display_qualname(fn, args, implicit_receiver)
+                display_name = qualname if plan.contract_caller is not None else caller
 
                 if plan.var_keyword_name and plan.var_keyword_name in bound:
                     extra = bound.pop(plan.var_keyword_name) or {}
@@ -514,7 +523,7 @@ def arg_digest(
                             detail=f"It returned {type(standardized).__name__} "
                             f"instead of a mapping of arguments.",
                             context=Context(
-                                function_name=caller,
+                                function_name=display_name,
                                 argname="-",
                                 value=standardized,
                                 all_args=bound,
@@ -528,7 +537,15 @@ def arg_digest(
                 if plan.signature is not None:
                     positional = list(plan.signature.parameters)[: len(args)]
                     supplied.update(positional)
-                _enforce_function_contract(plan, caller, fn, bound, extras, supplied)
+                _enforce_function_contract(
+                    plan,
+                    caller,
+                    fn,
+                    bound,
+                    extras,
+                    supplied,
+                    display_name=display_name,
+                )
 
                 digested: dict[str, Any] = {}
                 visiting_path: list[str] = []

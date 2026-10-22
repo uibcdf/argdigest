@@ -33,6 +33,64 @@ NORMALIZATION_SOURCE = "mylib._private.argdigest.normalization"
 CAPTURE_POLICY = None  # inherit | "metadata_only" | "detailed" | CapturePolicy
 ```
 
+## Contract ownership under inheritance
+
+In development after 0.16.0, `DigestConfig.contract_owner` separates contract
+lookup from diagnostic display. Its default, `None`, preserves existing runtime
+owner resolution, including classes assembled from mixins.
+
+Use `"definition"` when inherited methods should keep the contracts of their
+implementation:
+
+```python
+from argdigest import DigestConfig, arg_digest
+
+inherited_contracts = DigestConfig(contract_owner="definition")
+
+
+class Base:
+    @arg_digest(config=inherited_contracts)
+    def process(self, value):
+        return value
+
+
+class Child(Base):
+    pass
+```
+
+The selected key follows the existing `module.function` convention: here it is
+the defining module plus `.process`, without a class component. Each function
+resolves its own key when decorated, so the same configuration can be shared
+with other methods. A separately decorated override resolves its own definition.
+This mode uses function metadata and does not import an owner module.
+Classes defining the same method name in one module share this existing key
+convention; use distinct exact keys if their contracts must be disambiguated.
+
+For a logical owner different from the implementation, provide an exact key,
+for example `DigestConfig(contract_owner="mylib.native.model.__init__")`.
+An exact key applies literally to every function using that configuration;
+use a dedicated configuration when it belongs to one method. Keys consist of
+two or more dotted Python identifiers. Patterns, blank keys and malformed keys
+are rejected when the configuration is constructed. A valid key need not name
+an importable function or an existing declaration; ordinary contract fallback
+and matching rules still apply.
+
+The selected key is shared by alias normalization, standardizers,
+function/domain contract lookup and digester `caller`. Digester `qualname`
+retains the runtime class. Function-contract refusals also name the runtime
+method when explicit ownership is active. Signature binding, value validation,
+unknown-argument refusal and explicit digestion selection remain active.
+
+Both decorator forms accept it through `config=DigestConfig(...)`. Python
+configuration modules/files use `CONTRACT_OWNER`; JSON/YAML use
+`contract_owner`. Existing arbitrary decorator context named `contract_owner`
+keeps its original meaning: `arg_digest(contract_owner=...)` alone does not
+select this policy. Wrapped-function call arguments cannot change the policy.
+
+Inspect `function.digestion_plan.contract_owner` for the requested selection and
+`function.digestion_plan.contract_caller` for the resolved fixed key (`None`
+means runtime resolution). The CLI audit reports both fields.
+
 Both policies accept the same aliases: `raise` -> `error`, `warning` -> `warn`,
 `silent`/`none` -> `ignore`.
 

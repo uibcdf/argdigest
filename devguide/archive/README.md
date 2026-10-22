@@ -5,7 +5,7 @@ their established locations so existing references remain valid.
 
 <!-- generated: devguide_index -->
 
-### Resolved (22)
+### Resolved (23)
 
 - [`adopt_molsyssuite_policy_v1.md`](../completed_proposals/adopt_molsyssuite_policy_v1.md) — [#4](https://github.com/uibcdf/argdigest/issues/4) — Adopt the shared MolSysSuite policy and Ruff gate. *(resolved, measured)*
 - [`adopt_shared_reporting_lifecycle.md`](../completed_proposals/adopt_shared_reporting_lifecycle.md) — [#6](https://github.com/uibcdf/argdigest/issues/6) — Adopt the shared issue-backed developer-guide lifecycle. *(resolved, inspected)*
@@ -13,6 +13,7 @@ their established locations so existing references remain valid.
 - [`classmethod_receiver_is_digested.md`](../solved_bugs/classmethod_receiver_is_digested.md) — [#19](https://github.com/uibcdf/argdigest/issues/19) — A decorated classmethod treated its implicit cls receiver as an undigested argument. *(resolved, reproduced)*
 - [`complete_distribution_adoption.md`](../completed_proposals/complete_distribution_adoption.md) — [#28](https://github.com/uibcdf/argdigest/issues/28) — Complete the distribution contract review and preserve required provider floors in runtime environments. *(resolved, reproduced)*
 - [`contract_refusal_hides_cause_and_allowed_arguments.md`](../solved_bugs/contract_refusal_hides_cause_and_allowed_arguments.md) — [#14](https://github.com/uibcdf/argdigest/issues/14) — A function-contract refusal hid a reserved-token error and the arguments accepted for the call. *(resolved, reproduced)*
+- [`declared_contract_owner.md`](../completed_proposals/declared_contract_owner.md) — [#37](https://github.com/uibcdf/argdigest/issues/37) — Allow an explicit contract lookup owner independently of runtime method display. *(resolved, reproduced)*
 - [`expand_python_support_to_3_14.md`](../completed_proposals/expand_python_support_to_3_14.md) — [#13](https://github.com/uibcdf/argdigest/issues/13) — Release ArgDigest with independently verified Python 3.14 support. *(resolved, measured)*
 - [`explicit_argument_digestion.md`](../completed_proposals/explicit_argument_digestion.md) — [#30](https://github.com/uibcdf/argdigest/issues/30) — Select argument digestion independently of configuration and pipelines. *(resolved, measured)*
 - [`method_caller_omits_runtime_class.md`](../solved_bugs/method_caller_omits_runtime_class.md) — [#18](https://github.com/uibcdf/argdigest/issues/18) — Method caller names the module and method but omits the runtime class. *(resolved, reproduced)*

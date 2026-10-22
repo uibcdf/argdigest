@@ -30,6 +30,8 @@ def audit_module(module_name: str):
             print(f"  Profiling:  {plan.profiling}")
             print(f"  Argument Digestion Selection: {plan.argument_digestion}")
             print(f"  Argument Digestion Enabled: {plan.enable_argument_digestion}")
+            print(f"  Contract Owner: {plan.contract_owner}")
+            print(f"  Declared Contract Caller: {plan.contract_caller}")
 
             if plan.digesters:
                 print(f"  Argument Digesters: {list(plan.digesters.keys())}")

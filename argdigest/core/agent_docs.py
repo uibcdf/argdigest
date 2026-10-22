@@ -119,6 +119,7 @@ This document provides context and instructions for AI Agents (like yourself) to
 - **Library Module**: `{module_name}`
 - **Digestion Style**: `{cfg.digestion_style}`
 - **Argument Digestion Selection**: `{cfg.argument_digestion}` (None infers, True enables, False disables value digesters)
+- **Contract Owner**: `{cfg.contract_owner}` (None retains runtime lookup; definition resolves each function's defining module/name; an exact key selects a logical owner)
 - **Digestion Source**: `{cfg.digestion_source}`
 - **Standardizer**: `{cfg.standardizer}`
 - **Strictness Level**: `{cfg.strictness}`

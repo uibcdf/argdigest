@@ -7,6 +7,8 @@ from importlib import import_module
 from pathlib import Path
 from typing import Any
 
+from .caller import validate_contract_owner
+
 
 @dataclass(frozen=True)
 class DigestConfig:
@@ -30,6 +32,11 @@ class DigestConfig:
     capture_policy: Any = None
     # None preserves automatic inference; False disables only value digesters.
     argument_digestion: bool | None = None
+    # None retains runtime lookup; 'definition' or an exact key fixes the contract.
+    contract_owner: str | None = None
+
+    def __post_init__(self) -> None:
+        validate_contract_owner(self.contract_owner)
 
 
 _DEFAULTS: DigestConfig = DigestConfig()
@@ -87,6 +94,7 @@ def _from_module(module_path: str) -> DigestConfig:
         unknown_argument=getattr(module, "UNKNOWN_ARGUMENT", "error"),
         capture_policy=getattr(module, "CAPTURE_POLICY", None),
         argument_digestion=getattr(module, "ARGUMENT_DIGESTION", None),
+        contract_owner=getattr(module, "CONTRACT_OWNER", None),
     )
 
 
@@ -122,6 +130,7 @@ def load_from_file(path: str | Path) -> DigestConfig:
             unknown_argument=getattr(module, "UNKNOWN_ARGUMENT", "error"),
             capture_policy=getattr(module, "CAPTURE_POLICY", None),
             argument_digestion=getattr(module, "ARGUMENT_DIGESTION", None),
+            contract_owner=getattr(module, "CONTRACT_OWNER", None),
         )
 
     if ext in (".yaml", ".yml"):

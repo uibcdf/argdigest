@@ -6,6 +6,7 @@ This document provides context and instructions for AI Agents (like yourself) to
 - **Library Module**: `argdigest`
 - **Digestion Style**: `auto`
 - **Argument Digestion Selection**: `None` (None infers, True enables, False disables value digesters)
+- **Contract Owner**: `None` (None retains runtime lookup; definition resolves each function's defining module/name; an exact key selects a logical owner)
 - **Digestion Source**: `None`
 - **Standardizer**: `None`
 - **Strictness Level**: `warn`

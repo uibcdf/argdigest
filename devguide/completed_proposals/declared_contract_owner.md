@@ -1,18 +1,64 @@
 ---
 summary: Allow an explicit contract lookup owner independently of runtime method display.
 issue: uibcdf/argdigest#37
-status: open
+status: resolved
 opened: 2026-10-22
-closed:
+closed: 2026-10-22
 verification: reproduced
 area: [contracts, inheritance, integration]
-guard:
+guard: tests/test_contract_owner.py
 normative:
 blocked_by: []
 supersedes: []
 ---
 
 # Declared contract owner
+
+## Implementation — 2026-10-22
+
+The maintainer authorized implementation, then requested a comparison of design
+tradeoffs. The accepted implementation uses `DigestConfig.contract_owner`:
+`None` retains runtime resolution, `"definition"` resolves each decorated
+function's defining `module.name`, and an exact dotted key selects a logical
+owner. Definition mode avoids repeating names and permits one configuration
+to serve multiple methods and independently decorated overrides. Exact keys
+remain useful for mixins whose logical owner differs from their source module;
+their spelling must be maintained explicitly. Valid keys are not imported or
+required to name an existing declaration; ordinary matching/fallback remains.
+
+The field lives in configuration rather than reserving an existing arbitrary
+decorator-context keyword. Existing `arg_digest(contract_owner=...)` context
+continues to reach digesters. All configuration loaders and both decorator
+forms support the policy. Module/file keys are `CONTRACT_OWNER` (Python) or
+`contract_owner` (JSON/YAML). Invalid selections fail at configuration time.
+
+`core/caller.py` owns independently tested validation and declaration-time
+resolution. The wrapper consumes the one resolved key for alias tables,
+standardizers, function/domain selection and digester `caller`. Runtime
+`qualname` and explicit-policy contract-refusal display remain separate.
+`digestion_plan.contract_owner` records the requested selection;
+`digestion_plan.contract_caller` records its fixed resolution or None for
+runtime dispatch. CLI audit and generated agent guidance expose the selection.
+
+The guard contains 37 cases covering module-level external inheritance, deep
+and multiple inheritance, overrides, both classmethod decorator orders,
+staticmethods, shared aliases/standardizers/contracts/domain selection,
+closed signatures, native value refusals, retained arbitrary context,
+pipeline-only execution, all configuration transports and malformed keys.
+It protects the mechanism reproduced in triage: a method can retain its base
+contract key while diagnostic identity continues to name the runtime child.
+The complete Python 3.14.7 source suite passes 431 tests without omissions.
+
+This resolves provider source implementation. The code is development after
+0.16.0; this work creates no new release/tag and does not adopt the option in
+MolSysMT. Its existing `native_constructor` workaround remains consumer-owned
+until a separately qualified receiving decision.
+Shared impact and consumer receiving are tracked in `uibcdf/molsyssuite#123`.
+
+## Initial triage — 2026-10-22
+
+The following analysis and acceptance criteria record the pre-implementation
+proposal; the implementation decision above supplies the selected public API.
 
 ## What
 
