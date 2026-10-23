@@ -282,6 +282,8 @@ def arg_digest(
     def deco(fn: Callable[..., Any]):
         if isinstance(fn, classmethod):
             return classmethod(deco(fn.__func__))
+        if isinstance(fn, staticmethod):
+            return staticmethod(deco(fn.__func__))
         # Resolve effective parameters
         eff_config = config
         auto_module_config = None
@@ -512,9 +514,29 @@ def arg_digest(
                         supplied.update(extra)
 
                 if plan.normalization:
+                    # Binding holds unknown names aside for closed signatures.
+                    # Declared aliases must translate them before admission too.
+                    normalization_input = {**bound, **extras} if extras else bound
+                    normalized_supplied: set[str] = set()
                     bound = apply_normalization(
-                        plan.normalization, caller, bound, supplied
+                        plan.normalization,
+                        caller,
+                        normalization_input,
+                        supplied,
+                        supplied_out=normalized_supplied,
                     )
+                    supplied = normalized_supplied
+                    if extras:
+                        extras = {
+                            name: value
+                            for name, value in bound.items()
+                            if name not in plan.signature_parameter_names
+                        }
+                        bound = {
+                            name: value
+                            for name, value in bound.items()
+                            if name in plan.signature_parameter_names
+                        }
 
                 if plan.standardizer:
                     standardized = plan.standardizer(caller, bound)
@@ -533,10 +555,6 @@ def arg_digest(
 
                 # Axis 1 runs here: after names are canonical, before any value is
                 # digested.
-                supplied = set(kwargs)
-                if plan.signature is not None:
-                    positional = list(plan.signature.parameters)[: len(args)]
-                    supplied.update(positional)
                 _enforce_function_contract(
                     plan,
                     caller,

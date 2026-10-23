@@ -22,6 +22,12 @@ feature built to help users into a wall. A genuine typo, on the other hand, surv
 normalization unchanged and is then refused — which is exactly the division of labour you
 want: normalization *translates*, the contract *judges*.
 
+In development after 0.16.0, supplied-name provenance follows normalization:
+an alias counts as its canonical argument for `requires_any_of`, `co_required`
+and `mutually_exclusive`. A parameter resting on a default still does not count
+as explicitly supplied. Declared aliases are translated for closed signatures
+too; other unknown names remain subject to normal admission checks.
+
 ## Declaring aliases
 
 Aliases are data. Drop one module per family of rules into the package named by

@@ -5,7 +5,7 @@ their established locations so existing references remain valid.
 
 <!-- generated: devguide_index -->
 
-### Resolved (23)
+### Resolved (25)
 
 - [`adopt_molsyssuite_policy_v1.md`](../completed_proposals/adopt_molsyssuite_policy_v1.md) — [#4](https://github.com/uibcdf/argdigest/issues/4) — Adopt the shared MolSysSuite policy and Ruff gate. *(resolved, measured)*
 - [`adopt_shared_reporting_lifecycle.md`](../completed_proposals/adopt_shared_reporting_lifecycle.md) — [#6](https://github.com/uibcdf/argdigest/issues/6) — Adopt the shared issue-backed developer-guide lifecycle. *(resolved, inspected)*
@@ -17,6 +17,7 @@ their established locations so existing references remain valid.
 - [`expand_python_support_to_3_14.md`](../completed_proposals/expand_python_support_to_3_14.md) — [#13](https://github.com/uibcdf/argdigest/issues/13) — Release ArgDigest with independently verified Python 3.14 support. *(resolved, measured)*
 - [`explicit_argument_digestion.md`](../completed_proposals/explicit_argument_digestion.md) — [#30](https://github.com/uibcdf/argdigest/issues/30) — Select argument digestion independently of configuration and pipelines. *(resolved, measured)*
 - [`method_caller_omits_runtime_class.md`](../solved_bugs/method_caller_omits_runtime_class.md) — [#18](https://github.com/uibcdf/argdigest/issues/18) — Method caller names the module and method but omits the runtime class. *(resolved, reproduced)*
+- [`normalization_loses_supplied_argument_identity.md`](../solved_bugs/normalization_loses_supplied_argument_identity.md) — [#38](https://github.com/uibcdf/argdigest/issues/38) — Preserve canonical supplied names through normalization and function contracts. *(resolved, reproduced)*
 - [`numpy_loaded_by_non_scientific_consumers.md`](../solved_bugs/numpy_loaded_by_non_scientific_consumers.md) — [#15](https://github.com/uibcdf/argdigest/issues/15) — NumPy is loaded by consumers that never use scientific pipelines. *(resolved, reproduced)*
 - [`pr_ci_can_be_skipped_and_direct_push_debt_is_unchecked.md`](../solved_bugs/pr_ci_can_be_skipped_and_direct_push_debt_is_unchecked.md) — [#21](https://github.com/uibcdf/argdigest/issues/21) — PR CI can be skipped and direct-push debt is unchecked *(resolved, inspected)*
 - [`pyunitwizard_adapter_imports_provider_before_use.md`](../solved_bugs/pyunitwizard_adapter_imports_provider_before_use.md) — [#22](https://github.com/uibcdf/argdigest/issues/22) — Defer the optional PyUnitWizard adapter import until pipeline execution. *(resolved, reproduced)*
@@ -27,6 +28,7 @@ their established locations so existing references remain valid.
 - [`release_0_16_0.md`](../completed_proposals/release_0_16_0.md) — [#36](https://github.com/uibcdf/argdigest/issues/36) — Publish 0.16.0 after exact-artifact registration-only qualification. *(resolved, inspected)*
 - [`review_inherited_python_ecosystem_policy.md`](../completed_proposals/review_inherited_python_ecosystem_policy.md) — [#20](https://github.com/uibcdf/argdigest/issues/20) — Review inherited Python ecosystem policy in ArgDigest. *(resolved, measured)*
 - [`scoped_metadata_only_diagnostics.md`](../completed_proposals/scoped_metadata_only_diagnostics.md) — [#29](https://github.com/uibcdf/argdigest/issues/29) — Apply SMonitor capture policy before ArgDigest-owned diagnostic collection. *(resolved, measured)*
+- [`staticmethod_descriptor_is_lost.md`](../solved_bugs/staticmethod_descriptor_is_lost.md) — [#39](https://github.com/uibcdf/argdigest/issues/39) — Preserve staticmethod semantics in both decorator orders and access paths. *(resolved, reproduced)*
 - [`temporary_resource_review.md`](../completed_proposals/temporary_resource_review.md) — [#33](https://github.com/uibcdf/argdigest/issues/33) — Preserve caller resources and complete ArgDigest's bounded tool closeout. *(resolved, reproduced)*
 - [`truthy_skip_digestion_bypasses_validation.md`](../solved_bugs/truthy_skip_digestion_bypasses_validation.md) — [#17](https://github.com/uibcdf/argdigest/issues/17) — A truthy non-boolean skip_digestion bypasses validation before its digester runs. *(resolved, reproduced)*
 - [`warnings_inside_decorated_functions_point_to_wrapper.md`](../solved_bugs/warnings_inside_decorated_functions_point_to_wrapper.md) — [#16](https://github.com/uibcdf/argdigest/issues/16) — Warnings inside decorated functions point to the ArgDigest wrapper. *(resolved, inspected)*

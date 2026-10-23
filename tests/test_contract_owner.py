@@ -14,6 +14,7 @@ from argdigest import (
     DigestConfig,
     Domain,
     FunctionContract,
+    MissingArgumentError,
     UnknownArgumentError,
     arg_digest,
     argument_digest,
@@ -45,6 +46,9 @@ class Methods:
 
     def static(value):
         return value
+
+    def variadic(self, *items, value=None):
+        return value, items
 """,
             module.__dict__,
         )
@@ -161,13 +165,15 @@ def test_definition_follows_inherited_implementation_and_overrides(library):
     assert right.seen[-1][1:3] == (right.key, "consumer.override.Override.accept")
 
 
-@pytest.mark.parametrize("owner", ["definition", "logical.api.method"])
-@pytest.mark.parametrize("descriptor", ["class_outer", "class_inner", "static"])
+@pytest.mark.parametrize("owner", [None, "definition", "logical.api.method"])
+@pytest.mark.parametrize(
+    "descriptor", ["class_outer", "class_inner", "static", "static_inner"]
+)
 def test_inherited_descriptor_contract_identity(library, owner, descriptor):
     lib = library(owner)
     fn = (
         lib.module.Methods.static
-        if descriptor == "static"
+        if descriptor.startswith("static")
         else lib.module.Methods.build
     )
     decorate = arg_digest(config=replace(lib.config, function_source=None))
@@ -175,19 +181,113 @@ def test_inherited_descriptor_contract_identity(library, owner, descriptor):
         method = classmethod(decorate(fn))
     elif descriptor == "class_inner":
         method = decorate(classmethod(fn))
+    elif descriptor == "static_inner":
+        method = decorate(staticmethod(fn))
     else:
         method = staticmethod(decorate(fn))
     Parent = type("Parent", (), {"method": method, "__module__": "consumer.parent"})
     Child = type("Child", (Parent,), {"__module__": "consumer.child"})
-    result = Child.method("6")
-    assert result == (6 if descriptor == "static" else ("Child", 6))
-    key = f"{lib.module.__name__}.{fn.__name__}" if owner == "definition" else owner
+    expected = 6 if descriptor.startswith("static") else ("Child", 6)
+    assert Child.method("6") == expected
+    assert Child().method("6") == expected
+    key = (
+        f"{lib.module.__name__}.{fn.__name__}"
+        if owner in (None, "definition")
+        else owner
+    )
     display = (
         f"{lib.module.__name__}.Methods.static"
-        if descriptor == "static"
+        if descriptor.startswith("static")
         else "consumer.child.Child.build"
     )
     assert lib.seen[-1][1:3] == (key, display)
+
+
+@pytest.mark.parametrize("owner", [None, "definition", "logical.api.accept"])
+@pytest.mark.parametrize(
+    "rule", ["requires_any_of", "co_required", "mutually_exclusive"]
+)
+def test_aliases_preserve_canonical_presence_for_contracts(
+    library, monkeypatch, owner, rule
+):
+    lib = library(owner)
+    key = f"{lib.Child.__module__}.accept" if owner is None else lib.key
+    module = types.ModuleType(f"{lib.module.__name__}_presence")
+    options = {rule: "value" if rule == "requires_any_of" else [("value", "left")]}
+    module.CONTRACTS = [FunctionContract(caller=key, **options)]
+    module.TABLES = [AliasTable({"short": "value"}, applies_to=key)]
+    monkeypatch.setitem(sys.modules, module.__name__, module)
+    config = replace(
+        lib.config,
+        function_source=module.__name__,
+        normalization_source=module.__name__,
+    )
+    wrapped = arg_digest(config=config)(lib.module.Methods.accept)
+    monkeypatch.setattr(lib.Base, "accept", wrapped)
+    if rule == "requires_any_of":
+        assert lib.Child().accept(short="7") == (7, {})
+        with pytest.raises(MissingArgumentError):
+            lib.Child().accept()
+    elif rule == "co_required":
+        with pytest.raises(ArgumentConsistencyError):
+            lib.Child().accept(short="7")
+        assert lib.Child().accept(short="7", left=1) == (7, {})
+    else:
+        with pytest.raises(ArgumentConsistencyError):
+            lib.Child().accept(short="7", left=1)
+        assert lib.Child().accept(short="7") == (7, {})
+
+
+@pytest.mark.parametrize("owner", [None, "definition", "logical.api.closed"])
+def test_closed_signature_aliases_are_normalized_before_admission(
+    library, monkeypatch, owner
+):
+    lib = library(owner)
+    key = (
+        f"{lib.Child.__module__}.closed"
+        if owner is None
+        else f"{lib.module.__name__}.closed"
+        if owner == "definition"
+        else owner
+    )
+    module = types.ModuleType(f"{lib.module.__name__}_closed_alias")
+    module.TABLES = [AliasTable({"short": "value"}, applies_to=key)]
+    monkeypatch.setitem(sys.modules, module.__name__, module)
+    wrapped = arg_digest(
+        config=replace(lib.config, normalization_source=module.__name__)
+    )(lib.module.Methods.closed)
+    monkeypatch.setattr(lib.Base, "closed", wrapped, raising=False)
+    assert lib.Child().closed(short="7") == 7
+    with pytest.raises(ArgumentConsistencyError):
+        lib.Child().closed(short="7", value="7")
+    with pytest.raises(UnknownArgumentError):
+        lib.Child().closed(value="7", typo=1)
+
+
+@pytest.mark.parametrize("owner", [None, "definition", "logical.api.variadic"])
+def test_varargs_do_not_make_keyword_only_defaults_explicit(
+    library, monkeypatch, owner
+):
+    lib = library(owner)
+    key = (
+        f"{lib.Child.__module__}.variadic"
+        if owner is None
+        else f"{lib.module.__name__}.variadic"
+        if owner == "definition"
+        else owner
+    )
+    module = types.ModuleType(f"{lib.module.__name__}_varargs")
+    module.CONTRACTS = [FunctionContract(caller=key, requires_any_of="value")]
+    monkeypatch.setitem(sys.modules, module.__name__, module)
+    wrapped = arg_digest(
+        config=replace(
+            lib.config, argument_digestion=False, function_source=module.__name__
+        )
+    )(lib.module.Methods.variadic)
+    monkeypatch.setattr(lib.Base, "variadic", wrapped, raising=False)
+    with pytest.raises(MissingArgumentError):
+        lib.Child().variadic("one", "two", "three")
+    assert lib.Child().variadic("one", "two", value=None) == (None, ("one", "two"))
 
 
 def test_closed_signature_cannot_override_policy_through_call_arguments(library):

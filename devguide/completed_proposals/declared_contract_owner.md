@@ -55,6 +55,24 @@ MolSysMT. Its existing `native_constructor` workaround remains consumer-owned
 until a separately qualified receiving decision.
 Shared impact and consumer receiving are tracked in `uibcdf/molsyssuite#123`.
 
+## Final implementation review — 2026-10-22
+
+Additional edge-case review reproduced 17 previously untested failures in
+the surrounding execution stages. `uibcdf/argdigest#38` fixes canonical
+supplied-name propagation, including required/co-required/exclusive rules,
+closed-signature aliases and variadic default handling.
+`uibcdf/argdigest#39` preserves staticmethod descriptors in reverse decorator
+order. Both mechanisms also concern legacy behavior; neither requires a new
+ownership mode or changing the selected API. The repairs and before/after
+guards are recorded in their owning solved-bug reports.
+
+Ownership coverage now comprises 58 cases; the complete source suite passes
+456 tests without omissions. Static functions have no bound receiver, so their
+diagnostic name is definition-based. Bound instance/class methods retain
+runtime display. Valid exact keys still follow existing registry fallback;
+definition mode still follows module.function rather than inventing a new
+class-qualified key namespace. These deliberate limits are documented.
+
 ## Initial triage — 2026-10-22
 
 The following analysis and acceptance criteria record the pre-implementation

@@ -36,8 +36,8 @@ CAPTURE_POLICY = None  # inherit | "metadata_only" | "detailed" | CapturePolicy
 ## Contract ownership under inheritance
 
 In development after 0.16.0, `DigestConfig.contract_owner` separates contract
-lookup from diagnostic display. Its default, `None`, preserves existing runtime
-owner resolution, including classes assembled from mixins.
+lookup from diagnostic display. Its default, `None`, preserves existing caller
+resolution exactly, including instance dispatch in classes assembled from mixins.
 
 Use `"definition"` when inherited methods should keep the contracts of their
 implementation:
@@ -76,9 +76,11 @@ an importable function or an existing declaration; ordinary contract fallback
 and matching rules still apply.
 
 The selected key is shared by alias normalization, standardizers,
-function/domain contract lookup and digester `caller`. Digester `qualname`
-retains the runtime class. Function-contract refusals also name the runtime
-method when explicit ownership is active. Signature binding, value validation,
+function/domain contract lookup and digester `caller`. For bound instance and
+class methods, digester `qualname` retains the runtime class. Static methods
+and free functions retain their defining qualified name because no receiver
+identifies a runtime class. Function-contract refusals use that same display
+identity when explicit ownership is active. Signature binding, value validation,
 unknown-argument refusal and explicit digestion selection remain active.
 
 Both decorator forms accept it through `config=DigestConfig(...)`. Python
@@ -90,6 +92,8 @@ select this policy. Wrapped-function call arguments cannot change the policy.
 Inspect `function.digestion_plan.contract_owner` for the requested selection and
 `function.digestion_plan.contract_caller` for the resolved fixed key (`None`
 means runtime resolution). The CLI audit reports both fields.
+
+## Strictness and unknown arguments
 
 Both policies accept the same aliases: `raise` -> `error`, `warning` -> `warn`,
 `silent`/`none` -> `ignore`.

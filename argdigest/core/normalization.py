@@ -116,6 +116,8 @@ def apply_normalization(
     caller: str,
     bound: dict[str, Any],
     supplied: set[str] | None = None,
+    *,
+    supplied_out: set[str] | None = None,
 ) -> dict[str, Any]:
     """Rename the arguments of one call according to the declared tables.
 
@@ -130,13 +132,15 @@ def apply_normalization(
     it: `bound` has defaults applied, so without it a canonical name resting on its
     default looks exactly like one the caller passed, and every alias whose target has a
     default would be rejected as a duplicate. Omitting it keeps the older, defaults-blind
-    behaviour.
+    behaviour. With `supplied` present, a fresh `supplied_out` set can receive
+    the canonical supplied names for subsequent contract stages. The input
+    set is not modified; defaults are not promoted to explicit arguments.
     """
 
-    tables = registry.for_caller(caller)
-    if not tables:
-        return bound
+    if supplied_out is not None and supplied is None:
+        raise ValueError("supplied_out requires explicit supplied names")
 
+    tables = registry.for_caller(caller)
     renames: dict[str, str] = {}
     for table in tables:
         if not table.matches_context(bound):
@@ -145,6 +149,8 @@ def apply_normalization(
             if source in bound and source not in renames:
                 renames[source] = target
     if not renames:
+        if supplied_out is not None:
+            supplied_out.update(supplied)
         return bound
 
     # Two names are alternatives only if the caller wrote both. A name present merely
@@ -197,6 +203,8 @@ def apply_normalization(
         if name in superseded and name not in renames:
             continue
         result[renames.get(name, name)] = value
+    if supplied_out is not None:
+        supplied_out.update(renames.get(name, name) for name in supplied)
     return result
 
 

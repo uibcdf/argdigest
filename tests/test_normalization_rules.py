@@ -34,6 +34,37 @@ def test_a_table_needs_at_least_one_alias():
         AliasTable(aliases={})
 
 
+@pytest.mark.parametrize("scope", ["matching", "unmatched", "empty"])
+def test_normalization_reports_canonical_supplied_names_without_changing_input(scope):
+    tables = (
+        []
+        if scope == "empty"
+        else [AliasTable({"short": "value"}, applies_to="pkg.fn")]
+    )
+    registry = NormalizationRegistry(tables)
+    supplied = {"short"}
+    canonical = set()
+    result = apply_normalization(
+        registry,
+        "other.fn" if scope == "unmatched" else "pkg.fn",
+        {"value": None, "short": 7},
+        supplied,
+        supplied_out=canonical,
+    )
+    assert supplied == {"short"}
+    if scope == "matching":
+        assert canonical == {"value"}
+        assert result == {"value": 7}
+    else:
+        assert canonical == {"short"}
+        assert result == {"value": None, "short": 7}
+
+
+def test_canonical_supplied_output_requires_original_presence_information():
+    with pytest.raises(ValueError, match="supplied_out requires"):
+        apply_normalization(NormalizationRegistry(), "pkg.fn", {}, supplied_out=set())
+
+
 def test_an_alias_to_itself_is_refused():
     # It can only be a mistake, and silently doing nothing would hide it.
     with pytest.raises(ValueError, match="maps to itself"):
