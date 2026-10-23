@@ -132,3 +132,76 @@ pre-existing dependency conflicts tracked under `uibcdf/molsyssuite#82`.
 No shared environment was changed, and its tests are not a public closure claim.
 The temporary wheel/environment/cache may be retired after this evidence and
 the pushed preparation handoff are retained.
+
+## Exact staged qualification — 2026-10-22
+
+The maintainer authorized proceeding with qualification after preparation.
+Original producer candidate is
+`c7128f09b2fe064b6c5603d1077dbd2cec52223d`. Full source run `39878899217`
+passed all twelve declared cells; fast CI `39878177354`, repository policy
+`39878177580` and publication policy `39878177730` passed at that same SHA.
+The existing shared native-gate verifier independently confirmed each required
+job and test/check step executed on attempt 1. The source matrix's administrative
+backlog job is intentionally inapplicable to this manual full run.
+
+Producer `39879184044`, attempt 1, built once and uploaded only to staging:
+`noarch/argdigest-0.17.0-py_0.tar.bz2`, SHA-256
+`9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1`.
+The shared `noarch_release.prepare_handoff` operation independently bound the
+native producer steps, digest-verified receipt ZIP, archive inspection and
+actual staging-upload receipt to this original candidate/file. Its verified
+arguments were used for the full installed caller. This is actual operator
+use; no active human-effort reduction was measured or claimed.
+
+A separate download of the 55,325-byte archive matches the sealed digest.
+The shared archive inspector checked noarch identity, generated version,
+distribution metadata, dependency constraints and all nine declared resources.
+All 38 nongenerated Python runtime files also match the original candidate's
+Git blobs. Neither a rebuild nor substitution was performed.
+
+Full installed run `39879578589`, attempt 1, passed preparation and all twelve
+cells. All four required steps executed in every cell: exact-file installation,
+installed-file validation, the complete selected tests and the final provenance
+recheck. The source/file/profile binding receipt was independently acquired and
+digest-verified. Core run `39879578248`, attempt 1, passed all twelve separate
+cells with the retained public provider floors; its exact-byte/CLI checks and
+extended NumPy-free runtime probe executed in every cell. Both native matrices
+were independently verified against their exact source, workflow, title/digest,
+attempt, job sets and required successful steps.
+
+Native logs for all twelve source and twelve full installed cells each report
+455 passed and one skipped. The only omitted case is
+`tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints`:
+it explicitly prepends sibling source clones that hosted environments do not
+contain. This does not stand in for consumer receiving. No ownership,
+registration-only or scoped-capture case was omitted; the installed profile
+requires both provider capabilities and fails if unavailable. The three
+existing missing-digester warning groups remain visible.
+
+Normalized native proofs, receipt/archive identities, per-cell counts/log
+digests, binding, current registry labels and the concrete publication handoff
+are retained in
+`devguide/evidence/release_0_17_0_qualification_2026-10-22.json`.
+The file remains under `staging` only. No remote tag, GitHub Release, main-label
+promotion, public installation, new archival record or consumer adoption is
+claimed. This report and #40 stay active until separately authorized publication
+and its independent public/archival checks finish. Any later tag must target
+the original qualified producer candidate, not an evidence-only successor.
+
+### Administrative profile follow-up
+
+The current central `argdigest-core-v2` profile was reviewed for 0.15.0 and
+deliberately rejects this changed probe hash. An additive current-profile
+review is requested in
+[uibcdf/molsyssuite#92](https://github.com/uibcdf/molsyssuite/issues/92#issuecomment-6354595761);
+the historical profile is not
+relaxed or overwritten. The existing component route remains applicable:
+shared producer/full installed qualification, independently verified core matrix
+and unchanged `verify_core_release.py` before any promotion. This follow-up
+does not block qualification or authorize publication. Guide distribution
+continues to belong to MolSysSuite developers under `uibcdf/molsyssuite#125`.
+
+Task-owned archive, native logs and receipts are retained at
+`/tmp/argdigest-017-qualification.7E0JA0` for the publication/public-byte comparison,
+with review on 2026-10-29 and removal after durable release closeout. Shared
+clones, environments and unrelated resources are preserved.

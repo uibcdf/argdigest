@@ -1,0 +1,891 @@
+{
+  "schema": "argdigest.release-qualification@1",
+  "observed_at": "2026-10-23T00:48:00.676131+00:00",
+  "repository": "uibcdf/argdigest",
+  "issues": [
+    "uibcdf/argdigest#40",
+    "uibcdf/molsyssuite#123",
+    "uibcdf/molsyssuite#125",
+    "uibcdf/molsyssuite#92"
+  ],
+  "state": "staged-qualified",
+  "identity": {
+    "candidate_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+    "filename": "argdigest-0.17.0-py_0.tar.bz2",
+    "owner": "uibcdf",
+    "package": "argdigest",
+    "sha256": "9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1",
+    "subdir": "noarch",
+    "version": "0.17.0"
+  },
+  "original_candidate_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+  "verification_helper_source_sha": "54967e2b109f3d64d01d9ce2f97d136567915ffb",
+  "initial_version_absence": {
+    "state": "absent",
+    "http_status": 404,
+    "scope": "all-labels",
+    "url": "https://api.anaconda.org/release/uibcdf/argdigest/0.17.0",
+    "checked_at": "2026-10-23T00:34:52.145287+00:00"
+  },
+  "source_gates": {
+    ".github/workflows/CI_full_matrix.yaml": {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 39878899217,
+      "run_attempt": 1,
+      "candidate_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+      "workflow": ".github/workflows/CI_full_matrix.yaml",
+      "jobs": [
+        {
+          "name": "Full test on ubuntu-latest, Python 3.11",
+          "job_id": 120171220705,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on ubuntu-latest, Python 3.12",
+          "job_id": 120171221003,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on ubuntu-latest, Python 3.13",
+          "job_id": 120171221070,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on ubuntu-latest, Python 3.14",
+          "job_id": 120171221038,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on macos-latest, Python 3.11",
+          "job_id": 120171221007,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on macos-latest, Python 3.12",
+          "job_id": 120171221020,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on macos-latest, Python 3.13",
+          "job_id": 120171221075,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on macos-latest, Python 3.14",
+          "job_id": 120171221032,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on windows-latest, Python 3.11",
+          "job_id": 120171221229,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on windows-latest, Python 3.12",
+          "job_id": 120171220973,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on windows-latest, Python 3.13",
+          "job_id": 120171221012,
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "name": "Full test on windows-latest, Python 3.14",
+          "job_id": 120171221388,
+          "required_steps": [
+            "Run tests"
+          ]
+        }
+      ]
+    },
+    ".github/workflows/CI.yaml": {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 39878177354,
+      "run_attempt": 1,
+      "candidate_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+      "workflow": ".github/workflows/CI.yaml",
+      "jobs": [
+        {
+          "name": "Test on ubuntu-latest, Python 3.14",
+          "job_id": 120168917494,
+          "required_steps": [
+            "Build wheel",
+            "Install from wheel",
+            "Test import module (installed wheel)",
+            "Run tests"
+          ]
+        }
+      ]
+    }
+  },
+  "policies": {
+    "repository_policy": {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 39878177580,
+      "run_attempt": 1,
+      "candidate_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+      "workflow": ".github/workflows/molsyssuite-policy.yml",
+      "jobs": [
+        {
+          "name": "policy / conformance",
+          "job_id": 120168848238,
+          "required_steps": [
+            "Check repository conformance",
+            "Check Python lint and imports",
+            "Check Python formatting"
+          ]
+        }
+      ],
+      "exact_jobs": true
+    },
+    "publication_policy": {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 39878177730,
+      "run_attempt": 1,
+      "candidate_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+      "workflow": ".github/workflows/conda-publication-policy.yml",
+      "jobs": [
+        {
+          "name": "publication / check",
+          "job_id": 120168848832,
+          "required_steps": [
+            "Check publication workflow controls",
+            "Check declared noarch recipe and resources without building"
+          ]
+        }
+      ],
+      "exact_jobs": true
+    }
+  },
+  "producer_handoff": {
+    "caller": "uibcdf/molsyssuite/.github/workflows/test-installed-noarch-conda.yaml@13a661e348275496a677a1bfe9650d68a03713a3",
+    "checked_at": "2026-10-23T00:40:54.068650+00:00",
+    "identity": {
+      "candidate_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+      "filename": "argdigest-0.17.0-py_0.tar.bz2",
+      "owner": "uibcdf",
+      "package": "argdigest",
+      "sha256": "9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1",
+      "subdir": "noarch",
+      "version": "0.17.0"
+    },
+    "installed_profile": {
+      "job_template": "installed / {platform} \u00b7 Python {python}",
+      "platforms": [
+        "linux-64",
+        "osx-arm64",
+        "win-64"
+      ],
+      "prepare_job": "installed / prepare",
+      "python_versions": [
+        "3.11",
+        "3.12",
+        "3.13",
+        "3.14"
+      ],
+      "required_steps": [
+        "Install exact artifact",
+        "Validate installed files",
+        "Run installed tests",
+        "Recheck installed provenance after scientific tests"
+      ]
+    },
+    "mutation_performed": false,
+    "next_command": [
+      "gh",
+      "workflow",
+      "run",
+      ".github/workflows/test_staged_conda_package.yaml",
+      "--repo",
+      "uibcdf/argdigest",
+      "--ref",
+      "main",
+      "--raw-field",
+      "candidate_sha=c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+      "--raw-field",
+      "sha256=9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1",
+      "--raw-field",
+      "filename=argdigest-0.17.0-py_0.tar.bz2"
+    ],
+    "next_operation": "qualify-installed",
+    "producer": {
+      "artifact": {
+        "digest": "sha256:c934c21f52c7be20fb153a075d9a7a2c105779204a21d061fa39a3908f0f257e",
+        "id": 12469981340,
+        "name": "noarch-publication-39879184044-1",
+        "size_in_bytes": 2617,
+        "workflow_run": {
+          "head_branch": "main",
+          "head_repository_id": 1088948514,
+          "head_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+          "id": 39879184044,
+          "repository_id": 1088948514
+        }
+      },
+      "run_attempt": 1,
+      "run_id": 39879184044,
+      "workflow_head_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d"
+    },
+    "qualification_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+    "registry": {
+      "basename": "noarch/argdigest-0.17.0-py_0.tar.bz2",
+      "labels": [
+        "staging"
+      ],
+      "sha256": "9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1"
+    },
+    "repository": "uibcdf/argdigest",
+    "schema": "molsyssuite.noarch-handoff@1",
+    "state": "prepared"
+  },
+  "archive_inspection": {
+    "package": "argdigest",
+    "version": "0.17.0",
+    "subdir": "noarch",
+    "filename": "argdigest-0.17.0-py_0.tar.bz2",
+    "sha256": "9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1",
+    "artifact": "/tmp/argdigest-017-qualification.7E0JA0/archive/argdigest-0.17.0-py_0.tar.bz2",
+    "runtime_files_matching_candidate": {
+      "argdigest/contrib/__init__.py": "780dc788fb0ee7e7d9273c45992a3568176dc0ef168dccce12a3e236c3f5cf75",
+      "argdigest/_private/smonitor/meta.py": "2b5313a344e848dcddeb2181d8e352664b77c0d02b5c421fb4726767b15ae81f",
+      "argdigest/pipelines/__init__.py": "0d9efba3909e8afac995b4b260756d48321a2d02a7968f49d388672ad3694d1b",
+      "argdigest/_private/smonitor/__init__.py": "3a7c8e505add1e4a4ff8fdb866c97edd043b830f6b7a59f768abd829ee419632",
+      "argdigest/_depdigest.py": "e3eede5f993fd789c55068769ec794e771fb7b233fa7e10df2f0439a8d531cd9",
+      "argdigest/core/context.py": "04ce1ef61eed153411c9a83d388899de1886f6f561be406373a6b112e639b81c",
+      "argdigest/config.py": "1e06c210d8cb24a6298e03961f5ad9a1a7eda56d5e473e8f2c791c0484e1ea38",
+      "argdigest/_smonitor.py": "8c64a540b48708d6b2cff8bb49ff05465c44be5cdc3b4511f40b514796b0d37d",
+      "argdigest/core/__init__.py": "fde4100e15ab833df34916a47a36a19a9c21925b6042ee93328afb270f835fca",
+      "argdigest/core/logger.py": "2fc318cb37f9c9863e809b51d516b5de6fc340cd6f962e9688484fe71f35a65b",
+      "argdigest/core/argument_registry.py": "b2698707760710bd5e103350f2a761f96b4d0178eb4d7f2b02fe03e55f3ea3bf",
+      "argdigest/core/errors_base.py": "bd1a04038e7e9fb50ce422291ae61e2f4cc1bac04342ab0f0230a6ef8b12247b",
+      "argdigest/pipelines/base.py": "20c07d367c9d121a07c77105127f5a950cced551aa77e65f5f2e80261b3de045",
+      "argdigest/contrib/beartype_support.py": "a18088bc90a02f56e44c5e5b5ad96da346d136baec861dacb739c6f86273acd2",
+      "argdigest/contrib/pydantic_support.py": "e52140c341096d5ad04fc056a2dccb39c4f368138758d2e6086a9ef9bee8df71",
+      "argdigest/core/diagnostics.py": "aaf2b4bf15562206d9c4ed16d2f3075214669948fb2523d6b6007698f339ed32",
+      "argdigest/pipelines/science.py": "f5ce2af693b9b9e714c0145c1601b4b2c2223efaa3fe0f3469c21883306bb464",
+      "argdigest/__init__.py": "07518ec0f8d53c99d67f40aa76dc1a9f021ab659fc97ee4eb24a2e325e4feaee",
+      "argdigest/pipelines/validators.py": "5b844a9bce602f734aafcf28bd671ccc53571ba3ba8dd4f54acc20b31c162f52",
+      "argdigest/diagnostics.py": "2ab1c77c7832f2b62161b8da57b228b12b89e7a667c6973d19ec8b9e041c2559",
+      "argdigest/pipelines/coercers.py": "83e3bffbb67474633c15f88420215110dd25e1bd9db9d9a148b1b352e8fb01d8",
+      "argdigest/_private/smonitor/emitter.py": "ed30989f4ebe8cf69720a9e01da83b4ae8d44aef6abbdf3dbeba253084566dac",
+      "argdigest/core/caller.py": "e44f21438bfe955f185452526f05d224723bf8c7bb07d13a1c02f3210a3c041f",
+      "argdigest/core/health.py": "edbb0c304f137455ab31ab33c8d3f21e84d89446c258c8060c6b559cc24a92b7",
+      "argdigest/cli.py": "f6e45b3cd57e83c7070b44b1a12abee6279ce80c55fd86a22c2754f04156e765",
+      "argdigest/core/registry.py": "3a8a81354ce299e4795d105441e0d029b2bf93a636c1c94f01adda1d2b19e48a",
+      "argdigest/core/function_loader.py": "3970949c2553a706b617380e8601cf97113f1b13837c8de1f1abb613838014b1",
+      "argdigest/core/argument_loader.py": "cb45b08e78282b98408e7d43fb004db2b2585003aadd074c7de1ef585b6f6dff",
+      "argdigest/core/errors.py": "d0cfd6413717fb69bb2243fd2d05059a2aa1bedf99828553459f889bc403a29d",
+      "argdigest/core/utils.py": "7135b40b7871db2c3a5c21cf228d9bb5390e6f0b93705525edd527bb834e7512",
+      "argdigest/core/config.py": "c076a2d37790e23f86eacef52680c2cdab179a849b2139beb40cfa220e9f892f",
+      "argdigest/pipelines/data.py": "c0132959ab06f447f2f5d202e5b1ddf0dc50efaa392d3470d5c1fa0b942f0521",
+      "argdigest/core/agent_docs.py": "0dd99f2de399f8872462f607cc7dc333bf9b2461c0e9169d59dffb3df2994233",
+      "argdigest/contrib/pyunitwizard_support.py": "8c7f896ed03cc72735ed1a4faa577b8705e52be43d859f278e7ec423dfce5922",
+      "argdigest/core/normalization.py": "a90fd2015dc38cc630e8de24c13de8a01b65afd3a9d67e01bbe9f5e88f804f49",
+      "argdigest/_private/smonitor/catalog.py": "bca3d51c79c6088bf1efe5392097297a4aab4c95bee5dd4983dfa95be953aff6",
+      "argdigest/core/function_contract.py": "e25f37ee180f650b596b4d61f84ed1c93191cb5ab5837afed78945a3586536fb",
+      "argdigest/core/decorator.py": "8bf8f24860e28de20920b33aa84b492d4d8d44be0b90d065c6f70dcb98012550"
+    },
+    "required_paths": [
+      "site-packages/argdigest/__init__.py",
+      "site-packages/argdigest/_version.py",
+      "site-packages/argdigest/core/decorator.py",
+      "site-packages/argdigest/core/config.py",
+      "site-packages/argdigest/core/diagnostics.py",
+      "site-packages/argdigest/diagnostics.py",
+      "site-packages/argdigest/contrib/pyunitwizard_support.py",
+      "site-packages/argdigest/_smonitor.py",
+      "site-packages/argdigest/cli.py"
+    ],
+    "index": {
+      "arch": null,
+      "build": "py_0",
+      "build_number": 0,
+      "depends": [
+        "depdigest >=0.11.0",
+        "python >=3.11,<3.15",
+        "smonitor >=0.16.0"
+      ],
+      "license": "MIT",
+      "name": "argdigest",
+      "noarch": "python",
+      "platform": null,
+      "subdir": "noarch",
+      "timestamp": 1792715997926,
+      "version": "0.17.0"
+    },
+    "download_bytes": 55325
+  },
+  "full_installed": {
+    "schema": "molsyssuite.installed-matrix@1",
+    "state": "verified",
+    "run_id": 39879578589,
+    "run_attempt": 1,
+    "candidate_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+    "workflow": ".github/workflows/test_staged_conda_package.yaml",
+    "title": "Installed argdigest-0.17.0-py_0.tar.bz2 9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1",
+    "jobs": [
+      {
+        "kind": "prepare",
+        "name": "installed / prepare",
+        "job_id": 120173449907,
+        "conclusion": "success"
+      },
+      {
+        "kind": "installed",
+        "platform": "linux-64",
+        "python": "3.11",
+        "name": "installed / linux-64 \u00b7 Python 3.11",
+        "job_id": 120173561664,
+        "conclusion": "success"
+      },
+      {
+        "kind": "installed",
+        "platform": "win-64",
+        "python": "3.12",
+        "name": "installed / win-64 \u00b7 Python 3.12",
+        "job_id": 120173561672,
+        "conclusion": "success"
+      },
+      {
+        "kind": "installed",
+        "platform": "osx-arm64",
+        "python": "3.14",
+        "name": "installed / osx-arm64 \u00b7 Python 3.14",
+        "job_id": 120173561691,
+        "conclusion": "success"
+      },
+      {
+        "kind": "installed",
+        "platform": "osx-arm64",
+        "python": "3.11",
+        "name": "installed / osx-arm64 \u00b7 Python 3.11",
+        "job_id": 120173561695,
+        "conclusion": "success"
+      },
+      {
+        "kind": "installed",
+        "platform": "osx-arm64",
+        "python": "3.13",
+        "name": "installed / osx-arm64 \u00b7 Python 3.13",
+        "job_id": 120173561696,
+        "conclusion": "success"
+      },
+      {
+        "kind": "installed",
+        "platform": "osx-arm64",
+        "python": "3.12",
+        "name": "installed / osx-arm64 \u00b7 Python 3.12",
+        "job_id": 120173561703,
+        "conclusion": "success"
+      },
+      {
+        "kind": "installed",
+        "platform": "linux-64",
+        "python": "3.13",
+        "name": "installed / linux-64 \u00b7 Python 3.13",
+        "job_id": 120173561708,
+        "conclusion": "success"
+      },
+      {
+        "kind": "installed",
+        "platform": "linux-64",
+        "python": "3.14",
+        "name": "installed / linux-64 \u00b7 Python 3.14",
+        "job_id": 120173561712,
+        "conclusion": "success"
+      },
+      {
+        "kind": "installed",
+        "platform": "win-64",
+        "python": "3.14",
+        "name": "installed / win-64 \u00b7 Python 3.14",
+        "job_id": 120173561718,
+        "conclusion": "success"
+      },
+      {
+        "kind": "installed",
+        "platform": "linux-64",
+        "python": "3.12",
+        "name": "installed / linux-64 \u00b7 Python 3.12",
+        "job_id": 120173561745,
+        "conclusion": "success"
+      },
+      {
+        "kind": "installed",
+        "platform": "win-64",
+        "python": "3.11",
+        "name": "installed / win-64 \u00b7 Python 3.11",
+        "job_id": 120173561792,
+        "conclusion": "success"
+      },
+      {
+        "kind": "installed",
+        "platform": "win-64",
+        "python": "3.13",
+        "name": "installed / win-64 \u00b7 Python 3.13",
+        "job_id": 120173561847,
+        "conclusion": "success"
+      }
+    ],
+    "checked_at": "2026-10-23T00:45:13.663553+00:00",
+    "repository": "uibcdf/argdigest"
+  },
+  "core_installed": {
+    "schema": "molsyssuite.native-gate@1",
+    "state": "verified",
+    "run_id": 39879578248,
+    "run_attempt": 1,
+    "candidate_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+    "workflow": ".github/workflows/test_staged_core_conda_package.yaml",
+    "jobs": [
+      {
+        "name": "Core ubuntu-latest / Python 3.11",
+        "job_id": 120173447869,
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "name": "Core ubuntu-latest / Python 3.12",
+        "job_id": 120173448083,
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "name": "Core ubuntu-latest / Python 3.13",
+        "job_id": 120173447976,
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "name": "Core ubuntu-latest / Python 3.14",
+        "job_id": 120173448000,
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "name": "Core macos-latest / Python 3.11",
+        "job_id": 120173448012,
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "name": "Core macos-latest / Python 3.12",
+        "job_id": 120173447867,
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "name": "Core macos-latest / Python 3.13",
+        "job_id": 120173447854,
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "name": "Core macos-latest / Python 3.14",
+        "job_id": 120173447894,
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "name": "Core windows-latest / Python 3.11",
+        "job_id": 120173448069,
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "name": "Core windows-latest / Python 3.12",
+        "job_id": 120173447955,
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "name": "Core windows-latest / Python 3.13",
+        "job_id": 120173448149,
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "name": "Core windows-latest / Python 3.14",
+        "job_id": 120173447903,
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      }
+    ],
+    "title": "Core installed argdigest-0.17.0-py_0.tar.bz2 9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1",
+    "event": "workflow_dispatch",
+    "exact_jobs": true
+  },
+  "installed_source_binding": {
+    "build_number": 0,
+    "candidate_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+    "filename": "argdigest-0.17.0-py_0.tar.bz2",
+    "matrix": "{\"include\": [{\"platform\": \"linux-64\", \"python\": \"3.11\", \"runner\": \"ubuntu-latest\"}, {\"platform\": \"linux-64\", \"python\": \"3.12\", \"runner\": \"ubuntu-latest\"}, {\"platform\": \"linux-64\", \"python\": \"3.13\", \"runner\": \"ubuntu-latest\"}, {\"platform\": \"linux-64\", \"python\": \"3.14\", \"runner\": \"ubuntu-latest\"}, {\"platform\": \"osx-arm64\", \"python\": \"3.11\", \"runner\": \"macos-15\"}, {\"platform\": \"osx-arm64\", \"python\": \"3.12\", \"runner\": \"macos-15\"}, {\"platform\": \"osx-arm64\", \"python\": \"3.13\", \"runner\": \"macos-15\"}, {\"platform\": \"osx-arm64\", \"python\": \"3.14\", \"runner\": \"macos-15\"}, {\"platform\": \"win-64\", \"python\": \"3.11\", \"runner\": \"windows-latest\"}, {\"platform\": \"win-64\", \"python\": \"3.12\", \"runner\": \"windows-latest\"}, {\"platform\": \"win-64\", \"python\": \"3.13\", \"runner\": \"windows-latest\"}, {\"platform\": \"win-64\", \"python\": \"3.14\", \"runner\": \"windows-latest\"}]}",
+    "package": "argdigest",
+    "profile": "{\"platforms\": [\"linux-64\", \"osx-arm64\", \"win-64\"], \"python_versions\": [\"3.11\", \"3.12\", \"3.13\", \"3.14\"], \"prepare_job\": \"installed / prepare\", \"required_steps\": [\"Install exact artifact\", \"Validate installed files\", \"Run installed tests\", \"Recheck installed provenance after scientific tests\"], \"job_template\": \"installed / {platform} \\u00b7 Python {python}\"}",
+    "qualification_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+    "run_attempt": 1,
+    "run_id": 39879578589,
+    "schema": "molsyssuite.installed-source@1",
+    "sha256": "9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1",
+    "title": "Installed argdigest-0.17.0-py_0.tar.bz2 9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1",
+    "version": "0.17.0",
+    "workflow": ".github/workflows/test_staged_conda_package.yaml"
+  },
+  "installed_profile": {
+    "job_template": "installed / {platform} \u00b7 Python {python}",
+    "platforms": [
+      "linux-64",
+      "osx-arm64",
+      "win-64"
+    ],
+    "prepare_job": "installed / prepare",
+    "python_versions": [
+      "3.11",
+      "3.12",
+      "3.13",
+      "3.14"
+    ],
+    "required_steps": [
+      "Install exact artifact",
+      "Validate installed files",
+      "Run installed tests",
+      "Recheck installed provenance after scientific tests"
+    ]
+  },
+  "pytest_summaries": [
+    {
+      "kind": "source",
+      "job_id": 120171220705,
+      "name": "Full test on ubuntu-latest, Python 3.11",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "863ef4046c831ff7581e9b0aed0857e2bcf60847bb26de5fd2b5712936f59cc1"
+    },
+    {
+      "kind": "source",
+      "job_id": 120171221003,
+      "name": "Full test on ubuntu-latest, Python 3.12",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "9024c824ca7634987cb929e09be77ad2503260613272b145aa6e7bff8ab3f257"
+    },
+    {
+      "kind": "source",
+      "job_id": 120171221070,
+      "name": "Full test on ubuntu-latest, Python 3.13",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "c36f9e9fa03611ec1524c16e3b93ecf3276bbefd86fba3ace033d17e0ced77da"
+    },
+    {
+      "kind": "source",
+      "job_id": 120171221038,
+      "name": "Full test on ubuntu-latest, Python 3.14",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "8858e6678d10af46c4ef2b19eca0f9f9ca9ca9b8d23db4647c9293302ffe930e"
+    },
+    {
+      "kind": "source",
+      "job_id": 120171221007,
+      "name": "Full test on macos-latest, Python 3.11",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "f99a952dc234c2316baca31fdfd50c88474b0559803382928fc4b015c14cf774"
+    },
+    {
+      "kind": "source",
+      "job_id": 120171221020,
+      "name": "Full test on macos-latest, Python 3.12",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "7920bd3e2d547b1a8320e4cc0c6f041facdc2eae5f1d502f6d20157664ddf3be"
+    },
+    {
+      "kind": "source",
+      "job_id": 120171221075,
+      "name": "Full test on macos-latest, Python 3.13",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "f49f4578be60c293bf7c7a188cb6688f01ba94e16524dbc682cbb61ccb588dd9"
+    },
+    {
+      "kind": "source",
+      "job_id": 120171221032,
+      "name": "Full test on macos-latest, Python 3.14",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "b18bbc3fe4d0459ae482813429c51fc0cb3e30958548821f317e5623b648d2c6"
+    },
+    {
+      "kind": "source",
+      "job_id": 120171221229,
+      "name": "Full test on windows-latest, Python 3.11",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "3a3fb5370d7b470a3b72d13d96055fbc715c0033e2c8f185bea2f3664a36f6f7"
+    },
+    {
+      "kind": "source",
+      "job_id": 120171220973,
+      "name": "Full test on windows-latest, Python 3.12",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "55831d10c038afdf94e8669fbd7a654a2dce671c0afaa46de4eaad9bfee492d0"
+    },
+    {
+      "kind": "source",
+      "job_id": 120171221012,
+      "name": "Full test on windows-latest, Python 3.13",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "71b343d6a08b1db639dbed23d7f2dd3e4f0d75ae7a4542606f83d7f45ce50bad"
+    },
+    {
+      "kind": "source",
+      "job_id": 120171221388,
+      "name": "Full test on windows-latest, Python 3.14",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "228cd1d53c5f6762a020c2606ed25dbf32e3d113f37ac67c0308f89a544f7d92"
+    },
+    {
+      "kind": "installed",
+      "job_id": 120173561664,
+      "name": "installed / linux-64 \u00b7 Python 3.11",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "ad7309ada4ba6910c523120c5f962e4897cceb96737ff77de485ae6230145a1b"
+    },
+    {
+      "kind": "installed",
+      "job_id": 120173561672,
+      "name": "installed / win-64 \u00b7 Python 3.12",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "e50d974359c04b0e4adc6c0f724a4291e8cc841708b526a62f2297e44876b9e0"
+    },
+    {
+      "kind": "installed",
+      "job_id": 120173561691,
+      "name": "installed / osx-arm64 \u00b7 Python 3.14",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "9e75eb6e6b8b45602e5d09277a707b75bb81c13654113e7eefffb1357726e988"
+    },
+    {
+      "kind": "installed",
+      "job_id": 120173561695,
+      "name": "installed / osx-arm64 \u00b7 Python 3.11",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "fd5d0fc22bda61bf670c2b6c34eab8948bcf9ca54600db829dd30c25ef507540"
+    },
+    {
+      "kind": "installed",
+      "job_id": 120173561696,
+      "name": "installed / osx-arm64 \u00b7 Python 3.13",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "bee8c92e8d509bc9d1c30ef7dd58bd509b11aee8ec70a14de912aae796ba8065"
+    },
+    {
+      "kind": "installed",
+      "job_id": 120173561703,
+      "name": "installed / osx-arm64 \u00b7 Python 3.12",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "49491a58aec874ab59f3b88446420af29f065df4b6ac09ed943ce210050dd4f3"
+    },
+    {
+      "kind": "installed",
+      "job_id": 120173561708,
+      "name": "installed / linux-64 \u00b7 Python 3.13",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "20cb81e673dbe841c4d50938b9167fef314ac6d33ca6a1be4988c2c0d6459576"
+    },
+    {
+      "kind": "installed",
+      "job_id": 120173561712,
+      "name": "installed / linux-64 \u00b7 Python 3.14",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "0fe280372601ff2466326a88760227523c1a9710006c957d55d1efedaf968f48"
+    },
+    {
+      "kind": "installed",
+      "job_id": 120173561718,
+      "name": "installed / win-64 \u00b7 Python 3.14",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "ad8df3c149166427f4714972b4999b645314d1cc206cab6cdd8f7c669cb667fa"
+    },
+    {
+      "kind": "installed",
+      "job_id": 120173561745,
+      "name": "installed / linux-64 \u00b7 Python 3.12",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "58d38c6696b333d91b20ee2d0d95a898601f369547dc2d9493c18b216a0bfae6"
+    },
+    {
+      "kind": "installed",
+      "job_id": 120173561792,
+      "name": "installed / win-64 \u00b7 Python 3.11",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "5747f2374374333978286fb5d9a3b395e0a164413f50df09a64668cd501f14d6"
+    },
+    {
+      "kind": "installed",
+      "job_id": 120173561847,
+      "name": "installed / win-64 \u00b7 Python 3.13",
+      "passed": 455,
+      "skipped": 1,
+      "skip_reason": "Sibling repos are not available in this environment",
+      "skip_test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+      "native_log_sha256": "089f69d4eaf5a8c50dea78e03e2addee912d04ab6feeceb6a11f8c40d7a883e1"
+    }
+  ],
+  "omission_scope": {
+    "test": "tests/e2e/test_collective_error_path.py::test_collective_error_path_emits_contract_signal_and_dependency_hints",
+    "reason": "Sibling repos are not available in this environment",
+    "interpretation": "This case explicitly prepends sibling source clones; it is separate from installed-artifact/public consumer receiving. Every source and full installed cell ran 455 tests and skipped only this case.",
+    "mandatory_registration_and_scoped_capture": "Executed; the installed profile requires both capabilities and fails if unavailable."
+  },
+  "current_registry": {
+    "basename": "noarch/argdigest-0.17.0-py_0.tar.bz2",
+    "sha256": "9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1",
+    "labels": [
+      "staging"
+    ]
+  },
+  "public_release_state": {
+    "new_tag_created": false,
+    "github_release_published": false,
+    "main_label_promoted": false,
+    "consumer_adoption_claimed": false
+  },
+  "publication_handoff": {
+    "requires_separate_maintainer_decision": true,
+    "tag": "0.17.0",
+    "release_title": "0.17.0",
+    "target_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+    "release_body": "devguide/0.17.0_release_notes_draft.md",
+    "promotion_command": [
+      "gh",
+      "workflow",
+      "run",
+      ".github/workflows/promote_conda_package.yaml",
+      "--repo",
+      "uibcdf/argdigest",
+      "--ref",
+      "main",
+      "--raw-field",
+      "candidate_sha=c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+      "--raw-field",
+      "version=0.17.0",
+      "--raw-field",
+      "sha256=9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1",
+      "--raw-field",
+      "installed_run_id=39879578589",
+      "--raw-field",
+      "core_run_id=39879578248"
+    ],
+    "route": "Existing component caller and mandatory public-release/core guard; no profile relaxation.",
+    "central_profile_review": "https://github.com/uibcdf/molsyssuite/issues/92#issuecomment-6354595761",
+    "guide_distribution": "MolSysSuite developers own all client copies under uibcdf/molsyssuite#125."
+  },
+  "temporary_resources": {
+    "root": "/tmp/argdigest-017-qualification.7E0JA0",
+    "purpose": "Retain exact archive and native logs/receipts for authorized publication and independent public comparison.",
+    "retirement": "Remove task-owned resources after release/qualification closeout once durable evidence is retained.",
+    "review_date": "2026-10-29"
+  }
+}
