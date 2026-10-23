@@ -1,8 +1,8 @@
 # Conda release routes
 
-## 0.17.0 preparation
+## Released 0.17.0
 
-Release preparation is owned by `uibcdf/argdigest#40`; consumer coordination is
+Release ownership is `uibcdf/argdigest#40`; consumer coordination is
 `uibcdf/molsyssuite#123`. The staged build-0 plan retains Python 3.11–3.14 on
 Linux, macOS arm64 and Windows, public full-suite providers and the existing
 NumPy-free dependency floors. It adds declared contract ownership and the
@@ -10,10 +10,18 @@ alias-presence/staticmethod repairs from #37, #38 and #39. The complete installe
 selection includes their tests; the separate core probe exercises explicit
 ownership, runtime identity and both staticmethod orders without NumPy.
 
-No artifact or public version is qualified by this preparation alone. Record
-the exact candidate and subsequent source/installed/public evidence in
-`pending_proposals/release_0_17_0.md`. Publication remains a separate decision;
-the public GitHub Release title must be exactly `0.17.0`.
+The maintainer authorized publication after exact staged qualification. Stable
+tag/release title `0.17.0` identifies original producer
+`c7128f09b2fe064b6c5603d1077dbd2cec52223d`. Public
+`argdigest-0.17.0-py_0.tar.bz2` retains SHA-256
+`9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1`.
+Source `39878899217`, producer `39879184044`, full installed `39879578589`,
+core installed `39879578248` and exact-file promotion `39881036506` passed
+their required native steps. Independent registry and solver-index checks
+confirm the public file. Source-only Zenodo record `23583152` matches all
+338 files of the original tagged Git tree; it does not archive the Conda file.
+Receipts and public closeout are tracked in `pending_proposals/release_0_17_0.md`
+and `evidence/release_0_17_0_qualification_2026-10-22.json`.
 
 ## Released 0.16.0
 

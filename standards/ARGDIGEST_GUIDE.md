@@ -10,12 +10,12 @@ Source of truth for integrating and using **ArgDigest** in this library.
 Metadata
 - Source repository: `argdigest`
 - Source document: `standards/ARGDIGEST_GUIDE.md`
-- Source version: `argdigest@main` (0.17.0 preparation; latest public release: 0.16.0)
+- Source version: `argdigest@0.17.0`
 - Last synced: 2026-10-22
 
-Version boundaries: declaration-only diagnostics below are public in ArgDigest
+Version boundaries: declaration-only diagnostics below are public since ArgDigest
 0.16.0. Explicit contract ownership and the alias/staticmethod repairs described
-below are development changes for 0.17.0, not capabilities of public 0.16.0.
+below are public since 0.17.0; earlier releases do not provide those changes.
 Release qualification and publication are tracked in `uibcdf/argdigest#40`;
 consumer receiving is coordinated in `uibcdf/molsyssuite#123`.
 MolSysSuite developers own distribution of this canonical revision to all clients
@@ -287,7 +287,7 @@ def digest_policy(policy, caller=None, qualname=None):
 Free functions receive their normal qualified function name. Digesters that do not
 declare `qualname` keep their existing call signature and behavior.
 
-### Explicit contract ownership (0.17.0 development)
+### Explicit contract ownership (since 0.17.0)
 
 `DigestConfig.contract_owner` separates lookup from diagnostic display. `None`
 preserves existing caller resolution exactly, including its legacy descriptor
@@ -327,7 +327,7 @@ contracts and digester `caller`. Bound instance/class methods retain the runtime
 class in `qualname` and explicit-policy contract refusal messages. Static methods
 and free functions have no receiver and keep their defining qualified name.
 Both staticmethod decorator orders preserve access through class and instance
-in this development version. Signature binding and value validation remain active.
+from 0.17.0. Signature binding and value validation remain active.
 
 Both decorator forms accept this option through `config=DigestConfig(...)`.
 Python configuration uses `CONTRACT_OWNER`; JSON/YAML uses `contract_owner`.
@@ -336,7 +336,7 @@ does not select the policy. A wrapped-function call cannot override the policy.
 Plans expose `contract_owner` and resolved `contract_caller` (`None` means
 runtime lookup); CLI audit reports both.
 
-Alias normalization in this development version also preserves which canonical
+Alias normalization from 0.17.0 also preserves which canonical
 arguments were explicitly supplied. Required/co-required/exclusive checks use
 those names, including aliases on closed signatures; `*args` does not make an
 omitted keyword-only default count as supplied. Genuine unknown keywords are

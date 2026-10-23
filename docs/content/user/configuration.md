@@ -35,7 +35,7 @@ CAPTURE_POLICY = None  # inherit | "metadata_only" | "detailed" | CapturePolicy
 
 ## Contract ownership under inheritance
 
-In the unreleased 0.17.0 development version, `DigestConfig.contract_owner`
+Since ArgDigest 0.17.0, `DigestConfig.contract_owner`
 separates contract lookup from diagnostic display. Its default, `None`, preserves
 existing caller resolution exactly, including instance dispatch in classes
 assembled from mixins.

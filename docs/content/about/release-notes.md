@@ -1,6 +1,6 @@
 # Release notes
 
-## 0.17.0 (unreleased)
+## 0.17.0
 
 `DigestConfig.contract_owner` optionally fixes contract lookup independently of
 runtime diagnostic identity. `None` preserves existing resolution;
@@ -18,9 +18,9 @@ Variadic positional arguments no longer make omitted keyword-only defaults
 appear supplied. Staticmethod descriptors are preserved in both decorator
 orders, for access through class and instance.
 
-Python 3.11–3.14 and core dependency floors remain unchanged. The staged plan
-requires full installed qualification and a separate NumPy-free lower-bound
-matrix before publication. Consumer adoption remains independently owned.
+Python 3.11–3.14 and core dependency floors remain unchanged. The exact noarch
+package passed full installed qualification and a separate NumPy-free lower-bound
+matrix before same-file public promotion. Consumer adoption remains independently owned.
 
 ## 0.16.0
 
