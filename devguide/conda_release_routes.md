@@ -20,8 +20,10 @@ core installed `39879578248` and exact-file promotion `39881036506` passed
 their required native steps. Independent registry and solver-index checks
 confirm the public file. Source-only Zenodo record `23583152` matches all
 338 files of the original tagged Git tree; it does not archive the Conda file.
-Receipts and public closeout are tracked in `pending_proposals/release_0_17_0.md`
-and `evidence/release_0_17_0_qualification_2026-10-22.json`.
+Complete receipts and public closeout:
+`completed_proposals/release_0_17_0.md`,
+`evidence/release_0_17_0_qualification_2026-10-22.json` and
+`evidence/release_0_17_0_publication_2026-10-22.json`.
 
 ## Released 0.16.0
 

@@ -1,9 +1,9 @@
 ---
 summary: Prepare and qualify 0.17.0 with explicit contract ownership and alias/descriptor repairs.
 issue: uibcdf/argdigest#40
-status: active
+status: resolved
 opened: 2026-10-22
-closed:
+closed: 2026-10-22
 verification: inspected
 area: [release, contracts, distribution, integration]
 guard: tests/test_contract_owner.py
@@ -13,6 +13,16 @@ supersedes: []
 ---
 
 # Release 0.17.0
+
+## Outcome
+
+0.17.0 is public and independently verified. The annotated tag retains original
+qualified producer `c7128f09b2fe064b6c5603d1077dbd2cec52223d`; promotion preserves
+the same qualified file/digest. Public installation, documentation and source-only
+Zenodo archival have separate receipts. Consumer adoption remains independently
+owned under `uibcdf/molsyssuite#123`, and MolSysSuite developers own all client
+guide-copy updates under `uibcdf/molsyssuite#125`. The dated sections below retain
+preparation and qualification observations, followed by public closeout.
 
 ## What
 
@@ -205,3 +215,74 @@ Task-owned archive, native logs and receipts are retained at
 `/tmp/argdigest-017-qualification.7E0JA0` for the publication/public-byte comparison,
 with review on 2026-10-29 and removal after durable release closeout. Shared
 clones, environments and unrelated resources are preserved.
+
+## Public publication and closeout — 2026-10-22
+
+After inspecting the qualified candidate, the maintainer explicitly authorized
+the tag/release and exact-file promotion. The authorization is retained in
+[uibcdf/argdigest#40](https://github.com/uibcdf/argdigest/issues/40#issuecomment-6354757849).
+The original producer plan/tag source is unchanged; main's maintained plan and
+guides now record the delivered state.
+
+The stable GitHub Release is titled exactly `0.17.0`, matching its annotated tag
+and public package version. It was published at `2026-10-23T00:55:50Z`, still
+2026-10-22 in America/Mexico_City, matching the candidate citation date.
+The tag points to the original qualified producer, not an evidence/docs successor.
+The release event `39881034913` executed its source/tag/dependency decision and
+intentionally skipped the build/upload job for the staged route.
+
+Promotion `39881036506`, attempt 1, executed the existing public-release/core
+guard, reacquired source and installed gates, added `main` to the same tested
+file and independently checked registry/index state. Its receipt ZIP digest and
+verified `staging` → `main` receipt are retained separately from the producer.
+No rebuild, overwrite, retag or promotion retry occurred. Independent public
+metadata/index verification and a downloaded 55,325-byte public archive match
+SHA-256 `9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1`
+and the earlier staging download byte-for-byte.
+
+A disposable Linux Python 3.14.9 environment received that exact public archive
+through the existing shared console receiver, outside both source checkouts.
+Distribution/import versions, Conda URL/digest, launcher/module origins and
+`argdigest --help` passed. A focused public runtime smoke also exercised
+definition ownership, explicit pipelines and registration-only diagnostics,
+without importing NumPy. This normal public solve selected SMonitor 0.22.0 and
+DepDigest 0.15.1. Its CLI/focused smoke does not replace or widen the twelve-cell
+full installed qualification with SMonitor 0.21.0, nor the separately qualified
+lower-bound core matrix. Descriptor-permission notices from the restricted
+local sandbox disappeared when the same focused smoke ran outside that sandbox.
+
+Release documentation run `39881034395` passed its build/install/import and
+Sphinx/deployment steps. The post-publication guide/release-note refresh at
+`5d88ed18dda05d66d56ce4d6673275e7fd65c96d` passed docs run `39881672175`, fast CI
+`39881607800` and both policies. Independent HTTP reads of the public
+configuration and release-note pages confirm delivered 0.17.0 text and no
+unreleased heading. The canonical guide's exact revision and SHA-256
+`6e2137129995545492b57c09809f0e83d3f74d6f162260ecf79678f1f6f3b9a2`
+were handed off to MolSysSuite developers in
+[uibcdf/molsyssuite#125](https://github.com/uibcdf/molsyssuite/issues/125#issuecomment-6354864482).
+No client copy was edited here.
+
+Archival run `39881034787` independently reports public Zenodo record `23583152`,
+version DOI `10.5281/zenodo.23583152`, concept DOI
+`10.5281/zenodo.22892325`, open software and source-snapshot coverage. A separate
+anonymous record query and download verified the single 594,818-byte
+`uibcdf/argdigest-0.17.0.zip`, its published MD5 checksum and SHA-256, and all
+338 tracked files against the original tagged Git tree. This archives source
+only; it does not claim that the Conda package was deposited in Zenodo.
+
+Complete normalized public identities, native step proofs, promotion receipt,
+public registry/index/download, fresh installation scope, published pages and
+source-archive verification are retained in
+`devguide/evidence/release_0_17_0_publication_2026-10-22.json`, alongside the
+original qualification evidence. The ownership/alias/descriptor assertions in
+`tests/test_contract_owner.py` remain the relevant runtime guard for this release;
+native and external receipts establish its distribution/publication boundaries.
+The report is archived and indexes regenerated with this closeout. #40 closes
+after its final evidence head checks and owner handoffs. The separate typing
+pilot under #9, central profile review under `uibcdf/molsyssuite#92`, guide
+distribution under `uibcdf/molsyssuite#125` and consumer receiving under
+`uibcdf/molsyssuite#123` are not claimed complete.
+
+All task-owned temporary environments, archives, logs and receipts can now be
+retired once this durable closeout and issue handoffs are retained. The final
+issue comment records actual cleanup; shared environments and clones stay intact.

@@ -1,0 +1,419 @@
+{
+  "schema": "argdigest.public-release@1",
+  "state": "verified",
+  "observed_at": "2026-10-23T01:07:24.128793+00:00",
+  "repository": "uibcdf/argdigest",
+  "version": "0.17.0",
+  "identity": {
+    "candidate_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+    "filename": "argdigest-0.17.0-py_0.tar.bz2",
+    "owner": "uibcdf",
+    "package": "argdigest",
+    "sha256": "9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1",
+    "subdir": "noarch",
+    "version": "0.17.0"
+  },
+  "authorization": "https://github.com/uibcdf/argdigest/issues/40#issuecomment-6354757849",
+  "qualification_evidence": {
+    "path": "devguide/evidence/release_0_17_0_qualification_2026-10-22.json",
+    "sha256": "df7dd6c948a980152a06623869b684ad89afbf2af98146b8e268abaa30ed911b"
+  },
+  "release": {
+    "id": 421345039,
+    "tag_name": "0.17.0",
+    "name": "0.17.0",
+    "draft": false,
+    "prerelease": false,
+    "target_commitish": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+    "published_at": "2026-10-23T00:55:50Z",
+    "html_url": "https://github.com/uibcdf/argdigest/releases/tag/0.17.0"
+  },
+  "tag": {
+    "ref": "refs/tags/0.17.0",
+    "object_sha": "736c335bcede8b21557ca102aab957cbe7d8acc5",
+    "type": "annotated",
+    "commit_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d"
+  },
+  "native_gates": {
+    "promotion": {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 39881036506,
+      "run_attempt": 1,
+      "candidate_sha": "e3663ea7883e45e3639ea2d75d437fe64f778991",
+      "workflow": ".github/workflows/promote_conda_package.yaml",
+      "jobs": [
+        {
+          "name": "release",
+          "job_id": 120178198216,
+          "required_steps": [
+            "Verify public release and minimal-core qualification"
+          ]
+        },
+        {
+          "name": "promote / promote",
+          "job_id": 120178283004,
+          "required_steps": [
+            "Acquire exact-source executed CI gates",
+            "Verify existing installed matrix and executed steps",
+            "Add public label to the same tested file without rebuilding",
+            "Independently verify public label and solver index",
+            "Retain source, installed, promotion and public receipts"
+          ]
+        }
+      ]
+    },
+    "release_route": {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 39881034913,
+      "run_attempt": 1,
+      "candidate_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+      "workflow": ".github/workflows/build_and_upload_conda_packages.yaml",
+      "jobs": [
+        {
+          "name": "decision",
+          "job_id": 120178189150,
+          "required_steps": [
+            "Validate exact source, tag and committed route",
+            "Check exact candidate dependency routes before building"
+          ]
+        }
+      ]
+    },
+    "zenodo": {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 39881034787,
+      "run_attempt": 1,
+      "candidate_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+      "workflow": ".github/workflows/verify_zenodo_releases.yaml",
+      "jobs": [
+        {
+          "name": "archival / verify",
+          "job_id": 120178188469,
+          "required_steps": [
+            "Probe public archival evidence once",
+            "Preserve sanitized evidence"
+          ]
+        }
+      ]
+    },
+    "release_documentation": {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 39881034395,
+      "run_attempt": 1,
+      "candidate_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+      "workflow": ".github/workflows/sphinx_docs_to_gh_pages.yaml",
+      "jobs": [
+        {
+          "name": "Sphinx docs to gh-pages",
+          "job_id": 120178187438,
+          "required_steps": [
+            "Build wheel",
+            "Install from wheel",
+            "Test import module (installed wheel)",
+            "Running the Sphinx to gh-pages Action"
+          ]
+        }
+      ]
+    },
+    "published_documentation": {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 39881672175,
+      "run_attempt": 1,
+      "candidate_sha": "5d88ed18dda05d66d56ce4d6673275e7fd65c96d",
+      "workflow": ".github/workflows/sphinx_docs_to_gh_pages.yaml",
+      "jobs": [
+        {
+          "name": "Sphinx docs to gh-pages",
+          "job_id": 120180228284,
+          "required_steps": [
+            "Build wheel",
+            "Install from wheel",
+            "Test import module (installed wheel)",
+            "Running the Sphinx to gh-pages Action"
+          ]
+        }
+      ]
+    },
+    "tag_policy": {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 39880983952,
+      "run_attempt": 1,
+      "candidate_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+      "workflow": ".github/workflows/molsyssuite-policy.yml",
+      "jobs": [
+        {
+          "name": "policy / conformance",
+          "job_id": 120178025164,
+          "required_steps": [
+            "Check repository conformance",
+            "Check Python lint and imports",
+            "Check Python formatting"
+          ]
+        }
+      ]
+    },
+    "documentation_head_ci": {
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "run_id": 39881607800,
+      "run_attempt": 1,
+      "candidate_sha": "5d88ed18dda05d66d56ce4d6673275e7fd65c96d",
+      "workflow": ".github/workflows/CI.yaml",
+      "jobs": [
+        {
+          "name": "Test on ubuntu-latest, Python 3.14",
+          "job_id": 120180079155,
+          "required_steps": [
+            "Build wheel",
+            "Install from wheel",
+            "Test import module (installed wheel)",
+            "Run tests"
+          ]
+        }
+      ]
+    }
+  },
+  "release_event_build": "intentionally skipped for staged route",
+  "promotion": {
+    "run_id": 39881036506,
+    "run_attempt": 1,
+    "artifact": {
+      "id": 12469509866,
+      "name": "noarch-promotion-39881036506-1",
+      "digest": "sha256:f996f27144c836fe1ea073def18b3dc3cfe205802962c1382ae1fc3d2cb34613",
+      "size_in_bytes": 3245,
+      "workflow_run": {
+        "id": 39881036506,
+        "repository_id": 1088948514,
+        "head_repository_id": 1088948514,
+        "head_branch": "main",
+        "head_sha": "e3663ea7883e45e3639ea2d75d437fe64f778991"
+      }
+    },
+    "receipt": {
+      "package": "uibcdf/argdigest/0.17.0/noarch/argdigest-0.17.0-py_0.tar.bz2",
+      "schema": "uibcdf.conda-promotion@1",
+      "sha256": "9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1",
+      "source_label": "staging",
+      "status": "verified",
+      "target_label": "main"
+    }
+  },
+  "registry": {
+    "basename": "noarch/argdigest-0.17.0-py_0.tar.bz2",
+    "sha256": "9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1",
+    "labels": [
+      "staging",
+      "main"
+    ]
+  },
+  "public_conda": {
+    "checked_at": "2026-10-23T00:57:44.794158+00:00",
+    "files": [
+      {
+        "filename": "argdigest-0.17.0-py_0.tar.bz2",
+        "main_label": "verified",
+        "owner": "uibcdf",
+        "package": "argdigest",
+        "sha256": "9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1",
+        "solver_index": "verified",
+        "subdir": "noarch",
+        "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.17.0-py_0.tar.bz2",
+        "version": "0.17.0"
+      }
+    ],
+    "schema": "molsyssuite.public-conda@1",
+    "state": "verified"
+  },
+  "public_archive_download": {
+    "state": "verified",
+    "observed_at": "2026-10-23T01:03:38.627823+00:00",
+    "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.17.0-py_0.tar.bz2",
+    "bytes": 55325,
+    "sha256": "9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1",
+    "identical_to_original_staged_download": true
+  },
+  "fresh_public_installation": {
+    "schema": "molsyssuite.public-noarch-commands@1",
+    "state": "verified",
+    "coordinate": {
+      "package": "argdigest",
+      "version": "0.17.0",
+      "subdir": "noarch",
+      "filename": "argdigest-0.17.0-py_0.tar.bz2",
+      "sha256": "9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1"
+    },
+    "public_url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.17.0-py_0.tar.bz2",
+    "platform": "linux-64",
+    "python": "3.14",
+    "prefix": "/tmp/argdigest-017-qualification.7E0JA0/publication/public-env",
+    "commands": [
+      {
+        "command": "argdigest",
+        "target": "argdigest.cli:main",
+        "launcher": "/tmp/argdigest-017-qualification.7E0JA0/publication/public-env/bin/argdigest",
+        "module_origin": "/tmp/argdigest-017-qualification.7E0JA0/publication/public-env/lib/python3.14/site-packages/argdigest/cli.py",
+        "exit_code": 0,
+        "stdout": {
+          "bytes": 403,
+          "sha256": "7c2447f86957f860b8419405948d5a60f93abff37679b35865868439f079553a"
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    ],
+    "installed_record": {
+      "name": "argdigest",
+      "version": "0.17.0",
+      "build": "py_0",
+      "sha256": "9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1",
+      "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.17.0-py_0.tar.bz2"
+    },
+    "scope": "Installed console --help only; not full installed/scientific/release qualification",
+    "temporary_download_removed": true
+  },
+  "public_runtime_smoke": {
+    "state": "verified",
+    "python": "3.14.9",
+    "origin": "/tmp/argdigest-017-qualification.7E0JA0/publication/public-env/lib/python3.14/site-packages/argdigest/__init__.py",
+    "records": {
+      "argdigest": {
+        "name": "argdigest",
+        "version": "0.17.0",
+        "build": "py_0",
+        "subdir": "noarch",
+        "sha256": "9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1",
+        "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.17.0-py_0.tar.bz2"
+      },
+      "smonitor": {
+        "name": "smonitor",
+        "version": "0.22.0",
+        "build": "py_0",
+        "subdir": "noarch",
+        "sha256": "bbf5890bed4ea657044b904f07d3cef137d474f0862ef5f35b063db9c8f0c949",
+        "url": "https://conda.anaconda.org/uibcdf/noarch/smonitor-0.22.0-py_0.tar.bz2"
+      },
+      "depdigest": {
+        "name": "depdigest",
+        "version": "0.15.1",
+        "build": "py_0",
+        "subdir": "noarch",
+        "sha256": "2765c692de4e6aacff4197c4226ebb42ec1f0df9edb27e92f196ef1390cb1850",
+        "url": "https://conda.anaconda.org/uibcdf/noarch/depdigest-0.15.1-py_0.tar.bz2"
+      },
+      "python": {
+        "name": "python",
+        "version": "3.14.9",
+        "build": "hcd007b5_100_cp314",
+        "subdir": "linux-64",
+        "sha256": "87874d825447bb21759c6378cbbc4ce380b2b639609bfd4cb67dc864641ac759",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/python-3.14.9-hcd007b5_100_cp314.conda"
+      }
+    },
+    "checks": [
+      "public distribution/import version",
+      "installed prefix origin",
+      "definition ownership and explicit pipeline execution",
+      "registration-only diagnostics",
+      "NumPy not imported"
+    ],
+    "scope": "Fresh Linux public installation and focused smoke; original full installed matrices supply broader qualification."
+  },
+  "provider_scope": {
+    "full_installed_qualification": "SMonitor 0.21.0 / DepDigest 0.15.1",
+    "core_installed_qualification": "SMonitor 0.16.0 py_1 / DepDigest 0.11.0 py_2; no NumPy",
+    "fresh_public_installation": "Public solve selected SMonitor 0.22.0 / DepDigest 0.15.1; CLI and focused runtime checks passed. This is not a twelve-cell full installed claim for SMonitor 0.22.0.",
+    "sandbox_comparison": "Restricted local runtime invocation emitted descriptor-permission notices; the same focused smoke repeated outside that sandbox passed without those notices."
+  },
+  "documentation": {
+    "state": "verified",
+    "observed_at": "2026-10-23T01:04:35.025549+00:00",
+    "source_sha": "5d88ed18dda05d66d56ce4d6673275e7fd65c96d",
+    "workflow_run": 39881672175,
+    "pages": [
+      {
+        "url": "https://www.uibcdf.org/argdigest/content/user/configuration.html",
+        "final_url": "https://www.uibcdf.org/argdigest/content/user/configuration.html",
+        "http_status": 200,
+        "bytes": 43336,
+        "sha256": "db92bef3b1544c266c52d130ea7e919b7e1765c2e2154841d17fa109fd9e47d6",
+        "expected_text": "Since ArgDigest 0.17.0",
+        "expected_text_observed": true,
+        "unreleased_heading_absent": true
+      },
+      {
+        "url": "https://www.uibcdf.org/argdigest/content/about/release-notes.html",
+        "final_url": "https://www.uibcdf.org/argdigest/content/about/release-notes.html",
+        "http_status": 200,
+        "bytes": 27286,
+        "sha256": "1a0a525355c05d53dd7c25e8a3fcd5876eaea9a02749996669774bb345572195",
+        "expected_text": "0.17.0",
+        "expected_text_observed": true,
+        "unreleased_heading_absent": true
+      }
+    ]
+  },
+  "canonical_guide": {
+    "source_sha": "5d88ed18dda05d66d56ce4d6673275e7fd65c96d",
+    "path": "standards/ARGDIGEST_GUIDE.md",
+    "sha256": "6e2137129995545492b57c09809f0e83d3f74d6f162260ecf79678f1f6f3b9a2",
+    "distribution_owner": "uibcdf/molsyssuite#125",
+    "handoff": "https://github.com/uibcdf/molsyssuite/issues/125#issuecomment-6354864482",
+    "client_copies_edited_here": false
+  },
+  "zenodo": {
+    "observed_at": "2026-10-23T01:00:00.129930+00:00",
+    "state": "verified",
+    "archive_coverage": "source-snapshot-only",
+    "record_id": 23583152,
+    "version": "0.17.0",
+    "version_doi": "10.5281/zenodo.23583152",
+    "concept_doi": "10.5281/zenodo.22892325",
+    "access_right": "open",
+    "resource_type": {
+      "title": "Software",
+      "type": "software"
+    },
+    "file": {
+      "key": "uibcdf/argdigest-0.17.0.zip",
+      "size": 594818,
+      "checksum": "md5:29e137d90ac138feb0e6be265eb5d274",
+      "sha256": "72b8c254b08cc22b71e09c1f1869667043bc7958aba33f8cf97f4e8ab9550020",
+      "url": "https://zenodo.org/api/records/23583152/files/uibcdf/argdigest-0.17.0.zip/content"
+    },
+    "candidate_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+    "git_files_matched": 338,
+    "all_tracked_files_match": true
+  },
+  "zenodo_workflow_artifact": {
+    "id": 12469854074,
+    "name": "zenodo-public-evidence",
+    "digest": "sha256:67568f6fcc58da0d677f660c68b92c0d73061114526b15da0a2ae8e5fea56220",
+    "size_in_bytes": 507,
+    "workflow_run": {
+      "id": 39881034787,
+      "repository_id": 1088948514,
+      "head_repository_id": 1088948514,
+      "head_branch": "0.17.0",
+      "head_sha": "c7128f09b2fe064b6c5603d1077dbd2cec52223d"
+    }
+  },
+  "consumer_receiving": {
+    "issue": "uibcdf/molsyssuite#123",
+    "adoption_claimed": false,
+    "native_constructor": "Retained; only consumer-owned receiving can justify removal."
+  },
+  "central_profile_followup": "uibcdf/molsyssuite#92",
+  "temporary_resources": {
+    "root": "/tmp/argdigest-017-qualification.7E0JA0",
+    "retirement": "Retire after durable publication closeout and issue handoff; final issue comment records cleanup."
+  }
+}
