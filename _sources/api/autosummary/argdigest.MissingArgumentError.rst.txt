@@ -1,0 +1,6 @@
+﻿argdigest.MissingArgumentError
+==============================
+
+.. currentmodule:: argdigest
+
+.. autoexception:: MissingArgumentError

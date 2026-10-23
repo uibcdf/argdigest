@@ -1,0 +1,6 @@
+﻿argdigest.StandardizerContractError
+===================================
+
+.. currentmodule:: argdigest
+
+.. autoexception:: StandardizerContractError

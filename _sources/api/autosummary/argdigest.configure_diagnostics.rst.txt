@@ -1,0 +1,6 @@
+﻿argdigest.configure\_diagnostics
+================================
+
+.. currentmodule:: argdigest
+
+.. autofunction:: configure_diagnostics
