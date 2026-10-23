@@ -6,6 +6,19 @@ import importlib.util
 import sys
 
 
+class OwnershipMethods:
+    """Module-scope methods exercise runtime dispatch across module boundaries."""
+
+    def accept(self, release_value):
+        return release_value
+
+    def static_inner(release_value):
+        return release_value
+
+    def static_outer(release_value):
+        return release_value
+
+
 def main() -> None:
     assert importlib.util.find_spec("numpy") is None, "Core solve installed NumPy"
     from argdigest import (
@@ -67,6 +80,60 @@ def main() -> None:
             assert "skip_digestion must be bool" in str(error)
         else:
             raise AssertionError("A truthy nonboolean bypassed digestion")
+
+    for owner in (None, "definition", "release_contract.base.accept"):
+        config = DigestConfig(
+            digestion_style="decorator", strictness="error", contract_owner=owner
+        )
+        owned_base = type(
+            "OwnershipBase",
+            (),
+            {
+                "__module__": __name__,
+                "accept": arg_digest(config=config)(OwnershipMethods.accept),
+                "static_inner": staticmethod(
+                    arg_digest(config=config)(OwnershipMethods.static_inner)
+                ),
+                "static_outer": arg_digest(config=config)(
+                    staticmethod(OwnershipMethods.static_outer)
+                ),
+            },
+        )
+        owned_child = type(
+            "OwnershipChild", (owned_base,), {"__module__": "release_consumer.child"}
+        )
+        instance = owned_child()
+        assert instance.accept("7") == 7
+        expected_key = (
+            "release_consumer.child.accept"
+            if owner is None
+            else f"{__name__}.accept"
+            if owner == "definition"
+            else owner
+        )
+        assert seen[-1] == (
+            expected_key,
+            "release_consumer.child.OwnershipChild.accept",
+        )
+        plan = owned_child.accept.digestion_plan
+        assert plan.contract_owner == owner
+        assert plan.contract_caller == (None if owner is None else expected_key)
+        for receiver in (owned_child, instance):
+            for name in ("static_inner", "static_outer"):
+                assert getattr(receiver, name)("8") == 8
+                static_key = (
+                    owner if owner not in (None, "definition") else f"{__name__}.{name}"
+                )
+                assert seen[-1] == (
+                    static_key,
+                    f"{__name__}.OwnershipMethods.{name}",
+                )
+        try:
+            instance.accept("invalid")
+        except ValueError:
+            pass
+        else:
+            raise AssertionError("Explicit ownership bypassed value validation")
     assert "numpy" not in sys.modules
 
     @arg_digest.map(
@@ -98,7 +165,8 @@ def main() -> None:
     assert "numpy" not in sys.modules
     print(
         "PASS: NumPy-free core, science remedy, classmethods, qualname, bypass, "
-        "explicit pipelines, restrictive and registration-only refusals "
+        "contract ownership, staticmethods, explicit pipelines, "
+        "restrictive and registration-only refusals "
         "on the lower-bound provider"
     )
 

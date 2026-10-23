@@ -1,5 +1,27 @@
 # Release notes
 
+## 0.17.0 (unreleased)
+
+`DigestConfig.contract_owner` optionally fixes contract lookup independently of
+runtime diagnostic identity. `None` preserves existing resolution;
+`"definition"` uses each decorated function's defining `module.function`;
+an exact dotted key selects a logical owner. The selected key drives aliases,
+standardizers, function/domain contracts and digester `caller`. Bound methods
+retain their runtime class in `qualname`. Configuration loaders, both decorator
+forms, digestion plans and CLI audit support the option. Supply it through
+configuration: a decorator keyword named `contract_owner` keeps its existing
+meaning as arbitrary digester context.
+
+Alias normalization preserves canonical supplied names for required,
+co-required and exclusive rules, including aliases on closed signatures.
+Variadic positional arguments no longer make omitted keyword-only defaults
+appear supplied. Staticmethod descriptors are preserved in both decorator
+orders, for access through class and instance.
+
+Python 3.11–3.14 and core dependency floors remain unchanged. The staged plan
+requires full installed qualification and a separate NumPy-free lower-bound
+matrix before publication. Consumer adoption remains independently owned.
+
 ## 0.16.0
 
 With SMonitor 0.20.0 or newer, importing ArgDigest registers its diagnostic

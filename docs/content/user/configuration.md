@@ -35,9 +35,10 @@ CAPTURE_POLICY = None  # inherit | "metadata_only" | "detailed" | CapturePolicy
 
 ## Contract ownership under inheritance
 
-In development after 0.16.0, `DigestConfig.contract_owner` separates contract
-lookup from diagnostic display. Its default, `None`, preserves existing caller
-resolution exactly, including instance dispatch in classes assembled from mixins.
+In the unreleased 0.17.0 development version, `DigestConfig.contract_owner`
+separates contract lookup from diagnostic display. Its default, `None`, preserves
+existing caller resolution exactly, including instance dispatch in classes
+assembled from mixins.
 
 Use `"definition"` when inherited methods should keep the contracts of their
 implementation:

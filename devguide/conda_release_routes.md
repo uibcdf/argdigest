@@ -1,8 +1,23 @@
 # Conda release routes
 
-## 0.16.0 registration qualification
+## 0.17.0 preparation
 
-The unreleased profile prepared under `uibcdf/argdigest#32` selects public
+Release preparation is owned by `uibcdf/argdigest#40`; consumer coordination is
+`uibcdf/molsyssuite#123`. The staged build-0 plan retains Python 3.11–3.14 on
+Linux, macOS arm64 and Windows, public full-suite providers and the existing
+NumPy-free dependency floors. It adds declared contract ownership and the
+alias-presence/staticmethod repairs from #37, #38 and #39. The complete installed
+selection includes their tests; the separate core probe exercises explicit
+ownership, runtime identity and both staticmethod orders without NumPy.
+
+No artifact or public version is qualified by this preparation alone. Record
+the exact candidate and subsequent source/installed/public evidence in
+`pending_proposals/release_0_17_0.md`. Publication remains a separate decision;
+the public GitHub Release title must be exactly `0.17.0`.
+
+## Released 0.16.0
+
+The released profile prepared under `uibcdf/argdigest#32` selects public
 SMonitor 0.21.0 and DepDigest 0.15.1 and requires both
 `--require-registration-only` and `--require-scoped-capture`. An actual child
 pytest guard proves that missing registration capability fails this profile
@@ -13,9 +28,15 @@ restrictive capture and registration-only diagnostics on the older provider.
 
 The maintainer authorized release 0.16.0 on 2026-10-14 under
 `uibcdf/argdigest#36`. The committed plan selects staged build 0 and preserves
-the existing complete source/full installed/minimal-core gates. Qualification
-and publication receipts belong to `pending_proposals/release_0_16_0.md` until
-completion. The historical 0.15.0 plan remains available in its immutable tag.
+the existing complete source/full installed/minimal-core gates. Publication
+completed on 2026-10-14 and was reconciled on 2026-10-20. Public
+`argdigest-0.16.0-py_0.tar.bz2` has SHA-256
+`e82d82680d79ae3d5df9917b1662d2855ed8485128943b72ddec87a5769a467d`.
+Producer `38567520662`, full installed `38568051160`, minimal-core
+`38568053243` and promotion `38572471948` passed. Complete receipts:
+`completed_proposals/release_0_16_0.md` and
+`evidence/release_0_16_0_public_receiving_2026-10-20.json`.
+The historical release plans remain available in their immutable tags.
 
 ## Released 0.15.0
 
