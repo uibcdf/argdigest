@@ -1,0 +1,343 @@
+{
+  "argdigest_source": "7e09e974c36bcf5cace99a7b898d0f5f7a9d3ff2",
+  "artifacts": {
+    "argdigest": {
+      "build_command": "python -m build --wheel --no-isolation --outdir <private-wheel-directory>",
+      "build_exit": 0,
+      "excluded_generated_file": "argdigest/_version.py",
+      "filename": "argdigest-0.0.0+unknown-py3-none-any.whl",
+      "kind": "private source wheel, not a public release candidate",
+      "sha256": "e7b5e31c9e31d21c7d8b82683fedc56003856da77a7c1c6fb75c1e0e3df1cc28",
+      "size": 60925,
+      "source_commit": "7e09e974c36bcf5cace99a7b898d0f5f7a9d3ff2",
+      "source_repository": "uibcdf/argdigest",
+      "verified_installed_runtime_sha256": {
+        "argdigest/__init__.py": "07518ec0f8d53c99d67f40aa76dc1a9f021ab659fc97ee4eb24a2e325e4feaee",
+        "argdigest/_depdigest.py": "e3eede5f993fd789c55068769ec794e771fb7b233fa7e10df2f0439a8d531cd9",
+        "argdigest/_private/smonitor/__init__.py": "3a7c8e505add1e4a4ff8fdb866c97edd043b830f6b7a59f768abd829ee419632",
+        "argdigest/_private/smonitor/catalog.py": "bca3d51c79c6088bf1efe5392097297a4aab4c95bee5dd4983dfa95be953aff6",
+        "argdigest/_private/smonitor/emitter.py": "ed30989f4ebe8cf69720a9e01da83b4ae8d44aef6abbdf3dbeba253084566dac",
+        "argdigest/_private/smonitor/meta.py": "2b5313a344e848dcddeb2181d8e352664b77c0d02b5c421fb4726767b15ae81f",
+        "argdigest/_smonitor.py": "8c64a540b48708d6b2cff8bb49ff05465c44be5cdc3b4511f40b514796b0d37d",
+        "argdigest/cli.py": "f6e45b3cd57e83c7070b44b1a12abee6279ce80c55fd86a22c2754f04156e765",
+        "argdigest/config.py": "1e06c210d8cb24a6298e03961f5ad9a1a7eda56d5e473e8f2c791c0484e1ea38",
+        "argdigest/contrib/__init__.py": "780dc788fb0ee7e7d9273c45992a3568176dc0ef168dccce12a3e236c3f5cf75",
+        "argdigest/contrib/beartype_support.py": "a18088bc90a02f56e44c5e5b5ad96da346d136baec861dacb739c6f86273acd2",
+        "argdigest/contrib/pydantic_support.py": "e52140c341096d5ad04fc056a2dccb39c4f368138758d2e6086a9ef9bee8df71",
+        "argdigest/contrib/pyunitwizard_support.py": "8c7f896ed03cc72735ed1a4faa577b8705e52be43d859f278e7ec423dfce5922",
+        "argdigest/core/__init__.py": "fde4100e15ab833df34916a47a36a19a9c21925b6042ee93328afb270f835fca",
+        "argdigest/core/agent_docs.py": "0dd99f2de399f8872462f607cc7dc333bf9b2461c0e9169d59dffb3df2994233",
+        "argdigest/core/argument_loader.py": "cb45b08e78282b98408e7d43fb004db2b2585003aadd074c7de1ef585b6f6dff",
+        "argdigest/core/argument_registry.py": "b2698707760710bd5e103350f2a761f96b4d0178eb4d7f2b02fe03e55f3ea3bf",
+        "argdigest/core/caller.py": "e44f21438bfe955f185452526f05d224723bf8c7bb07d13a1c02f3210a3c041f",
+        "argdigest/core/config.py": "c076a2d37790e23f86eacef52680c2cdab179a849b2139beb40cfa220e9f892f",
+        "argdigest/core/context.py": "04ce1ef61eed153411c9a83d388899de1886f6f561be406373a6b112e639b81c",
+        "argdigest/core/decorator.py": "922648e765ebc1c63cbbe4b5de095256b6fe1946231a4cb44dc16f7cedd9ab6e",
+        "argdigest/core/diagnostics.py": "aaf2b4bf15562206d9c4ed16d2f3075214669948fb2523d6b6007698f339ed32",
+        "argdigest/core/errors.py": "4c1fecd036a134b84c58edbb825dfedb5233ca0ee42d4daedae8e36aa92e635a",
+        "argdigest/core/errors_base.py": "bd1a04038e7e9fb50ce422291ae61e2f4cc1bac04342ab0f0230a6ef8b12247b",
+        "argdigest/core/function_contract.py": "e25f37ee180f650b596b4d61f84ed1c93191cb5ab5837afed78945a3586536fb",
+        "argdigest/core/function_loader.py": "3970949c2553a706b617380e8601cf97113f1b13837c8de1f1abb613838014b1",
+        "argdigest/core/health.py": "edbb0c304f137455ab31ab33c8d3f21e84d89446c258c8060c6b559cc24a92b7",
+        "argdigest/core/logger.py": "2fc318cb37f9c9863e809b51d516b5de6fc340cd6f962e9688484fe71f35a65b",
+        "argdigest/core/normalization.py": "a90fd2015dc38cc630e8de24c13de8a01b65afd3a9d67e01bbe9f5e88f804f49",
+        "argdigest/core/registry.py": "3a8a81354ce299e4795d105441e0d029b2bf93a636c1c94f01adda1d2b19e48a",
+        "argdigest/core/utils.py": "7a44ee503b9b416407a0406c0c992bc2cf0f257761937ee74e6656574c8f3a35",
+        "argdigest/diagnostics.py": "2ab1c77c7832f2b62161b8da57b228b12b89e7a667c6973d19ec8b9e041c2559",
+        "argdigest/pipelines/__init__.py": "0d9efba3909e8afac995b4b260756d48321a2d02a7968f49d388672ad3694d1b",
+        "argdigest/pipelines/base.py": "20c07d367c9d121a07c77105127f5a950cced551aa77e65f5f2e80261b3de045",
+        "argdigest/pipelines/coercers.py": "83e3bffbb67474633c15f88420215110dd25e1bd9db9d9a148b1b352e8fb01d8",
+        "argdigest/pipelines/data.py": "c0132959ab06f447f2f5d202e5b1ddf0dc50efaa392d3470d5c1fa0b942f0521",
+        "argdigest/pipelines/science.py": "f5ce2af693b9b9e714c0145c1601b4b2c2223efaa3fe0f3469c21883306bb464",
+        "argdigest/pipelines/validators.py": "5b844a9bce602f734aafcf28bd671ccc53571ba3ba8dd4f54acc20b31c162f52"
+      },
+      "version": "0.0.0+unknown",
+      "version_note": "git archive has no VCS metadata; versioningit fallback is not a published version. Runtime bytes are checked against the full source commit."
+    },
+    "baseline": {
+      "build_command": "python -m build --wheel --no-isolation --outdir <private-wheel-directory>",
+      "build_exit": 0,
+      "excluded_generated_file": "smonitor/_version.py",
+      "filename": "smonitor-0.0.0+unknown-py3-none-any.whl",
+      "kind": "private source wheel, not a public release candidate",
+      "sha256": "a48b6ecb7baf251fc285b64d47d8d1b83b248199a55147bd756395d5d4ba494f",
+      "size": 71770,
+      "source_commit": "a3fd6d9858973b887e7a8ef0ed1b44f1dd1f2a1d",
+      "source_repository": "uibcdf/smonitor",
+      "verified_installed_runtime_sha256": {
+        "smonitor/__init__.py": "f60b1c2bff72dbbb70fe403e23908e62a8297f6190e18fdcac090092b84e6800",
+        "smonitor/_diagnostics.py": "cc732d5f889e25a66168b600721057241730ed74b857edb818ccec8ac82b05e5",
+        "smonitor/bundle.py": "228374b0a5f14b26c2789143ad29b3c6c56cd5bb36d3cde41ccd34e30005604c",
+        "smonitor/catalog.py": "ff9e04e9594797a6c1b35c65b8e21dccc9d96530f0fc48e3ebd1dca483f40ba7",
+        "smonitor/cli.py": "a4d2a9166ef8fb93b994380c1ac490f7fa3f250ce5e0641a12e61b07dff99e5e",
+        "smonitor/config/__init__.py": "0b4a603c4441f665b162d10b845f069f9e1f9cca542612c3c6dc143cb8cc560d",
+        "smonitor/config/discovery.py": "56a036bc65796a8da3a9f8dcf886f88b6b49717912e79c5f91d845731ac74b5f",
+        "smonitor/core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "smonitor/core/capture.py": "42207876c72666c5df87fb143180247be6c2dd80e6bb54bbb8acf06307a86966",
+        "smonitor/core/context.py": "6959142b2b201663cc0f70422261c79b8dba91556f969559083c079b6cc889dd",
+        "smonitor/core/decorator.py": "83fd65f8163e3cca9768e5132fe6fa2516f8c8fb12f59a3fb78028a7d2d736f2",
+        "smonitor/core/fingerprint.py": "80f0c8377602c8ef3cb4dc71ce02b59dd0f57bc5ed52e2790c400af66ba37856",
+        "smonitor/core/human_summary.py": "1b7b548bc396ac1257a6ca769c61bb4021e3f44ee75c335a5b48a575c0d741aa",
+        "smonitor/core/identifiers.py": "48350ab1b1acff14eb950557935470ec2170c1bcc669dcbdca0b4c490e272ca8",
+        "smonitor/core/manager.py": "12b426f31d421049af3c43ecb129a68a3f4fe6bedf76dd5de3278b4251337687",
+        "smonitor/core/runtime.py": "7c2b9b7f9f1beca4e1f5b4e1d4c6f4ee123c4c9754e7754b4bde1577b30e7d21",
+        "smonitor/docs_utils.py": "31d6a649e62bd10950f4542144886605ad202a7bc4a65d77378dcc35cc747dd7",
+        "smonitor/emitters/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "smonitor/emitters/exceptions.py": "5719837614cde25784e2b58e48780a0a883f044b9acba22398de4c24a88da33d",
+        "smonitor/emitters/logging.py": "ff3bd66f2b449f0a237eed8fbaafe045cdb2a1ca4a1913e4dbefa76cacd3f351",
+        "smonitor/emitters/warnings.py": "14668db77954a6a00ae5807814f9c8d9c97f81c237729af43d5b5e62ca831bc0",
+        "smonitor/handlers/__init__.py": "f57a12db0943691cc477fd69d22d7eaac26e878c1ff66a2a5df89f35f136304d",
+        "smonitor/handlers/console.py": "4c0de3e1b2832ab8dc9f73fa6e899400d9da3136598b33510ee57b0263c17563",
+        "smonitor/handlers/file.py": "bf9fcad614065bacdf0b300c442c9723c7cffaddebd736ecc37d2335ac2d8c38",
+        "smonitor/handlers/json.py": "cd5edabe32ab5286dc81315249aac77b35fc5fe5233cdcebc36b9c56a3fc4098",
+        "smonitor/handlers/memory.py": "c12c37421cebaf6a574feabed4bff24f64df8237905bc9ec81293e9174b87543",
+        "smonitor/integrations/__init__.py": "2dcb2215de7a7fe694a26e95861c2daa90b3908345d190e19669d49dbcd53717",
+        "smonitor/integrations/argdigest.py": "8ad55e939b7728123273cd47823e720d9badeba569b4e722cee60946b2f6bc16",
+        "smonitor/integrations/core.py": "77f572afd7baa16b783a424fa3bc1a5debcf7e684461697b1e0d3a88afb6612d",
+        "smonitor/integrations/depdigest.py": "eaaf62597aae74f795483e8353a8e83db2d1a310deedccb2de6a80f0a49c13b2",
+        "smonitor/integrations/diagnostic.py": "8a6065ff00b2e0e5068a74782b5a7352471c897848c031cb6bf0faaa9a312178",
+        "smonitor/integrations/molsysmt.py": "dff282f2606c36e815f85da43bf28d9b5bf566666a44c7ec66d4a400f1b26bbc",
+        "smonitor/integrations/provider.py": "dc51dc872c0164c42ce2b4e34fa6724ed31292991937c557c1cb86445b609f96",
+        "smonitor/policy/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "smonitor/policy/engine.py": "b15cc0eea4a545795e5852c3560105ac9fd20efdc1d97225821292691ec8bb23",
+        "smonitor/profiling.py": "47d2e1d4ee3a83364b256b0a9a12e21da887499e51b25d3f151842016683d176",
+        "smonitor/pytest_plugin.py": "8a6729063c5eb8c92d6f6182a4e554ee5ae4a98de8d820ef5f51a3bb388e37ca",
+        "smonitor/pytest_policy.py": "2aaf3b1cf44dab46ada23beb2fd52ad7994f94ad369db8d69062d9ece13e47dc",
+        "smonitor/templates/_smonitor.py": "4887dab158d203ac17e8544b5d1aa697fe1e99109d6934d13349c068cc9c4b6a",
+        "smonitor/validation.py": "106f24b1a376e41b5a72f6fb8f5900bcd5b32ca4c5ab53e269a11d58efc33f99"
+      },
+      "version": "0.0.0+unknown",
+      "version_note": "git archive has no VCS metadata; versioningit fallback is not a published version. Runtime bytes are checked against the full source commit."
+    },
+    "fixed": {
+      "build_command": "python -m build --wheel --no-isolation --outdir <private-wheel-directory>",
+      "build_exit": 0,
+      "excluded_generated_file": "smonitor/_version.py",
+      "filename": "smonitor-0.0.0+unknown-py3-none-any.whl",
+      "kind": "private source wheel, not a public release candidate",
+      "sha256": "845a65066cb870f435ba34c6e38a80b93ae337e987c7da063a180e9bc57aa549",
+      "size": 72236,
+      "source_commit": "ccdcace55ba5caf431b4a6a6904d8d18173114a3",
+      "source_repository": "uibcdf/smonitor",
+      "verified_installed_runtime_sha256": {
+        "smonitor/__init__.py": "f60b1c2bff72dbbb70fe403e23908e62a8297f6190e18fdcac090092b84e6800",
+        "smonitor/_diagnostics.py": "cc732d5f889e25a66168b600721057241730ed74b857edb818ccec8ac82b05e5",
+        "smonitor/bundle.py": "228374b0a5f14b26c2789143ad29b3c6c56cd5bb36d3cde41ccd34e30005604c",
+        "smonitor/catalog.py": "ff9e04e9594797a6c1b35c65b8e21dccc9d96530f0fc48e3ebd1dca483f40ba7",
+        "smonitor/cli.py": "a4d2a9166ef8fb93b994380c1ac490f7fa3f250ce5e0641a12e61b07dff99e5e",
+        "smonitor/config/__init__.py": "0b4a603c4441f665b162d10b845f069f9e1f9cca542612c3c6dc143cb8cc560d",
+        "smonitor/config/discovery.py": "56a036bc65796a8da3a9f8dcf886f88b6b49717912e79c5f91d845731ac74b5f",
+        "smonitor/core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "smonitor/core/capture.py": "42207876c72666c5df87fb143180247be6c2dd80e6bb54bbb8acf06307a86966",
+        "smonitor/core/context.py": "6959142b2b201663cc0f70422261c79b8dba91556f969559083c079b6cc889dd",
+        "smonitor/core/decorator.py": "ce3361a0cdc5d31f0e544c55c8fde4ec340d2a5b2260b130f182444d72f630ec",
+        "smonitor/core/fingerprint.py": "80f0c8377602c8ef3cb4dc71ce02b59dd0f57bc5ed52e2790c400af66ba37856",
+        "smonitor/core/human_summary.py": "1b7b548bc396ac1257a6ca769c61bb4021e3f44ee75c335a5b48a575c0d741aa",
+        "smonitor/core/identifiers.py": "48350ab1b1acff14eb950557935470ec2170c1bcc669dcbdca0b4c490e272ca8",
+        "smonitor/core/manager.py": "ddf809456df62bffb92b0451a54c315ca312722019b7057792472e074ba0b8c7",
+        "smonitor/core/runtime.py": "7c2b9b7f9f1beca4e1f5b4e1d4c6f4ee123c4c9754e7754b4bde1577b30e7d21",
+        "smonitor/docs_utils.py": "31d6a649e62bd10950f4542144886605ad202a7bc4a65d77378dcc35cc747dd7",
+        "smonitor/emitters/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "smonitor/emitters/exceptions.py": "5719837614cde25784e2b58e48780a0a883f044b9acba22398de4c24a88da33d",
+        "smonitor/emitters/logging.py": "ff3bd66f2b449f0a237eed8fbaafe045cdb2a1ca4a1913e4dbefa76cacd3f351",
+        "smonitor/emitters/warnings.py": "14668db77954a6a00ae5807814f9c8d9c97f81c237729af43d5b5e62ca831bc0",
+        "smonitor/handlers/__init__.py": "f57a12db0943691cc477fd69d22d7eaac26e878c1ff66a2a5df89f35f136304d",
+        "smonitor/handlers/console.py": "4c0de3e1b2832ab8dc9f73fa6e899400d9da3136598b33510ee57b0263c17563",
+        "smonitor/handlers/file.py": "bf9fcad614065bacdf0b300c442c9723c7cffaddebd736ecc37d2335ac2d8c38",
+        "smonitor/handlers/json.py": "cd5edabe32ab5286dc81315249aac77b35fc5fe5233cdcebc36b9c56a3fc4098",
+        "smonitor/handlers/memory.py": "c12c37421cebaf6a574feabed4bff24f64df8237905bc9ec81293e9174b87543",
+        "smonitor/integrations/__init__.py": "2dcb2215de7a7fe694a26e95861c2daa90b3908345d190e19669d49dbcd53717",
+        "smonitor/integrations/argdigest.py": "8ad55e939b7728123273cd47823e720d9badeba569b4e722cee60946b2f6bc16",
+        "smonitor/integrations/core.py": "77f572afd7baa16b783a424fa3bc1a5debcf7e684461697b1e0d3a88afb6612d",
+        "smonitor/integrations/depdigest.py": "eaaf62597aae74f795483e8353a8e83db2d1a310deedccb2de6a80f0a49c13b2",
+        "smonitor/integrations/diagnostic.py": "8a6065ff00b2e0e5068a74782b5a7352471c897848c031cb6bf0faaa9a312178",
+        "smonitor/integrations/molsysmt.py": "dff282f2606c36e815f85da43bf28d9b5bf566666a44c7ec66d4a400f1b26bbc",
+        "smonitor/integrations/provider.py": "dc51dc872c0164c42ce2b4e34fa6724ed31292991937c557c1cb86445b609f96",
+        "smonitor/policy/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "smonitor/policy/engine.py": "b15cc0eea4a545795e5852c3560105ac9fd20efdc1d97225821292691ec8bb23",
+        "smonitor/profiling.py": "47d2e1d4ee3a83364b256b0a9a12e21da887499e51b25d3f151842016683d176",
+        "smonitor/pytest_plugin.py": "8a6729063c5eb8c92d6f6182a4e554ee5ae4a98de8d820ef5f51a3bb388e37ca",
+        "smonitor/pytest_policy.py": "2aaf3b1cf44dab46ada23beb2fd52ad7994f94ad369db8d69062d9ece13e47dc",
+        "smonitor/templates/_smonitor.py": "4887dab158d203ac17e8544b5d1aa697fe1e99109d6934d13349c068cc9c4b6a",
+        "smonitor/validation.py": "106f24b1a376e41b5a72f6fb8f5900bcd5b32ca4c5ab53e269a11d58efc33f99"
+      },
+      "version": "0.0.0+unknown",
+      "version_note": "git archive has no VCS metadata; versioningit fallback is not a published version. Runtime bytes are checked against the full source commit."
+    }
+  },
+  "baseline_environment_verification": {
+    "argdigest_runtime_byte_identical_to_fixed_environment": true,
+    "selected_environment_origins_verified": [
+      "argdigest",
+      "smonitor",
+      "pytest_receptor"
+    ]
+  },
+  "captured_at_utc": "2026-11-05T02:12:46.731519+00:00",
+  "commands": {
+    "receiving": "<selected-env>/bin/python -P -m pytest --receptor=llm --import-mode=importlib -c /dev/null receiving/receive_smonitor_nested_signals.py --junitxml=<receipt.xml>",
+    "related_and_full": "<fixed-env>/bin/python -P -m pytest --receptor=llm --import-mode=importlib -o receptor_rerun_command=\"python -m pytest\" -c <argdigest-export>/pyproject.toml <selection> --require-scoped-capture --require-registration-only --junitxml=<receipt.xml>"
+  },
+  "coordination": "uibcdf/molsyssuite#163",
+  "environment": {
+    "modules": {
+      "argdigest": {
+        "origin": "/tmp/argdigest-smonitor49.9ZA3fA/fixed-env/lib/python3.14/site-packages/argdigest/__init__.py",
+        "origin_sha256": "07518ec0f8d53c99d67f40aa76dc1a9f021ab659fc97ee4eb24a2e325e4feaee",
+        "version": "0.0.0+unknown"
+      },
+      "beartype": {
+        "origin": "/home/diego/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/site-packages/beartype/__init__.py",
+        "origin_sha256": "8b89846b9967a46362f9bf4a6d4e0f03681974d1a63243126d5d6768f0274f33",
+        "version": "0.22.9"
+      },
+      "depdigest": {
+        "editable_source": "ef64111a1b6ce6c2452d86918e7ea7ee067116cc",
+        "origin": "/home/diego/repos@uibcdf/depdigest/depdigest/__init__.py",
+        "origin_sha256": "401e1f2b69d68053bdf91b524eb9d876fa2839908ca2dc5df17e77d3a389b6b1",
+        "version": "0.15.1+3.ga27172b",
+        "worktree_status": ""
+      },
+      "numpy": {
+        "origin": "/home/diego/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/site-packages/numpy/__init__.py",
+        "origin_sha256": "92a46f791e453926d3292af2582b89995a289475f0eaaea71a949823200b838a",
+        "version": "2.4.6"
+      },
+      "pandas": {
+        "origin": "/home/diego/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/site-packages/pandas/__init__.py",
+        "origin_sha256": "108be8ca3ae1a2a5c765ee6f87e8867d87c2fb5a89107e6c2d3a6acc96612b7b",
+        "version": "2.3.3"
+      },
+      "pydantic": {
+        "origin": "/home/diego/Myopt/miniconda3/envs/molsyssuite@uibcdf_3.14/lib/python3.14/site-packages/pydantic/__init__.py",
+        "origin_sha256": "e62127278c07bf5384cdd2903f368a69929f3b8a524000bae4e0eb608ebf4bc6",
+        "version": "2.13.5"
+      },
+      "pytest_receptor": {
+        "origin": "/tmp/argdigest-smonitor49.9ZA3fA/fixed-env/lib/python3.14/site-packages/pytest_receptor/__init__.py",
+        "origin_sha256": "e470b0c9942b9fb52555b86e69a0ff5c5db91b7787bc226e10272fbaed189e6b",
+        "version": "1.2.2"
+      },
+      "pyunitwizard": {
+        "editable_source": "32655dc6d7ac0477dfd6c17cd80de57fceb13cda",
+        "origin": "/home/diego/repos@uibcdf/pyunitwizard/pyunitwizard/__init__.py",
+        "origin_sha256": "39eeae626315034598a55db948e160fbc09b0213d48d8649b07933563b86fdfc",
+        "version": "0.28.1+15.g6c62ca6",
+        "worktree_status": ""
+      },
+      "smonitor": {
+        "origin": "/tmp/argdigest-smonitor49.9ZA3fA/fixed-env/lib/python3.14/site-packages/smonitor/__init__.py",
+        "origin_sha256": "f60b1c2bff72dbbb70fe403e23908e62a8297f6190e18fdcac090092b84e6800",
+        "version": "0.0.0+unknown"
+      }
+    },
+    "python": "3.14.7 | packaged by conda-forge | (main, Sep  2 2026, 21:08:32) [GCC 15.3.0]"
+  },
+  "environment_limits": "Temporary venvs inherit the shared suite environment with --system-site-packages; ArgDigest, SMonitor and published Pytest Receptor 1.2.2 are private-environment installs with verified origins. Supporting editable DepDigest/PyUnitWizard refs are a post-run snapshot, not immutable public qualification. No shared clone or environment was changed.",
+  "issue": "uibcdf/argdigest#49",
+  "limits": [
+    "No public corrected SMonitor artifact was available at this checkpoint; latest GitHub Release is 0.22.0.",
+    "Private wheels have versioningit fallback 0.0.0+unknown; exact source identities, verified runtime bytes and wheel hashes establish this bounded comparison.",
+    "No public floor, ordinary CI acquisition route, installed qualification profile, production policy or diagnostic baseline was changed.",
+    "The isolated full suite skips the collective sibling-clone E2E because sibling repos are absent; this does not qualify that E2E or other platforms/Python cells.",
+    "The accepted source passes all 28 receiving controls. The pre-fix source fails ten actual handler/history outcomes, demonstrating regression sensitivity.",
+    "Public adoption must repeat against the exact published file and record channel/build/digest/import provenance separately."
+  ],
+  "provider_issues": [
+    "uibcdf/smonitor#59",
+    "uibcdf/smonitor#61"
+  ],
+  "receiving_module": "devtools/tests/receive_smonitor_nested_signals.py",
+  "receiving_module_sha256": "9f7ab84e663e4941332e38fa941af7269df54192ff26fc2d2c181567bba8e42e",
+  "results": {
+    "baseline": {
+      "errors": 0,
+      "exit": 1,
+      "failed": 10,
+      "failed_cases": [
+        {
+          "message": "AssertionError: assert [] == ['ERROR']\n  \n  Right contains one more item: 'ERROR'\n  Use -v to get more diff",
+          "name": "test_body_failure_composition[filtered-debug-detailed-native]"
+        },
+        {
+          "message": "AssertionError: assert [] == ['ERROR']\n  \n  Right contains one more item: 'ERROR'\n  Use -v to get more diff",
+          "name": "test_body_failure_composition[filtered-debug-detailed-catalog]"
+        },
+        {
+          "message": "AssertionError: assert [] == ['ERROR']\n  \n  Right contains one more item: 'ERROR'\n  Use -v to get more diff",
+          "name": "test_body_failure_composition[filtered-debug-restricted-native]"
+        },
+        {
+          "message": "AssertionError: assert [] == ['ERROR']\n  \n  Right contains one more item: 'ERROR'\n  Use -v to get more diff",
+          "name": "test_body_failure_composition[filtered-debug-restricted-catalog]"
+        },
+        {
+          "message": "AssertionError: assert [] == ['ERROR']\n  \n  Right contains one more item: 'ERROR'\n  Use -v to get more diff",
+          "name": "test_body_failure_composition[silenced-inner-detailed-native]"
+        },
+        {
+          "message": "AssertionError: assert [] == ['ERROR']\n  \n  Right contains one more item: 'ERROR'\n  Use -v to get more diff",
+          "name": "test_body_failure_composition[silenced-inner-detailed-catalog]"
+        },
+        {
+          "message": "AssertionError: assert [] == ['ERROR']\n  \n  Right contains one more item: 'ERROR'\n  Use -v to get more diff",
+          "name": "test_body_failure_composition[silenced-inner-restricted-native]"
+        },
+        {
+          "message": "AssertionError: assert [] == ['ERROR']\n  \n  Right contains one more item: 'ERROR'\n  Use -v to get more diff",
+          "name": "test_body_failure_composition[silenced-inner-restricted-catalog]"
+        },
+        {
+          "message": "AssertionError: assert [] == ['ERROR']\n  \n  Right contains one more item: 'ERROR'\n  Use -v to get more diff",
+          "name": "test_failures_before_body_preserve_validation_and_diagnostics[WARNING-contract-detailed]"
+        },
+        {
+          "message": "AssertionError: assert [] == ['ERROR']\n  \n  Right contains one more item: 'ERROR'\n  Use -v to get more diff",
+          "name": "test_failures_before_body_preserve_validation_and_diagnostics[WARNING-contract-restricted]"
+        }
+      ],
+      "junit_sha256": "312048502f3eaa1b5da4941951ef9ba4fe8f3429f352c753d730062844938ad5",
+      "passed": 18,
+      "receptor_output": "FAIL exit=1 | 10 failed, 18 passed | 0.98s | 1 root cause\n\n[1] AssertionError | 10 tests | call\n    receiving/receive_smonitor_nested_signals.py:63\n    AssertionError: assert [] == ['ERROR']\n\n      Right contains one more item: 'ERROR'\n      Use -v to get more diff\n    frames: receiving/receive_smonitor_nested_signals.py:129 -> receiving/receive_smonitor_nested_signals.py:63\n    tests:\n      receiving/receive_smonitor_nested_signals.py::test_body_failure_composition[filtered-debug-detailed-catalog]\n      receiving/receive_smonitor_nested_signals.py::test_body_failure_composition[filtered-debug-detailed-native]\n      receiving/receive_smonitor_nested_signals.py::test_body_failure_composition[filtered-debug-restricted-catalog]\n      +7 more\n    rerun: python -m pytest receiving/receive_smonitor_nested_signals.py -q",
+      "selection": "identical explicit receiving module; adverse control",
+      "skipped": 0
+    },
+    "fixed": {
+      "errors": 0,
+      "exit": 0,
+      "failed": 0,
+      "junit_sha256": "dc9a85ee0df1886fe0824f6fde418dcba33b6cf65ca8a2802c52cfc1f205eb0d",
+      "passed": 28,
+      "receptor_output": "PASS exit=0 | 28 passed | 0.85s",
+      "selection": "explicit receiving module",
+      "skipped": 0
+    },
+    "full": {
+      "errors": 0,
+      "exit": 0,
+      "failed": 0,
+      "junit_sha256": "e506c6a341134c761211e61947abd3fdbdce3dc9af71ca5a224a13f21b601531",
+      "passed": 491,
+      "receptor_output": "PASS exit=0 | 491 passed, 1 skipped | 8.79s | 3 warnings\n\nwarnings: 3 in 3 groups\n  DigestNotDigestedWarning x1 | argdigest/core/decorator.py:620 | No digester is registered for argument 'syntax' of 'select', so it was not validated. Define or register a dig...\n  DigestNotDigestedWarning x1 | argdigest/core/decorator.py:640 | No digester is registered for argument 'items' of 'combine', so it was not validated. Define or register a dig...\n  DigestNotDigestedWarning x1 | argdigest/core/decorator.py:640 | No digester is registered for argument 'suffix' of 'positioned', so it was not validated. Define or register a...\n\nskipped: 1 in 1 group\n  x1 | Sibling repos are not available in this environment",
+      "selection": "all tests/ from the exact ArgDigest export; --require-scoped-capture --require-registration-only",
+      "skipped": 1,
+      "skipped_cases": [
+        {
+          "name": "test_collective_error_path_emits_contract_signal_and_dependency_hints",
+          "reason": "Sibling repos are not available in this environment"
+        }
+      ]
+    },
+    "related": {
+      "errors": 0,
+      "exit": 0,
+      "failed": 0,
+      "junit_sha256": "f00067ece4a44cdd99408ed9f4ab17af26c2beeb480db2fc674000760e662334",
+      "passed": 57,
+      "receptor_output": "PASS exit=0 | 57 passed | 2.41s",
+      "selection": "test_capture_policy.py, test_smonitor_contracts.py, test_diagnostic_registration.py, test_optional_typecheck_diagnostics.py",
+      "skipped": 0
+    }
+  },
+  "scope": "Linux Python 3.14.7 accepted-source/private-wheel receiving; public receiving pending"
+}

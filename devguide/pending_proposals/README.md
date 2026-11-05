@@ -5,9 +5,9 @@ Open ArgDigest proposals with issue-backed reports. See
 
 <!-- generated: devguide_index -->
 
-### Blocked (1)
+### Partial (1)
 
-- [`receive_smonitor_nested_signal_fix.md`](receive_smonitor_nested_signal_fix.md) — [#49](https://github.com/uibcdf/argdigest/issues/49) — Receive the accepted SMonitor nested-signal observation correction. *(blocked, measured)*
+- [`receive_smonitor_nested_signal_fix.md`](receive_smonitor_nested_signal_fix.md) — [#49](https://github.com/uibcdf/argdigest/issues/49) — Receive the accepted SMonitor nested-signal observation correction. *(partial, measured)*
 
 ### Open (1)
 
