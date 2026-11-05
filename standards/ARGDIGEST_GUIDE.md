@@ -10,27 +10,30 @@ Source of truth for integrating and using **ArgDigest** in this library.
 Metadata
 - Source repository: `argdigest`
 - Source document: `standards/ARGDIGEST_GUIDE.md`
-- Source version: `argdigest@main` (0.17.1 release candidate)
+- Source version: `argdigest@main` (published contract baseline: 0.17.1)
 - Last synced: 2026-11-05
 
 Version boundaries: declaration-only diagnostics below are public since ArgDigest
-0.16.0. Explicit contract ownership and the alias/staticmethod repairs described
-below are public since 0.17.0; earlier releases do not provide those changes.
-Release qualification and publication are tracked in `uibcdf/argdigest#40`;
-consumer receiving is coordinated in `uibcdf/molsyssuite#123`.
-MolSysSuite developers own distribution of this canonical revision to all clients
-under `uibcdf/molsyssuite#125`; provider editing does not update client copies.
+0.16.0. Explicit contract ownership and the alias/staticmethod repairs are public
+since 0.17.0. The call-shape, optional-checker and consumer-diagnostic corrections
+below are public in 0.17.1; earlier releases do not provide those corrections.
+Release qualification and publication are tracked in `uibcdf/argdigest#51`;
+release-specific consumer receiving is coordinated in `uibcdf/molsyssuite#169`,
+with contract and guide follow-up in `uibcdf/molsyssuite#164`.
+MolSysSuite developers own distribution of this canonical revision to all clients;
+the maintainer's delegation is retained in `uibcdf/molsyssuite#125`. Provider
+editing does not update client copies. Original 0.17.0 evidence remains in
+`uibcdf/argdigest#40` and `uibcdf/molsyssuite#123`.
 
 `0.12.0` changed this guide in two ways that affect an integration: `*args` and
 positional-only parameters are supported and documented (§5), and the `ValidatedPayload`
 passport was **removed** rather than replaced, leaving `skip_digestion` as the single
 mechanism (§6).
 
-## Corrections prepared for 0.17.1
+## Corrections published in 0.17.1
 
-The following corrections are prepared for 0.17.1 under `uibcdf/argdigest#51`;
-publication requires its exact-file qualification. Public 0.17.0 retains its
-original bytes and behavior.
+The following corrections are published in 0.17.1 after exact-file qualification
+under `uibcdf/argdigest#51`. Public 0.17.0 retains its original bytes and behavior.
 
 - Literal keywords matching the `**kwargs` parameter name are preserved as
   ordinary options. A mapping supplied as `kwargs={"file_name": ...}` is not
@@ -57,8 +60,8 @@ original bytes and behavior.
   Valid unambiguous callables do not require diagnostic identity lookups;
   unavailable labels cannot replace the configuration error (#53).
 
-Provider issues: `uibcdf/argdigest#43`, #46, #47, #48 and #50. Consumers must receive
-the eventual published correction before treating these capabilities as adopted.
+Provider issues: `uibcdf/argdigest#43`, #46, #47, #48, #50 and #53. Consumers must
+receive and qualify the published correction before treating it as adopted.
 
 ## What is ArgDigest
 
@@ -573,9 +576,9 @@ Applications relying on that nested-observation guarantee need SMonitor
 >=0.22.1. Earlier supported providers retain their original observation behavior
 and may suppress an outer ERROR after a filtered inner DEBUG. ArgDigest's core
 dependency floor remains >=0.16.0; it does not promise this newer correction.
-The development full installed profile selects 0.22.1 and the explicit receiving
-controls under `uibcdf/argdigest#49`. Consumers retain their own installed
-qualification; additional visible diagnostics require deliberate QA review.
+The 0.17.1 full installed qualification selected public 0.22.1 and the explicit
+receiving controls under `uibcdf/argdigest#49` and #51. Consumers retain their own
+installed qualification; additional visible diagnostics require deliberate QA review.
 
 ### Emission Failures
 

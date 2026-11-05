@@ -1,0 +1,19 @@
+{
+  "schema": "molsyssuite.native-gate@1",
+  "state": "verified",
+  "run_id": 42127303934,
+  "run_attempt": 1,
+  "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+  "workflow": ".github/workflows/build_and_upload_conda_packages.yaml",
+  "jobs": [
+    {
+      "name": "decision",
+      "job_id": 127594642915,
+      "required_steps": [
+        "Validate exact source, tag and committed route",
+        "Check exact candidate dependency routes before building"
+      ]
+    }
+  ],
+  "event": "release"
+}

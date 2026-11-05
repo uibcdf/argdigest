@@ -1,0 +1,34 @@
+{
+  "scope": "ArgDigest 0.17.1 exact-file public and source-only archival receipts",
+  "sha256": {
+    "public-conda-proof.json": "afcef521cbeed7dd5cb86f1c3b8eb95515da95d4ee6c5ac81ae6887a51d43de6",
+    "public-registry-snapshot.json": "0fd5ffea8fd7998016c86f6e865afe9de81ac73625640a2097dae268df9321d9",
+    "public-download-proof.json": "712bdfcd90fb969d46dcb748bc4f4af6aeef1438ba05beb967836135ef630138",
+    "public-prefix-before.json": "96ef30f39de2668a34757512c53ee883a51a3fbb0dc616326ddf08bb538c3d70",
+    "public-command-proof.json": "d88dd61453079f6b9849b557010143f5a3ebdf2c8acd3f77e67c7f13f60f2b42",
+    "public-installed-proof.json": "059d4f02c6c89401321f2aaf796d94602daead31dd7adcee0eab71231025f4ed",
+    "public-science-summary.json": "5b926cbedb3d0fb212ded8ce413fa5342834a4ca35b30e4c83bbb03357dcf0f8",
+    "public-tests.xml": "feea65303ef8cf13f4e205039acbf69601ea91596a32f55a6d5c3a25d74bb51d",
+    "local-staged-tests.xml": "c3ee44f3811189d8d4e278c8de3d9f3ab9c50e7d56d7e93a651714bee6221f26",
+    "local-staged-science-summary.json": "c8a62dcc23583590b09582f388dae945c106c167209d13139058fe223f94b494",
+    "zenodo-probe.json": "ce5dcb441e5dbd4588050a95a45f9c78c89d7863c73f8b0147344752c0dec8c2",
+    "zenodo-source-proof.json": "45e40b8a848f002d534b767873bb1a2d0d4b98a4dc0c7d486851a4aa85590415",
+    "zenodo-native.json": "0270e705ccab8f836139611fbc0600daf450b0d568c2ba70eed913f5640acb51",
+    "zenodo-workflow-receipts.json": "f321d082a2085c049063c896330530d602421d72fdf3154a2e43d4052c0d0330",
+    "release-route-native.json": "8101ec2220fd1cc3c54424cd7818c908ca9071de05145e0fc5a053627c4af8a5",
+    "release-route-jobs.json": "f18fa997195fa6f25d0a4e55d73fd23c9dd4f148cc0eb0f91efd8a877fc0c353",
+    "release-docs-native.json": "0e65c822a493f19d42b52a1f79c2f722c050eaf689b902c873b009d26ad62b77",
+    "tag-proof.json": "b8caa20ec75cb4f975e64635b6ee3f911c0db76c4c9d1adce687c52821cc25df",
+    "github-release.json": "aac7b2ca13642b6ea952e0c3351a6162a68b9158a79ef769f95770f7aa48e073",
+    "promote-native.json": "5679d13b1fae00df9d338938ba204267129cc438c4e461f1f7a43b5dca3f42f1",
+    "promotion-receipts.json": "5f2c2a8df05d7d29db1e5e8879aa0ec6fab00e5e94d58f2727001ae5568317e6",
+    "local-staged-tests-first.xml.gz": "318ff19c8712bc8fe99f5c1adaf5d35ea100699db6c34afe1cd8c83c1416280f"
+  },
+  "compressed_originals": {
+    "local-staged-tests-first.xml.gz": {
+      "uncompressed_name": "local-staged-tests-first.xml",
+      "uncompressed_sha256": "03f084b8d29ce14d38f7f35fb8ab124e5172c5b66ab99a65690ca559fa27ee43",
+      "reason": "Preserve exact raw pytest traceback whitespace in a lossless archive."
+    }
+  }
+}

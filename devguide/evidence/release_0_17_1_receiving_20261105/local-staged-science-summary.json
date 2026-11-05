@@ -1,0 +1,1244 @@
+{
+  "scope": "Additional local Linux x86_64 Python 3.14 installed staged-file receiving, not a replacement for hosted matrices or fresh public receiving",
+  "first_invocation": {
+    "tests": 534,
+    "passed": 532,
+    "failed": [
+      {
+        "classname": "tests.test_reporting_protocol",
+        "name": "test_generated_report_indexes_are_current",
+        "time": "0.069"
+      }
+    ],
+    "skipped": [
+      {
+        "classname": "tests.e2e.test_collective_error_path",
+        "name": "test_collective_error_path_emits_contract_signal_and_dependency_hints",
+        "time": "0.001"
+      }
+    ],
+    "receiving": {
+      "tests": 28,
+      "passed": 28
+    },
+    "xml_sha256": "03f084b8d29ce14d38f7f35fb8ab124e5172c5b66ab99a65690ca559fa27ee43"
+  },
+  "first_invocation_error": "Task invocation propagated PYTHONSAFEPATH=1 to trusted administrative child scripts. The published installed workflow explicitly uses python -P only in its scientific interpreter, preserving normal imports in those child scripts.",
+  "corrected_invocation": "env -u PYTHONSAFEPATH PYTHONPATH= .../stage-env/bin/python -P local_staged_tests.py",
+  "corrected_result": {
+    "tests": 534,
+    "passed": 533,
+    "failed": [],
+    "skipped": [
+      {
+        "classname": "tests.e2e.test_collective_error_path",
+        "name": "test_collective_error_path_emits_contract_signal_and_dependency_hints",
+        "time": "0.000"
+      }
+    ],
+    "receiving": {
+      "tests": 28,
+      "passed": 28
+    },
+    "xml_sha256": "c3ee44f3811189d8d4e278c8de3d9f3ab9c50e7d56d7e93a651714bee6221f26"
+  },
+  "source_and_artifact_changed": false,
+  "official_invocation_reference": "uibcdf/molsyssuite/.github/workflows/test-installed-noarch-conda.yaml@13a661e348275496a677a1bfe9650d68a03713a3",
+  "runtime": {
+    "scope": "Additional local Linux x86_64 Python 3.14 staged-file scientific receiving; not a substitute for either hosted installed matrix or fresh public receiving",
+    "exit": 0,
+    "modules": {
+      "argdigest": {
+        "version": "0.17.1",
+        "origin": "/tmp/argdigest-release0171.BO1HRi/stage-env/lib/python3.14/site-packages/argdigest/__init__.py"
+      },
+      "smonitor": {
+        "version": "0.22.1",
+        "origin": "/tmp/argdigest-release0171.BO1HRi/stage-env/lib/python3.14/site-packages/smonitor/__init__.py"
+      },
+      "depdigest": {
+        "version": "0.15.1",
+        "origin": "/tmp/argdigest-release0171.BO1HRi/stage-env/lib/python3.14/site-packages/depdigest/__init__.py"
+      },
+      "pyunitwizard": {
+        "version": "0.27.0",
+        "origin": "/tmp/argdigest-release0171.BO1HRi/stage-env/lib/python3.14/site-packages/pyunitwizard/__init__.py"
+      },
+      "pytest_receptor": {
+        "version": "1.2.2",
+        "origin": "/tmp/argdigest-release0171.BO1HRi/stage-env/lib/python3.14/site-packages/pytest_receptor/__init__.py"
+      }
+    },
+    "installed_record": {
+      "name": "argdigest",
+      "version": "0.17.1",
+      "build": "py_0",
+      "build_number": 0,
+      "channel": "https://conda.anaconda.org/uibcdf/label/staging/noarch",
+      "subdir": "noarch",
+      "fn": "argdigest-0.17.1-py_0.tar.bz2",
+      "md5": "2c39c19f5a7f1c4afe27352d9f5ee531",
+      "url": "https://conda.anaconda.org/uibcdf/label/staging/noarch/argdigest-0.17.1-py_0.tar.bz2",
+      "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+      "depends": [
+        "depdigest >=0.11.0",
+        "python >=3.11,<3.15",
+        "smonitor >=0.16.0"
+      ],
+      "constrains": [],
+      "noarch": "python",
+      "license": "MIT",
+      "package_type": "noarch_python",
+      "timestamp": 1793907753481,
+      "size": 55828,
+      "requested_spec": "uibcdf/label/staging/noarch::argdigest==0.17.1=py_0",
+      "package_tarball_full_path": "/tmp/argdigest-release0171.BO1HRi/pkgs/argdigest-0.17.1-py_0.tar.bz2",
+      "extracted_package_dir": "/tmp/argdigest-release0171.BO1HRi/pkgs/argdigest-0.17.1-py_0",
+      "files": [
+        "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/INSTALLER",
+        "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/METADATA",
+        "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/RECORD",
+        "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/REQUESTED",
+        "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/WHEEL",
+        "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/direct_url.json",
+        "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/entry_points.txt",
+        "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/licenses/LICENSE",
+        "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/top_level.txt",
+        "lib/python3.14/site-packages/argdigest/__init__.py",
+        "lib/python3.14/site-packages/argdigest/_depdigest.py",
+        "lib/python3.14/site-packages/argdigest/_private/smonitor/__init__.py",
+        "lib/python3.14/site-packages/argdigest/_private/smonitor/catalog.py",
+        "lib/python3.14/site-packages/argdigest/_private/smonitor/emitter.py",
+        "lib/python3.14/site-packages/argdigest/_private/smonitor/meta.py",
+        "lib/python3.14/site-packages/argdigest/_smonitor.py",
+        "lib/python3.14/site-packages/argdigest/_version.py",
+        "lib/python3.14/site-packages/argdigest/cli.py",
+        "lib/python3.14/site-packages/argdigest/config.py",
+        "lib/python3.14/site-packages/argdigest/contrib/__init__.py",
+        "lib/python3.14/site-packages/argdigest/contrib/beartype_support.py",
+        "lib/python3.14/site-packages/argdigest/contrib/pydantic_support.py",
+        "lib/python3.14/site-packages/argdigest/contrib/pyunitwizard_support.py",
+        "lib/python3.14/site-packages/argdigest/core/__init__.py",
+        "lib/python3.14/site-packages/argdigest/core/agent_docs.py",
+        "lib/python3.14/site-packages/argdigest/core/argument_loader.py",
+        "lib/python3.14/site-packages/argdigest/core/argument_registry.py",
+        "lib/python3.14/site-packages/argdigest/core/caller.py",
+        "lib/python3.14/site-packages/argdigest/core/config.py",
+        "lib/python3.14/site-packages/argdigest/core/context.py",
+        "lib/python3.14/site-packages/argdigest/core/decorator.py",
+        "lib/python3.14/site-packages/argdigest/core/diagnostics.py",
+        "lib/python3.14/site-packages/argdigest/core/errors.py",
+        "lib/python3.14/site-packages/argdigest/core/errors_base.py",
+        "lib/python3.14/site-packages/argdigest/core/function_contract.py",
+        "lib/python3.14/site-packages/argdigest/core/function_loader.py",
+        "lib/python3.14/site-packages/argdigest/core/health.py",
+        "lib/python3.14/site-packages/argdigest/core/logger.py",
+        "lib/python3.14/site-packages/argdigest/core/normalization.py",
+        "lib/python3.14/site-packages/argdigest/core/registry.py",
+        "lib/python3.14/site-packages/argdigest/core/utils.py",
+        "lib/python3.14/site-packages/argdigest/diagnostics.py",
+        "lib/python3.14/site-packages/argdigest/pipelines/__init__.py",
+        "lib/python3.14/site-packages/argdigest/pipelines/base.py",
+        "lib/python3.14/site-packages/argdigest/pipelines/coercers.py",
+        "lib/python3.14/site-packages/argdigest/pipelines/data.py",
+        "lib/python3.14/site-packages/argdigest/pipelines/science.py",
+        "lib/python3.14/site-packages/argdigest/pipelines/validators.py",
+        "lib/python3.14/site-packages/argdigest/__pycache__/__init__.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/__pycache__/_depdigest.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/__init__.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/catalog.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/emitter.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/meta.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/__pycache__/_smonitor.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/__pycache__/_version.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/__pycache__/cli.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/__pycache__/config.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/contrib/__pycache__/__init__.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/contrib/__pycache__/beartype_support.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/contrib/__pycache__/pydantic_support.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/contrib/__pycache__/pyunitwizard_support.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/__init__.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/agent_docs.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/argument_loader.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/argument_registry.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/caller.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/config.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/context.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/decorator.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/diagnostics.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/errors.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/errors_base.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/function_contract.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/function_loader.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/health.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/logger.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/normalization.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/registry.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/utils.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/__pycache__/diagnostics.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/__init__.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/base.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/coercers.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/data.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/science.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/validators.cpython-314.pyc",
+        "bin/argdigest"
+      ],
+      "paths_data": {
+        "paths_version": 1,
+        "paths": [
+          {
+            "_path": "site-packages/argdigest-0.17.1.dist-info/INSTALLER",
+            "path_type": "hardlink",
+            "sha256": "d0edee15f91b406f3f99726e44eb990be6e34fd0345b52b910c568e0eef6a2a8",
+            "size_in_bytes": 5,
+            "sha256_in_prefix": "d0edee15f91b406f3f99726e44eb990be6e34fd0345b52b910c568e0eef6a2a8"
+          },
+          {
+            "_path": "site-packages/argdigest-0.17.1.dist-info/METADATA",
+            "path_type": "hardlink",
+            "sha256": "c796ced0d140f82bd82b79f9b5d95d01953107330bfb21f1b7eff149132058ba",
+            "size_in_bytes": 7953,
+            "sha256_in_prefix": "c796ced0d140f82bd82b79f9b5d95d01953107330bfb21f1b7eff149132058ba"
+          },
+          {
+            "_path": "site-packages/argdigest-0.17.1.dist-info/RECORD",
+            "path_type": "hardlink",
+            "sha256": "3b663d45d9dedfaa9a46dffabef6007c12c34d3127468f28285a1857354c6a97",
+            "size_in_bytes": 6494,
+            "sha256_in_prefix": "3b663d45d9dedfaa9a46dffabef6007c12c34d3127468f28285a1857354c6a97"
+          },
+          {
+            "_path": "site-packages/argdigest-0.17.1.dist-info/REQUESTED",
+            "path_type": "hardlink",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_in_bytes": 0,
+            "sha256_in_prefix": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "_path": "site-packages/argdigest-0.17.1.dist-info/WHEEL",
+            "path_type": "hardlink",
+            "sha256": "98e75747d0b7c0c568bfb71263c3d8f970b3a374a6996087bc642be5cb09a1aa",
+            "size_in_bytes": 91,
+            "sha256_in_prefix": "98e75747d0b7c0c568bfb71263c3d8f970b3a374a6996087bc642be5cb09a1aa"
+          },
+          {
+            "_path": "site-packages/argdigest-0.17.1.dist-info/direct_url.json",
+            "path_type": "hardlink",
+            "sha256": "a998c788c9708c11a6232a30ef7ad48e03709701d7b754be36fc336aa2e8f5fd",
+            "size_in_bytes": 118,
+            "sha256_in_prefix": "a998c788c9708c11a6232a30ef7ad48e03709701d7b754be36fc336aa2e8f5fd"
+          },
+          {
+            "_path": "site-packages/argdigest-0.17.1.dist-info/entry_points.txt",
+            "path_type": "hardlink",
+            "sha256": "47b7ff7b78b4fae58b34a783201e7447ebc5109a6f972dbd572599d5196b1b18",
+            "size_in_bytes": 49,
+            "sha256_in_prefix": "47b7ff7b78b4fae58b34a783201e7447ebc5109a6f972dbd572599d5196b1b18"
+          },
+          {
+            "_path": "site-packages/argdigest-0.17.1.dist-info/licenses/LICENSE",
+            "path_type": "hardlink",
+            "sha256": "89774af33c83f6ac673838d2621666d25f65b18f6d15fd67a04004901bd90b01",
+            "size_in_bytes": 1190,
+            "sha256_in_prefix": "89774af33c83f6ac673838d2621666d25f65b18f6d15fd67a04004901bd90b01"
+          },
+          {
+            "_path": "site-packages/argdigest-0.17.1.dist-info/top_level.txt",
+            "path_type": "hardlink",
+            "sha256": "f2e38e3565c74fde869dde1fd57def883954a20284bacee9715010d342f5a562",
+            "size_in_bytes": 10,
+            "sha256_in_prefix": "f2e38e3565c74fde869dde1fd57def883954a20284bacee9715010d342f5a562"
+          },
+          {
+            "_path": "site-packages/argdigest/__init__.py",
+            "path_type": "hardlink",
+            "sha256": "07518ec0f8d53c99d67f40aa76dc1a9f021ab659fc97ee4eb24a2e325e4feaee",
+            "size_in_bytes": 2031,
+            "sha256_in_prefix": "07518ec0f8d53c99d67f40aa76dc1a9f021ab659fc97ee4eb24a2e325e4feaee"
+          },
+          {
+            "_path": "site-packages/argdigest/_depdigest.py",
+            "path_type": "hardlink",
+            "sha256": "e3eede5f993fd789c55068769ec794e771fb7b233fa7e10df2f0439a8d531cd9",
+            "size_in_bytes": 257,
+            "sha256_in_prefix": "e3eede5f993fd789c55068769ec794e771fb7b233fa7e10df2f0439a8d531cd9"
+          },
+          {
+            "_path": "site-packages/argdigest/_private/smonitor/__init__.py",
+            "path_type": "hardlink",
+            "sha256": "3a7c8e505add1e4a4ff8fdb866c97edd043b830f6b7a59f768abd829ee419632",
+            "size_in_bytes": 181,
+            "sha256_in_prefix": "3a7c8e505add1e4a4ff8fdb866c97edd043b830f6b7a59f768abd829ee419632"
+          },
+          {
+            "_path": "site-packages/argdigest/_private/smonitor/catalog.py",
+            "path_type": "hardlink",
+            "sha256": "cc19ca5175cfae824f0ac0c0d5a565d4971a6067304b585d049cefb448e4c52f",
+            "size_in_bytes": 12825,
+            "sha256_in_prefix": "cc19ca5175cfae824f0ac0c0d5a565d4971a6067304b585d049cefb448e4c52f"
+          },
+          {
+            "_path": "site-packages/argdigest/_private/smonitor/emitter.py",
+            "path_type": "hardlink",
+            "sha256": "ed30989f4ebe8cf69720a9e01da83b4ae8d44aef6abbdf3dbeba253084566dac",
+            "size_in_bytes": 2670,
+            "sha256_in_prefix": "ed30989f4ebe8cf69720a9e01da83b4ae8d44aef6abbdf3dbeba253084566dac"
+          },
+          {
+            "_path": "site-packages/argdigest/_private/smonitor/meta.py",
+            "path_type": "hardlink",
+            "sha256": "2b5313a344e848dcddeb2181d8e352664b77c0d02b5c421fb4726767b15ae81f",
+            "size_in_bytes": 148,
+            "sha256_in_prefix": "2b5313a344e848dcddeb2181d8e352664b77c0d02b5c421fb4726767b15ae81f"
+          },
+          {
+            "_path": "site-packages/argdigest/_smonitor.py",
+            "path_type": "hardlink",
+            "sha256": "8c64a540b48708d6b2cff8bb49ff05465c44be5cdc3b4511f40b514796b0d37d",
+            "size_in_bytes": 648,
+            "sha256_in_prefix": "8c64a540b48708d6b2cff8bb49ff05465c44be5cdc3b4511f40b514796b0d37d"
+          },
+          {
+            "_path": "site-packages/argdigest/_version.py",
+            "path_type": "hardlink",
+            "sha256": "9abc0193264d70ca30306e3e2ac951bee5a3953db17659d60d25836442b6ef4b",
+            "size_in_bytes": 23,
+            "sha256_in_prefix": "9abc0193264d70ca30306e3e2ac951bee5a3953db17659d60d25836442b6ef4b"
+          },
+          {
+            "_path": "site-packages/argdigest/cli.py",
+            "path_type": "hardlink",
+            "sha256": "f6e45b3cd57e83c7070b44b1a12abee6279ce80c55fd86a22c2754f04156e765",
+            "size_in_bytes": 3932,
+            "sha256_in_prefix": "f6e45b3cd57e83c7070b44b1a12abee6279ce80c55fd86a22c2754f04156e765"
+          },
+          {
+            "_path": "site-packages/argdigest/config.py",
+            "path_type": "hardlink",
+            "sha256": "1e06c210d8cb24a6298e03961f5ad9a1a7eda56d5e473e8f2c791c0484e1ea38",
+            "size_in_bytes": 341,
+            "sha256_in_prefix": "1e06c210d8cb24a6298e03961f5ad9a1a7eda56d5e473e8f2c791c0484e1ea38"
+          },
+          {
+            "_path": "site-packages/argdigest/contrib/__init__.py",
+            "path_type": "hardlink",
+            "sha256": "780dc788fb0ee7e7d9273c45992a3568176dc0ef168dccce12a3e236c3f5cf75",
+            "size_in_bytes": 35,
+            "sha256_in_prefix": "780dc788fb0ee7e7d9273c45992a3568176dc0ef168dccce12a3e236c3f5cf75"
+          },
+          {
+            "_path": "site-packages/argdigest/contrib/beartype_support.py",
+            "path_type": "hardlink",
+            "sha256": "a18088bc90a02f56e44c5e5b5ad96da346d136baec861dacb739c6f86273acd2",
+            "size_in_bytes": 1261,
+            "sha256_in_prefix": "a18088bc90a02f56e44c5e5b5ad96da346d136baec861dacb739c6f86273acd2"
+          },
+          {
+            "_path": "site-packages/argdigest/contrib/pydantic_support.py",
+            "path_type": "hardlink",
+            "sha256": "e52140c341096d5ad04fc056a2dccb39c4f368138758d2e6086a9ef9bee8df71",
+            "size_in_bytes": 1704,
+            "sha256_in_prefix": "e52140c341096d5ad04fc056a2dccb39c4f368138758d2e6086a9ef9bee8df71"
+          },
+          {
+            "_path": "site-packages/argdigest/contrib/pyunitwizard_support.py",
+            "path_type": "hardlink",
+            "sha256": "8c7f896ed03cc72735ed1a4faa577b8705e52be43d859f278e7ec423dfce5922",
+            "size_in_bytes": 8456,
+            "sha256_in_prefix": "8c7f896ed03cc72735ed1a4faa577b8705e52be43d859f278e7ec423dfce5922"
+          },
+          {
+            "_path": "site-packages/argdigest/core/__init__.py",
+            "path_type": "hardlink",
+            "sha256": "fde4100e15ab833df34916a47a36a19a9c21925b6042ee93328afb270f835fca",
+            "size_in_bytes": 683,
+            "sha256_in_prefix": "fde4100e15ab833df34916a47a36a19a9c21925b6042ee93328afb270f835fca"
+          },
+          {
+            "_path": "site-packages/argdigest/core/agent_docs.py",
+            "path_type": "hardlink",
+            "sha256": "0dd99f2de399f8872462f607cc7dc333bf9b2461c0e9169d59dffb3df2994233",
+            "size_in_bytes": 7680,
+            "sha256_in_prefix": "0dd99f2de399f8872462f607cc7dc333bf9b2461c0e9169d59dffb3df2994233"
+          },
+          {
+            "_path": "site-packages/argdigest/core/argument_loader.py",
+            "path_type": "hardlink",
+            "sha256": "cb45b08e78282b98408e7d43fb004db2b2585003aadd074c7de1ef585b6f6dff",
+            "size_in_bytes": 5310,
+            "sha256_in_prefix": "cb45b08e78282b98408e7d43fb004db2b2585003aadd074c7de1ef585b6f6dff"
+          },
+          {
+            "_path": "site-packages/argdigest/core/argument_registry.py",
+            "path_type": "hardlink",
+            "sha256": "b2698707760710bd5e103350f2a761f96b4d0178eb4d7f2b02fe03e55f3ea3bf",
+            "size_in_bytes": 850,
+            "sha256_in_prefix": "b2698707760710bd5e103350f2a761f96b4d0178eb4d7f2b02fe03e55f3ea3bf"
+          },
+          {
+            "_path": "site-packages/argdigest/core/caller.py",
+            "path_type": "hardlink",
+            "sha256": "e44f21438bfe955f185452526f05d224723bf8c7bb07d13a1c02f3210a3c041f",
+            "size_in_bytes": 2956,
+            "sha256_in_prefix": "e44f21438bfe955f185452526f05d224723bf8c7bb07d13a1c02f3210a3c041f"
+          },
+          {
+            "_path": "site-packages/argdigest/core/config.py",
+            "path_type": "hardlink",
+            "sha256": "c076a2d37790e23f86eacef52680c2cdab179a849b2139beb40cfa220e9f892f",
+            "size_in_bytes": 5882,
+            "sha256_in_prefix": "c076a2d37790e23f86eacef52680c2cdab179a849b2139beb40cfa220e9f892f"
+          },
+          {
+            "_path": "site-packages/argdigest/core/context.py",
+            "path_type": "hardlink",
+            "sha256": "04ce1ef61eed153411c9a83d388899de1886f6f561be406373a6b112e639b81c",
+            "size_in_bytes": 321,
+            "sha256_in_prefix": "04ce1ef61eed153411c9a83d388899de1886f6f561be406373a6b112e639b81c"
+          },
+          {
+            "_path": "site-packages/argdigest/core/decorator.py",
+            "path_type": "hardlink",
+            "sha256": "22245562426702ba235c52b3701faafdcafdec7a7acce133a967075fe71eeac0",
+            "size_in_bytes": 30086,
+            "sha256_in_prefix": "22245562426702ba235c52b3701faafdcafdec7a7acce133a967075fe71eeac0"
+          },
+          {
+            "_path": "site-packages/argdigest/core/diagnostics.py",
+            "path_type": "hardlink",
+            "sha256": "aaf2b4bf15562206d9c4ed16d2f3075214669948fb2523d6b6007698f339ed32",
+            "size_in_bytes": 1734,
+            "sha256_in_prefix": "aaf2b4bf15562206d9c4ed16d2f3075214669948fb2523d6b6007698f339ed32"
+          },
+          {
+            "_path": "site-packages/argdigest/core/errors.py",
+            "path_type": "hardlink",
+            "sha256": "4c1fecd036a134b84c58edbb825dfedb5233ca0ee42d4daedae8e36aa92e635a",
+            "size_in_bytes": 5612,
+            "sha256_in_prefix": "4c1fecd036a134b84c58edbb825dfedb5233ca0ee42d4daedae8e36aa92e635a"
+          },
+          {
+            "_path": "site-packages/argdigest/core/errors_base.py",
+            "path_type": "hardlink",
+            "sha256": "bd1a04038e7e9fb50ce422291ae61e2f4cc1bac04342ab0f0230a6ef8b12247b",
+            "size_in_bytes": 1077,
+            "sha256_in_prefix": "bd1a04038e7e9fb50ce422291ae61e2f4cc1bac04342ab0f0230a6ef8b12247b"
+          },
+          {
+            "_path": "site-packages/argdigest/core/function_contract.py",
+            "path_type": "hardlink",
+            "sha256": "e25f37ee180f650b596b4d61f84ed1c93191cb5ab5837afed78945a3586536fb",
+            "size_in_bytes": 17997,
+            "sha256_in_prefix": "e25f37ee180f650b596b4d61f84ed1c93191cb5ab5837afed78945a3586536fb"
+          },
+          {
+            "_path": "site-packages/argdigest/core/function_loader.py",
+            "path_type": "hardlink",
+            "sha256": "3970949c2553a706b617380e8601cf97113f1b13837c8de1f1abb613838014b1",
+            "size_in_bytes": 4678,
+            "sha256_in_prefix": "3970949c2553a706b617380e8601cf97113f1b13837c8de1f1abb613838014b1"
+          },
+          {
+            "_path": "site-packages/argdigest/core/health.py",
+            "path_type": "hardlink",
+            "sha256": "edbb0c304f137455ab31ab33c8d3f21e84d89446c258c8060c6b559cc24a92b7",
+            "size_in_bytes": 3333,
+            "sha256_in_prefix": "edbb0c304f137455ab31ab33c8d3f21e84d89446c258c8060c6b559cc24a92b7"
+          },
+          {
+            "_path": "site-packages/argdigest/core/logger.py",
+            "path_type": "hardlink",
+            "sha256": "2fc318cb37f9c9863e809b51d516b5de6fc340cd6f962e9688484fe71f35a65b",
+            "size_in_bytes": 738,
+            "sha256_in_prefix": "2fc318cb37f9c9863e809b51d516b5de6fc340cd6f962e9688484fe71f35a65b"
+          },
+          {
+            "_path": "site-packages/argdigest/core/normalization.py",
+            "path_type": "hardlink",
+            "sha256": "a90fd2015dc38cc630e8de24c13de8a01b65afd3a9d67e01bbe9f5e88f804f49",
+            "size_in_bytes": 9009,
+            "sha256_in_prefix": "a90fd2015dc38cc630e8de24c13de8a01b65afd3a9d67e01bbe9f5e88f804f49"
+          },
+          {
+            "_path": "site-packages/argdigest/core/registry.py",
+            "path_type": "hardlink",
+            "sha256": "3a8a81354ce299e4795d105441e0d029b2bf93a636c1c94f01adda1d2b19e48a",
+            "size_in_bytes": 4627,
+            "sha256_in_prefix": "3a8a81354ce299e4795d105441e0d029b2bf93a636c1c94f01adda1d2b19e48a"
+          },
+          {
+            "_path": "site-packages/argdigest/core/utils.py",
+            "path_type": "hardlink",
+            "sha256": "7a44ee503b9b416407a0406c0c992bc2cf0f257761937ee74e6656574c8f3a35",
+            "size_in_bytes": 5980,
+            "sha256_in_prefix": "7a44ee503b9b416407a0406c0c992bc2cf0f257761937ee74e6656574c8f3a35"
+          },
+          {
+            "_path": "site-packages/argdigest/diagnostics.py",
+            "path_type": "hardlink",
+            "sha256": "2ab1c77c7832f2b62161b8da57b228b12b89e7a667c6973d19ec8b9e041c2559",
+            "size_in_bytes": 2246,
+            "sha256_in_prefix": "2ab1c77c7832f2b62161b8da57b228b12b89e7a667c6973d19ec8b9e041c2559"
+          },
+          {
+            "_path": "site-packages/argdigest/pipelines/__init__.py",
+            "path_type": "hardlink",
+            "sha256": "0d9efba3909e8afac995b4b260756d48321a2d02a7968f49d388672ad3694d1b",
+            "size_in_bytes": 161,
+            "sha256_in_prefix": "0d9efba3909e8afac995b4b260756d48321a2d02a7968f49d388672ad3694d1b"
+          },
+          {
+            "_path": "site-packages/argdigest/pipelines/base.py",
+            "path_type": "hardlink",
+            "sha256": "20c07d367c9d121a07c77105127f5a950cced551aa77e65f5f2e80261b3de045",
+            "size_in_bytes": 1159,
+            "sha256_in_prefix": "20c07d367c9d121a07c77105127f5a950cced551aa77e65f5f2e80261b3de045"
+          },
+          {
+            "_path": "site-packages/argdigest/pipelines/coercers.py",
+            "path_type": "hardlink",
+            "sha256": "83e3bffbb67474633c15f88420215110dd25e1bd9db9d9a148b1b352e8fb01d8",
+            "size_in_bytes": 2393,
+            "sha256_in_prefix": "83e3bffbb67474633c15f88420215110dd25e1bd9db9d9a148b1b352e8fb01d8"
+          },
+          {
+            "_path": "site-packages/argdigest/pipelines/data.py",
+            "path_type": "hardlink",
+            "sha256": "c0132959ab06f447f2f5d202e5b1ddf0dc50efaa392d3470d5c1fa0b942f0521",
+            "size_in_bytes": 7253,
+            "sha256_in_prefix": "c0132959ab06f447f2f5d202e5b1ddf0dc50efaa392d3470d5c1fa0b942f0521"
+          },
+          {
+            "_path": "site-packages/argdigest/pipelines/science.py",
+            "path_type": "hardlink",
+            "sha256": "f5ce2af693b9b9e714c0145c1601b4b2c2223efaa3fe0f3469c21883306bb464",
+            "size_in_bytes": 1791,
+            "sha256_in_prefix": "f5ce2af693b9b9e714c0145c1601b4b2c2223efaa3fe0f3469c21883306bb464"
+          },
+          {
+            "_path": "site-packages/argdigest/pipelines/validators.py",
+            "path_type": "hardlink",
+            "sha256": "5b844a9bce602f734aafcf28bd671ccc53571ba3ba8dd4f54acc20b31c162f52",
+            "size_in_bytes": 2238,
+            "sha256_in_prefix": "5b844a9bce602f734aafcf28bd671ccc53571ba3ba8dd4f54acc20b31c162f52"
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/__pycache__/__init__.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 1805
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/__pycache__/_depdigest.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 338
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/__init__.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 387
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/catalog.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 9601
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/emitter.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 3331
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/meta.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 295
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/__pycache__/_smonitor.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 623
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/__pycache__/_version.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 176
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/__pycache__/cli.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 5963
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/__pycache__/config.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 489
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/contrib/__pycache__/__init__.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 157
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/contrib/__pycache__/beartype_support.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 2133
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/contrib/__pycache__/pydantic_support.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 3092
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/contrib/__pycache__/pyunitwizard_support.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 12929
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/__init__.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 722
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/agent_docs.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 10506
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/argument_loader.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 8709
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/argument_registry.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 2987
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/caller.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 5772
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/config.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 7909
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/context.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 876
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/decorator.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 31437
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/diagnostics.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 3084
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/errors.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 7896
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/errors_base.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 2274
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/function_contract.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 27378
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/function_loader.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 7395
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/health.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 4189
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/logger.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 1811
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/normalization.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 14622
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/registry.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 7694
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/utils.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 6532
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/__pycache__/diagnostics.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 2836
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/__init__.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 316
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/base.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 2042
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/coercers.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 4101
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/data.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 12527
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/science.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 2965
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/validators.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 4428
+          },
+          {
+            "_path": "bin/argdigest",
+            "path_type": "unix_python_entry_point",
+            "size_in_bytes": 257
+          }
+        ]
+      },
+      "link": {
+        "source": "/tmp/argdigest-release0171.BO1HRi/pkgs/argdigest-0.17.1-py_0",
+        "type": 1
+      }
+    },
+    "payload_sha256": {
+      "site-packages/argdigest/_version.py": "9abc0193264d70ca30306e3e2ac951bee5a3953db17659d60d25836442b6ef4b",
+      "site-packages/argdigest/contrib/__init__.py": "780dc788fb0ee7e7d9273c45992a3568176dc0ef168dccce12a3e236c3f5cf75",
+      "site-packages/argdigest/_private/smonitor/meta.py": "2b5313a344e848dcddeb2181d8e352664b77c0d02b5c421fb4726767b15ae81f",
+      "site-packages/argdigest/pipelines/__init__.py": "0d9efba3909e8afac995b4b260756d48321a2d02a7968f49d388672ad3694d1b",
+      "site-packages/argdigest/_private/smonitor/__init__.py": "3a7c8e505add1e4a4ff8fdb866c97edd043b830f6b7a59f768abd829ee419632",
+      "site-packages/argdigest/_depdigest.py": "e3eede5f993fd789c55068769ec794e771fb7b233fa7e10df2f0439a8d531cd9",
+      "site-packages/argdigest/core/context.py": "04ce1ef61eed153411c9a83d388899de1886f6f561be406373a6b112e639b81c",
+      "site-packages/argdigest/config.py": "1e06c210d8cb24a6298e03961f5ad9a1a7eda56d5e473e8f2c791c0484e1ea38",
+      "site-packages/argdigest/_smonitor.py": "8c64a540b48708d6b2cff8bb49ff05465c44be5cdc3b4511f40b514796b0d37d",
+      "site-packages/argdigest/core/__init__.py": "fde4100e15ab833df34916a47a36a19a9c21925b6042ee93328afb270f835fca",
+      "site-packages/argdigest/core/logger.py": "2fc318cb37f9c9863e809b51d516b5de6fc340cd6f962e9688484fe71f35a65b",
+      "site-packages/argdigest/core/argument_registry.py": "b2698707760710bd5e103350f2a761f96b4d0178eb4d7f2b02fe03e55f3ea3bf",
+      "site-packages/argdigest/core/errors_base.py": "bd1a04038e7e9fb50ce422291ae61e2f4cc1bac04342ab0f0230a6ef8b12247b",
+      "site-packages/argdigest/pipelines/base.py": "20c07d367c9d121a07c77105127f5a950cced551aa77e65f5f2e80261b3de045",
+      "site-packages/argdigest/contrib/beartype_support.py": "a18088bc90a02f56e44c5e5b5ad96da346d136baec861dacb739c6f86273acd2",
+      "site-packages/argdigest/contrib/pydantic_support.py": "e52140c341096d5ad04fc056a2dccb39c4f368138758d2e6086a9ef9bee8df71",
+      "site-packages/argdigest/core/diagnostics.py": "aaf2b4bf15562206d9c4ed16d2f3075214669948fb2523d6b6007698f339ed32",
+      "site-packages/argdigest/pipelines/science.py": "f5ce2af693b9b9e714c0145c1601b4b2c2223efaa3fe0f3469c21883306bb464",
+      "site-packages/argdigest/__init__.py": "07518ec0f8d53c99d67f40aa76dc1a9f021ab659fc97ee4eb24a2e325e4feaee",
+      "site-packages/argdigest/pipelines/validators.py": "5b844a9bce602f734aafcf28bd671ccc53571ba3ba8dd4f54acc20b31c162f52",
+      "site-packages/argdigest/diagnostics.py": "2ab1c77c7832f2b62161b8da57b228b12b89e7a667c6973d19ec8b9e041c2559",
+      "site-packages/argdigest/pipelines/coercers.py": "83e3bffbb67474633c15f88420215110dd25e1bd9db9d9a148b1b352e8fb01d8",
+      "site-packages/argdigest/_private/smonitor/emitter.py": "ed30989f4ebe8cf69720a9e01da83b4ae8d44aef6abbdf3dbeba253084566dac",
+      "site-packages/argdigest/core/caller.py": "e44f21438bfe955f185452526f05d224723bf8c7bb07d13a1c02f3210a3c041f",
+      "site-packages/argdigest/core/health.py": "edbb0c304f137455ab31ab33c8d3f21e84d89446c258c8060c6b559cc24a92b7",
+      "site-packages/argdigest/cli.py": "f6e45b3cd57e83c7070b44b1a12abee6279ce80c55fd86a22c2754f04156e765",
+      "site-packages/argdigest/core/registry.py": "3a8a81354ce299e4795d105441e0d029b2bf93a636c1c94f01adda1d2b19e48a",
+      "site-packages/argdigest/core/function_loader.py": "3970949c2553a706b617380e8601cf97113f1b13837c8de1f1abb613838014b1",
+      "site-packages/argdigest/core/argument_loader.py": "cb45b08e78282b98408e7d43fb004db2b2585003aadd074c7de1ef585b6f6dff",
+      "site-packages/argdigest/core/errors.py": "4c1fecd036a134b84c58edbb825dfedb5233ca0ee42d4daedae8e36aa92e635a",
+      "site-packages/argdigest/core/config.py": "c076a2d37790e23f86eacef52680c2cdab179a849b2139beb40cfa220e9f892f",
+      "site-packages/argdigest/core/utils.py": "7a44ee503b9b416407a0406c0c992bc2cf0f257761937ee74e6656574c8f3a35",
+      "site-packages/argdigest/pipelines/data.py": "c0132959ab06f447f2f5d202e5b1ddf0dc50efaa392d3470d5c1fa0b942f0521",
+      "site-packages/argdigest/core/agent_docs.py": "0dd99f2de399f8872462f607cc7dc333bf9b2461c0e9169d59dffb3df2994233",
+      "site-packages/argdigest/contrib/pyunitwizard_support.py": "8c7f896ed03cc72735ed1a4faa577b8705e52be43d859f278e7ec423dfce5922",
+      "site-packages/argdigest/core/normalization.py": "a90fd2015dc38cc630e8de24c13de8a01b65afd3a9d67e01bbe9f5e88f804f49",
+      "site-packages/argdigest/_private/smonitor/catalog.py": "cc19ca5175cfae824f0ac0c0d5a565d4971a6067304b585d049cefb448e4c52f",
+      "site-packages/argdigest/core/function_contract.py": "e25f37ee180f650b596b4d61f84ed1c93191cb5ab5837afed78945a3586536fb",
+      "site-packages/argdigest/core/decorator.py": "22245562426702ba235c52b3701faafdcafdec7a7acce133a967075fe71eeac0"
+    },
+    "before_equals_after": true,
+    "pip_check": {
+      "exit": 0,
+      "stdout": "No broken requirements found."
+    },
+    "dependencies": [
+      {
+        "name": "_openmp_mutex",
+        "version": "4.5",
+        "build": "20_gnu",
+        "sha256": "1dd3fffd892081df9726d7eb7e0dea6198962ba775bd88842135a4ddb4deb3c9",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda"
+      },
+      {
+        "name": "annotated-types",
+        "version": "0.8.0",
+        "build": "pyhd8ed1ab_0",
+        "sha256": "b8fcb994134d3918d1c64a9d62f4168ff85d5bfb89e698102fe4ed679fe0df24",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/annotated-types-0.8.0-pyhd8ed1ab_0.conda"
+      },
+      {
+        "name": "argdigest",
+        "version": "0.17.1",
+        "build": "py_0",
+        "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+        "url": "https://conda.anaconda.org/uibcdf/label/staging/noarch/argdigest-0.17.1-py_0.tar.bz2"
+      },
+      {
+        "name": "beartype",
+        "version": "0.23.1",
+        "build": "pyh5ded981_0",
+        "sha256": "42131e42cffe141c6bac23edd2ae0f1ff3fc3b14874718710fe00111014f28c6",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/beartype-0.23.1-pyh5ded981_0.conda"
+      },
+      {
+        "name": "bzip2",
+        "version": "1.0.8",
+        "build": "hda65f42_10",
+        "sha256": "1a0d382c515ebf55f8ee1f38c8b81bc95af5c2acc42ad53b66bc5df932032f96",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hda65f42_10.conda"
+      },
+      {
+        "name": "ca-certificates",
+        "version": "2026.10.23",
+        "build": "hbd8a1cb_0",
+        "sha256": "95619b9c1184be7175392eeb0ee7eeb5ccf25d280951f4225f2d62e725790be3",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2026.10.23-hbd8a1cb_0.conda"
+      },
+      {
+        "name": "colorama",
+        "version": "0.4.6",
+        "build": "pyhd8ed1ab_1",
+        "sha256": "ab29d57dc70786c1269633ba3dff20288b81664d3ff8d21af995742e2bb03287",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/colorama-0.4.6-pyhd8ed1ab_1.conda"
+      },
+      {
+        "name": "coverage",
+        "version": "7.17.2",
+        "build": "py314h93e9acf_0",
+        "sha256": "21a475b36ca5957608b1909e510cb13d06f7cf11d7ef818dc2ddf39d380536dd",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/coverage-7.17.2-py314h93e9acf_0.conda"
+      },
+      {
+        "name": "depdigest",
+        "version": "0.15.1",
+        "build": "py_0",
+        "sha256": "2765c692de4e6aacff4197c4226ebb42ec1f0df9edb27e92f196ef1390cb1850",
+        "url": "https://conda.anaconda.org/uibcdf/noarch/depdigest-0.15.1-py_0.tar.bz2"
+      },
+      {
+        "name": "exceptiongroup",
+        "version": "1.3.1",
+        "build": "pyhd8ed1ab_0",
+        "sha256": "ee6cf346d017d954255bbcbdb424cddea4d14e4ed7e9813e429db1d795d01144",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/exceptiongroup-1.3.1-pyhd8ed1ab_0.conda"
+      },
+      {
+        "name": "execnet",
+        "version": "2.1.2",
+        "build": "pyhd8ed1ab_0",
+        "sha256": "1acc6a420efc5b64c384c1f35f49129966f8a12c93b4bb2bdc30079e5dc9d8a8",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/execnet-2.1.2-pyhd8ed1ab_0.conda"
+      },
+      {
+        "name": "flexcache",
+        "version": "0.3",
+        "build": "pyh5ded981_2",
+        "sha256": "fc30fd32ab60300e5ea6c15e3a39b3f3124a9236211fbb8bdb99708d3fbfed33",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/flexcache-0.3-pyh5ded981_2.conda"
+      },
+      {
+        "name": "flexparser",
+        "version": "0.4",
+        "build": "pyh5ded981_2",
+        "sha256": "0a9caab09609fed3a84c3594b62751b3cd7b0d953a7a631175aa3f2c4052765a",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/flexparser-0.4-pyh5ded981_2.conda"
+      },
+      {
+        "name": "iniconfig",
+        "version": "2.3.1",
+        "build": "pyhd8ed1ab_0",
+        "sha256": "8f53876d0fb3525235e39635dd55633abe0a4307b1b3ab1415c80a9e0bbdf663",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/iniconfig-2.3.1-pyhd8ed1ab_0.conda"
+      },
+      {
+        "name": "jinja2",
+        "version": "3.1.6",
+        "build": "pyhcf101f3_1",
+        "sha256": "fc9ca7348a4f25fed2079f2153ecdcf5f9cf2a0bc36c4172420ca09e1849df7b",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/jinja2-3.1.6-pyhcf101f3_1.conda"
+      },
+      {
+        "name": "ld_impl_linux-64",
+        "version": "2.46.1",
+        "build": "default_hbd61a6d_103",
+        "sha256": "901649b1edbe841fd4ee7e2d491a05184ed540eb01cdae506872f344babc1d28",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.46.1-default_hbd61a6d_103.conda"
+      },
+      {
+        "name": "libblas",
+        "version": "3.11.0",
+        "build": "12_h4a7cf45_openblas",
+        "sha256": "6a6263c3d4a484dbac4ae7a8191be5f868c0574bbc7faa42b258bb59dc6d5fa2",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libblas-3.11.0-12_h4a7cf45_openblas.conda"
+      },
+      {
+        "name": "libcblas",
+        "version": "3.11.0",
+        "build": "12_h0358290_openblas",
+        "sha256": "8ea7d98b71e1200e2e4141c1813d6950e6acc917d220bbf54058390d252460f8",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.11.0-12_h0358290_openblas.conda"
+      },
+      {
+        "name": "libexpat",
+        "version": "2.9.0",
+        "build": "hd2095e1_0",
+        "sha256": "7b930a8b6bc6553cb754b4977a11f9c862c719a652fc2d128d89270992ce8beb",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.9.0-hd2095e1_0.conda"
+      },
+      {
+        "name": "libffi",
+        "version": "3.7.0",
+        "build": "h81df57d_1",
+        "sha256": "c8c7583ef063bc3c430f1d48298e5ad24f796a35c22ed5b14183325825a61106",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libffi-3.7.0-h81df57d_1.conda"
+      },
+      {
+        "name": "libgcc",
+        "version": "16.2.0",
+        "build": "ha9f2e26_7",
+        "sha256": "e031634c3a928f9594eba868bc46ef5230d6571a364a0c63215b06c4563bfcea",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libgcc-16.2.0-ha9f2e26_7.conda"
+      },
+      {
+        "name": "libgfortran",
+        "version": "16.2.0",
+        "build": "h69a702a_7",
+        "sha256": "9682ae4dd11487e10b904b3cb3ab6379cad25233d45fdfdf90d54349df244494",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libgfortran-16.2.0-h69a702a_7.conda"
+      },
+      {
+        "name": "libgfortran5",
+        "version": "16.2.0",
+        "build": "h6b99dfc_7",
+        "sha256": "04dbab12c925b92977bb835dd2f5eda413607afa79f95a554e5a04b07a380322",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libgfortran5-16.2.0-h6b99dfc_7.conda"
+      },
+      {
+        "name": "libgomp",
+        "version": "16.2.0",
+        "build": "he0feb66_7",
+        "sha256": "92a0bb350c7be6a4eedcb4e111c60aefd176018e6b1c009a6e025dbe9bbcd758",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libgomp-16.2.0-he0feb66_7.conda"
+      },
+      {
+        "name": "liblapack",
+        "version": "3.11.0",
+        "build": "12_h47877c9_openblas",
+        "sha256": "f048e68a22fbdd927b8a7e007c3da19c6f1d2c08a9e4f6065af68f463c369f19",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/liblapack-3.11.0-12_h47877c9_openblas.conda"
+      },
+      {
+        "name": "liblzma",
+        "version": "5.8.3",
+        "build": "hb03c661_1",
+        "sha256": "9787df8c22a59c9a70d3e5a10db9ad663485e75e9ccc3f09bd092cb7b95e0dab",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.3-hb03c661_1.conda"
+      },
+      {
+        "name": "libmpdec",
+        "version": "4.0.0",
+        "build": "hb03c661_2",
+        "sha256": "46820b4a835e175940ae20bec00fdddaff804cda27a1408ab1b95e77a2196437",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libmpdec-4.0.0-hb03c661_2.conda"
+      },
+      {
+        "name": "libopenblas",
+        "version": "0.3.34",
+        "build": "pthreads_hf13c14d_2",
+        "sha256": "69a722751e14eab2eb3bfdcb9acb1187afbd962b0c49b48d829341e0f6787f60",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.34-pthreads_hf13c14d_2.conda"
+      },
+      {
+        "name": "libpython",
+        "version": "3.14.10",
+        "build": "hd51c5da_100_cp314",
+        "sha256": "3b9f11f136074f81db3ca56f2f514f466456dbab1189e68b3681b53387043daa",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libpython-3.14.10-hd51c5da_100_cp314.conda"
+      },
+      {
+        "name": "libsqlite",
+        "version": "3.54.1",
+        "build": "h0737f62_101",
+        "sha256": "c294029f893d05286f1061bbab85b820f1eea73dd859af4bcc619197bcc34810",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.54.1-h0737f62_101.conda"
+      },
+      {
+        "name": "libstdcxx",
+        "version": "16.2.0",
+        "build": "h934c35e_7",
+        "sha256": "fa7018298629fc429971fffd6ecba3d27a7b02e4e890d6a93ea01ffebe8cb745",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-16.2.0-h934c35e_7.conda"
+      },
+      {
+        "name": "libuuid",
+        "version": "2.42.4",
+        "build": "hcfc3c73_1",
+        "sha256": "0e2e8f2daa9306e67f046e31092d637431d8cf0a26c407ab22401d108c2d4631",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.42.4-hcfc3c73_1.conda"
+      },
+      {
+        "name": "libzlib",
+        "version": "1.3.2",
+        "build": "h25fd6f3_3",
+        "sha256": "eb8a0db0aa570124f7d2a93d7c7f596e3390df5e047818d873baad32985fc736",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.2-h25fd6f3_3.conda"
+      },
+      {
+        "name": "markupsafe",
+        "version": "3.0.4",
+        "build": "py314h93e9acf_4",
+        "sha256": "35b412b97ad6c65e2c5aef1e2039981bc53f847bd0673610a76f133628f24e3b",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/markupsafe-3.0.4-py314h93e9acf_4.conda"
+      },
+      {
+        "name": "ncurses",
+        "version": "6.6",
+        "build": "hdb14827_1",
+        "sha256": "5d46557214ed184381dafe835b7c94a474a1c3b307a08a250b1ea4779b44ffb3",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.6-hdb14827_1.conda"
+      },
+      {
+        "name": "numpy",
+        "version": "2.5.4",
+        "build": "py314hd3a7d6b_0",
+        "sha256": "7533361a15ff1d4c1e7069b9410d32a602a6a9350d717a43731b07e3565a6689",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/numpy-2.5.4-py314hd3a7d6b_0.conda"
+      },
+      {
+        "name": "openssl",
+        "version": "3.6.5",
+        "build": "h781a0a9_0",
+        "sha256": "9c1533f1cf784f0e250919c0c9762d0b0e6bc727a79290ffb7cea1ceca1d038c",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/openssl-3.6.5-h781a0a9_0.conda"
+      },
+      {
+        "name": "packaging",
+        "version": "26.3",
+        "build": "pyhc364b38_0",
+        "sha256": "c432626b16768b8dab228bfb706f7060c2d462a21c516d240f68f2f902b5a044",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/packaging-26.3-pyhc364b38_0.conda"
+      },
+      {
+        "name": "pandas",
+        "version": "3.1.1",
+        "build": "np2py314h9e1d7c2_0",
+        "sha256": "c9dd76336a7377f65c5add933e77f316dc19d5a0cc92c847d21f58ed9360be4a",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/pandas-3.1.1-np2py314h9e1d7c2_0.conda"
+      },
+      {
+        "name": "pint",
+        "version": "0.26.2",
+        "build": "pyhc364b38_0",
+        "sha256": "7e30090b2a75a6f31f9509fefa76b5b6aee7f5853453f7883a5851b87dd2b481",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/pint-0.26.2-pyhc364b38_0.conda"
+      },
+      {
+        "name": "pip",
+        "version": "26.2.2",
+        "build": "pyh145f28c_2",
+        "sha256": "05d34ae3b49973c05c0f2f0f742e202acc6145f733460a0798944b231efd5c1a",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/pip-26.2.2-pyh145f28c_2.conda"
+      },
+      {
+        "name": "platformdirs",
+        "version": "4.14.5",
+        "build": "pyh5ded981_0",
+        "sha256": "8bbb25f131001457e5fd19385000e9d6a8047223a35f4c507d92113eb68d42f9",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/platformdirs-4.14.5-pyh5ded981_0.conda"
+      },
+      {
+        "name": "pluggy",
+        "version": "1.7.0",
+        "build": "pyh5ded981_0",
+        "sha256": "34c40106bc3172b3a47656e84837e13a5d4829d413d65f30fb214e7568a09cea",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/pluggy-1.7.0-pyh5ded981_0.conda"
+      },
+      {
+        "name": "pydantic",
+        "version": "2.14.2",
+        "build": "pyh5ded981_0",
+        "sha256": "a462f1e82ec96ba8034ec12a13f70d5cf4eb8cdf3320f3d6ee545890c92e6ac2",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/pydantic-2.14.2-pyh5ded981_0.conda"
+      },
+      {
+        "name": "pydantic-core",
+        "version": "2.50.2",
+        "build": "py314h7e8cd81_0",
+        "sha256": "115f6fef5e552b7d7dbaadadfafdb6be314d78c2c284381eaa492bbfcbcb0bad",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/pydantic-core-2.50.2-py314h7e8cd81_0.conda"
+      },
+      {
+        "name": "pygments",
+        "version": "2.21.0",
+        "build": "pyhcf101f3_0",
+        "sha256": "f5f015ff1bc3e1b7fc08eee096b1865234189ae0b82bebdb86a5369116e42fa0",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/pygments-2.21.0-pyhcf101f3_0.conda"
+      },
+      {
+        "name": "pytest",
+        "version": "9.2.0",
+        "build": "pyhc364b38_1",
+        "sha256": "a9cf3571e80a4e86992502068eb1d29a109e88345c39babf03b10450895056af",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/pytest-9.2.0-pyhc364b38_1.conda"
+      },
+      {
+        "name": "pytest-cov",
+        "version": "7.1.0",
+        "build": "pyhcf101f3_0",
+        "sha256": "44e42919397bd00bfaa47358a6ca93d4c21493a8c18600176212ec21a8d25ca5",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/pytest-cov-7.1.0-pyhcf101f3_0.conda"
+      },
+      {
+        "name": "pytest-receptor",
+        "version": "1.2.2",
+        "build": "py_0",
+        "sha256": "c0b075286f45e8fce5ab5852947611bfba82b7d509115fc5dadf1a9572b9dd74",
+        "url": "https://conda.anaconda.org/uibcdf/noarch/pytest-receptor-1.2.2-py_0.tar.bz2"
+      },
+      {
+        "name": "pytest-xdist",
+        "version": "3.8.0",
+        "build": "pyhd8ed1ab_0",
+        "sha256": "b7b58a5be090883198411337b99afb6404127809c3d1c9f96e99b59f36177a96",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/pytest-xdist-3.8.0-pyhd8ed1ab_0.conda"
+      },
+      {
+        "name": "python",
+        "version": "3.14.10",
+        "build": "hcd007b5_100_cp314",
+        "sha256": "bb457298c776d0edd30d727d96629e57df63e9a4ba2dd11553019267b61ef5f4",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/python-3.14.10-hcd007b5_100_cp314.conda"
+      },
+      {
+        "name": "python-dateutil",
+        "version": "4.0.0",
+        "build": "pyh5ded981_0",
+        "sha256": "8038f7048c97299f7fe7c8ce957da65b8ada9839afd0f66e345d3096082da975",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/python-dateutil-4.0.0-pyh5ded981_0.conda"
+      },
+      {
+        "name": "python-tzdata",
+        "version": "2026.6",
+        "build": "pyh5ded981_0",
+        "sha256": "bb29725d0d84f5e98f221f2f0afbad4a44cd67b016ab48388592c940bbd75a5e",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/python-tzdata-2026.6-pyh5ded981_0.conda"
+      },
+      {
+        "name": "python_abi",
+        "version": "3.14",
+        "build": "9_cp314",
+        "sha256": "e7f8e965bbfb98e08feb2365cacdad8bb218fa5b5a0a2752f747287f425f213c",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/python_abi-3.14-9_cp314.conda"
+      },
+      {
+        "name": "pyunitwizard",
+        "version": "0.27.0",
+        "build": "py_0",
+        "sha256": "2102b1bd4e8188d4d150f90fcf093425d07fa2858993984016a6e7de10c3aaac",
+        "url": "https://conda.anaconda.org/uibcdf/noarch/pyunitwizard-0.27.0-py_0.tar.bz2"
+      },
+      {
+        "name": "pyyaml",
+        "version": "6.0.3",
+        "build": "py314h19d427c_3",
+        "sha256": "da909204ceee34fc54bd49b96b9151fd3297dec02f4f6c09b7671890e8cb0366",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/pyyaml-6.0.3-py314h19d427c_3.conda"
+      },
+      {
+        "name": "readline",
+        "version": "8.3",
+        "build": "hd6e31c0_1",
+        "sha256": "01b3fe073a66e321970d09e04b388708f8cbdca5cdfbfcb7c9eeb470ad10383d",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/readline-8.3-hd6e31c0_1.conda"
+      },
+      {
+        "name": "smonitor",
+        "version": "0.22.1",
+        "build": "py_0",
+        "sha256": "e9ce6c77a682dddec3a6e724f9cc98cca31c4d6732453d554107ffcf61f23e7e",
+        "url": "https://conda.anaconda.org/uibcdf/noarch/smonitor-0.22.1-py_0.tar.bz2"
+      },
+      {
+        "name": "tk",
+        "version": "8.6.13",
+        "build": "noxft_h1df4ec4_4",
+        "sha256": "a1a241d172c1ccab067ba245206dd048bc3c2d1b84504b53c9468e99adfc16a1",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_h1df4ec4_4.conda"
+      },
+      {
+        "name": "tomli",
+        "version": "2.5.0",
+        "build": "pyh5ded981_0",
+        "sha256": "93b6f517fb7adff00b62be02b798d384a1b34d0e368fdb576fb248bcb3bb9ec7",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/tomli-2.5.0-pyh5ded981_0.conda"
+      },
+      {
+        "name": "typing-extensions",
+        "version": "4.16.0",
+        "build": "h69aa097_0",
+        "sha256": "b141933ece3518f6d7b75dfb59451e2f26b405a44c18e2518a83e9a02e09315c",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/typing-extensions-4.16.0-h69aa097_0.conda"
+      },
+      {
+        "name": "typing-inspection",
+        "version": "0.4.5",
+        "build": "pyh5ded981_0",
+        "sha256": "88c08476c98f264047d6c6bfeb1e8545684dfbcf2c61da338f71033ec17e1f33",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/typing-inspection-0.4.5-pyh5ded981_0.conda"
+      },
+      {
+        "name": "typing_extensions",
+        "version": "4.16.0",
+        "build": "pyhcf101f3_0",
+        "sha256": "2d888f90af0686044882c74193ec80a90ec1943145d94a7b1b048958acda1848",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/typing_extensions-4.16.0-pyhcf101f3_0.conda"
+      },
+      {
+        "name": "tzdata",
+        "version": "2026e",
+        "build": "h5d301ff_0",
+        "sha256": "2b7ca858879f183ce2dcc65b300f48a0133d5430550f35b23d80d405a0788dbf",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/tzdata-2026e-h5d301ff_0.conda"
+      },
+      {
+        "name": "yaml",
+        "version": "0.2.5",
+        "build": "hebe6cf0_3",
+        "sha256": "d164dfa75ecd538f6fd68765defcc06aa875bc697b9b215362d79a2a73125dd0",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/yaml-0.2.5-hebe6cf0_3.conda"
+      },
+      {
+        "name": "zstd",
+        "version": "1.5.7",
+        "build": "hb78ec9c_7",
+        "sha256": "47d682b9f6d6ec9eb1a6e6c3e75ea6273e899e78fb7fc59f81d39745009fbc60",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb78ec9c_7.conda"
+      }
+    ]
+  }
+}

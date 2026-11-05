@@ -1,0 +1,28 @@
+{
+  "repository": "uibcdf/argdigest",
+  "observed_at": "2026-11-05T23:20:17.393759+00:00",
+  "exit_status": 0,
+  "results": [
+    {
+      "repository": "uibcdf/argdigest",
+      "tag": "0.17.1",
+      "version": "0.17.1",
+      "published_at": "2026-11-05T23:08:36Z",
+      "observed_at": "2026-11-05T23:20:17.393759+00:00",
+      "age_hours": 0.195,
+      "archive_coverage": "source-snapshot",
+      "escalation_required": false,
+      "state": "verified",
+      "record_id": 23991088,
+      "concept_doi": "10.5281/zenodo.22892325",
+      "version_doi": "10.5281/zenodo.23991088",
+      "files": [
+        {
+          "key": "uibcdf/argdigest-0.17.1.zip",
+          "size": 691522,
+          "checksum": "md5:d21182b2640bcb754ec36325958d24b3"
+        }
+      ]
+    }
+  ]
+}

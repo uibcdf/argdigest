@@ -1,0 +1,19 @@
+{
+  "schema": "molsyssuite.native-gate@1",
+  "state": "verified",
+  "run_id": 42127303736,
+  "run_attempt": 1,
+  "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+  "workflow": ".github/workflows/verify_zenodo_releases.yaml",
+  "jobs": [
+    {
+      "name": "archival / verify",
+      "job_id": 127594642866,
+      "required_steps": [
+        "Probe public archival evidence once",
+        "Preserve sanitized evidence"
+      ]
+    }
+  ],
+  "event": "release"
+}

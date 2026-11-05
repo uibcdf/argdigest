@@ -1,0 +1,18 @@
+{
+  "checked_at": "2026-11-05T23:33:55.389409+00:00",
+  "files": [
+    {
+      "filename": "argdigest-0.17.1-py_0.tar.bz2",
+      "main_label": "verified",
+      "owner": "uibcdf",
+      "package": "argdigest",
+      "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+      "solver_index": "verified",
+      "subdir": "noarch",
+      "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.17.1-py_0.tar.bz2",
+      "version": "0.17.1"
+    }
+  ],
+  "schema": "molsyssuite.public-conda@1",
+  "state": "verified"
+}

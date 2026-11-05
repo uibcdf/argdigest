@@ -1,0 +1,29 @@
+{
+  "schema": "molsyssuite.native-gate@1",
+  "state": "verified",
+  "run_id": 42127310186,
+  "run_attempt": 1,
+  "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+  "workflow": ".github/workflows/promote_conda_package.yaml",
+  "jobs": [
+    {
+      "name": "release",
+      "job_id": 127594673401,
+      "required_steps": [
+        "Verify public release and minimal-core qualification"
+      ]
+    },
+    {
+      "name": "promote / promote",
+      "job_id": 127597381843,
+      "required_steps": [
+        "Acquire exact-source executed CI gates",
+        "Verify existing installed matrix and executed steps",
+        "Add public label to the same tested file without rebuilding",
+        "Independently verify public label and solver index",
+        "Retain source, installed, promotion and public receipts"
+      ]
+    }
+  ],
+  "event": "workflow_dispatch"
+}

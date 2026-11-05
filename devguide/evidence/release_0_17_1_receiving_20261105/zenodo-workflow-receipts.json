@@ -1,0 +1,45 @@
+{
+  "artifact": {
+    "id": 13461438834,
+    "name": "zenodo-public-evidence",
+    "digest": "sha256:6c25a1a1227ccb37bf950bff6ba0c1c4c3df93914b32c30250d604ae5f878d58",
+    "size_in_bytes": 510,
+    "workflow_run": {
+      "id": 42127303736,
+      "repository_id": 1088948514,
+      "head_repository_id": 1088948514,
+      "head_branch": "0.17.1",
+      "head_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b"
+    }
+  },
+  "receipts": {
+    "zenodo-evidence.json": {
+      "repository": "uibcdf/argdigest",
+      "observed_at": "2026-11-05T23:12:17.028599+00:00",
+      "exit_status": 0,
+      "results": [
+        {
+          "repository": "uibcdf/argdigest",
+          "tag": "0.17.1",
+          "version": "0.17.1",
+          "published_at": "2026-11-05T23:08:36Z",
+          "observed_at": "2026-11-05T23:12:17.028599+00:00",
+          "age_hours": 0.061,
+          "archive_coverage": "source-snapshot",
+          "escalation_required": false,
+          "state": "verified",
+          "record_id": 23991088,
+          "concept_doi": "10.5281/zenodo.22892325",
+          "version_doi": "10.5281/zenodo.23991088",
+          "files": [
+            {
+              "key": "uibcdf/argdigest-0.17.1.zip",
+              "size": 691522,
+              "checksum": "md5:d21182b2640bcb754ec36325958d24b3"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

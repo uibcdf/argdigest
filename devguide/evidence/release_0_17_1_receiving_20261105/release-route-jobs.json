@@ -1,0 +1,143 @@
+[
+  {
+    "id": 127594642915,
+    "run_id": 42127303934,
+    "workflow_name": "Build and upload conda packages",
+    "head_branch": "0.17.1",
+    "run_url": "https://api.github.com/repos/uibcdf/argdigest/actions/runs/42127303934",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOQOgJIs8AAAAdtTu94w",
+    "head_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+    "url": "https://api.github.com/repos/uibcdf/argdigest/actions/jobs/127594642915",
+    "html_url": "https://github.com/uibcdf/argdigest/actions/runs/42127303934/job/127594642915",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-05T23:08:39Z",
+    "started_at": "2026-11-05T23:17:49Z",
+    "completed_at": "2026-11-05T23:18:02Z",
+    "name": "decision",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-05T23:17:50Z",
+        "completed_at": "2026-11-05T23:17:50Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-05T23:17:50Z",
+        "completed_at": "2026-11-05T23:17:52Z"
+      },
+      {
+        "name": "Validate exact source, tag and committed route",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-05T23:17:52Z",
+        "completed_at": "2026-11-05T23:17:52Z"
+      },
+      {
+        "name": "Run actions/setup-python@v6",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-05T23:17:52Z",
+        "completed_at": "2026-11-05T23:17:52Z"
+      },
+      {
+        "name": "Check out the reviewed shared preflight",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-05T23:17:52Z",
+        "completed_at": "2026-11-05T23:17:53Z"
+      },
+      {
+        "name": "Install preflight parser tools",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-11-05T23:17:53Z",
+        "completed_at": "2026-11-05T23:17:59Z"
+      },
+      {
+        "name": "Check exact candidate dependency routes before building",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-11-05T23:17:59Z",
+        "completed_at": "2026-11-05T23:17:59Z"
+      },
+      {
+        "name": "Post Check out the reviewed shared preflight",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-11-05T23:17:59Z",
+        "completed_at": "2026-11-05T23:17:59Z"
+      },
+      {
+        "name": "Post Run actions/setup-python@v6",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-11-05T23:17:59Z",
+        "completed_at": "2026-11-05T23:18:00Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14,
+        "started_at": "2026-11-05T23:18:00Z",
+        "completed_at": "2026-11-05T23:18:00Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15,
+        "started_at": "2026-11-05T23:18:00Z",
+        "completed_at": "2026-11-05T23:18:00Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/uibcdf/argdigest/check-runs/127594642915",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000050093,
+    "runner_name": "GitHub Actions 1000050093",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 127598966023,
+    "run_id": 42127303934,
+    "workflow_name": "Build and upload conda packages",
+    "head_branch": "0.17.1",
+    "run_url": "https://api.github.com/repos/uibcdf/argdigest/actions/runs/42127303934",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOQOgJIs8AAAAdtX21Bw",
+    "head_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+    "url": "https://api.github.com/repos/uibcdf/argdigest/actions/jobs/127598966023",
+    "html_url": "https://github.com/uibcdf/argdigest/actions/runs/42127303934/job/127598966023",
+    "status": "completed",
+    "conclusion": "skipped",
+    "created_at": "2026-11-05T23:18:03Z",
+    "started_at": "2026-11-05T23:18:03Z",
+    "completed_at": "2026-11-05T23:18:02Z",
+    "name": "publish",
+    "steps": [],
+    "check_run_url": "https://api.github.com/repos/uibcdf/argdigest/check-runs/127598966023",
+    "labels": [],
+    "runner_id": null,
+    "runner_name": null,
+    "runner_group_id": null,
+    "runner_group_name": null
+  }
+]

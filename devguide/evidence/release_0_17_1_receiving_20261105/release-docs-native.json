@@ -1,0 +1,21 @@
+{
+  "schema": "molsyssuite.native-gate@1",
+  "state": "verified",
+  "run_id": 42127303380,
+  "run_attempt": 1,
+  "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+  "workflow": ".github/workflows/sphinx_docs_to_gh_pages.yaml",
+  "jobs": [
+    {
+      "name": "Sphinx docs to gh-pages",
+      "job_id": 127594640652,
+      "required_steps": [
+        "Build wheel",
+        "Install from wheel",
+        "Test import module (installed wheel)",
+        "Running the Sphinx to gh-pages Action"
+      ]
+    }
+  ],
+  "event": "release"
+}

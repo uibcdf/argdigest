@@ -1,0 +1,41 @@
+{
+  "schema": "molsyssuite.public-noarch-commands@1",
+  "state": "verified",
+  "coordinate": {
+    "package": "argdigest",
+    "version": "0.17.1",
+    "subdir": "noarch",
+    "filename": "argdigest-0.17.1-py_0.tar.bz2",
+    "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899"
+  },
+  "public_url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.17.1-py_0.tar.bz2",
+  "platform": "linux-64",
+  "python": "3.14",
+  "prefix": "/tmp/argdigest-release0171.BO1HRi/public-env",
+  "commands": [
+    {
+      "command": "argdigest",
+      "target": "argdigest.cli:main",
+      "launcher": "/tmp/argdigest-release0171.BO1HRi/public-env/bin/argdigest",
+      "module_origin": "/tmp/argdigest-release0171.BO1HRi/public-env/lib/python3.14/site-packages/argdigest/cli.py",
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 403,
+        "sha256": "7c2447f86957f860b8419405948d5a60f93abff37679b35865868439f079553a"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "installed_record": {
+    "name": "argdigest",
+    "version": "0.17.1",
+    "build": "py_0",
+    "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+    "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.17.1-py_0.tar.bz2"
+  },
+  "scope": "Installed console --help only; not full installed/scientific/release qualification",
+  "temporary_download_removed": true
+}

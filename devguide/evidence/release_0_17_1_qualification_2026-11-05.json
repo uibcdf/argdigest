@@ -1,0 +1,4658 @@
+{
+  "artifact_bytes": 55828,
+  "authorization": "Diego explicitly authorized publishing 0.17.1 after review of #50; retained in uibcdf/argdigest#51.",
+  "capacity_and_cancellation": {
+    "bounded_same_commit_requeues": 1,
+    "cohort_snapshot": {
+      "observed_at": "2026-11-05T21:54:48.750179+00:00",
+      "repositories": [
+        {
+          "active_macos_jobs": [],
+          "queued_and_in_progress_runs_examined": 0,
+          "repository": "uibcdf/ackredit",
+          "runs_truncated": false
+        },
+        {
+          "active_macos_jobs": [],
+          "queued_and_in_progress_runs_examined": 2,
+          "repository": "uibcdf/argdigest",
+          "runs_truncated": false
+        },
+        {
+          "active_macos_jobs": [],
+          "queued_and_in_progress_runs_examined": 1,
+          "repository": "uibcdf/depdigest",
+          "runs_truncated": false
+        },
+        {
+          "active_macos_jobs": [],
+          "queued_and_in_progress_runs_examined": 4,
+          "repository": "uibcdf/dockingmt",
+          "runs_truncated": false
+        },
+        {
+          "active_macos_jobs": [],
+          "queued_and_in_progress_runs_examined": 0,
+          "repository": "uibcdf/elastnetmt",
+          "runs_truncated": false
+        },
+        {
+          "active_macos_jobs": [],
+          "queued_and_in_progress_runs_examined": 0,
+          "repository": "uibcdf/gh-run-receptor",
+          "runs_truncated": false
+        },
+        {
+          "active_macos_jobs": [],
+          "queued_and_in_progress_runs_examined": 0,
+          "repository": "uibcdf/lindelint",
+          "runs_truncated": false
+        },
+        {
+          "active_macos_jobs": [],
+          "queued_and_in_progress_runs_examined": 0,
+          "repository": "uibcdf/molsys-ai",
+          "runs_truncated": false
+        },
+        {
+          "active_macos_jobs": [
+            {
+              "job": 127465082837,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Full matrix \u2014 macos-15, Python 3.14",
+              "run": 42089455455,
+              "runner": "GitHub Actions 1000049921",
+              "started_at": "2026-11-05T21:42:05Z"
+            }
+          ],
+          "queued_and_in_progress_runs_examined": 8,
+          "repository": "uibcdf/molsysmt",
+          "runs_truncated": false
+        },
+        {
+          "active_macos_jobs": [],
+          "queued_and_in_progress_runs_examined": 9,
+          "repository": "uibcdf/molsysviewer",
+          "runs_truncated": false
+        },
+        {
+          "excluded": "private repository; workflow inventory not read",
+          "repository": "uibcdf/opencastp"
+        },
+        {
+          "active_macos_jobs": [],
+          "queued_and_in_progress_runs_examined": 0,
+          "repository": "uibcdf/peptidemt",
+          "runs_truncated": false
+        },
+        {
+          "active_macos_jobs": [
+            {
+              "job": 127459731262,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.12",
+              "run": 42088433649,
+              "runner": "GitHub Actions 1000049922",
+              "started_at": "2026-11-05T21:42:56Z"
+            }
+          ],
+          "queued_and_in_progress_runs_examined": 3,
+          "repository": "uibcdf/pharmacophoremt",
+          "runs_truncated": false
+        },
+        {
+          "active_macos_jobs": [],
+          "queued_and_in_progress_runs_examined": 0,
+          "repository": "uibcdf/pytest-receptor",
+          "runs_truncated": false
+        },
+        {
+          "active_macos_jobs": [],
+          "queued_and_in_progress_runs_examined": 3,
+          "repository": "uibcdf/pyunitwizard",
+          "runs_truncated": false
+        },
+        {
+          "active_macos_jobs": [],
+          "queued_and_in_progress_runs_examined": 0,
+          "repository": "uibcdf/smonitor",
+          "runs_truncated": false
+        },
+        {
+          "active_macos_jobs": [],
+          "queued_and_in_progress_runs_examined": 0,
+          "repository": "uibcdf/topomt",
+          "runs_truncated": false
+        }
+      ],
+      "scope": "Registered suite cohort at b9852d9; public repository queued and in-progress runs; excludes private repositories and unregistered org work; not a complete account concurrency/billing audit"
+    },
+    "followup_issue": 52,
+    "original_run": 42061400545,
+    "public_organization_snapshot": {
+      "observed_at": "2026-11-05T18:56:59.096049+00:00",
+      "repositories": [
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/ACCPPs"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/AI-Research-Tools"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Academia"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Adaptive_Sampling"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Analysis_Yank"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Benchmarks"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/BiFrEE"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/BiFrEE-Tools"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/CMSN-playground"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/CPP_permeability"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Clustering"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/CosmicMuffin"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/DNMT"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/DataBases_and_Tensors"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/DeCAF"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Developer-Guidelines"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/EBNA1"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/ENM"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Evidence"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/GPCRaptor"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Glycolysis"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Guidelines"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/HIF1"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Hardware-Evaluation-Benchmark-Tools"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/IPyMolSysView"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/ITC"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/ITT-IIMAS-2025"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Intro_DM"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Ixtlilton-Tests"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Ixtlilton-Tools"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/KinNetMT"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/LJ_fluid"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Landscapep"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Logos"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Markov_State_Models"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Mecanica-Estadistica-y-Procesos-Estocasticos"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Metabolic-Network"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Modelo_infeccion"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/MolInterrogator"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/MolSysMT-Old"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/MolSystems_uibcdf"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Molecular-Dynamics-DIY"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Molecular-Simulation-History"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Molecular-Systems"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Morsa"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/OBinding"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/OMembrane"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/OldOld_Sabueso"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Old_Sabueso"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Open-Source-Guidelines"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/OpenCTN"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/OpenCTN-Tools"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/OpenDocker"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/OpenDocker-Tools"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/OpenENM-Tools"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/OpenExplorer"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/OpenInterface"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/OpenMM-Cookbook"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/OpenMM_Workshop"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/OpenPharmacophore"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/OpenPharmacophore-Tools"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/OpenPocket_old"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/OpenTN-Old"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/PDB_Growth_Plot"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Pandas-Alternatives"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Peptides"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Peptides-Landscape"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Peptides_Landscape"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Percolation"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Pockets_and_Cavities"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/ProDy"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/PyPharmer"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Pymol-scripts"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Pynterpred_old"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Python-Projects-Template"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/REMD_testbed"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Sphinx-UIBCDF-theme"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Study_Group_Allostery"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Study_Group_Docking"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Study_Group_ENM"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Study_Group_MMGBSA"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Study_Group_PES"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Study_Group_Pharmacophores"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Study_Group_Pockets"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Talks-MolSysMT"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Taller-Ciencia-Datos"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Taller-Herramientas-Computacionales"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Taller-Libreria-Python"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Taller-Linux"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Taller-Percolacion"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Taller-Python"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Talleres"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Test-sphinx-ghpages"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/TestConda_withF90Libs"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Training"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/UIBCDF-Sphinx-Theme"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/UIBCDF-Standard-Library"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/UIBCDF_biblio"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/UIBCDF_lab"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/UIBCDF_openmmtools"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/UIBCDF_tools"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/Workflows"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/WorkingWithYank"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/YAPP"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/ackredit"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/action-build-and-upload-conda-packages"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/action-html-dir-to-gh-pages"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/action-sphinx-docs-to-gh-pages"
+        },
+        {
+          "examined_runs": 1,
+          "macos_jobs": [
+            {
+              "id": 127399364815,
+              "labels": [
+                "macos-latest"
+              ],
+              "name": "Full test on macos-latest, Python 3.11",
+              "run": 42071223440,
+              "runner_name": "",
+              "started_at": "2026-11-05T17:05:56Z",
+              "status": "queued"
+            },
+            {
+              "id": 127399365343,
+              "labels": [
+                "macos-latest"
+              ],
+              "name": "Full test on macos-latest, Python 3.13",
+              "run": 42071223440,
+              "runner_name": "",
+              "started_at": "2026-11-05T17:05:57Z",
+              "status": "queued"
+            },
+            {
+              "id": 127399365391,
+              "labels": [
+                "macos-latest"
+              ],
+              "name": "Full test on macos-latest, Python 3.12",
+              "run": 42071223440,
+              "runner_name": "",
+              "started_at": "2026-11-05T17:05:57Z",
+              "status": "queued"
+            },
+            {
+              "id": 127399366780,
+              "labels": [
+                "macos-latest"
+              ],
+              "name": "Full test on macos-latest, Python 3.14",
+              "run": 42071223440,
+              "runner_name": "",
+              "started_at": "2026-11-05T17:05:57Z",
+              "status": "queued"
+            }
+          ],
+          "repository": "uibcdf/argdigest"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/bcifreader"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/cmsnkit"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/coding_rules_and_guidelines"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/conda-recipes"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/cookiecutter-project"
+        },
+        {
+          "examined_runs": 1,
+          "macos_jobs": [
+            {
+              "id": 127427483148,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Full test on macos-15, Python 3.12",
+              "run": 42079204173,
+              "runner_name": "",
+              "started_at": "2026-11-05T17:54:49Z",
+              "status": "queued"
+            },
+            {
+              "id": 127427483297,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Full test on macos-15, Python 3.11",
+              "run": 42079204173,
+              "runner_name": "",
+              "started_at": "2026-11-05T17:54:49Z",
+              "status": "queued"
+            },
+            {
+              "id": 127427483298,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Full test on macos-15, Python 3.14",
+              "run": 42079204173,
+              "runner_name": "",
+              "started_at": "2026-11-05T17:54:49Z",
+              "status": "queued"
+            },
+            {
+              "id": 127427483691,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Full test on macos-15, Python 3.13",
+              "run": 42079204173,
+              "runner_name": "",
+              "started_at": "2026-11-05T17:54:49Z",
+              "status": "queued"
+            }
+          ],
+          "repository": "uibcdf/depdigest"
+        },
+        {
+          "examined_runs": 2,
+          "macos_jobs": [],
+          "repository": "uibcdf/dockingmt"
+        },
+        {
+          "examined_runs": 1,
+          "macos_jobs": [
+            {
+              "id": 127375431362,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Build ABI3 wheel on macos-15",
+              "run": 42064683251,
+              "runner_name": "",
+              "started_at": "2026-11-05T16:27:47Z",
+              "status": "queued"
+            }
+          ],
+          "repository": "uibcdf/elastnetmt"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/example_analysis"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/first_web"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/g6pdh"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/gh-run-receptor"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/how-much-energy-is"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/hydramp"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/jupyter-notebooks-programmatically"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/lindelint"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/moli"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/moli-agent"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/moli-dev-observatory"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/moli-visibility-observatory"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/molstar"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/molsys-ai"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/molsys-ai-agent"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/molsys-ai-client"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/molsys-ai-server"
+        },
+        {
+          "examined_runs": 3,
+          "macos_jobs": [
+            {
+              "id": 127367556913,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Full matrix \u2014 macos-15, Python 3.12",
+              "run": 42062370977,
+              "runner_name": "GitHub Actions 1000049579",
+              "started_at": "2026-11-05T18:24:59Z",
+              "status": "in_progress"
+            },
+            {
+              "id": 127367598519,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Full matrix \u2014 macos-15, Python 3.13",
+              "run": 42062370977,
+              "runner_name": "GitHub Actions 1000049600",
+              "started_at": "2026-11-05T18:36:10Z",
+              "status": "in_progress"
+            },
+            {
+              "id": 127367602300,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Full matrix \u2014 macos-15, Python 3.11",
+              "run": 42062370977,
+              "runner_name": "GitHub Actions 1000049602",
+              "started_at": "2026-11-05T18:36:59Z",
+              "status": "in_progress"
+            },
+            {
+              "id": 127446568240,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Full matrix \u2014 macos-15, Python 3.12",
+              "run": 42084552205,
+              "runner_name": "",
+              "started_at": "2026-11-05T18:29:22Z",
+              "status": "queued"
+            },
+            {
+              "id": 127446568328,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Full matrix \u2014 macos-15, Python 3.13",
+              "run": 42084552205,
+              "runner_name": "GitHub Actions 1000049605",
+              "started_at": "2026-11-05T18:39:31Z",
+              "status": "in_progress"
+            },
+            {
+              "id": 127446568444,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Full matrix \u2014 macos-15, Python 3.14",
+              "run": 42084552205,
+              "runner_name": "",
+              "started_at": "2026-11-05T18:29:22Z",
+              "status": "queued"
+            },
+            {
+              "id": 127446568583,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Full matrix \u2014 macos-15, Python 3.11",
+              "run": 42084552205,
+              "runner_name": "",
+              "started_at": "2026-11-05T18:29:22Z",
+              "status": "queued"
+            }
+          ],
+          "repository": "uibcdf/molsysmt"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/molsyssuite"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/molsyssuite-papers"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/molsyssuite-talks"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/molsyssuite-tutorials"
+        },
+        {
+          "examined_runs": 4,
+          "macos_jobs": [
+            {
+              "id": 127448050262,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.11",
+              "run": 42085129662,
+              "runner_name": "",
+              "started_at": "2026-11-05T18:31:58Z",
+              "status": "queued"
+            },
+            {
+              "id": 127448050455,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.12",
+              "run": 42085129662,
+              "runner_name": "",
+              "started_at": "2026-11-05T18:31:58Z",
+              "status": "queued"
+            },
+            {
+              "id": 127448050466,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.14",
+              "run": 42085129662,
+              "runner_name": "",
+              "started_at": "2026-11-05T18:31:58Z",
+              "status": "queued"
+            },
+            {
+              "id": 127448050559,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.13",
+              "run": 42085129662,
+              "runner_name": "",
+              "started_at": "2026-11-05T18:31:58Z",
+              "status": "queued"
+            },
+            {
+              "id": 127417688839,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.13",
+              "run": 42076419226,
+              "runner_name": "",
+              "started_at": "2026-11-05T17:37:21Z",
+              "status": "queued"
+            },
+            {
+              "id": 127417688957,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.12",
+              "run": 42076419226,
+              "runner_name": "",
+              "started_at": "2026-11-05T17:37:21Z",
+              "status": "queued"
+            },
+            {
+              "id": 127417689034,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.11",
+              "run": 42076419226,
+              "runner_name": "",
+              "started_at": "2026-11-05T17:37:21Z",
+              "status": "queued"
+            },
+            {
+              "id": 127417689306,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.14",
+              "run": 42076419226,
+              "runner_name": "",
+              "started_at": "2026-11-05T17:37:21Z",
+              "status": "queued"
+            },
+            {
+              "id": 127368665994,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.14",
+              "run": 42062771914,
+              "runner_name": "",
+              "started_at": "2026-11-05T16:17:00Z",
+              "status": "queued"
+            },
+            {
+              "id": 127368666111,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.11",
+              "run": 42062771914,
+              "runner_name": "",
+              "started_at": "2026-11-05T16:17:00Z",
+              "status": "queued"
+            },
+            {
+              "id": 127368666389,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.13",
+              "run": 42062771914,
+              "runner_name": "",
+              "started_at": "2026-11-05T16:17:00Z",
+              "status": "queued"
+            }
+          ],
+          "repository": "uibcdf/molsysviewer"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/my-codex-utils"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/new_web"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/nextia"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/nglview"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/parallelization_and_distribution"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/peptidemt"
+        },
+        {
+          "examined_runs": 5,
+          "macos_jobs": [
+            {
+              "id": 127459731262,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.12",
+              "run": 42088433649,
+              "runner_name": "",
+              "started_at": "2026-11-05T18:52:29Z",
+              "status": "queued"
+            },
+            {
+              "id": 127459731315,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.13",
+              "run": 42088433649,
+              "runner_name": "",
+              "started_at": "2026-11-05T18:52:29Z",
+              "status": "queued"
+            },
+            {
+              "id": 127459731328,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.11",
+              "run": 42088433649,
+              "runner_name": "",
+              "started_at": "2026-11-05T18:52:29Z",
+              "status": "queued"
+            },
+            {
+              "id": 127459731452,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.14",
+              "run": 42088433649,
+              "runner_name": "",
+              "started_at": "2026-11-05T18:52:29Z",
+              "status": "queued"
+            },
+            {
+              "id": 127419816561,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.12",
+              "run": 42077017297,
+              "runner_name": "",
+              "started_at": "2026-11-05T17:41:05Z",
+              "status": "queued"
+            },
+            {
+              "id": 127419816575,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.11",
+              "run": 42077017297,
+              "runner_name": "",
+              "started_at": "2026-11-05T17:41:05Z",
+              "status": "queued"
+            },
+            {
+              "id": 127419816705,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.13",
+              "run": 42077017297,
+              "runner_name": "",
+              "started_at": "2026-11-05T17:41:05Z",
+              "status": "queued"
+            },
+            {
+              "id": 127419816916,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.14",
+              "run": 42077017297,
+              "runner_name": "",
+              "started_at": "2026-11-05T17:41:05Z",
+              "status": "queued"
+            },
+            {
+              "id": 127376264831,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.14",
+              "run": 42064915465,
+              "runner_name": "",
+              "started_at": "2026-11-05T16:29:08Z",
+              "status": "queued"
+            }
+          ],
+          "repository": "uibcdf/pharmacophoremt"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/pocketmt-tools"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/pocketsmt"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/praxis"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/py-mmcif"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/pyside6-addons-uibcdf"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/pyside6-essentials-uibcdf"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/pytest-receptor"
+        },
+        {
+          "examined_runs": 1,
+          "macos_jobs": [
+            {
+              "id": 127453137384,
+              "labels": [
+                "macos-latest"
+              ],
+              "name": "Full test on macos-latest, Python 3.11",
+              "run": 42086560353,
+              "runner_name": "",
+              "started_at": "2026-11-05T18:40:53Z",
+              "status": "queued"
+            },
+            {
+              "id": 127453137459,
+              "labels": [
+                "macos-latest"
+              ],
+              "name": "Full test on macos-latest, Python 3.13",
+              "run": 42086560353,
+              "runner_name": "",
+              "started_at": "2026-11-05T18:40:53Z",
+              "status": "queued"
+            },
+            {
+              "id": 127453137694,
+              "labels": [
+                "macos-latest"
+              ],
+              "name": "Full test on macos-latest, Python 3.12",
+              "run": 42086560353,
+              "runner_name": "",
+              "started_at": "2026-11-05T18:40:53Z",
+              "status": "queued"
+            },
+            {
+              "id": 127453137757,
+              "labels": [
+                "macos-latest"
+              ],
+              "name": "Full test on macos-latest, Python 3.14",
+              "run": 42086560353,
+              "runner_name": "",
+              "started_at": "2026-11-05T18:40:53Z",
+              "status": "queued"
+            }
+          ],
+          "repository": "uibcdf/pyunitwizard"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/qt6-positioning-uibcdf"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/qt6-webengine-uibcdf"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/recorda"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/recorda-lab"
+        },
+        {
+          "code": null,
+          "repository": "uibcdf/sabueso",
+          "unavailable": "ValueError"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/shiboken6-uibcdf"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/smonitor"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/smonitor-sentinel"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/sphinx"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/sphinx-tabs"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/test_first_dive"
+        },
+        {
+          "examined_runs": 1,
+          "macos_jobs": [
+            {
+              "id": 127355501259,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.13",
+              "run": 42058995973,
+              "runner_name": "",
+              "started_at": "2026-11-05T15:50:50Z",
+              "status": "queued"
+            },
+            {
+              "id": 127355501330,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.14",
+              "run": 42058995973,
+              "runner_name": "GitHub Actions 1000049582",
+              "started_at": "2026-11-05T18:26:33Z",
+              "status": "in_progress"
+            },
+            {
+              "id": 127355501552,
+              "labels": [
+                "macos-15"
+              ],
+              "name": "Test on macos-15, Python 3.11",
+              "run": 42058995973,
+              "runner_name": "",
+              "started_at": "2026-11-05T15:50:50Z",
+              "status": "queued"
+            }
+          ],
+          "repository": "uibcdf/topomt"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/uOR"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/uibcdf.github.io"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/web_molsyssuite"
+        },
+        {
+          "examined_runs": 0,
+          "macos_jobs": [],
+          "repository": "uibcdf/web_startup"
+        }
+      ],
+      "scope": "All API-listed public, nonarchived UIBCDF repositories; queued/in-progress runs, bounded 100 runs/status and 100 jobs/run; no private repository data or billing audit"
+    },
+    "queue_diagnosis_and_sampler_correction": {
+      "condition_result": true,
+      "documented_standard_macos_concurrency": 5,
+      "inference": "Five publicly observed active macOS jobs match the documented standard Free-plan limit; consistent with organization concurrency saturation. Private jobs and administrator support overrides are not audited.",
+      "limits_reference": "https://docs.github.com/en/actions/reference/limits#job-concurrency-limits-for-github-hosted-runners",
+      "messages": [
+        "All GitHub-hosted runners with label [macos-latest] are busy.",
+        "Job is about to start running on the hosted runner: GitHub Actions 1000049494",
+        "Job is waiting for a hosted runner to come online."
+      ],
+      "observed_at": "2026-11-05T18:58:17.635202+00:00",
+      "public_active_macos_jobs": [
+        {
+          "id": 127367556913,
+          "labels": [
+            "macos-15"
+          ],
+          "name": "Full matrix \u2014 macos-15, Python 3.12",
+          "repository": "uibcdf/molsysmt",
+          "run": 42062370977,
+          "runner_name": "GitHub Actions 1000049579",
+          "started_at": "2026-11-05T18:24:59Z",
+          "status": "in_progress"
+        },
+        {
+          "id": 127367598519,
+          "labels": [
+            "macos-15"
+          ],
+          "name": "Full matrix \u2014 macos-15, Python 3.13",
+          "repository": "uibcdf/molsysmt",
+          "run": 42062370977,
+          "runner_name": "GitHub Actions 1000049600",
+          "started_at": "2026-11-05T18:36:10Z",
+          "status": "in_progress"
+        },
+        {
+          "id": 127367602300,
+          "labels": [
+            "macos-15"
+          ],
+          "name": "Full matrix \u2014 macos-15, Python 3.11",
+          "repository": "uibcdf/molsysmt",
+          "run": 42062370977,
+          "runner_name": "GitHub Actions 1000049602",
+          "started_at": "2026-11-05T18:36:59Z",
+          "status": "in_progress"
+        },
+        {
+          "id": 127446568328,
+          "labels": [
+            "macos-15"
+          ],
+          "name": "Full matrix \u2014 macos-15, Python 3.13",
+          "repository": "uibcdf/molsysmt",
+          "run": 42084552205,
+          "runner_name": "GitHub Actions 1000049605",
+          "started_at": "2026-11-05T18:39:31Z",
+          "status": "in_progress"
+        },
+        {
+          "id": 127355501330,
+          "labels": [
+            "macos-15"
+          ],
+          "name": "Test on macos-15, Python 3.14",
+          "repository": "uibcdf/topomt",
+          "run": 42058995973,
+          "runner_name": "GitHub Actions 1000049582",
+          "started_at": "2026-11-05T18:26:33Z",
+          "status": "in_progress"
+        }
+      ],
+      "reported_by": "Diego, through the current task conversation",
+      "requested_labels": [
+        "macos-latest"
+      ],
+      "sampling_correction": "Earlier task-local sampler inspected only runs with status=in_progress and could miss active jobs within runs returned with status=queued. The current public-org audit inspects both statuses. Source/native release-gate verification is independent of this diagnostic sampler.",
+      "source": "GitHub Actions queued job UI for ArgDigest run 42071223440",
+      "visible_organization_plan": "free"
+    },
+    "reason": "Eight passes; four macOS cells never started after 16 minutes/multiple snapshots. Ordinary cancel accepted but run stayed queued; documented force-cancel then completed it. Replacement preserves exact SHA and all twelve cells."
+  },
+  "github_status_during_qualification": {
+    "components": [
+      {
+        "created_at": "2017-01-31T20:05:05.370Z",
+        "description": "Performance of git clones, pulls, pushes, and associated operations",
+        "group": false,
+        "group_id": null,
+        "id": "8l4ygp009s5s",
+        "name": "Git Operations",
+        "only_show_if_degraded": false,
+        "page_id": "kctbh9vrtdwd",
+        "position": 1,
+        "showcase": true,
+        "start_date": null,
+        "status": "operational",
+        "updated_at": "2026-11-04T11:30:42.148Z"
+      },
+      {
+        "created_at": "2019-11-13T18:00:24.256Z",
+        "description": "Real time HTTP callbacks of user-generated and system events",
+        "group": false,
+        "group_id": null,
+        "id": "4230lsnqdsld",
+        "name": "Webhooks",
+        "only_show_if_degraded": false,
+        "page_id": "kctbh9vrtdwd",
+        "position": 2,
+        "showcase": true,
+        "start_date": null,
+        "status": "operational",
+        "updated_at": "2026-11-04T16:45:48.169Z"
+      },
+      {
+        "created_at": "2018-12-05T19:39:40.838Z",
+        "description": null,
+        "group": false,
+        "group_id": null,
+        "id": "0l2p9nhqnxpd",
+        "name": "Visit www.githubstatus.com for more information",
+        "only_show_if_degraded": false,
+        "page_id": "kctbh9vrtdwd",
+        "position": 3,
+        "showcase": false,
+        "start_date": null,
+        "status": "operational",
+        "updated_at": "2025-03-19T05:00:21.309Z"
+      },
+      {
+        "created_at": "2017-01-31T20:01:46.621Z",
+        "description": "Requests for GitHub APIs",
+        "group": false,
+        "group_id": null,
+        "id": "brv1bkgrwx7q",
+        "name": "API Requests",
+        "only_show_if_degraded": false,
+        "page_id": "kctbh9vrtdwd",
+        "position": 4,
+        "showcase": true,
+        "start_date": null,
+        "status": "operational",
+        "updated_at": "2026-11-04T11:30:42.176Z"
+      },
+      {
+        "created_at": "2017-01-31T20:01:46.638Z",
+        "description": "Requests for Issues on GitHub.com",
+        "group": false,
+        "group_id": null,
+        "id": "kr09ddfgbfsf",
+        "name": "Issues",
+        "only_show_if_degraded": false,
+        "page_id": "kctbh9vrtdwd",
+        "position": 5,
+        "showcase": true,
+        "start_date": null,
+        "status": "operational",
+        "updated_at": "2026-11-04T11:30:42.209Z"
+      },
+      {
+        "created_at": "2020-09-02T15:39:06.329Z",
+        "description": "Requests for Pull Requests on GitHub.com",
+        "group": false,
+        "group_id": null,
+        "id": "hhtssxt0f5v2",
+        "name": "Pull Requests",
+        "only_show_if_degraded": false,
+        "page_id": "kctbh9vrtdwd",
+        "position": 6,
+        "showcase": true,
+        "start_date": null,
+        "status": "operational",
+        "updated_at": "2026-11-04T11:30:42.240Z"
+      },
+      {
+        "created_at": "2019-11-13T18:02:19.432Z",
+        "description": "Workflows, Compute and Orchestration for GitHub Actions",
+        "group": false,
+        "group_id": null,
+        "id": "br0l2tvcx85d",
+        "name": "Actions",
+        "only_show_if_degraded": false,
+        "page_id": "kctbh9vrtdwd",
+        "position": 7,
+        "showcase": true,
+        "start_date": null,
+        "status": "operational",
+        "updated_at": "2026-11-05T17:04:46.765Z"
+      },
+      {
+        "created_at": "2019-11-13T18:02:40.064Z",
+        "description": "API requests and webhook delivery for GitHub Packages",
+        "group": false,
+        "group_id": null,
+        "id": "st3j38cctv9l",
+        "name": "Packages",
+        "only_show_if_degraded": false,
+        "page_id": "kctbh9vrtdwd",
+        "position": 8,
+        "showcase": true,
+        "start_date": null,
+        "status": "operational",
+        "updated_at": "2026-10-22T17:41:38.649Z"
+      },
+      {
+        "created_at": "2017-01-31T20:04:33.923Z",
+        "description": "Frontend application and API servers for Pages builds",
+        "group": false,
+        "group_id": null,
+        "id": "vg70hn9s2tyj",
+        "name": "Pages",
+        "only_show_if_degraded": false,
+        "page_id": "kctbh9vrtdwd",
+        "position": 9,
+        "showcase": true,
+        "start_date": null,
+        "status": "operational",
+        "updated_at": "2026-11-04T16:48:03.098Z"
+      },
+      {
+        "created_at": "2022-06-21T16:04:33.017Z",
+        "description": null,
+        "group": false,
+        "group_id": null,
+        "id": "pjmpxvq2cmr2",
+        "name": "Copilot",
+        "only_show_if_degraded": false,
+        "page_id": "kctbh9vrtdwd",
+        "position": 10,
+        "showcase": true,
+        "start_date": "2022-06-21",
+        "status": "operational",
+        "updated_at": "2026-11-03T13:51:46.173Z"
+      },
+      {
+        "created_at": "2021-08-11T16:02:09.505Z",
+        "description": "Orchestration and Compute for GitHub Codespaces",
+        "group": false,
+        "group_id": null,
+        "id": "h2ftsgbw7kmk",
+        "name": "Codespaces",
+        "only_show_if_degraded": false,
+        "page_id": "kctbh9vrtdwd",
+        "position": 11,
+        "showcase": true,
+        "start_date": "2021-08-11",
+        "status": "operational",
+        "updated_at": "2026-07-14T09:51:08.862Z"
+      },
+      {
+        "created_at": "2026-04-17T12:33:08.827Z",
+        "description": null,
+        "group": false,
+        "group_id": null,
+        "id": "cnnb39dkkk82",
+        "name": "Copilot AI Model Providers",
+        "only_show_if_degraded": false,
+        "page_id": "kctbh9vrtdwd",
+        "position": 12,
+        "showcase": true,
+        "start_date": "2026-04-17",
+        "status": "operational",
+        "updated_at": "2026-11-02T18:10:34.849Z"
+      }
+    ],
+    "incidents": [
+      {
+        "components": [
+          {
+            "created_at": "2019-11-13T18:02:19.432Z",
+            "description": "Workflows, Compute and Orchestration for GitHub Actions",
+            "group": false,
+            "group_id": null,
+            "id": "br0l2tvcx85d",
+            "name": "Actions",
+            "only_show_if_degraded": false,
+            "page_id": "kctbh9vrtdwd",
+            "position": 7,
+            "showcase": true,
+            "start_date": null,
+            "status": "operational",
+            "updated_at": "2026-11-05T17:04:46.765Z"
+          }
+        ],
+        "created_at": "2026-11-05T16:50:11.086Z",
+        "id": "t89g2q1800fr",
+        "impact": "minor",
+        "incident_updates": [
+          {
+            "affected_components": [
+              {
+                "code": "br0l2tvcx85d",
+                "name": "Actions",
+                "new_status": "operational",
+                "old_status": "degraded_performance"
+              }
+            ],
+            "body": "The degradation affecting Actions has been mitigated. We are monitoring to ensure stability.",
+            "created_at": "2026-11-05T17:04:46.807Z",
+            "custom_tweet": null,
+            "deliver_notifications": true,
+            "display_at": "2026-11-05T17:04:46.807Z",
+            "id": "3ywq277gtz6y",
+            "incident_id": "t89g2q1800fr",
+            "status": "monitoring",
+            "tweet_id": null,
+            "updated_at": "2026-11-05T17:04:46.807Z"
+          },
+          {
+            "affected_components": [
+              {
+                "code": "br0l2tvcx85d",
+                "name": "Actions",
+                "new_status": "degraded_performance",
+                "old_status": "degraded_performance"
+              }
+            ],
+            "body": "Some GitHub Actions workflow runs may experience delays or errors when starting. We\u2019re investigating and preparing a mitigation.",
+            "created_at": "2026-11-05T16:52:52.693Z",
+            "custom_tweet": null,
+            "deliver_notifications": true,
+            "display_at": "2026-11-05T16:52:52.693Z",
+            "id": "dw0tfy5cbltv",
+            "incident_id": "t89g2q1800fr",
+            "status": "investigating",
+            "tweet_id": null,
+            "updated_at": "2026-11-05T16:52:52.693Z"
+          },
+          {
+            "affected_components": [
+              {
+                "code": "br0l2tvcx85d",
+                "name": "Actions",
+                "new_status": "degraded_performance",
+                "old_status": "operational"
+              }
+            ],
+            "body": "We are investigating reports of degraded performance for Actions",
+            "created_at": "2026-11-05T16:50:11.189Z",
+            "custom_tweet": null,
+            "deliver_notifications": true,
+            "display_at": "2026-11-05T16:50:11.189Z",
+            "id": "1hy623fym6bv",
+            "incident_id": "t89g2q1800fr",
+            "status": "investigating",
+            "tweet_id": null,
+            "updated_at": "2026-11-05T16:50:11.189Z"
+          }
+        ],
+        "monitoring_at": "2026-11-05T17:04:46.807Z",
+        "name": "Incident with Actions",
+        "page_id": "kctbh9vrtdwd",
+        "reminder_intervals": null,
+        "resolved_at": null,
+        "shortlink": "https://stspg.io/lv4q3xm9r0rk",
+        "started_at": "2026-11-05T16:50:11.078Z",
+        "status": "monitoring",
+        "updated_at": "2026-11-05T17:04:46.838Z"
+      }
+    ],
+    "page": {
+      "id": "kctbh9vrtdwd",
+      "name": "GitHub",
+      "time_zone": "Etc/UTC",
+      "updated_at": "2026-11-05T17:35:58.892Z",
+      "url": "https://www.githubstatus.com"
+    },
+    "scheduled_maintenances": [],
+    "status": {
+      "description": "All Systems Operational",
+      "indicator": "none"
+    }
+  },
+  "identity": {
+    "build_number": 0,
+    "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+    "filename": "argdigest-0.17.1-py_0.tar.bz2",
+    "owner": "uibcdf",
+    "package": "argdigest",
+    "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+    "subdir": "noarch",
+    "version": "0.17.1"
+  },
+  "initial_absence": {
+    "checked_at": "2026-11-05T16:07:16.500751+00:00",
+    "http_status": 404,
+    "scope": "all-labels",
+    "state": "absent",
+    "url": "https://api.anaconda.org/release/uibcdf/argdigest/0.17.1"
+  },
+  "installed": {
+    "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+    "checked_at": "2026-11-05T23:08:21.597150+00:00",
+    "jobs": [
+      {
+        "conclusion": "success",
+        "job_id": 127538545221,
+        "kind": "prepare",
+        "name": "installed / prepare"
+      },
+      {
+        "conclusion": "success",
+        "job_id": 127538679345,
+        "kind": "installed",
+        "name": "installed / osx-arm64 \u00b7 Python 3.11",
+        "platform": "osx-arm64",
+        "python": "3.11"
+      },
+      {
+        "conclusion": "success",
+        "job_id": 127538679368,
+        "kind": "installed",
+        "name": "installed / linux-64 \u00b7 Python 3.11",
+        "platform": "linux-64",
+        "python": "3.11"
+      },
+      {
+        "conclusion": "success",
+        "job_id": 127538679393,
+        "kind": "installed",
+        "name": "installed / linux-64 \u00b7 Python 3.13",
+        "platform": "linux-64",
+        "python": "3.13"
+      },
+      {
+        "conclusion": "success",
+        "job_id": 127538679457,
+        "kind": "installed",
+        "name": "installed / linux-64 \u00b7 Python 3.12",
+        "platform": "linux-64",
+        "python": "3.12"
+      },
+      {
+        "conclusion": "success",
+        "job_id": 127538679485,
+        "kind": "installed",
+        "name": "installed / osx-arm64 \u00b7 Python 3.14",
+        "platform": "osx-arm64",
+        "python": "3.14"
+      },
+      {
+        "conclusion": "success",
+        "job_id": 127538679493,
+        "kind": "installed",
+        "name": "installed / win-64 \u00b7 Python 3.13",
+        "platform": "win-64",
+        "python": "3.13"
+      },
+      {
+        "conclusion": "success",
+        "job_id": 127538679497,
+        "kind": "installed",
+        "name": "installed / osx-arm64 \u00b7 Python 3.13",
+        "platform": "osx-arm64",
+        "python": "3.13"
+      },
+      {
+        "conclusion": "success",
+        "job_id": 127538679501,
+        "kind": "installed",
+        "name": "installed / win-64 \u00b7 Python 3.14",
+        "platform": "win-64",
+        "python": "3.14"
+      },
+      {
+        "conclusion": "success",
+        "job_id": 127538679516,
+        "kind": "installed",
+        "name": "installed / win-64 \u00b7 Python 3.11",
+        "platform": "win-64",
+        "python": "3.11"
+      },
+      {
+        "conclusion": "success",
+        "job_id": 127538679545,
+        "kind": "installed",
+        "name": "installed / linux-64 \u00b7 Python 3.14",
+        "platform": "linux-64",
+        "python": "3.14"
+      },
+      {
+        "conclusion": "success",
+        "job_id": 127538679595,
+        "kind": "installed",
+        "name": "installed / win-64 \u00b7 Python 3.12",
+        "platform": "win-64",
+        "python": "3.12"
+      },
+      {
+        "conclusion": "success",
+        "job_id": 127538679603,
+        "kind": "installed",
+        "name": "installed / osx-arm64 \u00b7 Python 3.12",
+        "platform": "osx-arm64",
+        "python": "3.12"
+      }
+    ],
+    "repository": "uibcdf/argdigest",
+    "run_attempt": 1,
+    "run_id": 42111095969,
+    "schema": "molsyssuite.installed-matrix@1",
+    "state": "verified",
+    "title": "Installed argdigest-0.17.1-py_0.tar.bz2 5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+    "workflow": ".github/workflows/test_staged_conda_package.yaml"
+  },
+  "issues": [
+    "uibcdf/argdigest#51",
+    "uibcdf/molsyssuite#169",
+    "uibcdf/argdigest#50",
+    "uibcdf/argdigest#53"
+  ],
+  "limits": [
+    "Superseded cb97df7 runs do not qualify the final candidate. Its #53 regression was corrected before any build/upload.",
+    "The twelve-cell full installed selection includes all scientific tests and the explicit 28-control SMonitor receiving module. Existing absent-sibling source E2E skips are retained separately from executed required cells/steps.",
+    "The separate minimal-core matrix retains SMonitor 0.16.0 / DepDigest 0.11.0 without NumPy.",
+    "No tag or public promotion is claimed by staged qualification; same-file publication and fresh public receiving are recorded separately.",
+    "An accidentally duplicated task-local monitor launched two producer runs. Only original successful run 42094355330 and its digest bind this qualification. Failed duplicate 42094355382, including its different unaccepted private-build digest and unverified upload receipt, is retained separately; the registered original file was not replaced. No new producer invocation was requested during reconciliation."
+  ],
+  "local_receipts": [
+    "devguide/evidence/issue50_20261105.json",
+    "devguide/evidence/issue53_20261105.json"
+  ],
+  "minimal_core": {
+    "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+    "event": "workflow_dispatch",
+    "exact_jobs": true,
+    "jobs": [
+      {
+        "job_id": 127538559089,
+        "name": "Core ubuntu-latest / Python 3.11",
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "job_id": 127538559050,
+        "name": "Core ubuntu-latest / Python 3.12",
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "job_id": 127538558848,
+        "name": "Core ubuntu-latest / Python 3.13",
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "job_id": 127538559139,
+        "name": "Core ubuntu-latest / Python 3.14",
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "job_id": 127538560059,
+        "name": "Core macos-latest / Python 3.11",
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "job_id": 127538558525,
+        "name": "Core macos-latest / Python 3.12",
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "job_id": 127538559015,
+        "name": "Core macos-latest / Python 3.13",
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "job_id": 127538559149,
+        "name": "Core macos-latest / Python 3.14",
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "job_id": 127538559063,
+        "name": "Core windows-latest / Python 3.11",
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "job_id": 127538559081,
+        "name": "Core windows-latest / Python 3.12",
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "job_id": 127538559287,
+        "name": "Core windows-latest / Python 3.13",
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      },
+      {
+        "job_id": 127538559115,
+        "name": "Core windows-latest / Python 3.14",
+        "required_steps": [
+          "Verify exact installed core without NumPy"
+        ]
+      }
+    ],
+    "run_attempt": 1,
+    "run_id": 42111100594,
+    "schema": "molsyssuite.native-gate@1",
+    "state": "verified",
+    "title": "Core installed argdigest-0.17.1-py_0.tar.bz2 5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+    "workflow": ".github/workflows/test_staged_core_conda_package.yaml"
+  },
+  "observed_at": "2026-11-05T23:08:27.869780+00:00",
+  "policy_gates": {
+    "42070965989": {
+      "conclusion": "success",
+      "headSha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+      "jobs": [
+        {
+          "completedAt": "2026-11-05T17:16:53Z",
+          "conclusion": "success",
+          "databaseId": 127398439634,
+          "name": "policy / conformance",
+          "startedAt": "2026-11-05T17:16:36Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-11-05T17:16:38Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-11-05T17:16:37Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-11-05T17:16:40Z",
+              "conclusion": "success",
+              "name": "Check out member repository",
+              "number": 2,
+              "startedAt": "2026-11-05T17:16:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-11-05T17:16:40Z",
+              "conclusion": "success",
+              "name": "Set up policy Python",
+              "number": 3,
+              "startedAt": "2026-11-05T17:16:40Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-11-05T17:16:41Z",
+              "conclusion": "success",
+              "name": "Check out MolSysSuite policy",
+              "number": 4,
+              "startedAt": "2026-11-05T17:16:40Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-11-05T17:16:43Z",
+              "conclusion": "success",
+              "name": "Check repository conformance",
+              "number": 5,
+              "startedAt": "2026-11-05T17:16:41Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-11-05T17:16:47Z",
+              "conclusion": "success",
+              "name": "Install the policy Ruff version",
+              "number": 6,
+              "startedAt": "2026-11-05T17:16:43Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-11-05T17:16:47Z",
+              "conclusion": "success",
+              "name": "Check Python lint and imports",
+              "number": 7,
+              "startedAt": "2026-11-05T17:16:47Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-11-05T17:16:47Z",
+              "conclusion": "success",
+              "name": "Check Python formatting",
+              "number": 8,
+              "startedAt": "2026-11-05T17:16:47Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-11-05T17:16:47Z",
+              "conclusion": "success",
+              "name": "Post Check out MolSysSuite policy",
+              "number": 14,
+              "startedAt": "2026-11-05T17:16:47Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-11-05T17:16:47Z",
+              "conclusion": "success",
+              "name": "Post Set up policy Python",
+              "number": 15,
+              "startedAt": "2026-11-05T17:16:47Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-11-05T17:16:48Z",
+              "conclusion": "success",
+              "name": "Post Check out member repository",
+              "number": 16,
+              "startedAt": "2026-11-05T17:16:47Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-11-05T17:16:48Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 17,
+              "startedAt": "2026-11-05T17:16:48Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/uibcdf/argdigest/actions/runs/42070965989/job/127398439634"
+        }
+      ],
+      "status": "completed"
+    },
+    "42070966110": {
+      "conclusion": "success",
+      "headSha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+      "jobs": [
+        {
+          "completedAt": "2026-11-05T17:05:08Z",
+          "conclusion": "success",
+          "databaseId": 127398440362,
+          "name": "publication / check",
+          "startedAt": "2026-11-05T17:04:56Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-11-05T17:04:58Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-11-05T17:04:57Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-11-05T17:04:59Z",
+              "conclusion": "success",
+              "name": "Run actions/checkout@v4",
+              "number": 2,
+              "startedAt": "2026-11-05T17:04:58Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-11-05T17:05:00Z",
+              "conclusion": "success",
+              "name": "Run actions/checkout@v4",
+              "number": 3,
+              "startedAt": "2026-11-05T17:04:59Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-11-05T17:05:00Z",
+              "conclusion": "success",
+              "name": "Run actions/setup-python@v5",
+              "number": 4,
+              "startedAt": "2026-11-05T17:05:00Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-11-05T17:05:04Z",
+              "conclusion": "success",
+              "name": "Run python -m pip install --disable-pip-version-check PyYAML==6.0.3 'Jinja2>=3,<4' 'packaging>=24'",
+              "number": 5,
+              "startedAt": "2026-11-05T17:05:00Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-11-05T17:05:04Z",
+              "conclusion": "success",
+              "name": "Check publication workflow controls",
+              "number": 6,
+              "startedAt": "2026-11-05T17:05:04Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-11-05T17:05:04Z",
+              "conclusion": "success",
+              "name": "Check declared noarch recipe and resources without building",
+              "number": 7,
+              "startedAt": "2026-11-05T17:05:04Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-11-05T17:05:05Z",
+              "conclusion": "success",
+              "name": "Post Run actions/setup-python@v5",
+              "number": 12,
+              "startedAt": "2026-11-05T17:05:04Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-11-05T17:05:05Z",
+              "conclusion": "success",
+              "name": "Post Run actions/checkout@v4",
+              "number": 13,
+              "startedAt": "2026-11-05T17:05:05Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-11-05T17:05:05Z",
+              "conclusion": "success",
+              "name": "Post Run actions/checkout@v4",
+              "number": 14,
+              "startedAt": "2026-11-05T17:05:05Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-11-05T17:05:05Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 15,
+              "startedAt": "2026-11-05T17:05:05Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/uibcdf/argdigest/actions/runs/42070966110/job/127398440362"
+        }
+      ],
+      "status": "completed"
+    }
+  },
+  "producer": {
+    "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+    "event": "workflow_dispatch",
+    "jobs": [
+      {
+        "job_id": 127480406924,
+        "name": "decision",
+        "required_steps": [
+          "Validate exact source, tag and committed route",
+          "Check exact candidate dependency routes before building"
+        ]
+      },
+      {
+        "job_id": 127482372051,
+        "name": "publish / publish",
+        "required_steps": [
+          "Check recipe and committed resource inventory before building",
+          "Acquire exact-source executed CI gates and route preflight",
+          "Freeze reviewed metadata in the ephemeral build checkout",
+          "Build once and run recipe tests without uploading or conversion",
+          "Inspect exact built metadata, embedded version and resources",
+          "Upload exact reviewed file to staging",
+          "Retain candidate, producer and independent receipts"
+        ]
+      }
+    ],
+    "run_attempt": 1,
+    "run_id": 42094355330,
+    "schema": "molsyssuite.native-gate@1",
+    "state": "verified",
+    "workflow": ".github/workflows/build_and_upload_conda_packages.yaml"
+  },
+  "producer_handoff": {
+    "caller": "uibcdf/molsyssuite/.github/workflows/test-installed-noarch-conda.yaml@13a661e348275496a677a1bfe9650d68a03713a3",
+    "checked_at": "2026-11-05T21:16:12.941909+00:00",
+    "identity": {
+      "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+      "filename": "argdigest-0.17.1-py_0.tar.bz2",
+      "owner": "uibcdf",
+      "package": "argdigest",
+      "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+      "subdir": "noarch",
+      "version": "0.17.1"
+    },
+    "installed_profile": {
+      "job_template": "installed / {platform} \u00b7 Python {python}",
+      "platforms": [
+        "linux-64",
+        "osx-arm64",
+        "win-64"
+      ],
+      "prepare_job": "installed / prepare",
+      "python_versions": [
+        "3.11",
+        "3.12",
+        "3.13",
+        "3.14"
+      ],
+      "required_steps": [
+        "Install exact artifact",
+        "Validate installed files",
+        "Run installed tests",
+        "Recheck installed provenance after scientific tests"
+      ]
+    },
+    "mutation_performed": false,
+    "next_command": [
+      "gh",
+      "workflow",
+      "run",
+      ".github/workflows/test_staged_conda_package.yaml",
+      "--repo",
+      "uibcdf/argdigest",
+      "--ref",
+      "release/0.17.1-candidate",
+      "--raw-field",
+      "candidate_sha=c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+      "--raw-field",
+      "sha256=5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+      "--raw-field",
+      "filename=argdigest-0.17.1-py_0.tar.bz2"
+    ],
+    "next_operation": "qualify-installed",
+    "producer": {
+      "artifact": {
+        "digest": "sha256:bdf395af78aeaea491a23b8de3344168f3158d919fb50e0008adab3e7a83c8b3",
+        "id": 13446159106,
+        "name": "noarch-publication-42094355330-1",
+        "size_in_bytes": 2687,
+        "workflow_run": {
+          "head_branch": "release/0.17.1-candidate",
+          "head_repository_id": 1088948514,
+          "head_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+          "id": 42094355330,
+          "repository_id": 1088948514
+        }
+      },
+      "run_attempt": 1,
+      "run_id": 42094355330,
+      "workflow_head_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b"
+    },
+    "qualification_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+    "registry": {
+      "basename": "noarch/argdigest-0.17.1-py_0.tar.bz2",
+      "labels": [
+        "staging"
+      ],
+      "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899"
+    },
+    "repository": "uibcdf/argdigest",
+    "schema": "molsyssuite.noarch-handoff@1",
+    "state": "prepared"
+  },
+  "producer_receipts": {
+    "artifact": {
+      "digest": "sha256:bdf395af78aeaea491a23b8de3344168f3158d919fb50e0008adab3e7a83c8b3",
+      "id": 13446159106,
+      "name": "noarch-publication-42094355330-1",
+      "size_in_bytes": 2687,
+      "workflow_run": {
+        "head_branch": "release/0.17.1-candidate",
+        "head_repository_id": 1088948514,
+        "head_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+        "id": 42094355330,
+        "repository_id": 1088948514
+      }
+    },
+    "receipts": {
+      "_temp/conda-upload-receipt.json": {
+        "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+        "checked_at": "2026-11-05T19:42:53.627937+00:00",
+        "coordinate": {
+          "filename": "argdigest-0.17.1-py_0.tar.bz2",
+          "owner": "uibcdf",
+          "package": "argdigest",
+          "subdir": "noarch",
+          "version": "0.17.1"
+        },
+        "label": "staging",
+        "preflight": {
+          "scope": "all-labels",
+          "state": "absent"
+        },
+        "schema": "uibcdf.conda-upload@1",
+        "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+        "state": "verified",
+        "subject": {
+          "repository": "uibcdf/argdigest",
+          "run_attempt": "1",
+          "run_id": "42094355330"
+        }
+      },
+      "_temp/gh-run-receptor-events-42094355330-1-publish-0/gh-run-receptor-events.json": {
+        "events": [
+          {
+            "artifact": "argdigest-0.17.1-py_0.tar.bz2",
+            "build": "success",
+            "kind": "conda.package",
+            "platform": "noarch",
+            "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+            "upload": "not_requested"
+          }
+        ],
+        "producer": {
+          "ref": "87c70b1443d5f22d738ee3ddf812bdbe0152f6c2",
+          "repository": "uibcdf/action-build-and-upload-conda-packages"
+        },
+        "schema": "gh-run-receptor.events@1",
+        "subject": {
+          "head_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+          "job_key": "publish",
+          "matrix_index": null,
+          "repository": "uibcdf/argdigest",
+          "run_attempt": 1,
+          "run_id": 42094355330
+        }
+      },
+      "argdigest/argdigest/noarch-artifact.json": {
+        "artifact": "/tmp/compilation-jtPhKNQmMf/noarch/argdigest-0.17.1-py_0.tar.bz2",
+        "build_number": 0,
+        "filename": "argdigest-0.17.1-py_0.tar.bz2",
+        "package": "argdigest",
+        "route": "staged",
+        "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+        "subdir": "noarch",
+        "version": "0.17.1"
+      },
+      "argdigest/argdigest/noarch-preflight.json": {
+        "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+        "checked_at": "2026-11-05T19:40:41.748750+00:00",
+        "checkout_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+        "decision_by": "Diego explicitly authorized preparing and publishing 0.17.1 after reviewing #50 on 2026-11-05 (uibcdf/argdigest#51). Preserve original 0.17.0 tag/file and all exact-candidate staged gates.",
+        "event": "workflow_dispatch",
+        "gates": [
+          {
+            "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+            "conclusion": "success",
+            "executed_jobs": {
+              "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+              "jobs": [
+                {
+                  "job_id": 127399364882,
+                  "name": "Full test on ubuntu-latest, Python 3.11",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399364829,
+                  "name": "Full test on ubuntu-latest, Python 3.12",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399365302,
+                  "name": "Full test on ubuntu-latest, Python 3.13",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399365097,
+                  "name": "Full test on ubuntu-latest, Python 3.14",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399364815,
+                  "name": "Full test on macos-latest, Python 3.11",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399365391,
+                  "name": "Full test on macos-latest, Python 3.12",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399365343,
+                  "name": "Full test on macos-latest, Python 3.13",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399366780,
+                  "name": "Full test on macos-latest, Python 3.14",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399364743,
+                  "name": "Full test on windows-latest, Python 3.11",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399365291,
+                  "name": "Full test on windows-latest, Python 3.12",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399365929,
+                  "name": "Full test on windows-latest, Python 3.13",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399364633,
+                  "name": "Full test on windows-latest, Python 3.14",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                }
+              ],
+              "run_attempt": 1,
+              "run_id": 42071223440,
+              "schema": "molsyssuite.native-gate@1",
+              "state": "verified",
+              "workflow": ".github/workflows/CI_full_matrix.yaml"
+            },
+            "run_id": 42071223440,
+            "workflow": ".github/workflows/CI_full_matrix.yaml"
+          },
+          {
+            "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+            "conclusion": "success",
+            "executed_jobs": {
+              "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+              "jobs": [
+                {
+                  "job_id": 127398751436,
+                  "name": "Test on ubuntu-latest, Python 3.14",
+                  "required_steps": [
+                    "Build wheel",
+                    "Install from wheel",
+                    "Test import module (installed wheel)",
+                    "Run tests"
+                  ]
+                }
+              ],
+              "run_attempt": 1,
+              "run_id": 42070964461,
+              "schema": "molsyssuite.native-gate@1",
+              "state": "verified",
+              "workflow": ".github/workflows/CI.yaml"
+            },
+            "run_id": 42070964461,
+            "workflow": ".github/workflows/CI.yaml"
+          }
+        ],
+        "package": "argdigest",
+        "reason": "Qualify consumer call-shape/literal-keyword/optional-checker and digester-diagnostic corrections, SPDX/backend and publisher changes, with public SMonitor 0.22.1 nested-signal receiving, retained scientific fixtures and NumPy-free core compatibility before public visibility.",
+        "route": "staged",
+        "schema": "molsyssuite.conda-preflight@1",
+        "tag_sha": null,
+        "version": "0.17.1"
+      }
+    }
+  },
+  "producer_reconciliation": {
+    "accepted_digest": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+    "accepted_producer": 42094355330,
+    "cause": "A task-local monitor was duplicated at context resumption; both dispatched when the source gate passed. The old /proc inspection did not reliably enumerate ongoing exec sessions.",
+    "continuation": "Known controllers are terminated/complete; remaining dispatches use an exclusive task-local lock and actual-run reconciliation. No new producer build is requested.",
+    "duplicate_built_digest": "e1b85da0dc946e4c737a71d1c29e8048d40a822ed907ea3598aa317c1bd13b68",
+    "duplicate_failed_run": 42094355382,
+    "duplicate_stage": "Upload exact reviewed file to staging",
+    "native": {
+      "jobs": [
+        {
+          "check_run_url": "https://api.github.com/repos/uibcdf/argdigest/check-runs/127480407813",
+          "completed_at": "2026-11-05T19:32:59Z",
+          "conclusion": "success",
+          "created_at": "2026-11-05T19:29:25Z",
+          "head_branch": "release/0.17.1-candidate",
+          "head_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+          "html_url": "https://github.com/uibcdf/argdigest/actions/runs/42094355382/job/127480407813",
+          "id": 127480407813,
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "name": "decision",
+          "node_id": "CR_kwDOQOgJIs8AAAAdrmynBQ",
+          "run_attempt": 1,
+          "run_id": 42094355382,
+          "run_url": "https://api.github.com/repos/uibcdf/argdigest/actions/runs/42094355382",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions",
+          "runner_id": 1000049677,
+          "runner_name": "GitHub Actions 1000049677",
+          "started_at": "2026-11-05T19:32:50Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completed_at": "2026-11-05T19:32:51Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "started_at": "2026-11-05T19:32:50Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:32:53Z",
+              "conclusion": "success",
+              "name": "Run actions/checkout@v4",
+              "number": 2,
+              "started_at": "2026-11-05T19:32:51Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:32:53Z",
+              "conclusion": "success",
+              "name": "Validate exact source, tag and committed route",
+              "number": 3,
+              "started_at": "2026-11-05T19:32:53Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:32:53Z",
+              "conclusion": "success",
+              "name": "Run actions/setup-python@v6",
+              "number": 4,
+              "started_at": "2026-11-05T19:32:53Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:32:54Z",
+              "conclusion": "success",
+              "name": "Check out the reviewed shared preflight",
+              "number": 5,
+              "started_at": "2026-11-05T19:32:53Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:32:56Z",
+              "conclusion": "success",
+              "name": "Install preflight parser tools",
+              "number": 6,
+              "started_at": "2026-11-05T19:32:54Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:32:56Z",
+              "conclusion": "success",
+              "name": "Check exact candidate dependency routes before building",
+              "number": 7,
+              "started_at": "2026-11-05T19:32:56Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:32:56Z",
+              "conclusion": "success",
+              "name": "Post Check out the reviewed shared preflight",
+              "number": 12,
+              "started_at": "2026-11-05T19:32:56Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:32:56Z",
+              "conclusion": "success",
+              "name": "Post Run actions/setup-python@v6",
+              "number": 13,
+              "started_at": "2026-11-05T19:32:56Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:32:57Z",
+              "conclusion": "success",
+              "name": "Post Run actions/checkout@v4",
+              "number": 14,
+              "started_at": "2026-11-05T19:32:56Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:32:57Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 15,
+              "started_at": "2026-11-05T19:32:57Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://api.github.com/repos/uibcdf/argdigest/actions/jobs/127480407813",
+          "workflow_name": "Build and upload conda packages"
+        },
+        {
+          "check_run_url": "https://api.github.com/repos/uibcdf/argdigest/check-runs/127482380082",
+          "completed_at": "2026-11-05T19:46:31Z",
+          "conclusion": "failure",
+          "created_at": "2026-11-05T19:33:00Z",
+          "head_branch": "release/0.17.1-candidate",
+          "head_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+          "html_url": "https://github.com/uibcdf/argdigest/actions/runs/42094355382/job/127482380082",
+          "id": 127482380082,
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "name": "publish / publish",
+          "node_id": "CR_kwDOQOgJIs8AAAAdroq_Mg",
+          "run_attempt": 1,
+          "run_id": 42094355382,
+          "run_url": "https://api.github.com/repos/uibcdf/argdigest/actions/runs/42094355382",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions",
+          "runner_id": 1000049704,
+          "runner_name": "GitHub Actions 1000049704",
+          "started_at": "2026-11-05T19:44:25Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completed_at": "2026-11-05T19:44:27Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "started_at": "2026-11-05T19:44:26Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:44:29Z",
+              "conclusion": "success",
+              "name": "Run actions/checkout@v4",
+              "number": 2,
+              "started_at": "2026-11-05T19:44:27Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:44:30Z",
+              "conclusion": "success",
+              "name": "Run actions/checkout@v4",
+              "number": 3,
+              "started_at": "2026-11-05T19:44:29Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:44:30Z",
+              "conclusion": "success",
+              "name": "Run actions/setup-python@v5",
+              "number": 4,
+              "started_at": "2026-11-05T19:44:30Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:44:31Z",
+              "conclusion": "success",
+              "name": "Bootstrap administrative checks",
+              "number": 5,
+              "started_at": "2026-11-05T19:44:30Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:44:32Z",
+              "conclusion": "success",
+              "name": "Check recipe and committed resource inventory before building",
+              "number": 6,
+              "started_at": "2026-11-05T19:44:31Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:44:35Z",
+              "conclusion": "success",
+              "name": "Acquire exact-source executed CI gates and route preflight",
+              "number": 7,
+              "started_at": "2026-11-05T19:44:32Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:44:35Z",
+              "conclusion": "success",
+              "name": "Freeze reviewed metadata in the ephemeral build checkout",
+              "number": 8,
+              "started_at": "2026-11-05T19:44:35Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:45:10Z",
+              "conclusion": "success",
+              "name": "Run conda-incubator/setup-miniconda@v3",
+              "number": 9,
+              "started_at": "2026-11-05T19:44:35Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:46:26Z",
+              "conclusion": "success",
+              "name": "Build once and run recipe tests without uploading or conversion",
+              "number": 10,
+              "started_at": "2026-11-05T19:45:10Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:46:27Z",
+              "conclusion": "success",
+              "name": "Inspect exact built metadata, embedded version and resources",
+              "number": 11,
+              "started_at": "2026-11-05T19:46:26Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:46:27Z",
+              "conclusion": "failure",
+              "name": "Upload exact reviewed file to staging",
+              "number": 12,
+              "started_at": "2026-11-05T19:46:27Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:46:27Z",
+              "conclusion": "skipped",
+              "name": "Upload exact reviewed file on eligible direct release",
+              "number": 13,
+              "started_at": "2026-11-05T19:46:27Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:46:27Z",
+              "conclusion": "skipped",
+              "name": "Independently verify public label and solver index",
+              "number": 14,
+              "started_at": "2026-11-05T19:46:27Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:46:28Z",
+              "conclusion": "success",
+              "name": "Retain candidate, producer and independent receipts",
+              "number": 15,
+              "started_at": "2026-11-05T19:46:27Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:46:28Z",
+              "conclusion": "skipped",
+              "name": "Post Run conda-incubator/setup-miniconda@v3",
+              "number": 27,
+              "started_at": "2026-11-05T19:46:28Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:46:28Z",
+              "conclusion": "skipped",
+              "name": "Post Run actions/setup-python@v5",
+              "number": 28,
+              "started_at": "2026-11-05T19:46:28Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:46:29Z",
+              "conclusion": "success",
+              "name": "Post Run actions/checkout@v4",
+              "number": 29,
+              "started_at": "2026-11-05T19:46:28Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:46:29Z",
+              "conclusion": "success",
+              "name": "Post Run actions/checkout@v4",
+              "number": 30,
+              "started_at": "2026-11-05T19:46:29Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-11-05T19:46:29Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 31,
+              "started_at": "2026-11-05T19:46:29Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://api.github.com/repos/uibcdf/argdigest/actions/jobs/127482380082",
+          "workflow_name": "Build and upload conda packages"
+        }
+      ],
+      "run": {
+        "conclusion": "failure",
+        "created_at": "2026-11-05T19:29:23Z",
+        "event": "workflow_dispatch",
+        "head_branch": "release/0.17.1-candidate",
+        "head_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+        "html_url": "https://github.com/uibcdf/argdigest/actions/runs/42094355382",
+        "id": 42094355382,
+        "path": ".github/workflows/build_and_upload_conda_packages.yaml",
+        "run_attempt": 1,
+        "status": "completed",
+        "updated_at": "2026-11-05T19:46:32Z"
+      },
+      "scope": "Historical failed duplicate; does not qualify any artifact or public promotion."
+    },
+    "observed_at": "2026-11-05T21:16:00.752543+00:00",
+    "receipts": {
+      "artifact": {
+        "digest": "sha256:3d6e71b3601dffb88b35c5b2b528e24f143aad9a0633276b529a3e8a5a68799b",
+        "id": 13446169539,
+        "name": "noarch-publication-42094355382-1",
+        "size_in_bytes": 2522,
+        "workflow_run": {
+          "head_branch": "release/0.17.1-candidate",
+          "head_repository_id": 1088948514,
+          "head_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+          "id": 42094355382,
+          "repository_id": 1088948514
+        }
+      },
+      "receipts": {
+        "_temp/conda-upload-receipt.json": {
+          "error_type": "RuntimeError",
+          "instruction": "Inspect the exact public coordinate before any further mutation.",
+          "schema": "uibcdf.conda-upload@1",
+          "state": "unverified",
+          "subject": {
+            "repository": "uibcdf/argdigest",
+            "run_attempt": "1",
+            "run_id": "42094355382"
+          }
+        },
+        "_temp/gh-run-receptor-events-42094355382-1-publish-0/gh-run-receptor-events.json": {
+          "events": [
+            {
+              "artifact": "argdigest-0.17.1-py_0.tar.bz2",
+              "build": "success",
+              "kind": "conda.package",
+              "platform": "noarch",
+              "sha256": "e1b85da0dc946e4c737a71d1c29e8048d40a822ed907ea3598aa317c1bd13b68",
+              "upload": "not_requested"
+            }
+          ],
+          "producer": {
+            "ref": "87c70b1443d5f22d738ee3ddf812bdbe0152f6c2",
+            "repository": "uibcdf/action-build-and-upload-conda-packages"
+          },
+          "schema": "gh-run-receptor.events@1",
+          "subject": {
+            "head_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+            "job_key": "publish",
+            "matrix_index": null,
+            "repository": "uibcdf/argdigest",
+            "run_attempt": 1,
+            "run_id": 42094355382
+          }
+        },
+        "argdigest/argdigest/noarch-artifact.json": {
+          "artifact": "/tmp/compilation-B9ggJTaM8b/noarch/argdigest-0.17.1-py_0.tar.bz2",
+          "build_number": 0,
+          "filename": "argdigest-0.17.1-py_0.tar.bz2",
+          "package": "argdigest",
+          "route": "staged",
+          "sha256": "e1b85da0dc946e4c737a71d1c29e8048d40a822ed907ea3598aa317c1bd13b68",
+          "subdir": "noarch",
+          "version": "0.17.1"
+        },
+        "argdigest/argdigest/noarch-preflight.json": {
+          "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+          "checked_at": "2026-11-05T19:44:32.172414+00:00",
+          "checkout_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+          "decision_by": "Diego explicitly authorized preparing and publishing 0.17.1 after reviewing #50 on 2026-11-05 (uibcdf/argdigest#51). Preserve original 0.17.0 tag/file and all exact-candidate staged gates.",
+          "event": "workflow_dispatch",
+          "gates": [
+            {
+              "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+              "conclusion": "success",
+              "executed_jobs": {
+                "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+                "jobs": [
+                  {
+                    "job_id": 127399364882,
+                    "name": "Full test on ubuntu-latest, Python 3.11",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 127399364829,
+                    "name": "Full test on ubuntu-latest, Python 3.12",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 127399365302,
+                    "name": "Full test on ubuntu-latest, Python 3.13",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 127399365097,
+                    "name": "Full test on ubuntu-latest, Python 3.14",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 127399364815,
+                    "name": "Full test on macos-latest, Python 3.11",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 127399365391,
+                    "name": "Full test on macos-latest, Python 3.12",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 127399365343,
+                    "name": "Full test on macos-latest, Python 3.13",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 127399366780,
+                    "name": "Full test on macos-latest, Python 3.14",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 127399364743,
+                    "name": "Full test on windows-latest, Python 3.11",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 127399365291,
+                    "name": "Full test on windows-latest, Python 3.12",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 127399365929,
+                    "name": "Full test on windows-latest, Python 3.13",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  },
+                  {
+                    "job_id": 127399364633,
+                    "name": "Full test on windows-latest, Python 3.14",
+                    "required_steps": [
+                      "Run tests"
+                    ]
+                  }
+                ],
+                "run_attempt": 1,
+                "run_id": 42071223440,
+                "schema": "molsyssuite.native-gate@1",
+                "state": "verified",
+                "workflow": ".github/workflows/CI_full_matrix.yaml"
+              },
+              "run_id": 42071223440,
+              "workflow": ".github/workflows/CI_full_matrix.yaml"
+            },
+            {
+              "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+              "conclusion": "success",
+              "executed_jobs": {
+                "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+                "jobs": [
+                  {
+                    "job_id": 127398751436,
+                    "name": "Test on ubuntu-latest, Python 3.14",
+                    "required_steps": [
+                      "Build wheel",
+                      "Install from wheel",
+                      "Test import module (installed wheel)",
+                      "Run tests"
+                    ]
+                  }
+                ],
+                "run_attempt": 1,
+                "run_id": 42070964461,
+                "schema": "molsyssuite.native-gate@1",
+                "state": "verified",
+                "workflow": ".github/workflows/CI.yaml"
+              },
+              "run_id": 42070964461,
+              "workflow": ".github/workflows/CI.yaml"
+            }
+          ],
+          "package": "argdigest",
+          "reason": "Qualify consumer call-shape/literal-keyword/optional-checker and digester-diagnostic corrections, SPDX/backend and publisher changes, with public SMonitor 0.22.1 nested-signal receiving, retained scientific fixtures and NumPy-free core compatibility before public visibility.",
+          "route": "staged",
+          "schema": "molsyssuite.conda-preflight@1",
+          "tag_sha": null,
+          "version": "0.17.1"
+        }
+      }
+    },
+    "registered_file_unchanged": true
+  },
+  "repository": "uibcdf/argdigest",
+  "retained_license_notice": {
+    "artifact_sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+    "license_expression": "MIT",
+    "license_files": [
+      "LICENSE"
+    ],
+    "original_license_sha256": "89774af33c83f6ac673838d2621666d25f65b18f6d15fd67a04004901bd90b01",
+    "retained_original_notice": {
+      "site-packages/argdigest-0.17.1.dist-info/licenses/LICENSE": true
+    },
+    "scope": "Original MIT notice is retained in installed PEP 639 distribution metadata. The recipe does not declare a separate info/licenses copy."
+  },
+  "schema": "argdigest.release-qualification@1",
+  "shared_tools": {
+    "dependency_preflight": "43b9f94bf5ab0ec3f54a4b2ca5b23b791d6af0bc",
+    "installed_workflow": "13a661e348275496a677a1bfe9650d68a03713a3",
+    "publisher_and_verifier": "95f693be10c9205ab9b912cb53453710a207bf45"
+  },
+  "source_gates": {
+    "fast": {
+      "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+      "event": "push",
+      "jobs": [
+        {
+          "job_id": 127398751436,
+          "name": "Test on ubuntu-latest, Python 3.14",
+          "required_steps": [
+            "Build wheel",
+            "Install from wheel",
+            "Test import module (installed wheel)",
+            "Run tests"
+          ]
+        }
+      ],
+      "run_attempt": 1,
+      "run_id": 42070964461,
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "workflow": ".github/workflows/CI.yaml"
+    },
+    "full": {
+      "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+      "event": "workflow_dispatch",
+      "jobs": [
+        {
+          "job_id": 127399364882,
+          "name": "Full test on ubuntu-latest, Python 3.11",
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "job_id": 127399364829,
+          "name": "Full test on ubuntu-latest, Python 3.12",
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "job_id": 127399365302,
+          "name": "Full test on ubuntu-latest, Python 3.13",
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "job_id": 127399365097,
+          "name": "Full test on ubuntu-latest, Python 3.14",
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "job_id": 127399364815,
+          "name": "Full test on macos-latest, Python 3.11",
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "job_id": 127399365391,
+          "name": "Full test on macos-latest, Python 3.12",
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "job_id": 127399365343,
+          "name": "Full test on macos-latest, Python 3.13",
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "job_id": 127399366780,
+          "name": "Full test on macos-latest, Python 3.14",
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "job_id": 127399364743,
+          "name": "Full test on windows-latest, Python 3.11",
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "job_id": 127399365291,
+          "name": "Full test on windows-latest, Python 3.12",
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "job_id": 127399365929,
+          "name": "Full test on windows-latest, Python 3.13",
+          "required_steps": [
+            "Run tests"
+          ]
+        },
+        {
+          "job_id": 127399364633,
+          "name": "Full test on windows-latest, Python 3.14",
+          "required_steps": [
+            "Run tests"
+          ]
+        }
+      ],
+      "run_attempt": 1,
+      "run_id": 42071223440,
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "workflow": ".github/workflows/CI_full_matrix.yaml"
+    }
+  },
+  "staging_archive_inspection": {
+    "artifact": "/tmp/argdigest-release0171.BO1HRi/argdigest-0.17.1-py_0.tar.bz2",
+    "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+    "filename": "argdigest-0.17.1-py_0.tar.bz2",
+    "generated_version_scope": "Only argdigest/_version.py differs intentionally; embedded 0.17.1 is verified by the shared archive inspector.",
+    "package": "argdigest",
+    "runtime_files_matching_candidate": {
+      "argdigest/__init__.py": "07518ec0f8d53c99d67f40aa76dc1a9f021ab659fc97ee4eb24a2e325e4feaee",
+      "argdigest/_depdigest.py": "e3eede5f993fd789c55068769ec794e771fb7b233fa7e10df2f0439a8d531cd9",
+      "argdigest/_private/smonitor/__init__.py": "3a7c8e505add1e4a4ff8fdb866c97edd043b830f6b7a59f768abd829ee419632",
+      "argdigest/_private/smonitor/catalog.py": "cc19ca5175cfae824f0ac0c0d5a565d4971a6067304b585d049cefb448e4c52f",
+      "argdigest/_private/smonitor/emitter.py": "ed30989f4ebe8cf69720a9e01da83b4ae8d44aef6abbdf3dbeba253084566dac",
+      "argdigest/_private/smonitor/meta.py": "2b5313a344e848dcddeb2181d8e352664b77c0d02b5c421fb4726767b15ae81f",
+      "argdigest/_smonitor.py": "8c64a540b48708d6b2cff8bb49ff05465c44be5cdc3b4511f40b514796b0d37d",
+      "argdigest/cli.py": "f6e45b3cd57e83c7070b44b1a12abee6279ce80c55fd86a22c2754f04156e765",
+      "argdigest/config.py": "1e06c210d8cb24a6298e03961f5ad9a1a7eda56d5e473e8f2c791c0484e1ea38",
+      "argdigest/contrib/__init__.py": "780dc788fb0ee7e7d9273c45992a3568176dc0ef168dccce12a3e236c3f5cf75",
+      "argdigest/contrib/beartype_support.py": "a18088bc90a02f56e44c5e5b5ad96da346d136baec861dacb739c6f86273acd2",
+      "argdigest/contrib/pydantic_support.py": "e52140c341096d5ad04fc056a2dccb39c4f368138758d2e6086a9ef9bee8df71",
+      "argdigest/contrib/pyunitwizard_support.py": "8c7f896ed03cc72735ed1a4faa577b8705e52be43d859f278e7ec423dfce5922",
+      "argdigest/core/__init__.py": "fde4100e15ab833df34916a47a36a19a9c21925b6042ee93328afb270f835fca",
+      "argdigest/core/agent_docs.py": "0dd99f2de399f8872462f607cc7dc333bf9b2461c0e9169d59dffb3df2994233",
+      "argdigest/core/argument_loader.py": "cb45b08e78282b98408e7d43fb004db2b2585003aadd074c7de1ef585b6f6dff",
+      "argdigest/core/argument_registry.py": "b2698707760710bd5e103350f2a761f96b4d0178eb4d7f2b02fe03e55f3ea3bf",
+      "argdigest/core/caller.py": "e44f21438bfe955f185452526f05d224723bf8c7bb07d13a1c02f3210a3c041f",
+      "argdigest/core/config.py": "c076a2d37790e23f86eacef52680c2cdab179a849b2139beb40cfa220e9f892f",
+      "argdigest/core/context.py": "04ce1ef61eed153411c9a83d388899de1886f6f561be406373a6b112e639b81c",
+      "argdigest/core/decorator.py": "22245562426702ba235c52b3701faafdcafdec7a7acce133a967075fe71eeac0",
+      "argdigest/core/diagnostics.py": "aaf2b4bf15562206d9c4ed16d2f3075214669948fb2523d6b6007698f339ed32",
+      "argdigest/core/errors.py": "4c1fecd036a134b84c58edbb825dfedb5233ca0ee42d4daedae8e36aa92e635a",
+      "argdigest/core/errors_base.py": "bd1a04038e7e9fb50ce422291ae61e2f4cc1bac04342ab0f0230a6ef8b12247b",
+      "argdigest/core/function_contract.py": "e25f37ee180f650b596b4d61f84ed1c93191cb5ab5837afed78945a3586536fb",
+      "argdigest/core/function_loader.py": "3970949c2553a706b617380e8601cf97113f1b13837c8de1f1abb613838014b1",
+      "argdigest/core/health.py": "edbb0c304f137455ab31ab33c8d3f21e84d89446c258c8060c6b559cc24a92b7",
+      "argdigest/core/logger.py": "2fc318cb37f9c9863e809b51d516b5de6fc340cd6f962e9688484fe71f35a65b",
+      "argdigest/core/normalization.py": "a90fd2015dc38cc630e8de24c13de8a01b65afd3a9d67e01bbe9f5e88f804f49",
+      "argdigest/core/registry.py": "3a8a81354ce299e4795d105441e0d029b2bf93a636c1c94f01adda1d2b19e48a",
+      "argdigest/core/utils.py": "7a44ee503b9b416407a0406c0c992bc2cf0f257761937ee74e6656574c8f3a35",
+      "argdigest/diagnostics.py": "2ab1c77c7832f2b62161b8da57b228b12b89e7a667c6973d19ec8b9e041c2559",
+      "argdigest/pipelines/__init__.py": "0d9efba3909e8afac995b4b260756d48321a2d02a7968f49d388672ad3694d1b",
+      "argdigest/pipelines/base.py": "20c07d367c9d121a07c77105127f5a950cced551aa77e65f5f2e80261b3de045",
+      "argdigest/pipelines/coercers.py": "83e3bffbb67474633c15f88420215110dd25e1bd9db9d9a148b1b352e8fb01d8",
+      "argdigest/pipelines/data.py": "c0132959ab06f447f2f5d202e5b1ddf0dc50efaa392d3470d5c1fa0b942f0521",
+      "argdigest/pipelines/science.py": "f5ce2af693b9b9e714c0145c1601b4b2c2223efaa3fe0f3469c21883306bb464",
+      "argdigest/pipelines/validators.py": "5b844a9bce602f734aafcf28bd671ccc53571ba3ba8dd4f54acc20b31c162f52"
+    },
+    "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+    "subdir": "noarch",
+    "version": "0.17.1"
+  },
+  "staging_snapshot": {
+    "basename": "noarch/argdigest-0.17.1-py_0.tar.bz2",
+    "labels": [
+      "staging"
+    ],
+    "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899"
+  },
+  "state": "staged-qualified",
+  "superseded_candidates": [
+    {
+      "candidate": "cb97df70284c696663d2fbed6feb2d4a6f6c67f9",
+      "fast_run": 42061298065,
+      "reason": "Confirmed pre-build #53 compatibility regression; no artifact built/uploaded.",
+      "source_runs": [
+        42061400545,
+        42064386573
+      ]
+    }
+  ],
+  "supplemental_local_staged_science": {
+    "corrected_invocation": "env -u PYTHONSAFEPATH PYTHONPATH= .../stage-env/bin/python -P local_staged_tests.py",
+    "corrected_result": {
+      "failed": [],
+      "passed": 533,
+      "receiving": {
+        "passed": 28,
+        "tests": 28
+      },
+      "skipped": [
+        {
+          "classname": "tests.e2e.test_collective_error_path",
+          "name": "test_collective_error_path_emits_contract_signal_and_dependency_hints",
+          "time": "0.000"
+        }
+      ],
+      "tests": 534,
+      "xml_sha256": "c3ee44f3811189d8d4e278c8de3d9f3ab9c50e7d56d7e93a651714bee6221f26"
+    },
+    "first_invocation": {
+      "failed": [
+        {
+          "classname": "tests.test_reporting_protocol",
+          "name": "test_generated_report_indexes_are_current",
+          "time": "0.069"
+        }
+      ],
+      "passed": 532,
+      "receiving": {
+        "passed": 28,
+        "tests": 28
+      },
+      "skipped": [
+        {
+          "classname": "tests.e2e.test_collective_error_path",
+          "name": "test_collective_error_path_emits_contract_signal_and_dependency_hints",
+          "time": "0.001"
+        }
+      ],
+      "tests": 534,
+      "xml_sha256": "03f084b8d29ce14d38f7f35fb8ab124e5172c5b66ab99a65690ca559fa27ee43"
+    },
+    "first_invocation_error": "Task invocation propagated PYTHONSAFEPATH=1 to trusted administrative child scripts. The published installed workflow explicitly uses python -P only in its scientific interpreter, preserving normal imports in those child scripts.",
+    "official_invocation_reference": "uibcdf/molsyssuite/.github/workflows/test-installed-noarch-conda.yaml@13a661e348275496a677a1bfe9650d68a03713a3",
+    "runtime": {
+      "before_equals_after": true,
+      "dependencies": [
+        {
+          "build": "20_gnu",
+          "name": "_openmp_mutex",
+          "sha256": "1dd3fffd892081df9726d7eb7e0dea6198962ba775bd88842135a4ddb4deb3c9",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda",
+          "version": "4.5"
+        },
+        {
+          "build": "pyhd8ed1ab_0",
+          "name": "annotated-types",
+          "sha256": "b8fcb994134d3918d1c64a9d62f4168ff85d5bfb89e698102fe4ed679fe0df24",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/annotated-types-0.8.0-pyhd8ed1ab_0.conda",
+          "version": "0.8.0"
+        },
+        {
+          "build": "py_0",
+          "name": "argdigest",
+          "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+          "url": "https://conda.anaconda.org/uibcdf/label/staging/noarch/argdigest-0.17.1-py_0.tar.bz2",
+          "version": "0.17.1"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "beartype",
+          "sha256": "42131e42cffe141c6bac23edd2ae0f1ff3fc3b14874718710fe00111014f28c6",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/beartype-0.23.1-pyh5ded981_0.conda",
+          "version": "0.23.1"
+        },
+        {
+          "build": "hda65f42_10",
+          "name": "bzip2",
+          "sha256": "1a0d382c515ebf55f8ee1f38c8b81bc95af5c2acc42ad53b66bc5df932032f96",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hda65f42_10.conda",
+          "version": "1.0.8"
+        },
+        {
+          "build": "hbd8a1cb_0",
+          "name": "ca-certificates",
+          "sha256": "95619b9c1184be7175392eeb0ee7eeb5ccf25d280951f4225f2d62e725790be3",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2026.10.23-hbd8a1cb_0.conda",
+          "version": "2026.10.23"
+        },
+        {
+          "build": "pyhd8ed1ab_1",
+          "name": "colorama",
+          "sha256": "ab29d57dc70786c1269633ba3dff20288b81664d3ff8d21af995742e2bb03287",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/colorama-0.4.6-pyhd8ed1ab_1.conda",
+          "version": "0.4.6"
+        },
+        {
+          "build": "py314h93e9acf_0",
+          "name": "coverage",
+          "sha256": "21a475b36ca5957608b1909e510cb13d06f7cf11d7ef818dc2ddf39d380536dd",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/coverage-7.17.2-py314h93e9acf_0.conda",
+          "version": "7.17.2"
+        },
+        {
+          "build": "py_0",
+          "name": "depdigest",
+          "sha256": "2765c692de4e6aacff4197c4226ebb42ec1f0df9edb27e92f196ef1390cb1850",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/depdigest-0.15.1-py_0.tar.bz2",
+          "version": "0.15.1"
+        },
+        {
+          "build": "pyhd8ed1ab_0",
+          "name": "exceptiongroup",
+          "sha256": "ee6cf346d017d954255bbcbdb424cddea4d14e4ed7e9813e429db1d795d01144",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/exceptiongroup-1.3.1-pyhd8ed1ab_0.conda",
+          "version": "1.3.1"
+        },
+        {
+          "build": "pyhd8ed1ab_0",
+          "name": "execnet",
+          "sha256": "1acc6a420efc5b64c384c1f35f49129966f8a12c93b4bb2bdc30079e5dc9d8a8",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/execnet-2.1.2-pyhd8ed1ab_0.conda",
+          "version": "2.1.2"
+        },
+        {
+          "build": "pyh5ded981_2",
+          "name": "flexcache",
+          "sha256": "fc30fd32ab60300e5ea6c15e3a39b3f3124a9236211fbb8bdb99708d3fbfed33",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/flexcache-0.3-pyh5ded981_2.conda",
+          "version": "0.3"
+        },
+        {
+          "build": "pyh5ded981_2",
+          "name": "flexparser",
+          "sha256": "0a9caab09609fed3a84c3594b62751b3cd7b0d953a7a631175aa3f2c4052765a",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/flexparser-0.4-pyh5ded981_2.conda",
+          "version": "0.4"
+        },
+        {
+          "build": "pyhd8ed1ab_0",
+          "name": "iniconfig",
+          "sha256": "8f53876d0fb3525235e39635dd55633abe0a4307b1b3ab1415c80a9e0bbdf663",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/iniconfig-2.3.1-pyhd8ed1ab_0.conda",
+          "version": "2.3.1"
+        },
+        {
+          "build": "pyhcf101f3_1",
+          "name": "jinja2",
+          "sha256": "fc9ca7348a4f25fed2079f2153ecdcf5f9cf2a0bc36c4172420ca09e1849df7b",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/jinja2-3.1.6-pyhcf101f3_1.conda",
+          "version": "3.1.6"
+        },
+        {
+          "build": "default_hbd61a6d_103",
+          "name": "ld_impl_linux-64",
+          "sha256": "901649b1edbe841fd4ee7e2d491a05184ed540eb01cdae506872f344babc1d28",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.46.1-default_hbd61a6d_103.conda",
+          "version": "2.46.1"
+        },
+        {
+          "build": "12_h4a7cf45_openblas",
+          "name": "libblas",
+          "sha256": "6a6263c3d4a484dbac4ae7a8191be5f868c0574bbc7faa42b258bb59dc6d5fa2",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libblas-3.11.0-12_h4a7cf45_openblas.conda",
+          "version": "3.11.0"
+        },
+        {
+          "build": "12_h0358290_openblas",
+          "name": "libcblas",
+          "sha256": "8ea7d98b71e1200e2e4141c1813d6950e6acc917d220bbf54058390d252460f8",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.11.0-12_h0358290_openblas.conda",
+          "version": "3.11.0"
+        },
+        {
+          "build": "hd2095e1_0",
+          "name": "libexpat",
+          "sha256": "7b930a8b6bc6553cb754b4977a11f9c862c719a652fc2d128d89270992ce8beb",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.9.0-hd2095e1_0.conda",
+          "version": "2.9.0"
+        },
+        {
+          "build": "h81df57d_1",
+          "name": "libffi",
+          "sha256": "c8c7583ef063bc3c430f1d48298e5ad24f796a35c22ed5b14183325825a61106",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libffi-3.7.0-h81df57d_1.conda",
+          "version": "3.7.0"
+        },
+        {
+          "build": "ha9f2e26_7",
+          "name": "libgcc",
+          "sha256": "e031634c3a928f9594eba868bc46ef5230d6571a364a0c63215b06c4563bfcea",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libgcc-16.2.0-ha9f2e26_7.conda",
+          "version": "16.2.0"
+        },
+        {
+          "build": "h69a702a_7",
+          "name": "libgfortran",
+          "sha256": "9682ae4dd11487e10b904b3cb3ab6379cad25233d45fdfdf90d54349df244494",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libgfortran-16.2.0-h69a702a_7.conda",
+          "version": "16.2.0"
+        },
+        {
+          "build": "h6b99dfc_7",
+          "name": "libgfortran5",
+          "sha256": "04dbab12c925b92977bb835dd2f5eda413607afa79f95a554e5a04b07a380322",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libgfortran5-16.2.0-h6b99dfc_7.conda",
+          "version": "16.2.0"
+        },
+        {
+          "build": "he0feb66_7",
+          "name": "libgomp",
+          "sha256": "92a0bb350c7be6a4eedcb4e111c60aefd176018e6b1c009a6e025dbe9bbcd758",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libgomp-16.2.0-he0feb66_7.conda",
+          "version": "16.2.0"
+        },
+        {
+          "build": "12_h47877c9_openblas",
+          "name": "liblapack",
+          "sha256": "f048e68a22fbdd927b8a7e007c3da19c6f1d2c08a9e4f6065af68f463c369f19",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/liblapack-3.11.0-12_h47877c9_openblas.conda",
+          "version": "3.11.0"
+        },
+        {
+          "build": "hb03c661_1",
+          "name": "liblzma",
+          "sha256": "9787df8c22a59c9a70d3e5a10db9ad663485e75e9ccc3f09bd092cb7b95e0dab",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.3-hb03c661_1.conda",
+          "version": "5.8.3"
+        },
+        {
+          "build": "hb03c661_2",
+          "name": "libmpdec",
+          "sha256": "46820b4a835e175940ae20bec00fdddaff804cda27a1408ab1b95e77a2196437",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libmpdec-4.0.0-hb03c661_2.conda",
+          "version": "4.0.0"
+        },
+        {
+          "build": "pthreads_hf13c14d_2",
+          "name": "libopenblas",
+          "sha256": "69a722751e14eab2eb3bfdcb9acb1187afbd962b0c49b48d829341e0f6787f60",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.34-pthreads_hf13c14d_2.conda",
+          "version": "0.3.34"
+        },
+        {
+          "build": "hd51c5da_100_cp314",
+          "name": "libpython",
+          "sha256": "3b9f11f136074f81db3ca56f2f514f466456dbab1189e68b3681b53387043daa",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libpython-3.14.10-hd51c5da_100_cp314.conda",
+          "version": "3.14.10"
+        },
+        {
+          "build": "h0737f62_101",
+          "name": "libsqlite",
+          "sha256": "c294029f893d05286f1061bbab85b820f1eea73dd859af4bcc619197bcc34810",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.54.1-h0737f62_101.conda",
+          "version": "3.54.1"
+        },
+        {
+          "build": "h934c35e_7",
+          "name": "libstdcxx",
+          "sha256": "fa7018298629fc429971fffd6ecba3d27a7b02e4e890d6a93ea01ffebe8cb745",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-16.2.0-h934c35e_7.conda",
+          "version": "16.2.0"
+        },
+        {
+          "build": "hcfc3c73_1",
+          "name": "libuuid",
+          "sha256": "0e2e8f2daa9306e67f046e31092d637431d8cf0a26c407ab22401d108c2d4631",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.42.4-hcfc3c73_1.conda",
+          "version": "2.42.4"
+        },
+        {
+          "build": "h25fd6f3_3",
+          "name": "libzlib",
+          "sha256": "eb8a0db0aa570124f7d2a93d7c7f596e3390df5e047818d873baad32985fc736",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.2-h25fd6f3_3.conda",
+          "version": "1.3.2"
+        },
+        {
+          "build": "py314h93e9acf_4",
+          "name": "markupsafe",
+          "sha256": "35b412b97ad6c65e2c5aef1e2039981bc53f847bd0673610a76f133628f24e3b",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/markupsafe-3.0.4-py314h93e9acf_4.conda",
+          "version": "3.0.4"
+        },
+        {
+          "build": "hdb14827_1",
+          "name": "ncurses",
+          "sha256": "5d46557214ed184381dafe835b7c94a474a1c3b307a08a250b1ea4779b44ffb3",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.6-hdb14827_1.conda",
+          "version": "6.6"
+        },
+        {
+          "build": "py314hd3a7d6b_0",
+          "name": "numpy",
+          "sha256": "7533361a15ff1d4c1e7069b9410d32a602a6a9350d717a43731b07e3565a6689",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/numpy-2.5.4-py314hd3a7d6b_0.conda",
+          "version": "2.5.4"
+        },
+        {
+          "build": "h781a0a9_0",
+          "name": "openssl",
+          "sha256": "9c1533f1cf784f0e250919c0c9762d0b0e6bc727a79290ffb7cea1ceca1d038c",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/openssl-3.6.5-h781a0a9_0.conda",
+          "version": "3.6.5"
+        },
+        {
+          "build": "pyhc364b38_0",
+          "name": "packaging",
+          "sha256": "c432626b16768b8dab228bfb706f7060c2d462a21c516d240f68f2f902b5a044",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/packaging-26.3-pyhc364b38_0.conda",
+          "version": "26.3"
+        },
+        {
+          "build": "np2py314h9e1d7c2_0",
+          "name": "pandas",
+          "sha256": "c9dd76336a7377f65c5add933e77f316dc19d5a0cc92c847d21f58ed9360be4a",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/pandas-3.1.1-np2py314h9e1d7c2_0.conda",
+          "version": "3.1.1"
+        },
+        {
+          "build": "pyhc364b38_0",
+          "name": "pint",
+          "sha256": "7e30090b2a75a6f31f9509fefa76b5b6aee7f5853453f7883a5851b87dd2b481",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pint-0.26.2-pyhc364b38_0.conda",
+          "version": "0.26.2"
+        },
+        {
+          "build": "pyh145f28c_2",
+          "name": "pip",
+          "sha256": "05d34ae3b49973c05c0f2f0f742e202acc6145f733460a0798944b231efd5c1a",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pip-26.2.2-pyh145f28c_2.conda",
+          "version": "26.2.2"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "platformdirs",
+          "sha256": "8bbb25f131001457e5fd19385000e9d6a8047223a35f4c507d92113eb68d42f9",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/platformdirs-4.14.5-pyh5ded981_0.conda",
+          "version": "4.14.5"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "pluggy",
+          "sha256": "34c40106bc3172b3a47656e84837e13a5d4829d413d65f30fb214e7568a09cea",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pluggy-1.7.0-pyh5ded981_0.conda",
+          "version": "1.7.0"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "pydantic",
+          "sha256": "a462f1e82ec96ba8034ec12a13f70d5cf4eb8cdf3320f3d6ee545890c92e6ac2",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pydantic-2.14.2-pyh5ded981_0.conda",
+          "version": "2.14.2"
+        },
+        {
+          "build": "py314h7e8cd81_0",
+          "name": "pydantic-core",
+          "sha256": "115f6fef5e552b7d7dbaadadfafdb6be314d78c2c284381eaa492bbfcbcb0bad",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/pydantic-core-2.50.2-py314h7e8cd81_0.conda",
+          "version": "2.50.2"
+        },
+        {
+          "build": "pyhcf101f3_0",
+          "name": "pygments",
+          "sha256": "f5f015ff1bc3e1b7fc08eee096b1865234189ae0b82bebdb86a5369116e42fa0",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pygments-2.21.0-pyhcf101f3_0.conda",
+          "version": "2.21.0"
+        },
+        {
+          "build": "pyhc364b38_1",
+          "name": "pytest",
+          "sha256": "a9cf3571e80a4e86992502068eb1d29a109e88345c39babf03b10450895056af",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pytest-9.2.0-pyhc364b38_1.conda",
+          "version": "9.2.0"
+        },
+        {
+          "build": "pyhcf101f3_0",
+          "name": "pytest-cov",
+          "sha256": "44e42919397bd00bfaa47358a6ca93d4c21493a8c18600176212ec21a8d25ca5",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pytest-cov-7.1.0-pyhcf101f3_0.conda",
+          "version": "7.1.0"
+        },
+        {
+          "build": "py_0",
+          "name": "pytest-receptor",
+          "sha256": "c0b075286f45e8fce5ab5852947611bfba82b7d509115fc5dadf1a9572b9dd74",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/pytest-receptor-1.2.2-py_0.tar.bz2",
+          "version": "1.2.2"
+        },
+        {
+          "build": "pyhd8ed1ab_0",
+          "name": "pytest-xdist",
+          "sha256": "b7b58a5be090883198411337b99afb6404127809c3d1c9f96e99b59f36177a96",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pytest-xdist-3.8.0-pyhd8ed1ab_0.conda",
+          "version": "3.8.0"
+        },
+        {
+          "build": "hcd007b5_100_cp314",
+          "name": "python",
+          "sha256": "bb457298c776d0edd30d727d96629e57df63e9a4ba2dd11553019267b61ef5f4",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/python-3.14.10-hcd007b5_100_cp314.conda",
+          "version": "3.14.10"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "python-dateutil",
+          "sha256": "8038f7048c97299f7fe7c8ce957da65b8ada9839afd0f66e345d3096082da975",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/python-dateutil-4.0.0-pyh5ded981_0.conda",
+          "version": "4.0.0"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "python-tzdata",
+          "sha256": "bb29725d0d84f5e98f221f2f0afbad4a44cd67b016ab48388592c940bbd75a5e",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/python-tzdata-2026.6-pyh5ded981_0.conda",
+          "version": "2026.6"
+        },
+        {
+          "build": "9_cp314",
+          "name": "python_abi",
+          "sha256": "e7f8e965bbfb98e08feb2365cacdad8bb218fa5b5a0a2752f747287f425f213c",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/python_abi-3.14-9_cp314.conda",
+          "version": "3.14"
+        },
+        {
+          "build": "py_0",
+          "name": "pyunitwizard",
+          "sha256": "2102b1bd4e8188d4d150f90fcf093425d07fa2858993984016a6e7de10c3aaac",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/pyunitwizard-0.27.0-py_0.tar.bz2",
+          "version": "0.27.0"
+        },
+        {
+          "build": "py314h19d427c_3",
+          "name": "pyyaml",
+          "sha256": "da909204ceee34fc54bd49b96b9151fd3297dec02f4f6c09b7671890e8cb0366",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/pyyaml-6.0.3-py314h19d427c_3.conda",
+          "version": "6.0.3"
+        },
+        {
+          "build": "hd6e31c0_1",
+          "name": "readline",
+          "sha256": "01b3fe073a66e321970d09e04b388708f8cbdca5cdfbfcb7c9eeb470ad10383d",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/readline-8.3-hd6e31c0_1.conda",
+          "version": "8.3"
+        },
+        {
+          "build": "py_0",
+          "name": "smonitor",
+          "sha256": "e9ce6c77a682dddec3a6e724f9cc98cca31c4d6732453d554107ffcf61f23e7e",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/smonitor-0.22.1-py_0.tar.bz2",
+          "version": "0.22.1"
+        },
+        {
+          "build": "noxft_h1df4ec4_4",
+          "name": "tk",
+          "sha256": "a1a241d172c1ccab067ba245206dd048bc3c2d1b84504b53c9468e99adfc16a1",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_h1df4ec4_4.conda",
+          "version": "8.6.13"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "tomli",
+          "sha256": "93b6f517fb7adff00b62be02b798d384a1b34d0e368fdb576fb248bcb3bb9ec7",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/tomli-2.5.0-pyh5ded981_0.conda",
+          "version": "2.5.0"
+        },
+        {
+          "build": "h69aa097_0",
+          "name": "typing-extensions",
+          "sha256": "b141933ece3518f6d7b75dfb59451e2f26b405a44c18e2518a83e9a02e09315c",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/typing-extensions-4.16.0-h69aa097_0.conda",
+          "version": "4.16.0"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "typing-inspection",
+          "sha256": "88c08476c98f264047d6c6bfeb1e8545684dfbcf2c61da338f71033ec17e1f33",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/typing-inspection-0.4.5-pyh5ded981_0.conda",
+          "version": "0.4.5"
+        },
+        {
+          "build": "pyhcf101f3_0",
+          "name": "typing_extensions",
+          "sha256": "2d888f90af0686044882c74193ec80a90ec1943145d94a7b1b048958acda1848",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/typing_extensions-4.16.0-pyhcf101f3_0.conda",
+          "version": "4.16.0"
+        },
+        {
+          "build": "h5d301ff_0",
+          "name": "tzdata",
+          "sha256": "2b7ca858879f183ce2dcc65b300f48a0133d5430550f35b23d80d405a0788dbf",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/tzdata-2026e-h5d301ff_0.conda",
+          "version": "2026e"
+        },
+        {
+          "build": "hebe6cf0_3",
+          "name": "yaml",
+          "sha256": "d164dfa75ecd538f6fd68765defcc06aa875bc697b9b215362d79a2a73125dd0",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/yaml-0.2.5-hebe6cf0_3.conda",
+          "version": "0.2.5"
+        },
+        {
+          "build": "hb78ec9c_7",
+          "name": "zstd",
+          "sha256": "47d682b9f6d6ec9eb1a6e6c3e75ea6273e899e78fb7fc59f81d39745009fbc60",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb78ec9c_7.conda",
+          "version": "1.5.7"
+        }
+      ],
+      "exit": 0,
+      "installed_record": {
+        "build": "py_0",
+        "build_number": 0,
+        "channel": "https://conda.anaconda.org/uibcdf/label/staging/noarch",
+        "constrains": [],
+        "depends": [
+          "depdigest >=0.11.0",
+          "python >=3.11,<3.15",
+          "smonitor >=0.16.0"
+        ],
+        "extracted_package_dir": "/tmp/argdigest-release0171.BO1HRi/pkgs/argdigest-0.17.1-py_0",
+        "files": [
+          "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/INSTALLER",
+          "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/METADATA",
+          "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/RECORD",
+          "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/REQUESTED",
+          "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/WHEEL",
+          "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/direct_url.json",
+          "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/entry_points.txt",
+          "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/licenses/LICENSE",
+          "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/top_level.txt",
+          "lib/python3.14/site-packages/argdigest/__init__.py",
+          "lib/python3.14/site-packages/argdigest/_depdigest.py",
+          "lib/python3.14/site-packages/argdigest/_private/smonitor/__init__.py",
+          "lib/python3.14/site-packages/argdigest/_private/smonitor/catalog.py",
+          "lib/python3.14/site-packages/argdigest/_private/smonitor/emitter.py",
+          "lib/python3.14/site-packages/argdigest/_private/smonitor/meta.py",
+          "lib/python3.14/site-packages/argdigest/_smonitor.py",
+          "lib/python3.14/site-packages/argdigest/_version.py",
+          "lib/python3.14/site-packages/argdigest/cli.py",
+          "lib/python3.14/site-packages/argdigest/config.py",
+          "lib/python3.14/site-packages/argdigest/contrib/__init__.py",
+          "lib/python3.14/site-packages/argdigest/contrib/beartype_support.py",
+          "lib/python3.14/site-packages/argdigest/contrib/pydantic_support.py",
+          "lib/python3.14/site-packages/argdigest/contrib/pyunitwizard_support.py",
+          "lib/python3.14/site-packages/argdigest/core/__init__.py",
+          "lib/python3.14/site-packages/argdigest/core/agent_docs.py",
+          "lib/python3.14/site-packages/argdigest/core/argument_loader.py",
+          "lib/python3.14/site-packages/argdigest/core/argument_registry.py",
+          "lib/python3.14/site-packages/argdigest/core/caller.py",
+          "lib/python3.14/site-packages/argdigest/core/config.py",
+          "lib/python3.14/site-packages/argdigest/core/context.py",
+          "lib/python3.14/site-packages/argdigest/core/decorator.py",
+          "lib/python3.14/site-packages/argdigest/core/diagnostics.py",
+          "lib/python3.14/site-packages/argdigest/core/errors.py",
+          "lib/python3.14/site-packages/argdigest/core/errors_base.py",
+          "lib/python3.14/site-packages/argdigest/core/function_contract.py",
+          "lib/python3.14/site-packages/argdigest/core/function_loader.py",
+          "lib/python3.14/site-packages/argdigest/core/health.py",
+          "lib/python3.14/site-packages/argdigest/core/logger.py",
+          "lib/python3.14/site-packages/argdigest/core/normalization.py",
+          "lib/python3.14/site-packages/argdigest/core/registry.py",
+          "lib/python3.14/site-packages/argdigest/core/utils.py",
+          "lib/python3.14/site-packages/argdigest/diagnostics.py",
+          "lib/python3.14/site-packages/argdigest/pipelines/__init__.py",
+          "lib/python3.14/site-packages/argdigest/pipelines/base.py",
+          "lib/python3.14/site-packages/argdigest/pipelines/coercers.py",
+          "lib/python3.14/site-packages/argdigest/pipelines/data.py",
+          "lib/python3.14/site-packages/argdigest/pipelines/science.py",
+          "lib/python3.14/site-packages/argdigest/pipelines/validators.py",
+          "lib/python3.14/site-packages/argdigest/__pycache__/__init__.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/__pycache__/_depdigest.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/__init__.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/catalog.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/emitter.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/meta.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/__pycache__/_smonitor.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/__pycache__/_version.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/__pycache__/cli.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/__pycache__/config.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/contrib/__pycache__/__init__.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/contrib/__pycache__/beartype_support.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/contrib/__pycache__/pydantic_support.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/contrib/__pycache__/pyunitwizard_support.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/core/__pycache__/__init__.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/core/__pycache__/agent_docs.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/core/__pycache__/argument_loader.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/core/__pycache__/argument_registry.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/core/__pycache__/caller.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/core/__pycache__/config.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/core/__pycache__/context.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/core/__pycache__/decorator.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/core/__pycache__/diagnostics.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/core/__pycache__/errors.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/core/__pycache__/errors_base.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/core/__pycache__/function_contract.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/core/__pycache__/function_loader.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/core/__pycache__/health.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/core/__pycache__/logger.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/core/__pycache__/normalization.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/core/__pycache__/registry.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/core/__pycache__/utils.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/__pycache__/diagnostics.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/__init__.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/base.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/coercers.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/data.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/science.cpython-314.pyc",
+          "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/validators.cpython-314.pyc",
+          "bin/argdigest"
+        ],
+        "fn": "argdigest-0.17.1-py_0.tar.bz2",
+        "license": "MIT",
+        "link": {
+          "source": "/tmp/argdigest-release0171.BO1HRi/pkgs/argdigest-0.17.1-py_0",
+          "type": 1
+        },
+        "md5": "2c39c19f5a7f1c4afe27352d9f5ee531",
+        "name": "argdigest",
+        "noarch": "python",
+        "package_tarball_full_path": "/tmp/argdigest-release0171.BO1HRi/pkgs/argdigest-0.17.1-py_0.tar.bz2",
+        "package_type": "noarch_python",
+        "paths_data": {
+          "paths": [
+            {
+              "_path": "site-packages/argdigest-0.17.1.dist-info/INSTALLER",
+              "path_type": "hardlink",
+              "sha256": "d0edee15f91b406f3f99726e44eb990be6e34fd0345b52b910c568e0eef6a2a8",
+              "sha256_in_prefix": "d0edee15f91b406f3f99726e44eb990be6e34fd0345b52b910c568e0eef6a2a8",
+              "size_in_bytes": 5
+            },
+            {
+              "_path": "site-packages/argdigest-0.17.1.dist-info/METADATA",
+              "path_type": "hardlink",
+              "sha256": "c796ced0d140f82bd82b79f9b5d95d01953107330bfb21f1b7eff149132058ba",
+              "sha256_in_prefix": "c796ced0d140f82bd82b79f9b5d95d01953107330bfb21f1b7eff149132058ba",
+              "size_in_bytes": 7953
+            },
+            {
+              "_path": "site-packages/argdigest-0.17.1.dist-info/RECORD",
+              "path_type": "hardlink",
+              "sha256": "3b663d45d9dedfaa9a46dffabef6007c12c34d3127468f28285a1857354c6a97",
+              "sha256_in_prefix": "3b663d45d9dedfaa9a46dffabef6007c12c34d3127468f28285a1857354c6a97",
+              "size_in_bytes": 6494
+            },
+            {
+              "_path": "site-packages/argdigest-0.17.1.dist-info/REQUESTED",
+              "path_type": "hardlink",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "sha256_in_prefix": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "size_in_bytes": 0
+            },
+            {
+              "_path": "site-packages/argdigest-0.17.1.dist-info/WHEEL",
+              "path_type": "hardlink",
+              "sha256": "98e75747d0b7c0c568bfb71263c3d8f970b3a374a6996087bc642be5cb09a1aa",
+              "sha256_in_prefix": "98e75747d0b7c0c568bfb71263c3d8f970b3a374a6996087bc642be5cb09a1aa",
+              "size_in_bytes": 91
+            },
+            {
+              "_path": "site-packages/argdigest-0.17.1.dist-info/direct_url.json",
+              "path_type": "hardlink",
+              "sha256": "a998c788c9708c11a6232a30ef7ad48e03709701d7b754be36fc336aa2e8f5fd",
+              "sha256_in_prefix": "a998c788c9708c11a6232a30ef7ad48e03709701d7b754be36fc336aa2e8f5fd",
+              "size_in_bytes": 118
+            },
+            {
+              "_path": "site-packages/argdigest-0.17.1.dist-info/entry_points.txt",
+              "path_type": "hardlink",
+              "sha256": "47b7ff7b78b4fae58b34a783201e7447ebc5109a6f972dbd572599d5196b1b18",
+              "sha256_in_prefix": "47b7ff7b78b4fae58b34a783201e7447ebc5109a6f972dbd572599d5196b1b18",
+              "size_in_bytes": 49
+            },
+            {
+              "_path": "site-packages/argdigest-0.17.1.dist-info/licenses/LICENSE",
+              "path_type": "hardlink",
+              "sha256": "89774af33c83f6ac673838d2621666d25f65b18f6d15fd67a04004901bd90b01",
+              "sha256_in_prefix": "89774af33c83f6ac673838d2621666d25f65b18f6d15fd67a04004901bd90b01",
+              "size_in_bytes": 1190
+            },
+            {
+              "_path": "site-packages/argdigest-0.17.1.dist-info/top_level.txt",
+              "path_type": "hardlink",
+              "sha256": "f2e38e3565c74fde869dde1fd57def883954a20284bacee9715010d342f5a562",
+              "sha256_in_prefix": "f2e38e3565c74fde869dde1fd57def883954a20284bacee9715010d342f5a562",
+              "size_in_bytes": 10
+            },
+            {
+              "_path": "site-packages/argdigest/__init__.py",
+              "path_type": "hardlink",
+              "sha256": "07518ec0f8d53c99d67f40aa76dc1a9f021ab659fc97ee4eb24a2e325e4feaee",
+              "sha256_in_prefix": "07518ec0f8d53c99d67f40aa76dc1a9f021ab659fc97ee4eb24a2e325e4feaee",
+              "size_in_bytes": 2031
+            },
+            {
+              "_path": "site-packages/argdigest/_depdigest.py",
+              "path_type": "hardlink",
+              "sha256": "e3eede5f993fd789c55068769ec794e771fb7b233fa7e10df2f0439a8d531cd9",
+              "sha256_in_prefix": "e3eede5f993fd789c55068769ec794e771fb7b233fa7e10df2f0439a8d531cd9",
+              "size_in_bytes": 257
+            },
+            {
+              "_path": "site-packages/argdigest/_private/smonitor/__init__.py",
+              "path_type": "hardlink",
+              "sha256": "3a7c8e505add1e4a4ff8fdb866c97edd043b830f6b7a59f768abd829ee419632",
+              "sha256_in_prefix": "3a7c8e505add1e4a4ff8fdb866c97edd043b830f6b7a59f768abd829ee419632",
+              "size_in_bytes": 181
+            },
+            {
+              "_path": "site-packages/argdigest/_private/smonitor/catalog.py",
+              "path_type": "hardlink",
+              "sha256": "cc19ca5175cfae824f0ac0c0d5a565d4971a6067304b585d049cefb448e4c52f",
+              "sha256_in_prefix": "cc19ca5175cfae824f0ac0c0d5a565d4971a6067304b585d049cefb448e4c52f",
+              "size_in_bytes": 12825
+            },
+            {
+              "_path": "site-packages/argdigest/_private/smonitor/emitter.py",
+              "path_type": "hardlink",
+              "sha256": "ed30989f4ebe8cf69720a9e01da83b4ae8d44aef6abbdf3dbeba253084566dac",
+              "sha256_in_prefix": "ed30989f4ebe8cf69720a9e01da83b4ae8d44aef6abbdf3dbeba253084566dac",
+              "size_in_bytes": 2670
+            },
+            {
+              "_path": "site-packages/argdigest/_private/smonitor/meta.py",
+              "path_type": "hardlink",
+              "sha256": "2b5313a344e848dcddeb2181d8e352664b77c0d02b5c421fb4726767b15ae81f",
+              "sha256_in_prefix": "2b5313a344e848dcddeb2181d8e352664b77c0d02b5c421fb4726767b15ae81f",
+              "size_in_bytes": 148
+            },
+            {
+              "_path": "site-packages/argdigest/_smonitor.py",
+              "path_type": "hardlink",
+              "sha256": "8c64a540b48708d6b2cff8bb49ff05465c44be5cdc3b4511f40b514796b0d37d",
+              "sha256_in_prefix": "8c64a540b48708d6b2cff8bb49ff05465c44be5cdc3b4511f40b514796b0d37d",
+              "size_in_bytes": 648
+            },
+            {
+              "_path": "site-packages/argdigest/_version.py",
+              "path_type": "hardlink",
+              "sha256": "9abc0193264d70ca30306e3e2ac951bee5a3953db17659d60d25836442b6ef4b",
+              "sha256_in_prefix": "9abc0193264d70ca30306e3e2ac951bee5a3953db17659d60d25836442b6ef4b",
+              "size_in_bytes": 23
+            },
+            {
+              "_path": "site-packages/argdigest/cli.py",
+              "path_type": "hardlink",
+              "sha256": "f6e45b3cd57e83c7070b44b1a12abee6279ce80c55fd86a22c2754f04156e765",
+              "sha256_in_prefix": "f6e45b3cd57e83c7070b44b1a12abee6279ce80c55fd86a22c2754f04156e765",
+              "size_in_bytes": 3932
+            },
+            {
+              "_path": "site-packages/argdigest/config.py",
+              "path_type": "hardlink",
+              "sha256": "1e06c210d8cb24a6298e03961f5ad9a1a7eda56d5e473e8f2c791c0484e1ea38",
+              "sha256_in_prefix": "1e06c210d8cb24a6298e03961f5ad9a1a7eda56d5e473e8f2c791c0484e1ea38",
+              "size_in_bytes": 341
+            },
+            {
+              "_path": "site-packages/argdigest/contrib/__init__.py",
+              "path_type": "hardlink",
+              "sha256": "780dc788fb0ee7e7d9273c45992a3568176dc0ef168dccce12a3e236c3f5cf75",
+              "sha256_in_prefix": "780dc788fb0ee7e7d9273c45992a3568176dc0ef168dccce12a3e236c3f5cf75",
+              "size_in_bytes": 35
+            },
+            {
+              "_path": "site-packages/argdigest/contrib/beartype_support.py",
+              "path_type": "hardlink",
+              "sha256": "a18088bc90a02f56e44c5e5b5ad96da346d136baec861dacb739c6f86273acd2",
+              "sha256_in_prefix": "a18088bc90a02f56e44c5e5b5ad96da346d136baec861dacb739c6f86273acd2",
+              "size_in_bytes": 1261
+            },
+            {
+              "_path": "site-packages/argdigest/contrib/pydantic_support.py",
+              "path_type": "hardlink",
+              "sha256": "e52140c341096d5ad04fc056a2dccb39c4f368138758d2e6086a9ef9bee8df71",
+              "sha256_in_prefix": "e52140c341096d5ad04fc056a2dccb39c4f368138758d2e6086a9ef9bee8df71",
+              "size_in_bytes": 1704
+            },
+            {
+              "_path": "site-packages/argdigest/contrib/pyunitwizard_support.py",
+              "path_type": "hardlink",
+              "sha256": "8c7f896ed03cc72735ed1a4faa577b8705e52be43d859f278e7ec423dfce5922",
+              "sha256_in_prefix": "8c7f896ed03cc72735ed1a4faa577b8705e52be43d859f278e7ec423dfce5922",
+              "size_in_bytes": 8456
+            },
+            {
+              "_path": "site-packages/argdigest/core/__init__.py",
+              "path_type": "hardlink",
+              "sha256": "fde4100e15ab833df34916a47a36a19a9c21925b6042ee93328afb270f835fca",
+              "sha256_in_prefix": "fde4100e15ab833df34916a47a36a19a9c21925b6042ee93328afb270f835fca",
+              "size_in_bytes": 683
+            },
+            {
+              "_path": "site-packages/argdigest/core/agent_docs.py",
+              "path_type": "hardlink",
+              "sha256": "0dd99f2de399f8872462f607cc7dc333bf9b2461c0e9169d59dffb3df2994233",
+              "sha256_in_prefix": "0dd99f2de399f8872462f607cc7dc333bf9b2461c0e9169d59dffb3df2994233",
+              "size_in_bytes": 7680
+            },
+            {
+              "_path": "site-packages/argdigest/core/argument_loader.py",
+              "path_type": "hardlink",
+              "sha256": "cb45b08e78282b98408e7d43fb004db2b2585003aadd074c7de1ef585b6f6dff",
+              "sha256_in_prefix": "cb45b08e78282b98408e7d43fb004db2b2585003aadd074c7de1ef585b6f6dff",
+              "size_in_bytes": 5310
+            },
+            {
+              "_path": "site-packages/argdigest/core/argument_registry.py",
+              "path_type": "hardlink",
+              "sha256": "b2698707760710bd5e103350f2a761f96b4d0178eb4d7f2b02fe03e55f3ea3bf",
+              "sha256_in_prefix": "b2698707760710bd5e103350f2a761f96b4d0178eb4d7f2b02fe03e55f3ea3bf",
+              "size_in_bytes": 850
+            },
+            {
+              "_path": "site-packages/argdigest/core/caller.py",
+              "path_type": "hardlink",
+              "sha256": "e44f21438bfe955f185452526f05d224723bf8c7bb07d13a1c02f3210a3c041f",
+              "sha256_in_prefix": "e44f21438bfe955f185452526f05d224723bf8c7bb07d13a1c02f3210a3c041f",
+              "size_in_bytes": 2956
+            },
+            {
+              "_path": "site-packages/argdigest/core/config.py",
+              "path_type": "hardlink",
+              "sha256": "c076a2d37790e23f86eacef52680c2cdab179a849b2139beb40cfa220e9f892f",
+              "sha256_in_prefix": "c076a2d37790e23f86eacef52680c2cdab179a849b2139beb40cfa220e9f892f",
+              "size_in_bytes": 5882
+            },
+            {
+              "_path": "site-packages/argdigest/core/context.py",
+              "path_type": "hardlink",
+              "sha256": "04ce1ef61eed153411c9a83d388899de1886f6f561be406373a6b112e639b81c",
+              "sha256_in_prefix": "04ce1ef61eed153411c9a83d388899de1886f6f561be406373a6b112e639b81c",
+              "size_in_bytes": 321
+            },
+            {
+              "_path": "site-packages/argdigest/core/decorator.py",
+              "path_type": "hardlink",
+              "sha256": "22245562426702ba235c52b3701faafdcafdec7a7acce133a967075fe71eeac0",
+              "sha256_in_prefix": "22245562426702ba235c52b3701faafdcafdec7a7acce133a967075fe71eeac0",
+              "size_in_bytes": 30086
+            },
+            {
+              "_path": "site-packages/argdigest/core/diagnostics.py",
+              "path_type": "hardlink",
+              "sha256": "aaf2b4bf15562206d9c4ed16d2f3075214669948fb2523d6b6007698f339ed32",
+              "sha256_in_prefix": "aaf2b4bf15562206d9c4ed16d2f3075214669948fb2523d6b6007698f339ed32",
+              "size_in_bytes": 1734
+            },
+            {
+              "_path": "site-packages/argdigest/core/errors.py",
+              "path_type": "hardlink",
+              "sha256": "4c1fecd036a134b84c58edbb825dfedb5233ca0ee42d4daedae8e36aa92e635a",
+              "sha256_in_prefix": "4c1fecd036a134b84c58edbb825dfedb5233ca0ee42d4daedae8e36aa92e635a",
+              "size_in_bytes": 5612
+            },
+            {
+              "_path": "site-packages/argdigest/core/errors_base.py",
+              "path_type": "hardlink",
+              "sha256": "bd1a04038e7e9fb50ce422291ae61e2f4cc1bac04342ab0f0230a6ef8b12247b",
+              "sha256_in_prefix": "bd1a04038e7e9fb50ce422291ae61e2f4cc1bac04342ab0f0230a6ef8b12247b",
+              "size_in_bytes": 1077
+            },
+            {
+              "_path": "site-packages/argdigest/core/function_contract.py",
+              "path_type": "hardlink",
+              "sha256": "e25f37ee180f650b596b4d61f84ed1c93191cb5ab5837afed78945a3586536fb",
+              "sha256_in_prefix": "e25f37ee180f650b596b4d61f84ed1c93191cb5ab5837afed78945a3586536fb",
+              "size_in_bytes": 17997
+            },
+            {
+              "_path": "site-packages/argdigest/core/function_loader.py",
+              "path_type": "hardlink",
+              "sha256": "3970949c2553a706b617380e8601cf97113f1b13837c8de1f1abb613838014b1",
+              "sha256_in_prefix": "3970949c2553a706b617380e8601cf97113f1b13837c8de1f1abb613838014b1",
+              "size_in_bytes": 4678
+            },
+            {
+              "_path": "site-packages/argdigest/core/health.py",
+              "path_type": "hardlink",
+              "sha256": "edbb0c304f137455ab31ab33c8d3f21e84d89446c258c8060c6b559cc24a92b7",
+              "sha256_in_prefix": "edbb0c304f137455ab31ab33c8d3f21e84d89446c258c8060c6b559cc24a92b7",
+              "size_in_bytes": 3333
+            },
+            {
+              "_path": "site-packages/argdigest/core/logger.py",
+              "path_type": "hardlink",
+              "sha256": "2fc318cb37f9c9863e809b51d516b5de6fc340cd6f962e9688484fe71f35a65b",
+              "sha256_in_prefix": "2fc318cb37f9c9863e809b51d516b5de6fc340cd6f962e9688484fe71f35a65b",
+              "size_in_bytes": 738
+            },
+            {
+              "_path": "site-packages/argdigest/core/normalization.py",
+              "path_type": "hardlink",
+              "sha256": "a90fd2015dc38cc630e8de24c13de8a01b65afd3a9d67e01bbe9f5e88f804f49",
+              "sha256_in_prefix": "a90fd2015dc38cc630e8de24c13de8a01b65afd3a9d67e01bbe9f5e88f804f49",
+              "size_in_bytes": 9009
+            },
+            {
+              "_path": "site-packages/argdigest/core/registry.py",
+              "path_type": "hardlink",
+              "sha256": "3a8a81354ce299e4795d105441e0d029b2bf93a636c1c94f01adda1d2b19e48a",
+              "sha256_in_prefix": "3a8a81354ce299e4795d105441e0d029b2bf93a636c1c94f01adda1d2b19e48a",
+              "size_in_bytes": 4627
+            },
+            {
+              "_path": "site-packages/argdigest/core/utils.py",
+              "path_type": "hardlink",
+              "sha256": "7a44ee503b9b416407a0406c0c992bc2cf0f257761937ee74e6656574c8f3a35",
+              "sha256_in_prefix": "7a44ee503b9b416407a0406c0c992bc2cf0f257761937ee74e6656574c8f3a35",
+              "size_in_bytes": 5980
+            },
+            {
+              "_path": "site-packages/argdigest/diagnostics.py",
+              "path_type": "hardlink",
+              "sha256": "2ab1c77c7832f2b62161b8da57b228b12b89e7a667c6973d19ec8b9e041c2559",
+              "sha256_in_prefix": "2ab1c77c7832f2b62161b8da57b228b12b89e7a667c6973d19ec8b9e041c2559",
+              "size_in_bytes": 2246
+            },
+            {
+              "_path": "site-packages/argdigest/pipelines/__init__.py",
+              "path_type": "hardlink",
+              "sha256": "0d9efba3909e8afac995b4b260756d48321a2d02a7968f49d388672ad3694d1b",
+              "sha256_in_prefix": "0d9efba3909e8afac995b4b260756d48321a2d02a7968f49d388672ad3694d1b",
+              "size_in_bytes": 161
+            },
+            {
+              "_path": "site-packages/argdigest/pipelines/base.py",
+              "path_type": "hardlink",
+              "sha256": "20c07d367c9d121a07c77105127f5a950cced551aa77e65f5f2e80261b3de045",
+              "sha256_in_prefix": "20c07d367c9d121a07c77105127f5a950cced551aa77e65f5f2e80261b3de045",
+              "size_in_bytes": 1159
+            },
+            {
+              "_path": "site-packages/argdigest/pipelines/coercers.py",
+              "path_type": "hardlink",
+              "sha256": "83e3bffbb67474633c15f88420215110dd25e1bd9db9d9a148b1b352e8fb01d8",
+              "sha256_in_prefix": "83e3bffbb67474633c15f88420215110dd25e1bd9db9d9a148b1b352e8fb01d8",
+              "size_in_bytes": 2393
+            },
+            {
+              "_path": "site-packages/argdigest/pipelines/data.py",
+              "path_type": "hardlink",
+              "sha256": "c0132959ab06f447f2f5d202e5b1ddf0dc50efaa392d3470d5c1fa0b942f0521",
+              "sha256_in_prefix": "c0132959ab06f447f2f5d202e5b1ddf0dc50efaa392d3470d5c1fa0b942f0521",
+              "size_in_bytes": 7253
+            },
+            {
+              "_path": "site-packages/argdigest/pipelines/science.py",
+              "path_type": "hardlink",
+              "sha256": "f5ce2af693b9b9e714c0145c1601b4b2c2223efaa3fe0f3469c21883306bb464",
+              "sha256_in_prefix": "f5ce2af693b9b9e714c0145c1601b4b2c2223efaa3fe0f3469c21883306bb464",
+              "size_in_bytes": 1791
+            },
+            {
+              "_path": "site-packages/argdigest/pipelines/validators.py",
+              "path_type": "hardlink",
+              "sha256": "5b844a9bce602f734aafcf28bd671ccc53571ba3ba8dd4f54acc20b31c162f52",
+              "sha256_in_prefix": "5b844a9bce602f734aafcf28bd671ccc53571ba3ba8dd4f54acc20b31c162f52",
+              "size_in_bytes": 2238
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/__pycache__/__init__.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 1805
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/__pycache__/_depdigest.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 338
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/__init__.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 387
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/catalog.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 9601
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/emitter.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 3331
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/meta.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 295
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/__pycache__/_smonitor.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 623
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/__pycache__/_version.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 176
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/__pycache__/cli.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 5963
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/__pycache__/config.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 489
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/contrib/__pycache__/__init__.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 157
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/contrib/__pycache__/beartype_support.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 2133
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/contrib/__pycache__/pydantic_support.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 3092
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/contrib/__pycache__/pyunitwizard_support.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 12929
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/__init__.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 722
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/agent_docs.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 10506
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/argument_loader.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 8709
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/argument_registry.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 2987
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/caller.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 5772
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/config.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 7909
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/context.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 876
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/decorator.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 31437
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/diagnostics.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 3084
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/errors.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 7896
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/errors_base.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 2274
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/function_contract.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 27378
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/function_loader.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 7395
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/health.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 4189
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/logger.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 1811
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/normalization.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 14622
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/registry.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 7694
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/utils.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 6532
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/__pycache__/diagnostics.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 2836
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/__init__.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 316
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/base.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 2042
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/coercers.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 4101
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/data.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 12527
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/science.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 2965
+            },
+            {
+              "_path": "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/validators.cpython-314.pyc",
+              "path_type": "pyc_file",
+              "size_in_bytes": 4428
+            },
+            {
+              "_path": "bin/argdigest",
+              "path_type": "unix_python_entry_point",
+              "size_in_bytes": 257
+            }
+          ],
+          "paths_version": 1
+        },
+        "requested_spec": "uibcdf/label/staging/noarch::argdigest==0.17.1=py_0",
+        "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+        "size": 55828,
+        "subdir": "noarch",
+        "timestamp": 1793907753481,
+        "url": "https://conda.anaconda.org/uibcdf/label/staging/noarch/argdigest-0.17.1-py_0.tar.bz2",
+        "version": "0.17.1"
+      },
+      "modules": {
+        "argdigest": {
+          "origin": "/tmp/argdigest-release0171.BO1HRi/stage-env/lib/python3.14/site-packages/argdigest/__init__.py",
+          "version": "0.17.1"
+        },
+        "depdigest": {
+          "origin": "/tmp/argdigest-release0171.BO1HRi/stage-env/lib/python3.14/site-packages/depdigest/__init__.py",
+          "version": "0.15.1"
+        },
+        "pytest_receptor": {
+          "origin": "/tmp/argdigest-release0171.BO1HRi/stage-env/lib/python3.14/site-packages/pytest_receptor/__init__.py",
+          "version": "1.2.2"
+        },
+        "pyunitwizard": {
+          "origin": "/tmp/argdigest-release0171.BO1HRi/stage-env/lib/python3.14/site-packages/pyunitwizard/__init__.py",
+          "version": "0.27.0"
+        },
+        "smonitor": {
+          "origin": "/tmp/argdigest-release0171.BO1HRi/stage-env/lib/python3.14/site-packages/smonitor/__init__.py",
+          "version": "0.22.1"
+        }
+      },
+      "payload_sha256": {
+        "site-packages/argdigest/__init__.py": "07518ec0f8d53c99d67f40aa76dc1a9f021ab659fc97ee4eb24a2e325e4feaee",
+        "site-packages/argdigest/_depdigest.py": "e3eede5f993fd789c55068769ec794e771fb7b233fa7e10df2f0439a8d531cd9",
+        "site-packages/argdigest/_private/smonitor/__init__.py": "3a7c8e505add1e4a4ff8fdb866c97edd043b830f6b7a59f768abd829ee419632",
+        "site-packages/argdigest/_private/smonitor/catalog.py": "cc19ca5175cfae824f0ac0c0d5a565d4971a6067304b585d049cefb448e4c52f",
+        "site-packages/argdigest/_private/smonitor/emitter.py": "ed30989f4ebe8cf69720a9e01da83b4ae8d44aef6abbdf3dbeba253084566dac",
+        "site-packages/argdigest/_private/smonitor/meta.py": "2b5313a344e848dcddeb2181d8e352664b77c0d02b5c421fb4726767b15ae81f",
+        "site-packages/argdigest/_smonitor.py": "8c64a540b48708d6b2cff8bb49ff05465c44be5cdc3b4511f40b514796b0d37d",
+        "site-packages/argdigest/_version.py": "9abc0193264d70ca30306e3e2ac951bee5a3953db17659d60d25836442b6ef4b",
+        "site-packages/argdigest/cli.py": "f6e45b3cd57e83c7070b44b1a12abee6279ce80c55fd86a22c2754f04156e765",
+        "site-packages/argdigest/config.py": "1e06c210d8cb24a6298e03961f5ad9a1a7eda56d5e473e8f2c791c0484e1ea38",
+        "site-packages/argdigest/contrib/__init__.py": "780dc788fb0ee7e7d9273c45992a3568176dc0ef168dccce12a3e236c3f5cf75",
+        "site-packages/argdigest/contrib/beartype_support.py": "a18088bc90a02f56e44c5e5b5ad96da346d136baec861dacb739c6f86273acd2",
+        "site-packages/argdigest/contrib/pydantic_support.py": "e52140c341096d5ad04fc056a2dccb39c4f368138758d2e6086a9ef9bee8df71",
+        "site-packages/argdigest/contrib/pyunitwizard_support.py": "8c7f896ed03cc72735ed1a4faa577b8705e52be43d859f278e7ec423dfce5922",
+        "site-packages/argdigest/core/__init__.py": "fde4100e15ab833df34916a47a36a19a9c21925b6042ee93328afb270f835fca",
+        "site-packages/argdigest/core/agent_docs.py": "0dd99f2de399f8872462f607cc7dc333bf9b2461c0e9169d59dffb3df2994233",
+        "site-packages/argdigest/core/argument_loader.py": "cb45b08e78282b98408e7d43fb004db2b2585003aadd074c7de1ef585b6f6dff",
+        "site-packages/argdigest/core/argument_registry.py": "b2698707760710bd5e103350f2a761f96b4d0178eb4d7f2b02fe03e55f3ea3bf",
+        "site-packages/argdigest/core/caller.py": "e44f21438bfe955f185452526f05d224723bf8c7bb07d13a1c02f3210a3c041f",
+        "site-packages/argdigest/core/config.py": "c076a2d37790e23f86eacef52680c2cdab179a849b2139beb40cfa220e9f892f",
+        "site-packages/argdigest/core/context.py": "04ce1ef61eed153411c9a83d388899de1886f6f561be406373a6b112e639b81c",
+        "site-packages/argdigest/core/decorator.py": "22245562426702ba235c52b3701faafdcafdec7a7acce133a967075fe71eeac0",
+        "site-packages/argdigest/core/diagnostics.py": "aaf2b4bf15562206d9c4ed16d2f3075214669948fb2523d6b6007698f339ed32",
+        "site-packages/argdigest/core/errors.py": "4c1fecd036a134b84c58edbb825dfedb5233ca0ee42d4daedae8e36aa92e635a",
+        "site-packages/argdigest/core/errors_base.py": "bd1a04038e7e9fb50ce422291ae61e2f4cc1bac04342ab0f0230a6ef8b12247b",
+        "site-packages/argdigest/core/function_contract.py": "e25f37ee180f650b596b4d61f84ed1c93191cb5ab5837afed78945a3586536fb",
+        "site-packages/argdigest/core/function_loader.py": "3970949c2553a706b617380e8601cf97113f1b13837c8de1f1abb613838014b1",
+        "site-packages/argdigest/core/health.py": "edbb0c304f137455ab31ab33c8d3f21e84d89446c258c8060c6b559cc24a92b7",
+        "site-packages/argdigest/core/logger.py": "2fc318cb37f9c9863e809b51d516b5de6fc340cd6f962e9688484fe71f35a65b",
+        "site-packages/argdigest/core/normalization.py": "a90fd2015dc38cc630e8de24c13de8a01b65afd3a9d67e01bbe9f5e88f804f49",
+        "site-packages/argdigest/core/registry.py": "3a8a81354ce299e4795d105441e0d029b2bf93a636c1c94f01adda1d2b19e48a",
+        "site-packages/argdigest/core/utils.py": "7a44ee503b9b416407a0406c0c992bc2cf0f257761937ee74e6656574c8f3a35",
+        "site-packages/argdigest/diagnostics.py": "2ab1c77c7832f2b62161b8da57b228b12b89e7a667c6973d19ec8b9e041c2559",
+        "site-packages/argdigest/pipelines/__init__.py": "0d9efba3909e8afac995b4b260756d48321a2d02a7968f49d388672ad3694d1b",
+        "site-packages/argdigest/pipelines/base.py": "20c07d367c9d121a07c77105127f5a950cced551aa77e65f5f2e80261b3de045",
+        "site-packages/argdigest/pipelines/coercers.py": "83e3bffbb67474633c15f88420215110dd25e1bd9db9d9a148b1b352e8fb01d8",
+        "site-packages/argdigest/pipelines/data.py": "c0132959ab06f447f2f5d202e5b1ddf0dc50efaa392d3470d5c1fa0b942f0521",
+        "site-packages/argdigest/pipelines/science.py": "f5ce2af693b9b9e714c0145c1601b4b2c2223efaa3fe0f3469c21883306bb464",
+        "site-packages/argdigest/pipelines/validators.py": "5b844a9bce602f734aafcf28bd671ccc53571ba3ba8dd4f54acc20b31c162f52"
+      },
+      "pip_check": {
+        "exit": 0,
+        "stdout": "No broken requirements found."
+      },
+      "scope": "Additional local Linux x86_64 Python 3.14 staged-file scientific receiving; not a substitute for either hosted installed matrix or fresh public receiving"
+    },
+    "scope": "Additional local Linux x86_64 Python 3.14 installed staged-file receiving, not a replacement for hosted matrices or fresh public receiving",
+    "source_and_artifact_changed": false
+  },
+  "supplemental_lower_bound_receiving": {
+    "argdigest_origin": "/tmp/argdigest-release0171.BO1HRi/lower-env/lib/python3.14/site-packages/argdigest/__init__.py",
+    "checks": [
+      "literal variadic keyword preserved",
+      "native TypeError catch family",
+      "consumer diagnostic code/context with minimum provider",
+      "valid callable metadata without label reads",
+      "optional checker absence warns once without required-dependency error"
+    ],
+    "digest": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+    "exit": 0,
+    "numpy_absent": true,
+    "passed": 5,
+    "public_versions": {
+      "argdigest": "0.17.1",
+      "depdigest": "0.11.0",
+      "smonitor": "0.16.0"
+    },
+    "scope": "Additional Linux Python 3.14 lower-bound receiving, not a replacement for the twelve-cell core matrix"
+  }
+}

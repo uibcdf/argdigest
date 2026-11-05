@@ -1,0 +1,36 @@
+{
+  "ref": {
+    "ref": "refs/tags/0.17.1",
+    "node_id": "REF_kwDOQOgJIrByZWZzL3RhZ3MvMC4xNy4x",
+    "url": "https://api.github.com/repos/uibcdf/argdigest/git/refs/tags/0.17.1",
+    "object": {
+      "sha": "448c09f038e0268c756ac7846cee99e68ce27a68",
+      "type": "tag",
+      "url": "https://api.github.com/repos/uibcdf/argdigest/git/tags/448c09f038e0268c756ac7846cee99e68ce27a68"
+    }
+  },
+  "annotated_tag": {
+    "node_id": "TA_kwDOQOgJItoAKDQ0OGMwOWYwMzhlMDI2OGM3NTZhYzc4NDZjZWU5OWU2OGNlMjdhNjg",
+    "sha": "448c09f038e0268c756ac7846cee99e68ce27a68",
+    "url": "https://api.github.com/repos/uibcdf/argdigest/git/tags/448c09f038e0268c756ac7846cee99e68ce27a68",
+    "tagger": {
+      "name": "Diego Prada",
+      "email": "prada.gracia@gmail.com",
+      "date": "2026-11-05T23:08:31Z"
+    },
+    "object": {
+      "sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+      "type": "commit",
+      "url": "https://api.github.com/repos/uibcdf/argdigest/git/commits/c9c9ee623dab5331fdfa4227bd784dd38620e18b"
+    },
+    "tag": "0.17.1",
+    "message": "0.17.1\n",
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  }
+}

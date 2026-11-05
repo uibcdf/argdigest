@@ -1,6 +1,9 @@
 # Release notes
 
-## Unreleased (0.17.1 candidate)
+## 0.17.1
+
+Published 2026-11-05 in the UIBCDF Conda channel. Exact-file qualification and
+public receiving are recorded in [#51](https://github.com/uibcdf/argdigest/issues/51).
 
 - Preserve literal keywords matching a function's `**kwargs` parameter, including
   opaque and mapping values, instead of expanding/removing them a second time.

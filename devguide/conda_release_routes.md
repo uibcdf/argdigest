@@ -1,19 +1,38 @@
 # Conda release routes
 
-## Candidate 0.17.1
+## Released 0.17.1
 
-Publication is explicitly authorized under `uibcdf/argdigest#51`, coordinated in
-`uibcdf/molsyssuite#169`. Use staged build 0: SPDX/backend, inspected-file publisher
-and the full installed provider/profile changed since 0.17.0. The original
-0.17.0 tag and file remain immutable. Source/full installed/core gates retain
-all twelve supported cells before tag/release and exact-file promotion.
+Release ownership is `uibcdf/argdigest#51`; release-specific consumer coordination
+is `uibcdf/molsyssuite#169`, with contract/guide follow-up in #164. Canonical tag
+and GitHub Release title `0.17.1` identify original qualified source
+`c9c9ee623dab5331fdfa4227bd784dd38620e18b`. Public
+`argdigest-0.17.1-py_0.tar.bz2` is 55,828 bytes and retains SHA-256
+`5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899`
+from staging through main promotion and fresh public receiving.
 
-The full installed descriptor selects public SMonitor 0.22.1 / DepDigest 0.15.1 /
-PyUnitWizard 0.27.0 and all scientific tests plus the 28 nested-signal receiving
-controls. The NumPy-free core matrix retains SMonitor 0.16.0 / DepDigest 0.11.0.
-The optional PyUnitWizard metadata floor corrects the consumed fast_track API to
->=0.22.0. General required runtime floors are unchanged. Exact source/file/run
-and public-install evidence will be retained in the owning release report.
+Source `42071223440`, original producer `42094355330`, full installed
+`42111095969`, minimal core `42111100594` and same-file promotion
+`42127310186` passed their native required steps. Both installed matrices
+retain all twelve Linux/macOS arm64/Windows and Python 3.11–3.14 cells. Full
+fixtures select public SMonitor 0.22.1 / DepDigest 0.15.1 / PyUnitWizard 0.27.0,
+the complete scientific selection and the 28 nested-signal receiving controls.
+The separate NumPy-free core matrix retains SMonitor 0.16.0 / DepDigest 0.11.0.
+The optional PyUnitWizard API minimum is corrected to >=0.22.0; general required
+runtime floors remain unchanged.
+
+Independent public registry/index/download and fresh Linux/Python 3.14 receiving
+verify the same file, CLI, installed import origins and unchanged payload.
+Public scientific receiving passed 533 tests with one absent-sibling E2E skip;
+all 28 SMonitor receiving controls passed. Source-only Zenodo record `23991088`
+matches all 362 files of the original tagged Git export; it does not archive the
+Conda binary. The accidentally duplicated producer `42094355382` failed at
+staging upload and qualifies no file; its distinct unaccepted private digest and
+original unverified receipt remain in the qualification evidence.
+
+Records: `pending_proposals/release_0_17_1.md`,
+`evidence/release_0_17_1_qualification_2026-11-05.json`,
+`evidence/release_0_17_1_publication_2026-11-05.json` and
+`evidence/release_0_17_1_receiving_20261105/`.
 
 ## Released 0.17.0
 
