@@ -43,6 +43,13 @@ selection with three known warnings, without skips. These are source checks,
 not exact-file qualification. Subsequent candidate metadata/guidance and full
 hosted/installed gates retain their own checks.
 
+Pre-build review then found the #53 eager diagnostic-label lookup regression in
+cb97df7. Six of fourteen expanded controls fail there; the corrected source
+passes the complete 534-test selection, without skips and with the same three
+warnings. The original candidate is superseded before any package build/upload.
+The revised SHA must complete all gates; neither superseded matrix is a passed
+release gate. #52 separately tracks ordinary workflow-cancellation behavior.
+
 ## Why
 
 Users need published fixes for literal variadic keywords, native TypeError

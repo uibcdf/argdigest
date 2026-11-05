@@ -135,3 +135,83 @@ def test_naming_the_value_parameter_repairs_registration(monkeypatch):
     value = ["C1"]
     assert consumer(value) is value
     assert default.conversions == 0
+
+
+@pytest.mark.parametrize("exact_name", [False, True])
+def test_valid_callable_never_reads_diagnostic_labels(monkeypatch, exact_name):
+    reads = []
+
+    class Labels(type):
+        def __getattribute__(cls, name):
+            if name in {"__module__", "__qualname__"}:
+                reads.append(name)
+                raise RuntimeError("diagnostic labels are unavailable")
+            return super().__getattribute__(name)
+
+    class Exact(metaclass=Labels):
+        def __call__(self, atom_names):
+            return atom_names
+
+    class SoleValue(metaclass=Labels):
+        def __call__(self, value):
+            return value
+
+    config = registered(
+        monkeypatch,
+        Exact() if exact_name else SoleValue(),
+        f"consumer_53_valid_{exact_name}",
+    )
+
+    @arg_digest(config=config)
+    def consumer(atom_names):
+        return atom_names
+
+    value = ["C1"]
+    assert consumer(value) is value
+    assert reads == []
+
+
+@pytest.mark.parametrize("restricted", [False, True])
+@pytest.mark.parametrize("label_mode", ["raises", "opaque"])
+def test_unavailable_label_keeps_configuration_error(
+    monkeypatch, restricted, label_mode, request
+):
+    if restricted and not hasattr(smonitor, "diagnostic_scope"):
+        if request.config.getoption("--require-scoped-capture"):
+            pytest.fail("Installed qualification requires scoped capture")
+        pytest.skip("Historical provider lacks scoped capture")
+    reads = []
+    label = Opaque()
+
+    class Labels(type):
+        def __getattribute__(cls, name):
+            if name in {"__module__", "__qualname__"}:
+                reads.append(name)
+                if label_mode == "raises":
+                    raise RuntimeError("diagnostic labels are unavailable")
+                return label
+            return super().__getattribute__(name)
+
+    class Ambiguous(metaclass=Labels):
+        def __call__(self, value, dependency=None):
+            pytest.fail("ambiguous digester must not execute")
+
+    config = registered(
+        monkeypatch, Ambiguous(), f"consumer_53_bad_{restricted}_{label_mode}"
+    )
+
+    @arg_digest(config=config)
+    def consumer(atom_names):
+        pytest.fail("consumer body must not execute")
+
+    scope = smonitor.diagnostic_scope() if restricted else nullcontext()
+    with scope, pytest.raises(DigestNotDigestedError) as caught:
+        consumer(["C1"])
+    assert caught.value.code == "ARG-ERR-DIGESTER-001"
+    assert caught.value.context.argname == "atom_names"
+    assert caught.value.context.function_name.endswith(".consumer")
+    assert label.conversions == 0
+    if restricted:
+        assert reads == []
+    else:
+        assert caught.value.extra["digester"] == "configured digester"

@@ -15,6 +15,8 @@
   preserving `DigestNotDigestedError` and rejection while identifying the
   consumer/argument/digester and corrective parameter-naming rule. Never format
   signature defaults or restricted values for this diagnostic.
+  Valid callables do not require diagnostic label metadata; unavailable labels
+  cannot replace the intended configuration error (#53).
 - Qualify nested exception observation with public SMonitor 0.22.1 in the full
   installed profile. Existing core dependency floors remain; the corrected
   filtered/silenced-inner signal guarantee requires SMonitor >=0.22.1.

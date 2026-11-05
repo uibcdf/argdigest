@@ -44,3 +44,11 @@ mocks, independently of these real-provider absence guards.
 The consumer must not make Beartype mandatory or suppress diagnostics to correct
 classification. Optionality and actual failures now have distinct observable
 contracts; this source repair is not a new public package or consumer adoption.
+
+## Isolated fallback-test ordering, 2026-11-05
+
+Pre-build review under #51/#53 exposed two focused fallback mocks that depended
+on DepDigest having been imported during earlier collection. Their availability
+stub is now resolved before installing the artificial import failure, preserving
+the intended optional-checker/emission assertions. Both tests pass when selected
+alone. Real-provider fresh-process absence/broken/transitive guards are unchanged.

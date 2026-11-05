@@ -1,0 +1,45 @@
+{
+  "captured_at": "2026-11-05T17:03:37.569973+00:00",
+  "input_sha256": {
+    "argdigest/core/decorator.py": "22245562426702ba235c52b3701faafdcafdec7a7acce133a967075fe71eeac0",
+    "tests/test_capture_policy.py": "2ed220b78196787fead047a4b18254602d00e1800af787f4ab41027349568121",
+    "tests/test_consumer_digester_diagnostics.py": "59a8b9e833ac49e0d954614b62a5ce916801a28aaeb025ea4c53d47cd76eed2f",
+    "tests/test_decorator_additional.py": "595fd98fba5b1d88d4c4d8e2f6fcf58e44d294c0209906482b71a5fde907f271"
+  },
+  "isolated_fallback_controls": {
+    "exit": 0,
+    "passed": 2,
+    "selectors": [
+      "tests/test_decorator_additional.py::test_type_check_missing_beartype_falls_back_to_runtime_warning",
+      "tests/test_capture_policy.py::test_type_check_fallback_obeys_policy_before_construction"
+    ]
+  },
+  "issue": "uibcdf/argdigest#53",
+  "limits": [
+    "Local Python 3.14.7 source checks inherit editable sibling dependencies; release #51 requires new exact-source and installed-file gates.",
+    "No 0.17.1 package was built/uploaded before this correction. The superseded source runs are not passed release gates.",
+    "The original #50 5b61925 comparison remains historical in issue50_20261105.json.",
+    "The first isolated focused selection exposed two import-order-dependent fallback mocks; they now resolve the availability stub before injecting artificial import failures. Required real-provider absence/broken/transitive guards are unchanged."
+  ],
+  "release": "uibcdf/argdigest#51",
+  "results": {
+    "issue53-before": {
+      "exit": 1,
+      "failed": 6,
+      "junit_sha256": "064a51729702f0b6fa2addd301daefc1094f0739cbbaf86a86dcee05bdea1cca",
+      "output": "FAIL exit=1 | 6 failed, 8 passed | 0.28s | 4 root causes\n\n[1] RuntimeError | 2 tests | call\n    ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py:148\n    RuntimeError: diagnostic labels are unavailable\n    frames: ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py:170 -> ../../home/diego/repos@uibcdf/smonitor/smonitor/core/decorator.py:330 -> candidate-source/argdigest/core/decorator.py:696 -> candidate-source/argdigest/core/decorator.py:661 -> candidate-source/argdigest/core/decorator.py:628 -> candidate-source/argdigest/core/decorator.py:123 -> ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py:148\n    tests:\n      ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py::test_valid_callable_never_reads_diagnostic_labels[False]\n      ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py::test_valid_callable_never_reads_diagnostic_labels[True]\n    rerun: python -m pytest ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py -q\n\n[2] RuntimeError | 2 tests | call\n    ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py:191\n    RuntimeError: diagnostic labels are unavailable\n    frames: ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py:209 -> ../../home/diego/repos@uibcdf/smonitor/smonitor/core/decorator.py:330 -> candidate-source/argdigest/core/decorator.py:696 -> candidate-source/argdigest/core/decorator.py:661 -> candidate-source/argdigest/core/decorator.py:628 -> candidate-source/argdigest/core/decorator.py:123 -> ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py:191\n    tests:\n      ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py::test_unavailable_label_keeps_configuration_error[raises-False]\n      ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py::test_unavailable_label_keeps_configuration_error[raises-True]\n    rerun: python -m pytest ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py -q\n\n[3] AssertionError | 1 test | call\n    ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py:215\n    AssertionError: assert ['__module__', '__qualname__'] == []\n\n      Left contains 2 more items, first extra item: '__module__'\n      Use -v to get more diff\n    rerun: python -m pytest ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py::test_unavailable_label_keeps_configuration_error[opaque-True] -q\n\n[4] AssertionError | 1 test | call\n    ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py:217\n    AssertionError: assert '' == 'configured digester'\n\n      - configured digester\n    rerun: python -m pytest ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py::test_unavailable_label_keeps_configuration_error[opaque-False] -q",
+      "passed": 8,
+      "skipped": 0
+    },
+    "local-full-revised": {
+      "exit": 0,
+      "failed": 0,
+      "junit_sha256": "ef0a40af318c65e3174f53b751bdaddd4419783350b778fcac580843fc008a46",
+      "output": "PASS exit=0 | 534 passed | 8.16s | 3 warnings\n\nwarnings: 3 in 3 groups\n  DigestNotDigestedWarning x1 | argdigest/core/decorator.py:651 | No digester is registered for argument 'syntax' of 'select', so it was not validated. Define or register a dig...\n  DigestNotDigestedWarning x1 | argdigest/core/decorator.py:671 | No digester is registered for argument 'items' of 'combine', so it was not validated. Define or register a dig...\n  DigestNotDigestedWarning x1 | argdigest/core/decorator.py:671 | No digester is registered for argument 'suffix' of 'positioned', so it was not validated. Define or register a...",
+      "owning_module_passed": 14,
+      "passed": 534,
+      "skipped": 0
+    }
+  },
+  "superseded_source": "cb97df70284c696663d2fbed6feb2d4a6f6c67f9"
+}

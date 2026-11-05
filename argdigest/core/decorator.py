@@ -15,7 +15,7 @@ from .argument_registry import ArgumentRegistry
 from .caller import resolve_contract_owner
 from .config import DigestConfig, get_env_config_module, resolve_config
 from .context import Context
-from .diagnostics import diagnostic_scope, resolve_capture_policy
+from .diagnostics import detailed_diagnostics, diagnostic_scope, resolve_capture_policy
 from .errors import (
     ArgumentConsistencyError,
     DigestNotDigestedError,
@@ -93,13 +93,27 @@ def _resolve_value_param(
     argname: str,
     *,
     caller: str | None = None,
-    digester: str = "configured digester",
+    digester: Callable | None = None,
 ) -> str:
     if argname in sig.parameters:
         return argname
     candidates = [p for p in sig.parameters if p not in {"caller", "qualname"}]
     if len(candidates) == 1:
         return candidates[0]
+    identity = "configured digester"
+    if digester is not None and detailed_diagnostics():
+        # Diagnostic-only attributes must not reject a valid signature or
+        # replace the intended configuration error when a label is unavailable.
+        try:
+            owner = digester if inspect.isroutine(digester) else type(digester)
+            module = getattr(owner, "__module__", "")
+            name = getattr(owner, "__qualname__", "configured digester")
+            identity = (
+                ".".join(part for part in (module, name) if type(part) is str)
+                or identity
+            )
+        except Exception:
+            pass
     raise DigestNotDigestedError(
         code="ARG-ERR-DIGESTER-001",
         context=Context(
@@ -107,7 +121,7 @@ def _resolve_value_param(
             argname=argname,
             value=None,
         ),
-        digester=digester,
+        digester=identity,
         parameters=", ".join(sig.parameters),
     )
 
@@ -119,12 +133,8 @@ def get_digester_metadata(
     with _DIGESTER_METADATA_LOCK:
         if key not in _DIGESTER_METADATA_CACHE:
             sig_dig = inspect.signature(fn_dig)
-            owner = fn_dig if inspect.isroutine(fn_dig) else type(fn_dig)
-            module = getattr(owner, "__module__", "")
-            name = getattr(owner, "__qualname__", "configured digester")
-            identity = ".".join(part for part in (module, name) if type(part) is str)
             value_param = _resolve_value_param(
-                sig_dig, argname, caller=caller, digester=identity
+                sig_dig, argname, caller=caller, digester=fn_dig
             )
             _DIGESTER_METADATA_CACHE[key] = (sig_dig, value_param)
         return _DIGESTER_METADATA_CACHE[key]

@@ -52,3 +52,13 @@ and restrictive capture, zero default conversion, per-consumer failure context,
 unchanged error family and successful corrected registration. It protects the
 reported mechanism rather than merely checking rendered words. Delivery of
 0.17.1 remains separately qualified; the #9 typing proposal remains deferred.
+
+## Pre-build compatibility correction, 2026-11-05
+
+Further review found eager label lookup in the first source correction could
+reject valid callable objects. This is independently tracked and corrected in
+uibcdf/argdigest#53 before any 0.17.1 file is built. Metadata labels are now read
+only for actual ambiguity under detailed capture, with safe fallback. The guard
+module expands to fourteen controls; six fail on superseded cb97df7 and all pass
+after correction. The original measurements above retain their original scope;
+release #51 requires a new exact candidate and all its gates.

@@ -54,6 +54,8 @@ original bytes and behavior.
   argument when declaring additional dependency/context parameters. The error
   does not attribute the invalid consumer registration to an ArgDigest defect;
   restrictive diagnostics do not format defaults, annotations or values.
+  Valid unambiguous callables do not require diagnostic identity lookups;
+  unavailable labels cannot replace the configuration error (#53).
 
 Provider issues: `uibcdf/argdigest#43`, #46, #47, #48 and #50. Consumers must receive
 the eventual published correction before treating these capabilities as adopted.

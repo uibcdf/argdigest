@@ -403,8 +403,8 @@ def test_type_check_fallback_obeys_policy_before_construction(capture_api, monke
             raise ImportError("FICTITIOUS_IMPORT_MARKER")
         return original_import(name, *args, **kwargs)
 
-    monkeypatch.setattr(builtins, "__import__", refuse)
     monkeypatch.setattr("depdigest.is_installed", lambda name: False)
+    monkeypatch.setattr(builtins, "__import__", refuse)
     with warnings.catch_warnings(record=True) as recorded:
         warnings.simplefilter("always")
 
