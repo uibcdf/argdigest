@@ -11,7 +11,7 @@ Metadata
 - Source repository: `argdigest`
 - Source document: `standards/ARGDIGEST_GUIDE.md`
 - Source version: `argdigest@main` (development after 0.17.0)
-- Last synced: 2026-11-04
+- Last synced: 2026-11-05
 
 Version boundaries: declaration-only diagnostics below are public since ArgDigest
 0.16.0. Explicit contract ownership and the alias/staticmethod repairs described
@@ -548,6 +548,25 @@ ArgDigest is heavily instrumented with `@smonitor.signal`:
 - The core decorator uses `tags=["digestion"]`.
 - `Registry.run` uses `tags=["pipeline"]`.
 - Every digestion attempt is traceable in the global breadcrumb trail.
+
+### Nested exception observation (SMonitor >=0.22.1)
+
+ArgDigest's decorator uses a DEBUG exception signal. With public SMonitor
+0.22.1 or newer, a filtered or silenced inner signal leaves an eligible outer
+ERROR signal observable. An already admitted DEBUG observation remains the
+single observation; an enclosing ERROR wrapper does not escalate it. Disabled
+diagnostics remain disabled. Native exception identity, arguments, causes,
+application configuration and restrictive capture remain intact. Formatter or
+template callback diagnostics have independent admission (`uibcdf/smonitor#59`
+and `uibcdf/smonitor#61`).
+
+Applications relying on that nested-observation guarantee need SMonitor
+>=0.22.1. Earlier supported providers retain their original observation behavior
+and may suppress an outer ERROR after a filtered inner DEBUG. ArgDigest's core
+dependency floor remains >=0.16.0; it does not promise this newer correction.
+The development full installed profile selects 0.22.1 and the explicit receiving
+controls under `uibcdf/argdigest#49`. Consumers retain their own installed
+qualification; additional visible diagnostics require deliberate QA review.
 
 ### Emission Failures
 

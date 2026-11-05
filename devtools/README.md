@@ -4,8 +4,8 @@ This folder provides conda environment definitions and a conda-build recipe.
 
 ## Explicit SMonitor nested-signal receiving
 
-ArgDigest #49 owns reception of SMonitor #59/#61. After selecting an exact
-provider source or published file and verifying its installed import origin, run:
+ArgDigest #49 owns reception of SMonitor #59/#61, publicly corrected in 0.22.1.
+After selecting the exact provider file and verifying its installed origin, run:
 
 ```bash
 python -m pytest --receptor=llm devtools/tests/receive_smonitor_nested_signals.py
@@ -16,18 +16,21 @@ exception preservation, nested ERROR deduplication, application policy and
 restrictive capture. Pipeline and call-shape failures exercise validation before
 the function body. The module has no skip or provider-version detection.
 
-Its `receive_` filename makes this a separately selected receiving gate: ordinary
-tests and the historical installed-core/full profiles retain their existing
-provider contracts. Adding this gate to a public profile needs a published
-corrected provider and the normal profile review. Source/private-wheel success
-does not establish public availability or a new runtime minimum.
+The development full installed profile in `conda-build/resources.toml` selects
+SMonitor 0.22.1 and this module alongside `tests/`, so future candidates execute
+the receiving gate in every installed cell. Its `receive_` filename leaves
+ordinary source tests and the separate minimal-core profile compatible with
+their historical providers. Existing public release receipts and the general
+runtime minimum remain unchanged. Profile selection does not qualify an
+unexecuted candidate or platform/dependency combination.
 
 For installed receiving, copy the module outside the checkout and run the
 selected environment's Python there with `-P -m pytest --import-mode=importlib
 -c /dev/null --receptor=llm -o 'receptor_rerun_command=python -m pytest'` and the
 copied module path. Preserve source identities, artifact hashes, import origins,
-command exits and outcomes in the owning report. Repeat against the actual
-published file before making a public adoption claim.
+command exits and outcomes in the owning report. The shared installed runner
+already handles multiple selected paths and guards ArgDigest imports before and
+after the tests; no consumer-side runner fork is needed.
 
 ## Create conda environments
 

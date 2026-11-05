@@ -1,0 +1,1774 @@
+{
+  "captured_at_utc": "2026-11-05T15:46:09.502504+00:00",
+  "commands": {
+    "build": "<public-env>/bin/python -P -m build --wheel --no-isolation --outdir current-wheels current",
+    "clone": "conda create --prefix <released-env> --clone <public-env> --offline --yes",
+    "create": "conda create --prefix <public-env> --yes --override-channels --strict-channel-priority -c uibcdf -c conda-forge python=3.14 smonitor=0.22.1=py_0 depdigest=0.15.1 pyunitwizard=0.27.0 pytest-receptor=1.2.2 pytest pytest-cov pytest-xdist numpy>=1.26,<3 pandas>=2,<4 beartype>=0.16,<1 pydantic>=2,<3 pint>=0.24,<1 pyyaml setuptools>=77.0.3 pip wheel versioningit=3.3 python-build ruff packaging jinja2",
+    "current_install": "<public-env>/bin/python -m pip install --no-index --no-deps current-wheels/*.whl",
+    "provider_regressions": "<public-env>/bin/python -P -m pytest --receptor=llm --import-mode=importlib -c provider-tests/pyproject.toml provider-tests/tests/test_nested_signal_filtering.py provider-tests/tests/test_signal_filtering.py --junitxml=provider-tests.xml",
+    "public_subject": "conda install --prefix <released-env> --yes --override-channels --strict-channel-priority -c uibcdf -c conda-forge --freeze-installed argdigest=0.17.0=py_0",
+    "receiving_and_full": "<selected-env>/bin/python -P run_receiving.py <current|released> <receiving|full>"
+  },
+  "dependency_route_preflight": {
+    "exit": 0,
+    "output": "{\"package\": \"argdigest\", \"routes\": [{\"kind\": \"shared-noarch\", \"path\": \"devtools/conda-build/meta.yaml\"}, {\"kind\": \"runtime\", \"path\": \"devtools/conda-envs/development_env.yaml\"}, {\"kind\": \"runtime\", \"path\": \"devtools/conda-envs/docs_env.yaml\"}, {\"kind\": \"runtime\", \"path\": \"devtools/conda-envs/test_env.yaml\"}, {\"kind\": \"runtime\", \"path\": \"devtools/conda-envs/test_env_core.yaml\"}, {\"kind\": \"build-only\", \"path\": \"devtools/conda-envs/build_env.yaml\"}, {\"kind\": \"reviewed-workflow\", \"path\": \".github/workflows/CI.yaml\", \"sha256\": \"5ca6104a4741fb157e33f15b4d8f4426bb665666c0a92bf249f7ddeee157cbee\"}, {\"kind\": \"reviewed-workflow\", \"path\": \".github/workflows/CI_full_matrix.yaml\", \"sha256\": \"d0fe9cbb4c33a7318ff2c0ed17838e3b2feedae1e5226a51e8db8239fc2190b5\"}, {\"kind\": \"reviewed-workflow\", \"path\": \".github/workflows/build_and_upload_conda_packages.yaml\", \"sha256\": \"2934db6bd0b7e5f402680659b79bc2be6a379b90832060a62b7c76fe2cbf4dc4\"}, {\"kind\": \"reviewed-workflow\", \"path\": \".github/workflows/conda-publication-policy.yml\", \"sha256\": \"9c1cec90c6400c92e829e29556628a9ecdd4a97bfb7c2751d1df5d36eb37823b\"}, {\"kind\": \"reviewed-workflow\", \"path\": \".github/workflows/molsyssuite-policy.yml\", \"sha256\": \"6cc62208156f765ca0456e3bc5f398934263e03afc7063c69afa692c5dafdffd\"}, {\"kind\": \"reviewed-workflow\", \"path\": \".github/workflows/promote_conda_package.yaml\", \"sha256\": \"e67c0514edb000c370f23167cb0719ff958a28e9d14ecde4cb86911f1f4fd7d3\"}, {\"kind\": \"reviewed-workflow\", \"path\": \".github/workflows/python314_feasibility.yaml\", \"sha256\": \"90244153f1fddcba206a0be34507d61e3c51e04f3114a951459fd31b93e25591\"}, {\"kind\": \"reviewed-workflow\", \"path\": \".github/workflows/sphinx_docs_to_gh_pages.yaml\", \"sha256\": \"b10713fc0345488d605cb320c4f194845bc46ace8c8863b66733b547a70bac3f\"}, {\"kind\": \"reviewed-workflow\", \"path\": \".github/workflows/test_staged_conda_package.yaml\", \"sha256\": \"6af3779b151a6d18626ea5bae35fcf53d2464530cd703954e7b10ebedacc1dd9\"}, {\"kind\": \"reviewed-workflow\", \"path\": \".github/workflows/test_staged_core_conda_package.yaml\", \"sha256\": \"bd13d4b6a0e2b66bed8620ad4ddd580650f7c86a537d643fb82cfa5dc276b6ea\"}, {\"kind\": \"reviewed-workflow\", \"path\": \".github/workflows/verify_zenodo_releases.yaml\", \"sha256\": \"58c77fcc3da6d6a3a3add861f276e7a4f211bce42c765f49d1c0ab678db8c348\"}], \"schema\": \"molsyssuite.dependency-routes@1\", \"source_dependencies\": []}"
+  },
+  "environments": {
+    "current": {
+      "modules": {
+        "argdigest": {
+          "origin": "/tmp/argdigest-smonitor0221.w8z9BN/public-env/lib/python3.14/site-packages/argdigest/__init__.py",
+          "version": "0.0.0+unknown"
+        },
+        "depdigest": {
+          "origin": "/tmp/argdigest-smonitor0221.w8z9BN/public-env/lib/python3.14/site-packages/depdigest/__init__.py",
+          "version": "0.15.1"
+        },
+        "pytest_receptor": {
+          "origin": "/tmp/argdigest-smonitor0221.w8z9BN/public-env/lib/python3.14/site-packages/pytest_receptor/__init__.py",
+          "version": "1.2.2"
+        },
+        "pyunitwizard": {
+          "origin": "/tmp/argdigest-smonitor0221.w8z9BN/public-env/lib/python3.14/site-packages/pyunitwizard/__init__.py",
+          "version": "0.27.0"
+        },
+        "smonitor": {
+          "origin": "/tmp/argdigest-smonitor0221.w8z9BN/public-env/lib/python3.14/site-packages/smonitor/__init__.py",
+          "version": "0.22.1"
+        }
+      },
+      "packages": [
+        {
+          "build": "20_gnu",
+          "name": "_openmp_mutex",
+          "sha256": "1dd3fffd892081df9726d7eb7e0dea6198962ba775bd88842135a4ddb4deb3c9",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda",
+          "version": "4.5"
+        },
+        {
+          "build": "pyhd8ed1ab_0",
+          "name": "annotated-types",
+          "sha256": "b8fcb994134d3918d1c64a9d62f4168ff85d5bfb89e698102fe4ed679fe0df24",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/annotated-types-0.8.0-pyhd8ed1ab_0.conda",
+          "version": "0.8.0"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "beartype",
+          "sha256": "42131e42cffe141c6bac23edd2ae0f1ff3fc3b14874718710fe00111014f28c6",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/beartype-0.23.1-pyh5ded981_0.conda",
+          "version": "0.23.1"
+        },
+        {
+          "build": "hda65f42_10",
+          "name": "bzip2",
+          "sha256": "1a0d382c515ebf55f8ee1f38c8b81bc95af5c2acc42ad53b66bc5df932032f96",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hda65f42_10.conda",
+          "version": "1.0.8"
+        },
+        {
+          "build": "hbd8a1cb_0",
+          "name": "ca-certificates",
+          "sha256": "95619b9c1184be7175392eeb0ee7eeb5ccf25d280951f4225f2d62e725790be3",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2026.10.23-hbd8a1cb_0.conda",
+          "version": "2026.10.23"
+        },
+        {
+          "build": "pyhd8ed1ab_1",
+          "name": "colorama",
+          "sha256": "ab29d57dc70786c1269633ba3dff20288b81664d3ff8d21af995742e2bb03287",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/colorama-0.4.6-pyhd8ed1ab_1.conda",
+          "version": "0.4.6"
+        },
+        {
+          "build": "py314h93e9acf_0",
+          "name": "coverage",
+          "sha256": "21a475b36ca5957608b1909e510cb13d06f7cf11d7ef818dc2ddf39d380536dd",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/coverage-7.17.2-py314h93e9acf_0.conda",
+          "version": "7.17.2"
+        },
+        {
+          "build": "py_0",
+          "name": "depdigest",
+          "sha256": "2765c692de4e6aacff4197c4226ebb42ec1f0df9edb27e92f196ef1390cb1850",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/depdigest-0.15.1-py_0.tar.bz2",
+          "version": "0.15.1"
+        },
+        {
+          "build": "pyhd8ed1ab_0",
+          "name": "exceptiongroup",
+          "sha256": "ee6cf346d017d954255bbcbdb424cddea4d14e4ed7e9813e429db1d795d01144",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/exceptiongroup-1.3.1-pyhd8ed1ab_0.conda",
+          "version": "1.3.1"
+        },
+        {
+          "build": "pyhd8ed1ab_0",
+          "name": "execnet",
+          "sha256": "1acc6a420efc5b64c384c1f35f49129966f8a12c93b4bb2bdc30079e5dc9d8a8",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/execnet-2.1.2-pyhd8ed1ab_0.conda",
+          "version": "2.1.2"
+        },
+        {
+          "build": "pyh5ded981_2",
+          "name": "flexcache",
+          "sha256": "fc30fd32ab60300e5ea6c15e3a39b3f3124a9236211fbb8bdb99708d3fbfed33",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/flexcache-0.3-pyh5ded981_2.conda",
+          "version": "0.3"
+        },
+        {
+          "build": "pyh5ded981_2",
+          "name": "flexparser",
+          "sha256": "0a9caab09609fed3a84c3594b62751b3cd7b0d953a7a631175aa3f2c4052765a",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/flexparser-0.4-pyh5ded981_2.conda",
+          "version": "0.4"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "importlib-metadata",
+          "sha256": "43151c94c02fa67e8105cfe64c8c27a1b260b22bae6ddbe9c33b56a9c302e459",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/importlib-metadata-10.0.0-pyh5ded981_0.conda",
+          "version": "10.0.0"
+        },
+        {
+          "build": "pyhd8ed1ab_0",
+          "name": "iniconfig",
+          "sha256": "8f53876d0fb3525235e39635dd55633abe0a4307b1b3ab1415c80a9e0bbdf663",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/iniconfig-2.3.1-pyhd8ed1ab_0.conda",
+          "version": "2.3.1"
+        },
+        {
+          "build": "pyhcf101f3_1",
+          "name": "jinja2",
+          "sha256": "fc9ca7348a4f25fed2079f2153ecdcf5f9cf2a0bc36c4172420ca09e1849df7b",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/jinja2-3.1.6-pyhcf101f3_1.conda",
+          "version": "3.1.6"
+        },
+        {
+          "build": "default_hbd61a6d_103",
+          "name": "ld_impl_linux-64",
+          "sha256": "901649b1edbe841fd4ee7e2d491a05184ed540eb01cdae506872f344babc1d28",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.46.1-default_hbd61a6d_103.conda",
+          "version": "2.46.1"
+        },
+        {
+          "build": "12_h4a7cf45_openblas",
+          "name": "libblas",
+          "sha256": "6a6263c3d4a484dbac4ae7a8191be5f868c0574bbc7faa42b258bb59dc6d5fa2",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libblas-3.11.0-12_h4a7cf45_openblas.conda",
+          "version": "3.11.0"
+        },
+        {
+          "build": "12_h0358290_openblas",
+          "name": "libcblas",
+          "sha256": "8ea7d98b71e1200e2e4141c1813d6950e6acc917d220bbf54058390d252460f8",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.11.0-12_h0358290_openblas.conda",
+          "version": "3.11.0"
+        },
+        {
+          "build": "hd2095e1_0",
+          "name": "libexpat",
+          "sha256": "7b930a8b6bc6553cb754b4977a11f9c862c719a652fc2d128d89270992ce8beb",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.9.0-hd2095e1_0.conda",
+          "version": "2.9.0"
+        },
+        {
+          "build": "h81df57d_1",
+          "name": "libffi",
+          "sha256": "c8c7583ef063bc3c430f1d48298e5ad24f796a35c22ed5b14183325825a61106",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libffi-3.7.0-h81df57d_1.conda",
+          "version": "3.7.0"
+        },
+        {
+          "build": "ha9f2e26_7",
+          "name": "libgcc",
+          "sha256": "e031634c3a928f9594eba868bc46ef5230d6571a364a0c63215b06c4563bfcea",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libgcc-16.2.0-ha9f2e26_7.conda",
+          "version": "16.2.0"
+        },
+        {
+          "build": "h69a702a_7",
+          "name": "libgfortran",
+          "sha256": "9682ae4dd11487e10b904b3cb3ab6379cad25233d45fdfdf90d54349df244494",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libgfortran-16.2.0-h69a702a_7.conda",
+          "version": "16.2.0"
+        },
+        {
+          "build": "h6b99dfc_7",
+          "name": "libgfortran5",
+          "sha256": "04dbab12c925b92977bb835dd2f5eda413607afa79f95a554e5a04b07a380322",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libgfortran5-16.2.0-h6b99dfc_7.conda",
+          "version": "16.2.0"
+        },
+        {
+          "build": "he0feb66_7",
+          "name": "libgomp",
+          "sha256": "92a0bb350c7be6a4eedcb4e111c60aefd176018e6b1c009a6e025dbe9bbcd758",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libgomp-16.2.0-he0feb66_7.conda",
+          "version": "16.2.0"
+        },
+        {
+          "build": "12_h47877c9_openblas",
+          "name": "liblapack",
+          "sha256": "f048e68a22fbdd927b8a7e007c3da19c6f1d2c08a9e4f6065af68f463c369f19",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/liblapack-3.11.0-12_h47877c9_openblas.conda",
+          "version": "3.11.0"
+        },
+        {
+          "build": "hb03c661_1",
+          "name": "liblzma",
+          "sha256": "9787df8c22a59c9a70d3e5a10db9ad663485e75e9ccc3f09bd092cb7b95e0dab",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.3-hb03c661_1.conda",
+          "version": "5.8.3"
+        },
+        {
+          "build": "hb03c661_2",
+          "name": "libmpdec",
+          "sha256": "46820b4a835e175940ae20bec00fdddaff804cda27a1408ab1b95e77a2196437",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libmpdec-4.0.0-hb03c661_2.conda",
+          "version": "4.0.0"
+        },
+        {
+          "build": "pthreads_hf13c14d_2",
+          "name": "libopenblas",
+          "sha256": "69a722751e14eab2eb3bfdcb9acb1187afbd962b0c49b48d829341e0f6787f60",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.34-pthreads_hf13c14d_2.conda",
+          "version": "0.3.34"
+        },
+        {
+          "build": "hd51c5da_100_cp314",
+          "name": "libpython",
+          "sha256": "3b9f11f136074f81db3ca56f2f514f466456dbab1189e68b3681b53387043daa",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libpython-3.14.10-hd51c5da_100_cp314.conda",
+          "version": "3.14.10"
+        },
+        {
+          "build": "h0737f62_101",
+          "name": "libsqlite",
+          "sha256": "c294029f893d05286f1061bbab85b820f1eea73dd859af4bcc619197bcc34810",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.54.1-h0737f62_101.conda",
+          "version": "3.54.1"
+        },
+        {
+          "build": "h934c35e_7",
+          "name": "libstdcxx",
+          "sha256": "fa7018298629fc429971fffd6ecba3d27a7b02e4e890d6a93ea01ffebe8cb745",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-16.2.0-h934c35e_7.conda",
+          "version": "16.2.0"
+        },
+        {
+          "build": "hcfc3c73_0",
+          "name": "libuuid",
+          "sha256": "f34b8d1de9a2bf62476d8608057d9b8a918d97444236dc53a47128f2fae79041",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.42.4-hcfc3c73_0.conda",
+          "version": "2.42.4"
+        },
+        {
+          "build": "h25fd6f3_3",
+          "name": "libzlib",
+          "sha256": "eb8a0db0aa570124f7d2a93d7c7f596e3390df5e047818d873baad32985fc736",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.2-h25fd6f3_3.conda",
+          "version": "1.3.2"
+        },
+        {
+          "build": "py314h93e9acf_4",
+          "name": "markupsafe",
+          "sha256": "35b412b97ad6c65e2c5aef1e2039981bc53f847bd0673610a76f133628f24e3b",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/markupsafe-3.0.4-py314h93e9acf_4.conda",
+          "version": "3.0.4"
+        },
+        {
+          "build": "hdb14827_1",
+          "name": "ncurses",
+          "sha256": "5d46557214ed184381dafe835b7c94a474a1c3b307a08a250b1ea4779b44ffb3",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.6-hdb14827_1.conda",
+          "version": "6.6"
+        },
+        {
+          "build": "py314hd3a7d6b_0",
+          "name": "numpy",
+          "sha256": "7533361a15ff1d4c1e7069b9410d32a602a6a9350d717a43731b07e3565a6689",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/numpy-2.5.4-py314hd3a7d6b_0.conda",
+          "version": "2.5.4"
+        },
+        {
+          "build": "h781a0a9_0",
+          "name": "openssl",
+          "sha256": "9c1533f1cf784f0e250919c0c9762d0b0e6bc727a79290ffb7cea1ceca1d038c",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/openssl-3.6.5-h781a0a9_0.conda",
+          "version": "3.6.5"
+        },
+        {
+          "build": "pyhc364b38_0",
+          "name": "packaging",
+          "sha256": "c432626b16768b8dab228bfb706f7060c2d462a21c516d240f68f2f902b5a044",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/packaging-26.3-pyhc364b38_0.conda",
+          "version": "26.3"
+        },
+        {
+          "build": "np2py314h9e1d7c2_0",
+          "name": "pandas",
+          "sha256": "c9dd76336a7377f65c5add933e77f316dc19d5a0cc92c847d21f58ed9360be4a",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/pandas-3.1.1-np2py314h9e1d7c2_0.conda",
+          "version": "3.1.1"
+        },
+        {
+          "build": "pyhc364b38_0",
+          "name": "pint",
+          "sha256": "7e30090b2a75a6f31f9509fefa76b5b6aee7f5853453f7883a5851b87dd2b481",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pint-0.26.2-pyhc364b38_0.conda",
+          "version": "0.26.2"
+        },
+        {
+          "build": "pyh145f28c_2",
+          "name": "pip",
+          "sha256": "05d34ae3b49973c05c0f2f0f742e202acc6145f733460a0798944b231efd5c1a",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pip-26.2.2-pyh145f28c_2.conda",
+          "version": "26.2.2"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "platformdirs",
+          "sha256": "8bbb25f131001457e5fd19385000e9d6a8047223a35f4c507d92113eb68d42f9",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/platformdirs-4.14.5-pyh5ded981_0.conda",
+          "version": "4.14.5"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "pluggy",
+          "sha256": "34c40106bc3172b3a47656e84837e13a5d4829d413d65f30fb214e7568a09cea",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pluggy-1.7.0-pyh5ded981_0.conda",
+          "version": "1.7.0"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "pydantic",
+          "sha256": "a462f1e82ec96ba8034ec12a13f70d5cf4eb8cdf3320f3d6ee545890c92e6ac2",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pydantic-2.14.2-pyh5ded981_0.conda",
+          "version": "2.14.2"
+        },
+        {
+          "build": "py314h7e8cd81_0",
+          "name": "pydantic-core",
+          "sha256": "115f6fef5e552b7d7dbaadadfafdb6be314d78c2c284381eaa492bbfcbcb0bad",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/pydantic-core-2.50.2-py314h7e8cd81_0.conda",
+          "version": "2.50.2"
+        },
+        {
+          "build": "pyhcf101f3_0",
+          "name": "pygments",
+          "sha256": "f5f015ff1bc3e1b7fc08eee096b1865234189ae0b82bebdb86a5369116e42fa0",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pygments-2.21.0-pyhcf101f3_0.conda",
+          "version": "2.21.0"
+        },
+        {
+          "build": "pyhd8ed1ab_0",
+          "name": "pyproject_hooks",
+          "sha256": "bb2aebd9f3f3f67c8389fdb5a94e3e8c9325803e00e3b1baaeef22da86e4fe2f",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pyproject_hooks-1.3.3-pyhd8ed1ab_0.conda",
+          "version": "1.3.3"
+        },
+        {
+          "build": "pyhc364b38_1",
+          "name": "pytest",
+          "sha256": "a9cf3571e80a4e86992502068eb1d29a109e88345c39babf03b10450895056af",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pytest-9.2.0-pyhc364b38_1.conda",
+          "version": "9.2.0"
+        },
+        {
+          "build": "pyhcf101f3_0",
+          "name": "pytest-cov",
+          "sha256": "44e42919397bd00bfaa47358a6ca93d4c21493a8c18600176212ec21a8d25ca5",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pytest-cov-7.1.0-pyhcf101f3_0.conda",
+          "version": "7.1.0"
+        },
+        {
+          "build": "py_0",
+          "name": "pytest-receptor",
+          "sha256": "c0b075286f45e8fce5ab5852947611bfba82b7d509115fc5dadf1a9572b9dd74",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/pytest-receptor-1.2.2-py_0.tar.bz2",
+          "version": "1.2.2"
+        },
+        {
+          "build": "pyhd8ed1ab_0",
+          "name": "pytest-xdist",
+          "sha256": "b7b58a5be090883198411337b99afb6404127809c3d1c9f96e99b59f36177a96",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pytest-xdist-3.8.0-pyhd8ed1ab_0.conda",
+          "version": "3.8.0"
+        },
+        {
+          "build": "hcd007b5_100_cp314",
+          "name": "python",
+          "sha256": "bb457298c776d0edd30d727d96629e57df63e9a4ba2dd11553019267b61ef5f4",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/python-3.14.10-hcd007b5_100_cp314.conda",
+          "version": "3.14.10"
+        },
+        {
+          "build": "pyhc364b38_0",
+          "name": "python-build",
+          "sha256": "28100eda1e92e786c25753d0ea9def9375d692726d2c76444a040be686b4dd9a",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/python-build-1.6.1-pyhc364b38_0.conda",
+          "version": "1.6.1"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "python-dateutil",
+          "sha256": "8038f7048c97299f7fe7c8ce957da65b8ada9839afd0f66e345d3096082da975",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/python-dateutil-4.0.0-pyh5ded981_0.conda",
+          "version": "4.0.0"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "python-tzdata",
+          "sha256": "bb29725d0d84f5e98f221f2f0afbad4a44cd67b016ab48388592c940bbd75a5e",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/python-tzdata-2026.6-pyh5ded981_0.conda",
+          "version": "2026.6"
+        },
+        {
+          "build": "9_cp314",
+          "name": "python_abi",
+          "sha256": "e7f8e965bbfb98e08feb2365cacdad8bb218fa5b5a0a2752f747287f425f213c",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/python_abi-3.14-9_cp314.conda",
+          "version": "3.14"
+        },
+        {
+          "build": "py_0",
+          "name": "pyunitwizard",
+          "sha256": "2102b1bd4e8188d4d150f90fcf093425d07fa2858993984016a6e7de10c3aaac",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/pyunitwizard-0.27.0-py_0.tar.bz2",
+          "version": "0.27.0"
+        },
+        {
+          "build": "py314h19d427c_3",
+          "name": "pyyaml",
+          "sha256": "da909204ceee34fc54bd49b96b9151fd3297dec02f4f6c09b7671890e8cb0366",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/pyyaml-6.0.3-py314h19d427c_3.conda",
+          "version": "6.0.3"
+        },
+        {
+          "build": "hd6e31c0_1",
+          "name": "readline",
+          "sha256": "01b3fe073a66e321970d09e04b388708f8cbdca5cdfbfcb7c9eeb470ad10383d",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/readline-8.3-hd6e31c0_1.conda",
+          "version": "8.3"
+        },
+        {
+          "build": "hf19af3b_0",
+          "name": "ruff",
+          "sha256": "0fa86916266c0a9e1e94858020b3748372a72c0322ec606ede691f8bc1fd799c",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/ruff-0.17.3-hf19af3b_0.conda",
+          "version": "0.17.3"
+        },
+        {
+          "build": "pyhe730653_0",
+          "name": "setuptools",
+          "sha256": "17add609d1a31c874e39a03935072be59bcafb06d42383eceabea746d12e6025",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/setuptools-84.2.1-pyhe730653_0.conda",
+          "version": "84.2.1"
+        },
+        {
+          "build": "py_0",
+          "name": "smonitor",
+          "sha256": "e9ce6c77a682dddec3a6e724f9cc98cca31c4d6732453d554107ffcf61f23e7e",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/smonitor-0.22.1-py_0.tar.bz2",
+          "version": "0.22.1"
+        },
+        {
+          "build": "noxft_h1df4ec4_4",
+          "name": "tk",
+          "sha256": "a1a241d172c1ccab067ba245206dd048bc3c2d1b84504b53c9468e99adfc16a1",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_h1df4ec4_4.conda",
+          "version": "8.6.13"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "tomli",
+          "sha256": "93b6f517fb7adff00b62be02b798d384a1b34d0e368fdb576fb248bcb3bb9ec7",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/tomli-2.5.0-pyh5ded981_0.conda",
+          "version": "2.5.0"
+        },
+        {
+          "build": "h69aa097_0",
+          "name": "typing-extensions",
+          "sha256": "b141933ece3518f6d7b75dfb59451e2f26b405a44c18e2518a83e9a02e09315c",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/typing-extensions-4.16.0-h69aa097_0.conda",
+          "version": "4.16.0"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "typing-inspection",
+          "sha256": "88c08476c98f264047d6c6bfeb1e8545684dfbcf2c61da338f71033ec17e1f33",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/typing-inspection-0.4.5-pyh5ded981_0.conda",
+          "version": "0.4.5"
+        },
+        {
+          "build": "pyhcf101f3_0",
+          "name": "typing_extensions",
+          "sha256": "2d888f90af0686044882c74193ec80a90ec1943145d94a7b1b048958acda1848",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/typing_extensions-4.16.0-pyhcf101f3_0.conda",
+          "version": "4.16.0"
+        },
+        {
+          "build": "h5d301ff_0",
+          "name": "tzdata",
+          "sha256": "2b7ca858879f183ce2dcc65b300f48a0133d5430550f35b23d80d405a0788dbf",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/tzdata-2026e-h5d301ff_0.conda",
+          "version": "2026e"
+        },
+        {
+          "build": "pyhd8ed1ab_0",
+          "name": "versioningit",
+          "sha256": "4b9a3f6738ab6e241b12b2fe9258f7e051678b911ca0f0ab042becc29096ff51",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/versioningit-3.3.0-pyhd8ed1ab_0.conda",
+          "version": "3.3.0"
+        },
+        {
+          "build": "pyhd8ed1ab_0",
+          "name": "wheel",
+          "sha256": "ba64b29b6d418024cb565081a1799262cb2780d2534ff4c14f76aa858c4286cd",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/wheel-0.48.0-pyhd8ed1ab_0.conda",
+          "version": "0.48.0"
+        },
+        {
+          "build": "hebe6cf0_3",
+          "name": "yaml",
+          "sha256": "d164dfa75ecd538f6fd68765defcc06aa875bc697b9b215362d79a2a73125dd0",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/yaml-0.2.5-hebe6cf0_3.conda",
+          "version": "0.2.5"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "zipp",
+          "sha256": "4e5c50cf5ecc00d83a20b987c52d49b78fa96026437ab09b11f4b7c46b7fc061",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/zipp-4.1.2-pyh5ded981_0.conda",
+          "version": "4.1.2"
+        },
+        {
+          "build": "hb78ec9c_7",
+          "name": "zstd",
+          "sha256": "47d682b9f6d6ec9eb1a6e6c3e75ea6273e899e78fb7fc59f81d39745009fbc60",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb78ec9c_7.conda",
+          "version": "1.5.7"
+        }
+      ],
+      "pip_check": {
+        "exit": 0,
+        "stderr": "WARNING: The directory '/home/diego/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.",
+        "stdout": "No broken requirements found."
+      },
+      "provenance_checks": {
+        "full": {
+          "before_equals_after": true,
+          "exit": 0
+        },
+        "receiving": {
+          "before_equals_after": true,
+          "exit": 0
+        }
+      },
+      "provider_payload_sha256": {
+        "site-packages/smonitor/__init__.py": "f60b1c2bff72dbbb70fe403e23908e62a8297f6190e18fdcac090092b84e6800",
+        "site-packages/smonitor/_diagnostics.py": "cc732d5f889e25a66168b600721057241730ed74b857edb818ccec8ac82b05e5",
+        "site-packages/smonitor/_version.py": "9a358f530e5648a8ce74b139df678c89c47a1af734012b4bc458f3606456727b",
+        "site-packages/smonitor/bundle.py": "228374b0a5f14b26c2789143ad29b3c6c56cd5bb36d3cde41ccd34e30005604c",
+        "site-packages/smonitor/catalog.py": "ff9e04e9594797a6c1b35c65b8e21dccc9d96530f0fc48e3ebd1dca483f40ba7",
+        "site-packages/smonitor/cli.py": "a4d2a9166ef8fb93b994380c1ac490f7fa3f250ce5e0641a12e61b07dff99e5e",
+        "site-packages/smonitor/config/__init__.py": "0b4a603c4441f665b162d10b845f069f9e1f9cca542612c3c6dc143cb8cc560d",
+        "site-packages/smonitor/config/discovery.py": "56a036bc65796a8da3a9f8dcf886f88b6b49717912e79c5f91d845731ac74b5f",
+        "site-packages/smonitor/core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "site-packages/smonitor/core/capture.py": "42207876c72666c5df87fb143180247be6c2dd80e6bb54bbb8acf06307a86966",
+        "site-packages/smonitor/core/context.py": "6959142b2b201663cc0f70422261c79b8dba91556f969559083c079b6cc889dd",
+        "site-packages/smonitor/core/decorator.py": "ce3361a0cdc5d31f0e544c55c8fde4ec340d2a5b2260b130f182444d72f630ec",
+        "site-packages/smonitor/core/fingerprint.py": "80f0c8377602c8ef3cb4dc71ce02b59dd0f57bc5ed52e2790c400af66ba37856",
+        "site-packages/smonitor/core/human_summary.py": "1b7b548bc396ac1257a6ca769c61bb4021e3f44ee75c335a5b48a575c0d741aa",
+        "site-packages/smonitor/core/identifiers.py": "48350ab1b1acff14eb950557935470ec2170c1bcc669dcbdca0b4c490e272ca8",
+        "site-packages/smonitor/core/manager.py": "ddf809456df62bffb92b0451a54c315ca312722019b7057792472e074ba0b8c7",
+        "site-packages/smonitor/core/runtime.py": "7c2b9b7f9f1beca4e1f5b4e1d4c6f4ee123c4c9754e7754b4bde1577b30e7d21",
+        "site-packages/smonitor/docs_utils.py": "31d6a649e62bd10950f4542144886605ad202a7bc4a65d77378dcc35cc747dd7",
+        "site-packages/smonitor/emitters/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "site-packages/smonitor/emitters/exceptions.py": "5719837614cde25784e2b58e48780a0a883f044b9acba22398de4c24a88da33d",
+        "site-packages/smonitor/emitters/logging.py": "ff3bd66f2b449f0a237eed8fbaafe045cdb2a1ca4a1913e4dbefa76cacd3f351",
+        "site-packages/smonitor/emitters/warnings.py": "14668db77954a6a00ae5807814f9c8d9c97f81c237729af43d5b5e62ca831bc0",
+        "site-packages/smonitor/handlers/__init__.py": "f57a12db0943691cc477fd69d22d7eaac26e878c1ff66a2a5df89f35f136304d",
+        "site-packages/smonitor/handlers/console.py": "4c0de3e1b2832ab8dc9f73fa6e899400d9da3136598b33510ee57b0263c17563",
+        "site-packages/smonitor/handlers/file.py": "bf9fcad614065bacdf0b300c442c9723c7cffaddebd736ecc37d2335ac2d8c38",
+        "site-packages/smonitor/handlers/json.py": "cd5edabe32ab5286dc81315249aac77b35fc5fe5233cdcebc36b9c56a3fc4098",
+        "site-packages/smonitor/handlers/memory.py": "c12c37421cebaf6a574feabed4bff24f64df8237905bc9ec81293e9174b87543",
+        "site-packages/smonitor/integrations/__init__.py": "2dcb2215de7a7fe694a26e95861c2daa90b3908345d190e19669d49dbcd53717",
+        "site-packages/smonitor/integrations/argdigest.py": "8ad55e939b7728123273cd47823e720d9badeba569b4e722cee60946b2f6bc16",
+        "site-packages/smonitor/integrations/core.py": "77f572afd7baa16b783a424fa3bc1a5debcf7e684461697b1e0d3a88afb6612d",
+        "site-packages/smonitor/integrations/depdigest.py": "eaaf62597aae74f795483e8353a8e83db2d1a310deedccb2de6a80f0a49c13b2",
+        "site-packages/smonitor/integrations/diagnostic.py": "8a6065ff00b2e0e5068a74782b5a7352471c897848c031cb6bf0faaa9a312178",
+        "site-packages/smonitor/integrations/molsysmt.py": "dff282f2606c36e815f85da43bf28d9b5bf566666a44c7ec66d4a400f1b26bbc",
+        "site-packages/smonitor/integrations/provider.py": "dc51dc872c0164c42ce2b4e34fa6724ed31292991937c557c1cb86445b609f96",
+        "site-packages/smonitor/policy/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "site-packages/smonitor/policy/engine.py": "b15cc0eea4a545795e5852c3560105ac9fd20efdc1d97225821292691ec8bb23",
+        "site-packages/smonitor/profiling.py": "47d2e1d4ee3a83364b256b0a9a12e21da887499e51b25d3f151842016683d176",
+        "site-packages/smonitor/pytest_plugin.py": "8a6729063c5eb8c92d6f6182a4e554ee5ae4a98de8d820ef5f51a3bb388e37ca",
+        "site-packages/smonitor/pytest_policy.py": "2aaf3b1cf44dab46ada23beb2fd52ad7994f94ad369db8d69062d9ece13e47dc",
+        "site-packages/smonitor/templates/README.md": "88658d61af88ee6fc53bfa8a6e046b00bb4c9fb3222f9a41d6a85f728b66f87a",
+        "site-packages/smonitor/templates/_smonitor.py": "4887dab158d203ac17e8544b5d1aa697fe1e99109d6934d13349c068cc9c4b6a",
+        "site-packages/smonitor/validation.py": "106f24b1a376e41b5a72f6fb8f5900bcd5b32ca4c5ab53e269a11d58efc33f99"
+      }
+    },
+    "released": {
+      "modules": {
+        "argdigest": {
+          "origin": "/tmp/argdigest-smonitor0221.w8z9BN/released-env/lib/python3.14/site-packages/argdigest/__init__.py",
+          "version": "0.17.0"
+        },
+        "depdigest": {
+          "origin": "/tmp/argdigest-smonitor0221.w8z9BN/released-env/lib/python3.14/site-packages/depdigest/__init__.py",
+          "version": "0.15.1"
+        },
+        "pytest_receptor": {
+          "origin": "/tmp/argdigest-smonitor0221.w8z9BN/released-env/lib/python3.14/site-packages/pytest_receptor/__init__.py",
+          "version": "1.2.2"
+        },
+        "pyunitwizard": {
+          "origin": "/tmp/argdigest-smonitor0221.w8z9BN/released-env/lib/python3.14/site-packages/pyunitwizard/__init__.py",
+          "version": "0.27.0"
+        },
+        "smonitor": {
+          "origin": "/tmp/argdigest-smonitor0221.w8z9BN/released-env/lib/python3.14/site-packages/smonitor/__init__.py",
+          "version": "0.22.1"
+        }
+      },
+      "packages": [
+        {
+          "build": "20_gnu",
+          "name": "_openmp_mutex",
+          "sha256": "1dd3fffd892081df9726d7eb7e0dea6198962ba775bd88842135a4ddb4deb3c9",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda",
+          "version": "4.5"
+        },
+        {
+          "build": "pyhd8ed1ab_0",
+          "name": "annotated-types",
+          "sha256": "b8fcb994134d3918d1c64a9d62f4168ff85d5bfb89e698102fe4ed679fe0df24",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/annotated-types-0.8.0-pyhd8ed1ab_0.conda",
+          "version": "0.8.0"
+        },
+        {
+          "build": "py_0",
+          "name": "argdigest",
+          "sha256": "9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.17.0-py_0.tar.bz2",
+          "version": "0.17.0"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "beartype",
+          "sha256": "42131e42cffe141c6bac23edd2ae0f1ff3fc3b14874718710fe00111014f28c6",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/beartype-0.23.1-pyh5ded981_0.conda",
+          "version": "0.23.1"
+        },
+        {
+          "build": "hda65f42_10",
+          "name": "bzip2",
+          "sha256": "1a0d382c515ebf55f8ee1f38c8b81bc95af5c2acc42ad53b66bc5df932032f96",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hda65f42_10.conda",
+          "version": "1.0.8"
+        },
+        {
+          "build": "hbd8a1cb_0",
+          "name": "ca-certificates",
+          "sha256": "95619b9c1184be7175392eeb0ee7eeb5ccf25d280951f4225f2d62e725790be3",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2026.10.23-hbd8a1cb_0.conda",
+          "version": "2026.10.23"
+        },
+        {
+          "build": "pyhd8ed1ab_1",
+          "name": "colorama",
+          "sha256": "ab29d57dc70786c1269633ba3dff20288b81664d3ff8d21af995742e2bb03287",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/colorama-0.4.6-pyhd8ed1ab_1.conda",
+          "version": "0.4.6"
+        },
+        {
+          "build": "py314h93e9acf_0",
+          "name": "coverage",
+          "sha256": "21a475b36ca5957608b1909e510cb13d06f7cf11d7ef818dc2ddf39d380536dd",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/coverage-7.17.2-py314h93e9acf_0.conda",
+          "version": "7.17.2"
+        },
+        {
+          "build": "py_0",
+          "name": "depdigest",
+          "sha256": "2765c692de4e6aacff4197c4226ebb42ec1f0df9edb27e92f196ef1390cb1850",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/depdigest-0.15.1-py_0.tar.bz2",
+          "version": "0.15.1"
+        },
+        {
+          "build": "pyhd8ed1ab_0",
+          "name": "exceptiongroup",
+          "sha256": "ee6cf346d017d954255bbcbdb424cddea4d14e4ed7e9813e429db1d795d01144",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/exceptiongroup-1.3.1-pyhd8ed1ab_0.conda",
+          "version": "1.3.1"
+        },
+        {
+          "build": "pyhd8ed1ab_0",
+          "name": "execnet",
+          "sha256": "1acc6a420efc5b64c384c1f35f49129966f8a12c93b4bb2bdc30079e5dc9d8a8",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/execnet-2.1.2-pyhd8ed1ab_0.conda",
+          "version": "2.1.2"
+        },
+        {
+          "build": "pyh5ded981_2",
+          "name": "flexcache",
+          "sha256": "fc30fd32ab60300e5ea6c15e3a39b3f3124a9236211fbb8bdb99708d3fbfed33",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/flexcache-0.3-pyh5ded981_2.conda",
+          "version": "0.3"
+        },
+        {
+          "build": "pyh5ded981_2",
+          "name": "flexparser",
+          "sha256": "0a9caab09609fed3a84c3594b62751b3cd7b0d953a7a631175aa3f2c4052765a",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/flexparser-0.4-pyh5ded981_2.conda",
+          "version": "0.4"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "importlib-metadata",
+          "sha256": "43151c94c02fa67e8105cfe64c8c27a1b260b22bae6ddbe9c33b56a9c302e459",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/importlib-metadata-10.0.0-pyh5ded981_0.conda",
+          "version": "10.0.0"
+        },
+        {
+          "build": "pyhd8ed1ab_0",
+          "name": "iniconfig",
+          "sha256": "8f53876d0fb3525235e39635dd55633abe0a4307b1b3ab1415c80a9e0bbdf663",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/iniconfig-2.3.1-pyhd8ed1ab_0.conda",
+          "version": "2.3.1"
+        },
+        {
+          "build": "pyhcf101f3_1",
+          "name": "jinja2",
+          "sha256": "fc9ca7348a4f25fed2079f2153ecdcf5f9cf2a0bc36c4172420ca09e1849df7b",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/jinja2-3.1.6-pyhcf101f3_1.conda",
+          "version": "3.1.6"
+        },
+        {
+          "build": "default_hbd61a6d_103",
+          "name": "ld_impl_linux-64",
+          "sha256": "901649b1edbe841fd4ee7e2d491a05184ed540eb01cdae506872f344babc1d28",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.46.1-default_hbd61a6d_103.conda",
+          "version": "2.46.1"
+        },
+        {
+          "build": "12_h4a7cf45_openblas",
+          "name": "libblas",
+          "sha256": "6a6263c3d4a484dbac4ae7a8191be5f868c0574bbc7faa42b258bb59dc6d5fa2",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libblas-3.11.0-12_h4a7cf45_openblas.conda",
+          "version": "3.11.0"
+        },
+        {
+          "build": "12_h0358290_openblas",
+          "name": "libcblas",
+          "sha256": "8ea7d98b71e1200e2e4141c1813d6950e6acc917d220bbf54058390d252460f8",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.11.0-12_h0358290_openblas.conda",
+          "version": "3.11.0"
+        },
+        {
+          "build": "hd2095e1_0",
+          "name": "libexpat",
+          "sha256": "7b930a8b6bc6553cb754b4977a11f9c862c719a652fc2d128d89270992ce8beb",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.9.0-hd2095e1_0.conda",
+          "version": "2.9.0"
+        },
+        {
+          "build": "h81df57d_1",
+          "name": "libffi",
+          "sha256": "c8c7583ef063bc3c430f1d48298e5ad24f796a35c22ed5b14183325825a61106",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libffi-3.7.0-h81df57d_1.conda",
+          "version": "3.7.0"
+        },
+        {
+          "build": "ha9f2e26_7",
+          "name": "libgcc",
+          "sha256": "e031634c3a928f9594eba868bc46ef5230d6571a364a0c63215b06c4563bfcea",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libgcc-16.2.0-ha9f2e26_7.conda",
+          "version": "16.2.0"
+        },
+        {
+          "build": "h69a702a_7",
+          "name": "libgfortran",
+          "sha256": "9682ae4dd11487e10b904b3cb3ab6379cad25233d45fdfdf90d54349df244494",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libgfortran-16.2.0-h69a702a_7.conda",
+          "version": "16.2.0"
+        },
+        {
+          "build": "h6b99dfc_7",
+          "name": "libgfortran5",
+          "sha256": "04dbab12c925b92977bb835dd2f5eda413607afa79f95a554e5a04b07a380322",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libgfortran5-16.2.0-h6b99dfc_7.conda",
+          "version": "16.2.0"
+        },
+        {
+          "build": "he0feb66_7",
+          "name": "libgomp",
+          "sha256": "92a0bb350c7be6a4eedcb4e111c60aefd176018e6b1c009a6e025dbe9bbcd758",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libgomp-16.2.0-he0feb66_7.conda",
+          "version": "16.2.0"
+        },
+        {
+          "build": "12_h47877c9_openblas",
+          "name": "liblapack",
+          "sha256": "f048e68a22fbdd927b8a7e007c3da19c6f1d2c08a9e4f6065af68f463c369f19",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/liblapack-3.11.0-12_h47877c9_openblas.conda",
+          "version": "3.11.0"
+        },
+        {
+          "build": "hb03c661_1",
+          "name": "liblzma",
+          "sha256": "9787df8c22a59c9a70d3e5a10db9ad663485e75e9ccc3f09bd092cb7b95e0dab",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.3-hb03c661_1.conda",
+          "version": "5.8.3"
+        },
+        {
+          "build": "hb03c661_2",
+          "name": "libmpdec",
+          "sha256": "46820b4a835e175940ae20bec00fdddaff804cda27a1408ab1b95e77a2196437",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libmpdec-4.0.0-hb03c661_2.conda",
+          "version": "4.0.0"
+        },
+        {
+          "build": "pthreads_hf13c14d_2",
+          "name": "libopenblas",
+          "sha256": "69a722751e14eab2eb3bfdcb9acb1187afbd962b0c49b48d829341e0f6787f60",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.34-pthreads_hf13c14d_2.conda",
+          "version": "0.3.34"
+        },
+        {
+          "build": "hd51c5da_100_cp314",
+          "name": "libpython",
+          "sha256": "3b9f11f136074f81db3ca56f2f514f466456dbab1189e68b3681b53387043daa",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libpython-3.14.10-hd51c5da_100_cp314.conda",
+          "version": "3.14.10"
+        },
+        {
+          "build": "h0737f62_101",
+          "name": "libsqlite",
+          "sha256": "c294029f893d05286f1061bbab85b820f1eea73dd859af4bcc619197bcc34810",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.54.1-h0737f62_101.conda",
+          "version": "3.54.1"
+        },
+        {
+          "build": "h934c35e_7",
+          "name": "libstdcxx",
+          "sha256": "fa7018298629fc429971fffd6ecba3d27a7b02e4e890d6a93ea01ffebe8cb745",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-16.2.0-h934c35e_7.conda",
+          "version": "16.2.0"
+        },
+        {
+          "build": "hcfc3c73_0",
+          "name": "libuuid",
+          "sha256": "f34b8d1de9a2bf62476d8608057d9b8a918d97444236dc53a47128f2fae79041",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.42.4-hcfc3c73_0.conda",
+          "version": "2.42.4"
+        },
+        {
+          "build": "h25fd6f3_3",
+          "name": "libzlib",
+          "sha256": "eb8a0db0aa570124f7d2a93d7c7f596e3390df5e047818d873baad32985fc736",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.2-h25fd6f3_3.conda",
+          "version": "1.3.2"
+        },
+        {
+          "build": "py314h93e9acf_4",
+          "name": "markupsafe",
+          "sha256": "35b412b97ad6c65e2c5aef1e2039981bc53f847bd0673610a76f133628f24e3b",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/markupsafe-3.0.4-py314h93e9acf_4.conda",
+          "version": "3.0.4"
+        },
+        {
+          "build": "hdb14827_1",
+          "name": "ncurses",
+          "sha256": "5d46557214ed184381dafe835b7c94a474a1c3b307a08a250b1ea4779b44ffb3",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.6-hdb14827_1.conda",
+          "version": "6.6"
+        },
+        {
+          "build": "py314hd3a7d6b_0",
+          "name": "numpy",
+          "sha256": "7533361a15ff1d4c1e7069b9410d32a602a6a9350d717a43731b07e3565a6689",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/numpy-2.5.4-py314hd3a7d6b_0.conda",
+          "version": "2.5.4"
+        },
+        {
+          "build": "h781a0a9_0",
+          "name": "openssl",
+          "sha256": "9c1533f1cf784f0e250919c0c9762d0b0e6bc727a79290ffb7cea1ceca1d038c",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/openssl-3.6.5-h781a0a9_0.conda",
+          "version": "3.6.5"
+        },
+        {
+          "build": "pyhc364b38_0",
+          "name": "packaging",
+          "sha256": "c432626b16768b8dab228bfb706f7060c2d462a21c516d240f68f2f902b5a044",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/packaging-26.3-pyhc364b38_0.conda",
+          "version": "26.3"
+        },
+        {
+          "build": "np2py314h9e1d7c2_0",
+          "name": "pandas",
+          "sha256": "c9dd76336a7377f65c5add933e77f316dc19d5a0cc92c847d21f58ed9360be4a",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/pandas-3.1.1-np2py314h9e1d7c2_0.conda",
+          "version": "3.1.1"
+        },
+        {
+          "build": "pyhc364b38_0",
+          "name": "pint",
+          "sha256": "7e30090b2a75a6f31f9509fefa76b5b6aee7f5853453f7883a5851b87dd2b481",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pint-0.26.2-pyhc364b38_0.conda",
+          "version": "0.26.2"
+        },
+        {
+          "build": "pyh145f28c_2",
+          "name": "pip",
+          "sha256": "05d34ae3b49973c05c0f2f0f742e202acc6145f733460a0798944b231efd5c1a",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pip-26.2.2-pyh145f28c_2.conda",
+          "version": "26.2.2"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "platformdirs",
+          "sha256": "8bbb25f131001457e5fd19385000e9d6a8047223a35f4c507d92113eb68d42f9",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/platformdirs-4.14.5-pyh5ded981_0.conda",
+          "version": "4.14.5"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "pluggy",
+          "sha256": "34c40106bc3172b3a47656e84837e13a5d4829d413d65f30fb214e7568a09cea",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pluggy-1.7.0-pyh5ded981_0.conda",
+          "version": "1.7.0"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "pydantic",
+          "sha256": "a462f1e82ec96ba8034ec12a13f70d5cf4eb8cdf3320f3d6ee545890c92e6ac2",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pydantic-2.14.2-pyh5ded981_0.conda",
+          "version": "2.14.2"
+        },
+        {
+          "build": "py314h7e8cd81_0",
+          "name": "pydantic-core",
+          "sha256": "115f6fef5e552b7d7dbaadadfafdb6be314d78c2c284381eaa492bbfcbcb0bad",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/pydantic-core-2.50.2-py314h7e8cd81_0.conda",
+          "version": "2.50.2"
+        },
+        {
+          "build": "pyhcf101f3_0",
+          "name": "pygments",
+          "sha256": "f5f015ff1bc3e1b7fc08eee096b1865234189ae0b82bebdb86a5369116e42fa0",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pygments-2.21.0-pyhcf101f3_0.conda",
+          "version": "2.21.0"
+        },
+        {
+          "build": "pyhd8ed1ab_0",
+          "name": "pyproject_hooks",
+          "sha256": "bb2aebd9f3f3f67c8389fdb5a94e3e8c9325803e00e3b1baaeef22da86e4fe2f",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pyproject_hooks-1.3.3-pyhd8ed1ab_0.conda",
+          "version": "1.3.3"
+        },
+        {
+          "build": "pyhc364b38_1",
+          "name": "pytest",
+          "sha256": "a9cf3571e80a4e86992502068eb1d29a109e88345c39babf03b10450895056af",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pytest-9.2.0-pyhc364b38_1.conda",
+          "version": "9.2.0"
+        },
+        {
+          "build": "pyhcf101f3_0",
+          "name": "pytest-cov",
+          "sha256": "44e42919397bd00bfaa47358a6ca93d4c21493a8c18600176212ec21a8d25ca5",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pytest-cov-7.1.0-pyhcf101f3_0.conda",
+          "version": "7.1.0"
+        },
+        {
+          "build": "py_0",
+          "name": "pytest-receptor",
+          "sha256": "c0b075286f45e8fce5ab5852947611bfba82b7d509115fc5dadf1a9572b9dd74",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/pytest-receptor-1.2.2-py_0.tar.bz2",
+          "version": "1.2.2"
+        },
+        {
+          "build": "pyhd8ed1ab_0",
+          "name": "pytest-xdist",
+          "sha256": "b7b58a5be090883198411337b99afb6404127809c3d1c9f96e99b59f36177a96",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/pytest-xdist-3.8.0-pyhd8ed1ab_0.conda",
+          "version": "3.8.0"
+        },
+        {
+          "build": "hcd007b5_100_cp314",
+          "name": "python",
+          "sha256": "bb457298c776d0edd30d727d96629e57df63e9a4ba2dd11553019267b61ef5f4",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/python-3.14.10-hcd007b5_100_cp314.conda",
+          "version": "3.14.10"
+        },
+        {
+          "build": "pyhc364b38_0",
+          "name": "python-build",
+          "sha256": "28100eda1e92e786c25753d0ea9def9375d692726d2c76444a040be686b4dd9a",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/python-build-1.6.1-pyhc364b38_0.conda",
+          "version": "1.6.1"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "python-dateutil",
+          "sha256": "8038f7048c97299f7fe7c8ce957da65b8ada9839afd0f66e345d3096082da975",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/python-dateutil-4.0.0-pyh5ded981_0.conda",
+          "version": "4.0.0"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "python-tzdata",
+          "sha256": "bb29725d0d84f5e98f221f2f0afbad4a44cd67b016ab48388592c940bbd75a5e",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/python-tzdata-2026.6-pyh5ded981_0.conda",
+          "version": "2026.6"
+        },
+        {
+          "build": "9_cp314",
+          "name": "python_abi",
+          "sha256": "e7f8e965bbfb98e08feb2365cacdad8bb218fa5b5a0a2752f747287f425f213c",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/python_abi-3.14-9_cp314.conda",
+          "version": "3.14"
+        },
+        {
+          "build": "py_0",
+          "name": "pyunitwizard",
+          "sha256": "2102b1bd4e8188d4d150f90fcf093425d07fa2858993984016a6e7de10c3aaac",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/pyunitwizard-0.27.0-py_0.tar.bz2",
+          "version": "0.27.0"
+        },
+        {
+          "build": "py314h19d427c_3",
+          "name": "pyyaml",
+          "sha256": "da909204ceee34fc54bd49b96b9151fd3297dec02f4f6c09b7671890e8cb0366",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/pyyaml-6.0.3-py314h19d427c_3.conda",
+          "version": "6.0.3"
+        },
+        {
+          "build": "hd6e31c0_1",
+          "name": "readline",
+          "sha256": "01b3fe073a66e321970d09e04b388708f8cbdca5cdfbfcb7c9eeb470ad10383d",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/readline-8.3-hd6e31c0_1.conda",
+          "version": "8.3"
+        },
+        {
+          "build": "hf19af3b_0",
+          "name": "ruff",
+          "sha256": "0fa86916266c0a9e1e94858020b3748372a72c0322ec606ede691f8bc1fd799c",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/ruff-0.17.3-hf19af3b_0.conda",
+          "version": "0.17.3"
+        },
+        {
+          "build": "pyhe730653_0",
+          "name": "setuptools",
+          "sha256": "17add609d1a31c874e39a03935072be59bcafb06d42383eceabea746d12e6025",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/setuptools-84.2.1-pyhe730653_0.conda",
+          "version": "84.2.1"
+        },
+        {
+          "build": "py_0",
+          "name": "smonitor",
+          "sha256": "e9ce6c77a682dddec3a6e724f9cc98cca31c4d6732453d554107ffcf61f23e7e",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/smonitor-0.22.1-py_0.tar.bz2",
+          "version": "0.22.1"
+        },
+        {
+          "build": "noxft_h1df4ec4_4",
+          "name": "tk",
+          "sha256": "a1a241d172c1ccab067ba245206dd048bc3c2d1b84504b53c9468e99adfc16a1",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_h1df4ec4_4.conda",
+          "version": "8.6.13"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "tomli",
+          "sha256": "93b6f517fb7adff00b62be02b798d384a1b34d0e368fdb576fb248bcb3bb9ec7",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/tomli-2.5.0-pyh5ded981_0.conda",
+          "version": "2.5.0"
+        },
+        {
+          "build": "h69aa097_0",
+          "name": "typing-extensions",
+          "sha256": "b141933ece3518f6d7b75dfb59451e2f26b405a44c18e2518a83e9a02e09315c",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/typing-extensions-4.16.0-h69aa097_0.conda",
+          "version": "4.16.0"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "typing-inspection",
+          "sha256": "88c08476c98f264047d6c6bfeb1e8545684dfbcf2c61da338f71033ec17e1f33",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/typing-inspection-0.4.5-pyh5ded981_0.conda",
+          "version": "0.4.5"
+        },
+        {
+          "build": "pyhcf101f3_0",
+          "name": "typing_extensions",
+          "sha256": "2d888f90af0686044882c74193ec80a90ec1943145d94a7b1b048958acda1848",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/typing_extensions-4.16.0-pyhcf101f3_0.conda",
+          "version": "4.16.0"
+        },
+        {
+          "build": "h5d301ff_0",
+          "name": "tzdata",
+          "sha256": "2b7ca858879f183ce2dcc65b300f48a0133d5430550f35b23d80d405a0788dbf",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/tzdata-2026e-h5d301ff_0.conda",
+          "version": "2026e"
+        },
+        {
+          "build": "pyhd8ed1ab_0",
+          "name": "versioningit",
+          "sha256": "4b9a3f6738ab6e241b12b2fe9258f7e051678b911ca0f0ab042becc29096ff51",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/versioningit-3.3.0-pyhd8ed1ab_0.conda",
+          "version": "3.3.0"
+        },
+        {
+          "build": "pyhd8ed1ab_0",
+          "name": "wheel",
+          "sha256": "ba64b29b6d418024cb565081a1799262cb2780d2534ff4c14f76aa858c4286cd",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/wheel-0.48.0-pyhd8ed1ab_0.conda",
+          "version": "0.48.0"
+        },
+        {
+          "build": "hebe6cf0_3",
+          "name": "yaml",
+          "sha256": "d164dfa75ecd538f6fd68765defcc06aa875bc697b9b215362d79a2a73125dd0",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/yaml-0.2.5-hebe6cf0_3.conda",
+          "version": "0.2.5"
+        },
+        {
+          "build": "pyh5ded981_0",
+          "name": "zipp",
+          "sha256": "4e5c50cf5ecc00d83a20b987c52d49b78fa96026437ab09b11f4b7c46b7fc061",
+          "subdir": "noarch",
+          "url": "https://conda.anaconda.org/conda-forge/noarch/zipp-4.1.2-pyh5ded981_0.conda",
+          "version": "4.1.2"
+        },
+        {
+          "build": "hb78ec9c_7",
+          "name": "zstd",
+          "sha256": "47d682b9f6d6ec9eb1a6e6c3e75ea6273e899e78fb7fc59f81d39745009fbc60",
+          "subdir": "linux-64",
+          "url": "https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb78ec9c_7.conda",
+          "version": "1.5.7"
+        }
+      ],
+      "pip_check": {
+        "exit": 0,
+        "stderr": "WARNING: The directory '/home/diego/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.",
+        "stdout": "No broken requirements found."
+      },
+      "provenance_checks": {
+        "full": {
+          "before_equals_after": true,
+          "exit": 0
+        },
+        "receiving": {
+          "before_equals_after": true,
+          "exit": 0
+        }
+      },
+      "provider_payload_sha256": {
+        "site-packages/smonitor/__init__.py": "f60b1c2bff72dbbb70fe403e23908e62a8297f6190e18fdcac090092b84e6800",
+        "site-packages/smonitor/_diagnostics.py": "cc732d5f889e25a66168b600721057241730ed74b857edb818ccec8ac82b05e5",
+        "site-packages/smonitor/_version.py": "9a358f530e5648a8ce74b139df678c89c47a1af734012b4bc458f3606456727b",
+        "site-packages/smonitor/bundle.py": "228374b0a5f14b26c2789143ad29b3c6c56cd5bb36d3cde41ccd34e30005604c",
+        "site-packages/smonitor/catalog.py": "ff9e04e9594797a6c1b35c65b8e21dccc9d96530f0fc48e3ebd1dca483f40ba7",
+        "site-packages/smonitor/cli.py": "a4d2a9166ef8fb93b994380c1ac490f7fa3f250ce5e0641a12e61b07dff99e5e",
+        "site-packages/smonitor/config/__init__.py": "0b4a603c4441f665b162d10b845f069f9e1f9cca542612c3c6dc143cb8cc560d",
+        "site-packages/smonitor/config/discovery.py": "56a036bc65796a8da3a9f8dcf886f88b6b49717912e79c5f91d845731ac74b5f",
+        "site-packages/smonitor/core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "site-packages/smonitor/core/capture.py": "42207876c72666c5df87fb143180247be6c2dd80e6bb54bbb8acf06307a86966",
+        "site-packages/smonitor/core/context.py": "6959142b2b201663cc0f70422261c79b8dba91556f969559083c079b6cc889dd",
+        "site-packages/smonitor/core/decorator.py": "ce3361a0cdc5d31f0e544c55c8fde4ec340d2a5b2260b130f182444d72f630ec",
+        "site-packages/smonitor/core/fingerprint.py": "80f0c8377602c8ef3cb4dc71ce02b59dd0f57bc5ed52e2790c400af66ba37856",
+        "site-packages/smonitor/core/human_summary.py": "1b7b548bc396ac1257a6ca769c61bb4021e3f44ee75c335a5b48a575c0d741aa",
+        "site-packages/smonitor/core/identifiers.py": "48350ab1b1acff14eb950557935470ec2170c1bcc669dcbdca0b4c490e272ca8",
+        "site-packages/smonitor/core/manager.py": "ddf809456df62bffb92b0451a54c315ca312722019b7057792472e074ba0b8c7",
+        "site-packages/smonitor/core/runtime.py": "7c2b9b7f9f1beca4e1f5b4e1d4c6f4ee123c4c9754e7754b4bde1577b30e7d21",
+        "site-packages/smonitor/docs_utils.py": "31d6a649e62bd10950f4542144886605ad202a7bc4a65d77378dcc35cc747dd7",
+        "site-packages/smonitor/emitters/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "site-packages/smonitor/emitters/exceptions.py": "5719837614cde25784e2b58e48780a0a883f044b9acba22398de4c24a88da33d",
+        "site-packages/smonitor/emitters/logging.py": "ff3bd66f2b449f0a237eed8fbaafe045cdb2a1ca4a1913e4dbefa76cacd3f351",
+        "site-packages/smonitor/emitters/warnings.py": "14668db77954a6a00ae5807814f9c8d9c97f81c237729af43d5b5e62ca831bc0",
+        "site-packages/smonitor/handlers/__init__.py": "f57a12db0943691cc477fd69d22d7eaac26e878c1ff66a2a5df89f35f136304d",
+        "site-packages/smonitor/handlers/console.py": "4c0de3e1b2832ab8dc9f73fa6e899400d9da3136598b33510ee57b0263c17563",
+        "site-packages/smonitor/handlers/file.py": "bf9fcad614065bacdf0b300c442c9723c7cffaddebd736ecc37d2335ac2d8c38",
+        "site-packages/smonitor/handlers/json.py": "cd5edabe32ab5286dc81315249aac77b35fc5fe5233cdcebc36b9c56a3fc4098",
+        "site-packages/smonitor/handlers/memory.py": "c12c37421cebaf6a574feabed4bff24f64df8237905bc9ec81293e9174b87543",
+        "site-packages/smonitor/integrations/__init__.py": "2dcb2215de7a7fe694a26e95861c2daa90b3908345d190e19669d49dbcd53717",
+        "site-packages/smonitor/integrations/argdigest.py": "8ad55e939b7728123273cd47823e720d9badeba569b4e722cee60946b2f6bc16",
+        "site-packages/smonitor/integrations/core.py": "77f572afd7baa16b783a424fa3bc1a5debcf7e684461697b1e0d3a88afb6612d",
+        "site-packages/smonitor/integrations/depdigest.py": "eaaf62597aae74f795483e8353a8e83db2d1a310deedccb2de6a80f0a49c13b2",
+        "site-packages/smonitor/integrations/diagnostic.py": "8a6065ff00b2e0e5068a74782b5a7352471c897848c031cb6bf0faaa9a312178",
+        "site-packages/smonitor/integrations/molsysmt.py": "dff282f2606c36e815f85da43bf28d9b5bf566666a44c7ec66d4a400f1b26bbc",
+        "site-packages/smonitor/integrations/provider.py": "dc51dc872c0164c42ce2b4e34fa6724ed31292991937c557c1cb86445b609f96",
+        "site-packages/smonitor/policy/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "site-packages/smonitor/policy/engine.py": "b15cc0eea4a545795e5852c3560105ac9fd20efdc1d97225821292691ec8bb23",
+        "site-packages/smonitor/profiling.py": "47d2e1d4ee3a83364b256b0a9a12e21da887499e51b25d3f151842016683d176",
+        "site-packages/smonitor/pytest_plugin.py": "8a6729063c5eb8c92d6f6182a4e554ee5ae4a98de8d820ef5f51a3bb388e37ca",
+        "site-packages/smonitor/pytest_policy.py": "2aaf3b1cf44dab46ada23beb2fd52ad7994f94ad369db8d69062d9ece13e47dc",
+        "site-packages/smonitor/templates/README.md": "88658d61af88ee6fc53bfa8a6e046b00bb4c9fb3222f9a41d6a85f728b66f87a",
+        "site-packages/smonitor/templates/_smonitor.py": "4887dab158d203ac17e8544b5d1aa697fe1e99109d6934d13349c068cc9c4b6a",
+        "site-packages/smonitor/validation.py": "106f24b1a376e41b5a72f6fb8f5900bcd5b32ca4c5ab53e269a11d58efc33f99"
+      }
+    }
+  },
+  "input_sha256": {
+    "devtools/conda-build/resources.toml": "b6d1c09e19dde1e80e4d176d6937c891b68266fa118d3632644fa46ae833767d",
+    "devtools/tests/receive_smonitor_nested_signals.py": "5e61b0d86b839b6c42e9885270df6305ff7395227f1f7a22171e250183fa7b23",
+    "tests/test_noarch_conda_publication.py": "1523d27ad17653b21fb46e077fdd7d3b6c9c0525b79185b1dc1a0a1a5bb33249"
+  },
+  "issue": "uibcdf/argdigest#49",
+  "limits": [
+    "Only Linux x86_64 Python 3.14.10 client combinations were executed here. Provider twelve-cell qualification belongs to SMonitor #62; this receipt does not turn that into client twelve-cell acceptance.",
+    "Each full client suite skips its existing collective sibling-clone E2E because sibling sources are absent; no required receiving control is skipped.",
+    "The shared installed runner sees two pre-import assertion-rewrite warnings (smonitor and pytest_receptor); full suites also retain three known missing-digester warnings. Provider regression selection has no warnings. No warning/baseline suppression was introduced.",
+    "The current private wheel is not a public ArgDigest version or release candidate. Future ArgDigest candidates must execute all existing source/installed/core/public gates on their exact source/file.",
+    "The receiving guard expects UnknownArgumentError for catalog call-shape rejection, decoupling this provider test from the separate unreleased #48 TypeError-inheritance correction.",
+    "The old-source adverse comparison remains historical evidence in smonitor49_source_receiving_20261104.json; it is not claimed as rerun against the revised guard.",
+    "Temporary prefixes use no system-site-packages/editable siblings. Shared clones and shared environments were not modified.",
+    "The earlier staging-only installed-file verifier was not used to accept a main-channel file; the separate public command/archive verifier validates actual public records and commands."
+  ],
+  "profile_decision": {
+    "core_provider_floor": "smonitor>=0.16.0 unchanged",
+    "full_installed_paths": [
+      "tests",
+      "devtools/tests/receive_smonitor_nested_signals.py"
+    ],
+    "full_installed_provider": "smonitor==0.22.1",
+    "nested_observation_capability_floor": "smonitor>=0.22.1",
+    "public_argdigest_release": "0.17.0 unchanged; no new tag or file selected",
+    "runtime_metadata_and_core_profile": "unchanged"
+  },
+  "profile_preflight": {
+    "exit": 0,
+    "output": "{\"build_number\": 0, \"package\": \"argdigest\", \"route\": \"staged\", \"version\": \"0.17.0\"}"
+  },
+  "provider": {
+    "filename": "noarch/smonitor-0.22.1-py_0.tar.bz2",
+    "labels": [
+      "staging",
+      "main"
+    ],
+    "registry_file_snapshot_sha256": "070513b7bbfc275474f488d6c89a40e6db2c376524c4c1180727514bb7f28f7b",
+    "release": "https://github.com/uibcdf/smonitor/releases/tag/0.22.1",
+    "repository": "uibcdf/smonitor",
+    "sha256": "e9ce6c77a682dddec3a6e724f9cc98cca31c4d6732453d554107ffcf61f23e7e",
+    "size": 60043,
+    "source": "2147c7c641b7cba8a974b193207f686ee3ebe855",
+    "tag": "0.22.1",
+    "url": "https://conda.anaconda.org/uibcdf/noarch/smonitor-0.22.1-py_0.tar.bz2"
+  },
+  "public_pair_resources_and_commands": {
+    "argdigest": {
+      "commands": {
+        "commands": [
+          {
+            "command": "argdigest",
+            "exit_code": 0,
+            "launcher": "/tmp/argdigest-smonitor0221.w8z9BN/released-env/bin/argdigest",
+            "module_origin": "/tmp/argdigest-smonitor0221.w8z9BN/released-env/lib/python3.14/site-packages/argdigest/cli.py",
+            "stderr": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "stdout": {
+              "bytes": 403,
+              "sha256": "7c2447f86957f860b8419405948d5a60f93abff37679b35865868439f079553a"
+            },
+            "target": "argdigest.cli:main"
+          }
+        ],
+        "installed_record": {
+          "build": "py_0",
+          "name": "argdigest",
+          "sha256": "9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.17.0-py_0.tar.bz2",
+          "version": "0.17.0"
+        },
+        "platform": "linux-64",
+        "prefix": "/tmp/argdigest-smonitor0221.w8z9BN/released-env",
+        "python": "3.14"
+      },
+      "coordinate": {
+        "filename": "argdigest-0.17.0-py_0.tar.bz2",
+        "package": "argdigest",
+        "sha256": "9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1",
+        "subdir": "noarch",
+        "version": "0.17.0"
+      },
+      "inspected": {
+        "build": "py_0",
+        "dependencies": [
+          "depdigest >=0.11.0",
+          "python >=3.11,<3.15",
+          "smonitor >=0.16.0"
+        ],
+        "scripts": {
+          "argdigest": "argdigest.cli:main"
+        }
+      },
+      "verified_payload_sha256": {
+        "site-packages/argdigest/__init__.py": "07518ec0f8d53c99d67f40aa76dc1a9f021ab659fc97ee4eb24a2e325e4feaee",
+        "site-packages/argdigest/_depdigest.py": "e3eede5f993fd789c55068769ec794e771fb7b233fa7e10df2f0439a8d531cd9",
+        "site-packages/argdigest/_private/smonitor/__init__.py": "3a7c8e505add1e4a4ff8fdb866c97edd043b830f6b7a59f768abd829ee419632",
+        "site-packages/argdigest/_private/smonitor/catalog.py": "bca3d51c79c6088bf1efe5392097297a4aab4c95bee5dd4983dfa95be953aff6",
+        "site-packages/argdigest/_private/smonitor/emitter.py": "ed30989f4ebe8cf69720a9e01da83b4ae8d44aef6abbdf3dbeba253084566dac",
+        "site-packages/argdigest/_private/smonitor/meta.py": "2b5313a344e848dcddeb2181d8e352664b77c0d02b5c421fb4726767b15ae81f",
+        "site-packages/argdigest/_smonitor.py": "8c64a540b48708d6b2cff8bb49ff05465c44be5cdc3b4511f40b514796b0d37d",
+        "site-packages/argdigest/_version.py": "5e9337967702ccf048c0c4af0cdee2d74a647bf73a29d26d54b6586c289a4d1c",
+        "site-packages/argdigest/cli.py": "f6e45b3cd57e83c7070b44b1a12abee6279ce80c55fd86a22c2754f04156e765",
+        "site-packages/argdigest/config.py": "1e06c210d8cb24a6298e03961f5ad9a1a7eda56d5e473e8f2c791c0484e1ea38",
+        "site-packages/argdigest/contrib/__init__.py": "780dc788fb0ee7e7d9273c45992a3568176dc0ef168dccce12a3e236c3f5cf75",
+        "site-packages/argdigest/contrib/beartype_support.py": "a18088bc90a02f56e44c5e5b5ad96da346d136baec861dacb739c6f86273acd2",
+        "site-packages/argdigest/contrib/pydantic_support.py": "e52140c341096d5ad04fc056a2dccb39c4f368138758d2e6086a9ef9bee8df71",
+        "site-packages/argdigest/contrib/pyunitwizard_support.py": "8c7f896ed03cc72735ed1a4faa577b8705e52be43d859f278e7ec423dfce5922",
+        "site-packages/argdigest/core/__init__.py": "fde4100e15ab833df34916a47a36a19a9c21925b6042ee93328afb270f835fca",
+        "site-packages/argdigest/core/agent_docs.py": "0dd99f2de399f8872462f607cc7dc333bf9b2461c0e9169d59dffb3df2994233",
+        "site-packages/argdigest/core/argument_loader.py": "cb45b08e78282b98408e7d43fb004db2b2585003aadd074c7de1ef585b6f6dff",
+        "site-packages/argdigest/core/argument_registry.py": "b2698707760710bd5e103350f2a761f96b4d0178eb4d7f2b02fe03e55f3ea3bf",
+        "site-packages/argdigest/core/caller.py": "e44f21438bfe955f185452526f05d224723bf8c7bb07d13a1c02f3210a3c041f",
+        "site-packages/argdigest/core/config.py": "c076a2d37790e23f86eacef52680c2cdab179a849b2139beb40cfa220e9f892f",
+        "site-packages/argdigest/core/context.py": "04ce1ef61eed153411c9a83d388899de1886f6f561be406373a6b112e639b81c",
+        "site-packages/argdigest/core/decorator.py": "8bf8f24860e28de20920b33aa84b492d4d8d44be0b90d065c6f70dcb98012550",
+        "site-packages/argdigest/core/diagnostics.py": "aaf2b4bf15562206d9c4ed16d2f3075214669948fb2523d6b6007698f339ed32",
+        "site-packages/argdigest/core/errors.py": "d0cfd6413717fb69bb2243fd2d05059a2aa1bedf99828553459f889bc403a29d",
+        "site-packages/argdigest/core/errors_base.py": "bd1a04038e7e9fb50ce422291ae61e2f4cc1bac04342ab0f0230a6ef8b12247b",
+        "site-packages/argdigest/core/function_contract.py": "e25f37ee180f650b596b4d61f84ed1c93191cb5ab5837afed78945a3586536fb",
+        "site-packages/argdigest/core/function_loader.py": "3970949c2553a706b617380e8601cf97113f1b13837c8de1f1abb613838014b1",
+        "site-packages/argdigest/core/health.py": "edbb0c304f137455ab31ab33c8d3f21e84d89446c258c8060c6b559cc24a92b7",
+        "site-packages/argdigest/core/logger.py": "2fc318cb37f9c9863e809b51d516b5de6fc340cd6f962e9688484fe71f35a65b",
+        "site-packages/argdigest/core/normalization.py": "a90fd2015dc38cc630e8de24c13de8a01b65afd3a9d67e01bbe9f5e88f804f49",
+        "site-packages/argdigest/core/registry.py": "3a8a81354ce299e4795d105441e0d029b2bf93a636c1c94f01adda1d2b19e48a",
+        "site-packages/argdigest/core/utils.py": "7135b40b7871db2c3a5c21cf228d9bb5390e6f0b93705525edd527bb834e7512",
+        "site-packages/argdigest/diagnostics.py": "2ab1c77c7832f2b62161b8da57b228b12b89e7a667c6973d19ec8b9e041c2559",
+        "site-packages/argdigest/pipelines/__init__.py": "0d9efba3909e8afac995b4b260756d48321a2d02a7968f49d388672ad3694d1b",
+        "site-packages/argdigest/pipelines/base.py": "20c07d367c9d121a07c77105127f5a950cced551aa77e65f5f2e80261b3de045",
+        "site-packages/argdigest/pipelines/coercers.py": "83e3bffbb67474633c15f88420215110dd25e1bd9db9d9a148b1b352e8fb01d8",
+        "site-packages/argdigest/pipelines/data.py": "c0132959ab06f447f2f5d202e5b1ddf0dc50efaa392d3470d5c1fa0b942f0521",
+        "site-packages/argdigest/pipelines/science.py": "f5ce2af693b9b9e714c0145c1601b4b2c2223efaa3fe0f3469c21883306bb464",
+        "site-packages/argdigest/pipelines/validators.py": "5b844a9bce602f734aafcf28bd671ccc53571ba3ba8dd4f54acc20b31c162f52"
+      }
+    },
+    "smonitor": {
+      "commands": {
+        "commands": [
+          {
+            "command": "smonitor",
+            "exit_code": 0,
+            "launcher": "/tmp/argdigest-smonitor0221.w8z9BN/released-env/bin/smonitor",
+            "module_origin": "/tmp/argdigest-smonitor0221.w8z9BN/released-env/lib/python3.14/site-packages/smonitor/cli.py",
+            "stderr": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "stdout": {
+              "bytes": 1129,
+              "sha256": "62be546ae079da8dfdfc031086e734cdf56abd5294e1a460020586f141c055e7"
+            },
+            "target": "smonitor.cli:main"
+          }
+        ],
+        "installed_record": {
+          "build": "py_0",
+          "name": "smonitor",
+          "sha256": "e9ce6c77a682dddec3a6e724f9cc98cca31c4d6732453d554107ffcf61f23e7e",
+          "url": "https://conda.anaconda.org/uibcdf/noarch/smonitor-0.22.1-py_0.tar.bz2",
+          "version": "0.22.1"
+        },
+        "platform": "linux-64",
+        "prefix": "/tmp/argdigest-smonitor0221.w8z9BN/released-env",
+        "python": "3.14"
+      },
+      "coordinate": {
+        "filename": "smonitor-0.22.1-py_0.tar.bz2",
+        "package": "smonitor",
+        "sha256": "e9ce6c77a682dddec3a6e724f9cc98cca31c4d6732453d554107ffcf61f23e7e",
+        "subdir": "noarch",
+        "version": "0.22.1"
+      },
+      "inspected": {
+        "build": "py_0",
+        "dependencies": [
+          "python >=3.11,<3.15"
+        ],
+        "scripts": {
+          "smonitor": "smonitor.cli:main"
+        }
+      },
+      "verified_payload_sha256": {
+        "site-packages/smonitor/__init__.py": "f60b1c2bff72dbbb70fe403e23908e62a8297f6190e18fdcac090092b84e6800",
+        "site-packages/smonitor/_diagnostics.py": "cc732d5f889e25a66168b600721057241730ed74b857edb818ccec8ac82b05e5",
+        "site-packages/smonitor/_version.py": "9a358f530e5648a8ce74b139df678c89c47a1af734012b4bc458f3606456727b",
+        "site-packages/smonitor/bundle.py": "228374b0a5f14b26c2789143ad29b3c6c56cd5bb36d3cde41ccd34e30005604c",
+        "site-packages/smonitor/catalog.py": "ff9e04e9594797a6c1b35c65b8e21dccc9d96530f0fc48e3ebd1dca483f40ba7",
+        "site-packages/smonitor/cli.py": "a4d2a9166ef8fb93b994380c1ac490f7fa3f250ce5e0641a12e61b07dff99e5e",
+        "site-packages/smonitor/config/__init__.py": "0b4a603c4441f665b162d10b845f069f9e1f9cca542612c3c6dc143cb8cc560d",
+        "site-packages/smonitor/config/discovery.py": "56a036bc65796a8da3a9f8dcf886f88b6b49717912e79c5f91d845731ac74b5f",
+        "site-packages/smonitor/core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "site-packages/smonitor/core/capture.py": "42207876c72666c5df87fb143180247be6c2dd80e6bb54bbb8acf06307a86966",
+        "site-packages/smonitor/core/context.py": "6959142b2b201663cc0f70422261c79b8dba91556f969559083c079b6cc889dd",
+        "site-packages/smonitor/core/decorator.py": "ce3361a0cdc5d31f0e544c55c8fde4ec340d2a5b2260b130f182444d72f630ec",
+        "site-packages/smonitor/core/fingerprint.py": "80f0c8377602c8ef3cb4dc71ce02b59dd0f57bc5ed52e2790c400af66ba37856",
+        "site-packages/smonitor/core/human_summary.py": "1b7b548bc396ac1257a6ca769c61bb4021e3f44ee75c335a5b48a575c0d741aa",
+        "site-packages/smonitor/core/identifiers.py": "48350ab1b1acff14eb950557935470ec2170c1bcc669dcbdca0b4c490e272ca8",
+        "site-packages/smonitor/core/manager.py": "ddf809456df62bffb92b0451a54c315ca312722019b7057792472e074ba0b8c7",
+        "site-packages/smonitor/core/runtime.py": "7c2b9b7f9f1beca4e1f5b4e1d4c6f4ee123c4c9754e7754b4bde1577b30e7d21",
+        "site-packages/smonitor/docs_utils.py": "31d6a649e62bd10950f4542144886605ad202a7bc4a65d77378dcc35cc747dd7",
+        "site-packages/smonitor/emitters/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "site-packages/smonitor/emitters/exceptions.py": "5719837614cde25784e2b58e48780a0a883f044b9acba22398de4c24a88da33d",
+        "site-packages/smonitor/emitters/logging.py": "ff3bd66f2b449f0a237eed8fbaafe045cdb2a1ca4a1913e4dbefa76cacd3f351",
+        "site-packages/smonitor/emitters/warnings.py": "14668db77954a6a00ae5807814f9c8d9c97f81c237729af43d5b5e62ca831bc0",
+        "site-packages/smonitor/handlers/__init__.py": "f57a12db0943691cc477fd69d22d7eaac26e878c1ff66a2a5df89f35f136304d",
+        "site-packages/smonitor/handlers/console.py": "4c0de3e1b2832ab8dc9f73fa6e899400d9da3136598b33510ee57b0263c17563",
+        "site-packages/smonitor/handlers/file.py": "bf9fcad614065bacdf0b300c442c9723c7cffaddebd736ecc37d2335ac2d8c38",
+        "site-packages/smonitor/handlers/json.py": "cd5edabe32ab5286dc81315249aac77b35fc5fe5233cdcebc36b9c56a3fc4098",
+        "site-packages/smonitor/handlers/memory.py": "c12c37421cebaf6a574feabed4bff24f64df8237905bc9ec81293e9174b87543",
+        "site-packages/smonitor/integrations/__init__.py": "2dcb2215de7a7fe694a26e95861c2daa90b3908345d190e19669d49dbcd53717",
+        "site-packages/smonitor/integrations/argdigest.py": "8ad55e939b7728123273cd47823e720d9badeba569b4e722cee60946b2f6bc16",
+        "site-packages/smonitor/integrations/core.py": "77f572afd7baa16b783a424fa3bc1a5debcf7e684461697b1e0d3a88afb6612d",
+        "site-packages/smonitor/integrations/depdigest.py": "eaaf62597aae74f795483e8353a8e83db2d1a310deedccb2de6a80f0a49c13b2",
+        "site-packages/smonitor/integrations/diagnostic.py": "8a6065ff00b2e0e5068a74782b5a7352471c897848c031cb6bf0faaa9a312178",
+        "site-packages/smonitor/integrations/molsysmt.py": "dff282f2606c36e815f85da43bf28d9b5bf566666a44c7ec66d4a400f1b26bbc",
+        "site-packages/smonitor/integrations/provider.py": "dc51dc872c0164c42ce2b4e34fa6724ed31292991937c557c1cb86445b609f96",
+        "site-packages/smonitor/policy/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "site-packages/smonitor/policy/engine.py": "b15cc0eea4a545795e5852c3560105ac9fd20efdc1d97225821292691ec8bb23",
+        "site-packages/smonitor/profiling.py": "47d2e1d4ee3a83364b256b0a9a12e21da887499e51b25d3f151842016683d176",
+        "site-packages/smonitor/pytest_plugin.py": "8a6729063c5eb8c92d6f6182a4e554ee5ae4a98de8d820ef5f51a3bb388e37ca",
+        "site-packages/smonitor/pytest_policy.py": "2aaf3b1cf44dab46ada23beb2fd52ad7994f94ad369db8d69062d9ece13e47dc",
+        "site-packages/smonitor/templates/README.md": "88658d61af88ee6fc53bfa8a6e046b00bb4c9fb3222f9a41d6a85f728b66f87a",
+        "site-packages/smonitor/templates/_smonitor.py": "4887dab158d203ac17e8544b5d1aa697fe1e99109d6934d13349c068cc9c4b6a",
+        "site-packages/smonitor/validation.py": "106f24b1a376e41b5a72f6fb8f5900bcd5b32ca4c5ab53e269a11d58efc33f99"
+      }
+    }
+  },
+  "results": {
+    "current-full": {
+      "exit": 0,
+      "junit_sha256": "5190470aed6177770b26a70e07b0fbe65b4017e88ab2528f1263a21997c70550",
+      "output": "{\"installed\": {\"argdigest\": {\"origin\": \"/tmp/argdigest-smonitor0221.w8z9BN/public-env/lib/python3.14/site-packages/argdigest/__init__.py\", \"version\": \"0.0.0+unknown\"}, \"depdigest\": {\"origin\": \"/tmp/argdigest-smonitor0221.w8z9BN/public-env/lib/python3.14/site-packages/depdigest/__init__.py\", \"version\": \"0.15.1\"}, \"pytest_receptor\": {\"origin\": \"/tmp/argdigest-smonitor0221.w8z9BN/public-env/lib/python3.14/site-packages/pytest_receptor/__init__.py\", \"version\": \"1.2.2\"}, \"pyunitwizard\": {\"origin\": \"/tmp/argdigest-smonitor0221.w8z9BN/public-env/lib/python3.14/site-packages/pyunitwizard/__init__.py\", \"version\": \"0.27.0\"}, \"smonitor\": {\"origin\": \"/tmp/argdigest-smonitor0221.w8z9BN/public-env/lib/python3.14/site-packages/smonitor/__init__.py\", \"version\": \"0.22.1\"}}, \"kind\": \"full\", \"mode\": \"current\", \"paths\": [\"tests\", \"devtools/tests/receive_smonitor_nested_signals.py\"], \"source\": \"/tmp/argdigest-smonitor0221.w8z9BN/current\"}\nPASS exit=0 | 519 passed, 1 skipped | 7.81s | 5 warnings\n\nwarnings: 5 in 5 groups\n  DigestNotDigestedWarning x1 | argdigest/core/decorator.py:620 | No digester is registered for argument 'syntax' of 'select', so it was not validated. Define or register a dig...\n  DigestNotDigestedWarning x1 | argdigest/core/decorator.py:640 | No digester is registered for argument 'items' of 'combine', so it was not validated. Define or register a dig...\n  DigestNotDigestedWarning x1 | argdigest/core/decorator.py:640 | No digester is registered for argument 'suffix' of 'positioned', so it was not validated. Define or register a...\n  PytestAssertRewriteWarning x1 | _pytest/config/__init__.py:1507 | Module already imported so cannot be rewritten; pytest_receptor\n  PytestAssertRewriteWarning x1 | _pytest/config/__init__.py:1507 | Module already imported so cannot be rewritten; smonitor\n\nskipped: 1 in 1 group\n  x1 | Sibling repos are not available in this environment",
+      "passed": 519,
+      "skipped": 1,
+      "skips": [
+        {
+          "name": "test_collective_error_path_emits_contract_signal_and_dependency_hints",
+          "reason": "Sibling repos are not available in this environment"
+        }
+      ]
+    },
+    "current-receiving": {
+      "executed_cases": [
+        "test_body_failure_composition[filtered-debug-detailed-native]",
+        "test_body_failure_composition[filtered-debug-detailed-catalog]",
+        "test_body_failure_composition[filtered-debug-restricted-native]",
+        "test_body_failure_composition[filtered-debug-restricted-catalog]",
+        "test_body_failure_composition[accepted-debug-detailed-native]",
+        "test_body_failure_composition[accepted-debug-detailed-catalog]",
+        "test_body_failure_composition[accepted-debug-restricted-native]",
+        "test_body_failure_composition[accepted-debug-restricted-catalog]",
+        "test_body_failure_composition[all-filtered-detailed-native]",
+        "test_body_failure_composition[all-filtered-detailed-catalog]",
+        "test_body_failure_composition[all-filtered-restricted-native]",
+        "test_body_failure_composition[all-filtered-restricted-catalog]",
+        "test_body_failure_composition[disabled-detailed-native]",
+        "test_body_failure_composition[disabled-detailed-catalog]",
+        "test_body_failure_composition[disabled-restricted-native]",
+        "test_body_failure_composition[disabled-restricted-catalog]",
+        "test_body_failure_composition[silenced-inner-detailed-native]",
+        "test_body_failure_composition[silenced-inner-detailed-catalog]",
+        "test_body_failure_composition[silenced-inner-restricted-native]",
+        "test_body_failure_composition[silenced-inner-restricted-catalog]",
+        "test_failures_before_body_preserve_validation_and_diagnostics[WARNING-pipeline-detailed]",
+        "test_failures_before_body_preserve_validation_and_diagnostics[WARNING-pipeline-restricted]",
+        "test_failures_before_body_preserve_validation_and_diagnostics[WARNING-contract-detailed]",
+        "test_failures_before_body_preserve_validation_and_diagnostics[WARNING-contract-restricted]",
+        "test_failures_before_body_preserve_validation_and_diagnostics[DEBUG-pipeline-detailed]",
+        "test_failures_before_body_preserve_validation_and_diagnostics[DEBUG-pipeline-restricted]",
+        "test_failures_before_body_preserve_validation_and_diagnostics[DEBUG-contract-detailed]",
+        "test_failures_before_body_preserve_validation_and_diagnostics[DEBUG-contract-restricted]"
+      ],
+      "exit": 0,
+      "junit_sha256": "b6ca656d043e5c977bd3acd283f19f282f16440ba0d55401a4b6948b6c1b78dd",
+      "output": "{\"installed\": {\"argdigest\": {\"origin\": \"/tmp/argdigest-smonitor0221.w8z9BN/public-env/lib/python3.14/site-packages/argdigest/__init__.py\", \"version\": \"0.0.0+unknown\"}, \"depdigest\": {\"origin\": \"/tmp/argdigest-smonitor0221.w8z9BN/public-env/lib/python3.14/site-packages/depdigest/__init__.py\", \"version\": \"0.15.1\"}, \"pytest_receptor\": {\"origin\": \"/tmp/argdigest-smonitor0221.w8z9BN/public-env/lib/python3.14/site-packages/pytest_receptor/__init__.py\", \"version\": \"1.2.2\"}, \"pyunitwizard\": {\"origin\": \"/tmp/argdigest-smonitor0221.w8z9BN/public-env/lib/python3.14/site-packages/pyunitwizard/__init__.py\", \"version\": \"0.27.0\"}, \"smonitor\": {\"origin\": \"/tmp/argdigest-smonitor0221.w8z9BN/public-env/lib/python3.14/site-packages/smonitor/__init__.py\", \"version\": \"0.22.1\"}}, \"kind\": \"receiving\", \"mode\": \"current\", \"paths\": [\"receive_smonitor_nested_signals.py\"], \"source\": \"/tmp/argdigest-smonitor0221.w8z9BN/receiving\"}\nPASS exit=0 | 28 passed | 0.11s | 2 warnings\n\nwarnings: 2 in 2 groups\n  PytestAssertRewriteWarning x1 | _pytest/config/__init__.py:1507 | Module already imported so cannot be rewritten; pytest_receptor\n  PytestAssertRewriteWarning x1 | _pytest/config/__init__.py:1507 | Module already imported so cannot be rewritten; smonitor",
+      "passed": 28,
+      "skipped": 0,
+      "skips": []
+    },
+    "provider-tests": {
+      "exit": 0,
+      "junit_sha256": "e2dd92deaa70da29d2a1451573cd073b84770ade6b255783bbc2553a394dab99",
+      "output": "PASS exit=0 | 47 passed | 0.16s",
+      "passed": 47,
+      "skipped": 0,
+      "skips": []
+    },
+    "released-full": {
+      "exit": 0,
+      "junit_sha256": "fe6d71a078c6e5ddcd44961a8b74cc62198f0c7219bf709708b0da47a1ef8d90",
+      "output": "{\"installed\": {\"argdigest\": {\"origin\": \"/tmp/argdigest-smonitor0221.w8z9BN/released-env/lib/python3.14/site-packages/argdigest/__init__.py\", \"version\": \"0.17.0\"}, \"depdigest\": {\"origin\": \"/tmp/argdigest-smonitor0221.w8z9BN/released-env/lib/python3.14/site-packages/depdigest/__init__.py\", \"version\": \"0.15.1\"}, \"pytest_receptor\": {\"origin\": \"/tmp/argdigest-smonitor0221.w8z9BN/released-env/lib/python3.14/site-packages/pytest_receptor/__init__.py\", \"version\": \"1.2.2\"}, \"pyunitwizard\": {\"origin\": \"/tmp/argdigest-smonitor0221.w8z9BN/released-env/lib/python3.14/site-packages/pyunitwizard/__init__.py\", \"version\": \"0.27.0\"}, \"smonitor\": {\"origin\": \"/tmp/argdigest-smonitor0221.w8z9BN/released-env/lib/python3.14/site-packages/smonitor/__init__.py\", \"version\": \"0.22.1\"}}, \"kind\": \"full\", \"mode\": \"released\", \"paths\": [\"tests\"], \"source\": \"/tmp/argdigest-smonitor0221.w8z9BN/released\"}\nPASS exit=0 | 455 passed, 1 skipped | 7.11s | 5 warnings\n\nwarnings: 5 in 5 groups\n  DigestNotDigestedWarning x1 | argdigest/core/decorator.py:626 | No digester is registered for argument 'syntax' of 'select', so it was not validated. Define or register a dig...\n  DigestNotDigestedWarning x1 | argdigest/core/decorator.py:646 | No digester is registered for argument 'items' of 'combine', so it was not validated. Define or register a dig...\n  DigestNotDigestedWarning x1 | argdigest/core/decorator.py:646 | No digester is registered for argument 'suffix' of 'positioned', so it was not validated. Define or register a...\n  PytestAssertRewriteWarning x1 | _pytest/config/__init__.py:1507 | Module already imported so cannot be rewritten; pytest_receptor\n  PytestAssertRewriteWarning x1 | _pytest/config/__init__.py:1507 | Module already imported so cannot be rewritten; smonitor\n\nskipped: 1 in 1 group\n  x1 | Sibling repos are not available in this environment",
+      "passed": 455,
+      "skipped": 1,
+      "skips": [
+        {
+          "name": "test_collective_error_path_emits_contract_signal_and_dependency_hints",
+          "reason": "Sibling repos are not available in this environment"
+        }
+      ]
+    },
+    "released-receiving": {
+      "executed_cases": [
+        "test_body_failure_composition[filtered-debug-detailed-native]",
+        "test_body_failure_composition[filtered-debug-detailed-catalog]",
+        "test_body_failure_composition[filtered-debug-restricted-native]",
+        "test_body_failure_composition[filtered-debug-restricted-catalog]",
+        "test_body_failure_composition[accepted-debug-detailed-native]",
+        "test_body_failure_composition[accepted-debug-detailed-catalog]",
+        "test_body_failure_composition[accepted-debug-restricted-native]",
+        "test_body_failure_composition[accepted-debug-restricted-catalog]",
+        "test_body_failure_composition[all-filtered-detailed-native]",
+        "test_body_failure_composition[all-filtered-detailed-catalog]",
+        "test_body_failure_composition[all-filtered-restricted-native]",
+        "test_body_failure_composition[all-filtered-restricted-catalog]",
+        "test_body_failure_composition[disabled-detailed-native]",
+        "test_body_failure_composition[disabled-detailed-catalog]",
+        "test_body_failure_composition[disabled-restricted-native]",
+        "test_body_failure_composition[disabled-restricted-catalog]",
+        "test_body_failure_composition[silenced-inner-detailed-native]",
+        "test_body_failure_composition[silenced-inner-detailed-catalog]",
+        "test_body_failure_composition[silenced-inner-restricted-native]",
+        "test_body_failure_composition[silenced-inner-restricted-catalog]",
+        "test_failures_before_body_preserve_validation_and_diagnostics[WARNING-pipeline-detailed]",
+        "test_failures_before_body_preserve_validation_and_diagnostics[WARNING-pipeline-restricted]",
+        "test_failures_before_body_preserve_validation_and_diagnostics[WARNING-contract-detailed]",
+        "test_failures_before_body_preserve_validation_and_diagnostics[WARNING-contract-restricted]",
+        "test_failures_before_body_preserve_validation_and_diagnostics[DEBUG-pipeline-detailed]",
+        "test_failures_before_body_preserve_validation_and_diagnostics[DEBUG-pipeline-restricted]",
+        "test_failures_before_body_preserve_validation_and_diagnostics[DEBUG-contract-detailed]",
+        "test_failures_before_body_preserve_validation_and_diagnostics[DEBUG-contract-restricted]"
+      ],
+      "exit": 0,
+      "junit_sha256": "c767367da39e4f738a20fb1527bdfe7d75c152a7029566c371f4a9624c8be839",
+      "output": "{\"installed\": {\"argdigest\": {\"origin\": \"/tmp/argdigest-smonitor0221.w8z9BN/released-env/lib/python3.14/site-packages/argdigest/__init__.py\", \"version\": \"0.17.0\"}, \"depdigest\": {\"origin\": \"/tmp/argdigest-smonitor0221.w8z9BN/released-env/lib/python3.14/site-packages/depdigest/__init__.py\", \"version\": \"0.15.1\"}, \"pytest_receptor\": {\"origin\": \"/tmp/argdigest-smonitor0221.w8z9BN/released-env/lib/python3.14/site-packages/pytest_receptor/__init__.py\", \"version\": \"1.2.2\"}, \"pyunitwizard\": {\"origin\": \"/tmp/argdigest-smonitor0221.w8z9BN/released-env/lib/python3.14/site-packages/pyunitwizard/__init__.py\", \"version\": \"0.27.0\"}, \"smonitor\": {\"origin\": \"/tmp/argdigest-smonitor0221.w8z9BN/released-env/lib/python3.14/site-packages/smonitor/__init__.py\", \"version\": \"0.22.1\"}}, \"kind\": \"receiving\", \"mode\": \"released\", \"paths\": [\"receive_smonitor_nested_signals.py\"], \"source\": \"/tmp/argdigest-smonitor0221.w8z9BN/receiving\"}\nPASS exit=0 | 28 passed | 0.12s | 2 warnings\n\nwarnings: 2 in 2 groups\n  PytestAssertRewriteWarning x1 | _pytest/config/__init__.py:1507 | Module already imported so cannot be rewritten; pytest_receptor\n  PytestAssertRewriteWarning x1 | _pytest/config/__init__.py:1507 | Module already imported so cannot be rewritten; smonitor",
+      "passed": 28,
+      "skipped": 0,
+      "skips": []
+    }
+  },
+  "runner": {
+    "description": "Frozen executed wrapper around the installed runner; absolute temporary paths identify the executed receipt, not a maintained standalone CLI. --receptor=ci is changed to llm for local rendering; test selection and required feature options are retained.",
+    "path": "run_receiving.py.txt",
+    "sha256": "88417d5c63b72190e79448de2964836f569b25b3b8fb3e949fc939aea0f1199c"
+  },
+  "scope": "Public UIBCDF SMonitor 0.22.1 receiving on Linux x86_64 Python 3.14.10; current private ArgDigest runtime and public ArgDigest 0.17.0, all supporting dependencies public Conda packages",
+  "shared_tools": {
+    "dependency_route_preflight": "43b9f94bf5ab0ec3f54a4b2ca5b23b791d6af0bc",
+    "installed_runner": "13a661e348275496a677a1bfe9650d68a03713a3",
+    "public_commands_verifier": "b9852d973e96613a68cab7278491ff647bfd0b7d",
+    "repository": "uibcdf/molsyssuite"
+  },
+  "subjects": {
+    "current": {
+      "filename": "argdigest-0.0.0+unknown-py3-none-any.whl",
+      "generated_version_excluded_from_source_equality": "argdigest/_version.py",
+      "kind": "private exact-source wheel, unpublished development runtime",
+      "sha256": "2a7fc43c7141d0669a73d79a45b99e91473ce4e351f685d4bd34e923c64609a7",
+      "source": "a463a9eaceb0661c1a111a8883962282ce1ed169",
+      "verified_installed_runtime_sha256": {
+        "argdigest/__init__.py": "07518ec0f8d53c99d67f40aa76dc1a9f021ab659fc97ee4eb24a2e325e4feaee",
+        "argdigest/_depdigest.py": "e3eede5f993fd789c55068769ec794e771fb7b233fa7e10df2f0439a8d531cd9",
+        "argdigest/_private/smonitor/__init__.py": "3a7c8e505add1e4a4ff8fdb866c97edd043b830f6b7a59f768abd829ee419632",
+        "argdigest/_private/smonitor/catalog.py": "bca3d51c79c6088bf1efe5392097297a4aab4c95bee5dd4983dfa95be953aff6",
+        "argdigest/_private/smonitor/emitter.py": "ed30989f4ebe8cf69720a9e01da83b4ae8d44aef6abbdf3dbeba253084566dac",
+        "argdigest/_private/smonitor/meta.py": "2b5313a344e848dcddeb2181d8e352664b77c0d02b5c421fb4726767b15ae81f",
+        "argdigest/_smonitor.py": "8c64a540b48708d6b2cff8bb49ff05465c44be5cdc3b4511f40b514796b0d37d",
+        "argdigest/cli.py": "f6e45b3cd57e83c7070b44b1a12abee6279ce80c55fd86a22c2754f04156e765",
+        "argdigest/config.py": "1e06c210d8cb24a6298e03961f5ad9a1a7eda56d5e473e8f2c791c0484e1ea38",
+        "argdigest/contrib/__init__.py": "780dc788fb0ee7e7d9273c45992a3568176dc0ef168dccce12a3e236c3f5cf75",
+        "argdigest/contrib/beartype_support.py": "a18088bc90a02f56e44c5e5b5ad96da346d136baec861dacb739c6f86273acd2",
+        "argdigest/contrib/pydantic_support.py": "e52140c341096d5ad04fc056a2dccb39c4f368138758d2e6086a9ef9bee8df71",
+        "argdigest/contrib/pyunitwizard_support.py": "8c7f896ed03cc72735ed1a4faa577b8705e52be43d859f278e7ec423dfce5922",
+        "argdigest/core/__init__.py": "fde4100e15ab833df34916a47a36a19a9c21925b6042ee93328afb270f835fca",
+        "argdigest/core/agent_docs.py": "0dd99f2de399f8872462f607cc7dc333bf9b2461c0e9169d59dffb3df2994233",
+        "argdigest/core/argument_loader.py": "cb45b08e78282b98408e7d43fb004db2b2585003aadd074c7de1ef585b6f6dff",
+        "argdigest/core/argument_registry.py": "b2698707760710bd5e103350f2a761f96b4d0178eb4d7f2b02fe03e55f3ea3bf",
+        "argdigest/core/caller.py": "e44f21438bfe955f185452526f05d224723bf8c7bb07d13a1c02f3210a3c041f",
+        "argdigest/core/config.py": "c076a2d37790e23f86eacef52680c2cdab179a849b2139beb40cfa220e9f892f",
+        "argdigest/core/context.py": "04ce1ef61eed153411c9a83d388899de1886f6f561be406373a6b112e639b81c",
+        "argdigest/core/decorator.py": "922648e765ebc1c63cbbe4b5de095256b6fe1946231a4cb44dc16f7cedd9ab6e",
+        "argdigest/core/diagnostics.py": "aaf2b4bf15562206d9c4ed16d2f3075214669948fb2523d6b6007698f339ed32",
+        "argdigest/core/errors.py": "4c1fecd036a134b84c58edbb825dfedb5233ca0ee42d4daedae8e36aa92e635a",
+        "argdigest/core/errors_base.py": "bd1a04038e7e9fb50ce422291ae61e2f4cc1bac04342ab0f0230a6ef8b12247b",
+        "argdigest/core/function_contract.py": "e25f37ee180f650b596b4d61f84ed1c93191cb5ab5837afed78945a3586536fb",
+        "argdigest/core/function_loader.py": "3970949c2553a706b617380e8601cf97113f1b13837c8de1f1abb613838014b1",
+        "argdigest/core/health.py": "edbb0c304f137455ab31ab33c8d3f21e84d89446c258c8060c6b559cc24a92b7",
+        "argdigest/core/logger.py": "2fc318cb37f9c9863e809b51d516b5de6fc340cd6f962e9688484fe71f35a65b",
+        "argdigest/core/normalization.py": "a90fd2015dc38cc630e8de24c13de8a01b65afd3a9d67e01bbe9f5e88f804f49",
+        "argdigest/core/registry.py": "3a8a81354ce299e4795d105441e0d029b2bf93a636c1c94f01adda1d2b19e48a",
+        "argdigest/core/utils.py": "7a44ee503b9b416407a0406c0c992bc2cf0f257761937ee74e6656574c8f3a35",
+        "argdigest/diagnostics.py": "2ab1c77c7832f2b62161b8da57b228b12b89e7a667c6973d19ec8b9e041c2559",
+        "argdigest/pipelines/__init__.py": "0d9efba3909e8afac995b4b260756d48321a2d02a7968f49d388672ad3694d1b",
+        "argdigest/pipelines/base.py": "20c07d367c9d121a07c77105127f5a950cced551aa77e65f5f2e80261b3de045",
+        "argdigest/pipelines/coercers.py": "83e3bffbb67474633c15f88420215110dd25e1bd9db9d9a148b1b352e8fb01d8",
+        "argdigest/pipelines/data.py": "c0132959ab06f447f2f5d202e5b1ddf0dc50efaa392d3470d5c1fa0b942f0521",
+        "argdigest/pipelines/science.py": "f5ce2af693b9b9e714c0145c1601b4b2c2223efaa3fe0f3469c21883306bb464",
+        "argdigest/pipelines/validators.py": "5b844a9bce602f734aafcf28bd671ccc53571ba3ba8dd4f54acc20b31c162f52"
+      },
+      "version": "0.0.0+unknown (versioningit fallback on an exact git archive)"
+    },
+    "released": {
+      "filename": "argdigest-0.17.0-py_0.tar.bz2",
+      "kind": "public UIBCDF Conda artifact",
+      "sha256": "9c35fa297b5a85dc65ac49ccd108f60f08dbeac4f745d6c369a767c0a0b3a3e1",
+      "source": "c7128f09b2fe064b6c5603d1077dbd2cec52223d",
+      "version": "0.17.0"
+    }
+  }
+}

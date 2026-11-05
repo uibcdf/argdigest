@@ -1,8 +1,8 @@
 """Explicit provider-receiving checks for ArgDigest #49 / SMonitor #59.
 
-Run this module explicitly against the selected provider. Its filename keeps
-the unreleased correction out of ordinary tests against historical providers;
-there are no skips or version/implementation probes in this receiving gate.
+Run this module explicitly against the selected provider (SMonitor >=0.22.1).
+The full installed profile selects it; ordinary tests against historical/core
+providers retain their own contracts. This gate has no skips or version probes.
 """
 
 import json
@@ -13,7 +13,7 @@ import pytest
 import smonitor
 from smonitor.handlers.memory import MemoryHandler
 
-from argdigest import DigestConfig, DigestValueError, arg_digest
+from argdigest import DigestConfig, DigestValueError, UnknownArgumentError, arg_digest
 from argdigest.core.context import Context
 
 
@@ -164,7 +164,7 @@ def test_failures_before_body_preserve_validation_and_diagnostics(
         with warnings.catch_warnings(record=True) as recorded:
             warnings.simplefilter("always")
             with pytest.raises(
-                ValueError if stage == "pipeline" else TypeError
+                ValueError if stage == "pipeline" else UnknownArgumentError
             ) as caught:
                 operation(value, **({"typo": value} if stage == "contract" else {}))
         assert recorded == []

@@ -1,0 +1,58 @@
+import hashlib
+import importlib
+import importlib.metadata
+import json
+import pathlib
+import sys
+import tarfile
+import tomllib
+
+ROOT=pathlib.Path('/tmp/argdigest-smonitor0221.w8z9BN')
+MODE=sys.argv[1]
+KIND=sys.argv[2]
+PREFIX=pathlib.Path(sys.prefix).resolve()
+assert PREFIX.parent==ROOT
+sys.path.insert(0,str(ROOT/'sdk/devtools/scripts'))
+from installed_noarch import run_tests
+
+
+def verify():
+    modules={}
+    for name in ('argdigest','smonitor','depdigest','pyunitwizard','pytest_receptor'):
+        module=importlib.import_module(name)
+        origin=pathlib.Path(module.__file__).resolve()
+        assert origin.is_relative_to(PREFIX), (name,origin)
+        modules[name]={'origin':str(origin),'version':importlib.metadata.version(name.replace('_','-'))}
+    records=list((PREFIX/'conda-meta').glob('smonitor-0.22.1-py_0.json'))
+    assert len(records)==1
+    record=json.loads(records[0].read_text())
+    assert record['sha256']=='e9ce6c77a682dddec3a6e724f9cc98cca31c4d6732453d554107ffcf61f23e7e'
+    checked={}
+    with tarfile.open(ROOT/'smonitor-0.22.1-py_0.tar.bz2') as archive:
+        for member in archive.getmembers():
+            if not member.isfile() or not member.name.startswith('site-packages/smonitor/'):
+                continue
+            payload=archive.extractfile(member).read()
+            installed=PREFIX/'lib/python3.14'/member.name
+            assert installed.read_bytes()==payload, member.name
+            checked[member.name]=hashlib.sha256(payload).hexdigest()
+    return {'modules':modules,'smonitor_conda_record':record,'verified_smonitor_payload_sha256':checked}
+
+before=verify()
+source=ROOT/('current' if MODE=='current' else 'released')
+inventory=tomllib.loads((source/'devtools/conda-build/resources.toml').read_text())
+selection=inventory['installed_tests']
+if KIND=='receiving':
+    source=ROOT/'receiving'
+    selection['paths']=['receive_smonitor_nested_signals.py']
+    selection['pytest_args']=[]
+selection['pytest_args']=[a.replace('--receptor=ci','--receptor=llm') for a in selection['pytest_args']]
+if '--receptor=llm' not in selection['pytest_args']:
+    selection['pytest_args'].append('--receptor=llm')
+selection['pytest_args'] += ['--junitxml='+str(ROOT/f'{MODE}-{KIND}.xml'), '-o','receptor_rerun_command=python -m pytest']
+print(json.dumps({'mode':MODE,'kind':KIND,'source':str(source),'paths':selection['paths'],'installed':before['modules']},sort_keys=True),flush=True)
+code=run_tests(source,inventory)
+after=verify()
+assert before==after,'Installed provider/provenance changed during tests'
+(ROOT/f'{MODE}-{KIND}-provenance.json').write_text(json.dumps({'before':before,'after':after,'exit':code},indent=2)+'\n')
+raise SystemExit(code)

@@ -31,6 +31,14 @@ SMonitor 0.21.0 / DepDigest 0.15.1 / PyUnitWizard 0.27.0, and core `39879578248`
 with SMonitor 0.16.0 / DepDigest 0.11.0. Historical receipts remain in the
 archived release reports; development changes require their own next candidate.
 
+Development after 0.17.0 selects public SMonitor 0.22.1 in the full installed
+profile and adds the explicit nested-signal receiving guard under
+`uibcdf/argdigest#49`. The separate core profile and general runtime floor remain
+unchanged. This fixture change does not retroactively alter 0.17.0's original
+matrix or qualify a future ArgDigest candidate before its twelve installed cells
+execute. SMonitor >=0.22.1 is the capability floor for retaining an eligible outer
+ERROR observation when ArgDigest's inner DEBUG is filtered or silenced.
+
 ## Sibling libraries
 
 | Component | Minimum Version | Role |

@@ -103,7 +103,11 @@ def test_noarch_workflow_has_one_job_and_retains_producer_evidence():
         (ROOT / "devtools/conda-build/resources.toml").read_text()
     )
     assert inventory["version_file"] in inventory["required_paths"]
-    assert inventory["installed_tests"]["paths"] == ["tests"]
+    assert inventory["installed_tests"]["paths"] == [
+        "tests",
+        "devtools/tests/receive_smonitor_nested_signals.py",
+    ]
+    assert "smonitor==0.22.1" in inventory["installed_tests"]["conda_dependencies"]
 
 
 def test_promotion_workflow_checks_exact_release_and_file_identity():
