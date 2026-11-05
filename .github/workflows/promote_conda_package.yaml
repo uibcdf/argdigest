@@ -46,7 +46,7 @@ jobs:
         run: python devtools/conda-build/verify_core_release.py
   promote:
     needs: release
-    uses: uibcdf/molsyssuite/.github/workflows/promote-noarch-conda.yaml@5090a656cd8223826947575f329ee52aa664c725
+    uses: uibcdf/molsyssuite/.github/workflows/promote-noarch-conda.yaml@95f693be10c9205ab9b912cb53453710a207bf45
     with:
       candidate_sha: ${{ inputs.candidate_sha }}
       version: ${{ inputs.version }}

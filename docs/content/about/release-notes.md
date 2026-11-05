@@ -1,5 +1,17 @@
 # Release notes
 
+## Unreleased
+
+- Preserve literal keywords matching a function's `**kwargs` parameter, including
+  opaque and mapping values, instead of expanding/removing them a second time.
+- Preserve the Python `TypeError` catch family for unknown and missing argument
+  refusals through compatible exception inheritance, retaining ArgDigest codes.
+- Optional Beartype absence warns at decoration without a required-dependency
+  error; broken/transitive imports propagate rather than disabling validation.
+- Correct the optional PyUnitWizard API floor to >=0.22.0 for `fast_track`.
+- Use SPDX MIT/license-file metadata with a compatible Setuptools >=77.0.3
+  backend. Existing license bytes and published packages are unchanged.
+
 ## 0.17.0
 
 `DigestConfig.contract_owner` optionally fixes contract lookup independently of

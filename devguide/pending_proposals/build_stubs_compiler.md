@@ -80,7 +80,17 @@ Watcher integration, automatic adjacent `.pyi` writes and the original
 unmeasured sub-50-ms target are deferred. Advancing the complete original scope
 now would front-load tooling before the necessary type information exists.
 
-## Abstract
+## Reassessment — 2026-11-04
+
+Reviewed again while addressing #43–#48. The generator remains deferred after
+1.0; the concrete call-shape defects and consumer compatibility receiving take
+priority. No new input/canonical type-declaration contract has been supplied,
+and the October AST counts above have not been remeasured for current consumers.
+The proposed small pilot remains the next step, triggered by explicit typed
+consumer samples after the call-shape corrections have published receiving
+evidence. No compiler, watcher or adjacent stub writer is implemented or claimed.
+
+## Original proposal
 
 We propose introducing an automated, offline type-stub generator (`argdigest build-stubs`) to `argdigest`. This tool will parse a library's central digestion directory (`_private/arg_digestion/`) and dynamically compile PEP 484-compliant static type stub files (`.pyi`). 
 

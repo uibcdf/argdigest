@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RECIPE = ROOT / "devtools/conda-build/meta.yaml"
 WORKFLOW = ROOT / ".github/workflows/build_and_upload_conda_packages.yaml"
 PROMOTION_WORKFLOW = ROOT / ".github/workflows/promote_conda_package.yaml"
-PIN = "5090a656cd8223826947575f329ee52aa664c725"
+PIN = "95f693be10c9205ab9b912cb53453710a207bf45"
 
 
 def test_recipe_declares_one_supported_noarch_python_artifact():
@@ -20,6 +20,45 @@ def test_recipe_declares_one_supported_noarch_python_artifact():
     assert "--no-deps --no-build-isolation" in build_script
     assert "  script:" not in recipe
     assert "freeze_project_version.py" not in build_script
+
+
+def test_modern_license_backend_floor_matches_all_build_routes():
+    """SPDX metadata must not be routed through a pre-feature backend."""
+    from packaging.requirements import Requirement
+    from packaging.version import Version
+
+    project = tomllib.loads((ROOT / "pyproject.toml").read_text())
+    backend = next(
+        Requirement(item)
+        for item in project["build-system"]["requires"]
+        if Requirement(item).name == "setuptools"
+    )
+    minimum = next(
+        Version(item.version) for item in backend.specifier if item.operator == ">="
+    )
+    if isinstance(project["project"]["license"], str):
+        assert minimum >= Version("77.0.0")
+    requirements = [
+        next(
+            line.strip()[2:]
+            for line in RECIPE.read_text().splitlines()
+            if line.strip().startswith("- setuptools")
+        ),
+        next(
+            item
+            for item in yaml.safe_load(
+                (ROOT / "devtools/conda-envs/build_env.yaml").read_text()
+            )["dependencies"]
+            if item.startswith("setuptools")
+        ),
+    ]
+    for item in requirements:
+        floor = next(
+            Version(spec.version)
+            for spec in Requirement(item).specifier
+            if spec.operator == ">="
+        )
+        assert floor >= minimum
 
 
 def test_manual_candidates_are_exact_and_staging_only():

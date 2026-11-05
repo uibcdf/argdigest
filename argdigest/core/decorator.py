@@ -322,10 +322,11 @@ def arg_digest(
     def build(fn, cfg, policy):
         fn_to_wrap = fn
         if type_check:
-            try:
-                fn_to_wrap = _load_beartype()(fn)
-            except ImportError:
+            type_checker = _load_beartype()
+            if type_checker is None:
                 type_check_skipped(f"{fn.__module__}.{fn.__name__}")
+            else:
+                fn_to_wrap = type_checker(fn)
 
         eff_source = (
             cfg.digestion_source if digestion_source is _UNSET else digestion_source
@@ -505,13 +506,6 @@ def arg_digest(
                     caller = f"{_resolve_owner_module(fn, args)}.{fn.__name__}"
                 qualname = _display_qualname(fn, args, implicit_receiver)
                 display_name = qualname if plan.contract_caller is not None else caller
-
-                if plan.var_keyword_name and plan.var_keyword_name in bound:
-                    extra = bound.pop(plan.var_keyword_name) or {}
-                    if isinstance(extra, dict):
-                        bound.update(extra)
-                        supplied.discard(plan.var_keyword_name)
-                        supplied.update(extra)
 
                 if plan.normalization:
                     # Binding holds unknown names aside for closed signatures.
@@ -711,14 +705,16 @@ arg_digest.map = _arg_digest_map
 
 
 def _load_beartype():
-    # Dependency inspection itself may configure diagnostics on older providers.
-    # Keep that import at the optional engine's actual use boundary.
-    from depdigest import dep_digest
+    """Return the optional checker, or None for absence; broken imports propagate.
 
-    @dep_digest("beartype")
-    def load():
-        from beartype import beartype
+    Availability belongs to DepDigest. Absence disables this optional feature,
+    so a required-dependency decorator would emit the wrong error classification.
+    Keep the provider import at the feature's actual use boundary.
+    """
+    from depdigest import is_installed
 
-        return beartype
+    if not is_installed("beartype"):
+        return None
+    from beartype import beartype
 
-    return load()
+    return beartype

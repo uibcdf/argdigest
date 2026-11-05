@@ -24,12 +24,13 @@ def test_type_check_missing_beartype_falls_back_to_runtime_warning(monkeypatch):
 
     def _import(name, *args, **kwargs):
         if name == "beartype":
-            raise ImportError("no beartype")
+            raise ModuleNotFoundError("no beartype", name="beartype")
         if name.startswith("smonitor"):
             raise ImportError("no smonitor integration")
         return original_import(name, *args, **kwargs)
 
     monkeypatch.setattr("builtins.__import__", _import)
+    monkeypatch.setattr("depdigest.is_installed", lambda name: False)
 
     with warnings.catch_warnings(record=True) as rec:
         warnings.simplefilter("always")

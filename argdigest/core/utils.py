@@ -27,6 +27,9 @@ def bind_arguments(
     in the pipeline where the distinction still exists, and later stages need it — an
     alias rule, for one, must not treat a parameter resting on its default as a second
     name for the same argument.
+
+    The VAR_KEYWORD container is flattened exactly once here. A returned key equal
+    to that parameter's name is a literal caller keyword and must stay untouched.
     """
 
     if sig is None:

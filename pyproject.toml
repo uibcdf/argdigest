@@ -6,7 +6,8 @@ readme = "README.md"
 authors = [
   { name = "UIBCDF Development Team" }
 ]
-license = { text = "MIT" }
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.11,<3.15"
 dependencies = [
   "depdigest>=0.11.0",
@@ -17,8 +18,8 @@ dependencies = [
 science = ["numpy>=1.20.0"]
 beartype = ["beartype>=0.16.0"]
 pydantic = ["pydantic>=2.0.0"]
-pyunitwizard = ["pyunitwizard>=0.11.0", "numpy>=1.20.0"]
-all = ["beartype>=0.16.0", "pydantic>=2.0.0", "pyunitwizard>=0.11.0", "PyYAML>=6.0", "numpy>=1.20.0", "pandas>=2.0.0"]
+pyunitwizard = ["pyunitwizard>=0.22.0", "numpy>=1.20.0"]
+all = ["beartype>=0.16.0", "pydantic>=2.0.0", "pyunitwizard>=0.22.0", "PyYAML>=6.0", "numpy>=1.20.0", "pandas>=2.0.0"]
 
 [project.urls]
 Homepage = "https://github.com/uibcdf/argdigest"
@@ -26,7 +27,7 @@ Repository = "https://github.com/uibcdf/argdigest"
 Documentation = "https://www.uibcdf.org/argdigest"
 
 [build-system]
-requires = ["setuptools>=61.0", "versioningit~=3.0"]
+requires = ["setuptools>=77.0.3", "versioningit~=3.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]

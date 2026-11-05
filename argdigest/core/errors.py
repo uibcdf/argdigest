@@ -118,14 +118,14 @@ class FunctionContractError(DigestError):
     catalog_key = "UnknownArgumentError"
 
 
-class UnknownArgumentError(FunctionContractError):
-    """An argument the function does not accept."""
+class UnknownArgumentError(FunctionContractError, TypeError):
+    """An unaccepted argument; also catchable as Python's call-shape TypeError."""
 
     catalog_key = "UnknownArgumentError"
 
 
-class MissingArgumentError(FunctionContractError):
-    """A call that satisfies no required argument group."""
+class MissingArgumentError(FunctionContractError, TypeError):
+    """An unsatisfied required argument group; also catchable as TypeError."""
 
     catalog_key = "MissingArgumentError"
 

@@ -10,8 +10,8 @@ Source of truth for integrating and using **ArgDigest** in this library.
 Metadata
 - Source repository: `argdigest`
 - Source document: `standards/ARGDIGEST_GUIDE.md`
-- Source version: `argdigest@0.17.0`
-- Last synced: 2026-10-22
+- Source version: `argdigest@main` (development after 0.17.0)
+- Last synced: 2026-11-04
 
 Version boundaries: declaration-only diagnostics below are public since ArgDigest
 0.16.0. Explicit contract ownership and the alias/staticmethod repairs described
@@ -25,6 +25,31 @@ under `uibcdf/molsyssuite#125`; provider editing does not update client copies.
 positional-only parameters are supported and documented (§5), and the `ValidatedPayload`
 passport was **removed** rather than replaced, leaving `skip_digestion` as the single
 mechanism (§6).
+
+## Development changes after 0.17.0
+
+The following corrections are source-only until a subsequent release is
+qualified and published. Public 0.17.0 retains its original bytes and behavior.
+
+- Literal keywords matching the `**kwargs` parameter name are preserved as
+  ordinary options. A mapping supplied as `kwargs={"file_name": ...}` is not
+  expanded again and cannot replace an explicitly bound `file_name`. Normal
+  alias/domain checks still admit or refuse that literal keyword.
+- `UnknownArgumentError` and `MissingArgumentError` also inherit `TypeError`,
+  preserving Python call-shape catches while retaining their existing
+  `FunctionContractError`/`DigestError` classes, catalog codes and context.
+  Inconsistent value groups and invalid domain declarations keep their separate
+  existing exception families. No consumer wrapper or skip policy is needed.
+- Optional Beartype absence produces one `ARG-WARN-TYPECHECK-001` warning per
+  affected decoration, with no required-library error. Calls do not repeat that
+  warning. A present but broken engine, including a transitive import failure,
+  propagates its original error rather than silently disabling type checking.
+- The optional PyUnitWizard extra now requires >=0.22.0: its canonical pipelines
+  use `fast_track`, which 0.11.0 does not export. Basic core installation remains
+  independent of scientific packages.
+
+Provider issues: `uibcdf/argdigest#43`, #46, #47 and #48. Consumers must receive
+the eventual published correction before treating these capabilities as adopted.
 
 ## What is ArgDigest
 

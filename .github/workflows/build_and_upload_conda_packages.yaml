@@ -67,7 +67,7 @@ jobs:
   publish:
     needs: decision
     if: github.event_name == 'workflow_dispatch' || needs.decision.outputs.route == 'direct'
-    uses: uibcdf/molsyssuite/.github/workflows/publish-noarch-conda.yaml@5090a656cd8223826947575f329ee52aa664c725
+    uses: uibcdf/molsyssuite/.github/workflows/publish-noarch-conda.yaml@95f693be10c9205ab9b912cb53453710a207bf45
     with:
       candidate_sha: ${{ needs.decision.outputs.candidate }}
       version: ${{ inputs.version || github.event.release.tag_name }}

@@ -47,7 +47,7 @@ def _declared_floors(requirements: list[str]) -> dict[str, str | None]:
 
     floors: dict[str, str | None] = {}
     for requirement in requirements:
-        match = re.search(r">=\s*([\w.]+)", requirement)
+        match = re.search(r"(?:>=|==)\s*([\w.]+)", requirement)
         floors[_requirement_name(requirement)] = match.group(1) if match else None
     return floors
 
@@ -93,6 +93,16 @@ def test_every_conda_environment_has_a_reviewed_role():
 @pytest.mark.parametrize("route", RUNTIME_ENVIRONMENTS)
 def test_runtime_environments_preserve_required_provider_floors(route):
     _assert_environment_floors(_environment_requirements(route), route)
+
+
+@pytest.mark.parametrize("route", RUNTIME_ENVIRONMENTS)
+def test_runtime_environments_preserve_present_optional_feature_floors(route):
+    extras = _pyproject()["project"]["optional-dependencies"]
+    minima = _declared_floors([item for group in extras.values() for item in group])
+    observed = _declared_floors(_environment_requirements(route))
+    for name in minima.keys() & observed.keys():
+        assert observed[name] is not None, f"{route}: {name} has no minimum"
+        assert Version(observed[name]) >= Version(minima[name]), name
 
 
 @pytest.mark.parametrize("provider", ("smonitor", "depdigest"))
