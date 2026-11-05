@@ -181,6 +181,23 @@ CODES = {
         "dev_message": "No digester for '{argname}' in '{caller}', or a cycle. {detail}",
         "dev_hint": "Implement the digester, or check the map for a cyclic dependency.",
     },
+    "ARG-ERR-DIGESTER-001": {
+        "title": "Ambiguous consumer digester signature",
+        "user_message": "Cannot determine value parameter for consumer digester "
+        "'{digester}', registered for '{argname}' in '{caller}'. "
+        "Declared parameters: {parameters}.",
+        "user_hint": "Name the value parameter '{argname}' when the digester "
+        "declares additional dependency or context parameters. "
+        "Correct the digester in the library that registered it.",
+        "dev_message": "Cannot determine value parameter for consumer digester "
+        "'{digester}', registered for '{argname}' in '{caller}'. "
+        "Declared parameters: {parameters}.",
+        "dev_hint": "Name the value parameter '{argname}'; do not accept an "
+        "ambiguous registration or disable validation.",
+        "metadata_message": "A consumer digester has an ambiguous value parameter.",
+        "metadata_hint": "Name its value parameter after the registered argument "
+        "when declaring additional dependency or context parameters.",
+    },
     "ARG-WARN-MISS-001": {
         "title": "Argument Not Digested Warning",
         "user_message": "No digester is registered for argument '{argname}' of '{caller}', "

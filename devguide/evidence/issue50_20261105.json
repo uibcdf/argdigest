@@ -1,0 +1,43 @@
+{
+  "captured_at": "2026-11-05T16:04:40.711262+00:00",
+  "input_sha256": {
+    "argdigest/_private/smonitor/catalog.py": "cc19ca5175cfae824f0ac0c0d5a565d4971a6067304b585d049cefb448e4c52f",
+    "argdigest/core/decorator.py": "bb7d93a8be9cc61cad67a8da298d48013f02449c53bee54754b2c16074eae313",
+    "tests/test_consumer_digester_diagnostics.py": "139cc68531cd8e6094d8f3be0107c8e9ccef196c78cadc7a17f551032fcbcf6b"
+  },
+  "issue": "uibcdf/argdigest#50",
+  "limits": [
+    "Local Python 3.14.7 source checks with inherited editable sibling dependencies; not exact release/file qualification.",
+    "Published Pytest Receptor 1.2.2 is installed into a temporary venv; shared environment and sibling clones are unmodified.",
+    "Three known missing-digester warnings remain in the complete suite. No warning/baseline suppression or skip was added.",
+    "Existing DigestNotDigestedError type, rejection and unambiguous inference are retained; only the ambiguous registration selects its dedicated catalog code/context."
+  ],
+  "old_source": "5b61925b0e6def148171de058c5fc777ceb6e751",
+  "release": "uibcdf/argdigest#51",
+  "results": {
+    "issue50-after": {
+      "exit": 0,
+      "failed": 0,
+      "junit_sha256": "2632f83e0ee9c84a99c5daf5fa3b7c04fe2492be27a5e19a9eb0b5afb6139652",
+      "output": "PASS exit=0 | 58 passed | 0.42s",
+      "passed": 58,
+      "skipped": 0
+    },
+    "issue50-before": {
+      "exit": 1,
+      "failed": 7,
+      "junit_sha256": "29f7a87cb4c80922f8e4a37db38d00fb4ffafee6305ca2f7df130844b7f6da8d",
+      "output": "FAIL exit=1 | 7 failed, 1 passed | 0.13s | 2 root causes\n\n[1] AssertionError | 6 tests | call\n    ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py:83\n    AssertionError: assert 'ARG-ERR-MISS-001' == 'ARG-ERR-DIGESTER-001'\n\n      - ARG-ERR-DIGESTER-001\n      ?         ^ -- ^^^\n      + ARG-ERR-MISS-001\n      ?         ^  ^\n    tests:\n      ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py::test_ambiguous_registration_names_consumer_without_formatting_defaults[dev-False]\n      ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py::test_ambiguous_registration_names_consumer_without_formatting_defaults[dev-True]\n      ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py::test_ambiguous_registration_names_consumer_without_formatting_defaults[qa-False]\n      +3 more\n    rerun: python -m pytest ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py -q\n\n[2] AttributeError | 1 test | call\n    ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py:120\n    AttributeError: 'NoneType' object has no attribute 'function_name'\n    rerun: python -m pytest ../../home/diego/repos@uibcdf/argdigest/tests/test_consumer_digester_diagnostics.py::test_bad_registration_context_is_not_cached_across_consumers -q",
+      "passed": 1,
+      "skipped": 0
+    },
+    "local-full": {
+      "exit": 0,
+      "failed": 0,
+      "junit_sha256": "41d2714c674241b6aa634874ee65bb2701f50eaaafb5a04b977151367e078418",
+      "output": "PASS exit=0 | 528 passed | 9.67s | 3 warnings\n\nwarnings: 3 in 3 groups\n  DigestNotDigestedWarning x1 | argdigest/core/decorator.py:641 | No digester is registered for argument 'syntax' of 'select', so it was not validated. Define or register a dig...\n  DigestNotDigestedWarning x1 | argdigest/core/decorator.py:661 | No digester is registered for argument 'items' of 'combine', so it was not validated. Define or register a dig...\n  DigestNotDigestedWarning x1 | argdigest/core/decorator.py:661 | No digester is registered for argument 'suffix' of 'positioned', so it was not validated. Define or register a...",
+      "passed": 528,
+      "skipped": 0
+    }
+  }
+}

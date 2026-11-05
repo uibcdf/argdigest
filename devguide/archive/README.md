@@ -5,10 +5,11 @@ their established locations so existing references remain valid.
 
 <!-- generated: devguide_index -->
 
-### Resolved (33)
+### Resolved (34)
 
 - [`adopt_molsyssuite_policy_v1.md`](../completed_proposals/adopt_molsyssuite_policy_v1.md) — [#4](https://github.com/uibcdf/argdigest/issues/4) — Adopt the shared MolSysSuite policy and Ruff gate. *(resolved, measured)*
 - [`adopt_shared_reporting_lifecycle.md`](../completed_proposals/adopt_shared_reporting_lifecycle.md) — [#6](https://github.com/uibcdf/argdigest/issues/6) — Adopt the shared issue-backed developer-guide lifecycle. *(resolved, inspected)*
+- [`ambiguous_consumer_digester_diagnostic.md`](../solved_bugs/ambiguous_consumer_digester_diagnostic.md) — [#50](https://github.com/uibcdf/argdigest/issues/50) — Attribute ambiguous digester signatures to their consumer registration. *(resolved, reproduced)*
 - [`argument_digestion_retains_arguments_in_recursive_closure_cycles.md`](../solved_bugs/argument_digestion_retains_arguments_in_recursive_closure_cycles.md) — [#3](https://github.com/uibcdf/argdigest/issues/3) — Argument digestion retains arguments in recursive closure cycles. *(resolved, reproduced)*
 - [`classmethod_receiver_is_digested.md`](../solved_bugs/classmethod_receiver_is_digested.md) — [#19](https://github.com/uibcdf/argdigest/issues/19) — A decorated classmethod treated its implicit cls receiver as an undigested argument. *(resolved, reproduced)*
 - [`complete_distribution_adoption.md`](../completed_proposals/complete_distribution_adoption.md) — [#28](https://github.com/uibcdf/argdigest/issues/28) — Complete the distribution contract review and preserve required provider floors in runtime environments. *(resolved, reproduced)*

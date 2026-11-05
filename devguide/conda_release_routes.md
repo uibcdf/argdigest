@@ -1,5 +1,20 @@
 # Conda release routes
 
+## Candidate 0.17.1
+
+Publication is explicitly authorized under `uibcdf/argdigest#51`, coordinated in
+`uibcdf/molsyssuite#169`. Use staged build 0: SPDX/backend, inspected-file publisher
+and the full installed provider/profile changed since 0.17.0. The original
+0.17.0 tag and file remain immutable. Source/full installed/core gates retain
+all twelve supported cells before tag/release and exact-file promotion.
+
+The full installed descriptor selects public SMonitor 0.22.1 / DepDigest 0.15.1 /
+PyUnitWizard 0.27.0 and all scientific tests plus the 28 nested-signal receiving
+controls. The NumPy-free core matrix retains SMonitor 0.16.0 / DepDigest 0.11.0.
+The optional PyUnitWizard metadata floor corrects the consumed fast_track API to
+>=0.22.0. General required runtime floors are unchanged. Exact source/file/run
+and public-install evidence will be retained in the owning release report.
+
 ## Released 0.17.0
 
 Release ownership is `uibcdf/argdigest#40`; consumer coordination is

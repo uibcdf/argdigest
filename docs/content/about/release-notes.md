@@ -1,6 +1,6 @@
 # Release notes
 
-## Unreleased
+## Unreleased (0.17.1 candidate)
 
 - Preserve literal keywords matching a function's `**kwargs` parameter, including
   opaque and mapping values, instead of expanding/removing them a second time.
@@ -11,6 +11,13 @@
 - Correct the optional PyUnitWizard API floor to >=0.22.0 for `fast_track`.
 - Use SPDX MIT/license-file metadata with a compatible Setuptools >=77.0.3
   backend. Existing license bytes and published packages are unchanged.
+- Diagnose ambiguous consumer digester signatures with `ARG-ERR-DIGESTER-001`,
+  preserving `DigestNotDigestedError` and rejection while identifying the
+  consumer/argument/digester and corrective parameter-naming rule. Never format
+  signature defaults or restricted values for this diagnostic.
+- Qualify nested exception observation with public SMonitor 0.22.1 in the full
+  installed profile. Existing core dependency floors remain; the corrected
+  filtered/silenced-inner signal guarantee requires SMonitor >=0.22.1.
 
 ## 0.17.0
 

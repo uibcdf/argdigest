@@ -1,12 +1,12 @@
 # Reviewed candidate decision. This file alone authorizes no public publication.
 schema = "molsyssuite.conda-plan@1"
-version = "0.17.0"
+version = "0.17.1"
 package = "argdigest"
 build_number = 0
 route = "staged"
 profile = "noarch-python"
-reason = "Qualify declared contract ownership and alias/staticmethod repairs with public SMonitor 0.21.0 and DepDigest 0.15.1, plus retained lower-bound NumPy-free core compatibility, before public visibility."
-decision_by = "Release maintainer, preparation, staged qualification and public publication explicitly authorized 2026-10-22 (uibcdf/argdigest#40). Original qualified producer plan remains in tag 0.17.0."
+reason = "Qualify consumer call-shape/literal-keyword/optional-checker and digester-diagnostic corrections, SPDX/backend and publisher changes, with public SMonitor 0.22.1 nested-signal receiving, retained scientific fixtures and NumPy-free core compatibility before public visibility."
+decision_by = "Diego explicitly authorized preparing and publishing 0.17.1 after reviewing #50 on 2026-11-05 (uibcdf/argdigest#51). Preserve original 0.17.0 tag/file and all exact-candidate staged gates."
 artifact_subdirs = ["noarch"]
 test_platforms = ["linux-64", "osx-arm64", "win-64"]
 python_versions = ["3.11", "3.12", "3.13", "3.14"]

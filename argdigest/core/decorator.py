@@ -88,25 +88,44 @@ def _normalize_strictness(strictness: str) -> str:
     )
 
 
-def _resolve_value_param(sig: inspect.Signature, argname: str) -> str:
+def _resolve_value_param(
+    sig: inspect.Signature,
+    argname: str,
+    *,
+    caller: str | None = None,
+    digester: str = "configured digester",
+) -> str:
     if argname in sig.parameters:
         return argname
     candidates = [p for p in sig.parameters if p not in {"caller", "qualname"}]
     if len(candidates) == 1:
         return candidates[0]
     raise DigestNotDigestedError(
-        detail=f"Cannot determine value parameter for digester '{argname}'."
+        code="ARG-ERR-DIGESTER-001",
+        context=Context(
+            function_name=caller or "digester metadata inspection",
+            argname=argname,
+            value=None,
+        ),
+        digester=digester,
+        parameters=", ".join(sig.parameters),
     )
 
 
 def get_digester_metadata(
-    fn_dig: Callable, argname: str
+    fn_dig: Callable, argname: str, *, caller: str | None = None
 ) -> tuple[inspect.Signature, str]:
     key = (fn_dig, argname)
     with _DIGESTER_METADATA_LOCK:
         if key not in _DIGESTER_METADATA_CACHE:
             sig_dig = inspect.signature(fn_dig)
-            value_param = _resolve_value_param(sig_dig, argname)
+            owner = fn_dig if inspect.isroutine(fn_dig) else type(fn_dig)
+            module = getattr(owner, "__module__", "")
+            name = getattr(owner, "__qualname__", "configured digester")
+            identity = ".".join(part for part in (module, name) if type(part) is str)
+            value_param = _resolve_value_param(
+                sig_dig, argname, caller=caller, digester=identity
+            )
             _DIGESTER_METADATA_CACHE[key] = (sig_dig, value_param)
         return _DIGESTER_METADATA_CACHE[key]
 
@@ -606,7 +625,9 @@ def arg_digest(
                         return
 
                     # Fetch metadata ON DEMAND (Cached)
-                    sig, value_param = get_digester_metadata(fn_digest, argname)
+                    sig, value_param = get_digester_metadata(
+                        fn_digest, argname, caller=display_name
+                    )
 
                     kwargs_for_digest = {}
                     for p_name in sig.parameters:

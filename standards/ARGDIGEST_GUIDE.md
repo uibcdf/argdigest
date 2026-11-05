@@ -10,7 +10,7 @@ Source of truth for integrating and using **ArgDigest** in this library.
 Metadata
 - Source repository: `argdigest`
 - Source document: `standards/ARGDIGEST_GUIDE.md`
-- Source version: `argdigest@main` (development after 0.17.0)
+- Source version: `argdigest@main` (0.17.1 release candidate)
 - Last synced: 2026-11-05
 
 Version boundaries: declaration-only diagnostics below are public since ArgDigest
@@ -26,10 +26,11 @@ positional-only parameters are supported and documented (§5), and the `Validate
 passport was **removed** rather than replaced, leaving `skip_digestion` as the single
 mechanism (§6).
 
-## Development changes after 0.17.0
+## Corrections prepared for 0.17.1
 
-The following corrections are source-only until a subsequent release is
-qualified and published. Public 0.17.0 retains its original bytes and behavior.
+The following corrections are prepared for 0.17.1 under `uibcdf/argdigest#51`;
+publication requires its exact-file qualification. Public 0.17.0 retains its
+original bytes and behavior.
 
 - Literal keywords matching the `**kwargs` parameter name are preserved as
   ordinary options. A mapping supplied as `kwargs={"file_name": ...}` is not
@@ -47,8 +48,14 @@ qualified and published. Public 0.17.0 retains its original bytes and behavior.
 - The optional PyUnitWizard extra now requires >=0.22.0: its canonical pipelines
   use `fast_track`, which 0.11.0 does not export. Basic core installation remains
   independent of scientific packages.
+- Ambiguous consumer digester signatures retain `DigestNotDigestedError` but
+  receive `ARG-ERR-DIGESTER-001`, identifying the consumer, registered argument,
+  digester and parameter names. Name the value parameter after the registered
+  argument when declaring additional dependency/context parameters. The error
+  does not attribute the invalid consumer registration to an ArgDigest defect;
+  restrictive diagnostics do not format defaults, annotations or values.
 
-Provider issues: `uibcdf/argdigest#43`, #46, #47 and #48. Consumers must receive
+Provider issues: `uibcdf/argdigest#43`, #46, #47, #48 and #50. Consumers must receive
 the eventual published correction before treating these capabilities as adopted.
 
 ## What is ArgDigest
