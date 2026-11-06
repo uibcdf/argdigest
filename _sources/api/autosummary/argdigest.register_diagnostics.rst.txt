@@ -1,0 +1,6 @@
+﻿argdigest.register\_diagnostics
+===============================
+
+.. currentmodule:: argdigest
+
+.. autofunction:: register_diagnostics

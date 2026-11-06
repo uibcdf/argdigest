@@ -1,0 +1,6 @@
+﻿argdigest.FunctionContractWarning
+=================================
+
+.. currentmodule:: argdigest
+
+.. autoexception:: FunctionContractWarning

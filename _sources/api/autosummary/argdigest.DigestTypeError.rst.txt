@@ -1,0 +1,6 @@
+﻿argdigest.DigestTypeError
+=========================
+
+.. currentmodule:: argdigest
+
+.. autoexception:: DigestTypeError
