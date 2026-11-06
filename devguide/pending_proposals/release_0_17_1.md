@@ -18,8 +18,10 @@ supersedes: []
 
 0.17.1 is public in GitHub and Conda main, independently verified from a fresh
 public installation, and archived as a source-only Zenodo snapshot. The exact
-original file is retained from staging through main. Documentation and canonical
-guide closeout are prepared; final deployment, handoff and resource retirement
+original file is retained from staging through main. The canonical guide and
+notes are committed and handed off. Sphinx and both documentation-source policies
+passed, with exact rendered release notes verified in gh-pages. Pages deployment,
+latest-head CI, report archival and retirement of the retained task-local SDK/venv
 are the remaining administrative steps. The What / How / Why sections below
 retain preparation observations, followed by executed qualification/publication
 evidence. #9 and the separate CI-cancellation follow-up #52 remain deferred.
@@ -147,3 +149,17 @@ MolSysSuite developers own all client guide-copy distribution under #164/#169,
 retaining the maintainer's delegation in #125. Consumer developers own scientific
 receiving and any workaround removal. This provider closeout edits no client
 copy and claims no automatic consumer adoption.
+
+## Administrative checkpoint — 2026-11-05
+
+Publication receipts are retained while GitHub-hosted runners finish the
+documentation closeout. Sphinx `42132020733`, suite policy `42131890739` and
+publication policy `42131890803` passed at documentation source
+`21f6ba42120d93467e3937ef2da0b54cd37e5d86`. Rendered gh-pages commit
+`d149eff7d9bd577439a90fa107fb6bc112a1a2e9` contains the published 0.17.1 notes;
+Pages run `42134555677` is still queued. The interim fast run retains its actual
+state in the receipt; the latest evidence checkpoint receives applicable head
+CI. None of these ordinary checkpoints replaces the fully executed original
+C9 qualification. All three task-owned Conda prefixes and their private cache
+were removed; the unchanged qualification branch was deleted with an exact-SHA
+lease. The issue stays open until deployment, archival and final cleanup finish.

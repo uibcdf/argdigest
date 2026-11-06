@@ -1,0 +1,39 @@
+{
+  "consumers": [
+    {
+      "repository": "uibcdf/argdigest",
+      "issue": 50,
+      "url": "https://github.com/uibcdf/argdigest/issues/50#issuecomment-6672653192"
+    },
+    {
+      "repository": "uibcdf/argdigest",
+      "issue": 53,
+      "url": "https://github.com/uibcdf/argdigest/issues/53#issuecomment-6672654325"
+    },
+    {
+      "repository": "uibcdf/pharmacophoremt",
+      "issue": 82,
+      "url": "https://github.com/uibcdf/pharmacophoremt/issues/82#issuecomment-6672655740"
+    },
+    {
+      "repository": "uibcdf/dockingmt",
+      "issue": 19,
+      "url": "https://github.com/uibcdf/dockingmt/issues/19#issuecomment-6672657254"
+    },
+    {
+      "repository": "uibcdf/molsysmt",
+      "issue": 428,
+      "url": "https://github.com/uibcdf/molsysmt/issues/428#issuecomment-6672658517"
+    }
+  ],
+  "guide": [
+    {
+      "issue": 169,
+      "url": "https://github.com/uibcdf/molsyssuite/issues/169#issuecomment-6672692833"
+    },
+    {
+      "issue": 164,
+      "url": "https://github.com/uibcdf/molsyssuite/issues/164#issuecomment-6672694057"
+    }
+  ]
+}

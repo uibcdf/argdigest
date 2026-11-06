@@ -1,0 +1,30 @@
+{
+  "observed_at": "2026-11-06T00:12:55.569523+00:00",
+  "scope": "Only this release task namespace; shared development environments untouched.",
+  "conda_prefixes": [
+    {
+      "prefix": "/tmp/argdigest-release0171.BO1HRi/lower-env",
+      "state": "removed with conda env remove; completion exit 0"
+    },
+    {
+      "prefix": "/tmp/argdigest-release0171.BO1HRi/stage-env",
+      "state": "removed with conda env remove; completion exit 0"
+    },
+    {
+      "prefix": "/tmp/argdigest-release0171.BO1HRi/public-env",
+      "state": "removed with conda env remove; completion exit 0"
+    }
+  ],
+  "remaining": [
+    "local-env, SDK and small task proof/script namespace retained until final checkpoint"
+  ],
+  "qualification_branch": {
+    "ref": "refs/heads/release/0.17.1-candidate",
+    "expected_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+    "state": "deleted with exact lease after all qualification runs completed; tag unchanged"
+  },
+  "private_conda_cache_and_envs_paths_removed": [
+    "/tmp/argdigest-release0171.BO1HRi/pkgs",
+    "/tmp/argdigest-release0171.BO1HRi/envs"
+  ]
+}

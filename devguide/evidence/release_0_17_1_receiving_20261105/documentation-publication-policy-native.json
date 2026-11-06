@@ -1,0 +1,19 @@
+{
+  "schema": "molsyssuite.native-gate@1",
+  "state": "verified",
+  "run_id": 42131890803,
+  "run_attempt": 1,
+  "candidate_sha": "21f6ba42120d93467e3937ef2da0b54cd37e5d86",
+  "workflow": ".github/workflows/conda-publication-policy.yml",
+  "jobs": [
+    {
+      "name": "publication / check",
+      "job_id": 127610285697,
+      "required_steps": [
+        "Check publication workflow controls",
+        "Check declared noarch recipe and resources without building"
+      ]
+    }
+  ],
+  "event": "push"
+}

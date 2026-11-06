@@ -1,0 +1,30 @@
+{
+  "observed_at": "2026-11-06T00:25:30.014475+00:00",
+  "source_sha": "21f6ba42120d93467e3937ef2da0b54cd37e5d86",
+  "gates": {
+    "published-documentation": {
+      "run_id": 42132020733,
+      "status": "completed",
+      "conclusion": "success",
+      "state": "verified"
+    },
+    "documentation-fast": {
+      "run_id": 42131890287,
+      "status": "queued",
+      "conclusion": null,
+      "state": "pending"
+    },
+    "documentation-suite-policy": {
+      "run_id": 42131890739,
+      "status": "completed",
+      "conclusion": "success",
+      "state": "verified"
+    },
+    "documentation-publication-policy": {
+      "run_id": 42131890803,
+      "status": "completed",
+      "conclusion": "success",
+      "state": "verified"
+    }
+  }
+}

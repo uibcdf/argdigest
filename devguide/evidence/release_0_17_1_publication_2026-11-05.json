@@ -1,0 +1,2295 @@
+{
+  "authorization": "Diego explicitly authorized publishing 0.17.1 after reviewing #50; retained in uibcdf/argdigest#51.",
+  "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+  "canonical_guide": {
+    "client_copies_edited_here": false,
+    "coordination": [
+      "uibcdf/molsyssuite#164",
+      "uibcdf/molsyssuite#169"
+    ],
+    "distribution_owner": "MolSysSuite developers",
+    "handoff": [
+      {
+        "issue": 169,
+        "url": "https://github.com/uibcdf/molsyssuite/issues/169#issuecomment-6672692833"
+      },
+      {
+        "issue": 164,
+        "url": "https://github.com/uibcdf/molsyssuite/issues/164#issuecomment-6672694057"
+      }
+    ],
+    "path": "standards/ARGDIGEST_GUIDE.md",
+    "sha256": "1bb69c596cabd5d504416534ea952bea5fc7f23e74dea118cee47a4d196b965c",
+    "source_sha": "21f6ba42120d93467e3937ef2da0b54cd37e5d86"
+  },
+  "deferred_nonblocking_issues": [
+    "uibcdf/argdigest#9",
+    "uibcdf/argdigest#52"
+  ],
+  "documentation": {
+    "closeout_run": 42132020733,
+    "observation": "devguide/evidence/release_0_17_1_receiving_20261105/pages-closeout-observation.json",
+    "pages_commit": "d149eff7d9bd577439a90fa107fb6bc112a1a2e9",
+    "release_event_run": 42127303380,
+    "source_sha": "21f6ba42120d93467e3937ef2da0b54cd37e5d86",
+    "state": "Sphinx and both documentation-source policies verified; exact rendered notes verified; Pages deployment and latest-head CI pending"
+  },
+  "fresh_public_installation": {
+    "commands": [
+      {
+        "command": "argdigest",
+        "exit_code": 0,
+        "launcher": "/tmp/argdigest-release0171.BO1HRi/public-env/bin/argdigest",
+        "module_origin": "/tmp/argdigest-release0171.BO1HRi/public-env/lib/python3.14/site-packages/argdigest/cli.py",
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout": {
+          "bytes": 403,
+          "sha256": "7c2447f86957f860b8419405948d5a60f93abff37679b35865868439f079553a"
+        },
+        "target": "argdigest.cli:main"
+      }
+    ],
+    "coordinate": {
+      "filename": "argdigest-0.17.1-py_0.tar.bz2",
+      "package": "argdigest",
+      "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+      "subdir": "noarch",
+      "version": "0.17.1"
+    },
+    "installed_record": {
+      "build": "py_0",
+      "name": "argdigest",
+      "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+      "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.17.1-py_0.tar.bz2",
+      "version": "0.17.1"
+    },
+    "platform": "linux-64",
+    "prefix": "/tmp/argdigest-release0171.BO1HRi/public-env",
+    "public_url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.17.1-py_0.tar.bz2",
+    "python": "3.14",
+    "schema": "molsyssuite.public-noarch-commands@1",
+    "scope": "Installed console --help only; not full installed/scientific/release qualification",
+    "state": "verified",
+    "temporary_download_removed": true
+  },
+  "fresh_public_prefix_before": {
+    "argdigest_absent": true,
+    "prefix": "/tmp/argdigest-release0171.BO1HRi/public-env"
+  },
+  "fresh_public_science": {
+    "before_equals_after": true,
+    "exit": 0,
+    "modules": {
+      "argdigest": {
+        "origin": "/tmp/argdigest-release0171.BO1HRi/public-env/lib/python3.14/site-packages/argdigest/__init__.py",
+        "version": "0.17.1"
+      },
+      "depdigest": {
+        "origin": "/tmp/argdigest-release0171.BO1HRi/public-env/lib/python3.14/site-packages/depdigest/__init__.py",
+        "version": "0.15.1"
+      },
+      "pytest_receptor": {
+        "origin": "/tmp/argdigest-release0171.BO1HRi/public-env/lib/python3.14/site-packages/pytest_receptor/__init__.py",
+        "version": "1.2.2"
+      },
+      "pyunitwizard": {
+        "origin": "/tmp/argdigest-release0171.BO1HRi/public-env/lib/python3.14/site-packages/pyunitwizard/__init__.py",
+        "version": "0.27.0"
+      },
+      "smonitor": {
+        "origin": "/tmp/argdigest-release0171.BO1HRi/public-env/lib/python3.14/site-packages/smonitor/__init__.py",
+        "version": "0.22.1"
+      }
+    },
+    "payload_sha256": {
+      "site-packages/argdigest/__init__.py": "07518ec0f8d53c99d67f40aa76dc1a9f021ab659fc97ee4eb24a2e325e4feaee",
+      "site-packages/argdigest/_depdigest.py": "e3eede5f993fd789c55068769ec794e771fb7b233fa7e10df2f0439a8d531cd9",
+      "site-packages/argdigest/_private/smonitor/__init__.py": "3a7c8e505add1e4a4ff8fdb866c97edd043b830f6b7a59f768abd829ee419632",
+      "site-packages/argdigest/_private/smonitor/catalog.py": "cc19ca5175cfae824f0ac0c0d5a565d4971a6067304b585d049cefb448e4c52f",
+      "site-packages/argdigest/_private/smonitor/emitter.py": "ed30989f4ebe8cf69720a9e01da83b4ae8d44aef6abbdf3dbeba253084566dac",
+      "site-packages/argdigest/_private/smonitor/meta.py": "2b5313a344e848dcddeb2181d8e352664b77c0d02b5c421fb4726767b15ae81f",
+      "site-packages/argdigest/_smonitor.py": "8c64a540b48708d6b2cff8bb49ff05465c44be5cdc3b4511f40b514796b0d37d",
+      "site-packages/argdigest/_version.py": "9abc0193264d70ca30306e3e2ac951bee5a3953db17659d60d25836442b6ef4b",
+      "site-packages/argdigest/cli.py": "f6e45b3cd57e83c7070b44b1a12abee6279ce80c55fd86a22c2754f04156e765",
+      "site-packages/argdigest/config.py": "1e06c210d8cb24a6298e03961f5ad9a1a7eda56d5e473e8f2c791c0484e1ea38",
+      "site-packages/argdigest/contrib/__init__.py": "780dc788fb0ee7e7d9273c45992a3568176dc0ef168dccce12a3e236c3f5cf75",
+      "site-packages/argdigest/contrib/beartype_support.py": "a18088bc90a02f56e44c5e5b5ad96da346d136baec861dacb739c6f86273acd2",
+      "site-packages/argdigest/contrib/pydantic_support.py": "e52140c341096d5ad04fc056a2dccb39c4f368138758d2e6086a9ef9bee8df71",
+      "site-packages/argdigest/contrib/pyunitwizard_support.py": "8c7f896ed03cc72735ed1a4faa577b8705e52be43d859f278e7ec423dfce5922",
+      "site-packages/argdigest/core/__init__.py": "fde4100e15ab833df34916a47a36a19a9c21925b6042ee93328afb270f835fca",
+      "site-packages/argdigest/core/agent_docs.py": "0dd99f2de399f8872462f607cc7dc333bf9b2461c0e9169d59dffb3df2994233",
+      "site-packages/argdigest/core/argument_loader.py": "cb45b08e78282b98408e7d43fb004db2b2585003aadd074c7de1ef585b6f6dff",
+      "site-packages/argdigest/core/argument_registry.py": "b2698707760710bd5e103350f2a761f96b4d0178eb4d7f2b02fe03e55f3ea3bf",
+      "site-packages/argdigest/core/caller.py": "e44f21438bfe955f185452526f05d224723bf8c7bb07d13a1c02f3210a3c041f",
+      "site-packages/argdigest/core/config.py": "c076a2d37790e23f86eacef52680c2cdab179a849b2139beb40cfa220e9f892f",
+      "site-packages/argdigest/core/context.py": "04ce1ef61eed153411c9a83d388899de1886f6f561be406373a6b112e639b81c",
+      "site-packages/argdigest/core/decorator.py": "22245562426702ba235c52b3701faafdcafdec7a7acce133a967075fe71eeac0",
+      "site-packages/argdigest/core/diagnostics.py": "aaf2b4bf15562206d9c4ed16d2f3075214669948fb2523d6b6007698f339ed32",
+      "site-packages/argdigest/core/errors.py": "4c1fecd036a134b84c58edbb825dfedb5233ca0ee42d4daedae8e36aa92e635a",
+      "site-packages/argdigest/core/errors_base.py": "bd1a04038e7e9fb50ce422291ae61e2f4cc1bac04342ab0f0230a6ef8b12247b",
+      "site-packages/argdigest/core/function_contract.py": "e25f37ee180f650b596b4d61f84ed1c93191cb5ab5837afed78945a3586536fb",
+      "site-packages/argdigest/core/function_loader.py": "3970949c2553a706b617380e8601cf97113f1b13837c8de1f1abb613838014b1",
+      "site-packages/argdigest/core/health.py": "edbb0c304f137455ab31ab33c8d3f21e84d89446c258c8060c6b559cc24a92b7",
+      "site-packages/argdigest/core/logger.py": "2fc318cb37f9c9863e809b51d516b5de6fc340cd6f962e9688484fe71f35a65b",
+      "site-packages/argdigest/core/normalization.py": "a90fd2015dc38cc630e8de24c13de8a01b65afd3a9d67e01bbe9f5e88f804f49",
+      "site-packages/argdigest/core/registry.py": "3a8a81354ce299e4795d105441e0d029b2bf93a636c1c94f01adda1d2b19e48a",
+      "site-packages/argdigest/core/utils.py": "7a44ee503b9b416407a0406c0c992bc2cf0f257761937ee74e6656574c8f3a35",
+      "site-packages/argdigest/diagnostics.py": "2ab1c77c7832f2b62161b8da57b228b12b89e7a667c6973d19ec8b9e041c2559",
+      "site-packages/argdigest/pipelines/__init__.py": "0d9efba3909e8afac995b4b260756d48321a2d02a7968f49d388672ad3694d1b",
+      "site-packages/argdigest/pipelines/base.py": "20c07d367c9d121a07c77105127f5a950cced551aa77e65f5f2e80261b3de045",
+      "site-packages/argdigest/pipelines/coercers.py": "83e3bffbb67474633c15f88420215110dd25e1bd9db9d9a148b1b352e8fb01d8",
+      "site-packages/argdigest/pipelines/data.py": "c0132959ab06f447f2f5d202e5b1ddf0dc50efaa392d3470d5c1fa0b942f0521",
+      "site-packages/argdigest/pipelines/science.py": "f5ce2af693b9b9e714c0145c1601b4b2c2223efaa3fe0f3469c21883306bb464",
+      "site-packages/argdigest/pipelines/validators.py": "5b844a9bce602f734aafcf28bd671ccc53571ba3ba8dd4f54acc20b31c162f52"
+    },
+    "pip_check": {
+      "exit": 0,
+      "stdout": "No broken requirements found."
+    },
+    "public_packages": [
+      {
+        "build": "20_gnu",
+        "name": "_openmp_mutex",
+        "sha256": "1dd3fffd892081df9726d7eb7e0dea6198962ba775bd88842135a4ddb4deb3c9",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-20_gnu.conda",
+        "version": "4.5"
+      },
+      {
+        "build": "pyhd8ed1ab_0",
+        "name": "annotated-types",
+        "sha256": "b8fcb994134d3918d1c64a9d62f4168ff85d5bfb89e698102fe4ed679fe0df24",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/annotated-types-0.8.0-pyhd8ed1ab_0.conda",
+        "version": "0.8.0"
+      },
+      {
+        "build": "py_0",
+        "name": "argdigest",
+        "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+        "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.17.1-py_0.tar.bz2",
+        "version": "0.17.1"
+      },
+      {
+        "build": "pyh5ded981_0",
+        "name": "beartype",
+        "sha256": "42131e42cffe141c6bac23edd2ae0f1ff3fc3b14874718710fe00111014f28c6",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/beartype-0.23.1-pyh5ded981_0.conda",
+        "version": "0.23.1"
+      },
+      {
+        "build": "hda65f42_10",
+        "name": "bzip2",
+        "sha256": "1a0d382c515ebf55f8ee1f38c8b81bc95af5c2acc42ad53b66bc5df932032f96",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/bzip2-1.0.8-hda65f42_10.conda",
+        "version": "1.0.8"
+      },
+      {
+        "build": "hbd8a1cb_0",
+        "name": "ca-certificates",
+        "sha256": "95619b9c1184be7175392eeb0ee7eeb5ccf25d280951f4225f2d62e725790be3",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/ca-certificates-2026.10.23-hbd8a1cb_0.conda",
+        "version": "2026.10.23"
+      },
+      {
+        "build": "pyhd8ed1ab_1",
+        "name": "colorama",
+        "sha256": "ab29d57dc70786c1269633ba3dff20288b81664d3ff8d21af995742e2bb03287",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/colorama-0.4.6-pyhd8ed1ab_1.conda",
+        "version": "0.4.6"
+      },
+      {
+        "build": "py314h93e9acf_0",
+        "name": "coverage",
+        "sha256": "21a475b36ca5957608b1909e510cb13d06f7cf11d7ef818dc2ddf39d380536dd",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/coverage-7.17.2-py314h93e9acf_0.conda",
+        "version": "7.17.2"
+      },
+      {
+        "build": "py_0",
+        "name": "depdigest",
+        "sha256": "2765c692de4e6aacff4197c4226ebb42ec1f0df9edb27e92f196ef1390cb1850",
+        "url": "https://conda.anaconda.org/uibcdf/noarch/depdigest-0.15.1-py_0.tar.bz2",
+        "version": "0.15.1"
+      },
+      {
+        "build": "pyhd8ed1ab_0",
+        "name": "exceptiongroup",
+        "sha256": "ee6cf346d017d954255bbcbdb424cddea4d14e4ed7e9813e429db1d795d01144",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/exceptiongroup-1.3.1-pyhd8ed1ab_0.conda",
+        "version": "1.3.1"
+      },
+      {
+        "build": "pyhd8ed1ab_0",
+        "name": "execnet",
+        "sha256": "1acc6a420efc5b64c384c1f35f49129966f8a12c93b4bb2bdc30079e5dc9d8a8",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/execnet-2.1.2-pyhd8ed1ab_0.conda",
+        "version": "2.1.2"
+      },
+      {
+        "build": "pyh5ded981_2",
+        "name": "flexcache",
+        "sha256": "fc30fd32ab60300e5ea6c15e3a39b3f3124a9236211fbb8bdb99708d3fbfed33",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/flexcache-0.3-pyh5ded981_2.conda",
+        "version": "0.3"
+      },
+      {
+        "build": "pyh5ded981_2",
+        "name": "flexparser",
+        "sha256": "0a9caab09609fed3a84c3594b62751b3cd7b0d953a7a631175aa3f2c4052765a",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/flexparser-0.4-pyh5ded981_2.conda",
+        "version": "0.4"
+      },
+      {
+        "build": "pyhd8ed1ab_0",
+        "name": "iniconfig",
+        "sha256": "8f53876d0fb3525235e39635dd55633abe0a4307b1b3ab1415c80a9e0bbdf663",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/iniconfig-2.3.1-pyhd8ed1ab_0.conda",
+        "version": "2.3.1"
+      },
+      {
+        "build": "pyhcf101f3_1",
+        "name": "jinja2",
+        "sha256": "fc9ca7348a4f25fed2079f2153ecdcf5f9cf2a0bc36c4172420ca09e1849df7b",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/jinja2-3.1.6-pyhcf101f3_1.conda",
+        "version": "3.1.6"
+      },
+      {
+        "build": "default_hbd61a6d_103",
+        "name": "ld_impl_linux-64",
+        "sha256": "901649b1edbe841fd4ee7e2d491a05184ed540eb01cdae506872f344babc1d28",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.46.1-default_hbd61a6d_103.conda",
+        "version": "2.46.1"
+      },
+      {
+        "build": "12_h4a7cf45_openblas",
+        "name": "libblas",
+        "sha256": "6a6263c3d4a484dbac4ae7a8191be5f868c0574bbc7faa42b258bb59dc6d5fa2",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libblas-3.11.0-12_h4a7cf45_openblas.conda",
+        "version": "3.11.0"
+      },
+      {
+        "build": "12_h0358290_openblas",
+        "name": "libcblas",
+        "sha256": "8ea7d98b71e1200e2e4141c1813d6950e6acc917d220bbf54058390d252460f8",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libcblas-3.11.0-12_h0358290_openblas.conda",
+        "version": "3.11.0"
+      },
+      {
+        "build": "hd2095e1_0",
+        "name": "libexpat",
+        "sha256": "7b930a8b6bc6553cb754b4977a11f9c862c719a652fc2d128d89270992ce8beb",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.9.0-hd2095e1_0.conda",
+        "version": "2.9.0"
+      },
+      {
+        "build": "h81df57d_1",
+        "name": "libffi",
+        "sha256": "c8c7583ef063bc3c430f1d48298e5ad24f796a35c22ed5b14183325825a61106",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libffi-3.7.0-h81df57d_1.conda",
+        "version": "3.7.0"
+      },
+      {
+        "build": "ha9f2e26_7",
+        "name": "libgcc",
+        "sha256": "e031634c3a928f9594eba868bc46ef5230d6571a364a0c63215b06c4563bfcea",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libgcc-16.2.0-ha9f2e26_7.conda",
+        "version": "16.2.0"
+      },
+      {
+        "build": "h69a702a_7",
+        "name": "libgfortran",
+        "sha256": "9682ae4dd11487e10b904b3cb3ab6379cad25233d45fdfdf90d54349df244494",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libgfortran-16.2.0-h69a702a_7.conda",
+        "version": "16.2.0"
+      },
+      {
+        "build": "h6b99dfc_7",
+        "name": "libgfortran5",
+        "sha256": "04dbab12c925b92977bb835dd2f5eda413607afa79f95a554e5a04b07a380322",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libgfortran5-16.2.0-h6b99dfc_7.conda",
+        "version": "16.2.0"
+      },
+      {
+        "build": "he0feb66_7",
+        "name": "libgomp",
+        "sha256": "92a0bb350c7be6a4eedcb4e111c60aefd176018e6b1c009a6e025dbe9bbcd758",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libgomp-16.2.0-he0feb66_7.conda",
+        "version": "16.2.0"
+      },
+      {
+        "build": "12_h47877c9_openblas",
+        "name": "liblapack",
+        "sha256": "f048e68a22fbdd927b8a7e007c3da19c6f1d2c08a9e4f6065af68f463c369f19",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/liblapack-3.11.0-12_h47877c9_openblas.conda",
+        "version": "3.11.0"
+      },
+      {
+        "build": "hb03c661_1",
+        "name": "liblzma",
+        "sha256": "9787df8c22a59c9a70d3e5a10db9ad663485e75e9ccc3f09bd092cb7b95e0dab",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/liblzma-5.8.3-hb03c661_1.conda",
+        "version": "5.8.3"
+      },
+      {
+        "build": "hb03c661_2",
+        "name": "libmpdec",
+        "sha256": "46820b4a835e175940ae20bec00fdddaff804cda27a1408ab1b95e77a2196437",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libmpdec-4.0.0-hb03c661_2.conda",
+        "version": "4.0.0"
+      },
+      {
+        "build": "pthreads_hf13c14d_2",
+        "name": "libopenblas",
+        "sha256": "69a722751e14eab2eb3bfdcb9acb1187afbd962b0c49b48d829341e0f6787f60",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libopenblas-0.3.34-pthreads_hf13c14d_2.conda",
+        "version": "0.3.34"
+      },
+      {
+        "build": "hd51c5da_100_cp314",
+        "name": "libpython",
+        "sha256": "3b9f11f136074f81db3ca56f2f514f466456dbab1189e68b3681b53387043daa",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libpython-3.14.10-hd51c5da_100_cp314.conda",
+        "version": "3.14.10"
+      },
+      {
+        "build": "h0737f62_101",
+        "name": "libsqlite",
+        "sha256": "c294029f893d05286f1061bbab85b820f1eea73dd859af4bcc619197bcc34810",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libsqlite-3.54.1-h0737f62_101.conda",
+        "version": "3.54.1"
+      },
+      {
+        "build": "h934c35e_7",
+        "name": "libstdcxx",
+        "sha256": "fa7018298629fc429971fffd6ecba3d27a7b02e4e890d6a93ea01ffebe8cb745",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-16.2.0-h934c35e_7.conda",
+        "version": "16.2.0"
+      },
+      {
+        "build": "hcfc3c73_1",
+        "name": "libuuid",
+        "sha256": "0e2e8f2daa9306e67f046e31092d637431d8cf0a26c407ab22401d108c2d4631",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libuuid-2.42.4-hcfc3c73_1.conda",
+        "version": "2.42.4"
+      },
+      {
+        "build": "h25fd6f3_3",
+        "name": "libzlib",
+        "sha256": "eb8a0db0aa570124f7d2a93d7c7f596e3390df5e047818d873baad32985fc736",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/libzlib-1.3.2-h25fd6f3_3.conda",
+        "version": "1.3.2"
+      },
+      {
+        "build": "py314h93e9acf_4",
+        "name": "markupsafe",
+        "sha256": "35b412b97ad6c65e2c5aef1e2039981bc53f847bd0673610a76f133628f24e3b",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/markupsafe-3.0.4-py314h93e9acf_4.conda",
+        "version": "3.0.4"
+      },
+      {
+        "build": "hdb14827_1",
+        "name": "ncurses",
+        "sha256": "5d46557214ed184381dafe835b7c94a474a1c3b307a08a250b1ea4779b44ffb3",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.6-hdb14827_1.conda",
+        "version": "6.6"
+      },
+      {
+        "build": "py314hd3a7d6b_0",
+        "name": "numpy",
+        "sha256": "7533361a15ff1d4c1e7069b9410d32a602a6a9350d717a43731b07e3565a6689",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/numpy-2.5.4-py314hd3a7d6b_0.conda",
+        "version": "2.5.4"
+      },
+      {
+        "build": "h781a0a9_0",
+        "name": "openssl",
+        "sha256": "9c1533f1cf784f0e250919c0c9762d0b0e6bc727a79290ffb7cea1ceca1d038c",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/openssl-3.6.5-h781a0a9_0.conda",
+        "version": "3.6.5"
+      },
+      {
+        "build": "pyhc364b38_0",
+        "name": "packaging",
+        "sha256": "c432626b16768b8dab228bfb706f7060c2d462a21c516d240f68f2f902b5a044",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/packaging-26.3-pyhc364b38_0.conda",
+        "version": "26.3"
+      },
+      {
+        "build": "np2py314h9e1d7c2_0",
+        "name": "pandas",
+        "sha256": "c9dd76336a7377f65c5add933e77f316dc19d5a0cc92c847d21f58ed9360be4a",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/pandas-3.1.1-np2py314h9e1d7c2_0.conda",
+        "version": "3.1.1"
+      },
+      {
+        "build": "pyhc364b38_0",
+        "name": "pint",
+        "sha256": "7e30090b2a75a6f31f9509fefa76b5b6aee7f5853453f7883a5851b87dd2b481",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/pint-0.26.2-pyhc364b38_0.conda",
+        "version": "0.26.2"
+      },
+      {
+        "build": "pyh145f28c_2",
+        "name": "pip",
+        "sha256": "05d34ae3b49973c05c0f2f0f742e202acc6145f733460a0798944b231efd5c1a",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/pip-26.2.2-pyh145f28c_2.conda",
+        "version": "26.2.2"
+      },
+      {
+        "build": "pyh5ded981_0",
+        "name": "platformdirs",
+        "sha256": "8bbb25f131001457e5fd19385000e9d6a8047223a35f4c507d92113eb68d42f9",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/platformdirs-4.14.5-pyh5ded981_0.conda",
+        "version": "4.14.5"
+      },
+      {
+        "build": "pyh5ded981_0",
+        "name": "pluggy",
+        "sha256": "34c40106bc3172b3a47656e84837e13a5d4829d413d65f30fb214e7568a09cea",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/pluggy-1.7.0-pyh5ded981_0.conda",
+        "version": "1.7.0"
+      },
+      {
+        "build": "pyh5ded981_0",
+        "name": "pydantic",
+        "sha256": "a462f1e82ec96ba8034ec12a13f70d5cf4eb8cdf3320f3d6ee545890c92e6ac2",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/pydantic-2.14.2-pyh5ded981_0.conda",
+        "version": "2.14.2"
+      },
+      {
+        "build": "py314h7e8cd81_0",
+        "name": "pydantic-core",
+        "sha256": "115f6fef5e552b7d7dbaadadfafdb6be314d78c2c284381eaa492bbfcbcb0bad",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/pydantic-core-2.50.2-py314h7e8cd81_0.conda",
+        "version": "2.50.2"
+      },
+      {
+        "build": "pyhcf101f3_0",
+        "name": "pygments",
+        "sha256": "f5f015ff1bc3e1b7fc08eee096b1865234189ae0b82bebdb86a5369116e42fa0",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/pygments-2.21.0-pyhcf101f3_0.conda",
+        "version": "2.21.0"
+      },
+      {
+        "build": "pyhc364b38_1",
+        "name": "pytest",
+        "sha256": "a9cf3571e80a4e86992502068eb1d29a109e88345c39babf03b10450895056af",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/pytest-9.2.0-pyhc364b38_1.conda",
+        "version": "9.2.0"
+      },
+      {
+        "build": "pyhcf101f3_0",
+        "name": "pytest-cov",
+        "sha256": "44e42919397bd00bfaa47358a6ca93d4c21493a8c18600176212ec21a8d25ca5",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/pytest-cov-7.1.0-pyhcf101f3_0.conda",
+        "version": "7.1.0"
+      },
+      {
+        "build": "py_0",
+        "name": "pytest-receptor",
+        "sha256": "c0b075286f45e8fce5ab5852947611bfba82b7d509115fc5dadf1a9572b9dd74",
+        "url": "https://conda.anaconda.org/uibcdf/noarch/pytest-receptor-1.2.2-py_0.tar.bz2",
+        "version": "1.2.2"
+      },
+      {
+        "build": "pyhd8ed1ab_0",
+        "name": "pytest-xdist",
+        "sha256": "b7b58a5be090883198411337b99afb6404127809c3d1c9f96e99b59f36177a96",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/pytest-xdist-3.8.0-pyhd8ed1ab_0.conda",
+        "version": "3.8.0"
+      },
+      {
+        "build": "hcd007b5_100_cp314",
+        "name": "python",
+        "sha256": "bb457298c776d0edd30d727d96629e57df63e9a4ba2dd11553019267b61ef5f4",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/python-3.14.10-hcd007b5_100_cp314.conda",
+        "version": "3.14.10"
+      },
+      {
+        "build": "pyh5ded981_0",
+        "name": "python-dateutil",
+        "sha256": "8038f7048c97299f7fe7c8ce957da65b8ada9839afd0f66e345d3096082da975",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/python-dateutil-4.0.0-pyh5ded981_0.conda",
+        "version": "4.0.0"
+      },
+      {
+        "build": "pyh5ded981_0",
+        "name": "python-tzdata",
+        "sha256": "bb29725d0d84f5e98f221f2f0afbad4a44cd67b016ab48388592c940bbd75a5e",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/python-tzdata-2026.6-pyh5ded981_0.conda",
+        "version": "2026.6"
+      },
+      {
+        "build": "9_cp314",
+        "name": "python_abi",
+        "sha256": "e7f8e965bbfb98e08feb2365cacdad8bb218fa5b5a0a2752f747287f425f213c",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/python_abi-3.14-9_cp314.conda",
+        "version": "3.14"
+      },
+      {
+        "build": "py_0",
+        "name": "pyunitwizard",
+        "sha256": "2102b1bd4e8188d4d150f90fcf093425d07fa2858993984016a6e7de10c3aaac",
+        "url": "https://conda.anaconda.org/uibcdf/noarch/pyunitwizard-0.27.0-py_0.tar.bz2",
+        "version": "0.27.0"
+      },
+      {
+        "build": "py314h19d427c_3",
+        "name": "pyyaml",
+        "sha256": "da909204ceee34fc54bd49b96b9151fd3297dec02f4f6c09b7671890e8cb0366",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/pyyaml-6.0.3-py314h19d427c_3.conda",
+        "version": "6.0.3"
+      },
+      {
+        "build": "hd6e31c0_1",
+        "name": "readline",
+        "sha256": "01b3fe073a66e321970d09e04b388708f8cbdca5cdfbfcb7c9eeb470ad10383d",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/readline-8.3-hd6e31c0_1.conda",
+        "version": "8.3"
+      },
+      {
+        "build": "py_0",
+        "name": "smonitor",
+        "sha256": "e9ce6c77a682dddec3a6e724f9cc98cca31c4d6732453d554107ffcf61f23e7e",
+        "url": "https://conda.anaconda.org/uibcdf/noarch/smonitor-0.22.1-py_0.tar.bz2",
+        "version": "0.22.1"
+      },
+      {
+        "build": "noxft_h1df4ec4_4",
+        "name": "tk",
+        "sha256": "a1a241d172c1ccab067ba245206dd048bc3c2d1b84504b53c9468e99adfc16a1",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/tk-8.6.13-noxft_h1df4ec4_4.conda",
+        "version": "8.6.13"
+      },
+      {
+        "build": "pyh5ded981_0",
+        "name": "tomli",
+        "sha256": "93b6f517fb7adff00b62be02b798d384a1b34d0e368fdb576fb248bcb3bb9ec7",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/tomli-2.5.0-pyh5ded981_0.conda",
+        "version": "2.5.0"
+      },
+      {
+        "build": "h69aa097_0",
+        "name": "typing-extensions",
+        "sha256": "b141933ece3518f6d7b75dfb59451e2f26b405a44c18e2518a83e9a02e09315c",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/typing-extensions-4.16.0-h69aa097_0.conda",
+        "version": "4.16.0"
+      },
+      {
+        "build": "pyh5ded981_0",
+        "name": "typing-inspection",
+        "sha256": "88c08476c98f264047d6c6bfeb1e8545684dfbcf2c61da338f71033ec17e1f33",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/typing-inspection-0.4.5-pyh5ded981_0.conda",
+        "version": "0.4.5"
+      },
+      {
+        "build": "pyhcf101f3_0",
+        "name": "typing_extensions",
+        "sha256": "2d888f90af0686044882c74193ec80a90ec1943145d94a7b1b048958acda1848",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/typing_extensions-4.16.0-pyhcf101f3_0.conda",
+        "version": "4.16.0"
+      },
+      {
+        "build": "h5d301ff_0",
+        "name": "tzdata",
+        "sha256": "2b7ca858879f183ce2dcc65b300f48a0133d5430550f35b23d80d405a0788dbf",
+        "url": "https://conda.anaconda.org/conda-forge/noarch/tzdata-2026e-h5d301ff_0.conda",
+        "version": "2026e"
+      },
+      {
+        "build": "hebe6cf0_3",
+        "name": "yaml",
+        "sha256": "d164dfa75ecd538f6fd68765defcc06aa875bc697b9b215362d79a2a73125dd0",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/yaml-0.2.5-hebe6cf0_3.conda",
+        "version": "0.2.5"
+      },
+      {
+        "build": "hb78ec9c_7",
+        "name": "zstd",
+        "sha256": "47d682b9f6d6ec9eb1a6e6c3e75ea6273e899e78fb7fc59f81d39745009fbc60",
+        "url": "https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb78ec9c_7.conda",
+        "version": "1.5.7"
+      }
+    ],
+    "public_record": {
+      "build": "py_0",
+      "build_number": 0,
+      "channel": "https://conda.anaconda.org/uibcdf/noarch",
+      "constrains": [],
+      "depends": [
+        "depdigest >=0.11.0",
+        "python >=3.11,<3.15",
+        "smonitor >=0.16.0"
+      ],
+      "extracted_package_dir": "/tmp/argdigest-release0171.BO1HRi/pkgs/argdigest-0.17.1-py_0",
+      "files": [
+        "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/INSTALLER",
+        "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/METADATA",
+        "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/RECORD",
+        "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/REQUESTED",
+        "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/WHEEL",
+        "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/direct_url.json",
+        "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/entry_points.txt",
+        "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/licenses/LICENSE",
+        "lib/python3.14/site-packages/argdigest-0.17.1.dist-info/top_level.txt",
+        "lib/python3.14/site-packages/argdigest/__init__.py",
+        "lib/python3.14/site-packages/argdigest/_depdigest.py",
+        "lib/python3.14/site-packages/argdigest/_private/smonitor/__init__.py",
+        "lib/python3.14/site-packages/argdigest/_private/smonitor/catalog.py",
+        "lib/python3.14/site-packages/argdigest/_private/smonitor/emitter.py",
+        "lib/python3.14/site-packages/argdigest/_private/smonitor/meta.py",
+        "lib/python3.14/site-packages/argdigest/_smonitor.py",
+        "lib/python3.14/site-packages/argdigest/_version.py",
+        "lib/python3.14/site-packages/argdigest/cli.py",
+        "lib/python3.14/site-packages/argdigest/config.py",
+        "lib/python3.14/site-packages/argdigest/contrib/__init__.py",
+        "lib/python3.14/site-packages/argdigest/contrib/beartype_support.py",
+        "lib/python3.14/site-packages/argdigest/contrib/pydantic_support.py",
+        "lib/python3.14/site-packages/argdigest/contrib/pyunitwizard_support.py",
+        "lib/python3.14/site-packages/argdigest/core/__init__.py",
+        "lib/python3.14/site-packages/argdigest/core/agent_docs.py",
+        "lib/python3.14/site-packages/argdigest/core/argument_loader.py",
+        "lib/python3.14/site-packages/argdigest/core/argument_registry.py",
+        "lib/python3.14/site-packages/argdigest/core/caller.py",
+        "lib/python3.14/site-packages/argdigest/core/config.py",
+        "lib/python3.14/site-packages/argdigest/core/context.py",
+        "lib/python3.14/site-packages/argdigest/core/decorator.py",
+        "lib/python3.14/site-packages/argdigest/core/diagnostics.py",
+        "lib/python3.14/site-packages/argdigest/core/errors.py",
+        "lib/python3.14/site-packages/argdigest/core/errors_base.py",
+        "lib/python3.14/site-packages/argdigest/core/function_contract.py",
+        "lib/python3.14/site-packages/argdigest/core/function_loader.py",
+        "lib/python3.14/site-packages/argdigest/core/health.py",
+        "lib/python3.14/site-packages/argdigest/core/logger.py",
+        "lib/python3.14/site-packages/argdigest/core/normalization.py",
+        "lib/python3.14/site-packages/argdigest/core/registry.py",
+        "lib/python3.14/site-packages/argdigest/core/utils.py",
+        "lib/python3.14/site-packages/argdigest/diagnostics.py",
+        "lib/python3.14/site-packages/argdigest/pipelines/__init__.py",
+        "lib/python3.14/site-packages/argdigest/pipelines/base.py",
+        "lib/python3.14/site-packages/argdigest/pipelines/coercers.py",
+        "lib/python3.14/site-packages/argdigest/pipelines/data.py",
+        "lib/python3.14/site-packages/argdigest/pipelines/science.py",
+        "lib/python3.14/site-packages/argdigest/pipelines/validators.py",
+        "lib/python3.14/site-packages/argdigest/__pycache__/__init__.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/__pycache__/_depdigest.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/__init__.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/catalog.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/emitter.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/meta.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/__pycache__/_smonitor.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/__pycache__/_version.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/__pycache__/cli.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/__pycache__/config.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/contrib/__pycache__/__init__.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/contrib/__pycache__/beartype_support.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/contrib/__pycache__/pydantic_support.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/contrib/__pycache__/pyunitwizard_support.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/__init__.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/agent_docs.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/argument_loader.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/argument_registry.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/caller.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/config.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/context.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/decorator.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/diagnostics.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/errors.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/errors_base.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/function_contract.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/function_loader.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/health.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/logger.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/normalization.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/registry.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/core/__pycache__/utils.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/__pycache__/diagnostics.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/__init__.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/base.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/coercers.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/data.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/science.cpython-314.pyc",
+        "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/validators.cpython-314.pyc",
+        "bin/argdigest"
+      ],
+      "fn": "argdigest-0.17.1-py_0.tar.bz2",
+      "license": "MIT",
+      "link": {
+        "source": "/tmp/argdigest-release0171.BO1HRi/pkgs/argdigest-0.17.1-py_0",
+        "type": 1
+      },
+      "md5": "2c39c19f5a7f1c4afe27352d9f5ee531",
+      "name": "argdigest",
+      "noarch": "python",
+      "package_tarball_full_path": "/tmp/argdigest-release0171.BO1HRi/pkgs/argdigest-0.17.1-py_0.tar.bz2",
+      "package_type": "noarch_python",
+      "paths_data": {
+        "paths": [
+          {
+            "_path": "site-packages/argdigest-0.17.1.dist-info/INSTALLER",
+            "path_type": "hardlink",
+            "sha256": "d0edee15f91b406f3f99726e44eb990be6e34fd0345b52b910c568e0eef6a2a8",
+            "sha256_in_prefix": "d0edee15f91b406f3f99726e44eb990be6e34fd0345b52b910c568e0eef6a2a8",
+            "size_in_bytes": 5
+          },
+          {
+            "_path": "site-packages/argdigest-0.17.1.dist-info/METADATA",
+            "path_type": "hardlink",
+            "sha256": "c796ced0d140f82bd82b79f9b5d95d01953107330bfb21f1b7eff149132058ba",
+            "sha256_in_prefix": "c796ced0d140f82bd82b79f9b5d95d01953107330bfb21f1b7eff149132058ba",
+            "size_in_bytes": 7953
+          },
+          {
+            "_path": "site-packages/argdigest-0.17.1.dist-info/RECORD",
+            "path_type": "hardlink",
+            "sha256": "3b663d45d9dedfaa9a46dffabef6007c12c34d3127468f28285a1857354c6a97",
+            "sha256_in_prefix": "3b663d45d9dedfaa9a46dffabef6007c12c34d3127468f28285a1857354c6a97",
+            "size_in_bytes": 6494
+          },
+          {
+            "_path": "site-packages/argdigest-0.17.1.dist-info/REQUESTED",
+            "path_type": "hardlink",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "sha256_in_prefix": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_in_bytes": 0
+          },
+          {
+            "_path": "site-packages/argdigest-0.17.1.dist-info/WHEEL",
+            "path_type": "hardlink",
+            "sha256": "98e75747d0b7c0c568bfb71263c3d8f970b3a374a6996087bc642be5cb09a1aa",
+            "sha256_in_prefix": "98e75747d0b7c0c568bfb71263c3d8f970b3a374a6996087bc642be5cb09a1aa",
+            "size_in_bytes": 91
+          },
+          {
+            "_path": "site-packages/argdigest-0.17.1.dist-info/direct_url.json",
+            "path_type": "hardlink",
+            "sha256": "a998c788c9708c11a6232a30ef7ad48e03709701d7b754be36fc336aa2e8f5fd",
+            "sha256_in_prefix": "a998c788c9708c11a6232a30ef7ad48e03709701d7b754be36fc336aa2e8f5fd",
+            "size_in_bytes": 118
+          },
+          {
+            "_path": "site-packages/argdigest-0.17.1.dist-info/entry_points.txt",
+            "path_type": "hardlink",
+            "sha256": "47b7ff7b78b4fae58b34a783201e7447ebc5109a6f972dbd572599d5196b1b18",
+            "sha256_in_prefix": "47b7ff7b78b4fae58b34a783201e7447ebc5109a6f972dbd572599d5196b1b18",
+            "size_in_bytes": 49
+          },
+          {
+            "_path": "site-packages/argdigest-0.17.1.dist-info/licenses/LICENSE",
+            "path_type": "hardlink",
+            "sha256": "89774af33c83f6ac673838d2621666d25f65b18f6d15fd67a04004901bd90b01",
+            "sha256_in_prefix": "89774af33c83f6ac673838d2621666d25f65b18f6d15fd67a04004901bd90b01",
+            "size_in_bytes": 1190
+          },
+          {
+            "_path": "site-packages/argdigest-0.17.1.dist-info/top_level.txt",
+            "path_type": "hardlink",
+            "sha256": "f2e38e3565c74fde869dde1fd57def883954a20284bacee9715010d342f5a562",
+            "sha256_in_prefix": "f2e38e3565c74fde869dde1fd57def883954a20284bacee9715010d342f5a562",
+            "size_in_bytes": 10
+          },
+          {
+            "_path": "site-packages/argdigest/__init__.py",
+            "path_type": "hardlink",
+            "sha256": "07518ec0f8d53c99d67f40aa76dc1a9f021ab659fc97ee4eb24a2e325e4feaee",
+            "sha256_in_prefix": "07518ec0f8d53c99d67f40aa76dc1a9f021ab659fc97ee4eb24a2e325e4feaee",
+            "size_in_bytes": 2031
+          },
+          {
+            "_path": "site-packages/argdigest/_depdigest.py",
+            "path_type": "hardlink",
+            "sha256": "e3eede5f993fd789c55068769ec794e771fb7b233fa7e10df2f0439a8d531cd9",
+            "sha256_in_prefix": "e3eede5f993fd789c55068769ec794e771fb7b233fa7e10df2f0439a8d531cd9",
+            "size_in_bytes": 257
+          },
+          {
+            "_path": "site-packages/argdigest/_private/smonitor/__init__.py",
+            "path_type": "hardlink",
+            "sha256": "3a7c8e505add1e4a4ff8fdb866c97edd043b830f6b7a59f768abd829ee419632",
+            "sha256_in_prefix": "3a7c8e505add1e4a4ff8fdb866c97edd043b830f6b7a59f768abd829ee419632",
+            "size_in_bytes": 181
+          },
+          {
+            "_path": "site-packages/argdigest/_private/smonitor/catalog.py",
+            "path_type": "hardlink",
+            "sha256": "cc19ca5175cfae824f0ac0c0d5a565d4971a6067304b585d049cefb448e4c52f",
+            "sha256_in_prefix": "cc19ca5175cfae824f0ac0c0d5a565d4971a6067304b585d049cefb448e4c52f",
+            "size_in_bytes": 12825
+          },
+          {
+            "_path": "site-packages/argdigest/_private/smonitor/emitter.py",
+            "path_type": "hardlink",
+            "sha256": "ed30989f4ebe8cf69720a9e01da83b4ae8d44aef6abbdf3dbeba253084566dac",
+            "sha256_in_prefix": "ed30989f4ebe8cf69720a9e01da83b4ae8d44aef6abbdf3dbeba253084566dac",
+            "size_in_bytes": 2670
+          },
+          {
+            "_path": "site-packages/argdigest/_private/smonitor/meta.py",
+            "path_type": "hardlink",
+            "sha256": "2b5313a344e848dcddeb2181d8e352664b77c0d02b5c421fb4726767b15ae81f",
+            "sha256_in_prefix": "2b5313a344e848dcddeb2181d8e352664b77c0d02b5c421fb4726767b15ae81f",
+            "size_in_bytes": 148
+          },
+          {
+            "_path": "site-packages/argdigest/_smonitor.py",
+            "path_type": "hardlink",
+            "sha256": "8c64a540b48708d6b2cff8bb49ff05465c44be5cdc3b4511f40b514796b0d37d",
+            "sha256_in_prefix": "8c64a540b48708d6b2cff8bb49ff05465c44be5cdc3b4511f40b514796b0d37d",
+            "size_in_bytes": 648
+          },
+          {
+            "_path": "site-packages/argdigest/_version.py",
+            "path_type": "hardlink",
+            "sha256": "9abc0193264d70ca30306e3e2ac951bee5a3953db17659d60d25836442b6ef4b",
+            "sha256_in_prefix": "9abc0193264d70ca30306e3e2ac951bee5a3953db17659d60d25836442b6ef4b",
+            "size_in_bytes": 23
+          },
+          {
+            "_path": "site-packages/argdigest/cli.py",
+            "path_type": "hardlink",
+            "sha256": "f6e45b3cd57e83c7070b44b1a12abee6279ce80c55fd86a22c2754f04156e765",
+            "sha256_in_prefix": "f6e45b3cd57e83c7070b44b1a12abee6279ce80c55fd86a22c2754f04156e765",
+            "size_in_bytes": 3932
+          },
+          {
+            "_path": "site-packages/argdigest/config.py",
+            "path_type": "hardlink",
+            "sha256": "1e06c210d8cb24a6298e03961f5ad9a1a7eda56d5e473e8f2c791c0484e1ea38",
+            "sha256_in_prefix": "1e06c210d8cb24a6298e03961f5ad9a1a7eda56d5e473e8f2c791c0484e1ea38",
+            "size_in_bytes": 341
+          },
+          {
+            "_path": "site-packages/argdigest/contrib/__init__.py",
+            "path_type": "hardlink",
+            "sha256": "780dc788fb0ee7e7d9273c45992a3568176dc0ef168dccce12a3e236c3f5cf75",
+            "sha256_in_prefix": "780dc788fb0ee7e7d9273c45992a3568176dc0ef168dccce12a3e236c3f5cf75",
+            "size_in_bytes": 35
+          },
+          {
+            "_path": "site-packages/argdigest/contrib/beartype_support.py",
+            "path_type": "hardlink",
+            "sha256": "a18088bc90a02f56e44c5e5b5ad96da346d136baec861dacb739c6f86273acd2",
+            "sha256_in_prefix": "a18088bc90a02f56e44c5e5b5ad96da346d136baec861dacb739c6f86273acd2",
+            "size_in_bytes": 1261
+          },
+          {
+            "_path": "site-packages/argdigest/contrib/pydantic_support.py",
+            "path_type": "hardlink",
+            "sha256": "e52140c341096d5ad04fc056a2dccb39c4f368138758d2e6086a9ef9bee8df71",
+            "sha256_in_prefix": "e52140c341096d5ad04fc056a2dccb39c4f368138758d2e6086a9ef9bee8df71",
+            "size_in_bytes": 1704
+          },
+          {
+            "_path": "site-packages/argdigest/contrib/pyunitwizard_support.py",
+            "path_type": "hardlink",
+            "sha256": "8c7f896ed03cc72735ed1a4faa577b8705e52be43d859f278e7ec423dfce5922",
+            "sha256_in_prefix": "8c7f896ed03cc72735ed1a4faa577b8705e52be43d859f278e7ec423dfce5922",
+            "size_in_bytes": 8456
+          },
+          {
+            "_path": "site-packages/argdigest/core/__init__.py",
+            "path_type": "hardlink",
+            "sha256": "fde4100e15ab833df34916a47a36a19a9c21925b6042ee93328afb270f835fca",
+            "sha256_in_prefix": "fde4100e15ab833df34916a47a36a19a9c21925b6042ee93328afb270f835fca",
+            "size_in_bytes": 683
+          },
+          {
+            "_path": "site-packages/argdigest/core/agent_docs.py",
+            "path_type": "hardlink",
+            "sha256": "0dd99f2de399f8872462f607cc7dc333bf9b2461c0e9169d59dffb3df2994233",
+            "sha256_in_prefix": "0dd99f2de399f8872462f607cc7dc333bf9b2461c0e9169d59dffb3df2994233",
+            "size_in_bytes": 7680
+          },
+          {
+            "_path": "site-packages/argdigest/core/argument_loader.py",
+            "path_type": "hardlink",
+            "sha256": "cb45b08e78282b98408e7d43fb004db2b2585003aadd074c7de1ef585b6f6dff",
+            "sha256_in_prefix": "cb45b08e78282b98408e7d43fb004db2b2585003aadd074c7de1ef585b6f6dff",
+            "size_in_bytes": 5310
+          },
+          {
+            "_path": "site-packages/argdigest/core/argument_registry.py",
+            "path_type": "hardlink",
+            "sha256": "b2698707760710bd5e103350f2a761f96b4d0178eb4d7f2b02fe03e55f3ea3bf",
+            "sha256_in_prefix": "b2698707760710bd5e103350f2a761f96b4d0178eb4d7f2b02fe03e55f3ea3bf",
+            "size_in_bytes": 850
+          },
+          {
+            "_path": "site-packages/argdigest/core/caller.py",
+            "path_type": "hardlink",
+            "sha256": "e44f21438bfe955f185452526f05d224723bf8c7bb07d13a1c02f3210a3c041f",
+            "sha256_in_prefix": "e44f21438bfe955f185452526f05d224723bf8c7bb07d13a1c02f3210a3c041f",
+            "size_in_bytes": 2956
+          },
+          {
+            "_path": "site-packages/argdigest/core/config.py",
+            "path_type": "hardlink",
+            "sha256": "c076a2d37790e23f86eacef52680c2cdab179a849b2139beb40cfa220e9f892f",
+            "sha256_in_prefix": "c076a2d37790e23f86eacef52680c2cdab179a849b2139beb40cfa220e9f892f",
+            "size_in_bytes": 5882
+          },
+          {
+            "_path": "site-packages/argdigest/core/context.py",
+            "path_type": "hardlink",
+            "sha256": "04ce1ef61eed153411c9a83d388899de1886f6f561be406373a6b112e639b81c",
+            "sha256_in_prefix": "04ce1ef61eed153411c9a83d388899de1886f6f561be406373a6b112e639b81c",
+            "size_in_bytes": 321
+          },
+          {
+            "_path": "site-packages/argdigest/core/decorator.py",
+            "path_type": "hardlink",
+            "sha256": "22245562426702ba235c52b3701faafdcafdec7a7acce133a967075fe71eeac0",
+            "sha256_in_prefix": "22245562426702ba235c52b3701faafdcafdec7a7acce133a967075fe71eeac0",
+            "size_in_bytes": 30086
+          },
+          {
+            "_path": "site-packages/argdigest/core/diagnostics.py",
+            "path_type": "hardlink",
+            "sha256": "aaf2b4bf15562206d9c4ed16d2f3075214669948fb2523d6b6007698f339ed32",
+            "sha256_in_prefix": "aaf2b4bf15562206d9c4ed16d2f3075214669948fb2523d6b6007698f339ed32",
+            "size_in_bytes": 1734
+          },
+          {
+            "_path": "site-packages/argdigest/core/errors.py",
+            "path_type": "hardlink",
+            "sha256": "4c1fecd036a134b84c58edbb825dfedb5233ca0ee42d4daedae8e36aa92e635a",
+            "sha256_in_prefix": "4c1fecd036a134b84c58edbb825dfedb5233ca0ee42d4daedae8e36aa92e635a",
+            "size_in_bytes": 5612
+          },
+          {
+            "_path": "site-packages/argdigest/core/errors_base.py",
+            "path_type": "hardlink",
+            "sha256": "bd1a04038e7e9fb50ce422291ae61e2f4cc1bac04342ab0f0230a6ef8b12247b",
+            "sha256_in_prefix": "bd1a04038e7e9fb50ce422291ae61e2f4cc1bac04342ab0f0230a6ef8b12247b",
+            "size_in_bytes": 1077
+          },
+          {
+            "_path": "site-packages/argdigest/core/function_contract.py",
+            "path_type": "hardlink",
+            "sha256": "e25f37ee180f650b596b4d61f84ed1c93191cb5ab5837afed78945a3586536fb",
+            "sha256_in_prefix": "e25f37ee180f650b596b4d61f84ed1c93191cb5ab5837afed78945a3586536fb",
+            "size_in_bytes": 17997
+          },
+          {
+            "_path": "site-packages/argdigest/core/function_loader.py",
+            "path_type": "hardlink",
+            "sha256": "3970949c2553a706b617380e8601cf97113f1b13837c8de1f1abb613838014b1",
+            "sha256_in_prefix": "3970949c2553a706b617380e8601cf97113f1b13837c8de1f1abb613838014b1",
+            "size_in_bytes": 4678
+          },
+          {
+            "_path": "site-packages/argdigest/core/health.py",
+            "path_type": "hardlink",
+            "sha256": "edbb0c304f137455ab31ab33c8d3f21e84d89446c258c8060c6b559cc24a92b7",
+            "sha256_in_prefix": "edbb0c304f137455ab31ab33c8d3f21e84d89446c258c8060c6b559cc24a92b7",
+            "size_in_bytes": 3333
+          },
+          {
+            "_path": "site-packages/argdigest/core/logger.py",
+            "path_type": "hardlink",
+            "sha256": "2fc318cb37f9c9863e809b51d516b5de6fc340cd6f962e9688484fe71f35a65b",
+            "sha256_in_prefix": "2fc318cb37f9c9863e809b51d516b5de6fc340cd6f962e9688484fe71f35a65b",
+            "size_in_bytes": 738
+          },
+          {
+            "_path": "site-packages/argdigest/core/normalization.py",
+            "path_type": "hardlink",
+            "sha256": "a90fd2015dc38cc630e8de24c13de8a01b65afd3a9d67e01bbe9f5e88f804f49",
+            "sha256_in_prefix": "a90fd2015dc38cc630e8de24c13de8a01b65afd3a9d67e01bbe9f5e88f804f49",
+            "size_in_bytes": 9009
+          },
+          {
+            "_path": "site-packages/argdigest/core/registry.py",
+            "path_type": "hardlink",
+            "sha256": "3a8a81354ce299e4795d105441e0d029b2bf93a636c1c94f01adda1d2b19e48a",
+            "sha256_in_prefix": "3a8a81354ce299e4795d105441e0d029b2bf93a636c1c94f01adda1d2b19e48a",
+            "size_in_bytes": 4627
+          },
+          {
+            "_path": "site-packages/argdigest/core/utils.py",
+            "path_type": "hardlink",
+            "sha256": "7a44ee503b9b416407a0406c0c992bc2cf0f257761937ee74e6656574c8f3a35",
+            "sha256_in_prefix": "7a44ee503b9b416407a0406c0c992bc2cf0f257761937ee74e6656574c8f3a35",
+            "size_in_bytes": 5980
+          },
+          {
+            "_path": "site-packages/argdigest/diagnostics.py",
+            "path_type": "hardlink",
+            "sha256": "2ab1c77c7832f2b62161b8da57b228b12b89e7a667c6973d19ec8b9e041c2559",
+            "sha256_in_prefix": "2ab1c77c7832f2b62161b8da57b228b12b89e7a667c6973d19ec8b9e041c2559",
+            "size_in_bytes": 2246
+          },
+          {
+            "_path": "site-packages/argdigest/pipelines/__init__.py",
+            "path_type": "hardlink",
+            "sha256": "0d9efba3909e8afac995b4b260756d48321a2d02a7968f49d388672ad3694d1b",
+            "sha256_in_prefix": "0d9efba3909e8afac995b4b260756d48321a2d02a7968f49d388672ad3694d1b",
+            "size_in_bytes": 161
+          },
+          {
+            "_path": "site-packages/argdigest/pipelines/base.py",
+            "path_type": "hardlink",
+            "sha256": "20c07d367c9d121a07c77105127f5a950cced551aa77e65f5f2e80261b3de045",
+            "sha256_in_prefix": "20c07d367c9d121a07c77105127f5a950cced551aa77e65f5f2e80261b3de045",
+            "size_in_bytes": 1159
+          },
+          {
+            "_path": "site-packages/argdigest/pipelines/coercers.py",
+            "path_type": "hardlink",
+            "sha256": "83e3bffbb67474633c15f88420215110dd25e1bd9db9d9a148b1b352e8fb01d8",
+            "sha256_in_prefix": "83e3bffbb67474633c15f88420215110dd25e1bd9db9d9a148b1b352e8fb01d8",
+            "size_in_bytes": 2393
+          },
+          {
+            "_path": "site-packages/argdigest/pipelines/data.py",
+            "path_type": "hardlink",
+            "sha256": "c0132959ab06f447f2f5d202e5b1ddf0dc50efaa392d3470d5c1fa0b942f0521",
+            "sha256_in_prefix": "c0132959ab06f447f2f5d202e5b1ddf0dc50efaa392d3470d5c1fa0b942f0521",
+            "size_in_bytes": 7253
+          },
+          {
+            "_path": "site-packages/argdigest/pipelines/science.py",
+            "path_type": "hardlink",
+            "sha256": "f5ce2af693b9b9e714c0145c1601b4b2c2223efaa3fe0f3469c21883306bb464",
+            "sha256_in_prefix": "f5ce2af693b9b9e714c0145c1601b4b2c2223efaa3fe0f3469c21883306bb464",
+            "size_in_bytes": 1791
+          },
+          {
+            "_path": "site-packages/argdigest/pipelines/validators.py",
+            "path_type": "hardlink",
+            "sha256": "5b844a9bce602f734aafcf28bd671ccc53571ba3ba8dd4f54acc20b31c162f52",
+            "sha256_in_prefix": "5b844a9bce602f734aafcf28bd671ccc53571ba3ba8dd4f54acc20b31c162f52",
+            "size_in_bytes": 2238
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/__pycache__/__init__.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 1805
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/__pycache__/_depdigest.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 338
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/__init__.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 387
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/catalog.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 9601
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/emitter.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 3331
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/_private/smonitor/__pycache__/meta.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 295
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/__pycache__/_smonitor.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 623
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/__pycache__/_version.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 176
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/__pycache__/cli.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 5963
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/__pycache__/config.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 489
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/contrib/__pycache__/__init__.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 157
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/contrib/__pycache__/beartype_support.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 2133
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/contrib/__pycache__/pydantic_support.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 3092
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/contrib/__pycache__/pyunitwizard_support.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 12929
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/__init__.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 722
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/agent_docs.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 10506
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/argument_loader.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 8709
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/argument_registry.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 2987
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/caller.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 5772
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/config.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 7909
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/context.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 876
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/decorator.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 31437
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/diagnostics.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 3084
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/errors.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 7896
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/errors_base.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 2274
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/function_contract.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 27378
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/function_loader.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 7395
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/health.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 4189
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/logger.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 1811
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/normalization.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 14622
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/registry.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 7694
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/core/__pycache__/utils.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 6532
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/__pycache__/diagnostics.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 2836
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/__init__.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 316
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/base.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 2042
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/coercers.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 4101
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/data.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 12527
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/science.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 2965
+          },
+          {
+            "_path": "lib/python3.14/site-packages/argdigest/pipelines/__pycache__/validators.cpython-314.pyc",
+            "path_type": "pyc_file",
+            "size_in_bytes": 4428
+          },
+          {
+            "_path": "bin/argdigest",
+            "path_type": "unix_python_entry_point",
+            "size_in_bytes": 258
+          }
+        ],
+        "paths_version": 1
+      },
+      "requested_spec": "uibcdf/noarch::argdigest==0.17.1=py_0",
+      "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+      "size": 55828,
+      "subdir": "noarch",
+      "timestamp": 1793907753481,
+      "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.17.1-py_0.tar.bz2",
+      "version": "0.17.1"
+    },
+    "scope": "Fresh Linux x86_64 Python 3.14 public receiving, not a client/platform matrix"
+  },
+  "identity": {
+    "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+    "filename": "argdigest-0.17.1-py_0.tar.bz2",
+    "owner": "uibcdf",
+    "package": "argdigest",
+    "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+    "subdir": "noarch",
+    "version": "0.17.1"
+  },
+  "interim_documentation_checkpoint": {
+    "gates": {
+      "documentation-fast": {
+        "conclusion": null,
+        "run_id": 42131890287,
+        "state": "pending",
+        "status": "queued"
+      },
+      "documentation-publication-policy": {
+        "conclusion": "success",
+        "run_id": 42131890803,
+        "state": "verified",
+        "status": "completed"
+      },
+      "documentation-suite-policy": {
+        "conclusion": "success",
+        "run_id": 42131890739,
+        "state": "verified",
+        "status": "completed"
+      },
+      "published-documentation": {
+        "conclusion": "success",
+        "run_id": 42132020733,
+        "state": "verified",
+        "status": "completed"
+      }
+    },
+    "observed_at": "2026-11-06T00:25:30.014475+00:00",
+    "source_sha": "21f6ba42120d93467e3937ef2da0b54cd37e5d86"
+  },
+  "limits": [
+    "The native full and separate core matrices qualify the same original file on all claimed OS/minor cells. Additional fresh public scientific receiving is Linux x86_64/Python 3.14 only.",
+    "One existing absent-sibling E2E skip is retained; all 28 mandatory SMonitor receiving controls passed.",
+    "Zenodo verification covers the original tagged source export, not Conda-binary archival.",
+    "Consumer scientific acceptance and byte-identical client-guide distribution remain with their registered owners."
+  ],
+  "native_gates": {
+    "documentation_publication_policy": {
+      "candidate_sha": "21f6ba42120d93467e3937ef2da0b54cd37e5d86",
+      "event": "push",
+      "jobs": [
+        {
+          "job_id": 127610285697,
+          "name": "publication / check",
+          "required_steps": [
+            "Check publication workflow controls",
+            "Check declared noarch recipe and resources without building"
+          ]
+        }
+      ],
+      "run_attempt": 1,
+      "run_id": 42131890803,
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "workflow": ".github/workflows/conda-publication-policy.yml"
+    },
+    "documentation_suite_policy": {
+      "candidate_sha": "21f6ba42120d93467e3937ef2da0b54cd37e5d86",
+      "event": "push",
+      "jobs": [
+        {
+          "job_id": 127610285612,
+          "name": "policy / conformance",
+          "required_steps": [
+            "Check repository conformance",
+            "Check Python lint and imports",
+            "Check Python formatting"
+          ]
+        }
+      ],
+      "run_attempt": 1,
+      "run_id": 42131890739,
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "workflow": ".github/workflows/molsyssuite-policy.yml"
+    },
+    "promotion": {
+      "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+      "event": "workflow_dispatch",
+      "jobs": [
+        {
+          "job_id": 127594673401,
+          "name": "release",
+          "required_steps": [
+            "Verify public release and minimal-core qualification"
+          ]
+        },
+        {
+          "job_id": 127597381843,
+          "name": "promote / promote",
+          "required_steps": [
+            "Acquire exact-source executed CI gates",
+            "Verify existing installed matrix and executed steps",
+            "Add public label to the same tested file without rebuilding",
+            "Independently verify public label and solver index",
+            "Retain source, installed, promotion and public receipts"
+          ]
+        }
+      ],
+      "run_attempt": 1,
+      "run_id": 42127310186,
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "workflow": ".github/workflows/promote_conda_package.yaml"
+    },
+    "published_documentation": {
+      "candidate_sha": "21f6ba42120d93467e3937ef2da0b54cd37e5d86",
+      "event": "workflow_dispatch",
+      "jobs": [
+        {
+          "job_id": 127610730460,
+          "name": "Sphinx docs to gh-pages",
+          "required_steps": [
+            "Build wheel",
+            "Install from wheel",
+            "Test import module (installed wheel)",
+            "Running the Sphinx to gh-pages Action"
+          ]
+        }
+      ],
+      "run_attempt": 1,
+      "run_id": 42132020733,
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "workflow": ".github/workflows/sphinx_docs_to_gh_pages.yaml"
+    },
+    "release_documentation": {
+      "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+      "event": "release",
+      "jobs": [
+        {
+          "job_id": 127594640652,
+          "name": "Sphinx docs to gh-pages",
+          "required_steps": [
+            "Build wheel",
+            "Install from wheel",
+            "Test import module (installed wheel)",
+            "Running the Sphinx to gh-pages Action"
+          ]
+        }
+      ],
+      "run_attempt": 1,
+      "run_id": 42127303380,
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "workflow": ".github/workflows/sphinx_docs_to_gh_pages.yaml"
+    },
+    "release_route": {
+      "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+      "event": "release",
+      "jobs": [
+        {
+          "job_id": 127594642915,
+          "name": "decision",
+          "required_steps": [
+            "Validate exact source, tag and committed route",
+            "Check exact candidate dependency routes before building"
+          ]
+        }
+      ],
+      "run_attempt": 1,
+      "run_id": 42127303934,
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "workflow": ".github/workflows/build_and_upload_conda_packages.yaml"
+    },
+    "zenodo": {
+      "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+      "event": "release",
+      "jobs": [
+        {
+          "job_id": 127594642866,
+          "name": "archival / verify",
+          "required_steps": [
+            "Probe public archival evidence once",
+            "Preserve sanitized evidence"
+          ]
+        }
+      ],
+      "run_attempt": 1,
+      "run_id": 42127303736,
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "workflow": ".github/workflows/verify_zenodo_releases.yaml"
+    }
+  },
+  "observed_at": "2026-11-06T00:27:35.030460+00:00",
+  "owner_handoffs": {
+    "consumer_receiving_owner": "Each consumer repository; package publication does not establish consumer adoption.",
+    "manifest": "devguide/evidence/release_0_17_1_receiving_20261105/handoff-manifest.json",
+    "publication_progress": "https://github.com/uibcdf/argdigest/issues/51#issuecomment-6672858473"
+  },
+  "promotion": {
+    "artifact": {
+      "digest": "sha256:b7c9f34e0ebab22785529dd2f08c130f1d201507586d085bc447284db15ce23c",
+      "id": 13463121434,
+      "name": "noarch-promotion-42127310186-1",
+      "size_in_bytes": 3306,
+      "workflow_run": {
+        "head_branch": "main",
+        "head_repository_id": 1088948514,
+        "head_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+        "id": 42127310186,
+        "repository_id": 1088948514
+      }
+    },
+    "receipts": {
+      "_temp/conda-promotion-receipt.json": {
+        "package": "uibcdf/argdigest/0.17.1/noarch/argdigest-0.17.1-py_0.tar.bz2",
+        "schema": "uibcdf.conda-promotion@1",
+        "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+        "source_label": "staging",
+        "status": "verified",
+        "target_label": "main"
+      },
+      "_temp/public-conda-BSbUnF3l.json": {
+        "checked_at": "2026-11-05T23:33:24.881854+00:00",
+        "files": [
+          {
+            "filename": "argdigest-0.17.1-py_0.tar.bz2",
+            "main_label": "verified",
+            "owner": "uibcdf",
+            "package": "argdigest",
+            "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+            "solver_index": "verified",
+            "subdir": "noarch",
+            "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.17.1-py_0.tar.bz2",
+            "version": "0.17.1"
+          }
+        ],
+        "schema": "molsyssuite.public-conda@1",
+        "state": "verified"
+      },
+      "argdigest/argdigest/noarch-installed-matrix.json": {
+        "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+        "checked_at": "2026-11-05T23:32:41.556032+00:00",
+        "jobs": [
+          {
+            "conclusion": "success",
+            "job_id": 127538545221,
+            "kind": "prepare",
+            "name": "installed / prepare"
+          },
+          {
+            "conclusion": "success",
+            "job_id": 127538679345,
+            "kind": "installed",
+            "name": "installed / osx-arm64 \u00b7 Python 3.11",
+            "platform": "osx-arm64",
+            "python": "3.11"
+          },
+          {
+            "conclusion": "success",
+            "job_id": 127538679368,
+            "kind": "installed",
+            "name": "installed / linux-64 \u00b7 Python 3.11",
+            "platform": "linux-64",
+            "python": "3.11"
+          },
+          {
+            "conclusion": "success",
+            "job_id": 127538679393,
+            "kind": "installed",
+            "name": "installed / linux-64 \u00b7 Python 3.13",
+            "platform": "linux-64",
+            "python": "3.13"
+          },
+          {
+            "conclusion": "success",
+            "job_id": 127538679457,
+            "kind": "installed",
+            "name": "installed / linux-64 \u00b7 Python 3.12",
+            "platform": "linux-64",
+            "python": "3.12"
+          },
+          {
+            "conclusion": "success",
+            "job_id": 127538679485,
+            "kind": "installed",
+            "name": "installed / osx-arm64 \u00b7 Python 3.14",
+            "platform": "osx-arm64",
+            "python": "3.14"
+          },
+          {
+            "conclusion": "success",
+            "job_id": 127538679493,
+            "kind": "installed",
+            "name": "installed / win-64 \u00b7 Python 3.13",
+            "platform": "win-64",
+            "python": "3.13"
+          },
+          {
+            "conclusion": "success",
+            "job_id": 127538679497,
+            "kind": "installed",
+            "name": "installed / osx-arm64 \u00b7 Python 3.13",
+            "platform": "osx-arm64",
+            "python": "3.13"
+          },
+          {
+            "conclusion": "success",
+            "job_id": 127538679501,
+            "kind": "installed",
+            "name": "installed / win-64 \u00b7 Python 3.14",
+            "platform": "win-64",
+            "python": "3.14"
+          },
+          {
+            "conclusion": "success",
+            "job_id": 127538679516,
+            "kind": "installed",
+            "name": "installed / win-64 \u00b7 Python 3.11",
+            "platform": "win-64",
+            "python": "3.11"
+          },
+          {
+            "conclusion": "success",
+            "job_id": 127538679545,
+            "kind": "installed",
+            "name": "installed / linux-64 \u00b7 Python 3.14",
+            "platform": "linux-64",
+            "python": "3.14"
+          },
+          {
+            "conclusion": "success",
+            "job_id": 127538679595,
+            "kind": "installed",
+            "name": "installed / win-64 \u00b7 Python 3.12",
+            "platform": "win-64",
+            "python": "3.12"
+          },
+          {
+            "conclusion": "success",
+            "job_id": 127538679603,
+            "kind": "installed",
+            "name": "installed / osx-arm64 \u00b7 Python 3.12",
+            "platform": "osx-arm64",
+            "python": "3.12"
+          }
+        ],
+        "repository": "uibcdf/argdigest",
+        "run_attempt": 1,
+        "run_id": 42111095969,
+        "schema": "molsyssuite.installed-matrix@1",
+        "state": "verified",
+        "title": "Installed argdigest-0.17.1-py_0.tar.bz2 5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+        "workflow": ".github/workflows/test_staged_conda_package.yaml"
+      },
+      "argdigest/argdigest/noarch-preflight.json": {
+        "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+        "checked_at": "2026-11-05T23:32:36.920941+00:00",
+        "checkout_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+        "decision_by": "Diego explicitly authorized preparing and publishing 0.17.1 after reviewing #50 on 2026-11-05 (uibcdf/argdigest#51). Preserve original 0.17.0 tag/file and all exact-candidate staged gates.",
+        "event": "workflow_dispatch",
+        "gates": [
+          {
+            "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+            "conclusion": "success",
+            "executed_jobs": {
+              "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+              "jobs": [
+                {
+                  "job_id": 127399364882,
+                  "name": "Full test on ubuntu-latest, Python 3.11",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399364829,
+                  "name": "Full test on ubuntu-latest, Python 3.12",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399365302,
+                  "name": "Full test on ubuntu-latest, Python 3.13",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399365097,
+                  "name": "Full test on ubuntu-latest, Python 3.14",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399364815,
+                  "name": "Full test on macos-latest, Python 3.11",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399365391,
+                  "name": "Full test on macos-latest, Python 3.12",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399365343,
+                  "name": "Full test on macos-latest, Python 3.13",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399366780,
+                  "name": "Full test on macos-latest, Python 3.14",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399364743,
+                  "name": "Full test on windows-latest, Python 3.11",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399365291,
+                  "name": "Full test on windows-latest, Python 3.12",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399365929,
+                  "name": "Full test on windows-latest, Python 3.13",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                },
+                {
+                  "job_id": 127399364633,
+                  "name": "Full test on windows-latest, Python 3.14",
+                  "required_steps": [
+                    "Run tests"
+                  ]
+                }
+              ],
+              "run_attempt": 1,
+              "run_id": 42071223440,
+              "schema": "molsyssuite.native-gate@1",
+              "state": "verified",
+              "workflow": ".github/workflows/CI_full_matrix.yaml"
+            },
+            "run_id": 42071223440,
+            "workflow": ".github/workflows/CI_full_matrix.yaml"
+          },
+          {
+            "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+            "conclusion": "success",
+            "executed_jobs": {
+              "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+              "jobs": [
+                {
+                  "job_id": 127398751436,
+                  "name": "Test on ubuntu-latest, Python 3.14",
+                  "required_steps": [
+                    "Build wheel",
+                    "Install from wheel",
+                    "Test import module (installed wheel)",
+                    "Run tests"
+                  ]
+                }
+              ],
+              "run_attempt": 1,
+              "run_id": 42070964461,
+              "schema": "molsyssuite.native-gate@1",
+              "state": "verified",
+              "workflow": ".github/workflows/CI.yaml"
+            },
+            "run_id": 42070964461,
+            "workflow": ".github/workflows/CI.yaml"
+          }
+        ],
+        "package": "argdigest",
+        "reason": "Qualify consumer call-shape/literal-keyword/optional-checker and digester-diagnostic corrections, SPDX/backend and publisher changes, with public SMonitor 0.22.1 nested-signal receiving, retained scientific fixtures and NumPy-free core compatibility before public visibility.",
+        "route": "staged",
+        "schema": "molsyssuite.conda-preflight@1",
+        "tag_sha": null,
+        "version": "0.17.1"
+      },
+      "argdigest/argdigest/noarch-promotion.json": {
+        "build_number": 0,
+        "filename": "argdigest-0.17.1-py_0.tar.bz2",
+        "package": "argdigest",
+        "profile": "{\"platforms\": [\"linux-64\", \"osx-arm64\", \"win-64\"], \"python_versions\": [\"3.11\", \"3.12\", \"3.13\", \"3.14\"], \"prepare_job\": \"installed / prepare\", \"required_steps\": [\"Install exact artifact\", \"Validate installed files\", \"Run installed tests\", \"Recheck installed provenance after scientific tests\"], \"job_template\": \"installed / {platform} \\u00b7 Python {python}\"}",
+        "route": "staged",
+        "title": "Installed argdigest-0.17.1-py_0.tar.bz2 5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+        "version": "0.17.1",
+        "workflow": ".github/workflows/test_staged_conda_package.yaml"
+      }
+    }
+  },
+  "public_archive_download": {
+    "bytes": 55828,
+    "identical_to_original_staging_file": true,
+    "observed_at": "2026-11-05T23:33:59.191289+00:00",
+    "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+    "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.17.1-py_0.tar.bz2"
+  },
+  "public_conda": {
+    "checked_at": "2026-11-05T23:33:55.389409+00:00",
+    "files": [
+      {
+        "filename": "argdigest-0.17.1-py_0.tar.bz2",
+        "main_label": "verified",
+        "owner": "uibcdf",
+        "package": "argdigest",
+        "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899",
+        "solver_index": "verified",
+        "subdir": "noarch",
+        "url": "https://conda.anaconda.org/uibcdf/noarch/argdigest-0.17.1-py_0.tar.bz2",
+        "version": "0.17.1"
+      }
+    ],
+    "schema": "molsyssuite.public-conda@1",
+    "state": "verified"
+  },
+  "public_pytest_summary": {
+    "nested_receiving_passed": 28,
+    "passed": 533,
+    "skipped": 1,
+    "tests": 534
+  },
+  "qualification_evidence": {
+    "path": "devguide/evidence/release_0_17_1_qualification_2026-11-05.json",
+    "sha256": "a327f15472010cf1a8e4a962eb0b8d738b0c71e755ffbd7c3d708195b53af9a1"
+  },
+  "receiving_manifest": "devguide/evidence/release_0_17_1_receiving_20261105/manifest.json",
+  "receiving_manifest_sha256": "7149b7bc520e3fff1f1bbc3b3d990efb900d718c736e949c76d7a90202849013",
+  "registry": {
+    "basename": "noarch/argdigest-0.17.1-py_0.tar.bz2",
+    "labels": [
+      "staging",
+      "main"
+    ],
+    "sha256": "5af09e12b0c3d344337f2a2d90ac8b5fcea5be8a8467694c41e3daac018c3899"
+  },
+  "release": {
+    "draft": false,
+    "html_url": "https://github.com/uibcdf/argdigest/releases/tag/0.17.1",
+    "id": 435864770,
+    "name": "0.17.1",
+    "prerelease": false,
+    "published_at": "2026-11-05T23:08:36Z",
+    "tag_name": "0.17.1",
+    "target_commitish": "c9c9ee623dab5331fdfa4227bd784dd38620e18b"
+  },
+  "release_event_build": "intentionally skipped for the committed staged route",
+  "remaining_closeout": [
+    "verify Pages deployment for rendered notes from original documentation source and applicable latest-head CI",
+    "archive the release report and close owning issue #51",
+    "remove retained task-local SDK/venv/proof namespace"
+  ],
+  "repository": "uibcdf/argdigest",
+  "resource_retirement": {
+    "conda_prefixes_removed": 3,
+    "qualification_branch": "deleted with exact original-SHA lease; public tag remains unchanged",
+    "receipt": "devguide/evidence/release_0_17_1_receiving_20261105/resource-retirement.json",
+    "remaining": "Task-local SDK/venv and small proof/script namespace retained until final documentation/CI closeout.",
+    "shared_development_environment_modified": false
+  },
+  "schema": "argdigest.public-release@1",
+  "state": "public-package-verified",
+  "tag": {
+    "commit_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+    "object_sha": "448c09f038e0268c756ac7846cee99e68ce27a68",
+    "ref": "refs/tags/0.17.1",
+    "type": "tag"
+  },
+  "version": "0.17.1",
+  "zenodo": {
+    "all_files_identical": true,
+    "archive_coverage": "source-snapshot only; not Conda package archival",
+    "candidate_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+    "concept_doi": "10.5281/zenodo.22892325",
+    "file": {
+      "bytes": 691522,
+      "checksum": "md5:d21182b2640bcb754ec36325958d24b3",
+      "key": "uibcdf/argdigest-0.17.1.zip",
+      "sha256": "267d860376ca5777bc947073d897bbfd981ea9eb878598fbe145c1c968458f26",
+      "url": "https://zenodo.org/api/records/23991088/files/uibcdf/argdigest-0.17.1.zip/content"
+    },
+    "file_sha256": {
+      ".codecov.yml": "167515c92906c29c4a847cbaa241f94e333e3fd28b15ab4c6eb9a122e9ae4155",
+      ".coveragerc": "e99c9c6b7327f0d77c0bcdf75779d60d3f28a631192e75b0d99f1d5a76871d13",
+      ".github/CONTRIBUTING.md": "5f1a3c7451be5d2c751b1024b9be1489fe676e91235fcf467d5850bd1e13286f",
+      ".github/PULL_REQUEST_TEMPLATE.md": "68f151e2c2a8a690a8e9daa736c2f8c1552652d41454564bc966633b0d2fe7ed",
+      ".github/gh-run-receptor.yaml": "d272478f5ef26c9a75df42d96d02cf66f2e4f7f95b9e8b3dfa2ca81d444b2c27",
+      ".github/workflows/CI.yaml": "5ca6104a4741fb157e33f15b4d8f4426bb665666c0a92bf249f7ddeee157cbee",
+      ".github/workflows/CI_full_matrix.yaml": "d0fe9cbb4c33a7318ff2c0ed17838e3b2feedae1e5226a51e8db8239fc2190b5",
+      ".github/workflows/build_and_upload_conda_packages.yaml": "2934db6bd0b7e5f402680659b79bc2be6a379b90832060a62b7c76fe2cbf4dc4",
+      ".github/workflows/conda-publication-policy.yml": "9c1cec90c6400c92e829e29556628a9ecdd4a97bfb7c2751d1df5d36eb37823b",
+      ".github/workflows/molsyssuite-policy.yml": "6cc62208156f765ca0456e3bc5f398934263e03afc7063c69afa692c5dafdffd",
+      ".github/workflows/promote_conda_package.yaml": "e67c0514edb000c370f23167cb0719ff958a28e9d14ecde4cb86911f1f4fd7d3",
+      ".github/workflows/python314_feasibility.yaml": "90244153f1fddcba206a0be34507d61e3c51e04f3114a951459fd31b93e25591",
+      ".github/workflows/sphinx_docs_to_gh_pages.yaml": "b10713fc0345488d605cb320c4f194845bc46ace8c8863b66733b547a70bac3f",
+      ".github/workflows/test_staged_conda_package.yaml": "6af3779b151a6d18626ea5bae35fcf53d2464530cd703954e7b10ebedacc1dd9",
+      ".github/workflows/test_staged_core_conda_package.yaml": "bd13d4b6a0e2b66bed8620ad4ddd580650f7c86a537d643fb82cfa5dc276b6ea",
+      ".github/workflows/verify_zenodo_releases.yaml": "58c77fcc3da6d6a3a3add861f276e7a4f211bce42c765f49d1c0ab678db8c348",
+      ".gitignore": "7224dae52fe39478ebd1ae62b8d782d3b9e642af573d45b8c3e7fdc6688608d9",
+      "AGENTS.md": "e758870d93a329e9963de666647575144325d153b73e24de1f89b4ba7942705e",
+      "ARG_DIGEST_AGENTS.md": "b6ccde0f05cddf571b5d903d41f237eda4424537d295439df9ef70c8f41c0987",
+      "CITATION.cff": "126663c914e4913a896381542200ccd7ef7e6954af8b0f5e43653fcc39679f70",
+      "DEPDIGEST_GUIDE.md": "f09328b84dfbfb0a51e2970c9f6c2b8b48d61e238cd4920637de629de261be55",
+      "GH_RUN_RECEPTOR_GUIDE.md": "e47b04cc90e96ab4039aa9a3b5a8be5025b48574b2636cb19f22c05543ca4ae2",
+      "LICENSE": "89774af33c83f6ac673838d2621666d25f65b18f6d15fd67a04004901bd90b01",
+      "MOLSYSSUITE_GUIDE.md": "850a98f0757a18734b328332c88e4622f60bdef097148a1fd59b9f009846bfe4",
+      "PYTEST_RECEPTOR_GUIDE.md": "edc16aef94ed06b7770b60e6bcda4fc5c2c468bf86a59ded93f41ec67dbce383",
+      "README.md": "3bb3f79f5c801a6ae2d2dfd55e586fdfa8c04a6eefd7159b6dd61f4b49b73d9a",
+      "SMONITOR_GUIDE.md": "ce5afd02d563edd80bc4b5696fe3e51e00bd2c7343d6ca77309e2881fdfb2d8a",
+      "SPEC.md": "b2b621a530dc1afb126aff385b9be7c44512380e6bbed9b296816096612e2a92",
+      "argdigest/__init__.py": "07518ec0f8d53c99d67f40aa76dc1a9f021ab659fc97ee4eb24a2e325e4feaee",
+      "argdigest/_depdigest.py": "e3eede5f993fd789c55068769ec794e771fb7b233fa7e10df2f0439a8d531cd9",
+      "argdigest/_private/smonitor/__init__.py": "3a7c8e505add1e4a4ff8fdb866c97edd043b830f6b7a59f768abd829ee419632",
+      "argdigest/_private/smonitor/catalog.py": "cc19ca5175cfae824f0ac0c0d5a565d4971a6067304b585d049cefb448e4c52f",
+      "argdigest/_private/smonitor/emitter.py": "ed30989f4ebe8cf69720a9e01da83b4ae8d44aef6abbdf3dbeba253084566dac",
+      "argdigest/_private/smonitor/meta.py": "2b5313a344e848dcddeb2181d8e352664b77c0d02b5c421fb4726767b15ae81f",
+      "argdigest/_smonitor.py": "8c64a540b48708d6b2cff8bb49ff05465c44be5cdc3b4511f40b514796b0d37d",
+      "argdigest/cli.py": "f6e45b3cd57e83c7070b44b1a12abee6279ce80c55fd86a22c2754f04156e765",
+      "argdigest/config.py": "1e06c210d8cb24a6298e03961f5ad9a1a7eda56d5e473e8f2c791c0484e1ea38",
+      "argdigest/contrib/__init__.py": "780dc788fb0ee7e7d9273c45992a3568176dc0ef168dccce12a3e236c3f5cf75",
+      "argdigest/contrib/beartype_support.py": "a18088bc90a02f56e44c5e5b5ad96da346d136baec861dacb739c6f86273acd2",
+      "argdigest/contrib/pydantic_support.py": "e52140c341096d5ad04fc056a2dccb39c4f368138758d2e6086a9ef9bee8df71",
+      "argdigest/contrib/pyunitwizard_support.py": "8c7f896ed03cc72735ed1a4faa577b8705e52be43d859f278e7ec423dfce5922",
+      "argdigest/core/__init__.py": "fde4100e15ab833df34916a47a36a19a9c21925b6042ee93328afb270f835fca",
+      "argdigest/core/agent_docs.py": "0dd99f2de399f8872462f607cc7dc333bf9b2461c0e9169d59dffb3df2994233",
+      "argdigest/core/argument_loader.py": "cb45b08e78282b98408e7d43fb004db2b2585003aadd074c7de1ef585b6f6dff",
+      "argdigest/core/argument_registry.py": "b2698707760710bd5e103350f2a761f96b4d0178eb4d7f2b02fe03e55f3ea3bf",
+      "argdigest/core/caller.py": "e44f21438bfe955f185452526f05d224723bf8c7bb07d13a1c02f3210a3c041f",
+      "argdigest/core/config.py": "c076a2d37790e23f86eacef52680c2cdab179a849b2139beb40cfa220e9f892f",
+      "argdigest/core/context.py": "04ce1ef61eed153411c9a83d388899de1886f6f561be406373a6b112e639b81c",
+      "argdigest/core/decorator.py": "22245562426702ba235c52b3701faafdcafdec7a7acce133a967075fe71eeac0",
+      "argdigest/core/diagnostics.py": "aaf2b4bf15562206d9c4ed16d2f3075214669948fb2523d6b6007698f339ed32",
+      "argdigest/core/errors.py": "4c1fecd036a134b84c58edbb825dfedb5233ca0ee42d4daedae8e36aa92e635a",
+      "argdigest/core/errors_base.py": "bd1a04038e7e9fb50ce422291ae61e2f4cc1bac04342ab0f0230a6ef8b12247b",
+      "argdigest/core/function_contract.py": "e25f37ee180f650b596b4d61f84ed1c93191cb5ab5837afed78945a3586536fb",
+      "argdigest/core/function_loader.py": "3970949c2553a706b617380e8601cf97113f1b13837c8de1f1abb613838014b1",
+      "argdigest/core/health.py": "edbb0c304f137455ab31ab33c8d3f21e84d89446c258c8060c6b559cc24a92b7",
+      "argdigest/core/logger.py": "2fc318cb37f9c9863e809b51d516b5de6fc340cd6f962e9688484fe71f35a65b",
+      "argdigest/core/normalization.py": "a90fd2015dc38cc630e8de24c13de8a01b65afd3a9d67e01bbe9f5e88f804f49",
+      "argdigest/core/registry.py": "3a8a81354ce299e4795d105441e0d029b2bf93a636c1c94f01adda1d2b19e48a",
+      "argdigest/core/utils.py": "7a44ee503b9b416407a0406c0c992bc2cf0f257761937ee74e6656574c8f3a35",
+      "argdigest/diagnostics.py": "2ab1c77c7832f2b62161b8da57b228b12b89e7a667c6973d19ec8b9e041c2559",
+      "argdigest/pipelines/__init__.py": "0d9efba3909e8afac995b4b260756d48321a2d02a7968f49d388672ad3694d1b",
+      "argdigest/pipelines/base.py": "20c07d367c9d121a07c77105127f5a950cced551aa77e65f5f2e80261b3de045",
+      "argdigest/pipelines/coercers.py": "83e3bffbb67474633c15f88420215110dd25e1bd9db9d9a148b1b352e8fb01d8",
+      "argdigest/pipelines/data.py": "c0132959ab06f447f2f5d202e5b1ddf0dc50efaa392d3470d5c1fa0b942f0521",
+      "argdigest/pipelines/science.py": "f5ce2af693b9b9e714c0145c1601b4b2c2223efaa3fe0f3469c21883306bb464",
+      "argdigest/pipelines/validators.py": "5b844a9bce602f734aafcf28bd671ccc53571ba3ba8dd4f54acc20b31c162f52",
+      "devguide/0.10.0_release_notes_draft.md": "6f2a2e1937cd60576832b25189e6c39c8c23fbae6dc0bb8b8b552a249e336eb5",
+      "devguide/0.12.0_release_notes_draft.md": "23a7d0d90929732d0a6b44a665a97ec4cfddf17c3cd621a63bdd1d63550f728e",
+      "devguide/0.12.1_release_notes_draft.md": "afacef258fc5e0c4a9288dbee619862fcaaa4081b43b67065b159cb9dfdff325",
+      "devguide/0.13.0_release_notes_draft.md": "3f584fdc5508684ff52184ce243965013fd773f42b9972cdabc67349a30b075f",
+      "devguide/0.14.0_release_notes_draft.md": "2cb68a500977a54074e9684f6ff7f0b22cc00fe3a1f0a51c63365b7ecf98eade",
+      "devguide/0.15.0_release_notes_draft.md": "7840a4749229c2eb196d03554457f56f8d5f4f82274bc844e455bc778bce0f2c",
+      "devguide/0.16.0_release_notes_draft.md": "ca5240688768ead89697f4d5a48ff05d6ecf60f75bd7442891441dd073c60f3f",
+      "devguide/0.17.0_release_notes_draft.md": "ac50b6269b20e715fdf3044ce8dd77e92a72e9df212d6971d0a47ff5b9695439",
+      "devguide/0.17.1_release_notes_draft.md": "6eca0edf5ac455684ee25ebd2eeb8bfe4298b6457d4a20b88f6a7e8e42e4104e",
+      "devguide/0.6.x_checklist.md": "08b871d6bb8c2bfe05319603906b9a4f4ca49768d83b9fc606b0b60cf00a2803",
+      "devguide/0.7.x_checklist.md": "f4b64e1342c619548aadf8d6ecea7bb7f91d1ed87339076f2aca74b65683a961",
+      "devguide/0.8.0_release_notes_draft.md": "e69a392ebaad70d56bad21f0ff3d7f7458bd214a6bd5eab89851842d25e72fb5",
+      "devguide/0.8.x_checklist.md": "deee88995879cc72da006a28a3c3f5d6aa8cf181ee988c85a0e08b5ad88db4f2",
+      "devguide/0.9.0_release_notes_draft.md": "c16e8a2e5139221db48b58f99984bfa3f65673d6d419bc265429db953eca5a33",
+      "devguide/0.9.1_release_notes_draft.md": "a5d9c6879a8fed4b7368d2e014e9ae249da9c357eb692e8499c2e7d0630ca1d1",
+      "devguide/0.9.2_release_notes_draft.md": "7095a43a0e733358e1120449a97b2e7f264450d65027516fa5e345d68abe8bdf",
+      "devguide/0.9.x_checklist.md": "521518bdef168ae3aaa89e14a2631442b9e630e0b923a7b2d574eb667c46c47c",
+      "devguide/1.0.0_checklist.md": "22b7cea031935e1a138f702d1ca2d7f7cb7a5f28da4fe03347a89d07726de408",
+      "devguide/1.0.0_go_no_go_pack.md": "13730229c4d6c5f38199d441a167247baece7ff66e218ecea9a9c5cf14feade4",
+      "devguide/1.0.0_release_notes_and_migration_summary.md": "c98ee6ab96a7b26a29ddb57d9739daadfffa0aa156955de74d90d47e7b299d1d",
+      "devguide/AGENTS.md": "ecdf3663f3b1a6d1ea5e7acee3fbccd559af3f5bf361f090db7c975591e2d326",
+      "devguide/DEVELOPER_GUIDE.md": "edd8d48d30b07463c1127c2e75345115378025e6140f9c571b37b13da6d479a1",
+      "devguide/ROADMAP.md": "0f68bdb4563478f87d6f115407f7dafd21b605ad829f7073f8cd092e3d67c52a",
+      "devguide/archive/README.md": "55d2648de976171512be85f90a414f47b73c1d02ec6020b60a6dcda0958d3393",
+      "devguide/archive/withdrawn_proposals/README.md": "99dd7c094daa4a0d5afc88a565d95be9b4ed680e3e0271c532ecb1d7b91cf098",
+      "devguide/archive/withdrawn_proposals/caching_and_skip_digestion.md": "362805f4c1227cdd30bdbe54a673efd5fe95826d3d8ca94fca52482c829f9806",
+      "devguide/archive/withdrawn_proposals/selective_bridge_validator.md": "76b26e190c07b8bd0f3edb5abb26b6105ee5df7d170aef07a96c55d19d099b6c",
+      "devguide/collective_evidence_pack.md": "52eb40d62fa380b703e8c4117b5bf004ac701a8718c9038e79bd5a2042966345",
+      "devguide/completed_proposals/adopt_molsyssuite_policy_v1.md": "e5e293d92814cd388b23e2d1828a714f651b78120175f93ffc707873df42eb76",
+      "devguide/completed_proposals/adopt_shared_reporting_lifecycle.md": "e65bd289be0533159044385aada2a278f0612af38efa21950c27403ffa76f196",
+      "devguide/completed_proposals/complete_distribution_adoption.md": "7a7517520e83e8fc0b7088d39819b7c1bc0dc539c39f184cca7696869239ef19",
+      "devguide/completed_proposals/conda_provider_v2_3_review.md": "69a5777ca922dc622b5fb060ae76689803497f1c5aa38e2c6d34e984e4c6cae5",
+      "devguide/completed_proposals/declared_contract_owner.md": "da4e11c8ef1f6d65bbde05479138629d9bd99b132ddafcaaaa4d5c90fbb94dd1",
+      "devguide/completed_proposals/expand_python_support_to_3_14.md": "a0d1edd443a645501fe503575443d98112e922f474576f14e3ef3a7d6cfe8999",
+      "devguide/completed_proposals/explicit_argument_digestion.md": "69702e310639adac6ad3d66ef1de0178ded827315b864425a5699f7a572f3e6d",
+      "devguide/completed_proposals/license_metadata_build_review.md": "7603c000ef276212ef2a42f6209e32e8b3a0384214ec4156936088bde876fd32",
+      "devguide/completed_proposals/receive_smonitor_nested_signal_fix.md": "7e06c99fc7489dba88cfb0e33d80fa4a9ac30779ac03cfc7e25572a36edb52d0",
+      "devguide/completed_proposals/registration_only_diagnostics.md": "1b1ba4520db1bb69e65b0e319c1434fd1c4914ccc157969fa6e351097e513b60",
+      "devguide/completed_proposals/release_0_14_0.md": "e543bbd45e0c638f2b1f57272c8829548ba8b98d8ced3d678d43f02b2df0c9d4",
+      "devguide/completed_proposals/release_0_15_0.md": "1f52368e72415423300d6dd1d1d400cd01c2ebe8f23b14a9e27332c952a56c3d",
+      "devguide/completed_proposals/release_0_16_0.md": "9239cf68c89a07e371d38ca67d6be2a311952abae405f4e9b84651f18790c08c",
+      "devguide/completed_proposals/release_0_17_0.md": "19c93a924756127843af00b0b707662975c0583edc60881a2c5b81072b894e4b",
+      "devguide/completed_proposals/review_inherited_python_ecosystem_policy.md": "67638c3bb779ecdfa626cbea0bfade0124c916f941f257c206bd0eb22d8c8942",
+      "devguide/completed_proposals/runtime_dependency_bounds_review.md": "b2b89c88b8624bf7f366a9dd21695ed11641414253525681535b6449cd5f959b",
+      "devguide/completed_proposals/scoped_metadata_only_diagnostics.md": "998440743fbd172e7f04f5554898ae9c50bd1a41ea53f9092d03fde28e02f654",
+      "devguide/completed_proposals/temporary_resource_review.md": "80b478b1aad4c9aad5fd303451ec0478401e06722eefbe20bc8dfee682ec8096",
+      "devguide/completed_proposals/typeerror_compatible_call_shapes.md": "258b30f984b18dc9c2254b316a9d0165b77115018a3fa33afe3dd485b774fbb0",
+      "devguide/conda_release_routes.md": "c56c4def1317ccf97bb6ad3a87a0aa27d254781323691ff3e12380783cecc2da",
+      "devguide/evidence/issue50_20261105.json": "0ef6ef05f4633b67185b86071e50b196e505b70401b8d28d551ddd1ef46b28fe",
+      "devguide/evidence/issue53_20261105.json": "539be405a610af76332894abd9633f010b667e05e27387eb2e1e28e34956717b",
+      "devguide/evidence/issue_43_48_source_review_20261104.json": "0bfe031c49dac2148cecb67050e442174225a4b1de8c41e5874f8b2446ed3486",
+      "devguide/evidence/registration_only_final_review_2026-10-14.json": "b37aed2e3e0b28ee1f352f8651b3a4affbed6a49399c0094150338ab7e113baa",
+      "devguide/evidence/registration_only_receiving_2026-10-14.json": "8390bd1e6edaf080baadb640fe82efa04d41a6c7783dce1533f621108de9696c",
+      "devguide/evidence/release_0_15_0_2026-10-06.json": "f83e8c4c30364f3340540194b4f98ae1b574687e134322410abf283b96f255b0",
+      "devguide/evidence/release_0_16_0_public_receiving_2026-10-20.json": "ab6576953ab778a73a4947d845c8b4d5dbbcacd53afd68a100c1a42a88bd912b",
+      "devguide/evidence/release_0_17_0_publication_2026-10-22.json": "bdd3c7ab614a4b17eb672552ebec3344e8fc0b6747cc12d362fc0e031e991594",
+      "devguide/evidence/release_0_17_0_qualification_2026-10-22.json": "df7dd6c948a980152a06623869b684ad89afbf2af98146b8e268abaa30ed911b",
+      "devguide/evidence/resource_review_33_2026_10_13.json": "7385423ded609561f5571c056b74cab3eb3848f453d16d61cc1f9d77355478ec",
+      "devguide/evidence/smonitor49_source_receiving_20261104.json": "5f22b458408e00c969c40908df9b4d4d6bb61642981e415dbd5f7f873be013f2",
+      "devguide/evidence/smonitor_0_22_1_receiving_20261105/receipt.json": "dd365c73cf7c6830e4a3d43c9379507b15046d834d03363aaf4797b223f6a4dd",
+      "devguide/evidence/smonitor_0_22_1_receiving_20261105/run_receiving.py.txt": "88417d5c63b72190e79448de2964836f569b25b3b8fb3e949fc939aea0f1199c",
+      "devguide/index.md": "be11e0809eb97061b9ce08a618d661cf5d62693ce32f3b3f96478e4960665d23",
+      "devguide/notes_dev.md": "4f4abe2ebf4a2cd1e7bce59d4114819f7a89250686b546a9b60fa0d310df298f",
+      "devguide/pending_bugs/README.md": "68942dfe0f49afd1fc904007e37c2930585605e9340bc40a640e1a40d6cd9187",
+      "devguide/pending_proposals/README.md": "ab8160490dfa0c7bf2f827fb4897317054b84ef5933b03db7132749f1b8ac77f",
+      "devguide/pending_proposals/build_stubs_compiler.md": "7cadaab279b8a268690422574e49fe242d2df84d9d46b86760f525bbaeb813d6",
+      "devguide/pending_proposals/release_0_17_1.md": "46e486a39373ab926bad285cb582c85734a1648caa07abb6ce1c3efd7890696e",
+      "devguide/pending_proposals/value_certification/README.md": "c68d1709496c1d5c5432b761c3b0df822fc7f612be345f73e3afaaeb3a23aa73",
+      "devguide/pending_proposals/value_certification/canonical.py": "2af5b504e06a755933194d52a8049653f95d02f1ce81e1cc459aa380c8ae6a51",
+      "devguide/pending_proposals/value_certification/test_canonical.py": "dd907ad17825ce846d80b14bafcb27ed17df89031fab9dd4800e657cbac89b7a",
+      "devguide/release_titles.md": "63c28bb6c16f5da22c0c60474b792e6f09a5659e0d82db5ff50e64c8898b1ce6",
+      "devguide/reporting_protocol.md": "e8985e2caf8343f31d9667b25f2ed55629426872b71fce9d9077f9bbaceecbba",
+      "devguide/resource_lifecycle_review.md": "de9e69fd887b94ae19ad6696537a25dcc11966d4ae1801edd4f5c5c65248a66b",
+      "devguide/smonitor.md": "daba4b57b81b41065e87ce25778234aeeb7303bf2aab8eb83883a8e36f2421c9",
+      "devguide/solved_bugs/alias_and_canonical_keywords_collide_silently.md": "7019e85c19521c2ca432ff4e771f305d9688585331356e393dca4f70d9e6b9eb",
+      "devguide/solved_bugs/ambiguous_consumer_digester_diagnostic.md": "c79ea389d1c5d49cf5f97c39b0706999b60753f44a3e86846ff1f56132ead97e",
+      "devguide/solved_bugs/argument_digestion_retains_arguments_in_recursive_closure_cycles.md": "104486bed2ccd54f3eb93ca451bdc836dfabc2478e813ba00d33c4b1693b8c84",
+      "devguide/solved_bugs/classmethod_receiver_is_digested.md": "812eb1b8ce1cf65949b69b5ae410c8e6af22b625052df00a320b7290694d9552",
+      "devguide/solved_bugs/contract_refusal_hides_cause_and_allowed_arguments.md": "1c231ece78d08d70f5fd543ce8e852fad5b02283f4d0a88734de8bb57ba1cf70",
+      "devguide/solved_bugs/eager_digester_identity_lookup.md": "4a917add4242f54dfd59520bd3fc5edc053183a5e02ccff112214eda60e9c0ad",
+      "devguide/solved_bugs/literal_var_keyword_expanded_twice.md": "8eac7f635fe9853f7c70d6addcdff2c81c0fd7f902d595d9953630a790828ffc",
+      "devguide/solved_bugs/method_caller_omits_runtime_class.md": "d634d9a4dc6b3624f8c346c64a1d6f411ee319e65fc0971e69b24b7986bad8f1",
+      "devguide/solved_bugs/normalization_loses_supplied_argument_identity.md": "cd77ba9e8bb0416e61ab7aea271ffc82e1e020a2e5e837e0b72d6d6ca1edd60e",
+      "devguide/solved_bugs/numpy_loaded_by_non_scientific_consumers.md": "09b39047304c4e9de1895dc7302beeee19722777bd30dd3d152cd99941992da8",
+      "devguide/solved_bugs/optional_typecheck_emits_required_error.md": "cbc430ee39389258773445e1a5c511d7a64c8a4f4e80ada7bf70d0cdc1867a95",
+      "devguide/solved_bugs/pr_ci_can_be_skipped_and_direct_push_debt_is_unchecked.md": "70667f6371640b0fc0bd5da687bb654df0a0798fc778c806094b6b4336966964",
+      "devguide/solved_bugs/pyunitwizard_adapter_imports_provider_before_use.md": "ea3540794d44ca6172f88b0f309aa8dc97e017f643a77735845b8770ace34a96",
+      "devguide/solved_bugs/receptor_misclassifies_composite_conda_publication.md": "599ef817eddb2b5444b94faf0b2b809e21ef29ce0663eb9b054dd5f282c1676c",
+      "devguide/solved_bugs/staticmethod_descriptor_is_lost.md": "5c0f7d5d1d4815edf2e78f6b9f472c2289dd8d44a74eacc337692ffd72a87368",
+      "devguide/solved_bugs/the_passport_is_two_classes_and_admits_too_much.md": "c76667f510d0b289e95ecc1b967b373ace210c21ea6bc3c5d6a93a9272b3bad6",
+      "devguide/solved_bugs/truthy_skip_digestion_bypasses_validation.md": "e614ac0d36c5f7d5af6a7ca8e18e5206a492cf8f8332d93e498705502a7f0e00",
+      "devguide/solved_bugs/var_positional_arguments_are_lost.md": "4d7bdb91cf455048bf34979bdceb0f91b78ae993af60ee141911d22741cf45ca",
+      "devguide/solved_bugs/warnings_inside_decorated_functions_point_to_wrapper.md": "d3da9a9d362d1dd88aa304e9f08726fa1d67d505c6db013eabfe4228fc5d9800",
+      "devguide/templates/report.md": "c3d74efe4cefcff7247b08b2f3645b695152cb9a48736e7695b2e7cf076d52c0",
+      "devtools/README.md": "685a6d1644554759a8e2f1bfa249ecc6611ab9c6cc7c7f605085f8b72d116253",
+      "devtools/ci_backlog.py": "51d53c3bbbde23756e06f0e6819e5fe48c6422edb1f6caa304376c6fb9872344",
+      "devtools/conda-build/build.sh": "013bf2bf5e0eaaaf6565ceed5dd0d1eb8f4bd943b166d7b3237bec2993fa5557",
+      "devtools/conda-build/core_runtime_probe.py": "4a5400061a9c4cd93bc0d9910e3e3cf4469cc02d727dd4c750f341bf66dcb85e",
+      "devtools/conda-build/freeze_project_version.py": "dd6ca6d48e464be76bec06becb194d209a78a4bc4928168c4c5ddbd1553be2c5",
+      "devtools/conda-build/meta.yaml": "a00f496974b89a1419a7e3807bcaa596b3ec622181ad195c2d7c9fee43f10093",
+      "devtools/conda-build/release_plan.toml": "5ce859d6e538d4ae2d4dc89e9d7d334ecd6a3023b6d2fe55aebf37ebffd495f8",
+      "devtools/conda-build/release_route.py": "8a3fbdabddefd792467a461014e9a4199087baff290f3b9a9deafb60b6f576b5",
+      "devtools/conda-build/resources.toml": "b6d1c09e19dde1e80e4d176d6937c891b68266fa118d3632644fa46ae833767d",
+      "devtools/conda-build/verify_core_release.py": "9a2f78d29858bf48e06e4b0124b36148fcd8638d179dc29ced94660084085f08",
+      "devtools/conda-build/verify_staged_install.py": "168a548798d054824400b424979756964bac936ff68c2bc617398ff97325a453",
+      "devtools/conda-envs/build_env.yaml": "e441886e31cdd138654bd958a54f89d50ceebe67d38e059b59efae3aada0c1c9",
+      "devtools/conda-envs/development_env.yaml": "e23586d613da6e96ae49f126e28ade83cb1d3330ce3f2ea2e35e9b964ddcb6e8",
+      "devtools/conda-envs/docs_env.yaml": "93cf41cf457c7ca778df260ea57eee535e284023d5cdd32a536e2a9e8e23c657",
+      "devtools/conda-envs/test_env.yaml": "079364c7b9029c3f305961914471a796f1b332f5eee7329c247bfb916b53d28d",
+      "devtools/conda-envs/test_env_core.yaml": "9a2835c55d0b4abd2916a8a04e06507c085942846a84a5bc5838a96ecfb02765",
+      "devtools/dependency_routes.toml": "8990d3f228cc3bb3d6500233b9f068885f973250e49da359389c6e503d4d74a7",
+      "devtools/devguide_index.py": "b250b88b24177a19afb894bfd51a2a506834f2a832f255265ef15ec9dc808238",
+      "devtools/devguide_reports.py": "3bca6d8c8039cf02dc2adc2d1200c2cc89424cffa1ae3fccd7232be7fc1d1c06",
+      "devtools/tests/receive_smonitor_nested_signals.py": "5e61b0d86b839b6c42e9885270df6305ff7395227f1f7a22171e250183fa7b23",
+      "docs/Makefile": "68e2a5518cf74ed1f3479886ac7e743b08f8ebd9543c7cc2f82daf37794122d4",
+      "docs/_static/custom.css": "a8d47dc737148634f4531757ec358007765dbba2a2be4c72025ea05adf998bbe",
+      "docs/_static/favicon-124x124.png": "2d6c6724413b4b49f6cea5572e1b4e25c60390ea6caf3882c11978388a8aedd7",
+      "docs/_static/favicon-128x128.png": "b6825f4f90710e801f89a15e2acb962a285caed1ed94177b9483626b058d45e6",
+      "docs/_static/favicon-16x16.png": "7348f77306902b4132f3f2fb4a44ebc590121db06917fdd4064b8e3f4a108948",
+      "docs/_static/favicon-192x192.png": "b367940a940556cf29b423a5da64d601d2edff2858f562d8a433fa023cc62f60",
+      "docs/_static/icon.svg": "b5c0ec20ab8597fca4e357cbdf5f4e3a1527d7df7a0dbc47191e22442c6aae7a",
+      "docs/_static/logo.svg": "5e85c978e25f67760ad4528d8682896d12d4fbde906720e272e986fb80a4713d",
+      "docs/_static/sphinx_tabs.css": "faf7f5b5f7896d711550cf1c5d39d3ab92f897acadaa0febb794733f859cf1a4",
+      "docs/_templates/README.md": "cba748f964e9e1a9a8100186d9e0ec6a4ab5ff178375abcffc07e81dbcd8cba9",
+      "docs/_templates/copyright.html": "d50d63bd750625463c5929b25019b8abeb61d5410f8679cc0de0d177f1ec555b",
+      "docs/_templates/layout.html": "3657ef48c01a02a03a774d3cb984c3d56704d57d3cd4fda6d7d3d0a74b92ebbf",
+      "docs/_templates/sphinx-version.html": "6d1cbd3ab155a15a6411e944bd2a10b195f9c7b0ec7063e80250f085609d2729",
+      "docs/_templates/theme-version.html": "19596dd3f73ef0f54a64efcb58a17958c8571775485c6020ac4b8ae77c271ba4",
+      "docs/api/index.md": "1a9005df2e50276bdae7a5d9d8149f8707369c27b5c3aaa3275cbaccf73aace2",
+      "docs/conf.py": "e1ad6162221cd508374b6c584fb0ed177f88e157ab62123e41df0820596809ff",
+      "docs/content/about/citation.md": "0184b01d1a7a0ae54f2835b28aadc17102e80702737cb926e75b8bc83f23fdb0",
+      "docs/content/about/index.md": "284e066a85b65325757614a233c9201337ad3b8914d0f2668d7f157d3a780e79",
+      "docs/content/about/installation.md": "752803dab6ba158864e4c542505bb981814d01fd63438f34b12428c1e176cb51",
+      "docs/content/about/release-notes.md": "856b1759608231bb56406cd6e2f9835355dbd68db19b883faaebf1f3ac170069",
+      "docs/content/about/what_is_argdigest.md": "aeb35dbfbe47caa09a258ae284c8a97ac4815d5c97122054eaa7fa3dd97b74a0",
+      "docs/content/about/who_is_behind.md": "89d2dab79256cf1b3260d7db8e4bd640417a69305533323b3e878377631b0710",
+      "docs/content/developer/ai_agent_templates/decorator_style.md": "4b52b0e6be542dc342a235b62189df30a53def2b4cf7207ec214ae868e98d75c",
+      "docs/content/developer/ai_agent_templates/index.md": "1a0ef2ed8cfa9b4baafd6f92e0247b54f9290841a577f3a4e07909952657d23d",
+      "docs/content/developer/ai_agent_templates/mixed_style.md": "57da552ea6609b53b2be325c5f4f0048daf6397f4e2a69ac9d755bb231c34277",
+      "docs/content/developer/ai_agent_templates/package_style.md": "d6bcae085ecce7ae550da8c559f795e5f1c0ee817f019874c73103663c76396b",
+      "docs/content/developer/ai_agent_templates/registry_style.md": "e569f0e901683e48833f05e6d503e3e330c9664c264e0445f785907de7514db1",
+      "docs/content/developer/api-stability.md": "b380fe10494ceb0e2fcf991a1d22ea556d1de8c0a2a2d590e5752a77fde63e29",
+      "docs/content/developer/architecture.md": "cd34d90a208f8bba4526340aacb333b46e4f7332b12503db3d5a8907c94332d8",
+      "docs/content/developer/compatibility-matrix.md": "c9e4f7f54b728de594f9d93ba7c65eaf0741496fdc5aa34e8635416eefe22b6c",
+      "docs/content/developer/contributing-workflow.md": "c34d3103e246e4ded23b2b3561211dc758697cfe5bc7d3f188114c85acca9a11",
+      "docs/content/developer/contributing.md": "eaa022366d77c83d035f01074d406a7815bf7cc576691919d3aad584b5484223",
+      "docs/content/developer/contributor-checklist.md": "9828023fa0e3b6de10602983fb13bc3eefe18a616843866df473c9ef492fa3d2",
+      "docs/content/developer/decorator_design.md": "f7368f03660cec2ad47f1dbf574bb1af795ccfcf7b00b58ed3e6d5b4e9441ddd",
+      "docs/content/developer/deprecation-and-support.md": "585364be561681853d66526aef595959eb6110272449a29e2f2fb278c0a9ca16",
+      "docs/content/developer/development-environment.md": "71c41578e0a8d01215fbe7647f6a2bd396d5fe1d180751a19780fd994243837e",
+      "docs/content/developer/editorial-guide.md": "c1e05f930ffac997de3204cee6da79ce1bea6901582fade8e1d0259aa0ac8b10",
+      "docs/content/developer/implementation-patterns.md": "1e6301b55041d5860b63b0141205a2dc7728700c5fe9a8c330d8dcd2be55ab4f",
+      "docs/content/developer/index.md": "609b334be8d2658f64fc2fd4e78a6107e725a8c75d3b9a96ca2a6b682d8da8d8",
+      "docs/content/developer/registry_and_pipelines.md": "949abc89a9ece8798de5aad23b47fe5042bf85ea2fccd8f6eea80faec4a97708",
+      "docs/content/developer/release-and-versioning.md": "3156578d1762800d2216fc7bb40bdf2a372571af58e4f4220def94638c46ce35",
+      "docs/content/developer/smonitor.md": "337183364976045c082a42c03203927808711d3719b0718a69c3784ff9b2e43e",
+      "docs/content/developer/testing_and_ci.md": "0c9bc590482155dba6d8a324a423868718c27efd38b96e01487b77cf88a7e1c9",
+      "docs/content/showcase/decorator-style-integration.md": "b6857289ae7a4510a6e44d5a9a2efa89cfb67c65d1ab6154df867d902ed46f9a",
+      "docs/content/showcase/example_integration.ipynb": "2f45cbe8bb0b40aa965cedbafcea8ffc719b4b7f2053a77a6e7cad05db5972c6",
+      "docs/content/showcase/examples.md": "c26cf0d934d59f31e30e928d347ad7e5d003d3ce33cc545d9f4f38ac1c0bd0dc",
+      "docs/content/showcase/index.md": "eed22c3413297640a53236d5b192a4d3b978c725eab0428828e8468b547ed3fe",
+      "docs/content/showcase/kwargs-api-integration.md": "c092c24280396aef4fab71dd025fdc0008f4928a9267a7c6ff39745b22389fc3",
+      "docs/content/showcase/mixed-migration-strategy.md": "dccc6ebbb61b6817ee33fac3b643820925fd1f882dcb7bd91f7961f5b146a6b0",
+      "docs/content/showcase/package-style-integration.md": "92709cd2899e3390fcf4607e8442e768a2c26f8157791dfd58ba76a1a932a0af",
+      "docs/content/showcase/quickstart.ipynb": "499da4ab5913d1f6e7bf5ce3e077d5269221231a4acbe93609bc7de014bebe5d",
+      "docs/content/showcase/registry-style-integration.md": "82914d0710ad6d0a8e462718e0ef9bbfd617100d69d73854173e4e4e2b71fbe4",
+      "docs/content/showcase/standardizer-to-alias-tables.md": "42757e09537c83d3489ba2b296f7e438b963989c4040e44bd2874d5a80b9df39",
+      "docs/content/user/auto-and-conflicts.md": "a9255ed3c08470e0f04cd9f8cac220046789b9a0f5ffe363fc97a862a72a23dd",
+      "docs/content/user/config-precedence.md": "4a235385257bd9ac82eee0b1b42f8a9bd0713b33a028fa7d094717d45bbb9143",
+      "docs/content/user/configuration.md": "ed92d8a7b5a426a10909dd2edd23131cf32e7119345715a9d902f0c013e33916",
+      "docs/content/user/digestion-styles.md": "e8cc17af6fe35fabbb29196747bafa8c8252dd5ac02e5a0e107960cf5391e148",
+      "docs/content/user/end-users.md": "eed8ed3656bc23ec4a00e02b86ee69b0acd581321b10aabb2c6d677bcbe11f17",
+      "docs/content/user/examples.md": "c831216bc0e4a5b656219edf6aba0530b7a968ce1b05da4df0143f405f8451a1",
+      "docs/content/user/faq.md": "9b1a2884e821e55b00204cc3fcc137a14bc9a393c6487ba8fd47c4c1f9562b62",
+      "docs/content/user/index.md": "900e16931abee23fcdd987ba5608680e3c83c49d883b17395d10348cf1de255f",
+      "docs/content/user/integrating-your-library.md": "6fb323bff7cf61ce22590643b15ca38e158a7b4247e3232a36a5fdc4c86448b6",
+      "docs/content/user/integration-cheat-sheet.md": "a138314bf1a0437c512b4d8c5a75eebd615cdc8c2648b5335ec521d9105c2042",
+      "docs/content/user/migration-warn-to-error.md": "e1be4c10827af5485c643ac20929297439ed0b827b9b2a70ebe8a0abcbc8f303",
+      "docs/content/user/mini-library-walkthrough.md": "26e261a84409f62bfbc32e2015c7ed6d44f1cf63a6184736ff897ea8f504cb4a",
+      "docs/content/user/normalization.md": "5fa28e53f1d5a0c14bef189482bc1b4185b92223ce6c47907be37d2d2b671329",
+      "docs/content/user/pipeline-design.md": "c1b70b4a9d9a074cb6aa0bbcd14aa6ef82315413969ce013b973efc1b4ea0c5f",
+      "docs/content/user/production-checklist.md": "a8de9ef26c5457e915caa8d4d5f45749cac0a554a68f475969d2def1757bfa79",
+      "docs/content/user/quickstart.md": "45da8fb821e2ec7897a23acb193752ea6906440cda7e51ef3f1c3027124a4de6",
+      "docs/content/user/skip-digestion.md": "e666733113d87e1dc32c3bb67b8fbbf25569a99281844522d9a3ac94d6cacc5c",
+      "docs/content/user/smonitor.md": "556b85cb500e3f9ba2c763ef1fac11232de3f4cf3c6e7c669986dea2e1aa314b",
+      "docs/content/user/strictness-and-errors.md": "1c52471e8769aadb7f56cc069c875fe75eaf4f5da2af27e7b5d06e803b720752",
+      "docs/content/user/troubleshooting.md": "8aff3a81f6d8d0ae1fe9bc325cd7d80d2ad36646408508dd51bb192ad3907258",
+      "docs/content/user/what-argdigest-solves.md": "3f43af72a89167ca03be8c395a5fb587e352b65dd21f0729f1dfb2a69827f208",
+      "docs/index.md": "031f6501b9f4c56541827d857067f063bccd90db04369471c8722d52960e8b0e",
+      "examples/packlib/__init__.py": "8ef46eeebc53e3b223150fec54c9d74857e31d4b95819a3de9d8520b8b4f74ad",
+      "examples/packlib/_argdigest.py": "13e54667a776421b0727383f00fe27d00306cff7cdc3d35acdc4866cd9a3aadb",
+      "examples/packlib/_private/digestion/argument/__init__.py": "629522a8ecd3f6e4932916753f44127df2fb8a2c245f3f8dd6046cd1b661b0ae",
+      "examples/packlib/_private/digestion/argument/selection.py": "fb7eb2fc53fadd1d9e0e955ba581a7287ecda727b569af62383b16f2656f03fb",
+      "examples/packlib/_private/digestion/argument_names_standardization.py": "8cddeebc32013415524fa7811ab2d329d5496e8e0a44027755b4548729ec1249",
+      "examples/packlib/_private/digestion/normalization/__init__.py": "ac84b6da4fdf0eeae09a334d05fe1db8244b307ec3b068d52388364493b7c297",
+      "examples/packlib/_private/digestion/normalization/aliases.py": "cf787438c8a9c4e34a35232c5277ea7aa0169978d00075f8655fde3bfbf21a84",
+      "examples/packlib/_private/digestion/normalization/caller_rules.py": "e8e086c76021e58c7712bc9b08c6fe9382018003a60cafb49122f6dfc5f3b25f",
+      "examples/packlib/_private/digestion/normalization/dynamic_rules.py": "40d9717c4eaedc202bd5310b7b66027658aae95ecaa0fc22ee884a99f7b18688",
+      "examples/packlib/_private/digestion/normalization/standardizer.py": "0a92aa19fac9bfce2a455a4f5fb2b53c13a1cf5cff4602a38dc64b2035ffc4be",
+      "examples/packlib/auto.py": "df36cd873b5d35dfd37a2e97030a38c7d8c037cd80ad17ccd2c05ea47c3b65eb",
+      "examples/packlib/basic.py": "675e9f5684bd087eada7c391cb6ad551c993db5f41135be0613666ed167e2e47",
+      "examples/reglib/__init__.py": "01d439d83bb59e01f7e74b30494054ce36d18d58b982f92e24a370afd79a59b7",
+      "examples/reglib/_argdigest.py": "26fa46609cbd96f8196a1250703386b06f89cb82f72695ff05e6ab60dd663861",
+      "examples/reglib/_private/digestion/registry.py": "6e1a4dc8524feedc61335767adc96c77051e613ef8eb34c3d6b252a73d619f6e",
+      "examples/reglib/basic.py": "e6b4ddff79985f12412f4f1e611e41207c56fa4c42cb66b7fddf7ea169a7a797",
+      "logos/README.md": "7d1ec0b3ca57d6aad80130961a7fe4f13d37dd44cd30b65477a8b2e0152bda99",
+      "logos/logo.svg": "5e85c978e25f67760ad4528d8682896d12d4fbde906720e272e986fb80a4713d",
+      "logos/logo_no_path.svg": "99f09a6c75c376324fe2fe7c3b24d0845be4d3aead39ac260c4d700b36a6ff2f",
+      "pyproject.toml": "6db3cc91ea13a2a06dd24da4d35e1092c44890ecbd6ce1944be2e8bc313e32f6",
+      "standards/ARGDIGEST_GUIDE.md": "ab2ecdad428f39ff2b9c00846df568f323e2eafe9e316c3f263417202a7be8ad",
+      "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/conftest.py": "e2bf6d22a814a7545c89e10b87c8e431fe493647a30212b46894709b0e7a4433",
+      "tests/e2e/test_collective_error_path.py": "9d6606f08905b1f016a2413b603ef1538ba791c7e8ccb77574e3b99178becede",
+      "tests/mock_axis_one/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_axis_one/_argdigest.py": "3f7706f82130feef8c86404d20576d46fe645bbeb793141d83a5b9d8cfc1b759",
+      "tests/mock_axis_one/_private/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_axis_one/_private/digestion/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_axis_one/_private/digestion/argument/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_axis_one/_private/digestion/domain/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_axis_one/_private/digestion/domain/attribute.py": "303c97f8b60f78b509b56c6ed0cb249d46e0bfb8dc3f2d826a30449227cb4487",
+      "tests/mock_axis_one/_private/digestion/domain/engine_options.py": "1b59e4ea386a2cc1bf2d013d92ec0b4489263803cc2b9256821a108fa8f6c7dc",
+      "tests/mock_axis_one/_private/digestion/function/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_axis_one/_private/digestion/function/api.py": "5fcd376f1d8b9d9dc4f70702c16b3a7d6ce48da570d3408348d2c24ddcc70f9b",
+      "tests/mock_axis_one/_private/digestion/normalization/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_axis_one/_private/digestion/normalization/aliases.py": "3dfed135de3f2a6e57f15ba0daf29e4c089123bf63aa1bbdd187702142388226",
+      "tests/mock_axis_one/api.py": "c6bd4999dce4254855672c39cb2cde63e5162e082e60e1ab5af43b35e6a3048a",
+      "tests/mock_molsysmt/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_molsysmt/_argdigest.py": "209486be67121b3b400ad975de9597d5b3b41611dd139272e4435e8d500dc1f6",
+      "tests/mock_molsysmt/_private/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_molsysmt/_private/digestion/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_molsysmt/_private/digestion/argument/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests/mock_molsysmt/_private/digestion/argument/selection.py": "b6c2351e12d2ac46d4546503a75ad107bb0341af18d5af2085c2fb499b435114",
+      "tests/test_agent_docs_axis_one.py": "feac0de50f864e2253926048145fc7013287e09495261e1133356d5344d44c5a",
+      "tests/test_api_contract.py": "c25fddd50d17815707b546b1554acfa2a32b4fab77d21628a1886eb971b36e46",
+      "tests/test_api_reference_contract.py": "51c88e6c8ff1323afdbd2302ca693cf3bb03bb2e14c2da18366b9cc9bde24fd8",
+      "tests/test_argument_digestion.py": "24e2ab76550b1c60d665658380d5b757a501b96a8d24076195f7f01f84712651",
+      "tests/test_argument_digestion_selection.py": "1110b8dc8528a39afa88b0f29d96f4d6b5045661b9ed4d1b047fa9e47d789b58",
+      "tests/test_argument_loader_order.py": "533243e4f86be9b6985e99221a398e6b2ee499d2b446fdbd7ecd4c0c4067ddcb",
+      "tests/test_beartype.py": "2933742f31941d6eb61bedb2b5e854f340de76561f4a211bcbbda6a139fea876",
+      "tests/test_bind_arguments.py": "0f92efce013906378f962fea68f51dc4e9415c0efdfb6c7b100e9cf705da133f",
+      "tests/test_block_c_validation_semantics.py": "1ea47cd264b0a07342bba9ffc7f08fb088614f844d1dd5ec57433ae60bf50f57",
+      "tests/test_block_d_performance_reliability.py": "99b99f8501702920d169aaceb0ab99219f0be301f2f6404c37991cb3609a0ba0",
+      "tests/test_block_f_cross_layer.py": "b75e99778f6b2fe5a0bfe8a82778b5091f000074cac0872627ec1ef70e144c63",
+      "tests/test_call_shape.py": "e07ec97d7a3205b4708342d9ce559414fcacd3d484124180804b3a86581d54d8",
+      "tests/test_call_shape_errors.py": "a1e6e6e40b1bbc7f033cc07608c247d46a68178d5192b7d34019ea7f724c6fb7",
+      "tests/test_caller_helpers.py": "02a85e19c4543e7c12e0e4c5a73b0fd796e3a5d85025091d5d5d2788dc1b97bd",
+      "tests/test_capture_policy.py": "2ed220b78196787fead047a4b18254602d00e1800af787f4ab41027349568121",
+      "tests/test_ci_backlog.py": "493db498cd0a9060f080d26030fad314a83d45525edf9032660994ebe26382bd",
+      "tests/test_citation_metadata.py": "2ed36f15e9cadd6d171a854ed73a3f427b63bad6f4d78ade5b296d81442caca3",
+      "tests/test_cli.py": "95042bcccaa8630c3ddd47a94258a63aea807c718abffab3007b3fe170148d4f",
+      "tests/test_cli_additional.py": "6aaaf66760db551f231750dc9490a6c68808a5aa0d5efec71e358e444ae54614",
+      "tests/test_cli_resource_ownership.py": "47d335719405eecf3b9a7e3cb975885cf90faec0abf23a20a376e0d1d02dfd55",
+      "tests/test_compatibility_matrix.py": "8bc42c3fa3bf1781b23bf5311bdd3a4ed1cff33a332b962f71d425fff6223e83",
+      "tests/test_conda_release_route.py": "fc98cd104a95de0f0d6e68a53036f52a859021c2f29a41caf8d7c09c2d7ffa75",
+      "tests/test_config_file.py": "b2dc5286e1b28cf21833baf3170f80713839dca73957f22243faedccabfc9d22",
+      "tests/test_config_precedence_env.py": "8717fbc9a87d39243eb63be05b4456510b164b710ede7dfbf0787d8518f09007",
+      "tests/test_consumer_digester_diagnostics.py": "59a8b9e833ac49e0d954614b62a5ce916801a28aaeb025ea4c53d47cd76eed2f",
+      "tests/test_contract_owner.py": "c71bee0e677ab3a5197172c1ad212d9abf21f261b19aa3d3ed040a1269fae65a",
+      "tests/test_contrib.py": "829508c84907454f49c3307f0e14644c1fd2851a5b536c83333e9ca4c1d6a056",
+      "tests/test_core_config_additional.py": "772265b96332bee7a4983af4b3e7376780b30a8bc897219d8e77cf8058128b71",
+      "tests/test_core_release_gate.py": "dd797f75e1064895df9e36114554aa448670f5865c02c97382bc8a738f3cc340",
+      "tests/test_data_pipelines.py": "60cf98fd4ffbf9b6132f726ba2b5d4c6ae0702c159bb084cdcfdd5cf99d392ef",
+      "tests/test_decorator.py": "83d2995f8c066d6e19ef1d99658951657fb1c96165e75e9618a83ac945f6227a",
+      "tests/test_decorator_additional.py": "595fd98fba5b1d88d4c4d8e2f6fcf58e44d294c0209906482b71a5fde907f271",
+      "tests/test_diagnostic_registration.py": "11308ac80dd0936c97ea3e9ab3bd540884121ecff38d442a6e02037a02bd3d6c",
+      "tests/test_errors.py": "c007d0918cfc3322d2a5942aaf58820988edcf5dd534ba4f4012ff8c468f9f6e",
+      "tests/test_errors_additional.py": "abcefd823c4f1297ffd9989a04e47781ab8a8d2381da3221ab391dc70f7ec5ae",
+      "tests/test_function_contract.py": "1def1e686482bb48784d1d5eb68d63ce52e7e3166d07de2cd1dd099f36c8387b",
+      "tests/test_gh_run_receptor_policy.py": "73bff915d7c1a55db76f1a204a77f4fff912c305add2fac12938dce4ef400807",
+      "tests/test_health_check.py": "ddc9d10d4b48a6b997f1d70101aa053fa6bef33dd113c8319d8a38fc434342d0",
+      "tests/test_init_version_fallback.py": "18904822c0cc437581d723456fa423b4af82d21ff79d18d3c42aad1ceb1d2d64",
+      "tests/test_interop_block_b.py": "e17c659ec95a4f0674d73c4c75e5f639ca448a02bdd3ecb9596b4d3b8cf63233",
+      "tests/test_legacy_compatibility.py": "a55763961cd2da37f71e6d30ccdd26493e6b62a8f7d1e630069e72012225dc99",
+      "tests/test_literal_var_keyword.py": "74c0a39ddb77cb74cf3e302b4e35d26bcdf5de26c7563fd49598418e9a3fbc3f",
+      "tests/test_logging.py": "db779069e692af3294619f0183babc07e5c36efc0f99c499cfa331cf53e0b0a9",
+      "tests/test_low_coverage_modules.py": "d5df5347f316e96786b6a1af7bcd5c89a6fdb524afab0b19ad14b4bb12dfa1a5",
+      "tests/test_molsysmt_representative_paths.py": "6cbfabc3e03cbf737607d4db22f39643723a391c7759201bc5b0fc0d46aea120",
+      "tests/test_noarch_conda_publication.py": "1523d27ad17653b21fb46e077fdd7d3b6c9c0525b79185b1dc1a0a1a5bb33249",
+      "tests/test_normalization_rules.py": "cdfca76100a763730b9869665f676072130edc77161d268c2e8cb83a419697f1",
+      "tests/test_numpy_optional.py": "8eeed7ce2611408ffb817af7d69fe0426f8225a6d5f1bcc2a87a8fa6cecac1e1",
+      "tests/test_optional_typecheck_diagnostics.py": "66b8d240c1b25ece8b28eb7e8e3446935e1b935699bf71de58c15a392fdf4124",
+      "tests/test_pipelines_base.py": "646706f3d1d7bc5a077dcece249c401bb810e19ff4e0e3c16b18f8d9bb63772c",
+      "tests/test_pipelines_base_additional.py": "aa137007895f4752048b4ab79ed35d0fb6b46784317348f48c90ccc0ef7ca5e5",
+      "tests/test_profiling.py": "221e9f2f9c27a56da10ad1e6e00cbb459e92af0ce23d91cce4644bc6fc8d753b",
+      "tests/test_pydantic.py": "01bd7adb6973877cf075406476bb87749324cc0450161a51fd1fb20c643cbffe",
+      "tests/test_pyunitwizard.py": "cf5bbcf736ee48159d5aa88771d84a3fb0acb7f7def13294547a6aca72a3ceb8",
+      "tests/test_pyunitwizard_boundary.py": "ca433700319642526fcc3d9a34bed9906d43aba78cae208c48404b78bc4ace7d",
+      "tests/test_qualified_caller.py": "d995f0af109e6ee0fdd1eac00e25d1d563daba32845e064ebd2996298f184b15",
+      "tests/test_registry.py": "962a437507e9035a04cd9defc7f1c5a39e5ea86df1c61f421a5c7286caa44b93",
+      "tests/test_reporting_protocol.py": "4eb4f5d8983a63a85ee5c73684c146c259f1e4f56fd73df2d571c96b019a37f0",
+      "tests/test_smoke_examples.py": "5e0c3b2f5726b09082bda9c9db300fb334ffa8abd962c6c974acc2ce7983834b",
+      "tests/test_smonitor_contracts.py": "f10f612333083ec727aee596ca3bd93c2006e4e80bd42a33fcf7fd79409baa00",
+      "tests/test_staged_conda_install.py": "7d20e053fdfedf701a63de822d092d39de8dc82fb720a0630fdf97822aa11321",
+      "tests/test_std_pipelines.py": "e6db96b8e9de0637f589ec859666f5e3a1bdb41c25ec8e6d2a6883c622c18cd5",
+      "tests/test_utils_coverage.py": "ef3e0883cb14958b5cec77fe92e8be9237671e47be2aa9d3b9786034927715c5",
+      "tests/test_workflow_yaml_syntax.py": "267316f7713fd14b51f00d7c89e71d3676ab1e04b8c458f608f4ceb212be1555"
+    },
+    "git_archive_files_matched": 362,
+    "observed_at": "2026-11-05T23:20:23.242945+00:00",
+    "record_id": 23991088,
+    "state": "verified",
+    "version": "0.17.1",
+    "version_doi": "10.5281/zenodo.23991088"
+  },
+  "zenodo_workflow_artifact": {
+    "artifact": {
+      "digest": "sha256:6c25a1a1227ccb37bf950bff6ba0c1c4c3df93914b32c30250d604ae5f878d58",
+      "id": 13461438834,
+      "name": "zenodo-public-evidence",
+      "size_in_bytes": 510,
+      "workflow_run": {
+        "head_branch": "0.17.1",
+        "head_repository_id": 1088948514,
+        "head_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
+        "id": 42127303736,
+        "repository_id": 1088948514
+      }
+    },
+    "receipts": {
+      "zenodo-evidence.json": {
+        "exit_status": 0,
+        "observed_at": "2026-11-05T23:12:17.028599+00:00",
+        "repository": "uibcdf/argdigest",
+        "results": [
+          {
+            "age_hours": 0.061,
+            "archive_coverage": "source-snapshot",
+            "concept_doi": "10.5281/zenodo.22892325",
+            "escalation_required": false,
+            "files": [
+              {
+                "checksum": "md5:d21182b2640bcb754ec36325958d24b3",
+                "key": "uibcdf/argdigest-0.17.1.zip",
+                "size": 691522
+              }
+            ],
+            "observed_at": "2026-11-05T23:12:17.028599+00:00",
+            "published_at": "2026-11-05T23:08:36Z",
+            "record_id": 23991088,
+            "repository": "uibcdf/argdigest",
+            "state": "verified",
+            "tag": "0.17.1",
+            "version": "0.17.1",
+            "version_doi": "10.5281/zenodo.23991088"
+          }
+        ]
+      }
+    }
+  }
+}

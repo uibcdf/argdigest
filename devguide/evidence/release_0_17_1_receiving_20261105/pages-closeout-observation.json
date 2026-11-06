@@ -1,0 +1,19 @@
+{
+  "observed_at": "2026-11-06T00:27:35.022071+00:00",
+  "state": "deployment-pending",
+  "source_sha": "21f6ba42120d93467e3937ef2da0b54cd37e5d86",
+  "pages_commit": "d149eff7d9bd577439a90fa107fb6bc112a1a2e9",
+  "rendered_notes_sha256": "71c7ae5821b8e1186c7d95a9fd4ab550ef66e212dcd4aa59531c293b41d6fc8b",
+  "published_0171_text_verified": true,
+  "build": {
+    "status": "building",
+    "commit": "d149eff7d9bd577439a90fa107fb6bc112a1a2e9",
+    "url": "https://api.github.com/repos/uibcdf/argdigest/pages/builds/1344875244",
+    "error": {
+      "message": null
+    },
+    "created_at": "2026-11-06T00:07:54Z",
+    "updated_at": "2026-11-06T00:07:54Z"
+  },
+  "direct_http": "Unverified: environment requests returned HTTP 403; no live HTTP availability claim."
+}

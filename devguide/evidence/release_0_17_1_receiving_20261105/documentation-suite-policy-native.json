@@ -1,0 +1,20 @@
+{
+  "schema": "molsyssuite.native-gate@1",
+  "state": "verified",
+  "run_id": 42131890739,
+  "run_attempt": 1,
+  "candidate_sha": "21f6ba42120d93467e3937ef2da0b54cd37e5d86",
+  "workflow": ".github/workflows/molsyssuite-policy.yml",
+  "jobs": [
+    {
+      "name": "policy / conformance",
+      "job_id": 127610285612,
+      "required_steps": [
+        "Check repository conformance",
+        "Check Python lint and imports",
+        "Check Python formatting"
+      ]
+    }
+  ],
+  "event": "push"
+}
