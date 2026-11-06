@@ -1,0 +1,196 @@
+{
+  "observed_at": "2026-11-06T00:44:24.504759+00:00",
+  "scope": "Registered suite cohort at b9852d9; public repository queued and in-progress runs; excludes private repositories and unregistered org work; not a complete account concurrency/billing audit",
+  "repositories": [
+    {
+      "repository": "uibcdf/ackredit",
+      "queued_and_in_progress_runs_examined": 0,
+      "runs_truncated": false,
+      "active_hosted_jobs": []
+    },
+    {
+      "repository": "uibcdf/argdigest",
+      "queued_and_in_progress_runs_examined": 4,
+      "runs_truncated": false,
+      "active_hosted_jobs": []
+    },
+    {
+      "repository": "uibcdf/depdigest",
+      "queued_and_in_progress_runs_examined": 1,
+      "runs_truncated": false,
+      "active_hosted_jobs": []
+    },
+    {
+      "repository": "uibcdf/dockingmt",
+      "queued_and_in_progress_runs_examined": 3,
+      "runs_truncated": false,
+      "active_hosted_jobs": [
+        {
+          "run": 42133457962,
+          "job": 127615589423,
+          "name": "Test on ubuntu-latest, Python 3.11",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "started_at": "2026-11-06T00:38:53Z",
+          "runner": "GitHub Actions 1000050245"
+        }
+      ]
+    },
+    {
+      "repository": "uibcdf/elastnetmt",
+      "queued_and_in_progress_runs_examined": 0,
+      "runs_truncated": false,
+      "active_hosted_jobs": []
+    },
+    {
+      "repository": "uibcdf/gh-run-receptor",
+      "queued_and_in_progress_runs_examined": 0,
+      "runs_truncated": false,
+      "active_hosted_jobs": []
+    },
+    {
+      "repository": "uibcdf/lindelint",
+      "queued_and_in_progress_runs_examined": 0,
+      "runs_truncated": false,
+      "active_hosted_jobs": []
+    },
+    {
+      "repository": "uibcdf/molsys-ai",
+      "queued_and_in_progress_runs_examined": 0,
+      "runs_truncated": false,
+      "active_hosted_jobs": []
+    },
+    {
+      "repository": "uibcdf/molsysmt",
+      "queued_and_in_progress_runs_examined": 13,
+      "runs_truncated": false,
+      "active_hosted_jobs": [
+        {
+          "run": 42114759412,
+          "job": 127551666689,
+          "name": "Full matrix \u2014 macos-15, Python 3.11",
+          "labels": [
+            "macos-15"
+          ],
+          "started_at": "2026-11-06T00:20:41Z",
+          "runner": "GitHub Actions 1000050211"
+        },
+        {
+          "run": 42114759412,
+          "job": 127551666811,
+          "name": "Full matrix \u2014 macos-15, Python 3.13",
+          "labels": [
+            "macos-15"
+          ],
+          "started_at": "2026-11-06T00:10:08Z",
+          "runner": "GitHub Actions 1000050196"
+        }
+      ]
+    },
+    {
+      "repository": "uibcdf/molsysviewer",
+      "queued_and_in_progress_runs_examined": 20,
+      "runs_truncated": false,
+      "active_hosted_jobs": [
+        {
+          "run": 42136294360,
+          "job": 127625178016,
+          "name": "Core E2E",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "started_at": "2026-11-06T00:43:35Z",
+          "runner": "GitHub Actions 1000050258"
+        },
+        {
+          "run": 42136294222,
+          "job": 127625176056,
+          "name": "Source pair on windows-2025, Python 3.14",
+          "labels": [
+            "windows-2025"
+          ],
+          "started_at": "2026-11-06T00:38:51Z",
+          "runner": "GitHub Actions 1000050244"
+        },
+        {
+          "run": 42136294152,
+          "job": 127625176531,
+          "name": "Test on ubuntu-latest, Python 3.11",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "started_at": "2026-11-06T00:39:43Z",
+          "runner": "GitHub Actions 1000050250"
+        }
+      ]
+    },
+    {
+      "repository": "uibcdf/peptidemt",
+      "queued_and_in_progress_runs_examined": 0,
+      "runs_truncated": false,
+      "active_hosted_jobs": []
+    },
+    {
+      "repository": "uibcdf/pharmacophoremt",
+      "queued_and_in_progress_runs_examined": 9,
+      "runs_truncated": false,
+      "active_hosted_jobs": [
+        {
+          "run": 42132465011,
+          "job": 127612198351,
+          "name": "Test on ubuntu-latest, Python 3.12",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "started_at": "2026-11-06T00:16:56Z",
+          "runner": "GitHub Actions 1000050204"
+        },
+        {
+          "run": 42113296073,
+          "job": 127546222243,
+          "name": "Test on macos-15, Python 3.13",
+          "labels": [
+            "macos-15"
+          ],
+          "started_at": "2026-11-06T00:41:40Z",
+          "runner": "GitHub Actions 1000050257"
+        }
+      ]
+    },
+    {
+      "repository": "uibcdf/pytest-receptor",
+      "queued_and_in_progress_runs_examined": 0,
+      "runs_truncated": false,
+      "active_hosted_jobs": []
+    },
+    {
+      "repository": "uibcdf/pyunitwizard",
+      "queued_and_in_progress_runs_examined": 1,
+      "runs_truncated": false,
+      "active_hosted_jobs": []
+    },
+    {
+      "repository": "uibcdf/smonitor",
+      "queued_and_in_progress_runs_examined": 0,
+      "runs_truncated": false,
+      "active_hosted_jobs": []
+    },
+    {
+      "repository": "uibcdf/topomt",
+      "queued_and_in_progress_runs_examined": 0,
+      "runs_truncated": false,
+      "active_hosted_jobs": []
+    }
+  ],
+  "excluded_repository_count": 1,
+  "sampling_not_atomic": true,
+  "visible_organization_plan": "free",
+  "standard_limit_reference": {
+    "url": "https://docs.github.com/en/actions/reference/limits#job-concurrency-limits-for-github-hosted-runners",
+    "documented_free_plan_default_total": 20,
+    "documented_free_plan_default_macos": 5,
+    "support_overrides_unknown": true
+  },
+  "interpretation": "Eight assigned public hosted jobs were observed in this limited cohort sample, including jobs starting after the published incident resolution. This neither establishes full organization utilization nor proves the cause of an individual queued job. Private and unregistered work were not audited."
+}

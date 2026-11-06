@@ -1,5 +1,5 @@
 {
-  "observed_at": "2026-11-06T00:25:30.014475+00:00",
+  "observed_at": "2026-11-06T01:20:41.267234+00:00",
   "source_sha": "21f6ba42120d93467e3937ef2da0b54cd37e5d86",
   "gates": {
     "published-documentation": {
@@ -10,9 +10,9 @@
     },
     "documentation-fast": {
       "run_id": 42131890287,
-      "status": "queued",
-      "conclusion": null,
-      "state": "pending"
+      "status": "completed",
+      "conclusion": "success",
+      "state": "verified"
     },
     "documentation-suite-policy": {
       "run_id": 42131890739,

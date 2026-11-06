@@ -62,3 +62,10 @@ only for actual ambiguity under detailed capture, with safe fallback. The guard
 module expands to fourteen controls; six fail on superseded cb97df7 and all pass
 after correction. The original measurements above retain their original scope;
 release #51 requires a new exact candidate and all its gates.
+
+## Public delivery — 2026-11-05
+
+0.17.1 is published with this correction. Independent original-file source,
+full installed, minimal-core and fresh public receiving evidence is archived
+under release #51 in `devguide/completed_proposals/release_0_17_1.md`.
+The earlier source-only measurements above retain their original scope.

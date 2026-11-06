@@ -5,7 +5,7 @@ their established locations so existing references remain valid.
 
 <!-- generated: devguide_index -->
 
-### Resolved (35)
+### Resolved (36)
 
 - [`adopt_molsyssuite_policy_v1.md`](../completed_proposals/adopt_molsyssuite_policy_v1.md) — [#4](https://github.com/uibcdf/argdigest/issues/4) — Adopt the shared MolSysSuite policy and Ruff gate. *(resolved, measured)*
 - [`adopt_shared_reporting_lifecycle.md`](../completed_proposals/adopt_shared_reporting_lifecycle.md) — [#6](https://github.com/uibcdf/argdigest/issues/6) — Adopt the shared issue-backed developer-guide lifecycle. *(resolved, inspected)*
@@ -34,6 +34,7 @@ their established locations so existing references remain valid.
 - [`release_0_15_0.md`](../completed_proposals/release_0_15_0.md) — [#31](https://github.com/uibcdf/argdigest/issues/31) — Publish 0.15.0 with scoped capture and explicit digestion after installed qualification. *(resolved, measured)*
 - [`release_0_16_0.md`](../completed_proposals/release_0_16_0.md) — [#36](https://github.com/uibcdf/argdigest/issues/36) — Publish 0.16.0 after exact-artifact registration-only qualification. *(resolved, inspected)*
 - [`release_0_17_0.md`](../completed_proposals/release_0_17_0.md) — [#40](https://github.com/uibcdf/argdigest/issues/40) — Prepare and qualify 0.17.0 with explicit contract ownership and alias/descriptor repairs. *(resolved, inspected)*
+- [`release_0_17_1.md`](../completed_proposals/release_0_17_1.md) — [#51](https://github.com/uibcdf/argdigest/issues/51) — Qualify and publish the 0.17.1 consumer-contract and diagnostics fixes. *(resolved, measured)*
 - [`review_inherited_python_ecosystem_policy.md`](../completed_proposals/review_inherited_python_ecosystem_policy.md) — [#20](https://github.com/uibcdf/argdigest/issues/20) — Review inherited Python ecosystem policy in ArgDigest. *(resolved, measured)*
 - [`runtime_dependency_bounds_review.md`](../completed_proposals/runtime_dependency_bounds_review.md) — [#43](https://github.com/uibcdf/argdigest/issues/43) — Review and align required and optional runtime API floors. *(resolved, inspected)*
 - [`scoped_metadata_only_diagnostics.md`](../completed_proposals/scoped_metadata_only_diagnostics.md) — [#29](https://github.com/uibcdf/argdigest/issues/29) — Apply SMonitor capture policy before ArgDigest-owned diagnostic collection. *(resolved, measured)*

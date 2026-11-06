@@ -1,0 +1,12 @@
+{
+  "observed_at": "2026-11-06T01:20:56.503053+00:00",
+  "scope": "Final report lifecycle/index governance; separate from original package scientific qualification",
+  "selector": "tests/test_reporting_protocol.py",
+  "exit": 0,
+  "passed": 6,
+  "failed": 0,
+  "skipped": 0,
+  "junit_sha256": "2ed42d3163c12a3826626254867f90ef1da34b0abb0f97b3ca99548c56df5b5a",
+  "stdout_sha256": "ef3b0146589c8abca8e0187497d0893893d5a7b46c917308c35b5b1ad66cf0f1",
+  "indexes_checked": true
+}

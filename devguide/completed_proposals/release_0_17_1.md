@@ -1,9 +1,9 @@
 ---
 summary: Qualify and publish the 0.17.1 consumer-contract and diagnostics fixes.
 issue: uibcdf/argdigest#51
-status: active
+status: resolved
 opened: 2026-11-05
-closed:
+closed: 2026-11-05
 verification: measured
 area: [release, packaging, diagnostics, compatibility]
 guard: tests/test_noarch_conda_publication.py
@@ -18,13 +18,12 @@ supersedes: []
 
 0.17.1 is public in GitHub and Conda main, independently verified from a fresh
 public installation, and archived as a source-only Zenodo snapshot. The exact
-original file is retained from staging through main. The canonical guide and
-notes are committed and handed off. Sphinx and both documentation-source policies
-passed, with exact rendered release notes verified in gh-pages. Pages deployment,
-latest-head CI, report archival and retirement of the retained task-local SDK/venv
-are the remaining administrative steps. The What / How / Why sections below
-retain preparation observations, followed by executed qualification/publication
-evidence. #9 and the separate CI-cancellation follow-up #52 remain deferred.
+original file is retained from staging through main. Published guide/notes,
+their executed source checks, rendered Pages deployment and owner handoffs
+are verified separately. The dated preparation and operator observations below
+retain their original scope. #9 and the separate CI-cancellation follow-up #52
+remain deferred; consumer application receiving and guide distribution retain
+their own owners.
 
 ## What
 
@@ -163,3 +162,50 @@ CI. None of these ordinary checkpoints replaces the fully executed original
 C9 qualification. All three task-owned Conda prefixes and their private cache
 were removed; the unchanged qualification branch was deleted with an exact-SHA
 lease. The issue stays open until deployment, archival and final cleanup finish.
+
+## Final documentation and ownership closeout — 2026-11-05
+
+Canonical guide and published release notes are committed at `21f6ba42120d93467e3937ef2da0b54cd37e5d86`.
+Guide SHA-256 is `1bb69c596cabd5d504416534ea952bea5fc7f23e74dea118cee47a4d196b965c`.
+The exact revision/path/hash was delivered to MolSysSuite #169/#164 for all
+registered client copies. Release-specific receiving notices were delivered
+to ArgDigest #50/#53, PharmacophoreMT #82, DockingMT #19 and MolSysMT #428;
+the retained handoff manifest links the actual comments. No client copy was
+edited and no consumer scientific acceptance is inferred.
+
+Documentation run `42132020733`, suite policy `42131890739` and
+publication policy `42131890803` passed with required
+jobs/steps executed at that source. Pages run `42134555677`
+deployed rendered commit `d149eff7d9bd577439a90fa107fb6bc112a1a2e9` from that exact source;
+its release-note HTML includes the published 0.17.1 text. Native deployment
+and rendered content are verified independently of direct HTTP availability;
+the receipt records any environment-limited HTTP observation separately.
+
+The interim fast run `42131890287` retains its actual observed state in the
+publication receipt. The final evidence commit receives its own applicable
+latest-head CI/policy inspection, linked in the owning issue. This ordinary
+checkpoint does not replace any original C9 release-qualification gate.
+
+All three task-owned Conda receiving prefixes were removed through Conda.
+The qualification branch was deleted only with a lease for original C9;
+the immutable public tag and artifact remain. The task-local verification
+SDK/venv/cache is retained only through the final evidence/checkpoint step.
+The owning issue records final-head checks and completion of that cleanup.
+
+## Upstream service observation
+
+GitHub reported Actions/Pages degradation from 2026-11-05 23:36 UTC,
+marked resolved at 2026-11-06 00:20 UTC in
+<https://www.githubstatus.com/incidents/pfbmpxxfq1cy>. This overlaps the first
+documentation queue; it does not establish an individual job cause. The af14bd1
+checkpoint was requested after the published resolution. A later read-only
+observer stopped on a TLS acquisition timeout and the next native read succeeded.
+No artifact, build, promotion or deployment was repeated to repair that read.
+The adjacent service observation preserves this limited scope.
+
+A later recovery preflight also corrected an operator inference: the Pages
+workflow was still queued, but its build had already passed and the status/deploy
+jobs were queued. The preflight stopped before any cancellation or rerun request;
+the original attempt was retained. The correction and no-write outcome are
+recorded in `pages-queue-recovery.json`. Observers now preserve per-job states
+without interpreting a queued workflow as entirely unstarted.

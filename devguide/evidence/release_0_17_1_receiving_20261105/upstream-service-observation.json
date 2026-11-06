@@ -1,0 +1,22 @@
+{
+  "observed_at": "2026-11-06T00:41:34.845584+00:00",
+  "source": "https://www.githubstatus.com/incidents/pfbmpxxfq1cy",
+  "evidence_type": "Official incident page inspected through web tool",
+  "incident_id": "pfbmpxxfq1cy",
+  "status": "resolved",
+  "first_report_utc": "2026-11-05T23:36:00Z",
+  "resolved_update_utc": "2026-11-06T00:20:00Z",
+  "affected_services": [
+    "Actions",
+    "Pages",
+    "Issues",
+    "API access",
+    "Git operations"
+  ],
+  "scope": "The official incident overlaps the first documentation/Pages queue. It does not prove an individual job cause; the af14bd1 checkpoint was created after the published resolution. Original C9 release gates, promotion and public package verification remain independently verified.",
+  "local_acquisition_observation": {
+    "at": "2026-11-06T00:40:13Z",
+    "state": "one read-only Pages observer stopped on API TLS handshake timeout",
+    "reconciliation": "Subsequent native read succeeded; Pages still building and latest-head CI queued. No remote action repeated."
+  }
+}

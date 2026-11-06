@@ -1,0 +1,70 @@
+{
+  "state": "verified",
+  "observed_at": "2026-11-06T01:20:41.134997+00:00",
+  "scope": "Exact rendered notes in GitHub commit plus successful native Pages deployment; direct HTTP observation is separately qualified.",
+  "source_sha": "21f6ba42120d93467e3937ef2da0b54cd37e5d86",
+  "pages_commit": "d149eff7d9bd577439a90fa107fb6bc112a1a2e9",
+  "pages_commit_message": "From refs/heads/main 21f6ba42120d93467e3937ef2da0b54cd37e5d86",
+  "rendered_notes": {
+    "path": "content/about/release-notes.html",
+    "sha256": "71c7ae5821b8e1186c7d95a9fd4ab550ef66e212dcd4aa59531c293b41d6fc8b",
+    "published_0171_present": true
+  },
+  "native": {
+    "schema": "molsyssuite.native-gate@1",
+    "state": "verified",
+    "run_id": 42134555677,
+    "run_attempt": 1,
+    "candidate_sha": "d149eff7d9bd577439a90fa107fb6bc112a1a2e9",
+    "workflow": "dynamic/pages/pages-build-deployment",
+    "jobs": [
+      {
+        "name": "build",
+        "job_id": 127619284380,
+        "required_steps": [
+          "Checkout",
+          "Upload artifact"
+        ]
+      },
+      {
+        "name": "report-build-status",
+        "job_id": 127630420412,
+        "required_steps": [
+          "Report Build Status"
+        ]
+      },
+      {
+        "name": "deploy",
+        "job_id": 127630420574,
+        "required_steps": [
+          "Deploy to GitHub Pages"
+        ]
+      }
+    ],
+    "event": "dynamic"
+  },
+  "build": {
+    "status": "built",
+    "commit": "d149eff7d9bd577439a90fa107fb6bc112a1a2e9",
+    "url": "https://api.github.com/repos/uibcdf/argdigest/pages/builds/1344875244",
+    "error": {
+      "message": null
+    },
+    "created_at": "2026-11-06T00:07:54Z",
+    "updated_at": "2026-11-06T01:20:07Z"
+  },
+  "direct_http": [
+    {
+      "url": "https://www.uibcdf.org/argdigest/content/about/release-notes.html",
+      "state": "unverified",
+      "status": 403,
+      "reason": "HTTP request not accessible from this environment; native deployment proof retained separately."
+    },
+    {
+      "url": "https://uibcdf.github.io/argdigest/content/about/release-notes.html",
+      "state": "unverified",
+      "status": 403,
+      "reason": "HTTP request not accessible from this environment; native deployment proof retained separately."
+    }
+  ]
+}

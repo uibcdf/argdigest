@@ -1,0 +1,28 @@
+{
+  "schema": "molsyssuite.native-gate@1",
+  "state": "verified",
+  "run_id": 42131890287,
+  "run_attempt": 1,
+  "candidate_sha": "21f6ba42120d93467e3937ef2da0b54cd37e5d86",
+  "workflow": ".github/workflows/CI.yaml",
+  "jobs": [
+    {
+      "name": "Test on ubuntu-latest, Python 3.14",
+      "job_id": 127618794563,
+      "required_steps": [
+        "Build wheel",
+        "Install from wheel",
+        "Test import module (installed wheel)",
+        "Run tests"
+      ]
+    },
+    {
+      "name": "Review dependency routes before testing",
+      "job_id": 127610283719,
+      "required_steps": [
+        "Check dependency routes"
+      ]
+    }
+  ],
+  "event": "push"
+}

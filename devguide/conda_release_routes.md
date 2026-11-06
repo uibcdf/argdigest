@@ -29,7 +29,7 @@ Conda binary. The accidentally duplicated producer `42094355382` failed at
 staging upload and qualifies no file; its distinct unaccepted private digest and
 original unverified receipt remain in the qualification evidence.
 
-Records: `pending_proposals/release_0_17_1.md`,
+Records: `completed_proposals/release_0_17_1.md`,
 `evidence/release_0_17_1_qualification_2026-11-05.json`,
 `evidence/release_0_17_1_publication_2026-11-05.json` and
 `evidence/release_0_17_1_receiving_20261105/`.

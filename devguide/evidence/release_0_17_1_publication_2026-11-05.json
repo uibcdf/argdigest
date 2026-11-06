@@ -28,11 +28,39 @@
   ],
   "documentation": {
     "closeout_run": 42132020733,
+    "direct_http": [
+      {
+        "reason": "HTTP request not accessible from this environment; native deployment proof retained separately.",
+        "state": "unverified",
+        "status": 403,
+        "url": "https://www.uibcdf.org/argdigest/content/about/release-notes.html"
+      },
+      {
+        "reason": "HTTP request not accessible from this environment; native deployment proof retained separately.",
+        "state": "unverified",
+        "status": 403,
+        "url": "https://uibcdf.github.io/argdigest/content/about/release-notes.html"
+      }
+    ],
     "observation": "devguide/evidence/release_0_17_1_receiving_20261105/pages-closeout-observation.json",
     "pages_commit": "d149eff7d9bd577439a90fa107fb6bc112a1a2e9",
+    "pages_run": 42134555677,
+    "proof": "devguide/evidence/release_0_17_1_receiving_20261105/published-pages-proof.json",
     "release_event_run": 42127303380,
     "source_sha": "21f6ba42120d93467e3937ef2da0b54cd37e5d86",
-    "state": "Sphinx and both documentation-source policies verified; exact rendered notes verified; Pages deployment and latest-head CI pending"
+    "state": "verified native deployment and exact rendered release notes"
+  },
+  "final_local_administrative_checks": {
+    "exit": 0,
+    "failed": 0,
+    "indexes_checked": true,
+    "junit_sha256": "2ed42d3163c12a3826626254867f90ef1da34b0abb0f97b3ca99548c56df5b5a",
+    "observed_at": "2026-11-06T01:20:56.503053+00:00",
+    "passed": 6,
+    "scope": "Final report lifecycle/index governance; separate from original package scientific qualification",
+    "selector": "tests/test_reporting_protocol.py",
+    "skipped": 0,
+    "stdout_sha256": "ef3b0146589c8abca8e0187497d0893893d5a7b46c917308c35b5b1ad66cf0f1"
   },
   "fresh_public_installation": {
     "commands": [
@@ -1288,10 +1316,10 @@
   "interim_documentation_checkpoint": {
     "gates": {
       "documentation-fast": {
-        "conclusion": null,
+        "conclusion": "success",
         "run_id": 42131890287,
-        "state": "pending",
-        "status": "queued"
+        "state": "verified",
+        "status": "completed"
       },
       "documentation-publication-policy": {
         "conclusion": "success",
@@ -1312,8 +1340,47 @@
         "status": "completed"
       }
     },
-    "observed_at": "2026-11-06T00:25:30.014475+00:00",
+    "observed_at": "2026-11-06T01:20:41.267234+00:00",
     "source_sha": "21f6ba42120d93467e3937ef2da0b54cd37e5d86"
+  },
+  "interim_evidence_checkpoint": {
+    "gates": {
+      ".github/workflows/CI.yaml": {
+        "conclusion": null,
+        "jobs": [
+          {
+            "conclusion": "success",
+            "name": "Review dependency routes before testing",
+            "status": "completed"
+          },
+          {
+            "conclusion": null,
+            "name": "Test on ubuntu-latest, Python 3.14",
+            "status": "queued"
+          }
+        ],
+        "run_id": 42137031770,
+        "state": "pending",
+        "status": "queued",
+        "url": "https://github.com/uibcdf/argdigest/actions/runs/42137031770"
+      },
+      ".github/workflows/conda-publication-policy.yml": {
+        "conclusion": "success",
+        "run_id": 42137032438,
+        "state": "verified",
+        "status": "completed",
+        "url": "https://github.com/uibcdf/argdigest/actions/runs/42137032438"
+      },
+      ".github/workflows/molsyssuite-policy.yml": {
+        "conclusion": "success",
+        "run_id": 42137032239,
+        "state": "verified",
+        "status": "completed",
+        "url": "https://github.com/uibcdf/argdigest/actions/runs/42137032239"
+      }
+    },
+    "observed_at": "2026-11-06T01:20:51.099145+00:00",
+    "source_sha": "af14bd17fdaf4a8a69cce468ffa7056f7d2d4b40"
   },
   "limits": [
     "The native full and separate core matrices qualify the same original file on all claimed OS/minor cells. Additional fresh public scientific receiving is Linux x86_64/Python 3.14 only.",
@@ -1322,6 +1389,34 @@
     "Consumer scientific acceptance and byte-identical client-guide distribution remain with their registered owners."
   ],
   "native_gates": {
+    "documentation_fast": {
+      "candidate_sha": "21f6ba42120d93467e3937ef2da0b54cd37e5d86",
+      "event": "push",
+      "jobs": [
+        {
+          "job_id": 127618794563,
+          "name": "Test on ubuntu-latest, Python 3.14",
+          "required_steps": [
+            "Build wheel",
+            "Install from wheel",
+            "Test import module (installed wheel)",
+            "Run tests"
+          ]
+        },
+        {
+          "job_id": 127610283719,
+          "name": "Review dependency routes before testing",
+          "required_steps": [
+            "Check dependency routes"
+          ]
+        }
+      ],
+      "run_attempt": 1,
+      "run_id": 42131890287,
+      "schema": "molsyssuite.native-gate@1",
+      "state": "verified",
+      "workflow": ".github/workflows/CI.yaml"
+    },
     "documentation_publication_policy": {
       "candidate_sha": "21f6ba42120d93467e3937ef2da0b54cd37e5d86",
       "event": "push",
@@ -1471,11 +1566,15 @@
       "workflow": ".github/workflows/verify_zenodo_releases.yaml"
     }
   },
-  "observed_at": "2026-11-06T00:27:35.030460+00:00",
+  "observed_at": "2026-11-06T01:20:56.515309+00:00",
   "owner_handoffs": {
     "consumer_receiving_owner": "Each consumer repository; package publication does not establish consumer adoption.",
     "manifest": "devguide/evidence/release_0_17_1_receiving_20261105/handoff-manifest.json",
     "publication_progress": "https://github.com/uibcdf/argdigest/issues/51#issuecomment-6672858473"
+  },
+  "post_record_completion": {
+    "owner_issue": "https://github.com/uibcdf/argdigest/issues/51",
+    "scope": "This timestamp precedes the commit containing this receipt. The owning issue records its final-head CI result and completion of task-local resource retirement."
   },
   "promotion": {
     "artifact": {
@@ -1822,7 +1921,7 @@
     "sha256": "a327f15472010cf1a8e4a962eb0b8d738b0c71e755ffbd7c3d708195b53af9a1"
   },
   "receiving_manifest": "devguide/evidence/release_0_17_1_receiving_20261105/manifest.json",
-  "receiving_manifest_sha256": "7149b7bc520e3fff1f1bbc3b3d990efb900d718c736e949c76d7a90202849013",
+  "receiving_manifest_sha256": "0f66b114813a21f5f0a53f571757204711916f05c778ee31daed170ade24adb5",
   "registry": {
     "basename": "noarch/argdigest-0.17.1-py_0.tar.bz2",
     "labels": [
@@ -1843,9 +1942,7 @@
   },
   "release_event_build": "intentionally skipped for the committed staged route",
   "remaining_closeout": [
-    "verify Pages deployment for rendered notes from original documentation source and applicable latest-head CI",
-    "archive the release report and close owning issue #51",
-    "remove retained task-local SDK/venv/proof namespace"
+    "Final evidence commit/push and applicable head CI inspection; close #51 with final record and remove only retained task-local SDK/venv/cache."
   ],
   "repository": "uibcdf/argdigest",
   "resource_retirement": {
@@ -1856,13 +1953,14 @@
     "shared_development_environment_modified": false
   },
   "schema": "argdigest.public-release@1",
-  "state": "public-package-verified",
+  "state": "verified",
   "tag": {
     "commit_sha": "c9c9ee623dab5331fdfa4227bd784dd38620e18b",
     "object_sha": "448c09f038e0268c756ac7846cee99e68ce27a68",
     "ref": "refs/tags/0.17.1",
     "type": "tag"
   },
+  "upstream_service_observation": "devguide/evidence/release_0_17_1_receiving_20261105/upstream-service-observation.json",
   "version": "0.17.1",
   "zenodo": {
     "all_files_identical": true,

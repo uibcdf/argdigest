@@ -1,0 +1,39 @@
+{
+  "source_sha": "af14bd17fdaf4a8a69cce468ffa7056f7d2d4b40",
+  "observed_at": "2026-11-06T01:20:51.099145+00:00",
+  "gates": {
+    ".github/workflows/CI.yaml": {
+      "run_id": 42137031770,
+      "status": "queued",
+      "conclusion": null,
+      "url": "https://github.com/uibcdf/argdigest/actions/runs/42137031770",
+      "state": "pending",
+      "jobs": [
+        {
+          "name": "Review dependency routes before testing",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Test on ubuntu-latest, Python 3.14",
+          "status": "queued",
+          "conclusion": null
+        }
+      ]
+    },
+    ".github/workflows/molsyssuite-policy.yml": {
+      "run_id": 42137032239,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/uibcdf/argdigest/actions/runs/42137032239",
+      "state": "verified"
+    },
+    ".github/workflows/conda-publication-policy.yml": {
+      "run_id": 42137032438,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/uibcdf/argdigest/actions/runs/42137032438",
+      "state": "verified"
+    }
+  }
+}

@@ -51,3 +51,10 @@ configuration error. The guard asserts whole registered-consumer execution,
 zero unnecessary reads/conversions and the unchanged error/code/context on
 actual ambiguity. The superseded candidate's source runs are not release gates;
 the corrected SHA must receive all of #51's required source/installed matrices.
+
+## Public delivery — 2026-11-05
+
+0.17.1 is published with this correction. Independent original-file source,
+full installed, minimal-core and fresh public receiving evidence is archived
+under release #51 in `devguide/completed_proposals/release_0_17_1.md`.
+The earlier source-only measurements above retain their original scope.

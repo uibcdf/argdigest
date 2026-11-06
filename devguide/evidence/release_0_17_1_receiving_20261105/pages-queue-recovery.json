@@ -1,0 +1,11 @@
+{
+  "state": "not-requested-original-build-already-passed",
+  "observed_at": "2026-11-06T00:48:21.265075+00:00",
+  "run_id": 42134555677,
+  "attempt": 1,
+  "source_sha": "d149eff7d9bd577439a90fa107fb6bc112a1a2e9",
+  "cancel_requested": false,
+  "rerun_requested": false,
+  "preflight_result": "Before any remote mutation, job count differed from the required single unstarted build. Fresh native inspection showed build success and report-build-status/deploy queued.",
+  "correction": "Workflow-level queued status did not mean the build job was unstarted. Earlier human-facing inference was corrected. Pending observer now preserves native per-job states."
+}
