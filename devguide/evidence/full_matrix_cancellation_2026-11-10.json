@@ -1,6 +1,6 @@
 {
   "issue": "uibcdf/argdigest#52",
-  "state": "locally-verified; native cancellation pending",
+  "state": "native ordinary cancellation verified; final main checkpoint pending",
   "source_baseline": "07126411f108ee1ff607e9c9a0816109b2c9253e",
   "scope": "CI-only status guard; no package/release/tag mutation",
   "workflow_sha256": "254f7b406d3e3e8931d8e492f02339b4fdaff0921ca9df71285f342faad5ae22",
@@ -140,7 +140,187 @@
     ]
   },
   "hosted_cancellation": {
-    "state": "pending"
+    "state": "verified",
+    "run_id": 42962698431,
+    "url": "https://github.com/uibcdf/argdigest/actions/runs/42962698431",
+    "source_sha": "ecd099c101bfd263ba1a5ea9bbcfd1c134a742a3",
+    "branch": "work/52-cancellation-20261110",
+    "event": "workflow_dispatch",
+    "attempt": 1,
+    "workflow": ".github/workflows/CI_full_matrix.yaml",
+    "request_at": "2026-11-11T05:00:22.570872+00:00",
+    "observed_terminal_at": "2026-11-11T05:02:56.285132+00:00",
+    "command": "gh run cancel 42962698431 --repo uibcdf/argdigest",
+    "command_exit": 0,
+    "force_cancel_requested": false,
+    "native_run_status": "completed",
+    "native_run_conclusion": "cancelled",
+    "manual_decision_skipped": true,
+    "scientific_cells_created": 12,
+    "scientific_successes": 10,
+    "scientific_cancelled": 2,
+    "scientific_matrix_qualified": false,
+    "scope": "Owned cancellation probe; cancelled/partial science is not passing matrix evidence and does not clear backlog.",
+    "before_jobs": [
+      {
+        "id": 130332754297,
+        "name": "Full test on windows-latest, Python 3.13",
+        "status": "in_progress",
+        "conclusion": null
+      },
+      {
+        "id": 130332754642,
+        "name": "Full test on macos-latest, Python 3.14",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 130332754662,
+        "name": "Full test on ubuntu-latest, Python 3.12",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 130332754706,
+        "name": "Full test on windows-latest, Python 3.11",
+        "status": "in_progress",
+        "conclusion": null
+      },
+      {
+        "id": 130332754717,
+        "name": "Full test on macos-latest, Python 3.12",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 130332754782,
+        "name": "Full test on windows-latest, Python 3.14",
+        "status": "in_progress",
+        "conclusion": null
+      },
+      {
+        "id": 130332754786,
+        "name": "Full test on ubuntu-latest, Python 3.14",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 130332754792,
+        "name": "Full test on ubuntu-latest, Python 3.11",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 130332754795,
+        "name": "Full test on macos-latest, Python 3.13",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 130332754815,
+        "name": "Full test on ubuntu-latest, Python 3.13",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 130332754860,
+        "name": "Full test on macos-latest, Python 3.11",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 130332754900,
+        "name": "Full test on windows-latest, Python 3.12",
+        "status": "in_progress",
+        "conclusion": null
+      },
+      {
+        "id": 130332785186,
+        "name": "Check skipped-commit backlog",
+        "status": "completed",
+        "conclusion": "skipped"
+      }
+    ],
+    "after_jobs": [
+      {
+        "id": 130332754297,
+        "name": "Full test on windows-latest, Python 3.13",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 130332754642,
+        "name": "Full test on macos-latest, Python 3.14",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 130332754662,
+        "name": "Full test on ubuntu-latest, Python 3.12",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 130332754706,
+        "name": "Full test on windows-latest, Python 3.11",
+        "status": "completed",
+        "conclusion": "cancelled"
+      },
+      {
+        "id": 130332754717,
+        "name": "Full test on macos-latest, Python 3.12",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 130332754782,
+        "name": "Full test on windows-latest, Python 3.14",
+        "status": "completed",
+        "conclusion": "cancelled"
+      },
+      {
+        "id": 130332754786,
+        "name": "Full test on ubuntu-latest, Python 3.14",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 130332754792,
+        "name": "Full test on ubuntu-latest, Python 3.11",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 130332754795,
+        "name": "Full test on macos-latest, Python 3.13",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 130332754815,
+        "name": "Full test on ubuntu-latest, Python 3.13",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 130332754860,
+        "name": "Full test on macos-latest, Python 3.11",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 130332754900,
+        "name": "Full test on windows-latest, Python 3.12",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 130332785186,
+        "name": "Check skipped-commit backlog",
+        "status": "completed",
+        "conclusion": "skipped"
+      }
+    ]
   },
   "post_record_completion_owner": "uibcdf/argdigest#52",
   "local_test_tools": {

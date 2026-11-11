@@ -5,7 +5,7 @@ their established locations so existing references remain valid.
 
 <!-- generated: devguide_index -->
 
-### Resolved (36)
+### Resolved (37)
 
 - [`adopt_molsyssuite_policy_v1.md`](../completed_proposals/adopt_molsyssuite_policy_v1.md) — [#4](https://github.com/uibcdf/argdigest/issues/4) — Adopt the shared MolSysSuite policy and Ruff gate. *(resolved, measured)*
 - [`adopt_shared_reporting_lifecycle.md`](../completed_proposals/adopt_shared_reporting_lifecycle.md) — [#6](https://github.com/uibcdf/argdigest/issues/6) — Adopt the shared issue-backed developer-guide lifecycle. *(resolved, inspected)*
@@ -19,6 +19,7 @@ their established locations so existing references remain valid.
 - [`eager_digester_identity_lookup.md`](../solved_bugs/eager_digester_identity_lookup.md) — [#53](https://github.com/uibcdf/argdigest/issues/53) — Keep diagnostic label lookup off valid digester metadata paths. *(resolved, reproduced)*
 - [`expand_python_support_to_3_14.md`](../completed_proposals/expand_python_support_to_3_14.md) — [#13](https://github.com/uibcdf/argdigest/issues/13) — Release ArgDigest with independently verified Python 3.14 support. *(resolved, measured)*
 - [`explicit_argument_digestion.md`](../completed_proposals/explicit_argument_digestion.md) — [#30](https://github.com/uibcdf/argdigest/issues/30) — Select argument digestion independently of configuration and pipelines. *(resolved, measured)*
+- [`full_matrix_cancellation.md`](../solved_bugs/full_matrix_cancellation.md) — [#52](https://github.com/uibcdf/argdigest/issues/52) — Let the full source matrix honor ordinary workflow cancellation. *(resolved, measured)*
 - [`license_metadata_build_review.md`](../completed_proposals/license_metadata_build_review.md) — [#44](https://github.com/uibcdf/argdigest/issues/44) — Adopt SPDX metadata with tested compatible build backend routes. *(resolved, measured)*
 - [`literal_var_keyword_expanded_twice.md`](../solved_bugs/literal_var_keyword_expanded_twice.md) — [#47](https://github.com/uibcdf/argdigest/issues/47) — Preserve literal VAR_KEYWORD-named options without changing named arguments. *(resolved, reproduced)*
 - [`method_caller_omits_runtime_class.md`](../solved_bugs/method_caller_omits_runtime_class.md) — [#18](https://github.com/uibcdf/argdigest/issues/18) — Method caller names the module and method but omits the runtime class. *(resolved, reproduced)*

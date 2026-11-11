@@ -5,8 +5,6 @@ Open ArgDigest defects with issue-backed reports. See
 
 <!-- generated: devguide_index -->
 
-### Active (1)
-
-- [`full_matrix_cancellation.md`](full_matrix_cancellation.md) — [#52](https://github.com/uibcdf/argdigest/issues/52) — Let the full source matrix honor ordinary workflow cancellation. *(active, measured)*
+*No entries.*
 
 <!-- /generated -->

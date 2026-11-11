@@ -1,9 +1,9 @@
 ---
 summary: Let the full source matrix honor ordinary workflow cancellation.
 issue: uibcdf/argdigest#52
-status: active
+status: resolved
 opened: 2026-11-05
-closed:
+closed: 2026-11-10
 severity: medium
 verification: measured
 area: [ci, cancellation]
@@ -67,3 +67,18 @@ configuration analysis, not a native runner or scientific qualification.
 Local source checks use published Pytest Receptor 1.2.2 on Python 3.14. They
 do not establish scientific/public-artifact qualification. Native cancellation
 and hosted final-head CI remain separate required checkpoints for this fix.
+
+## Native cancellation verification — 2026-11-10
+
+Owned run [42962698431](https://github.com/uibcdf/argdigest/actions/runs/42962698431),
+attempt 1, used exact fix source `ecd099c101bfd263ba1a5ea9bbcfd1c134a742a3`
+on the task branch. GitHub created all twelve full-test cells while the
+manual decision job was skipped. An ordinary `gh run cancel` was acknowledged
+and the native run reached `completed/cancelled`, without force-cancel.
+Ten scientific cells had completed successfully and two were cancelled; this
+is a cancellation probe, not a passed scientific matrix or backlog clearance.
+The allowlisted before/after job projection and explicit scope are retained
+in `devguide/evidence/full_matrix_cancellation_2026-11-10.json`.
+
+The published 0.17.1 source/file remains unchanged. The final main checkpoint
+receives its own ordinary CI/policy verification, recorded in the owning issue.
