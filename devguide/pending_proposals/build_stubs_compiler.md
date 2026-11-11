@@ -90,6 +90,15 @@ The proposed small pilot remains the next step, triggered by explicit typed
 consumer samples after the call-shape corrections have published receiving
 evidence. No compiler, watcher or adjacent stub writer is implemented or claimed.
 
+## Maintainer disposition — 2026-11-10
+
+The maintainer explicitly postponed #9 because its resolution/design is still
+unclear, and selected #52 as the current work. The full generator remains
+scheduled after 1.0. No pilot, compiler, watcher or stub writer is included in
+this change. Revisit the existing pilot criteria when explicit typed consumer
+examples and a reviewed accepted/canonical type representation are available;
+the historical consumer counts above have not been remeasured.
+
 ## Original proposal
 
 We propose introducing an automated, offline type-stub generator (`argdigest build-stubs`) to `argdigest`. This tool will parse a library's central digestion directory (`_private/arg_digestion/`) and dynamically compile PEP 484-compliant static type stub files (`.pyi`). 

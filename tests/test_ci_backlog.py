@@ -7,6 +7,8 @@ import subprocess
 from pathlib import Path
 from urllib.error import URLError
 
+import pytest
+
 SPEC = importlib.util.spec_from_file_location(
     "ci_backlog", Path(__file__).resolve().parents[1] / "devtools/ci_backlog.py"
 )
@@ -36,7 +38,8 @@ def test_skipped_commit_stays_due_after_ordinary_commits(tmp_path, monkeypatch):
     assert ci_backlog.SKIP_MARKER.search("message\n\nskip-checks: true")
 
 
-def test_only_an_executed_full_linux_matrix_clears_debt(monkeypatch):
+@pytest.mark.parametrize("conclusion", ("failure", "cancelled", None))
+def test_only_an_executed_full_linux_matrix_clears_debt(monkeypatch, conclusion):
     def fake_api(path, _token):
         if "/runs?" in path:
             assert "status=success" not in path
@@ -48,7 +51,7 @@ def test_only_an_executed_full_linux_matrix_clears_debt(monkeypatch):
                         "event": "schedule",
                         "head_branch": "main",
                         "head_sha": "failed",
-                        "conclusion": "failure",
+                        "conclusion": conclusion,
                     },
                     {
                         "id": 2,

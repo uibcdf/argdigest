@@ -1,0 +1,151 @@
+{
+  "issue": "uibcdf/argdigest#52",
+  "state": "locally-verified; native cancellation pending",
+  "source_baseline": "07126411f108ee1ff607e9c9a0816109b2c9253e",
+  "scope": "CI-only status guard; no package/release/tag mutation",
+  "workflow_sha256": "254f7b406d3e3e8931d8e492f02339b4fdaff0921ca9df71285f342faad5ae22",
+  "regression_before": {
+    "exit": 1,
+    "tests": 1,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0
+  },
+  "focused_after": {
+    "exit": 0,
+    "tests": 58,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "ruff": "lint and formatting passed",
+  "dependency_preflight": "passed using unchanged inventory tool pin 43b9f94bf5ab0ec3f54a4b2ca5b23b791d6af0bc",
+  "configured_scenarios": {
+    "scope": "Configured predicate outcomes under explicit status fixtures; not native job execution or scientific qualification.",
+    "tool_owner": "uibcdf/molsyssuite",
+    "tool_commit": "784d7cb7a948ee539372592142e6d7004dea77b1",
+    "tool_path": "devtools/scripts/ci_lane_inventory.py",
+    "tool_sha256": "16a74eed2109dde89d36b76ec872d6cc890501a8eae72b8a7d243162f62acca8",
+    "status_fixture": "cancelled() substituted with the documented workflow-cancelled boolean; unknowns are never coerced to passing.",
+    "only_workflow_change": "always() -> !cancelled()",
+    "scenarios": [
+      {
+        "scenario": "manual-defaults",
+        "workflow_cancelled_fixture": false,
+        "before": true,
+        "after": true
+      },
+      {
+        "scenario": "manual-defaults",
+        "workflow_cancelled_fixture": true,
+        "before": true,
+        "after": false
+      },
+      {
+        "scenario": "manual-probe",
+        "workflow_cancelled_fixture": false,
+        "before": false,
+        "after": false
+      },
+      {
+        "scenario": "manual-probe",
+        "workflow_cancelled_fixture": true,
+        "before": false,
+        "after": false
+      },
+      {
+        "scenario": "weekly",
+        "workflow_cancelled_fixture": false,
+        "before": true,
+        "after": true
+      },
+      {
+        "scenario": "weekly",
+        "workflow_cancelled_fixture": true,
+        "before": true,
+        "after": false
+      },
+      {
+        "scenario": "nightly-due",
+        "workflow_cancelled_fixture": false,
+        "before": true,
+        "after": true
+      },
+      {
+        "scenario": "nightly-due",
+        "workflow_cancelled_fixture": true,
+        "before": true,
+        "after": false
+      },
+      {
+        "scenario": "nightly-current",
+        "workflow_cancelled_fixture": false,
+        "before": false,
+        "after": false
+      },
+      {
+        "scenario": "nightly-current",
+        "workflow_cancelled_fixture": true,
+        "before": false,
+        "after": false
+      },
+      {
+        "scenario": "nightly-no-output",
+        "workflow_cancelled_fixture": false,
+        "before": false,
+        "after": false
+      },
+      {
+        "scenario": "nightly-no-output",
+        "workflow_cancelled_fixture": true,
+        "before": false,
+        "after": false
+      },
+      {
+        "scenario": "nightly-failed-decision",
+        "workflow_cancelled_fixture": false,
+        "before": true,
+        "after": true
+      },
+      {
+        "scenario": "nightly-failed-decision",
+        "workflow_cancelled_fixture": true,
+        "before": true,
+        "after": false
+      },
+      {
+        "scenario": "nightly-skipped-decision",
+        "workflow_cancelled_fixture": false,
+        "before": true,
+        "after": true
+      },
+      {
+        "scenario": "nightly-skipped-decision",
+        "workflow_cancelled_fixture": true,
+        "before": true,
+        "after": false
+      },
+      {
+        "scenario": "manual-probe-failed-decision",
+        "workflow_cancelled_fixture": false,
+        "before": false,
+        "after": false
+      },
+      {
+        "scenario": "manual-probe-failed-decision",
+        "workflow_cancelled_fixture": true,
+        "before": false,
+        "after": false
+      }
+    ]
+  },
+  "hosted_cancellation": {
+    "state": "pending"
+  },
+  "post_record_completion_owner": "uibcdf/argdigest#52",
+  "local_test_tools": {
+    "python": "3.14.7",
+    "pytest_receptor": "1.2.2 (published PyPI)",
+    "scope": "Selected source/configuration checks only; not scientific/public-artifact qualification."
+  }
+}

@@ -39,7 +39,7 @@ jobs:
     name: Full test on ${{ matrix.cfg.os }}, Python ${{ matrix.cfg.python-version }}
     needs: nightly-decision
     if: >-
-      always() && inputs.probe_backlog != true
+      !cancelled() && inputs.probe_backlog != true
       && (github.event_name != 'schedule' || github.event.schedule != '37 0 * * *'
       || needs.nightly-decision.result != 'success'
       || needs.nightly-decision.outputs.run_full == 'true')

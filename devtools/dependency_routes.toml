@@ -54,7 +54,7 @@ reason = "Pinned administrative preflight precedes normal Linux 3.14 wheel/insta
 
 [[workflows]]
 path = ".github/workflows/CI_full_matrix.yaml"
-sha256 = "d0fe9cbb4c33a7318ff2c0ed17838e3b2feedae1e5226a51e8db8239fc2190b5"
+sha256 = "254f7b406d3e3e8931d8e492f02339b4fdaff0921ca9df71285f342faad5ae22"
 reason = "Scheduled/manual twelve-cell source suite uses reviewed test/core environments, explicit Python selections and strict priority. Backlog checking is administrative; no required sibling is installed from source."
 
 [[workflows]]
